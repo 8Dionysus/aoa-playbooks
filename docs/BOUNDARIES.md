@@ -1,0 +1,58 @@
+# Playbook Layer Boundaries
+
+This document records the most important ownership boundaries for `aoa-playbooks`.
+
+## Rule 1: playbook owns scenario composition, not everything the scenario touches
+
+`aoa-playbooks` should own playbook-layer meaning such as:
+- playbook profiles
+- scenario contracts
+- trigger posture
+- participating role patterns
+- required skill-family composition hints
+- fallback posture
+- expected artifact posture
+
+It should not become the default dumping ground for everything a scenario might use.
+
+## Rule 2: playbook is not skill
+
+A playbook may compose skills.
+That does not make the playbook profile itself a skill bundle.
+
+Reusable execution still belongs to `aoa-skills`.
+
+## Rule 3: playbook is not proof
+
+A playbook may require eval posture.
+That does not make the playbook profile itself a proof object.
+
+Bounded proof still belongs to `aoa-evals`.
+
+## Rule 4: playbook is not memory
+
+A playbook may specify memory posture.
+That does not make the playbook layer the owner of memory objects or recall truth.
+
+Memory still belongs to `aoa-memo`.
+
+## Rule 5: playbook is not routing
+
+A playbook may rely on routing.
+That does not make the playbook layer the owner of cross-repo dispatch.
+
+Navigation still belongs to `aoa-routing`.
+
+## Rule 6: fallback matters
+
+A playbook should make clear what happens when the scenario drifts, fails, becomes risky, or needs review.
+That posture should not stay implicit.
+
+## Rule 7: keep playbooks reviewable
+
+If playbooks become giant nonlinear orchestration scripts or folklore archives, the layer will stop being trustworthy.
+Compactness and explicit posture matter.
+
+## Compact rule
+
+`aoa-playbooks` should help AoA name its recurring scenarios without letting the scenario layer blur every other layer.
