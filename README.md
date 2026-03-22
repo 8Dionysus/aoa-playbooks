@@ -66,6 +66,8 @@ This repository includes a compact machine-readable playbook-layer registry at:
 It now also includes authored playbook bundles at:
 - `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`
 - `playbooks/witness-to-compost-pilot/PLAYBOOK.md`
+- `playbooks/long-horizon-model-tier-orchestra/PLAYBOOK.md`
+- `playbooks/restartable-inquiry-loop/PLAYBOOK.md`
 
 The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` and checks that each one stays aligned with the registry surface.
 
@@ -77,7 +79,7 @@ python scripts/validate_playbooks.py
 
 ## Current status
 
-`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work and the witness/compost pilot.
+`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, and restartable inquiry.
 The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home.
 
 ## Principles
