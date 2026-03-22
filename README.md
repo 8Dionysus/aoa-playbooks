@@ -14,13 +14,16 @@ If you are new to this repository, use this path:
 1. Read [CHARTER](CHARTER.md) for the role and boundaries of the playbook layer.
 2. Read [docs/PLAYBOOK_MODEL](docs/PLAYBOOK_MODEL.md) for the conceptual model.
 3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
-4. Read [ROADMAP](ROADMAP.md) for the current direction.
+4. Read [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
+5. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first real playbook object.
+6. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
 `aoa-playbooks` should own playbook-layer meaning about:
 - recurring operational scenarios
 - multi-step compositions of skills
+- scenario-level methods once a route spans skills, roles, memory posture, and proof posture
 - role-aware handoff patterns
 - decision points and fallback paths
 - expected evidence and validation posture
@@ -41,6 +44,8 @@ A playbook is not a skill.
 A skill is a bounded workflow.
 A playbook is a higher-level scenario recipe that coordinates multiple surfaces.
 
+When a route becomes a recurring cross-layer method, it belongs here rather than being smeared across skills, notes, and ad hoc orchestration.
+
 ## Relationship to the AoA federation
 
 Within AoA:
@@ -57,6 +62,11 @@ Within AoA:
 This repository includes a compact machine-readable playbook-layer registry at:
 - `generated/playbook_registry.min.json`
 
+It now also includes the first authored playbook bundle at:
+- `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`
+
+The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` and checks that each one stays aligned with the registry surface.
+
 To validate the current playbook-layer surface locally, run:
 
 ```bash
@@ -65,8 +75,8 @@ python scripts/validate_playbooks.py
 
 ## Current status
 
-`aoa-playbooks` is in bootstrap.
-The goal of this first public baseline is to define the role, boundaries, and first machine-readable playbook-layer surface without overbuilding orchestration too early.
+`aoa-playbooks` is in bootstrap with a first authored playbook bundle.
+The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home.
 
 ## Principles
 

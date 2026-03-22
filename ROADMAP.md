@@ -7,6 +7,7 @@ This roadmap tracks the bootstrap and early shaping of the AoA playbook layer.
 `aoa-playbooks` is in bootstrap.
 The current goal is not to build a giant orchestration engine immediately.
 The goal is to define what the playbook layer is for, what it owns, and what it must not silently absorb.
+The first authored bundle now exists so scenario-level method has one real public home before the layer grows wider.
 
 ## Phase 1: playbook layer definition
 
@@ -26,6 +27,7 @@ Goals:
 - define the first public shape for playbook profiles
 - distinguish recurring scenarios such as repo bootstrap, safe change rollout, bounded research pass, release prep, and memory curation
 - keep playbook forms compact enough to review
+- introduce the first authored `PLAYBOOK.md` without turning the layer into a workflow dump
 
 ## Phase 3: posture and fallback surfaces
 
@@ -41,6 +43,7 @@ Goals:
 - define bounded multi-surface composition hints
 - clarify when a playbook is mainly skill-driven, agent-driven, or proof-heavy
 - avoid turning the playbook layer into hidden orchestration runtime too early
+- make scenario-level method readable as an authored object rather than only a registry row
 
 ## Phase 5: federation integration
 
