@@ -16,24 +16,6 @@ If you are new to this repository, use this path:
 3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
 4. Read [ROADMAP](ROADMAP.md) for the current direction.
 
-For the shortest next route by intent:
-- if you need the ecosystem center and layer map, go to [`Agents-of-Abyss`](https://github.com/8Dionysus/Agents-of-Abyss)
-- if you need bounded execution workflows rather than scenario compositions, go to [`aoa-skills`](https://github.com/8Dionysus/aoa-skills)
-- if you need portable proof surfaces rather than operating recipes, go to [`aoa-evals`](https://github.com/8Dionysus/aoa-evals)
-- if you need explicit role contracts and handoff posture, go to [`aoa-agents`](https://github.com/8Dionysus/aoa-agents)
-- if you need memory and recall meaning, go to [`aoa-memo`](https://github.com/8Dionysus/aoa-memo)
-
-## Quick route table
-
-| repository | owns | go here when |
-|---|---|---|
-| `aoa-playbooks` | recurring operational scenarios, multi-step compositions, fallback paths, expected evidence posture | you need scenario recipes that coordinate multiple surfaces |
-| `Agents-of-Abyss` | ecosystem identity, layer map, federation rules, program-level direction | you need the center and the constitutional view of AoA |
-| `aoa-skills` | bounded agent-facing execution workflows | you need one workflow rather than a higher-level scenario composition |
-| `aoa-evals` | portable proof surfaces for bounded claims | you need evaluation and quality checks rather than operating recipes |
-| `aoa-agents` | role contracts, persona boundaries, handoff posture | you need actor-level contracts within or around a playbook |
-| `aoa-memo` | memory objects, recall surfaces, provenance threads | you need memory-layer meaning rather than scenario composition |
-
 ## What this repository is for
 
 `aoa-playbooks` should own playbook-layer meaning about:
@@ -53,7 +35,7 @@ This repository should not become the main home for:
 - routing surfaces
 - memory objects
 - infrastructure implementation details
-- giant script archives pretending to be operations
+- giant prompt scripts pretending to be operations
 
 A playbook is not a skill.
 A skill is a bounded workflow.
