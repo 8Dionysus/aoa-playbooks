@@ -15,8 +15,9 @@ If you are new to this repository, use this path:
 2. Read [docs/PLAYBOOK_MODEL](docs/PLAYBOOK_MODEL.md) for the conceptual model.
 3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
 4. Read [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
-5. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first real playbook object.
-6. Read [ROADMAP](ROADMAP.md) for the current direction.
+5. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
+6. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
+7. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
@@ -62,8 +63,9 @@ Within AoA:
 This repository includes a compact machine-readable playbook-layer registry at:
 - `generated/playbook_registry.min.json`
 
-It now also includes the first authored playbook bundle at:
+It now also includes authored playbook bundles at:
 - `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`
+- `playbooks/witness-to-compost-pilot/PLAYBOOK.md`
 
 The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` and checks that each one stays aligned with the registry surface.
 
@@ -75,7 +77,7 @@ python scripts/validate_playbooks.py
 
 ## Current status
 
-`aoa-playbooks` is in bootstrap with a first authored playbook bundle.
+`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work and the witness/compost pilot.
 The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home.
 
 ## Principles
