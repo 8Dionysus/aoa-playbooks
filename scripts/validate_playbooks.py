@@ -91,7 +91,7 @@ def read_text(path: Path) -> str:
 
 def parse_scalar(value: str) -> str:
     scalar = value.strip()
-    if scalar.startswith(("'", '"')) and scalar.endswith(("'", '"')) and len(scalar) >= 2:
+    if len(scalar) >= 2 and scalar[0] in {"'", '"'} and scalar[-1] == scalar[0]:
         return scalar[1:-1]
     return scalar
 
