@@ -1,0 +1,84 @@
+# Playbook Bundle Contract
+
+This document defines the compact authored contract for `PLAYBOOK.md` bundles in `aoa-playbooks`.
+
+The point is not to turn the repository into a giant workflow corpus.
+The point is to give scenario-level method one readable, source-owned object once a route needs more than a registry row.
+
+## Core rule
+
+A playbook bundle owns the scenario route.
+
+It does not own:
+- technique meaning
+- skill meaning
+- eval doctrine
+- memory taxonomy
+- role taxonomy
+
+Those neighboring layers stay authoritative for their own objects.
+
+## Required frontmatter
+
+Each authored bundle should keep registry-aligned fields in YAML frontmatter:
+
+- `id`
+- `name`
+- `status`
+- `summary`
+- `scenario`
+- `trigger`
+- `prerequisites`
+- `participating_agents`
+- `required_skill_families`
+- `evaluation_posture`
+- `memory_posture`
+- `fallback_mode`
+- `expected_artifacts`
+
+Optional bundle-local fields may appear when they stay compact and do not replace neighboring layer meaning.
+
+Authored bundles should live at:
+
+- `playbooks/<name>/PLAYBOOK.md`
+
+That path keeps the bundle slug aligned with the registry `name` and lets validation discover bundles without a hand-maintained path list.
+
+## Required sections
+
+Each authored bundle should include these fixed sections:
+
+- `Intent`
+- `Trigger boundary`
+- `Prerequisites`
+- `Participating agents`
+- `Required skills`
+- `Decision points`
+- `Handoffs`
+- `Fallback and rollback posture`
+- `Expected evidence posture`
+- `Expected artifacts`
+- `Eval anchors`
+- `Memory writeback`
+- `Canonical route`
+
+## What the bundle must make legible
+
+A good `PLAYBOOK.md` should make it easy to answer:
+
+- when this route should start
+- which roles participate
+- which concrete skills usually carry the route
+- where the route can pause, hand off, or roll back
+- what evidence should exist when the route finishes
+- what memory writeback should survive the route
+
+## First authored bundle
+
+The current first authored bundle is:
+
+- `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`
+
+It is the first method-home example for the second-wave rule:
+
+**method lives in playbooks**

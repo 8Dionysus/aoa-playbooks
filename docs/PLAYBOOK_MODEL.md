@@ -22,6 +22,20 @@ Within `aoa-playbooks`, a playbook should mean a reusable scenario-level composi
 - fallback or rollback posture
 - expected artifact posture
 
+At the current second-wave baseline, that meaning may live in:
+- a compact registry surface for routing and lookup
+- an authored `PLAYBOOK.md` bundle when one recurring route needs a real source-owned home
+
+## Method and playbook
+
+Within AoA, a playbook is the natural home for scenario-level method once a route spans more than one bounded workflow.
+
+That means:
+
+- techniques still own reusable practice
+- skills still own bounded execution
+- playbooks own the recurring route, decision points, handoffs, fallbacks, and expected evidence
+
 ## Playbook classes
 
 The first useful distinction is between scenario archetypes such as:
@@ -46,6 +60,10 @@ A playbook for preparing a repository or layer for merge or release with clear c
 
 A playbook for turning scattered memory inputs into bounded curated memory outputs without confusing curation with proof.
 
+### Self-agent checkpoint rollout
+
+A playbook for bounded self-changing or policy-sensitive changes where approval, rollback, health checks, and improvement logs must remain explicit.
+
 ## What a playbook must not do
 
 A playbook profile should not silently become:
@@ -66,6 +84,17 @@ A good playbook should make it easier to answer:
 - what evidence or evaluation posture is expected?
 - what fallback path exists if the scenario goes wrong?
 - what artifacts should exist at the end?
+
+## Authored playbook bundles
+
+The registry is not enough once a scenario-level method needs a readable source object.
+
+At the current baseline, an authored playbook bundle should use:
+- YAML frontmatter for compact registry-aligned fields
+- fixed sections for route meaning, handoffs, fallback posture, and evidence posture
+- links to neighboring skill, agent, eval, and memory surfaces without absorbing their meaning
+
+The first authored bundle is `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`.
 
 ## Relationship to neighboring layers
 

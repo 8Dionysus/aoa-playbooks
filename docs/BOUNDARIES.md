@@ -53,6 +53,27 @@ That posture should not stay implicit.
 If playbooks become giant nonlinear orchestration scripts or folklore archives, the layer will stop being trustworthy.
 Compactness and explicit posture matter.
 
+## Rule 8: scenario-level method belongs here, not everywhere at once
+
+When a recurring route spans techniques, skills, roles, memory posture, and proof posture, the playbook layer should own that route as scenario-level method.
+
+That should not be used as an excuse to absorb the source meaning of those neighboring layers.
+
+## Rule 9: authored playbook bundles own route wording, not neighboring layer truth
+
+When `aoa-playbooks` publishes a `PLAYBOOK.md`, that bundle becomes the source of truth for the scenario route itself:
+- trigger boundary
+- decision points
+- handoffs
+- fallback posture
+- expected evidence posture
+
+It does not become the source of truth for:
+- technique meaning
+- skill meaning
+- eval doctrine
+- memory-object taxonomy
+
 ## Compact rule
 
 `aoa-playbooks` should help AoA name its recurring scenarios without letting the scenario layer blur every other layer.
