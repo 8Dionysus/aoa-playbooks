@@ -29,19 +29,39 @@ REQUIRED_BUNDLE_SECTIONS = {
     "Memory writeback",
     "Canonical route",
 }
-BUNDLE_TEXT_CHECKS = {
-    "AOA-P-0006": (
-        "aoa-source-of-truth-check",
-        "aoa-approval-gate-check",
-        "aoa-dry-run-first",
-        "aoa-change-protocol",
-        "aoa-approval-boundary-adherence",
-        "aoa-bounded-change-quality",
-        "architect",
-        "coder",
-        "reviewer",
-        "memory-keeper",
-    )
+BUNDLE_SEMANTIC_CHECKS = {
+    "AOA-P-0006": {
+        "text_tokens": (
+            "aoa-source-of-truth-check",
+            "aoa-approval-gate-check",
+            "aoa-dry-run-first",
+            "aoa-change-protocol",
+            "aoa-approval-boundary-adherence",
+            "aoa-bounded-change-quality",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0007": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-witness-trace-integrity",
+                "aoa-compost-provenance-preservation",
+            ),
+        },
+        "text_tokens": (
+            "aoa-source-of-truth-check",
+            "aoa-change-protocol",
+            "aoa-witness-trace-integrity",
+            "aoa-compost-provenance-preservation",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
 }
 
 
@@ -320,15 +340,31 @@ def validate_authored_bundles(playbooks_by_id: dict[str, dict[str, object]]) -> 
                 f"{', '.join(missing_sections)}"
             )
 
-        for token in BUNDLE_TEXT_CHECKS.get(playbook_id, ()):
+        semantic_checks = BUNDLE_SEMANTIC_CHECKS.get(playbook_id, {})
+
+        for field_name, expected_items in semantic_checks.get("frontmatter_lists", {}).items():
+            value = frontmatter.get(field_name)
+            if not isinstance(value, list):
+                fail(
+                    f"{bundle_path.relative_to(REPO_ROOT).as_posix()} is missing required list frontmatter "
+                    f"'{field_name}'"
+                )
+            actual_items = tuple(item for item in value if isinstance(item, str))
+            if actual_items != expected_items:
+                fail(
+                    f"{bundle_path.relative_to(REPO_ROOT).as_posix()} frontmatter '{field_name}' must equal "
+                    f"{list(expected_items)}"
+                )
+
+        for token in semantic_checks.get("text_tokens", ()):
             if token not in text:
                 fail(f"{bundle_path.relative_to(REPO_ROOT).as_posix()} must mention '{token}' explicitly")
 
-    missing_text_check_bundles = sorted(set(BUNDLE_TEXT_CHECKS) - seen_bundle_ids)
-    if missing_text_check_bundles:
+    missing_semantic_check_bundles = sorted(set(BUNDLE_SEMANTIC_CHECKS) - seen_bundle_ids)
+    if missing_semantic_check_bundles:
         fail(
             "authored bundle validation expected bundle ids that were not discovered: "
-            + ", ".join(missing_text_check_bundles)
+            + ", ".join(missing_semantic_check_bundles)
         )
 
 
