@@ -20,6 +20,11 @@ required_skill_families:
   - review
   - memory-curation
   - research
+required_skills:
+  - aoa-change-protocol
+  - aoa-source-of-truth-check
+  - aoa-dry-run-first
+  - aoa-bounded-context-map
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: handoff
@@ -32,6 +37,12 @@ expected_artifacts:
 eval_anchors:
   - aoa-long-horizon-depth
   - aoa-tool-trajectory-discipline
+memo_contract_refs:
+  - examples/checkpoint_to_memory_contract.example.json
+memo_writeback_targets:
+  - decision
+  - claim
+  - pattern
 ---
 
 # long-horizon-model-tier-orchestra
@@ -141,8 +152,9 @@ Use `aoa-tool-trajectory-discipline` as the first operational bounded anchor for
 
 - tier-local execution notes should usually stay operational-only
 - `transition_decision` may survive as a `decision` when it changes later routing posture
-- the `distillation_pack` should nominate summaries, decisions, and memory candidates without pretending to be source-authored canon
-- contradiction notes should remain explicit rather than being smoothed away for neatness
+- distilled claim candidates from the `distillation_pack` may survive as a reviewed `claim`
+- distilled pattern candidates from the `distillation_pack` may survive as a reviewed `pattern`
+- contradiction notes and the rest of the `distillation_pack` should remain explicit operational material until later memo review
 
 ## Canonical route
 

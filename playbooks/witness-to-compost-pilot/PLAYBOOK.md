@@ -20,6 +20,9 @@ required_skill_families:
   - change-protocol
   - memory-curation
   - review
+required_skills:
+  - aoa-source-of-truth-check
+  - aoa-change-protocol
 evaluation_posture: strict
 memory_posture: deep_recall
 fallback_mode: handoff
@@ -32,6 +35,15 @@ expected_artifacts:
 eval_anchors:
   - aoa-witness-trace-integrity
   - aoa-compost-provenance-preservation
+memo_contract_refs:
+  - examples/recall_contract.router.semantic.json
+  - examples/checkpoint_to_memory_contract.example.json
+  - examples/provenance_thread.example.json
+memo_writeback_targets:
+  - episode
+  - decision
+  - audit_event
+  - provenance_thread
 ---
 
 # witness-to-compost-pilot
@@ -135,9 +147,10 @@ They exist to keep witness and compost posture inspectable without pretending th
 ## Memory writeback
 
 - the run-level trace event should survive as an `episode`
-- explicit gate or review outcomes may survive as `decision` objects when present
+- explicit gate or review outcomes may survive as a `decision`
+- lifecycle transitions or failure states may survive as an `audit_event`
 - the route history should survive as a `provenance_thread`
-- lifecycle transitions or failure states may survive as `audit_event` objects
+- `compost_note`, `principle_candidate`, and `canon_bundle` remain route outputs rather than memo writeback kinds
 
 The playbook does not introduce a new memory-object kind.
 
