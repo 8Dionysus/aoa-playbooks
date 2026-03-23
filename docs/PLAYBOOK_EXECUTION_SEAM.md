@@ -3,7 +3,7 @@
 This document defines the bounded execution seam for `aoa-playbooks`.
 
 The goal is not to turn the playbook layer into runtime implementation.
-The goal is to expose a small derived activation surface that a runtime can read without replacing the authored playbook bundle.
+The goal is to expose a small derived activation surface that a runtime can read without replacing the authored playbook bundle, while keeping a separate federation-readable surface for cross-repo closure checks.
 
 ## Core rule
 
@@ -29,6 +29,10 @@ The canonical authored surfaces remain:
 
 The activation surface is derived from those source-owned objects.
 It exists to make recurring scenarios runtime-readable without adding a second authored playbook object.
+The current compiled activation output lives at `generated/playbook_activation_surfaces.min.json` and is produced by `scripts/generate_playbook_activation_surfaces.py`.
+
+The current compiled federation output lives at `generated/playbook_federation_surfaces.min.json` and is produced by `scripts/generate_playbook_federation_surfaces.py`.
+It is a validator-facing closure surface, not a runtime execution interface.
 
 ## Activation surface
 
@@ -55,14 +59,15 @@ It should not expose:
 
 If protocol examples are mentioned elsewhere, treat them as examples only, not as playbook canon.
 
-## Reference scenarios
+## Current activation scenarios
 
-The first reference scenarios for this seam are:
+The current activation-eligible scenarios for this seam are:
 
 - `AOA-P-0008 long-horizon-model-tier-orchestra`
 - `AOA-P-0009 restartable-inquiry-loop`
+- `AOA-P-0010 cross-repo-boundary-rollout`
 
-These are the first runtime-readable playbooks because they already define:
+These runtime-readable playbooks already define:
 
 - explicit triggers
 - participating agents
@@ -70,6 +75,38 @@ These are the first runtime-readable playbooks because they already define:
 - evaluation posture
 - memory posture
 - bounded fallback posture
+
+Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
+
+## Federation surface
+
+The federation surface should stay compact.
+It should expose only the fields needed to check cross-repo closure:
+
+- which playbook this is
+- which agents participate
+- which exact skills must resolve in `aoa-skills`
+- which eval anchors must resolve in `aoa-evals`
+- which memo contracts must resolve in `aoa-memo`
+- which memo writeback kinds the route allows
+
+It should not expose:
+
+- runtime execution state
+- transport details
+- hidden cross-repo wiring
+- new memo or skill semantics invented inside `aoa-playbooks`
+
+## Current federation-checked cohort
+
+The current federation-checked playbooks for this seam are:
+
+- `AOA-P-0007 witness-to-compost-pilot`
+- `AOA-P-0008 long-horizon-model-tier-orchestra`
+- `AOA-P-0009 restartable-inquiry-loop`
+- `AOA-P-0010 cross-repo-boundary-rollout`
+
+Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 
 ## Boundary to preserve
 

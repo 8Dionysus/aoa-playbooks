@@ -98,6 +98,30 @@ It is a reviewable playbook-layer report that checks whether the targeted experi
   - `aoa-dry-run-first`
   - `aoa-bounded-context-map`
 
+## Pilot: AOA-P-0010 cross-repo-boundary-rollout
+
+### Anchor drift
+
+- No blocking anchor drift found.
+- `aoa-approval-boundary-adherence` resolves in `aoa-evals` as a bounded approval surface.
+- `aoa-scope-drift-detection` resolves in `aoa-evals` as a bounded scope-control surface.
+
+### Memo-contract drift
+
+- No blocking memo-contract drift found.
+- `examples/checkpoint_to_memory_contract.example.json` resolves in `aoa-memo` and supports `decision` and `audit_event` targets through its current mapping rules.
+- `examples/provenance_thread.example.json` resolves in `aoa-memo` and keeps the route history aligned to `provenance_thread` rather than hidden state.
+
+### Lineage drift
+
+- No blocking lineage drift found.
+- The exact required skills named in the playbook body are `published` and `governance_and_eval_ready`:
+  - `aoa-source-of-truth-check`
+  - `aoa-bounded-context-map`
+  - `aoa-approval-gate-check`
+  - `aoa-dry-run-first`
+  - `aoa-change-protocol`
+
 ## Mismatch Registry
 
 ### Blocking mismatches
@@ -109,7 +133,10 @@ It is a reviewable playbook-layer report that checks whether the targeted experi
 - Draft anchors remain draft. This wave makes them validator-checkable, not production-ready.
 - Memory writeback is now machine-readable, but freeze finalization still remains outside the active role surface.
 - `aoa-adr-write` and `aoa-sanitized-share` now have published lineage, but their upstream mappings are still nearest-fit rather than perfect one-to-one technique matches.
+- Federation closure for this wave remains read-only against neighboring repositories. It checks current source surfaces; it does not mutate or promote them.
 
 ## Result
 
-The targeted long-horizon and witness-facing seams are now pilot-safe, validator-checkable, and free of current blocking drift across artifacts, anchors, recall rights, and skill lineage.
+The targeted long-horizon, witness-facing, and cross-repo seams are now pilot-safe, validator-checkable, and free of current blocking drift across anchors, recall rights, memo contracts, and skill lineage for the current cohort.
+The compiled activation collection at `generated/playbook_activation_surfaces.min.json` now mirrors the current activation fixtures and is checked by both the generator check and the playbook validator.
+The compiled federation collection at `generated/playbook_federation_surfaces.min.json` now mirrors the current federation-checked cohort and is validated against `aoa-skills` and `aoa-memo`.

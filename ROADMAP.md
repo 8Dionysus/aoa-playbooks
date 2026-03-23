@@ -54,6 +54,20 @@ Goals:
 - connect expected memory posture to `aoa-memo`
 - preserve clear boundaries relative to `aoa-routing`
 
+## Phase 6: growth governance
+
+Goals:
+- define the playbook lifecycle from registry-only to federation-checked
+- define when a scenario deserves an authored `PLAYBOOK.md`
+- define when a scenario deserves a derived activation surface
+- keep a visible portfolio matrix so new playbooks add distinct scenario coverage
+- prevent the playbook layer from overfitting to one route family
+
+Exit signals:
+- lifecycle and graduation doctrine is documented
+- portfolio coverage guidance is documented
+- the repo can explain why a scenario is added, refined, or left in registry-only form
+
 ## Standing discipline
 
 Across all phases:

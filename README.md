@@ -16,9 +16,11 @@ If you are new to this repository, use this path:
 3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
 4. Read [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
 5. Read [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md) for the derived runtime-readable activation seam.
-6. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
-7. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
-8. Read [ROADMAP](ROADMAP.md) for the current direction.
+6. Read [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md) for the playbook graduation path.
+7. Read [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md) for coverage and portfolio guidance.
+8. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
+9. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
+10. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
@@ -69,26 +71,35 @@ It now also includes authored playbook bundles at:
 - `playbooks/witness-to-compost-pilot/PLAYBOOK.md`
 - `playbooks/long-horizon-model-tier-orchestra/PLAYBOOK.md`
 - `playbooks/restartable-inquiry-loop/PLAYBOOK.md`
+- `playbooks/cross-repo-boundary-rollout/PLAYBOOK.md`
 
 The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` and checks that each one stays aligned with the registry surface.
 For the long-horizon experimental seam, it also checks that participating agents resolve in `aoa-agents`, model-tier artifact contracts stay aligned where applicable, and referenced eval anchors exist in `aoa-evals`.
 It now also validates the derived activation surface used to make selected playbooks runtime-readable without changing bundle authorship.
+For the first federation-checked cohort, it also resolves exact skills in `aoa-skills` and memo contracts in `aoa-memo` without moving ownership out of those repositories.
 
-Derived activation surfaces live at:
+Derived playbook surfaces live at:
 - `schemas/playbook-activation-surface.schema.json`
+- `schemas/playbook-federation-surface.schema.json`
+- `generated/playbook_activation_surfaces.min.json`
+- `generated/playbook_federation_surfaces.min.json`
 - `examples/playbook_activation.long-horizon-model-tier-orchestra.example.json`
 - `examples/playbook_activation.restartable-inquiry-loop.example.json`
+- `examples/playbook_activation.cross-repo-boundary-rollout.example.json`
 
 To validate the current playbook-layer surface locally, run:
 
 ```bash
+python scripts/generate_playbook_activation_surfaces.py --check
+python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/validate_playbooks.py
 ```
 
 ## Current status
 
-`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, and restartable inquiry.
+`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, restartable inquiry, and cross-repo boundary rollout.
 The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home.
+The current closure step is to make a first federation-checked cohort machine-checkable against `aoa-skills` and `aoa-memo` without blurring boundaries.
 
 ## Principles
 

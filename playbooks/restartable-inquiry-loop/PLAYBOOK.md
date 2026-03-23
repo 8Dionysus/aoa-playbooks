@@ -20,6 +20,11 @@ required_skill_families:
   - synthesis
   - memory-curation
   - evaluation
+required_skills:
+  - aoa-source-of-truth-check
+  - aoa-change-protocol
+  - aoa-dry-run-first
+  - aoa-bounded-context-map
 evaluation_posture: strict
 memory_posture: deep_recall
 fallback_mode: safe_stop
@@ -32,6 +37,11 @@ expected_artifacts:
   - next_pass_brief
 eval_anchors:
   - aoa-long-horizon-depth
+memo_contract_refs:
+  - examples/checkpoint_to_memory_contract.example.json
+memo_writeback_targets:
+  - state_capsule
+  - decision
 ---
 
 # restartable-inquiry-loop
@@ -139,10 +149,10 @@ It supports bounded restart-fidelity review on this experimental loop, not produ
 
 ## Memory writeback
 
-- the checkpoint pack may survive as bounded memo-facing state for relaunch
+- the `inquiry_checkpoint` may survive as a bounded `state_capsule` for relaunch
+- route-shaping entries from the `decision_ledger` may survive as a `decision`
 - `memory_delta` should remain distinct from `canon_delta`
-- unresolved contradictions should survive as contradictions, not be rewritten as settled claims
-- the route should not promote every checkpoint into durable memory automatically
+- `contradiction_map`, `memory_delta`, `canon_delta`, and `next_pass_brief` remain route artifacts unless later memo review promotes them explicitly
 
 ## Canonical route
 

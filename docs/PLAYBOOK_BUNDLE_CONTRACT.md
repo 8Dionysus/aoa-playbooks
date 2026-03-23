@@ -39,8 +39,17 @@ Each authored bundle should keep registry-aligned fields in YAML frontmatter:
 
 Optional bundle-local fields may appear when they stay compact and do not replace neighboring layer meaning.
 
+For federation-checked playbooks, these bundle-local fields become required:
+
+- `required_skills`
+- `memo_contract_refs`
+- `memo_writeback_targets`
+
+These fields exist to point to neighboring source-owned surfaces without absorbing their meaning into the playbook layer.
+
 Derived activation surfaces may project a small runtime-readable subset of bundle-aligned fields.
 They must remain schema-backed projections of canonical playbook surfaces rather than independent authored routes.
+Derived federation surfaces may project the machine-checkable closure fields used to validate skill lineage and memo writeback posture for a bounded cohort.
 
 Authored bundles should live at:
 
@@ -78,6 +87,7 @@ A good `PLAYBOOK.md` should make it easy to answer:
 - what memory writeback should survive the route
 
 If a derived activation surface exists, it should preserve that authored meaning in compact form rather than extending it with runtime implementation details.
+If a derived federation surface exists, it should preserve the exact neighboring-surface refs the playbook depends on rather than inventing new routing or memory semantics.
 
 ## First authored bundle
 
