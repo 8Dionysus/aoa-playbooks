@@ -1,0 +1,33 @@
+{
+  "surface_type": "playbook_activation_surface",
+  "playbook_id": "AOA-P-0009",
+  "name": "restartable-inquiry-loop",
+  "scenario": "restartable_inquiry",
+  "trigger": "long_horizon_philosophy_or_architecture_question",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "required_skill_families": [
+    "research",
+    "synthesis",
+    "memory-curation",
+    "evaluation"
+  ],
+  "expected_artifacts": [
+    "inquiry_checkpoint",
+    "decision_ledger",
+    "contradiction_map",
+    "memory_delta",
+    "canon_delta",
+    "next_pass_brief"
+  ],
+  "evaluation_posture": "strict",
+  "memory_posture": "deep_recall",
+  "fallback_mode": "safe_stop",
+  "eval_anchors": [
+    "aoa-long-horizon-depth"
+  ]
+}

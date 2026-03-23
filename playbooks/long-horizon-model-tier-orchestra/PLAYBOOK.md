@@ -134,6 +134,9 @@ The route should finish with visible evidence for:
 - `aoa-long-horizon-depth`
 - `aoa-tool-trajectory-discipline`
 
+Treat `aoa-long-horizon-depth` as a draft, review-only pilot anchor until the restart-fidelity seam has stronger repeated evidence.
+Use `aoa-tool-trajectory-discipline` as the first operational bounded anchor for the model-tier route itself.
+
 ## Memory writeback
 
 - tier-local execution notes should usually stay operational-only

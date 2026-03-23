@@ -134,6 +134,9 @@ The route should finish each pass with visible evidence for:
 
 - `aoa-long-horizon-depth`
 
+Treat `aoa-long-horizon-depth` as a draft, review-only pilot anchor.
+It supports bounded restart-fidelity review on this experimental loop, not production-ready routing or canon-facing claims.
+
 ## Memory writeback
 
 - the checkpoint pack may survive as bounded memo-facing state for relaunch
