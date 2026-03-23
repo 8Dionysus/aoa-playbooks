@@ -4,6 +4,7 @@ This document defines the compact authored contract for `PLAYBOOK.md` bundles in
 
 The point is not to turn the repository into a giant workflow corpus.
 The point is to give scenario-level method one readable, source-owned object once a route needs more than a registry row.
+When a runtime-readable projection is helpful, it should stay derived from the bundle rather than becoming a second authored playbook object.
 
 ## Core rule
 
@@ -37,6 +38,9 @@ Each authored bundle should keep registry-aligned fields in YAML frontmatter:
 - `expected_artifacts`
 
 Optional bundle-local fields may appear when they stay compact and do not replace neighboring layer meaning.
+
+Derived activation surfaces may project a small runtime-readable subset of bundle-aligned fields.
+They must remain schema-backed projections of canonical playbook surfaces rather than independent authored routes.
 
 Authored bundles should live at:
 
@@ -72,6 +76,8 @@ A good `PLAYBOOK.md` should make it easy to answer:
 - where the route can pause, hand off, or roll back
 - what evidence should exist when the route finishes
 - what memory writeback should survive the route
+
+If a derived activation surface exists, it should preserve that authored meaning in compact form rather than extending it with runtime implementation details.
 
 ## First authored bundle
 

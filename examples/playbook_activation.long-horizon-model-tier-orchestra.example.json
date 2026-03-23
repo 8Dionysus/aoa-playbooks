@@ -1,0 +1,33 @@
+{
+  "surface_type": "playbook_activation_surface",
+  "playbook_id": "AOA-P-0008",
+  "name": "long-horizon-model-tier-orchestra",
+  "scenario": "model_tier_orchestration",
+  "trigger": "long_horizon_or_high_cost_route",
+  "participating_agents": [
+    "architect",
+    "coder",
+    "reviewer",
+    "memory-keeper"
+  ],
+  "required_skill_families": [
+    "change-protocol",
+    "review",
+    "memory-curation",
+    "research"
+  ],
+  "expected_artifacts": [
+    "route_decision",
+    "bounded_plan",
+    "verification_result",
+    "transition_decision",
+    "distillation_pack"
+  ],
+  "evaluation_posture": "strict",
+  "memory_posture": "bounded_recall",
+  "fallback_mode": "handoff",
+  "eval_anchors": [
+    "aoa-long-horizon-depth",
+    "aoa-tool-trajectory-discipline"
+  ]
+}

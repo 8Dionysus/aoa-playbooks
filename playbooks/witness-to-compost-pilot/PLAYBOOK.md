@@ -129,6 +129,9 @@ The route should finish with visible evidence for:
 - `aoa-witness-trace-integrity`
 - `aoa-compost-provenance-preservation`
 
+Both anchors are draft, review-only pilot anchors in this wave.
+They exist to keep witness and compost posture inspectable without pretending the route is production-ready or fully instrumented.
+
 ## Memory writeback
 
 - the run-level trace event should survive as an `episode`

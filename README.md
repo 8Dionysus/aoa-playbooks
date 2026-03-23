@@ -15,9 +15,10 @@ If you are new to this repository, use this path:
 2. Read [docs/PLAYBOOK_MODEL](docs/PLAYBOOK_MODEL.md) for the conceptual model.
 3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
 4. Read [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
-5. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
-6. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
-7. Read [ROADMAP](ROADMAP.md) for the current direction.
+5. Read [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md) for the derived runtime-readable activation seam.
+6. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
+7. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
+8. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
@@ -70,6 +71,13 @@ It now also includes authored playbook bundles at:
 - `playbooks/restartable-inquiry-loop/PLAYBOOK.md`
 
 The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` and checks that each one stays aligned with the registry surface.
+For the long-horizon experimental seam, it also checks that participating agents resolve in `aoa-agents`, model-tier artifact contracts stay aligned where applicable, and referenced eval anchors exist in `aoa-evals`.
+It now also validates the derived activation surface used to make selected playbooks runtime-readable without changing bundle authorship.
+
+Derived activation surfaces live at:
+- `schemas/playbook-activation-surface.schema.json`
+- `examples/playbook_activation.long-horizon-model-tier-orchestra.example.json`
+- `examples/playbook_activation.restartable-inquiry-loop.example.json`
 
 To validate the current playbook-layer surface locally, run:
 
