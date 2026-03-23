@@ -1,0 +1,35 @@
+{
+  "surface_type": "playbook_activation_surface",
+  "playbook_id": "AOA-P-0010",
+  "name": "cross-repo-boundary-rollout",
+  "scenario": "cross_repo_boundary_rollout",
+  "trigger": "multi_repo_source_of_truth_change",
+  "participating_agents": [
+    "architect",
+    "coder",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "expected_artifacts": [
+    "boundary_map",
+    "repo_change_set",
+    "rollout_decision",
+    "validation_pack",
+    "handoff_record"
+  ],
+  "evaluation_posture": "strict",
+  "memory_posture": "bounded_recall",
+  "fallback_mode": "review_required",
+  "eval_anchors": [
+    "aoa-approval-boundary-adherence",
+    "aoa-scope-drift-detection"
+  ]
+}
