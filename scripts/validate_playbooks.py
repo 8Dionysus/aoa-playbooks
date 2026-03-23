@@ -548,7 +548,15 @@ def collect_string_field_values(payload: object, field_name: str) -> set[str]:
 
 
 def memo_contract_path(contract_ref: str) -> Path:
-    return AOA_MEMO_ROOT / contract_ref
+    path = (AOA_MEMO_ROOT / contract_ref).resolve()
+    try:
+        path.relative_to(AOA_MEMO_ROOT)
+    except ValueError:
+        fail(
+            "memo_contract_refs must resolve within aoa-memo: "
+            + contract_ref
+        )
+    return path
 
 
 def memo_kinds_for_contract(contract_ref: str) -> set[str]:
