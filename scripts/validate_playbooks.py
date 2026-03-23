@@ -2,12 +2,22 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-AOA_AGENTS_ROOT = REPO_ROOT.parent / "aoa-agents"
-AOA_EVALS_ROOT = REPO_ROOT.parent / "aoa-evals"
+
+
+def repo_root_from_env(env_name: str, default: Path) -> Path:
+    override = os.environ.get(env_name)
+    if not override:
+        return default
+    return Path(override).expanduser().resolve()
+
+
+AOA_AGENTS_ROOT = repo_root_from_env("AOA_AGENTS_ROOT", REPO_ROOT.parent / "aoa-agents")
+AOA_EVALS_ROOT = repo_root_from_env("AOA_EVALS_ROOT", REPO_ROOT.parent / "aoa-evals")
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-registry.schema.json"
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
