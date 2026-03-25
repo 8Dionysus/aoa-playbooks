@@ -55,6 +55,8 @@ Before making changes, read in this order:
 4. any generated playbook registry or capsule surfaces affected by the task
 5. neighboring repo docs if the playbook touches skills, agents, memo, evals, or routing
 
+If you are editing inside `playbooks/` or `generated/`, also follow the nested `AGENTS.md` in that directory.
+
 ## Primary objects
 
 The most important objects in this repository are:
