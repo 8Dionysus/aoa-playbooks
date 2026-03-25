@@ -216,6 +216,18 @@ def fail(message: str) -> None:
     raise ValidationError(message)
 
 
+def validate_nested_agents_surface() -> None:
+    try:
+        from validate_nested_agents import validate_nested_agents_docs
+    except Exception as exc:  # defensive import guard for local validator wiring
+        fail(f"unable to load nested AGENTS validator: {exc}")
+
+    try:
+        validate_nested_agents_docs()
+    except RuntimeError as exc:
+        fail(str(exc))
+
+
 def display_path(path: Path) -> str:
     for root in (REPO_ROOT, AOA_AGENTS_ROOT, AOA_EVALS_ROOT, AOA_SKILLS_ROOT, AOA_MEMO_ROOT):
         try:
@@ -1141,6 +1153,7 @@ def validate_activation_examples(
 
 def main() -> int:
     try:
+        validate_nested_agents_surface()
         validate_schema_surface()
         validate_activation_schema_surface()
         validate_federation_schema_surface()
@@ -1178,6 +1191,7 @@ def main() -> int:
         print(f"[error] {exc}", file=sys.stderr)
         return 1
 
+    print("[ok] validated nested AGENTS docs")
     print("[ok] validated playbook registry schema surface")
     print("[ok] validated playbook activation schema surface")
     print("[ok] validated playbook federation schema surface")

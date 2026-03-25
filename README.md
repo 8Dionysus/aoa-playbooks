@@ -77,6 +77,7 @@ The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` an
 For the long-horizon experimental seam, it also checks that participating agents resolve in `aoa-agents`, model-tier artifact contracts stay aligned where applicable, and referenced eval anchors exist in `aoa-evals`.
 It now also validates the derived activation surface used to make selected playbooks runtime-readable without changing bundle authorship.
 For the first federation-checked cohort, it also resolves exact skills in `aoa-skills` and memo contracts in `aoa-memo` without moving ownership out of those repositories.
+It now also requires the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md` to stay present and aligned with the authored-vs-derived split of this layer.
 
 Derived playbook surfaces live at:
 - `schemas/playbook-activation-surface.schema.json`
