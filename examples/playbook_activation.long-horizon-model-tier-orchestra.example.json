@@ -29,5 +29,16 @@
   "eval_anchors": [
     "aoa-long-horizon-depth",
     "aoa-tool-trajectory-discipline"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_anchor_artifacts": [
+    "route_decision",
+    "bounded_plan",
+    "verification_result"
+  ],
+  "return_reentry_modes": [
+    "previous_phase",
+    "router_reentry",
+    "safe_stop"
   ]
 }

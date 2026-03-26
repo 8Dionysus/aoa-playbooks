@@ -16,11 +16,12 @@ If you are new to this repository, use this path:
 3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
 4. Read [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
 5. Read [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md) for the derived runtime-readable activation seam.
-6. Read [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md) for the playbook graduation path.
-7. Read [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md) for coverage and portfolio guidance.
-8. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
-9. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
-10. Read [ROADMAP](ROADMAP.md) for the current direction.
+6. Read [docs/PLAYBOOK_RECURRENCE_DISCIPLINE](docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md) for scenario-level recurrence posture.
+7. Read [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md) for the playbook graduation path.
+8. Read [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md) for coverage and portfolio guidance.
+9. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
+10. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
+11. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
@@ -30,6 +31,7 @@ If you are new to this repository, use this path:
 - scenario-level methods once a route spans skills, roles, memory posture, and proof posture
 - role-aware handoff patterns
 - decision points and fallback paths
+- governed return posture when scenario routes lose axis, boundary, or restart integrity
 - expected evidence and validation posture
 - compact playbook registries and validation
 
@@ -107,6 +109,7 @@ The current closure step is to make a first federation-checked cohort machine-ch
 - recurring scenarios should be explicit rather than folkloric
 - playbooks should stay bounded and reviewable
 - fallback and rollback posture should be named, not implied
+- return posture should be explicit when a recurring route can lose axis, ownership boundary, or restart integrity
 - evaluation posture should be visible, not retrofitted later
 - the playbook layer should not swallow neighboring AoA layers
 

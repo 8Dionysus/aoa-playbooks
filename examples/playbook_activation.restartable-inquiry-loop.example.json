@@ -29,5 +29,16 @@
   "fallback_mode": "safe_stop",
   "eval_anchors": [
     "aoa-long-horizon-depth"
+  ],
+  "return_posture": "checkpoint_anchor",
+  "return_anchor_artifacts": [
+    "inquiry_checkpoint",
+    "decision_ledger",
+    "contradiction_map",
+    "next_pass_brief"
+  ],
+  "return_reentry_modes": [
+    "checkpoint_relaunch",
+    "safe_stop"
   ]
 }

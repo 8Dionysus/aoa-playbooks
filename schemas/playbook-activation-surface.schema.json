@@ -97,6 +97,78 @@
         "type": "string",
         "minLength": 3
       }
+    },
+    "return_posture": {
+      "type": "string",
+      "enum": [
+        "artifact_anchor",
+        "checkpoint_anchor",
+        "review_anchor",
+        "mixed_anchor"
+      ]
+    },
+    "return_anchor_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 2
+      }
+    },
+    "return_reentry_modes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "same_phase",
+          "previous_phase",
+          "router_reentry",
+          "checkpoint_relaunch",
+          "review_gate",
+          "rollback_gate",
+          "safe_stop"
+        ]
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "return_posture"
+        ]
+      },
+      "then": {
+        "required": [
+          "return_anchor_artifacts",
+          "return_reentry_modes"
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "return_anchor_artifacts"
+        ]
+      },
+      "then": {
+        "required": [
+          "return_posture"
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "return_reentry_modes"
+        ]
+      },
+      "then": {
+        "required": [
+          "return_posture"
+        ]
+      }
+    }
+  ]
 }

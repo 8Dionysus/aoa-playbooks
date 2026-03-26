@@ -85,7 +85,8 @@ Do not use this playbook when:
 2. Decide whether the route is approved, deferred, or refused.
 3. Decide whether rollback posture is explicit enough to proceed.
 4. Decide whether the post-change health check supports continue, rollback, or handoff.
-5. Decide whether the improvement log is explicit enough to preserve the route as reviewable history.
+5. Decide whether the route lost approval, rollback, or health clarity badly enough that it must return to the last explicit checkpoint before any second mutation.
+6. Decide whether the improvement log is explicit enough to preserve the route as reviewable history.
 
 ## Handoffs
 
@@ -104,6 +105,9 @@ The playbook should pause or reverse when:
 - the rollback marker is missing or weak
 - the post-change health check fails or remains ambiguous
 
+If approval posture, rollback readiness, or health interpretation becomes unclear after a first pass, do not continue by inertia.
+Return to the last explicit approval or rollback anchor and require review before another mutation attempt.
+
 Review is required before trying a second mutation pass if the first pass already crossed a checkpoint boundary.
 
 ## Expected evidence posture
@@ -113,6 +117,7 @@ The route should finish with visible evidence for:
 - what changed and how the change stayed bounded
 - what rollback marker existed before mutation
 - what the post-change health result actually was
+- why the route returned, if it returned, and which checkpoint anchor governed the re-entry or stop decision
 - what the improvement log says should be reinforced, repeated, or avoided next time
 
 ## Expected artifacts
@@ -142,4 +147,5 @@ The route should finish with visible evidence for:
 4. Use `aoa-dry-run-first` if the route still has unbounded risk.
 5. Execute the bounded change path with `aoa-change-protocol`.
 6. Record the post-change health check.
-7. Append the improvement log through a provenance-backed writeback.
+7. If the route loses checkpoint clarity, return to the last valid approval or rollback anchor before any further mutation.
+8. Append the improvement log through a provenance-backed writeback.

@@ -35,6 +35,15 @@ expected_artifacts:
   - memory_delta
   - canon_delta
   - next_pass_brief
+return_posture: checkpoint_anchor
+return_anchor_artifacts:
+  - inquiry_checkpoint
+  - decision_ledger
+  - contradiction_map
+  - next_pass_brief
+return_reentry_modes:
+  - checkpoint_relaunch
+  - safe_stop
 eval_anchors:
   - aoa-long-horizon-depth
 memo_contract_refs:
@@ -98,14 +107,16 @@ Do not use this playbook when:
 1. Decide whether the current pass has enough evidence to produce a checkpoint.
 2. Decide whether the current thesis is stable enough to preserve as axis rather than decoration.
 3. Decide whether contradictions stay open, resolved, or deferred.
-4. Decide whether the next move is relaunch, deepen, or safe stop.
-5. Decide whether any part of the route should survive as memo writeback, canon delta, or only operational state.
+4. Decide whether the route still has a valid checkpoint pack for relaunch or must stop rather than pretend continuity.
+5. Decide whether the next move is relaunch, deepen, or safe stop.
+6. Decide whether any part of the route should survive as memo writeback, canon delta, or only operational state.
 
 ## Handoffs
 
 - `architect -> reviewer` after the current axis and current thesis are explicit
 - `reviewer -> evaluator` after contradictions, limits, and evidence refs are explicit
 - `evaluator -> memory-keeper` after the checkpoint is judged portable enough for relaunch
+- `evaluator or memory-keeper -> architect` when the checkpoint pack must become the explicit return anchor for the next pass
 - `memory-keeper -> architect` when the next pass brief and memory delta are ready for the next loop
 
 ## Fallback and rollback posture
@@ -118,6 +129,9 @@ Pause or stop when:
 - the checkpoint lacks evidence refs or open questions
 - the route is trying to relaunch from summary theater instead of portable artifacts
 
+If the route loses axis, if contradiction handling is smoothed away, or if the checkpoint pack stops being portable, return to the last valid checkpoint pack rather than continuing from rhetorical continuity.
+If no honest checkpoint remains, safe stop is required.
+
 Safe stop is acceptable.
 False continuity is not.
 
@@ -127,6 +141,7 @@ The route should finish each pass with visible evidence for:
 - the current axis
 - the evidence pack
 - unresolved contradictions
+- which checkpoint artifacts governed return or relaunch, and what was preserved versus refused
 - what changed in memory
 - what changed in canon-facing interpretation
 - what the next pass must keep and must test
@@ -162,4 +177,4 @@ It supports bounded restart-fidelity review on this experimental loop, not produ
 4. Verify what the pass actually supports, what remains open, and what drift appeared.
 5. Compress the pass into an `inquiry_checkpoint` plus contradiction, memory, and canon artifacts.
 6. Decide whether the next move is relaunch, deepen, or safe stop.
-7. Relaunch the next pass from the checkpoint pack rather than from raw chat continuity.
+7. Relaunch the next pass from the checkpoint pack as the explicit return anchor, not from summary atmosphere or raw chat continuity.

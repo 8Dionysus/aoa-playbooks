@@ -37,6 +37,7 @@ For `playbook_activation_surfaces.min.json` and `playbook_federation_surfaces.mi
 
 - Do not hand-edit derived payloads
 - regenerate them from canonical inputs
+- activation surfaces may include compact return hints when those hints are derived from canonical playbook inputs
 - keep runtime-local details, hidden wiring, and transport specifics out
 - do not invent new skill, agent, eval, or memo semantics here
 

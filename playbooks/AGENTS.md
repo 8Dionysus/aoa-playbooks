@@ -49,6 +49,7 @@ Use exact neighboring references instead:
 - `memo_contract_refs` and `memo_writeback_targets` should stay inside `aoa-memo` contracts
 
 Keep handoffs, fallback posture, and expected evidence explicit in the authored bundle rather than hiding them in surrounding prose.
+Keep return posture explicit inside existing sections when a playbook can lose axis, ownership boundary, or checkpoint integrity.
 
 ## Adding or changing a bundle
 

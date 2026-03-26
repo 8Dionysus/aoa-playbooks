@@ -35,6 +35,7 @@ Goals:
 - make trigger posture explicit
 - make prerequisite posture explicit
 - make fallback and rollback posture explicit
+- make return posture explicit for long-horizon, restartable, and cross-boundary scenarios
 - make expected artifact posture explicit
 
 ## Phase 4: composition discipline
@@ -43,6 +44,7 @@ Goals:
 - define bounded multi-surface composition hints
 - clarify when a playbook is mainly skill-driven, agent-driven, or proof-heavy
 - avoid turning the playbook layer into hidden orchestration runtime too early
+- keep recurrence compact and scenario-owned without growing a hidden orchestration engine
 - make scenario-level method readable as an authored object rather than only a registry row
 
 ## Phase 5: federation integration

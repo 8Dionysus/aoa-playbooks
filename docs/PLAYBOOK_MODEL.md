@@ -19,6 +19,7 @@ Within `aoa-playbooks`, a playbook should mean a reusable scenario-level composi
 - required skill families
 - evaluation posture
 - memory posture
+- return posture
 - fallback or rollback posture
 - expected artifact posture
 
@@ -82,6 +83,7 @@ A good playbook should make it easier to answer:
 - who participates?
 - what skills are usually composed?
 - what evidence or evaluation posture is expected?
+- where does the route return if it loses its axis, ownership boundary, or restart integrity?
 - what fallback path exists if the scenario goes wrong?
 - what artifacts should exist at the end?
 

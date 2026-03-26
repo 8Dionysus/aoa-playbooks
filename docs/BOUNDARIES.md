@@ -59,7 +59,13 @@ When a recurring route spans techniques, skills, roles, memory posture, and proo
 
 That should not be used as an excuse to absorb the source meaning of those neighboring layers.
 
-## Rule 9: authored playbook bundles own route wording, not neighboring layer truth
+## Rule 9: recurrence belongs here only as scenario composition
+
+`aoa-playbooks` may own scenario-level return posture.
+It may name anchors and re-entry modes for a recurring route.
+It must not absorb runtime state-machine logic, artifact-schema ownership, or stack wrapper behavior.
+
+## Rule 10: authored playbook bundles own route wording, not neighboring layer truth
 
 When `aoa-playbooks` publishes a `PLAYBOOK.md`, that bundle becomes the source of truth for the scenario route itself:
 - trigger boundary

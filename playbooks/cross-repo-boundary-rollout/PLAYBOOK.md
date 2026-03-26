@@ -38,6 +38,15 @@ expected_artifacts:
   - rollout_decision
   - validation_pack
   - handoff_record
+return_posture: artifact_anchor
+return_anchor_artifacts:
+  - boundary_map
+  - rollout_decision
+  - validation_pack
+return_reentry_modes:
+  - previous_phase
+  - review_gate
+  - safe_stop
 eval_anchors:
   - aoa-approval-boundary-adherence
   - aoa-scope-drift-detection
@@ -108,14 +117,16 @@ Do not use this playbook when:
 1. Decide whether the scenario truly crosses more than one source-of-truth repository.
 2. Decide which repository mutates source-owned meaning first and which repositories only regenerate or consume.
 3. Decide whether the rollout can remain one bounded wave or must split into staged handoffs.
-4. Decide whether current per-repo validation is strong enough to continue to the next repository.
-5. Decide whether the route can close with a handoff record or must stop for further review.
+4. Decide whether ownership drift, source-versus-derived confusion, or failed per-repo validation requires return to the last valid boundary anchor before the next repository step.
+5. Decide whether current per-repo validation is strong enough to continue to the next repository.
+6. Decide whether the route can close with a handoff record or must stop for further review.
 
 ## Handoffs
 
 - `architect -> coder` after the boundary map, repo sequence, and stop conditions are explicit
 - `coder -> reviewer` after the current repo slice and downstream impact notes exist
 - `reviewer -> evaluator` after boundary handling and per-repo validation evidence are explicit
+- `reviewer or evaluator -> architect` when the route must return to the last valid boundary map or rollout decision before another repo handoff
 - `evaluator -> memory-keeper` after the validation pack and residual cross-repo risks are explicit
 - `memory-keeper -> architect` only when the handoff record reveals unresolved ownership drift or a required follow-on wave
 
@@ -130,6 +141,9 @@ Pause or stop when:
 - one repository fails validation in a way that invalidates the next repo step
 - the route starts absorbing routing, skill, eval, or memo meaning that belongs elsewhere
 
+If repository ownership becomes unclear, if source-authored and generated surfaces stop being separable, or if a validation failure invalidates the next repo step, return to the last valid `boundary_map` or `rollout_decision` anchor before any further rollout motion.
+If boundary integrity cannot be restored, stop for review rather than continue the wave.
+
 If the route cannot preserve source-versus-derived separation, stop and re-scope before continuing.
 
 ## Expected evidence posture
@@ -139,6 +153,7 @@ The route should finish with visible evidence for:
 - what stayed source-authored versus what remained generated
 - what rollout order was used and why
 - what validators, bounded checks, or review gates ran in each repository
+- what boundary anchor governed return, review gate, or stop, and why the route could or could not resume
 - what had to be handed off, deferred, or frozen for a later wave
 
 ## Expected artifacts
@@ -174,4 +189,5 @@ The playbook does not create a new memory-object kind and does not move memo tax
 4. Use `aoa-dry-run-first` when downstream impact or generated-surface sync is still ambiguous.
 5. Execute each bounded repo slice with `aoa-change-protocol` and keep the repo change set reviewable.
 6. Validate the current slice before continuing to the next repository and record the rollout decision.
-7. Close the route with a validation pack and provenance-safe handoff record for the next wave or final review.
+7. If boundary integrity is lost, return to the last valid boundary anchor and re-enter through `previous_phase`, `review_gate`, or `safe_stop`.
+8. Close the route with a validation pack and provenance-safe handoff record for the next wave or final review.

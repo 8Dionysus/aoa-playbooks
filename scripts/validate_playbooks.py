@@ -44,6 +44,17 @@ ALLOWED_STATUS = {"active", "planned", "experimental", "deprecated"}
 ALLOWED_MEMORY_POSTURE = {"none", "light_recall", "bounded_recall", "deep_recall"}
 ALLOWED_EVAL_POSTURE = {"minimal", "required", "strict", "paired_eval"}
 ALLOWED_FALLBACK = {"none", "handoff", "rollback", "safe_stop", "review_required"}
+ALLOWED_RETURN_POSTURE = {"artifact_anchor", "checkpoint_anchor", "review_anchor", "mixed_anchor"}
+ALLOWED_RETURN_REENTRY_MODES = {
+    "same_phase",
+    "previous_phase",
+    "router_reentry",
+    "checkpoint_relaunch",
+    "review_gate",
+    "rollback_gate",
+    "safe_stop",
+}
+RETURN_FIELD_NAMES = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
 TIER_ARTIFACT_PLAYBOOKS = {"AOA-P-0008"}
 REQUIRED_BUNDLE_SECTIONS = {
     "Intent",
@@ -332,6 +343,16 @@ def validate_schema_surface() -> None:
     missing = sorted(required_top_level - set(schema))
     if missing:
         fail(f"schema is missing required top-level keys: {', '.join(missing)}")
+    properties = schema.get("properties")
+    if not isinstance(properties, dict):
+        fail("schema must expose top-level properties")
+    playbooks = properties.get("playbooks")
+    if not isinstance(playbooks, dict):
+        fail("schema must expose a playbooks property")
+    items = playbooks.get("items")
+    if not isinstance(items, dict):
+        fail("schema playbooks.items must be an object schema")
+    validate_return_contract_schema(items, location="playbook registry item schema")
 
 
 def validate_activation_schema_surface() -> dict[str, object]:
@@ -350,6 +371,7 @@ def validate_activation_schema_surface() -> dict[str, object]:
     surface_type = properties["surface_type"]
     if not isinstance(surface_type, dict) or surface_type.get("const") != "playbook_activation_surface":
         fail("playbook activation schema must pin surface_type.const to 'playbook_activation_surface'")
+    validate_return_contract_schema(schema, location="playbook activation schema")
     return schema
 
 
@@ -370,6 +392,99 @@ def validate_federation_schema_surface() -> dict[str, object]:
     if not isinstance(surface_type, dict) or surface_type.get("const") != "playbook_federation_surface":
         fail("playbook federation schema must pin surface_type.const to 'playbook_federation_surface'")
     return schema
+
+
+def validate_return_contract_schema(schema: dict[str, object], *, location: str) -> None:
+    properties = schema.get("properties")
+    if not isinstance(properties, dict):
+        fail(f"{location} must expose properties")
+
+    for field_name in RETURN_FIELD_NAMES:
+        if field_name not in properties:
+            fail(f"{location} must define '{field_name}'")
+
+    return_posture = properties["return_posture"]
+    if not isinstance(return_posture, dict) or set(return_posture.get("enum", ())) != ALLOWED_RETURN_POSTURE:
+        fail(f"{location} must define return_posture with the allowed posture set")
+
+    return_anchor_artifacts = properties["return_anchor_artifacts"]
+    if not isinstance(return_anchor_artifacts, dict):
+        fail(f"{location} must define return_anchor_artifacts as an array schema")
+    return_anchor_items = return_anchor_artifacts.get("items")
+    if (
+        return_anchor_artifacts.get("type") != "array"
+        or not isinstance(return_anchor_items, dict)
+        or return_anchor_items.get("type") != "string"
+    ):
+        fail(f"{location} must define return_anchor_artifacts as an array of strings")
+
+    return_reentry_modes = properties["return_reentry_modes"]
+    return_reentry_items = return_reentry_modes.get("items") if isinstance(return_reentry_modes, dict) else None
+    if (
+        not isinstance(return_reentry_modes, dict)
+        or return_reentry_modes.get("type") != "array"
+        or not isinstance(return_reentry_items, dict)
+        or set(return_reentry_items.get("enum", ())) != ALLOWED_RETURN_REENTRY_MODES
+    ):
+        fail(f"{location} must define return_reentry_modes with the allowed re-entry mode set")
+
+    all_of = schema.get("allOf")
+    if not isinstance(all_of, list) or len(all_of) < 3:
+        fail(f"{location} must define allOf conditional rules for return_* field dependencies")
+
+    expected_rules = {
+        ("return_posture", ("return_anchor_artifacts", "return_reentry_modes")),
+        ("return_anchor_artifacts", ("return_posture",)),
+        ("return_reentry_modes", ("return_posture",)),
+    }
+    seen_rules: set[tuple[str, tuple[str, ...]]] = set()
+    for clause in all_of:
+        if not isinstance(clause, dict):
+            continue
+        condition = clause.get("if")
+        consequence = clause.get("then")
+        if not isinstance(condition, dict) or not isinstance(consequence, dict):
+            continue
+        condition_required = condition.get("required")
+        consequence_required = consequence.get("required")
+        if (
+            isinstance(condition_required, list)
+            and len(condition_required) == 1
+            and all(isinstance(item, str) for item in consequence_required or [])
+        ):
+            seen_rules.add((condition_required[0], tuple(str(item) for item in consequence_required)))
+
+    missing_rules = expected_rules - seen_rules
+    if missing_rules:
+        fail(f"{location} is missing required conditional return_* dependency rules")
+
+
+def validate_return_configuration(payload: dict[str, object], *, location: str) -> None:
+    return_posture = payload.get("return_posture")
+    return_anchor_artifacts = payload.get("return_anchor_artifacts")
+    return_reentry_modes = payload.get("return_reentry_modes")
+
+    if return_posture is None:
+        if return_anchor_artifacts is not None:
+            fail(f"{location}.return_anchor_artifacts must not appear without return_posture")
+        if return_reentry_modes is not None:
+            fail(f"{location}.return_reentry_modes must not appear without return_posture")
+        return
+
+    if return_posture not in ALLOWED_RETURN_POSTURE:
+        fail(f"{location}.return_posture '{return_posture}' is not allowed")
+
+    if not isinstance(return_anchor_artifacts, list) or not return_anchor_artifacts:
+        fail(f"{location}.return_anchor_artifacts must be a non-empty list when return_posture is present")
+    for item in return_anchor_artifacts:
+        if not isinstance(item, str) or len(item) < 2:
+            fail(f"{location}.return_anchor_artifacts contains an invalid entry")
+
+    if not isinstance(return_reentry_modes, list) or not return_reentry_modes:
+        fail(f"{location}.return_reentry_modes must be a non-empty list when return_posture is present")
+    for item in return_reentry_modes:
+        if item not in ALLOWED_RETURN_REENTRY_MODES:
+            fail(f"{location}.return_reentry_modes contains an invalid entry: {item}")
 
 
 def validate_registry() -> dict[str, dict[str, object]]:
@@ -479,6 +594,7 @@ def validate_registry() -> dict[str, dict[str, object]]:
             fail(f"{location}.memory_posture '{memory_posture}' is not allowed")
         if fallback_mode not in ALLOWED_FALLBACK:
             fail(f"{location}.fallback_mode '{fallback_mode}' is not allowed")
+        validate_return_configuration(playbook, location=location)
 
     missing_seed = sorted(required_seed - seen_names)
     if missing_seed:
@@ -646,6 +762,9 @@ def activation_surface_for_playbook(playbook_id: str, registry_entry: dict[str, 
     }
     if "eval_anchors" in registry_entry:
         payload["eval_anchors"] = registry_entry["eval_anchors"]
+    for field_name in RETURN_FIELD_NAMES:
+        if field_name in registry_entry:
+            payload[field_name] = registry_entry[field_name]
     return payload
 
 
@@ -1064,6 +1183,18 @@ def validate_authored_bundles(
             if frontmatter.get("eval_anchors") != registry_entry["eval_anchors"]:
                 fail(
                     f"{bundle_path.relative_to(REPO_ROOT).as_posix()} frontmatter 'eval_anchors' does not match "
+                    f"generated/playbook_registry.min.json"
+                )
+        for field_name in RETURN_FIELD_NAMES:
+            if field_name in registry_entry:
+                if frontmatter.get(field_name) != registry_entry[field_name]:
+                    fail(
+                        f"{bundle_path.relative_to(REPO_ROOT).as_posix()} frontmatter '{field_name}' does not match "
+                        f"generated/playbook_registry.min.json"
+                    )
+            elif field_name in frontmatter:
+                fail(
+                    f"{bundle_path.relative_to(REPO_ROOT).as_posix()} frontmatter '{field_name}' is not present in "
                     f"generated/playbook_registry.min.json"
                 )
 
