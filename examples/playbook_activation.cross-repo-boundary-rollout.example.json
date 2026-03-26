@@ -31,5 +31,16 @@
   "eval_anchors": [
     "aoa-approval-boundary-adherence",
     "aoa-scope-drift-detection"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_anchor_artifacts": [
+    "boundary_map",
+    "rollout_decision",
+    "validation_pack"
+  ],
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
   ]
 }

@@ -47,6 +47,7 @@ It should expose only the fields a runtime needs to understand:
 - which artifacts should exist
 - which evaluation and memory posture apply
 - which fallback mode governs the route
+- which compact return hints govern an honest re-entry when the route loses axis
 
 It should not expose:
 
@@ -75,6 +76,14 @@ These runtime-readable playbooks already define:
 - evaluation posture
 - memory posture
 - bounded fallback posture
+- compact return posture where the route may need governed re-entry
+
+The activation surface may project:
+- `return_posture`
+- `return_anchor_artifacts`
+- `return_reentry_modes`
+
+These fields describe where the scenario may return, not how a runtime performs that return.
 
 Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
 

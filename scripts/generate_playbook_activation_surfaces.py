@@ -10,6 +10,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 OUTPUT_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.json"
 ACTIVATION_PLAYBOOK_IDS = ("AOA-P-0008", "AOA-P-0009", "AOA-P-0010")
+OPTIONAL_RETURN_FIELDS = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
 
 
 def read_registry() -> dict[str, object]:
@@ -41,6 +42,9 @@ def build_activation_surface(playbook: dict[str, object]) -> dict[str, object]:
     }
     if "eval_anchors" in playbook:
         surface["eval_anchors"] = playbook["eval_anchors"]
+    for field_name in OPTIONAL_RETURN_FIELDS:
+        if field_name in playbook:
+            surface[field_name] = playbook[field_name]
     return surface
 
 

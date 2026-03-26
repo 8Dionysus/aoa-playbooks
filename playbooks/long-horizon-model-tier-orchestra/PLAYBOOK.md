@@ -34,6 +34,15 @@ expected_artifacts:
   - verification_result
   - transition_decision
   - distillation_pack
+return_posture: artifact_anchor
+return_anchor_artifacts:
+  - route_decision
+  - bounded_plan
+  - verification_result
+return_reentry_modes:
+  - previous_phase
+  - router_reentry
+  - safe_stop
 eval_anchors:
   - aoa-long-horizon-depth
   - aoa-tool-trajectory-discipline
@@ -98,8 +107,9 @@ Do not use this playbook when:
 1. Decide whether the route can stay in the ordinary `route -> plan -> do -> verify` loop.
 2. Decide whether the `conductor` should keep the route local, escalate, or pause.
 3. Decide whether the current contradiction or cost-of-error surface justifies `deep`.
-4. Decide whether the run is complete enough to distill.
-5. Decide whether the distillation pack should stay operational-only or become bounded memo writeback.
+4. Decide whether the route should return to the last valid route or plan anchor instead of continuing into another slice, escalation, or distillation step.
+5. Decide whether the run is complete enough to distill.
+6. Decide whether the distillation pack should stay operational-only or become bounded memo writeback.
 
 ## Handoffs
 
@@ -107,6 +117,7 @@ Do not use this playbook when:
 - `planner -> executor` after the bounded slice and checks are explicit
 - `executor -> verifier` after the bounded slice completes
 - `verifier -> conductor` when the route should continue, escalate, or pause
+- `verifier or conductor -> planner/router` when the current slice lost anchor integrity and the route must return before further motion
 - `conductor -> deep` only when the deep trigger is named explicitly
 - `conductor or verifier -> archivist` when the route has enough material to distill
 - `archivist -> memory-keeper` when the distillation pack needs bounded writeback review
@@ -121,6 +132,9 @@ Pause or hand off when:
 - the route is trying to use `deep` as a default instead of a trigger-based intervention
 - the distillation target is still vague
 
+When the current slice loses its verification boundary, when the next tier is unclear, or when deep escalation begins to replace disciplined routing, return to the last valid `route_decision` or `bounded_plan` anchor before continuing.
+If no valid anchor remains, stop and re-route rather than simulate continuity.
+
 If the route crosses a high-cost boundary without a clear next tier, stop and re-route instead of continuing by inertia.
 
 ## Expected evidence posture
@@ -129,6 +143,7 @@ The route should finish with visible evidence for:
 - why the chosen tier sequence was justified
 - whether `deep` was triggered or avoided and why
 - how verification constrained the next move
+- what anchor governed a return, if return occurred, and why re-entry was justified rather than treated as a generic retry
 - what the distillation pack includes
 - what remains operational-only versus memo-surviving
 
@@ -163,5 +178,6 @@ Use `aoa-tool-trajectory-discipline` as the first operational bounded anchor for
 3. Let `executor` perform the slice and leave explicit state deltas.
 4. Let `verifier` judge whether the slice supports continue, stop, or escalate.
 5. Let `conductor` decide whether the route should continue, call `deep`, or pause.
-6. Use `deep` only when the escalation trigger is explicit.
-7. Distill the run through `archivist` and hand the result to `memory-keeper` for bounded writeback review.
+6. If the route loses tier clarity or verification integrity, return to the last valid route or plan anchor and re-enter through `previous_phase`, `router_reentry`, or `safe_stop`.
+7. Use `deep` only when the escalation trigger is explicit.
+8. Distill the run through `archivist` and hand the result to `memory-keeper` for bounded writeback review.

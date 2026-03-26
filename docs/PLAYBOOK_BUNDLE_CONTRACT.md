@@ -39,6 +39,12 @@ Each authored bundle should keep registry-aligned fields in YAML frontmatter:
 
 Optional bundle-local fields may appear when they stay compact and do not replace neighboring layer meaning.
 
+For activation-eligible playbooks, these compact optional fields may appear when recurrence posture is canonical in the route:
+
+- `return_posture`
+- `return_anchor_artifacts`
+- `return_reentry_modes`
+
 For federation-checked playbooks, these bundle-local fields become required:
 
 - `required_skills`
@@ -74,6 +80,8 @@ Each authored bundle should include these fixed sections:
 - `Eval anchors`
 - `Memory writeback`
 - `Canonical route`
+
+Return posture should stay explicit inside those existing sections rather than becoming a new required bundle section.
 
 ## What the bundle must make legible
 
