@@ -17,7 +17,14 @@ def repo_root_from_env(env_name: str, default: Path) -> Path:
     return Path(override).expanduser().resolve()
 
 
-AOA_SKILLS_ROOT = repo_root_from_env("AOA_SKILLS_ROOT", REPO_ROOT.parent / "aoa-skills")
+def default_aoa_skills_root() -> Path:
+    deps_root = REPO_ROOT / ".deps" / "aoa-skills"
+    if deps_root.exists():
+        return deps_root.resolve()
+    return (REPO_ROOT.parent / "aoa-skills").resolve()
+
+
+AOA_SKILLS_ROOT = repo_root_from_env("AOA_SKILLS_ROOT", default_aoa_skills_root())
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 COMPOSITION_OVERRIDES_PATH = REPO_ROOT / "config" / "playbook_composition_overrides.json"

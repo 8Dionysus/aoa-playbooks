@@ -43,6 +43,8 @@ jobs:
           python-version: "3.12"
 
       - name: Run unit tests
+        env:
+          AOA_SKILLS_ROOT: ${{ github.workspace }}/.deps/aoa-skills
         run: python -m unittest discover -s tests
 
       - name: Check derived activation surfaces
@@ -53,6 +55,11 @@ jobs:
 
       - name: Check derived federation surfaces
         run: python scripts/generate_playbook_federation_surfaces.py --check
+
+      - name: Check derived composition surfaces
+        env:
+          AOA_SKILLS_ROOT: ${{ github.workspace }}/.deps/aoa-skills
+        run: python scripts/generate_playbook_composition_surfaces.py --check
 
       - name: Run playbook validator
         env:
