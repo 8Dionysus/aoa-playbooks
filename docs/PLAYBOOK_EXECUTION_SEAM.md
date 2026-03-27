@@ -33,6 +33,8 @@ The current compiled activation output lives at `generated/playbook_activation_s
 
 The current compiled federation output lives at `generated/playbook_federation_surfaces.min.json` and is produced by `scripts/generate_playbook_federation_surfaces.py`.
 It is a validator-facing closure surface, not a runtime execution interface.
+The current derived composition outputs live at `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json`, and are produced by `scripts/generate_playbook_composition_surfaces.py`.
+They are scenario-owned projections for downstream readers, not persisted execution state.
 
 ## Activation surface
 
@@ -106,6 +108,25 @@ It should not expose:
 - hidden cross-repo wiring
 - new memo or skill semantics invented inside `aoa-playbooks`
 
+## Composition surfaces
+
+The derived composition surfaces should stay compact.
+They may expose only the fields needed to support playbook-owned composition:
+
+- playbook-to-skill handoff bridges
+- shared failure codes and their recommended follow-up skills
+- explicit subagent split recipes
+- example-only automation prompt seeds
+
+They should not expose:
+
+- persisted run state
+- tool bindings
+- execution packets
+- router meaning
+- observability protocols
+- runtime recovery engines
+
 ## Current federation-checked cohort
 
 The current federation-checked playbooks for this seam are:
@@ -127,6 +148,7 @@ It must not turn the playbook layer into:
 - an eval engine
 - a memory store
 - a transport spec
+- a persisted orchestration runtime
 
 The playbook still owns the recurring scenario route.
 The runtime only reads a bounded projection of that route.

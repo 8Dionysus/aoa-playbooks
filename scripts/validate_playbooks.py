@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import importlib.util
 import json
 import os
 import sys
@@ -23,12 +24,19 @@ AOA_MEMO_ROOT = repo_root_from_env("AOA_MEMO_ROOT", REPO_ROOT.parent / "aoa-memo
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 ACTIVATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.json"
 FEDERATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
+COMPOSITION_CONFIG_PATH = REPO_ROOT / "config" / "playbook_composition_overrides.json"
+PLAYBOOK_HANDOFF_CONTRACTS_PATH = REPO_ROOT / "generated" / "playbook_handoff_contracts.json"
+PLAYBOOK_FAILURE_CATALOG_PATH = REPO_ROOT / "generated" / "playbook_failure_catalog.json"
+PLAYBOOK_SUBAGENT_RECIPES_PATH = REPO_ROOT / "generated" / "playbook_subagent_recipes.json"
+PLAYBOOK_AUTOMATION_SEEDS_PATH = REPO_ROOT / "generated" / "playbook_automation_seeds.json"
+PLAYBOOK_COMPOSITION_MANIFEST_PATH = REPO_ROOT / "generated" / "playbook_composition_manifest.json"
 SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-registry.schema.json"
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
 EVAL_CATALOG_PATH = AOA_EVALS_ROOT / "generated" / "eval_catalog.min.json"
 SKILL_GOVERNANCE_PATH = AOA_SKILLS_ROOT / "generated" / "governance_backlog.json"
+SKILL_HANDOFF_CONTRACTS_PATH = AOA_SKILLS_ROOT / "generated" / "skill_handoff_contracts.json"
 ACTIVATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-activation-surface.schema.json"
 FEDERATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-federation-surface.schema.json"
 ACTIVATION_EXAMPLE_PATHS = {
@@ -36,8 +44,30 @@ ACTIVATION_EXAMPLE_PATHS = {
     "AOA-P-0009": REPO_ROOT / "examples" / "playbook_activation.restartable-inquiry-loop.example.json",
     "AOA-P-0010": REPO_ROOT / "examples" / "playbook_activation.cross-repo-boundary-rollout.example.json",
 }
-ACTIVATION_COLLECTION_PLAYBOOK_IDS = ("AOA-P-0008", "AOA-P-0009", "AOA-P-0010")
-FEDERATION_COLLECTION_PLAYBOOK_IDS = ("AOA-P-0007", "AOA-P-0008", "AOA-P-0009", "AOA-P-0010")
+ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
+    "AOA-P-0008",
+    "AOA-P-0009",
+    "AOA-P-0010",
+    "AOA-P-0011",
+    "AOA-P-0012",
+    "AOA-P-0013",
+    "AOA-P-0014",
+    "AOA-P-0015",
+    "AOA-P-0016",
+)
+FEDERATION_COLLECTION_PLAYBOOK_IDS = (
+    "AOA-P-0007",
+    "AOA-P-0008",
+    "AOA-P-0009",
+    "AOA-P-0010",
+    "AOA-P-0011",
+    "AOA-P-0012",
+    "AOA-P-0013",
+    "AOA-P-0014",
+    "AOA-P-0015",
+    "AOA-P-0016",
+)
+COMPOSITION_COLLECTION_PLAYBOOK_IDS = ("AOA-P-0011", "AOA-P-0012", "AOA-P-0013", "AOA-P-0014", "AOA-P-0015", "AOA-P-0016")
 FEDERATION_REQUIRED_FRONTMATTER_KEYS = ("required_skills", "memo_contract_refs", "memo_writeback_targets")
 
 ALLOWED_STATUS = {"active", "planned", "experimental", "deprecated"}
@@ -216,6 +246,242 @@ BUNDLE_SEMANTIC_CHECKS = {
             "memory-keeper",
         ),
     },
+    "AOA-P-0011": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-approval-boundary-adherence",
+                "aoa-bounded-change-quality",
+            ),
+            "required_skills": (
+                "aoa-approval-gate-check",
+                "aoa-source-of-truth-check",
+                "aoa-bounded-context-map",
+                "aoa-dry-run-first",
+                "aoa-change-protocol",
+                "aoa-contract-test",
+                "aoa-tdd-slice",
+                "aoa-adr-write",
+                "aoa-sanitized-share",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-approval-gate-check",
+            "aoa-source-of-truth-check",
+            "aoa-change-protocol",
+            "aoa-contract-test",
+            "aoa-sanitized-share",
+            "aoa-approval-boundary-adherence",
+            "aoa-bounded-change-quality",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0012": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-approval-boundary-adherence",
+                "aoa-verification-honesty",
+            ),
+            "required_skills": (
+                "aoa-approval-gate-check",
+                "aoa-source-of-truth-check",
+                "aoa-dry-run-first",
+                "aoa-safe-infra-change",
+                "aoa-local-stack-bringup",
+                "aoa-contract-test",
+                "aoa-adr-write",
+                "aoa-sanitized-share",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-approval-gate-check",
+            "aoa-source-of-truth-check",
+            "aoa-dry-run-first",
+            "aoa-safe-infra-change",
+            "aoa-local-stack-bringup",
+            "aoa-contract-test",
+            "aoa-sanitized-share",
+            "aoa-approval-boundary-adherence",
+            "aoa-verification-honesty",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0013": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-scope-drift-detection",
+                "aoa-verification-honesty",
+            ),
+            "required_skills": (
+                "aoa-bounded-context-map",
+                "aoa-core-logic-boundary",
+                "aoa-property-invariants",
+                "aoa-tdd-slice",
+                "aoa-port-adapter-refactor",
+                "aoa-invariant-coverage-audit",
+                "aoa-contract-test",
+                "aoa-adr-write",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-bounded-context-map",
+            "aoa-core-logic-boundary",
+            "aoa-property-invariants",
+            "aoa-port-adapter-refactor",
+            "aoa-invariant-coverage-audit",
+            "aoa-contract-test",
+            "aoa-adr-write",
+            "aoa-scope-drift-detection",
+            "aoa-verification-honesty",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0014": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-verification-honesty",
+                "aoa-tool-trajectory-discipline",
+            ),
+            "required_skills": (
+                "aoa-source-of-truth-check",
+                "aoa-dry-run-first",
+                "aoa-local-stack-bringup",
+                "aoa-change-protocol",
+                "aoa-contract-test",
+                "aoa-sanitized-share",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-source-of-truth-check",
+            "aoa-dry-run-first",
+            "aoa-local-stack-bringup",
+            "aoa-change-protocol",
+            "aoa-contract-test",
+            "aoa-sanitized-share",
+            "aoa-verification-honesty",
+            "aoa-tool-trajectory-discipline",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0015": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-ambiguity-handling",
+                "aoa-artifact-review-rubric",
+            ),
+            "required_skills": (
+                "aoa-source-of-truth-check",
+                "aoa-adr-write",
+                "aoa-sanitized-share",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-source-of-truth-check",
+            "aoa-adr-write",
+            "aoa-sanitized-share",
+            "aoa-ambiguity-handling",
+            "aoa-artifact-review-rubric",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0016": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-approval-boundary-adherence",
+                "aoa-bounded-change-quality",
+            ),
+            "required_skills": (
+                "aoa-approval-gate-check",
+                "atm10-source-of-truth-check",
+                "aoa-dry-run-first",
+                "atm10-change-protocol",
+                "aoa-contract-test",
+                "aoa-sanitized-share",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-approval-gate-check",
+            "atm10-source-of-truth-check",
+            "aoa-dry-run-first",
+            "atm10-change-protocol",
+            "aoa-contract-test",
+            "aoa-sanitized-share",
+            "aoa-approval-boundary-adherence",
+            "aoa-bounded-change-quality",
+            "architect",
+            "coder",
+            "reviewer",
+            "memory-keeper",
+        ),
+    },
 }
 
 
@@ -246,6 +512,28 @@ def display_path(path: Path) -> str:
         except ValueError:
             continue
     return path.as_posix()
+
+
+def load_composition_builder_module():
+    module_path = REPO_ROOT / "scripts" / "generate_playbook_composition_surfaces.py"
+    spec = importlib.util.spec_from_file_location("generate_playbook_composition_surfaces", module_path)
+    if spec is None or spec.loader is None:
+        fail(f"unable to load composition builder module from {display_path(module_path)}")
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+    except Exception as exc:
+        fail(f"unable to load composition builder module from {display_path(module_path)}: {exc}")
+    return module
+
+
+def skill_is_federation_eligible(skill: dict[str, object], *, playbook_status: str) -> bool:
+    if skill.get("lineage_state") != "published":
+        return False
+    readiness = skill.get("readiness_reconciliation")
+    if readiness == "governance_and_eval_ready":
+        return True
+    return playbook_status == "experimental" and readiness == "eval_ready_but_governance_blocked"
 
 
 def read_json(path: Path) -> object:
@@ -848,6 +1136,7 @@ def validate_federation_bundle(
     memo_writeback_targets = frontmatter["memo_writeback_targets"]
     participating_agents = frontmatter.get("participating_agents")
     eval_anchors = frontmatter.get("eval_anchors")
+    playbook_status = str(frontmatter.get("status", ""))
 
     for field_name, value in (
         ("required_skills", required_skills),
@@ -876,7 +1165,7 @@ def validate_federation_bundle(
         if skill is None:
             missing_skills.append(skill_name)
             continue
-        if skill.get("lineage_state") != "published" or skill.get("readiness_reconciliation") != "governance_and_eval_ready":
+        if not skill_is_federation_eligible(skill, playbook_status=playbook_status):
             invalid_skill_readiness.append(skill_name)
     if missing_skills:
         fail(
@@ -1006,9 +1295,9 @@ def validate_federation_collection(
             for skill in required_skills
             if isinstance(skill, str)
             and skill in skills_by_name
-            and (
-                skills_by_name[skill].get("lineage_state") != "published"
-                or skills_by_name[skill].get("readiness_reconciliation") != "governance_and_eval_ready"
+            and not skill_is_federation_eligible(
+                skills_by_name[skill],
+                playbook_status=str(frontmatter_by_id[playbook_id].get("status", "")),
             )
         ]
         if invalid_skill_readiness:
@@ -1056,6 +1345,58 @@ def validate_federation_collection(
                 f"generated/playbook_federation_surfaces.min.json[{index}] exposes memo_writeback_targets that are "
                 f"not supported by the referenced aoa-memo contracts: {', '.join(str(item) for item in invalid_targets)}"
             )
+
+
+def validate_composition_surfaces(
+    frontmatter_by_id: dict[str, dict[str, object]],
+) -> None:
+    builder = load_composition_builder_module()
+    try:
+        outputs = builder.build_outputs()
+    except Exception as exc:
+        fail(str(exc))
+
+    for path, expected in outputs.items():
+        payload = read_json(path)
+        if payload != expected:
+            fail(
+                f"{display_path(path)} is out of date; run scripts/generate_playbook_composition_surfaces.py"
+            )
+
+    handoff_payload = read_json(PLAYBOOK_HANDOFF_CONTRACTS_PATH)
+    if not isinstance(handoff_payload, dict) or not isinstance(handoff_payload.get("playbooks"), list):
+        fail("generated/playbook_handoff_contracts.json must contain a 'playbooks' list")
+    handoff_ids = {
+        item.get("playbook_id")
+        for item in handoff_payload["playbooks"]
+        if isinstance(item, dict) and isinstance(item.get("playbook_id"), str)
+    }
+    expected_handoff_ids = set(COMPOSITION_COLLECTION_PLAYBOOK_IDS)
+    if handoff_ids != expected_handoff_ids:
+        fail("generated/playbook_handoff_contracts.json must cover the managed playbook cohort exactly")
+
+    manifest_payload = read_json(PLAYBOOK_COMPOSITION_MANIFEST_PATH)
+    if not isinstance(manifest_payload, dict):
+        fail("generated/playbook_composition_manifest.json must contain a JSON object")
+    generated_files = manifest_payload.get("generated_files")
+    if not isinstance(generated_files, list):
+        fail("generated/playbook_composition_manifest.json must expose generated_files")
+    expected_generated_files = {
+        "generated/playbook_handoff_contracts.json",
+        "generated/playbook_failure_catalog.json",
+        "generated/playbook_subagent_recipes.json",
+        "generated/playbook_automation_seeds.json",
+        "generated/playbook_composition_manifest.json",
+    }
+    if set(item for item in generated_files if isinstance(item, str)) != expected_generated_files:
+        fail("generated/playbook_composition_manifest.json generated_files must match the composition outputs exactly")
+
+    managed_playbooks = manifest_payload.get("managed_playbooks")
+    if not isinstance(managed_playbooks, list):
+        fail("generated/playbook_composition_manifest.json must expose managed_playbooks")
+    expected_managed_names = [frontmatter_by_id[playbook_id]["name"] for playbook_id in COMPOSITION_COLLECTION_PLAYBOOK_IDS]
+    if managed_playbooks != expected_managed_names:
+        fail("generated/playbook_composition_manifest.json managed_playbooks must stay aligned with the composition cohort")
 
 
 def validate_cross_repo_bundle(
@@ -1312,6 +1653,7 @@ def main() -> int:
             evals_by_name=evals_by_name,
             skills_by_name=skills_by_name,
         )
+        validate_composition_surfaces(frontmatter_by_id)
         validate_activation_examples(
             playbooks_by_id,
             agent_names=agent_names,
@@ -1330,6 +1672,7 @@ def main() -> int:
     print("[ok] validated generated/playbook_activation_surfaces.min.json")
     print("[ok] validated authored playbook bundles")
     print("[ok] validated generated/playbook_federation_surfaces.min.json")
+    print("[ok] validated generated playbook composition surfaces")
     print("[ok] validated playbook activation examples")
     return 0
 

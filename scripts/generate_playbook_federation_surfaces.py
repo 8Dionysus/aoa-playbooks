@@ -9,7 +9,18 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 OUTPUT_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
-FEDERATION_PLAYBOOK_IDS = ("AOA-P-0007", "AOA-P-0008", "AOA-P-0009", "AOA-P-0010")
+FEDERATION_PLAYBOOK_IDS = (
+    "AOA-P-0007",
+    "AOA-P-0008",
+    "AOA-P-0009",
+    "AOA-P-0010",
+    "AOA-P-0011",
+    "AOA-P-0012",
+    "AOA-P-0013",
+    "AOA-P-0014",
+    "AOA-P-0015",
+    "AOA-P-0016",
+)
 
 
 def read_text(path: Path) -> str:

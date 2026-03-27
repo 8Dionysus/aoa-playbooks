@@ -93,5 +93,27 @@ class ValidatePlaybooksReturnContractTests(unittest.TestCase):
         self.assertNotIn("return_reentry_modes", surface)
 
 
+class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
+    def test_experimental_playbooks_may_use_published_governance_blocked_skills(self) -> None:
+        skill = {
+            "lineage_state": "published",
+            "readiness_reconciliation": "eval_ready_but_governance_blocked",
+        }
+
+        self.assertTrue(
+            validate_playbooks.skill_is_federation_eligible(skill, playbook_status="experimental")
+        )
+
+    def test_nonexperimental_playbooks_require_full_federation_readiness(self) -> None:
+        skill = {
+            "lineage_state": "published",
+            "readiness_reconciliation": "eval_ready_but_governance_blocked",
+        }
+
+        self.assertFalse(
+            validate_playbooks.skill_is_federation_eligible(skill, playbook_status="active")
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

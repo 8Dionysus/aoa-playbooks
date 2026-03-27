@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "profile": "aoa-playbook-composition-v1",
+  "playbooks": {
+    "bounded-change-safe": {
+      "failure_codes": [
+        "APPROVAL_REQUIRED",
+        "SOURCE_OF_TRUTH_AMBIGUOUS",
+        "PREVIEW_REQUIRED",
+        "VERIFICATION_WEAK",
+        "SESSION_LOST"
+      ],
+      "subagent_recipes": [],
+      "automation_seeds": [
+        "decision-brief"
+      ],
+      "followup_playbooks": [
+        "source-truth-then-share",
+        "infra-change-guarded"
+      ],
+      "handoff_skill_refs": [
+        "aoa-approval-gate-check",
+        "aoa-change-protocol",
+        "aoa-contract-test",
+        "aoa-sanitized-share"
+      ]
+    },
+    "infra-change-guarded": {
+      "failure_codes": [
+        "APPROVAL_REQUIRED",
+        "PREVIEW_REQUIRED",
+        "LOCAL_STACK_UNSTABLE",
+        "ROLLBACK_NOT_READY",
+        "WORKTREE_RECOMMENDED"
+      ],
+      "subagent_recipes": [],
+      "automation_seeds": [
+        "guarded-infra-preview"
+      ],
+      "followup_playbooks": [
+        "local-stack-diagnosis",
+        "bounded-change-safe"
+      ],
+      "handoff_skill_refs": [
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-safe-infra-change",
+        "aoa-sanitized-share"
+      ]
+    },
+    "invariants-first-refactor": {
+      "failure_codes": [
+        "BOUNDARY_UNCLEAR",
+        "INVARIANTS_MISSING",
+        "VERIFICATION_WEAK",
+        "SESSION_LOST"
+      ],
+      "subagent_recipes": [
+        "boundary-contract-split",
+        "invariant-audit-swarm"
+      ],
+      "automation_seeds": [],
+      "followup_playbooks": [
+        "bounded-change-safe"
+      ],
+      "handoff_skill_refs": [
+        "aoa-bounded-context-map",
+        "aoa-property-invariants",
+        "aoa-port-adapter-refactor",
+        "aoa-invariant-coverage-audit"
+      ]
+    },
+    "local-stack-diagnosis": {
+      "failure_codes": [
+        "SOURCE_OF_TRUTH_AMBIGUOUS",
+        "LOCAL_STACK_UNSTABLE",
+        "PREVIEW_REQUIRED",
+        "SESSION_LOST"
+      ],
+      "subagent_recipes": [
+        "local-stack-triage"
+      ],
+      "automation_seeds": [
+        "local-stack-health-check"
+      ],
+      "followup_playbooks": [
+        "infra-change-guarded",
+        "source-truth-then-share"
+      ],
+      "handoff_skill_refs": [
+        "aoa-source-of-truth-check",
+        "aoa-dry-run-first",
+        "aoa-local-stack-bringup",
+        "aoa-sanitized-share"
+      ]
+    },
+    "source-truth-then-share": {
+      "failure_codes": [
+        "SOURCE_OF_TRUTH_AMBIGUOUS",
+        "SHARE_REDACTION_NEEDED"
+      ],
+      "subagent_recipes": [
+        "canon-vs-summary-pass"
+      ],
+      "automation_seeds": [
+        "weekly-doc-drift"
+      ],
+      "followup_playbooks": [
+        "bounded-change-safe"
+      ],
+      "handoff_skill_refs": [
+        "aoa-source-of-truth-check",
+        "aoa-sanitized-share"
+      ]
+    },
+    "atm10-bounded-change": {
+      "failure_codes": [
+        "SOURCE_OF_TRUTH_AMBIGUOUS",
+        "PREVIEW_REQUIRED",
+        "VERIFICATION_WEAK"
+      ],
+      "subagent_recipes": [],
+      "automation_seeds": [],
+      "followup_playbooks": [
+        "bounded-change-safe"
+      ],
+      "handoff_skill_refs": [
+        "atm10-source-of-truth-check",
+        "atm10-change-protocol",
+        "aoa-contract-test",
+        "aoa-sanitized-share"
+      ]
+    }
+  },
+  "failure_catalog": [
+    {
+      "code": "APPROVAL_REQUIRED",
+      "summary": "The requested action crosses an approval boundary that should be resolved before mutation.",
+      "severity": "high",
+      "recommended_skills": [
+        "aoa-approval-gate-check"
+      ],
+      "next_actions": [
+        "State the exact mutation that needs approval.",
+        "Keep preview-only steps separate from execution.",
+        "Pause mutation until the approval state is explicit."
+      ]
+    },
+    {
+      "code": "SOURCE_OF_TRUTH_AMBIGUOUS",
+      "summary": "The canonical doc, runbook, or authority surface is unclear enough that composition would drift.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-source-of-truth-check",
+        "atm10-source-of-truth-check"
+      ],
+      "next_actions": [
+        "Name the files in tension.",
+        "Decide which surface is authoritative for the target concern.",
+        "Trim summary docs so they point at canon instead of replacing it."
+      ]
+    },
+    {
+      "code": "BOUNDARY_UNCLEAR",
+      "summary": "The domain seam or core-vs-edge line is fuzzy enough that the route would widen during execution.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-bounded-context-map",
+        "aoa-core-logic-boundary"
+      ],
+      "next_actions": [
+        "Map the boundary and its consumers.",
+        "Name what belongs in the core versus adapters.",
+        "Resume the route only once the seam is reviewable."
+      ]
+    },
+    {
+      "code": "PREVIEW_REQUIRED",
+      "summary": "A meaningful preview or inspect-only seam exists and should be taken before mutation.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-dry-run-first"
+      ],
+      "next_actions": [
+        "Run or plan the smallest bounded preview.",
+        "State what the preview does and does not prove.",
+        "Require one explicit confirmation before the real mutation."
+      ]
+    },
+    {
+      "code": "LOCAL_STACK_UNSTABLE",
+      "summary": "The local environment is not stable enough to trust the current verification result.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-local-stack-bringup",
+        "aoa-source-of-truth-check"
+      ],
+      "next_actions": [
+        "Return to the canonical startup surface.",
+        "Bring up the smallest viable stack.",
+        "Record blockers and missing prerequisites before further mutation."
+      ]
+    },
+    {
+      "code": "VERIFICATION_WEAK",
+      "summary": "The route moved forward, but the verification surface is too weak to trust the result.",
+      "severity": "high",
+      "recommended_skills": [
+        "aoa-contract-test",
+        "aoa-tdd-slice",
+        "aoa-invariant-coverage-audit"
+      ],
+      "next_actions": [
+        "Name the missing boundary or invariant check.",
+        "Add the smallest explicit test or audit that tightens confidence.",
+        "Report what remains unverified if no bounded check is available."
+      ]
+    },
+    {
+      "code": "INVARIANTS_MISSING",
+      "summary": "Behavioral properties are not explicit enough to protect a structural refactor.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-property-invariants",
+        "aoa-invariant-coverage-audit"
+      ],
+      "next_actions": [
+        "Name the behavior that must survive the change.",
+        "Write or update the broad property checks first.",
+        "Resume refactor after invariant coverage is explicit."
+      ]
+    },
+    {
+      "code": "ROLLBACK_NOT_READY",
+      "summary": "The route is drifting toward mutation without a credible rollback or recovery story.",
+      "severity": "high",
+      "recommended_skills": [
+        "aoa-safe-infra-change",
+        "aoa-change-protocol"
+      ],
+      "next_actions": [
+        "State the rollback or recovery path before apply.",
+        "Reduce the change surface until rollback is reviewable.",
+        "Avoid bundling unrelated cleanup into the same mutation."
+      ]
+    },
+    {
+      "code": "SHARE_REDACTION_NEEDED",
+      "summary": "The result is useful, but it still contains detail that should be sanitized before it travels.",
+      "severity": "low",
+      "recommended_skills": [
+        "aoa-sanitized-share"
+      ],
+      "next_actions": [
+        "Strip secrets, internal hostnames, and unstable identifiers.",
+        "Keep the technical meaning while removing sensitive detail.",
+        "Verify the redacted output still answers the user-facing question."
+      ]
+    },
+    {
+      "code": "WORKTREE_RECOMMENDED",
+      "summary": "The task is safer in an isolated worktree or equivalent sandbox than in the active workspace.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-safe-infra-change",
+        "aoa-change-protocol"
+      ],
+      "next_actions": [
+        "Move the task into a dedicated worktree when available.",
+        "Keep the execution bounded and reversible.",
+        "Return only the distilled result to the main thread."
+      ]
+    },
+    {
+      "code": "SESSION_LOST",
+      "summary": "Compaction or context loss means the route should be rehydrated from explicit artifacts before continuing.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-change-protocol",
+        "aoa-safe-infra-change"
+      ],
+      "next_actions": [
+        "Use the compact handoff packet and return anchors.",
+        "Reactivate the currently relevant skill before resuming.",
+        "Restate the current stage, unresolved risks, and next explicit verification step."
+      ]
+    }
+  ],
+  "subagent_recipes": [
+    {
+      "name": "boundary-contract-split",
+      "playbook": "invariants-first-refactor",
+      "description": "Split boundary analysis from contract verification so the main thread keeps only distilled structural conclusions.",
+      "when_to_use": [
+        "multi-module refactor",
+        "too much exploratory output in the main thread"
+      ],
+      "roles": [
+        {
+          "role": "boundary-mapper",
+          "skills": [
+            "aoa-bounded-context-map",
+            "aoa-core-logic-boundary"
+          ],
+          "deliverable": "context map, interfaces, and core-vs-edge calls"
+        },
+        {
+          "role": "contract-verifier",
+          "skills": [
+            "aoa-contract-test",
+            "aoa-property-invariants"
+          ],
+          "deliverable": "boundary contract assumptions and invariant candidates"
+        }
+      ],
+      "handoff_artifacts": [
+        "context_map",
+        "contract_assumptions",
+        "invariant_candidates"
+      ],
+      "caution": "Spawn explicitly only when the split is clean and bounded. Merge back ledgers and assumptions, not raw exploration logs."
+    },
+    {
+      "name": "local-stack-triage",
+      "playbook": "local-stack-diagnosis",
+      "description": "Separate docs discovery from runtime bring-up when startup noise threatens the main thread.",
+      "when_to_use": [
+        "startup logs are noisy",
+        "docs and environment both look suspicious"
+      ],
+      "roles": [
+        {
+          "role": "canon-scout",
+          "skills": [
+            "aoa-source-of-truth-check"
+          ],
+          "deliverable": "authoritative startup and dependency files"
+        },
+        {
+          "role": "bringup-operator",
+          "skills": [
+            "aoa-local-stack-bringup",
+            "aoa-dry-run-first"
+          ],
+          "deliverable": "bounded startup attempt and blocker list"
+        }
+      ],
+      "handoff_artifacts": [
+        "startup_canon_map",
+        "preview_evidence",
+        "blocker_list"
+      ],
+      "caution": "Do not let the bring-up split widen into unrelated cleanup or implicit infrastructure mutation."
+    },
+    {
+      "name": "invariant-audit-swarm",
+      "playbook": "invariants-first-refactor",
+      "description": "Split property design from coverage auditing so the refactor thread keeps only the invariant ledger.",
+      "when_to_use": [
+        "many invariants across several modules",
+        "coverage gaps are unclear"
+      ],
+      "roles": [
+        {
+          "role": "property-designer",
+          "skills": [
+            "aoa-property-invariants"
+          ],
+          "deliverable": "proposed broad properties"
+        },
+        {
+          "role": "coverage-auditor",
+          "skills": [
+            "aoa-invariant-coverage-audit"
+          ],
+          "deliverable": "which invariants are covered, missing, or weak"
+        }
+      ],
+      "handoff_artifacts": [
+        "property_ledger",
+        "coverage_gaps"
+      ],
+      "caution": "Use this split only when the outputs can be merged as short ledgers rather than parallel raw traces."
+    },
+    {
+      "name": "canon-vs-summary-pass",
+      "playbook": "source-truth-then-share",
+      "description": "Separate authority review from outward-facing summary drafting when documentation drift is the main problem.",
+      "when_to_use": [
+        "top-level docs are bloated",
+        "need a safe outward-facing summary"
+      ],
+      "roles": [
+        {
+          "role": "canon-reviewer",
+          "skills": [
+            "aoa-source-of-truth-check"
+          ],
+          "deliverable": "authority map and overlap notes"
+        },
+        {
+          "role": "summary-drafter",
+          "skills": [
+            "aoa-sanitized-share",
+            "aoa-adr-write"
+          ],
+          "deliverable": "redacted shareable snapshot"
+        }
+      ],
+      "handoff_artifacts": [
+        "authority_map",
+        "shareable_summary"
+      ],
+      "caution": "The summary split should reflect the canonical map; it must not redefine canon."
+    }
+  ],
+  "automation_seeds": [
+    {
+      "name": "weekly-doc-drift",
+      "playbook": "source-truth-then-share",
+      "title": "Weekly doc drift watch",
+      "execution_mode": "worktree",
+      "worktree_recommended": true,
+      "skill_handles": [
+        "$aoa-source-of-truth-check",
+        "$aoa-sanitized-share"
+      ],
+      "schedule_hint": "weekly",
+      "prompt": "Use $aoa-source-of-truth-check to audit top-level docs for authority drift, summary bloat, or conflicting guidance. Do not mutate by default. Then use $aoa-sanitized-share to produce a short shareable drift report with canonical file pointers and recommended bounded next steps."
+    },
+    {
+      "name": "guarded-infra-preview",
+      "playbook": "infra-change-guarded",
+      "title": "Guarded infra preview",
+      "execution_mode": "worktree",
+      "worktree_recommended": true,
+      "skill_handles": [
+        "$aoa-approval-gate-check",
+        "$aoa-dry-run-first",
+        "$aoa-safe-infra-change"
+      ],
+      "schedule_hint": "manual or scheduled after config drift alerts",
+      "prompt": "Use $aoa-approval-gate-check to classify whether the requested infrastructure action is approved as stated. If a preview path exists, use $aoa-dry-run-first and stop before mutation. Only if authority already exists and the task remains bounded, use $aoa-safe-infra-change to recommend the smallest next step. Always report rollback notes and residual risk."
+    },
+    {
+      "name": "local-stack-health-check",
+      "playbook": "local-stack-diagnosis",
+      "title": "Local stack health check",
+      "execution_mode": "local",
+      "worktree_recommended": false,
+      "skill_handles": [
+        "$aoa-source-of-truth-check",
+        "$aoa-local-stack-bringup",
+        "$aoa-sanitized-share"
+      ],
+      "schedule_hint": "daily before high-traffic coding sessions",
+      "prompt": "Use $aoa-source-of-truth-check to locate the canonical startup and dependency docs, then use $aoa-local-stack-bringup to verify the smallest viable local stack on current HEAD. If blockers appear, stop at the bounded bring-up seam and use $aoa-sanitized-share to prepare a concise blocker report."
+    },
+    {
+      "name": "decision-brief",
+      "playbook": "bounded-change-safe",
+      "title": "Decision brief after notable changes",
+      "execution_mode": "worktree",
+      "worktree_recommended": false,
+      "skill_handles": [
+        "$aoa-adr-write",
+        "$aoa-sanitized-share"
+      ],
+      "schedule_hint": "after a set of notable merges",
+      "prompt": "Use $aoa-adr-write to capture any meaningful architectural or workflow decisions implied by recent merged work. Then use $aoa-sanitized-share to produce a brief shareable note that preserves rationale and tradeoffs without leaking internal detail."
+    }
+  ]
+}
