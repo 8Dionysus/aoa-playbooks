@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "layer": "aoa-playbooks",
+  "profile": "aoa-playbook-composition-v1",
+  "recipes": [
+    {
+      "name": "boundary-contract-split",
+      "playbook": "invariants-first-refactor",
+      "description": "Split boundary analysis from contract verification so the main thread keeps only distilled structural conclusions.",
+      "when_to_use": [
+        "multi-module refactor",
+        "too much exploratory output in the main thread"
+      ],
+      "roles": [
+        {
+          "role": "boundary-mapper",
+          "skills": [
+            "aoa-bounded-context-map",
+            "aoa-core-logic-boundary"
+          ],
+          "deliverable": "context map, interfaces, and core-vs-edge calls"
+        },
+        {
+          "role": "contract-verifier",
+          "skills": [
+            "aoa-contract-test",
+            "aoa-property-invariants"
+          ],
+          "deliverable": "boundary contract assumptions and invariant candidates"
+        }
+      ],
+      "handoff_artifacts": [
+        "context_map",
+        "contract_assumptions",
+        "invariant_candidates"
+      ],
+      "caution": "Spawn explicitly only when the split is clean and bounded. Merge back ledgers and assumptions, not raw exploration logs."
+    },
+    {
+      "name": "local-stack-triage",
+      "playbook": "local-stack-diagnosis",
+      "description": "Separate docs discovery from runtime bring-up when startup noise threatens the main thread.",
+      "when_to_use": [
+        "startup logs are noisy",
+        "docs and environment both look suspicious"
+      ],
+      "roles": [
+        {
+          "role": "canon-scout",
+          "skills": [
+            "aoa-source-of-truth-check"
+          ],
+          "deliverable": "authoritative startup and dependency files"
+        },
+        {
+          "role": "bringup-operator",
+          "skills": [
+            "aoa-local-stack-bringup",
+            "aoa-dry-run-first"
+          ],
+          "deliverable": "bounded startup attempt and blocker list"
+        }
+      ],
+      "handoff_artifacts": [
+        "startup_canon_map",
+        "preview_evidence",
+        "blocker_list"
+      ],
+      "caution": "Do not let the bring-up split widen into unrelated cleanup or implicit infrastructure mutation."
+    },
+    {
+      "name": "invariant-audit-swarm",
+      "playbook": "invariants-first-refactor",
+      "description": "Split property design from coverage auditing so the refactor thread keeps only the invariant ledger.",
+      "when_to_use": [
+        "many invariants across several modules",
+        "coverage gaps are unclear"
+      ],
+      "roles": [
+        {
+          "role": "property-designer",
+          "skills": [
+            "aoa-property-invariants"
+          ],
+          "deliverable": "proposed broad properties"
+        },
+        {
+          "role": "coverage-auditor",
+          "skills": [
+            "aoa-invariant-coverage-audit"
+          ],
+          "deliverable": "which invariants are covered, missing, or weak"
+        }
+      ],
+      "handoff_artifacts": [
+        "property_ledger",
+        "coverage_gaps"
+      ],
+      "caution": "Use this split only when the outputs can be merged as short ledgers rather than parallel raw traces."
+    },
+    {
+      "name": "canon-vs-summary-pass",
+      "playbook": "source-truth-then-share",
+      "description": "Separate authority review from outward-facing summary drafting when documentation drift is the main problem.",
+      "when_to_use": [
+        "top-level docs are bloated",
+        "need a safe outward-facing summary"
+      ],
+      "roles": [
+        {
+          "role": "canon-reviewer",
+          "skills": [
+            "aoa-source-of-truth-check"
+          ],
+          "deliverable": "authority map and overlap notes"
+        },
+        {
+          "role": "summary-drafter",
+          "skills": [
+            "aoa-sanitized-share",
+            "aoa-adr-write"
+          ],
+          "deliverable": "redacted shareable snapshot"
+        }
+      ],
+      "handoff_artifacts": [
+        "authority_map",
+        "shareable_summary"
+      ],
+      "caution": "The summary split should reflect the canonical map; it must not redefine canon."
+    }
+  ]
+}

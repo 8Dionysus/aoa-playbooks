@@ -79,6 +79,7 @@ The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` an
 For the long-horizon experimental seam, it also checks that participating agents resolve in `aoa-agents`, model-tier artifact contracts stay aligned where applicable, and referenced eval anchors exist in `aoa-evals`.
 It now also validates the derived activation surface used to make selected playbooks runtime-readable without changing bundle authorship.
 For the first federation-checked cohort, it also resolves exact skills in `aoa-skills` and memo contracts in `aoa-memo` without moving ownership out of those repositories.
+It now also validates derived composition surfaces for handoff contracts, failure catalogs, subagent recipes, automation seeds, and a composition manifest without turning the playbook layer into a runtime engine.
 It now also requires the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md` to stay present and aligned with the authored-vs-derived split of this layer.
 
 Derived playbook surfaces live at:
@@ -86,6 +87,11 @@ Derived playbook surfaces live at:
 - `schemas/playbook-federation-surface.schema.json`
 - `generated/playbook_activation_surfaces.min.json`
 - `generated/playbook_federation_surfaces.min.json`
+- `generated/playbook_handoff_contracts.json`
+- `generated/playbook_failure_catalog.json`
+- `generated/playbook_subagent_recipes.json`
+- `generated/playbook_automation_seeds.json`
+- `generated/playbook_composition_manifest.json`
 - `examples/playbook_activation.long-horizon-model-tier-orchestra.example.json`
 - `examples/playbook_activation.restartable-inquiry-loop.example.json`
 - `examples/playbook_activation.cross-repo-boundary-rollout.example.json`
@@ -95,14 +101,15 @@ To validate the current playbook-layer surface locally, run:
 ```bash
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
+python scripts/generate_playbook_composition_surfaces.py --check
 python scripts/validate_playbooks.py
 ```
 
 ## Current status
 
-`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, restartable inquiry, and cross-repo boundary rollout.
-The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home.
-The current closure step is to make a first federation-checked cohort machine-checkable against `aoa-skills` and `aoa-memo` without blurring boundaries.
+`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, restartable inquiry, cross-repo boundary rollout, bounded change safety, guarded infra changes, invariants-first refactors, local stack diagnosis, source-truth sharing, and ATM10 overlay change work.
+The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home plus a bounded derived composition surface.
+The current closure step is to keep federation-checked scenario routes machine-checkable against `aoa-skills` and `aoa-memo` without blurring boundaries or introducing a persisted run engine here.
 
 ## Principles
 

@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "layer": "aoa-playbooks",
+  "profile": "aoa-playbook-composition-v1",
+  "failures": [
+    {
+      "code": "APPROVAL_REQUIRED",
+      "summary": "The requested action crosses an approval boundary that should be resolved before mutation.",
+      "severity": "high",
+      "recommended_skills": [
+        "aoa-approval-gate-check"
+      ],
+      "next_actions": [
+        "State the exact mutation that needs approval.",
+        "Keep preview-only steps separate from execution.",
+        "Pause mutation until the approval state is explicit."
+      ],
+      "used_by_playbooks": [
+        "bounded-change-safe",
+        "infra-change-guarded"
+      ]
+    },
+    {
+      "code": "SOURCE_OF_TRUTH_AMBIGUOUS",
+      "summary": "The canonical doc, runbook, or authority surface is unclear enough that composition would drift.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-source-of-truth-check",
+        "atm10-source-of-truth-check"
+      ],
+      "next_actions": [
+        "Name the files in tension.",
+        "Decide which surface is authoritative for the target concern.",
+        "Trim summary docs so they point at canon instead of replacing it."
+      ],
+      "used_by_playbooks": [
+        "atm10-bounded-change",
+        "bounded-change-safe",
+        "local-stack-diagnosis",
+        "source-truth-then-share"
+      ]
+    },
+    {
+      "code": "BOUNDARY_UNCLEAR",
+      "summary": "The domain seam or core-vs-edge line is fuzzy enough that the route would widen during execution.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-bounded-context-map",
+        "aoa-core-logic-boundary"
+      ],
+      "next_actions": [
+        "Map the boundary and its consumers.",
+        "Name what belongs in the core versus adapters.",
+        "Resume the route only once the seam is reviewable."
+      ],
+      "used_by_playbooks": [
+        "invariants-first-refactor"
+      ]
+    },
+    {
+      "code": "PREVIEW_REQUIRED",
+      "summary": "A meaningful preview or inspect-only seam exists and should be taken before mutation.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-dry-run-first"
+      ],
+      "next_actions": [
+        "Run or plan the smallest bounded preview.",
+        "State what the preview does and does not prove.",
+        "Require one explicit confirmation before the real mutation."
+      ],
+      "used_by_playbooks": [
+        "atm10-bounded-change",
+        "bounded-change-safe",
+        "infra-change-guarded",
+        "local-stack-diagnosis"
+      ]
+    },
+    {
+      "code": "LOCAL_STACK_UNSTABLE",
+      "summary": "The local environment is not stable enough to trust the current verification result.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-local-stack-bringup",
+        "aoa-source-of-truth-check"
+      ],
+      "next_actions": [
+        "Return to the canonical startup surface.",
+        "Bring up the smallest viable stack.",
+        "Record blockers and missing prerequisites before further mutation."
+      ],
+      "used_by_playbooks": [
+        "infra-change-guarded",
+        "local-stack-diagnosis"
+      ]
+    },
+    {
+      "code": "VERIFICATION_WEAK",
+      "summary": "The route moved forward, but the verification surface is too weak to trust the result.",
+      "severity": "high",
+      "recommended_skills": [
+        "aoa-contract-test",
+        "aoa-tdd-slice",
+        "aoa-invariant-coverage-audit"
+      ],
+      "next_actions": [
+        "Name the missing boundary or invariant check.",
+        "Add the smallest explicit test or audit that tightens confidence.",
+        "Report what remains unverified if no bounded check is available."
+      ],
+      "used_by_playbooks": [
+        "atm10-bounded-change",
+        "bounded-change-safe",
+        "invariants-first-refactor"
+      ]
+    },
+    {
+      "code": "INVARIANTS_MISSING",
+      "summary": "Behavioral properties are not explicit enough to protect a structural refactor.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-property-invariants",
+        "aoa-invariant-coverage-audit"
+      ],
+      "next_actions": [
+        "Name the behavior that must survive the change.",
+        "Write or update the broad property checks first.",
+        "Resume refactor after invariant coverage is explicit."
+      ],
+      "used_by_playbooks": [
+        "invariants-first-refactor"
+      ]
+    },
+    {
+      "code": "ROLLBACK_NOT_READY",
+      "summary": "The route is drifting toward mutation without a credible rollback or recovery story.",
+      "severity": "high",
+      "recommended_skills": [
+        "aoa-safe-infra-change",
+        "aoa-change-protocol"
+      ],
+      "next_actions": [
+        "State the rollback or recovery path before apply.",
+        "Reduce the change surface until rollback is reviewable.",
+        "Avoid bundling unrelated cleanup into the same mutation."
+      ],
+      "used_by_playbooks": [
+        "infra-change-guarded"
+      ]
+    },
+    {
+      "code": "SHARE_REDACTION_NEEDED",
+      "summary": "The result is useful, but it still contains detail that should be sanitized before it travels.",
+      "severity": "low",
+      "recommended_skills": [
+        "aoa-sanitized-share"
+      ],
+      "next_actions": [
+        "Strip secrets, internal hostnames, and unstable identifiers.",
+        "Keep the technical meaning while removing sensitive detail.",
+        "Verify the redacted output still answers the user-facing question."
+      ],
+      "used_by_playbooks": [
+        "source-truth-then-share"
+      ]
+    },
+    {
+      "code": "WORKTREE_RECOMMENDED",
+      "summary": "The task is safer in an isolated worktree or equivalent sandbox than in the active workspace.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-safe-infra-change",
+        "aoa-change-protocol"
+      ],
+      "next_actions": [
+        "Move the task into a dedicated worktree when available.",
+        "Keep the execution bounded and reversible.",
+        "Return only the distilled result to the main thread."
+      ],
+      "used_by_playbooks": [
+        "infra-change-guarded"
+      ]
+    },
+    {
+      "code": "SESSION_LOST",
+      "summary": "Compaction or context loss means the route should be rehydrated from explicit artifacts before continuing.",
+      "severity": "medium",
+      "recommended_skills": [
+        "aoa-change-protocol",
+        "aoa-safe-infra-change"
+      ],
+      "next_actions": [
+        "Use the compact handoff packet and return anchors.",
+        "Reactivate the currently relevant skill before resuming.",
+        "Restate the current stage, unresolved risks, and next explicit verification step."
+      ],
+      "used_by_playbooks": [
+        "bounded-change-safe",
+        "invariants-first-refactor",
+        "local-stack-diagnosis"
+      ]
+    }
+  ]
+}

@@ -26,6 +26,7 @@ Within `aoa-playbooks`, a playbook should mean a reusable scenario-level composi
 At the current second-wave baseline, that meaning may live in:
 - a compact registry surface for routing and lookup
 - an authored `PLAYBOOK.md` bundle when one recurring route needs a real source-owned home
+- a small set of derived composition projections when handoff or recurrence metadata should stay machine-readable without becoming runtime state
 
 ## Method and playbook
 

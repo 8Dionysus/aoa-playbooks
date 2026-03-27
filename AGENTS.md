@@ -20,6 +20,7 @@ This repository is the source of truth for:
 - fallback and exception posture at the playbook layer
 - expected evidence posture for a scenario
 - playbook-layer metadata and generated registry surfaces
+- bounded composition adjuncts such as shared failure catalogs, subagent recipes, automation seeds, and playbook-owned handoff bridges
 
 ## Does not own
 
@@ -62,10 +63,11 @@ If you are editing inside `playbooks/` or `generated/`, also follow the nested `
 The most important objects in this repository are:
 
 - playbook definitions
+- `config/playbook_composition_overrides.json`
 - scenario-composition docs
 - fallback posture docs
 - expected evidence posture docs
-- generated playbook catalogs or registry outputs
+- generated playbook catalogs, registry outputs, and playbook-owned composition surfaces
 
 ## Allowed changes
 

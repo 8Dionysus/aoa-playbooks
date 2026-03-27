@@ -9,7 +9,17 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 OUTPUT_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.json"
-ACTIVATION_PLAYBOOK_IDS = ("AOA-P-0008", "AOA-P-0009", "AOA-P-0010")
+ACTIVATION_PLAYBOOK_IDS = (
+    "AOA-P-0008",
+    "AOA-P-0009",
+    "AOA-P-0010",
+    "AOA-P-0011",
+    "AOA-P-0012",
+    "AOA-P-0013",
+    "AOA-P-0014",
+    "AOA-P-0015",
+    "AOA-P-0016",
+)
 OPTIONAL_RETURN_FIELDS = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
 
 

@@ -1,0 +1,777 @@
+{
+  "schema_version": 1,
+  "layer": "aoa-playbooks",
+  "profile": "aoa-playbook-composition-v1",
+  "source_of_truth": {
+    "registry": "generated/playbook_registry.min.json",
+    "bundles": "playbooks/*/PLAYBOOK.md",
+    "composition_overrides": "config/playbook_composition_overrides.json",
+    "skill_handoff_contracts": "../aoa-skills/generated/skill_handoff_contracts.json"
+  },
+  "playbooks": [
+    {
+      "playbook_id": "AOA-P-0011",
+      "name": "bounded-change-safe",
+      "required_skills": [
+        "aoa-approval-gate-check",
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test",
+        "aoa-tdd-slice",
+        "aoa-adr-write",
+        "aoa-sanitized-share"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-approval-gate-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "touched-surfaces",
+            "known-approval-state",
+            "risk-signals",
+            "possible-fallback-or-inspect-only-path"
+          ],
+          "provides_artifact_tags": [
+            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
+            "note-on-whether-explicit-approval-is-needed",
+            "bounded-next-step-recommendation",
+            "report-of-unresolved-authority-assumptions",
+            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+          ]
+        },
+        {
+          "name": "aoa-change-protocol",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "consumes_artifact_tags": [
+            "target-goal",
+            "touched-files-or-surfaces",
+            "main-risk",
+            "intended-validation-path",
+            "rollback-idea"
+          ],
+          "provides_artifact_tags": [
+            "explicit-plan",
+            "scoped-change",
+            "named-verification-result",
+            "concise-final-report"
+          ]
+        },
+        {
+          "name": "aoa-contract-test",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
+          "consumes_artifact_tags": [
+            "boundary-under-review",
+            "expected-inputs-and-outputs",
+            "current-verification-surface",
+            "known-downstream-dependencies"
+          ],
+          "provides_artifact_tags": [
+            "explicit-contract-assumptions",
+            "tests-or-smoke-summary-changes",
+            "verification-notes",
+            "downstream-impact-notes"
+          ]
+        },
+        {
+          "name": "aoa-sanitized-share",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "consumes_artifact_tags": [
+            "material-to-be-shared",
+            "sharing-audience-or-context",
+            "known-sensitive-surfaces",
+            "acceptable-level-of-abstraction"
+          ],
+          "provides_artifact_tags": [
+            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
+            "note-on-what-was-generalized-or-removed",
+            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
+            "canonical-public-safe-output-location-or-reference"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide whether approval is already explicit enough to proceed.",
+        "Decide whether the route needs source-of-truth mapping or boundary clarification before mutation.",
+        "Decide whether a preview or dry-run seam should happen before the real change.",
+        "Decide whether the current verification pack is strong enough to close the bounded slice honestly.",
+        "Decide whether the result needs an ADR, a sanitized summary, or both.",
+        "Decide whether the route should continue, return to the last artifact anchor, or stop for review."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the approval boundary, source map, and scoped change target are explicit",
+        "`coder -> reviewer` after the scoped change set and verification pack exist",
+        "`reviewer -> memory-keeper` after the closeout artifacts are explicit enough to survive as a decision, audit event, or provenance thread",
+        "`reviewer or memory-keeper -> architect` when the route must return to the last approval or verification anchor before another pass"
+      ],
+      "expected_artifacts": [
+        "approval_record",
+        "source_map",
+        "scoped_change_set",
+        "verification_pack",
+        "shareable_summary"
+      ],
+      "return_anchor_artifacts": [
+        "approval_record",
+        "scoped_change_set",
+        "verification_pack"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "bounded-change-safe",
+        "carried_artifacts": [
+          "approval_record",
+          "source_map",
+          "scoped_change_set",
+          "verification_pack",
+          "shareable_summary"
+        ],
+        "required_skill_handoffs": [
+          "aoa-approval-gate-check",
+          "aoa-change-protocol",
+          "aoa-contract-test",
+          "aoa-sanitized-share"
+        ],
+        "failure_codes": [
+          "APPROVAL_REQUIRED",
+          "SOURCE_OF_TRUTH_AMBIGUOUS",
+          "PREVIEW_REQUIRED",
+          "VERIFICATION_WEAK",
+          "SESSION_LOST"
+        ],
+        "next_followups": [
+          "source-truth-then-share",
+          "infra-change-guarded"
+        ]
+      }
+    },
+    {
+      "playbook_id": "AOA-P-0012",
+      "name": "infra-change-guarded",
+      "required_skills": [
+        "aoa-approval-gate-check",
+        "aoa-source-of-truth-check",
+        "aoa-dry-run-first",
+        "aoa-safe-infra-change",
+        "aoa-local-stack-bringup",
+        "aoa-contract-test",
+        "aoa-adr-write",
+        "aoa-sanitized-share"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-approval-gate-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "touched-surfaces",
+            "known-approval-state",
+            "risk-signals",
+            "possible-fallback-or-inspect-only-path"
+          ],
+          "provides_artifact_tags": [
+            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
+            "note-on-whether-explicit-approval-is-needed",
+            "bounded-next-step-recommendation",
+            "report-of-unresolved-authority-assumptions",
+            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+          ]
+        },
+        {
+          "name": "aoa-dry-run-first",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "available-preview-or-dry-run-mechanisms",
+            "touched-surfaces",
+            "known-limits-of-the-preview-path"
+          ],
+          "provides_artifact_tags": [
+            "dry-run-or-preview-recommendation",
+            "bounded-preview-result-or-plan",
+            "note-on-what-the-preview-does-and-does-not-prove",
+            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
+            "recommendation-for-next-step"
+          ]
+        },
+        {
+          "name": "aoa-safe-infra-change",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-safe-infra-change",
+          "consumes_artifact_tags": [
+            "target-change",
+            "touched-operational-surfaces",
+            "stated-authority-or-approval-state",
+            "validation-path",
+            "rollback-idea"
+          ],
+          "provides_artifact_tags": [
+            "explicit-risk-aware-plan",
+            "bounded-infrastructure-or-config-change-or-bounded-execution-rec",
+            "verification-result",
+            "report-with-remaining-risk-notes"
+          ]
+        },
+        {
+          "name": "aoa-sanitized-share",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "consumes_artifact_tags": [
+            "material-to-be-shared",
+            "sharing-audience-or-context",
+            "known-sensitive-surfaces",
+            "acceptable-level-of-abstraction"
+          ],
+          "provides_artifact_tags": [
+            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
+            "note-on-what-was-generalized-or-removed",
+            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
+            "canonical-public-safe-output-location-or-reference"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide whether approval is explicit enough to proceed beyond preview.",
+        "Decide which runbook or startup surface is actually canonical.",
+        "Decide what the preview proved and what still remains unproven.",
+        "Decide whether rollback posture is strong enough to justify mutation.",
+        "Decide whether local bring-up or a contract check is the right bounded verifier.",
+        "Decide whether the route should proceed, return to preview, or stop for review."
+      ],
+      "handoffs": [
+        "`architect -> coder` after authority, runbook canon, and rollback posture are explicit",
+        "`coder -> reviewer` after preview evidence, infra change notes, and verification outputs exist",
+        "`reviewer -> memory-keeper` after the route can preserve its decision, audit event, and provenance trail without leaking unsafe operational detail",
+        "`reviewer or memory-keeper -> architect` when the route must return to the last preview or rollback anchor before another pass"
+      ],
+      "expected_artifacts": [
+        "approval_record",
+        "canonical_runbook_map",
+        "preview_evidence",
+        "rollback_plan",
+        "infra_change_set",
+        "verification_pack"
+      ],
+      "return_anchor_artifacts": [
+        "approval_record",
+        "preview_evidence",
+        "rollback_plan"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "infra-change-guarded",
+        "carried_artifacts": [
+          "approval_record",
+          "canonical_runbook_map",
+          "preview_evidence",
+          "rollback_plan",
+          "infra_change_set",
+          "verification_pack"
+        ],
+        "required_skill_handoffs": [
+          "aoa-approval-gate-check",
+          "aoa-dry-run-first",
+          "aoa-safe-infra-change",
+          "aoa-sanitized-share"
+        ],
+        "failure_codes": [
+          "APPROVAL_REQUIRED",
+          "PREVIEW_REQUIRED",
+          "LOCAL_STACK_UNSTABLE",
+          "ROLLBACK_NOT_READY",
+          "WORKTREE_RECOMMENDED"
+        ],
+        "next_followups": [
+          "local-stack-diagnosis",
+          "bounded-change-safe"
+        ]
+      }
+    },
+    {
+      "playbook_id": "AOA-P-0013",
+      "name": "invariants-first-refactor",
+      "required_skills": [
+        "aoa-bounded-context-map",
+        "aoa-core-logic-boundary",
+        "aoa-property-invariants",
+        "aoa-tdd-slice",
+        "aoa-port-adapter-refactor",
+        "aoa-invariant-coverage-audit",
+        "aoa-contract-test",
+        "aoa-adr-write"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-bounded-context-map",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "consumes_artifact_tags": [
+            "target-area-or-subsystem",
+            "current-naming-and-responsibilities",
+            "known-neighboring-contexts",
+            "ambiguous-or-overloaded-terms"
+          ],
+          "provides_artifact_tags": [
+            "named-contexts-or-subsystems",
+            "rough-boundary-map",
+            "interface-notes-between-contexts",
+            "ambiguity-notes-and-recommended-vocabulary"
+          ]
+        },
+        {
+          "name": "aoa-property-invariants",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-property-invariants",
+          "consumes_artifact_tags": [
+            "target-rule-or-domain-truth",
+            "current-examples-or-tests",
+            "input-space-or-generators",
+            "known-edge-cases"
+          ],
+          "provides_artifact_tags": [
+            "explicit-invariants",
+            "property-oriented-tests-or-checks",
+            "notes-on-generator-assumptions",
+            "verification-summary"
+          ]
+        },
+        {
+          "name": "aoa-port-adapter-refactor",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-port-adapter-refactor",
+          "consumes_artifact_tags": [
+            "target-module-or-slice",
+            "concrete-dependency-that-currently-leaks-into-the-core-logic",
+            "desired-scope-of-refactor",
+            "validation-expectations"
+          ],
+          "provides_artifact_tags": [
+            "clearer-boundary-between-logic-and-infrastructure",
+            "proposed-or-implemented-port-shape",
+            "proposed-or-implemented-adapter-shape",
+            "verification-summary"
+          ]
+        },
+        {
+          "name": "aoa-invariant-coverage-audit",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-invariant-coverage-audit",
+          "consumes_artifact_tags": [
+            "target-rule-or-stable-truth",
+            "current-tests-checks-or-examples",
+            "known-edge-cases-and-stress-cases",
+            "the-input-space-or-states-that-matter-most"
+          ],
+          "provides_artifact_tags": [
+            "invariant-coverage-map",
+            "gap-list-for-weak-or-missing-checks",
+            "bounded-follow-up-checks-or-revisions",
+            "concise-verification-summary",
+            "audit-verdict-on-whether-coverage-is-strong-enough-for-the-curre"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide which contexts or seams must be named before refactor.",
+        "Decide which invariants must be explicit before code movement starts.",
+        "Decide whether the route needs a test-first slice before the main refactor.",
+        "Decide whether the post-change audit is strong enough to trust the new boundary.",
+        "Decide whether the refactor changed architecture enough to require an ADR.",
+        "Decide whether the route should continue, return to the invariant ledger, or stop for review."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the context map, boundary line, and invariant ledger are explicit",
+        "`coder -> reviewer` after the bounded refactor slice and verification pack exist",
+        "`reviewer -> memory-keeper` after the route can preserve a decision, audit event, or provenance thread without flattening the refactor into folklore",
+        "`reviewer or memory-keeper -> architect` when the route must return to the last context or invariant anchor before another slice"
+      ],
+      "expected_artifacts": [
+        "context_map",
+        "invariant_ledger",
+        "refactor_change_set",
+        "verification_pack",
+        "architecture_note"
+      ],
+      "return_anchor_artifacts": [
+        "context_map",
+        "invariant_ledger",
+        "verification_pack"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "invariants-first-refactor",
+        "carried_artifacts": [
+          "context_map",
+          "invariant_ledger",
+          "refactor_change_set",
+          "verification_pack",
+          "architecture_note"
+        ],
+        "required_skill_handoffs": [
+          "aoa-bounded-context-map",
+          "aoa-property-invariants",
+          "aoa-port-adapter-refactor",
+          "aoa-invariant-coverage-audit"
+        ],
+        "failure_codes": [
+          "BOUNDARY_UNCLEAR",
+          "INVARIANTS_MISSING",
+          "VERIFICATION_WEAK",
+          "SESSION_LOST"
+        ],
+        "next_followups": [
+          "bounded-change-safe"
+        ]
+      }
+    },
+    {
+      "playbook_id": "AOA-P-0014",
+      "name": "local-stack-diagnosis",
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-dry-run-first",
+        "aoa-local-stack-bringup",
+        "aoa-change-protocol",
+        "aoa-contract-test",
+        "aoa-sanitized-share"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-source-of-truth-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "consumes_artifact_tags": [
+            "repository-docs-surface",
+            "target-area-of-ambiguity-or-overlap",
+            "known-canonical-files-if-any",
+            "current-contributor-confusion-points"
+          ],
+          "provides_artifact_tags": [
+            "clearer-source-of-truth-map",
+            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
+            "note-of-overlaps-or-conflicts",
+            "proposed-or-implemented-document-role-clarification",
+            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
+            "verification-summary"
+          ]
+        },
+        {
+          "name": "aoa-dry-run-first",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "available-preview-or-dry-run-mechanisms",
+            "touched-surfaces",
+            "known-limits-of-the-preview-path"
+          ],
+          "provides_artifact_tags": [
+            "dry-run-or-preview-recommendation",
+            "bounded-preview-result-or-plan",
+            "note-on-what-the-preview-does-and-does-not-prove",
+            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
+            "recommendation-for-next-step"
+          ]
+        },
+        {
+          "name": "aoa-local-stack-bringup",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-local-stack-bringup",
+          "consumes_artifact_tags": [
+            "selected-local-runtime-profile-or-preset",
+            "available-render-truth-surface-for-the-chosen-runtime",
+            "available-readiness-or-doctor-surface-for-the-chosen-runtime",
+            "one-explicit-local-lifecycle-entrypoint",
+            "intended-stop-path-or-cleanup-path"
+          ],
+          "provides_artifact_tags": [
+            "rendered-runtime-truth-summary-for-what-would-actually-start",
+            "selector-aware-readiness-verdict-with-named-blockers-or-warnings",
+            "explicit-go-hold-or-confirm-before-launch-recommendation",
+            "started-bounded-local-stack-with-visible-stop-path-or-a-deferred",
+            "concise-runtime-report-with-unresolved-warnings-blockers-or-clea"
+          ]
+        },
+        {
+          "name": "aoa-sanitized-share",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "consumes_artifact_tags": [
+            "material-to-be-shared",
+            "sharing-audience-or-context",
+            "known-sensitive-surfaces",
+            "acceptable-level-of-abstraction"
+          ],
+          "provides_artifact_tags": [
+            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
+            "note-on-what-was-generalized-or-removed",
+            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
+            "canonical-public-safe-output-location-or-reference"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide which startup surface is actually canonical before touching the environment.",
+        "Decide whether a preview seam should happen before a real bring-up or reset.",
+        "Decide whether the current blocker is narrow enough for one bounded `aoa-change-protocol` fix.",
+        "Decide whether `aoa-contract-test` can strengthen trust around the failing path.",
+        "Decide whether the route closes with a verified stack, a blocker list, or a safe stop."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the startup canon and bounded bring-up target are explicit",
+        "`coder -> reviewer` after preview evidence, bring-up notes, and the verification pack exist",
+        "`reviewer -> memory-keeper` after the route can preserve its `decision`, `audit_event`, and `provenance_thread` without turning transient startup noise into canon",
+        "`reviewer or memory-keeper -> architect` when the route must return to the last viable startup or blocker anchor before another pass"
+      ],
+      "expected_artifacts": [
+        "startup_canon_map",
+        "preview_evidence",
+        "blocker_list",
+        "verification_pack",
+        "shareable_summary"
+      ],
+      "return_anchor_artifacts": [
+        "startup_canon_map",
+        "blocker_list",
+        "verification_pack"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "local-stack-diagnosis",
+        "carried_artifacts": [
+          "startup_canon_map",
+          "preview_evidence",
+          "blocker_list",
+          "verification_pack",
+          "shareable_summary"
+        ],
+        "required_skill_handoffs": [
+          "aoa-source-of-truth-check",
+          "aoa-dry-run-first",
+          "aoa-local-stack-bringup",
+          "aoa-sanitized-share"
+        ],
+        "failure_codes": [
+          "SOURCE_OF_TRUTH_AMBIGUOUS",
+          "LOCAL_STACK_UNSTABLE",
+          "PREVIEW_REQUIRED",
+          "SESSION_LOST"
+        ],
+        "next_followups": [
+          "infra-change-guarded",
+          "source-truth-then-share"
+        ]
+      }
+    },
+    {
+      "playbook_id": "AOA-P-0015",
+      "name": "source-truth-then-share",
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-adr-write",
+        "aoa-sanitized-share"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-source-of-truth-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "consumes_artifact_tags": [
+            "repository-docs-surface",
+            "target-area-of-ambiguity-or-overlap",
+            "known-canonical-files-if-any",
+            "current-contributor-confusion-points"
+          ],
+          "provides_artifact_tags": [
+            "clearer-source-of-truth-map",
+            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
+            "note-of-overlaps-or-conflicts",
+            "proposed-or-implemented-document-role-clarification",
+            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
+            "verification-summary"
+          ]
+        },
+        {
+          "name": "aoa-sanitized-share",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "consumes_artifact_tags": [
+            "material-to-be-shared",
+            "sharing-audience-or-context",
+            "known-sensitive-surfaces",
+            "acceptable-level-of-abstraction"
+          ],
+          "provides_artifact_tags": [
+            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
+            "note-on-what-was-generalized-or-removed",
+            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
+            "canonical-public-safe-output-location-or-reference"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide which file is authoritative for the target concern.",
+        "Decide which summaries should shrink into link-driven entrypoints rather than duplicate canon.",
+        "Decide whether the change needs a durable documentation decision through `aoa-adr-write`.",
+        "Decide what must be redacted before the result can travel.",
+        "Decide whether the route closes with a publishable summary or should hand off for later review."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the authority map and summary-vs-canon split are explicit",
+        "`coder -> reviewer` after the documentation decision and shareable summary draft exist",
+        "`reviewer -> memory-keeper` after the route can preserve its `decision`, `audit_event`, and `provenance_thread` without treating summary text as canon",
+        "`reviewer or memory-keeper -> architect` when canon is still ambiguous enough that the route must return to the last authority anchor"
+      ],
+      "expected_artifacts": [
+        "authority_map",
+        "overlap_notes",
+        "documentation_decision",
+        "shareable_summary"
+      ],
+      "return_anchor_artifacts": [
+        "authority_map",
+        "documentation_decision",
+        "shareable_summary"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "source-truth-then-share",
+        "carried_artifacts": [
+          "authority_map",
+          "overlap_notes",
+          "documentation_decision",
+          "shareable_summary"
+        ],
+        "required_skill_handoffs": [
+          "aoa-source-of-truth-check",
+          "aoa-sanitized-share"
+        ],
+        "failure_codes": [
+          "SOURCE_OF_TRUTH_AMBIGUOUS",
+          "SHARE_REDACTION_NEEDED"
+        ],
+        "next_followups": [
+          "bounded-change-safe"
+        ]
+      }
+    },
+    {
+      "playbook_id": "AOA-P-0016",
+      "name": "atm10-bounded-change",
+      "required_skills": [
+        "aoa-approval-gate-check",
+        "atm10-source-of-truth-check",
+        "aoa-dry-run-first",
+        "atm10-change-protocol",
+        "aoa-contract-test",
+        "aoa-sanitized-share"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "atm10-source-of-truth-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#atm10-source-of-truth-check",
+          "consumes_artifact_tags": [
+            "repo-relative-docs-or-guidance-surfaces",
+            "local-canonical-file-candidates",
+            "local-review-rules-for-doc-changes",
+            "contributor-confusion-points",
+            "base-skill-reference"
+          ],
+          "provides_artifact_tags": [
+            "local-source-of-truth-map",
+            "bounded-clarification-note",
+            "repo-relative-canonical-file-pattern",
+            "pointer-to-the-family-review-surface",
+            "verification-summary-for-the-local-docs-surface"
+          ]
+        },
+        {
+          "name": "atm10-change-protocol",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#atm10-change-protocol",
+          "consumes_artifact_tags": [
+            "target-goal-and-touched-local-surface",
+            "repo-relative-source-of-truth-files",
+            "repo-relative-commands-or-checks",
+            "local-approval-or-review-rules",
+            "base-skill-reference"
+          ],
+          "provides_artifact_tags": [
+            "bounded-local-change-plan",
+            "repo-relative-command-or-path-sketch",
+            "pointer-to-the-family-review-surface",
+            "verification-note-for-the-local-repo-surface",
+            "concise-handoff-on-what-stays-downstream-and-explicit"
+          ]
+        },
+        {
+          "name": "aoa-contract-test",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
+          "consumes_artifact_tags": [
+            "boundary-under-review",
+            "expected-inputs-and-outputs",
+            "current-verification-surface",
+            "known-downstream-dependencies"
+          ],
+          "provides_artifact_tags": [
+            "explicit-contract-assumptions",
+            "tests-or-smoke-summary-changes",
+            "verification-notes",
+            "downstream-impact-notes"
+          ]
+        },
+        {
+          "name": "aoa-sanitized-share",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "consumes_artifact_tags": [
+            "material-to-be-shared",
+            "sharing-audience-or-context",
+            "known-sensitive-surfaces",
+            "acceptable-level-of-abstraction"
+          ],
+          "provides_artifact_tags": [
+            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
+            "note-on-what-was-generalized-or-removed",
+            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
+            "canonical-public-safe-output-location-or-reference"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide whether approval is explicit enough to proceed.",
+        "Decide which ATM10 surface is authoritative before mutation begins.",
+        "Decide whether a preview seam should happen before the overlay change.",
+        "Decide whether the current verification pack is strong enough to trust the ATM10-specific result.",
+        "Decide whether the route should close with a shareable summary or stop for further review."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the ATM10 canon, approval boundary, and bounded slice are explicit",
+        "`coder -> reviewer` after the preview evidence, ATM10 change set, and verification pack exist",
+        "`reviewer -> memory-keeper` after the route can preserve a `decision`, `audit_event`, or `provenance_thread` without widening the overlay semantics",
+        "`reviewer or memory-keeper -> architect` when the route must return to the last approval or verification anchor before another pass"
+      ],
+      "expected_artifacts": [
+        "approval_record",
+        "atm10_canon_map",
+        "preview_evidence",
+        "atm10_change_set",
+        "verification_pack",
+        "shareable_summary"
+      ],
+      "return_anchor_artifacts": [
+        "approval_record",
+        "atm10_change_set",
+        "verification_pack"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "atm10-bounded-change",
+        "carried_artifacts": [
+          "approval_record",
+          "atm10_canon_map",
+          "preview_evidence",
+          "atm10_change_set",
+          "verification_pack",
+          "shareable_summary"
+        ],
+        "required_skill_handoffs": [
+          "atm10-source-of-truth-check",
+          "atm10-change-protocol",
+          "aoa-contract-test",
+          "aoa-sanitized-share"
+        ],
+        "failure_codes": [
+          "SOURCE_OF_TRUTH_AMBIGUOUS",
+          "PREVIEW_REQUIRED",
+          "VERIFICATION_WEAK"
+        ],
+        "next_followups": [
+          "bounded-change-safe"
+        ]
+      }
+    }
+  ]
+}

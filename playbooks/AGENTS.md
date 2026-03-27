@@ -10,6 +10,7 @@ Each `PLAYBOOK.md` is a source-owned scenario object that should stay aligned wi
 - `generated/playbook_registry.min.json` for compact machine-readable metadata
 - `docs/PLAYBOOK_BUNDLE_CONTRACT.md` for the authored bundle contract
 - `docs/PLAYBOOK_EXECUTION_SEAM.md` for the bounded derived activation and federation posture
+- `config/playbook_composition_overrides.json` for bounded composition adjuncts that should not leak into frontmatter
 - `scripts/validate_playbooks.py` for machine-checked shape, sections, and cross-repo closure
 
 ## Canonical shape
@@ -48,6 +49,8 @@ Use exact neighboring references instead:
 - federation-ready `required_skills` should resolve in `aoa-skills`
 - `memo_contract_refs` and `memo_writeback_targets` should stay inside `aoa-memo` contracts
 
+Composition-owned adjuncts such as failure codes, subagent recipe refs, automation seed refs, and bounded playbook-to-playbook followups belong in `config/playbook_composition_overrides.json` and the derived `generated/playbook_*` composition surfaces, not in ad hoc prose or runtime-only notes.
+
 Keep handoffs, fallback posture, and expected evidence explicit in the authored bundle rather than hiding them in surrounding prose.
 Keep return posture explicit inside existing sections when a playbook can lose axis, ownership boundary, or checkpoint integrity.
 
@@ -70,6 +73,7 @@ Run the normal playbook-layer checks:
 ```bash
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
+python scripts/generate_playbook_composition_surfaces.py --check
 python scripts/validate_playbooks.py
 ```
 
