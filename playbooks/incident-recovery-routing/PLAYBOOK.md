@@ -62,7 +62,16 @@ eval_anchors:
   - aoa-approval-boundary-adherence
   - aoa-scope-drift-detection
   - aoa-verification-honesty
+memo_recall_modes:
+  - working
+  - episodic
+memo_scope_default: workspace
+memo_scope_ceiling: workspace
+memo_read_path: inspect_then_expand
+memo_checkpoint_posture: preferred
+memo_source_route_policy: preferred
 memo_contract_refs:
+  - examples/recall_contract.object.working.return.json
   - examples/checkpoint_to_memory_contract.example.json
   - examples/provenance_thread.example.json
 memo_writeback_targets:

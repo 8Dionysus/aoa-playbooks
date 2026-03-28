@@ -159,6 +159,7 @@ FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0013",
     "AOA-P-0014",
     "AOA-P-0015",
+    "AOA-P-0016",
     "AOA-P-0017",
     "AOA-P-0018",
     "AOA-P-0019",
@@ -190,6 +191,100 @@ ALLOWED_RETURN_REENTRY_MODES = {
     "safe_stop",
 }
 RETURN_FIELD_NAMES = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
+MEMO_SPEC_FIELD_NAMES = (
+    "memo_recall_modes",
+    "memo_scope_default",
+    "memo_scope_ceiling",
+    "memo_read_path",
+    "memo_checkpoint_posture",
+    "memo_source_route_policy",
+)
+RUNTIME_MEMO_SPEC_PLAYBOOK_IDS = {
+    "AOA-P-0008",
+    "AOA-P-0009",
+    "AOA-P-0010",
+    "AOA-P-0017",
+    "AOA-P-0018",
+    "AOA-P-0019",
+    "AOA-P-0020",
+}
+ALLOWED_MEMO_RECALL_MODES = {"working", "episodic", "semantic", "procedural", "lineage"}
+ALLOWED_MEMO_SCOPES = {"project", "workspace", "ecosystem"}
+MEMO_SCOPE_ORDER = {"project": 0, "workspace": 1, "ecosystem": 2}
+ALLOWED_MEMO_READ_PATHS = {"inspect_only", "inspect_then_expand", "inspect_capsule_then_expand"}
+ALLOWED_MEMO_CHECKPOINT_POSTURES = {"not_needed", "preferred", "required"}
+ALLOWED_MEMO_SOURCE_ROUTE_POLICIES = {"not_needed", "preferred", "required"}
+SEMANTIC_LINEAGE_MEMO_CONTRACT_REFS = {
+    "examples/recall_contract.router.semantic.json",
+    "examples/recall_contract.router.lineage.json",
+    "examples/recall_contract.object.semantic.json",
+    "examples/recall_contract.object.lineage.json",
+}
+RUNTIME_MEMO_SPEC_EXPECTATIONS = {
+    "AOA-P-0008": {
+        "memo_recall_modes": ("semantic", "procedural"),
+        "memo_scope_default": "workspace",
+        "memo_scope_ceiling": "ecosystem",
+        "memo_read_path": "inspect_capsule_then_expand",
+        "memo_checkpoint_posture": "not_needed",
+        "memo_source_route_policy": "required",
+        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+    },
+    "AOA-P-0009": {
+        "memo_recall_modes": ("working",),
+        "memo_scope_default": "project",
+        "memo_scope_ceiling": "ecosystem",
+        "memo_read_path": "inspect_then_expand",
+        "memo_checkpoint_posture": "required",
+        "memo_source_route_policy": "preferred",
+        "required_memo_contract_ref": "examples/recall_contract.object.working.return.json",
+    },
+    "AOA-P-0010": {
+        "memo_recall_modes": ("episodic", "semantic"),
+        "memo_scope_default": "workspace",
+        "memo_scope_ceiling": "workspace",
+        "memo_read_path": "inspect_capsule_then_expand",
+        "memo_checkpoint_posture": "not_needed",
+        "memo_source_route_policy": "required",
+        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+    },
+    "AOA-P-0017": {
+        "memo_recall_modes": ("episodic", "semantic"),
+        "memo_scope_default": "workspace",
+        "memo_scope_ceiling": "workspace",
+        "memo_read_path": "inspect_capsule_then_expand",
+        "memo_checkpoint_posture": "not_needed",
+        "memo_source_route_policy": "required",
+        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+    },
+    "AOA-P-0018": {
+        "memo_recall_modes": ("episodic", "semantic"),
+        "memo_scope_default": "workspace",
+        "memo_scope_ceiling": "workspace",
+        "memo_read_path": "inspect_capsule_then_expand",
+        "memo_checkpoint_posture": "not_needed",
+        "memo_source_route_policy": "required",
+        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+    },
+    "AOA-P-0019": {
+        "memo_recall_modes": ("working", "episodic"),
+        "memo_scope_default": "workspace",
+        "memo_scope_ceiling": "workspace",
+        "memo_read_path": "inspect_then_expand",
+        "memo_checkpoint_posture": "preferred",
+        "memo_source_route_policy": "preferred",
+        "required_memo_contract_ref": "examples/recall_contract.object.working.return.json",
+    },
+    "AOA-P-0020": {
+        "memo_recall_modes": ("working", "episodic"),
+        "memo_scope_default": "workspace",
+        "memo_scope_ceiling": "workspace",
+        "memo_read_path": "inspect_then_expand",
+        "memo_checkpoint_posture": "preferred",
+        "memo_source_route_policy": "preferred",
+        "required_memo_contract_ref": "examples/recall_contract.object.working.return.json",
+    },
+}
 TIER_ARTIFACT_PLAYBOOKS = {"AOA-P-0008"}
 REQUIRED_BUNDLE_SECTIONS = {
     "Intent",
@@ -313,6 +408,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-bounded-context-map",
             ),
             "memo_contract_refs": (
+                "examples/recall_contract.router.semantic.json",
                 "examples/checkpoint_to_memory_contract.example.json",
             ),
             "memo_writeback_targets": (
@@ -343,6 +439,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-bounded-context-map",
             ),
             "memo_contract_refs": (
+                "examples/recall_contract.object.working.return.json",
                 "examples/checkpoint_to_memory_contract.example.json",
             ),
             "memo_writeback_targets": (
@@ -373,6 +470,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-change-protocol",
             ),
             "memo_contract_refs": (
+                "examples/recall_contract.router.semantic.json",
                 "examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
@@ -658,6 +756,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-adr-write",
             ),
             "memo_contract_refs": (
+                "examples/recall_contract.router.semantic.json",
                 "examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
@@ -705,6 +804,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-adr-write",
             ),
             "memo_contract_refs": (
+                "examples/recall_contract.router.semantic.json",
                 "examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
@@ -753,6 +853,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
+                "examples/recall_contract.object.working.return.json",
                 "examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
@@ -811,6 +912,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
+                "examples/recall_contract.object.working.return.json",
                 "examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
@@ -901,6 +1003,8 @@ def skill_is_federation_eligible(skill: dict[str, object], *, playbook_status: s
         return False
     readiness = skill.get("readiness_reconciliation")
     if readiness == "governance_and_eval_ready":
+        return True
+    if readiness == "project_overlay_federation_ready":
         return True
     return playbook_status == "experimental" and readiness == "eval_ready_but_governance_blocked"
 
@@ -1010,6 +1114,7 @@ def validate_schema_surface() -> None:
     if not isinstance(items, dict):
         fail("schema playbooks.items must be an object schema")
     validate_return_contract_schema(items, location="playbook registry item schema")
+    validate_memo_recall_spec_schema(items, location="playbook registry item schema")
 
 
 def validate_activation_schema_surface() -> dict[str, object]:
@@ -1029,6 +1134,7 @@ def validate_activation_schema_surface() -> dict[str, object]:
     if not isinstance(surface_type, dict) or surface_type.get("const") != "playbook_activation_surface":
         fail("playbook activation schema must pin surface_type.const to 'playbook_activation_surface'")
     validate_return_contract_schema(schema, location="playbook activation schema")
+    validate_memo_recall_spec_schema(schema, location="playbook activation schema")
     return schema
 
 
@@ -1048,6 +1154,7 @@ def validate_federation_schema_surface() -> dict[str, object]:
     surface_type = properties["surface_type"]
     if not isinstance(surface_type, dict) or surface_type.get("const") != "playbook_federation_surface":
         fail("playbook federation schema must pin surface_type.const to 'playbook_federation_surface'")
+    validate_memo_recall_spec_schema(schema, location="playbook federation schema")
     return schema
 
 
@@ -1142,6 +1249,123 @@ def validate_return_configuration(payload: dict[str, object], *, location: str) 
     for item in return_reentry_modes:
         if item not in ALLOWED_RETURN_REENTRY_MODES:
             fail(f"{location}.return_reentry_modes contains an invalid entry: {item}")
+
+
+def validate_memo_recall_spec_schema(schema: dict[str, object], *, location: str) -> None:
+    properties = schema.get("properties")
+    if not isinstance(properties, dict):
+        fail(f"{location} must expose properties")
+
+    for field_name in MEMO_SPEC_FIELD_NAMES:
+        if field_name not in properties:
+            fail(f"{location} must define '{field_name}'")
+
+    memo_recall_modes = properties["memo_recall_modes"]
+    memo_recall_mode_items = memo_recall_modes.get("items") if isinstance(memo_recall_modes, dict) else None
+    if (
+        not isinstance(memo_recall_modes, dict)
+        or memo_recall_modes.get("type") != "array"
+        or not isinstance(memo_recall_mode_items, dict)
+        or set(memo_recall_mode_items.get("enum", ())) != ALLOWED_MEMO_RECALL_MODES
+    ):
+        fail(f"{location} must define memo_recall_modes with the allowed recall-mode set")
+
+    for field_name in ("memo_scope_default", "memo_scope_ceiling"):
+        field = properties[field_name]
+        if not isinstance(field, dict) or set(field.get("enum", ())) != ALLOWED_MEMO_SCOPES:
+            fail(f"{location} must define {field_name} with the allowed scope set")
+
+    memo_read_path = properties["memo_read_path"]
+    if not isinstance(memo_read_path, dict) or set(memo_read_path.get("enum", ())) != ALLOWED_MEMO_READ_PATHS:
+        fail(f"{location} must define memo_read_path with the allowed read-path set")
+
+    memo_checkpoint_posture = properties["memo_checkpoint_posture"]
+    if (
+        not isinstance(memo_checkpoint_posture, dict)
+        or set(memo_checkpoint_posture.get("enum", ())) != ALLOWED_MEMO_CHECKPOINT_POSTURES
+    ):
+        fail(f"{location} must define memo_checkpoint_posture with the allowed checkpoint posture set")
+
+    memo_source_route_policy = properties["memo_source_route_policy"]
+    if (
+        not isinstance(memo_source_route_policy, dict)
+        or set(memo_source_route_policy.get("enum", ())) != ALLOWED_MEMO_SOURCE_ROUTE_POLICIES
+    ):
+        fail(f"{location} must define memo_source_route_policy with the allowed source-route policy set")
+
+
+def validate_memo_recall_spec(
+    payload: dict[str, object],
+    *,
+    location: str,
+    required: bool,
+) -> None:
+    present = {field_name for field_name in MEMO_SPEC_FIELD_NAMES if field_name in payload}
+    if not present:
+        if required:
+            fail(f"{location} must expose the full memo recall spec for the runtime-facing cohort")
+        return
+
+    missing = [field_name for field_name in MEMO_SPEC_FIELD_NAMES if field_name not in payload]
+    if missing:
+        fail(
+            f"{location} must expose the full memo recall spec together; missing: "
+            + ", ".join(missing)
+        )
+
+    memo_recall_modes = payload["memo_recall_modes"]
+    if not isinstance(memo_recall_modes, list) or not memo_recall_modes:
+        fail(f"{location}.memo_recall_modes must be a non-empty list when present")
+    for item in memo_recall_modes:
+        if item not in ALLOWED_MEMO_RECALL_MODES:
+            fail(f"{location}.memo_recall_modes contains an invalid entry: {item}")
+
+    memo_scope_default = payload["memo_scope_default"]
+    memo_scope_ceiling = payload["memo_scope_ceiling"]
+    if memo_scope_default not in ALLOWED_MEMO_SCOPES:
+        fail(f"{location}.memo_scope_default '{memo_scope_default}' is not allowed")
+    if memo_scope_ceiling not in ALLOWED_MEMO_SCOPES:
+        fail(f"{location}.memo_scope_ceiling '{memo_scope_ceiling}' is not allowed")
+    if MEMO_SCOPE_ORDER[memo_scope_default] > MEMO_SCOPE_ORDER[memo_scope_ceiling]:
+        fail(f"{location}.memo_scope_default cannot be wider than memo_scope_ceiling")
+
+    memo_read_path = payload["memo_read_path"]
+    if memo_read_path not in ALLOWED_MEMO_READ_PATHS:
+        fail(f"{location}.memo_read_path '{memo_read_path}' is not allowed")
+
+    memo_checkpoint_posture = payload["memo_checkpoint_posture"]
+    if memo_checkpoint_posture not in ALLOWED_MEMO_CHECKPOINT_POSTURES:
+        fail(f"{location}.memo_checkpoint_posture '{memo_checkpoint_posture}' is not allowed")
+
+    memo_source_route_policy = payload["memo_source_route_policy"]
+    if memo_source_route_policy not in ALLOWED_MEMO_SOURCE_ROUTE_POLICIES:
+        fail(f"{location}.memo_source_route_policy '{memo_source_route_policy}' is not allowed")
+
+
+def validate_runtime_memo_spec_expectation(payload: dict[str, object], *, playbook_id: str, location: str) -> None:
+    expected = RUNTIME_MEMO_SPEC_EXPECTATIONS.get(playbook_id)
+    if expected is None:
+        return
+
+    expected_modes = expected["memo_recall_modes"]
+    assert isinstance(expected_modes, tuple)
+    actual_modes = payload.get("memo_recall_modes")
+    if tuple(actual_modes) != expected_modes:
+        fail(f"{location}.memo_recall_modes must equal {list(expected_modes)}")
+
+    for field_name in (
+        "memo_scope_default",
+        "memo_scope_ceiling",
+        "memo_read_path",
+        "memo_checkpoint_posture",
+        "memo_source_route_policy",
+    ):
+        if payload.get(field_name) != expected[field_name]:
+            fail(f"{location}.{field_name} must equal '{expected[field_name]}'")
+
+
+def has_semantic_or_lineage_recall_contract(contract_refs: list[str]) -> bool:
+    return any(contract_ref in SEMANTIC_LINEAGE_MEMO_CONTRACT_REFS for contract_ref in contract_refs)
 
 
 def validate_registry() -> dict[str, dict[str, object]]:
@@ -1252,6 +1476,12 @@ def validate_registry() -> dict[str, dict[str, object]]:
         if fallback_mode not in ALLOWED_FALLBACK:
             fail(f"{location}.fallback_mode '{fallback_mode}' is not allowed")
         validate_return_configuration(playbook, location=location)
+        validate_memo_recall_spec(
+            playbook,
+            location=location,
+            required=playbook_id in RUNTIME_MEMO_SPEC_PLAYBOOK_IDS,
+        )
+        validate_runtime_memo_spec_expectation(playbook, playbook_id=playbook_id, location=location)
 
     missing_seed = sorted(required_seed - seen_names)
     if missing_seed:
@@ -1422,6 +1652,9 @@ def activation_surface_for_playbook(playbook_id: str, registry_entry: dict[str, 
     for field_name in RETURN_FIELD_NAMES:
         if field_name in registry_entry:
             payload[field_name] = registry_entry[field_name]
+    for field_name in MEMO_SPEC_FIELD_NAMES:
+        if field_name in registry_entry:
+            payload[field_name] = registry_entry[field_name]
     return payload
 
 
@@ -1460,6 +1693,16 @@ def validate_activation_collection(
         playbook_id = surface.get("playbook_id")
         if not isinstance(playbook_id, str):
             fail(f"generated/playbook_activation_surfaces.min.json[{index}] is missing a string playbook_id")
+        validate_memo_recall_spec(
+            surface,
+            location=f"generated/playbook_activation_surfaces.min.json[{index}]",
+            required=playbook_id in RUNTIME_MEMO_SPEC_PLAYBOOK_IDS,
+        )
+        validate_runtime_memo_spec_expectation(
+            surface,
+            playbook_id=playbook_id,
+            location=f"generated/playbook_activation_surfaces.min.json[{index}]",
+        )
         validate_projection_refs(
             location=f"generated/playbook_activation_surfaces.min.json[{index}]:{playbook_id}",
             participating_agents=surface.get("participating_agents"),
@@ -1484,6 +1727,9 @@ def federation_surface_for_frontmatter(frontmatter: dict[str, object]) -> dict[s
     }
     if "eval_anchors" in frontmatter:
         payload["eval_anchors"] = frontmatter["eval_anchors"]
+    for field_name in MEMO_SPEC_FIELD_NAMES:
+        if field_name in frontmatter:
+            payload[field_name] = frontmatter[field_name]
     return payload
 
 
@@ -1506,6 +1752,9 @@ def validate_federation_bundle(
     participating_agents = frontmatter.get("participating_agents")
     eval_anchors = frontmatter.get("eval_anchors")
     playbook_status = str(frontmatter.get("status", ""))
+    playbook_id = frontmatter.get("id")
+    if not isinstance(playbook_id, str):
+        fail(f"{bundle_location} is missing string frontmatter 'id'")
 
     for field_name, value in (
         ("required_skills", required_skills),
@@ -1520,6 +1769,12 @@ def validate_federation_bundle(
 
     if not isinstance(eval_anchors, list) or not eval_anchors:
         fail(f"{bundle_location} federation-checked playbooks must expose non-empty 'eval_anchors'")
+    validate_memo_recall_spec(
+        frontmatter,
+        location=bundle_location,
+        required=playbook_id in RUNTIME_MEMO_SPEC_PLAYBOOK_IDS,
+    )
+    validate_runtime_memo_spec_expectation(frontmatter, playbook_id=playbook_id, location=bundle_location)
 
     if not isinstance(participating_agents, list) or "memory-keeper" not in participating_agents:
         fail(
@@ -1560,6 +1815,20 @@ def validate_federation_bundle(
             f"{bundle_location} memo_contract_refs do not resolve in aoa-memo: "
             + ", ".join(missing_memo_contract_refs)
         )
+    memo_source_route_policy = frontmatter.get("memo_source_route_policy")
+    if memo_source_route_policy == "required" and not has_semantic_or_lineage_recall_contract(memo_contract_refs):
+        fail(
+            f"{bundle_location} with memo_source_route_policy=required must reference a semantic or lineage "
+            "recall contract in memo_contract_refs"
+        )
+    expected_runtime_spec = RUNTIME_MEMO_SPEC_EXPECTATIONS.get(playbook_id)
+    if expected_runtime_spec is not None:
+        required_contract_ref = str(expected_runtime_spec["required_memo_contract_ref"])
+        if required_contract_ref not in memo_contract_refs:
+            fail(
+                f"{bundle_location} must include '{required_contract_ref}' in memo_contract_refs for the "
+                "runtime-facing memo cohort"
+            )
 
     invalid_targets = [target for target in memo_writeback_targets if target not in allowed_memo_kinds]
     if invalid_targets:
@@ -1613,6 +1882,16 @@ def validate_federation_collection(
         playbook_id = surface.get("playbook_id")
         if not isinstance(playbook_id, str):
             fail(f"generated/playbook_federation_surfaces.min.json[{index}] is missing a string playbook_id")
+        validate_memo_recall_spec(
+            surface,
+            location=f"generated/playbook_federation_surfaces.min.json[{index}]",
+            required=playbook_id in RUNTIME_MEMO_SPEC_PLAYBOOK_IDS,
+        )
+        validate_runtime_memo_spec_expectation(
+            surface,
+            playbook_id=playbook_id,
+            location=f"generated/playbook_federation_surfaces.min.json[{index}]",
+        )
 
         participating_agents = surface.get("participating_agents")
         if not isinstance(participating_agents, list) or not participating_agents:
@@ -1696,6 +1975,16 @@ def validate_federation_collection(
             fail(
                 f"generated/playbook_federation_surfaces.min.json[{index}] references memo_contract_refs that do "
                 f"not resolve in aoa-memo: {', '.join(missing_contracts)}"
+            )
+        if (
+            surface.get("memo_source_route_policy") == "required"
+            and not has_semantic_or_lineage_recall_contract(
+                [contract_ref for contract_ref in memo_contract_refs if isinstance(contract_ref, str)]
+            )
+        ):
+            fail(
+                f"generated/playbook_federation_surfaces.min.json[{index}] with memo_source_route_policy=required "
+                "must reference a semantic or lineage recall contract"
             )
 
         memo_writeback_targets = surface.get("memo_writeback_targets")
@@ -1896,6 +2185,18 @@ def validate_authored_bundles(
                     f"generated/playbook_registry.min.json"
                 )
         for field_name in RETURN_FIELD_NAMES:
+            if field_name in registry_entry:
+                if frontmatter.get(field_name) != registry_entry[field_name]:
+                    fail(
+                        f"{bundle_path.relative_to(REPO_ROOT).as_posix()} frontmatter '{field_name}' does not match "
+                        f"generated/playbook_registry.min.json"
+                    )
+            elif field_name in frontmatter:
+                fail(
+                    f"{bundle_path.relative_to(REPO_ROOT).as_posix()} frontmatter '{field_name}' is not present in "
+                    f"generated/playbook_registry.min.json"
+                )
+        for field_name in MEMO_SPEC_FIELD_NAMES:
             if field_name in registry_entry:
                 if frontmatter.get(field_name) != registry_entry[field_name]:
                     fail(

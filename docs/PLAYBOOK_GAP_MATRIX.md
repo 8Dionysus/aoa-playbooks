@@ -35,7 +35,7 @@ Legend:
 | `invariants-first-refactor` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `local-stack-diagnosis` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `source-truth-then-share` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
-| `atm10-bounded-change` | `A+Act+C` | `A+Act+F+C` | Medium | Intentional repo-first hold outside federation while `atm10-source-of-truth-check` and `atm10-change-protocol` remain `project_overlay_eval_ready` in `aoa-skills`; revisit only after both become federation-eligible there. |
+| `atm10-bounded-change` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state now that the ATM10 overlay skills reconcile as `project_overlay_federation_ready` in `aoa-skills`; revisit only if overlay readiness regresses or the scenario boundary changes. |
 
 ## Current portfolio move
 
@@ -49,7 +49,7 @@ The main move is:
 
 No new playbook should enter the portfolio just to fill space while these chooser, harvest, and gate surfaces are still the next honest move.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
-The March 28, 2026 AoA+Runtime sourcing pass plus the March 28, 2026 different-family sourcing pass now give `AOA-P-0017` two qualifying reviewed summaries, and the bounded review has already landed a minimal split-wave handoff bridge in composition. `AOA-P-0019` still has no qualifying cutover case even after the adjacent-ecosystem widening pass, and `AOA-P-0020` still awaits live incident evidence, so the next honest move is either fresh real evidence for those remaining gates or cross-repo readiness repair work such as `AOA-P-0016` federation recovery rather than another immediate playbook-promotion wave.
+The March 28, 2026 AoA+Runtime sourcing pass plus the March 28, 2026 different-family sourcing pass now give `AOA-P-0017` two qualifying reviewed summaries, and the bounded review has already landed a minimal split-wave handoff bridge in composition. `AOA-P-0016` has now returned to `A+Act+F+C` through the overlay bridge signal in `aoa-skills`, while `AOA-P-0019` still has no qualifying cutover case even after the adjacent-ecosystem widening pass and `AOA-P-0020` still awaits live incident evidence. The next honest move is fresh real evidence for those remaining gates rather than another immediate federation-repair or playbook-promotion wave.
 
 ## Canonical gate surface
 

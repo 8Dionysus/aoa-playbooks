@@ -53,6 +53,18 @@ For federation-checked playbooks, these bundle-local fields become required:
 
 These fields exist to point to neighboring source-owned surfaces without absorbing their meaning into the playbook layer.
 
+For the runtime-facing activation cohort, these flat memo-read defaults may also appear when the playbook must publish bounded recall posture without turning `aoa-playbooks` into routing or memory ownership:
+
+- `memo_recall_modes`
+- `memo_scope_default`
+- `memo_scope_ceiling`
+- `memo_read_path`
+- `memo_checkpoint_posture`
+- `memo_source_route_policy`
+
+These fields describe bounded memo-reading defaults only.
+They do not authorize free-text recall, hidden ranking, or runtime-local memory invention.
+
 Derived activation surfaces may project a small runtime-readable subset of bundle-aligned fields.
 They must remain schema-backed projections of canonical playbook surfaces rather than independent authored routes.
 Derived federation surfaces may project the machine-checkable closure fields used to validate skill lineage and memo writeback posture for a bounded cohort.

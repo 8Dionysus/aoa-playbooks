@@ -94,8 +94,15 @@ The activation surface may project:
 - `return_posture`
 - `return_anchor_artifacts`
 - `return_reentry_modes`
+- `memo_recall_modes`
+- `memo_scope_default`
+- `memo_scope_ceiling`
+- `memo_read_path`
+- `memo_checkpoint_posture`
+- `memo_source_route_policy`
 
 These fields describe where the scenario may return, not how a runtime performs that return.
+The memo fields describe bounded default recall posture only; they do not move memo search, ranking, or truth-judgment logic into the playbook layer.
 
 Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
 
@@ -110,6 +117,7 @@ It should expose only the fields needed to check cross-repo closure:
 - which eval anchors must resolve in `aoa-evals`
 - which memo contracts must resolve in `aoa-memo`
 - which memo writeback kinds the route allows
+- which bounded memo-read default the runtime-facing cohort is allowed to assume
 
 It should not expose:
 
@@ -151,14 +159,16 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0013 invariants-first-refactor`
 - `AOA-P-0014 local-stack-diagnosis`
 - `AOA-P-0015 source-truth-then-share`
+- `AOA-P-0016 atm10-bounded-change`
 - `AOA-P-0017 split-wave-cross-repo-rollout`
 - `AOA-P-0018 validation-driven-remediation`
 - `AOA-P-0019 release-migration-cutover`
 - `AOA-P-0020 incident-recovery-routing`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
+For the runtime-facing memo cohort, they also carry flat memo recall defaults so downstream runtimes can derive `inspect`, `capsule`, and `expand` posture without inventing new playbook semantics.
 `AOA-P-0006 self-agent-checkpoint-rollout` is intentionally federation-checked without joining the activation cohort because its route is still governed by approval and rollback checkpoints rather than a compact runtime-readable activation seam.
-`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, but is intentionally out of the federation cohort while its ATM10 overlay skills stay `project_overlay_eval_ready` rather than federation-ready in `aoa-skills`.
+`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, and is now federation-checked because its ATM10 overlay skills reconcile as `project_overlay_federation_ready` in `aoa-skills` while still remaining thin project overlays without a governance lane there.
 
 ## Boundary to preserve
 

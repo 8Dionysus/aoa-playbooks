@@ -40,5 +40,13 @@
   "return_reentry_modes": [
     "checkpoint_relaunch",
     "safe_stop"
-  ]
+  ],
+  "memo_recall_modes": [
+    "working"
+  ],
+  "memo_scope_default": "project",
+  "memo_scope_ceiling": "ecosystem",
+  "memo_read_path": "inspect_then_expand",
+  "memo_checkpoint_posture": "required",
+  "memo_source_route_policy": "preferred"
 }

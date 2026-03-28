@@ -25,6 +25,14 @@ ACTIVATION_PLAYBOOK_IDS = (
     "AOA-P-0020",
 )
 OPTIONAL_RETURN_FIELDS = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
+OPTIONAL_MEMO_SPEC_FIELDS = (
+    "memo_recall_modes",
+    "memo_scope_default",
+    "memo_scope_ceiling",
+    "memo_read_path",
+    "memo_checkpoint_posture",
+    "memo_source_route_policy",
+)
 
 
 def read_registry() -> dict[str, object]:
@@ -57,6 +65,9 @@ def build_activation_surface(playbook: dict[str, object]) -> dict[str, object]:
     if "eval_anchors" in playbook:
         surface["eval_anchors"] = playbook["eval_anchors"]
     for field_name in OPTIONAL_RETURN_FIELDS:
+        if field_name in playbook:
+            surface[field_name] = playbook[field_name]
+    for field_name in OPTIONAL_MEMO_SPEC_FIELDS:
         if field_name in playbook:
             surface[field_name] = playbook[field_name]
     return surface

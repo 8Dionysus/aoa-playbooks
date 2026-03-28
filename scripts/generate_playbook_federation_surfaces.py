@@ -20,10 +20,19 @@ FEDERATION_PLAYBOOK_IDS = (
     "AOA-P-0013",
     "AOA-P-0014",
     "AOA-P-0015",
+    "AOA-P-0016",
     "AOA-P-0017",
     "AOA-P-0018",
     "AOA-P-0019",
     "AOA-P-0020",
+)
+OPTIONAL_MEMO_SPEC_FIELDS = (
+    "memo_recall_modes",
+    "memo_scope_default",
+    "memo_scope_ceiling",
+    "memo_read_path",
+    "memo_checkpoint_posture",
+    "memo_source_route_policy",
 )
 
 
@@ -102,6 +111,9 @@ def build_federation_surface(frontmatter: dict[str, object]) -> dict[str, object
     }
     if "eval_anchors" in frontmatter:
         surface["eval_anchors"] = frontmatter["eval_anchors"]
+    for field_name in OPTIONAL_MEMO_SPEC_FIELDS:
+        if field_name in frontmatter:
+            surface[field_name] = frontmatter[field_name]
     return surface
 
 
