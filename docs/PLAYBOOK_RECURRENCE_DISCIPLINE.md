@@ -148,12 +148,19 @@ These fields should remain:
 
 They must not become a second authored route.
 
-## Current first cohort
+## Current return-capable cohort
 
-The first playbooks that clearly justify recurrence discipline are:
+The current playbooks that clearly justify recurrence discipline are:
 - `AOA-P-0008 long-horizon-model-tier-orchestra`
 - `AOA-P-0009 restartable-inquiry-loop`
 - `AOA-P-0010 cross-repo-boundary-rollout`
+- `AOA-P-0011 bounded-change-safe`
+- `AOA-P-0012 infra-change-guarded`
+- `AOA-P-0013 invariants-first-refactor`
+- `AOA-P-0014 local-stack-diagnosis`
+- `AOA-P-0015 source-truth-then-share`
+- `AOA-P-0016 atm10-bounded-change`
+- `AOA-P-0017 split-wave-cross-repo-rollout`
 
 A secondary, non-activation example is:
 - `AOA-P-0006 self-agent-checkpoint-rollout`

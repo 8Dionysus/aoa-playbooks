@@ -69,6 +69,13 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0008 long-horizon-model-tier-orchestra`
 - `AOA-P-0009 restartable-inquiry-loop`
 - `AOA-P-0010 cross-repo-boundary-rollout`
+- `AOA-P-0011 bounded-change-safe`
+- `AOA-P-0012 infra-change-guarded`
+- `AOA-P-0013 invariants-first-refactor`
+- `AOA-P-0014 local-stack-diagnosis`
+- `AOA-P-0015 source-truth-then-share`
+- `AOA-P-0016 atm10-bounded-change`
+- `AOA-P-0017 split-wave-cross-repo-rollout`
 
 These runtime-readable playbooks already define:
 
@@ -135,6 +142,13 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0008 long-horizon-model-tier-orchestra`
 - `AOA-P-0009 restartable-inquiry-loop`
 - `AOA-P-0010 cross-repo-boundary-rollout`
+- `AOA-P-0011 bounded-change-safe`
+- `AOA-P-0012 infra-change-guarded`
+- `AOA-P-0013 invariants-first-refactor`
+- `AOA-P-0014 local-stack-diagnosis`
+- `AOA-P-0015 source-truth-then-share`
+- `AOA-P-0016 atm10-bounded-change`
+- `AOA-P-0017 split-wave-cross-repo-rollout`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 

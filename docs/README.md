@@ -18,6 +18,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [PLAYBOOK_RECURRENCE_DISCIPLINE](PLAYBOOK_RECURRENCE_DISCIPLINE.md) for scenario-level recurrence posture.
 - Read [PLAYBOOK_LIFECYCLE](PLAYBOOK_LIFECYCLE.md) for graduation and lifecycle doctrine.
 - Read [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) for coverage matrix and portfolio guidance.
+- Read [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) for the current prioritized lifecycle posture of the portfolio.
 - Open [../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first real playbook object.
 - Read [ROADMAP](../ROADMAP.md) for the current direction.
 
@@ -34,6 +35,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - [PLAYBOOK_RECURRENCE_DISCIPLINE](PLAYBOOK_RECURRENCE_DISCIPLINE.md) - how scenario routes return to valid anchors without turning the playbook layer into runtime machinery
 - [PLAYBOOK_LIFECYCLE](PLAYBOOK_LIFECYCLE.md) - how playbooks graduate from registry rows to authored and federation-checked forms
 - [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) - how the playbook layer stays broad enough across scenario families without overfitting
+- [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) - the current prioritized lifecycle matrix and next bounded portfolio moves
 
 ## Notes
 
