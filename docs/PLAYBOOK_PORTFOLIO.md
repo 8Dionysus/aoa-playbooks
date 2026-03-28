@@ -40,16 +40,20 @@ The current authored set already covers these classes:
 ## Portfolio gaps
 
 The current portfolio is strong on guarded, evidence-heavy, restartable, and operational cross-boundary routes.
-The last major operational and federated gap is now covered.
-The next portfolio move is an operational-family boundary pass rather than another new playbook:
+The last major operational and federated gap is now covered, so the main risk has shifted from undercoverage to semantic overlap and premature composition.
+The next portfolio move is a consolidation wave, not another new playbook:
+- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, and `AOA-P-0020`
+- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from real `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` runs
+- use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
+
+The operational family now covers:
+- `AOA-P-0010` = generic cross-repo rollout baseline
 - `AOA-P-0012` = preview-first infra change before a live incident
 - `AOA-P-0014` = local-only stack diagnosis and blocker isolation
+- `AOA-P-0017` = ordered multi-wave rollout
 - `AOA-P-0018` = post-failure remediation after the incident is already bounded
 - `AOA-P-0019` = planned authority-switch cutover window
 - `AOA-P-0020` = live cross-boundary incident stabilization and recovery handoff
-
-This matters because once the last big gap is closed, the main risk shifts from undercoverage to semantic overlap and boundary blur.
-With `split-wave-cross-repo-rollout`, `validation-driven-remediation`, `release-migration-cutover`, and `incident-recovery-routing`, the current cross-boundary family now covers ordered multi-wave rollout choreography, remediation after failing validator or proof surfaces, bounded authority-switch cutover windows, and live incident stabilization with recovery handoff.
 
 ## Coverage rules
 

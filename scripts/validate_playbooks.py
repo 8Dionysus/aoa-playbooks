@@ -48,6 +48,27 @@ ACTIVATION_EXAMPLE_PATHS = {
     "AOA-P-0019": REPO_ROOT / "examples" / "playbook_activation.release-migration-cutover.example.json",
     "AOA-P-0020": REPO_ROOT / "examples" / "playbook_activation.incident-recovery-routing.example.json",
 }
+HARVEST_TEMPLATE_REQUIREMENTS = {
+    REPO_ROOT / "examples" / "harvests" / "split-wave-cross-repo-rollout.harvest-template.md": (
+        "wave_plan",
+        "bridge_surface_pack",
+        "downstream_revalidation_pack",
+        "handoff_record",
+    ),
+    REPO_ROOT / "examples" / "harvests" / "release-migration-cutover.harvest-template.md": (
+        "cutover_plan",
+        "cutover_decision",
+        "post_cutover_verification_pack",
+        "handoff_record",
+    ),
+    REPO_ROOT / "examples" / "harvests" / "incident-recovery-routing.harvest-template.md": (
+        "incident_map",
+        "stabilization_plan",
+        "recovery_decision",
+        "recovery_verification_pack",
+        "handoff_record",
+    ),
+}
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0008",
     "AOA-P-0009",
@@ -114,6 +135,16 @@ REQUIRED_BUNDLE_SECTIONS = {
     "Memory writeback",
     "Canonical route",
 }
+REQUIRED_HARVEST_TEMPLATE_SECTIONS = (
+    "Run Header",
+    "Entry Signal",
+    "Boundary Summary",
+    "Required Artifacts",
+    "Closure Class",
+    "Follow-On Route",
+    "Composition Signals",
+    "Residual Risk",
+)
 BUNDLE_SEMANTIC_CHECKS = {
     "AOA-P-0006": {
         "frontmatter_lists": {
@@ -276,6 +307,10 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-change-protocol",
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
+            "AOA-P-0017",
+            "AOA-P-0018",
+            "AOA-P-0019",
+            "AOA-P-0020",
             "architect",
             "coder",
             "reviewer",
@@ -360,6 +395,8 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-sanitized-share",
             "aoa-approval-boundary-adherence",
             "aoa-verification-honesty",
+            "AOA-P-0014",
+            "AOA-P-0020",
             "architect",
             "coder",
             "reviewer",
@@ -441,6 +478,8 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-sanitized-share",
             "aoa-verification-honesty",
             "aoa-tool-trajectory-discipline",
+            "AOA-P-0012",
+            "AOA-P-0020",
             "architect",
             "coder",
             "reviewer",
@@ -556,6 +595,9 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
+            "AOA-P-0010",
+            "AOA-P-0019",
+            "AOA-P-0020",
             "architect",
             "coder",
             "reviewer",
@@ -600,6 +642,9 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
+            "AOA-P-0010",
+            "AOA-P-0019",
+            "AOA-P-0020",
             "architect",
             "coder",
             "reviewer",
@@ -652,6 +697,10 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
+            "AOA-P-0004",
+            "AOA-P-0010",
+            "AOA-P-0017",
+            "AOA-P-0020",
             "architect",
             "coder",
             "reviewer",
@@ -708,6 +757,10 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
+            "AOA-P-0012",
+            "AOA-P-0014",
+            "AOA-P-0018",
+            "AOA-P-0019",
             "architect",
             "coder",
             "reviewer",
@@ -1856,6 +1909,26 @@ def validate_activation_examples(
         )
 
 
+def validate_harvest_templates() -> None:
+    for template_path, required_tokens in HARVEST_TEMPLATE_REQUIREMENTS.items():
+        text = read_text(template_path)
+        location = template_path.relative_to(REPO_ROOT).as_posix()
+        sections = markdown_sections(text)
+
+        missing_sections = [
+            section_name for section_name in REQUIRED_HARVEST_TEMPLATE_SECTIONS if section_name not in sections
+        ]
+        if missing_sections:
+            fail(
+                f"{location} is missing required harvest sections: "
+                + ", ".join(missing_sections)
+            )
+
+        for token in required_tokens:
+            if token not in text:
+                fail(f"{location} must mention '{token}' explicitly")
+
+
 def main() -> int:
     try:
         validate_nested_agents_surface()
@@ -1893,6 +1966,7 @@ def main() -> int:
             model_tier_artifacts=model_tier_artifacts,
             evals_by_name=evals_by_name,
         )
+        validate_harvest_templates()
     except ValidationError as exc:
         print(f"[error] {exc}", file=sys.stderr)
         return 1
@@ -1907,6 +1981,7 @@ def main() -> int:
     print("[ok] validated generated/playbook_federation_surfaces.min.json")
     print("[ok] validated generated playbook composition surfaces")
     print("[ok] validated playbook activation examples")
+    print("[ok] validated shipped playbook real-run harvest templates")
     return 0
 
 

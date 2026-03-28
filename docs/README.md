@@ -11,6 +11,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [BOUNDARIES](BOUNDARIES.md) for ownership discipline relative to neighboring AoA layers.
 - Read [PLAYBOOK_BUNDLE_CONTRACT](PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
 - Read [PLAYBOOK_EXECUTION_SEAM](PLAYBOOK_EXECUTION_SEAM.md) for the derived runtime-readable activation seam.
+- Read [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) for chooser discipline across the operational playbook family.
 - Read [HANDOFF_CONTRACTS](HANDOFF_CONTRACTS.md) for the bounded playbook-to-skill handoff bridge.
 - Read [FAILURE_RECOVERY](FAILURE_RECOVERY.md) for the shared failure catalog posture.
 - Read [SUBAGENT_PATTERNS](SUBAGENT_PATTERNS.md) for explicit subagent recipe doctrine.
@@ -18,6 +19,8 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [PLAYBOOK_RECURRENCE_DISCIPLINE](PLAYBOOK_RECURRENCE_DISCIPLINE.md) for scenario-level recurrence posture.
 - Read [PLAYBOOK_LIFECYCLE](PLAYBOOK_LIFECYCLE.md) for graduation and lifecycle doctrine.
 - Read [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) for coverage matrix and portfolio guidance.
+- Read [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) for reviewable evidence scaffolding for future real runs.
+- Read [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) for the composition promotion gate surface.
 - Read [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) for the current prioritized lifecycle posture of the portfolio.
 - Open [../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first real playbook object.
 - Read [ROADMAP](../ROADMAP.md) for the current direction.
@@ -28,6 +31,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - [BOUNDARIES](BOUNDARIES.md) - what the playbook layer owns and must not absorb
 - [PLAYBOOK_BUNDLE_CONTRACT](PLAYBOOK_BUNDLE_CONTRACT.md) - how authored `PLAYBOOK.md` bundles stay compact, registry-aligned, and federation-checkable where needed
 - [PLAYBOOK_EXECUTION_SEAM](PLAYBOOK_EXECUTION_SEAM.md) - how derived activation, federation, and composition surfaces stay readable without becoming second authored sources
+- [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) - how the operational playbook family stays differentiated instead of semantically overlapping
 - [HANDOFF_CONTRACTS](HANDOFF_CONTRACTS.md) - how derived playbook handoff packets point to `aoa-skills` without absorbing skill meaning
 - [FAILURE_RECOVERY](FAILURE_RECOVERY.md) - how a shared failure catalog stays scenario-owned without becoming a persisted run engine
 - [SUBAGENT_PATTERNS](SUBAGENT_PATTERNS.md) - how explicit subagent recipes stay bounded and example-shaped
@@ -35,6 +39,8 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - [PLAYBOOK_RECURRENCE_DISCIPLINE](PLAYBOOK_RECURRENCE_DISCIPLINE.md) - how scenario routes return to valid anchors without turning the playbook layer into runtime machinery
 - [PLAYBOOK_LIFECYCLE](PLAYBOOK_LIFECYCLE.md) - how playbooks graduate from registry rows to authored and federation-checked forms
 - [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) - how the playbook layer stays broad enough across scenario families without overfitting
+- [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) - how reviewable real-run evidence stays distinct from runtime state and from composition promotion itself
+- [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) - how `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` must clear gate review before composition grows
 - [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) - the current prioritized lifecycle matrix and next bounded portfolio moves
 
 ## Notes

@@ -87,6 +87,7 @@ The route keeps six things explicit:
 
 This playbook is narrower than remediation, cutover, or generic cross-repo rollout.
 Use `AOA-P-0018` for post-failure remediation, `AOA-P-0019` for planned cutover windows, and `AOA-P-0010` for generic multi-repo rollout.
+Use `AOA-P-0012` for preview-first infra change before a live incident and `AOA-P-0014` for local-only diagnosis and blocker isolation.
 Use this playbook only when live incident stabilization and recovery handoff are the scenario contract itself.
 
 ## Trigger boundary

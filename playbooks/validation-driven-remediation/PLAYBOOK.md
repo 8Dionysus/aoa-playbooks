@@ -80,6 +80,8 @@ The route keeps six things explicit:
 
 This playbook is narrower than `cross-repo-boundary-rollout`.
 Use `AOA-P-0010` for a generic cross-repo rollout request.
+Use `AOA-P-0019` for a planned authority-switch cutover window.
+Use `AOA-P-0020` when live incident stabilization and recovery handoff are still the active route.
 Use this playbook only when a failed validation surface is the route anchor and the remediation must cross owned boundaries to restore closure honestly.
 
 ## Trigger boundary
@@ -93,7 +95,7 @@ Use this playbook when:
 Do not use this playbook when:
 - the failure can be fixed entirely inside one ordinary bounded repository change
 - the route is a generic change request that merely happens to include validation
-- the work is really release cutover, incident recovery, or long-horizon inquiry
+- the work is really `AOA-P-0019 release-migration-cutover`, `AOA-P-0020 incident-recovery-routing`, or long-horizon inquiry
 - the failing signal is too vague to define a bounded remediation surface
 
 ## Prerequisites

@@ -75,6 +75,9 @@ The route keeps explicit:
 - what rollback or recovery path exists
 - what bounded verification closes the route
 
+Use `AOA-P-0014` when the real work is local-only diagnosis and blocker isolation.
+Use `AOA-P-0020` when a live cross-boundary incident already exists and the route must stabilize or degrade with explicit recovery handoff.
+
 ## Trigger boundary
 
 Use this playbook when:
@@ -88,6 +91,7 @@ Do not use this playbook when:
 
 - the task is purely a docs cleanup or domain refactor with no runtime implications
 - one bounded skill is enough and no explicit preview or rollback seam is needed
+- the route is really `AOA-P-0014 local-stack-diagnosis` or `AOA-P-0020 incident-recovery-routing`
 - the change is really routing, agent taxonomy, or memory-object work
 - the route cannot name a rollback or safe-stop posture at all
 

@@ -73,6 +73,10 @@ The route keeps five things explicit:
 - what provenance-safe handoff record survives the route
 
 This playbook exists to keep cross-repo motion reviewable without turning `aoa-playbooks` into routing logic, skill canon, eval doctrine, or memo taxonomy.
+Use `AOA-P-0017` when the route must split into ordered waves.
+Use `AOA-P-0018` when a failed validation surface is the route anchor.
+Use `AOA-P-0019` when a planned cutover window must switch authority.
+Use `AOA-P-0020` when a live incident needs stabilization and recovery handoff.
 
 ## Trigger boundary
 
@@ -85,6 +89,7 @@ Use this playbook when:
 Do not use this playbook when:
 - one repository fully owns the change and the rest only consume already-generated outputs later
 - the real need is a single bounded skill or a normal single-repo safe rollout
+- the route is really `AOA-P-0017 split-wave-cross-repo-rollout`, `AOA-P-0018 validation-driven-remediation`, `AOA-P-0019 release-migration-cutover`, or `AOA-P-0020 incident-recovery-routing`
 - the task is mainly routing implementation, proof doctrine, or memory taxonomy work
 - no reviewable rollout order can be named
 

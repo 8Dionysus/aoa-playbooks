@@ -81,6 +81,8 @@ The route keeps six things explicit:
 
 This playbook is narrower than `cross-repo-boundary-rollout`.
 Use `AOA-P-0010` for a generic cross-repo route that can stay reviewable in one coherent wave.
+Use `AOA-P-0019` for a planned cutover window with freeze, go-no-go, and authority-switch posture.
+Use `AOA-P-0020` for live incident stabilization and recovery handoff.
 Use this playbook only when ordered waves, updated upstream `main`, and downstream revalidation are part of the scenario contract itself.
 
 ## Trigger boundary
@@ -94,7 +96,7 @@ Use this playbook when:
 Do not use this playbook when:
 - the cross-repo route can remain honest as one bounded wave
 - downstream work can validate against a pinned snapshot without an upstream-first merge
-- the task is really release cutover, incident recovery, or a single-repo bounded change
+- the task is really `AOA-P-0019 release-migration-cutover`, `AOA-P-0020 incident-recovery-routing`, or a single-repo bounded change
 - no explicit bridge surface or rerun boundary can be named
 
 ## Prerequisites

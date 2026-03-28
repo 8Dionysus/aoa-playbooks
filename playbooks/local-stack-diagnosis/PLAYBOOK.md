@@ -71,6 +71,9 @@ The route keeps explicit:
 - which blockers still prevent trust in the local stack
 - what concise report should survive after the diagnosis
 
+Use `AOA-P-0012` when the route is really a governed preview-first infra change.
+Use `AOA-P-0020` when the issue is already a live cross-boundary incident rather than a bounded local diagnosis.
+
 ## Trigger boundary
 
 Use this playbook when:
@@ -82,8 +85,9 @@ Use this playbook when:
 
 Do not use this playbook when:
 
-- the task is purely a broad infra change with a bigger rollback story
+- the task is purely a broad infra change with a bigger rollback story that belongs in `AOA-P-0012 infra-change-guarded`
 - one single skill can finish the work without meaningful handoffs
+- the route is really `AOA-P-0020 incident-recovery-routing`
 - the route is really a code-structure refactor rather than local environment diagnosis
 - no bounded bring-up target can be named
 
