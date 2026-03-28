@@ -83,6 +83,9 @@ The route keeps six things explicit:
 
 This playbook is narrower than `release-prep`.
 Use `AOA-P-0004` for checklist-style merge or release preparation.
+Use `AOA-P-0010` for a generic cross-repo rollout with no authority switch.
+Use `AOA-P-0017` for ordered bridge publication rather than a cutover window.
+Use `AOA-P-0020` for live incident stabilization rather than a planned release or migration window.
 Use this playbook only when the cutover window and authority switch are the scenario contract itself.
 
 ## Trigger boundary
@@ -95,9 +98,9 @@ Use this playbook when:
 
 Do not use this playbook when:
 - the task is ordinary release prep with no real authority switch
-- the route is a generic cross-repo rollout or split-wave bridge publication
+- the route is `AOA-P-0010 cross-repo-boundary-rollout` or `AOA-P-0017 split-wave-cross-repo-rollout`
 - the work is really a long migration program with staged compatibility windows
-- the task is incident recovery rather than a planned cutover window
+- the task is `AOA-P-0020 incident-recovery-routing` rather than a planned cutover window
 - no bounded post-cutover verification surface can be named
 
 ## Prerequisites

@@ -15,6 +15,9 @@ It must not absorb skill meaning from `aoa-skills`.
 - `config/playbook_composition_overrides.json`
 - `../aoa-skills/generated/skill_handoff_contracts.json`
 
+Reviewable evidence templates for future handoff candidates also live under `examples/harvests/`.
+They are governed by [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) and do not create new composition entries by themselves.
+
 The playbook bundle still owns the scenario route.
 `aoa-skills` still owns the bounded execution unit.
 
@@ -37,3 +40,4 @@ The playbook bundle still owns the scenario route.
 ## Boundary to preserve
 
 If a handoff packet starts encoding runtime-local recovery or execution state, it has crossed out of the playbook layer.
+If a new handoff bridge candidate appears in a real-run harvest, it must still clear [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before it can enter `config/playbook_composition_overrides.json`.

@@ -30,6 +30,9 @@ It exists to keep a shared failure vocabulary reviewable across the managed play
 Failures stay scenario-owned hints.
 Actual execution-state recovery remains outside this repository until a separate runtime home is chosen.
 
+Real-run evidence captured through `examples/harvests/` is reviewable scaffolding, not persisted recovery state, orchestration history, or memory canon.
+If a harvest suggests a new failure or follow-up mapping, that mapping still stays out of `config/playbook_composition_overrides.json` until [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) clears promotion.
+
 ## Incident-recovery routing boundary
 
 `AOA-P-0020 incident-recovery-routing` may own scenario-level incident mapping, bounded stabilization posture, recovery verification closure, and explicit handoff wording.

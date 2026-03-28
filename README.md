@@ -16,12 +16,16 @@ If you are new to this repository, use this path:
 3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
 4. Read [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
 5. Read [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md) for the derived runtime-readable activation seam.
-6. Read [docs/PLAYBOOK_RECURRENCE_DISCIPLINE](docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md) for scenario-level recurrence posture.
-7. Read [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md) for the playbook graduation path.
-8. Read [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md) for coverage and portfolio guidance.
-9. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
-10. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
-11. Read [ROADMAP](ROADMAP.md) for the current direction.
+6. Read [docs/PLAYBOOK_OPERATIONAL_FAMILY](docs/PLAYBOOK_OPERATIONAL_FAMILY.md) for chooser rules across the operational playbook family.
+7. Read [docs/PLAYBOOK_RECURRENCE_DISCIPLINE](docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md) for scenario-level recurrence posture.
+8. Read [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md) for the playbook graduation path.
+9. Read [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md) for coverage and portfolio guidance.
+10. Read [docs/PLAYBOOK_REAL_RUN_HARVEST](docs/PLAYBOOK_REAL_RUN_HARVEST.md) for evidence-first real-run harvest doctrine.
+11. Read [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md) for promotion rules before any new adjunct reaches composition.
+12. Read [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md) for the current lifecycle posture and next bounded move.
+13. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
+14. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
+15. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
@@ -91,6 +95,7 @@ It now also validates the derived activation surface used to make selected playb
 For the current federation-checked cohort, it also resolves exact skills in `aoa-skills` and memo contracts in `aoa-memo` without moving ownership out of those repositories.
 It now also validates derived composition surfaces for handoff contracts, failure catalogs, subagent recipes, automation seeds, and a composition manifest without turning the playbook layer into a runtime engine.
 It now also requires the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md` to stay present and aligned with the authored-vs-derived split of this layer.
+It now also validates the shipped real-run harvest templates under `examples/harvests/` so evidence scaffolding stays reviewable without becoming a runtime log substrate.
 
 Derived playbook surfaces live at:
 - `schemas/playbook-activation-surface.schema.json`
