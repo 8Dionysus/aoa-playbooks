@@ -23,8 +23,8 @@
 
 ## Current Verdict
 
-- `ready-for-composition-review`
+- `composition-landed`
 
 ## Next Trigger
 
-- Open a bounded composition review for `AOA-P-0017` focused on a split-wave `handoff bridge` adjunct, while leaving `config/playbook_composition_overrides.json` unchanged until that later review lands.
+- Review later evidence only if a non-routing third ordered-wave run or a distinct adjunct candidate appears; otherwise keep the minimal composition-owned split-wave `handoff bridge` as the stable `AOA-P-0017` landing.

@@ -164,7 +164,15 @@ FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0019",
     "AOA-P-0020",
 )
-COMPOSITION_COLLECTION_PLAYBOOK_IDS = ("AOA-P-0011", "AOA-P-0012", "AOA-P-0013", "AOA-P-0014", "AOA-P-0015", "AOA-P-0016")
+COMPOSITION_COLLECTION_PLAYBOOK_IDS = (
+    "AOA-P-0011",
+    "AOA-P-0012",
+    "AOA-P-0013",
+    "AOA-P-0014",
+    "AOA-P-0015",
+    "AOA-P-0016",
+    "AOA-P-0017",
+)
 FEDERATION_REQUIRED_FRONTMATTER_KEYS = ("required_skills", "memo_contract_refs", "memo_writeback_targets")
 
 ALLOWED_STATUS = {"active", "planned", "experimental", "deprecated"}
@@ -217,7 +225,7 @@ REQUIRED_GATE_REVIEW_SECTIONS = (
     "Current Verdict",
     "Next Trigger",
 )
-ALLOWED_GATE_VERDICT_TOKENS = ("hold", "ready-for-composition-review")
+ALLOWED_GATE_VERDICT_TOKENS = ("hold", "ready-for-composition-review", "composition-landed")
 REAL_RUN_SUMMARY_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)\.md$")
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\([^)]+\)")
 BUNDLE_SEMANTIC_CHECKS = {
@@ -2054,6 +2062,17 @@ def validate_real_run_workflow_surfaces() -> None:
             fail(
                 f"{location} must expose exactly one allowed verdict token in 'Current Verdict': "
                 + ", ".join(ALLOWED_GATE_VERDICT_TOKENS)
+            )
+        current_verdict_token = matching_verdicts[0]
+        playbook_id = requirement["playbook_id"]
+        in_composition_cohort = playbook_id in COMPOSITION_COLLECTION_PLAYBOOK_IDS
+        if current_verdict_token == "composition-landed" and not in_composition_cohort:
+            fail(
+                f"{location} cannot use 'composition-landed' unless {playbook_id} is in the composition cohort"
+            )
+        if current_verdict_token == "ready-for-composition-review" and in_composition_cohort:
+            fail(
+                f"{location} cannot use 'ready-for-composition-review' after {playbook_id} has landed in composition"
             )
 
         for token in (requirement["playbook_id"], *requirement["required_tokens"]):

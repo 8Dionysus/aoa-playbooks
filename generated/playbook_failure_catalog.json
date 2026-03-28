@@ -37,7 +37,8 @@
         "atm10-bounded-change",
         "bounded-change-safe",
         "local-stack-diagnosis",
-        "source-truth-then-share"
+        "source-truth-then-share",
+        "split-wave-cross-repo-rollout"
       ]
     },
     {
@@ -54,7 +55,8 @@
         "Resume the route only once the seam is reviewable."
       ],
       "used_by_playbooks": [
-        "invariants-first-refactor"
+        "invariants-first-refactor",
+        "split-wave-cross-repo-rollout"
       ]
     },
     {
@@ -111,7 +113,8 @@
       "used_by_playbooks": [
         "atm10-bounded-change",
         "bounded-change-safe",
-        "invariants-first-refactor"
+        "invariants-first-refactor",
+        "split-wave-cross-repo-rollout"
       ]
     },
     {
@@ -197,7 +200,8 @@
       "used_by_playbooks": [
         "bounded-change-safe",
         "invariants-first-refactor",
-        "local-stack-diagnosis"
+        "local-stack-diagnosis",
+        "split-wave-cross-repo-rollout"
       ]
     }
   ]

@@ -17,7 +17,7 @@ It is not a place to store raw logs, runtime traces, or execution-state packets.
 4. If selection finds no qualifying case, do not create a placeholder summary; leave `docs/real-runs/` unchanged and keep the matching gate at `hold`.
 5. If a case qualifies, write one reviewed summary in `docs/real-runs/YYYY-MM-DD.<playbook-slug>.md` using the matching source template from `examples/harvests/` plus `Evidence Links`.
 6. Update the matching verdict surface under `docs/gate-reviews/` with the latest reviewed run, the dual-signal result, and the current verdict.
-7. Consider composition only if the verdict surface moves from `hold` to `ready-for-composition-review`.
+7. Consider composition only if the verdict surface moves from `hold` to `ready-for-composition-review`; if a bounded review lands a composition-owned adjunct, move the verdict to `composition-landed`.
 
 ## Source templates
 
@@ -52,12 +52,13 @@ A selection pass that finds no qualifying case should leave the matching playboo
 - `release-migration-cutover.md`
 - `incident-recovery-routing.md`
 
-Each verdict doc keeps the current `hold` versus `ready-for-composition-review` posture explicit without pretending that composition already exists.
+Each verdict doc keeps the current `hold`, `ready-for-composition-review`, or `composition-landed` posture explicit without pretending that composition exists before it really lands.
+If a bounded review does land composition, the verdict doc should move to `composition-landed` rather than leaving the playbook in a permanent pre-promotion state.
 
 ## Active first candidates
 
-The first expected reviewed summaries are for `AOA-P-0017` and `AOA-P-0019`.
-`AOA-P-0017` now has a first qualifying reviewed summary at `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md`.
+The active evidence gaps are now `AOA-P-0019` and `AOA-P-0020`.
+`AOA-P-0017` now has reviewed summaries at `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md` and `docs/real-runs/2026-03-28.split-wave-cross-repo-rollout.md`, and its first bounded composition review has landed a minimal handoff bridge.
 As of March 28, 2026, `AOA-P-0019` still has no qualifying reviewed summary committed.
 `AOA-P-0020` uses the same summary and verdict workflow, but only a live incident should open its first reviewed run.
 

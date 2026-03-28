@@ -130,6 +130,26 @@
         "aoa-contract-test",
         "aoa-sanitized-share"
       ]
+    },
+    "split-wave-cross-repo-rollout": {
+      "failure_codes": [
+        "SOURCE_OF_TRUTH_AMBIGUOUS",
+        "BOUNDARY_UNCLEAR",
+        "VERIFICATION_WEAK",
+        "SESSION_LOST"
+      ],
+      "subagent_recipes": [],
+      "automation_seeds": [],
+      "followup_playbooks": [
+        "cross-repo-boundary-rollout",
+        "validation-driven-remediation"
+      ],
+      "handoff_skill_refs": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ]
     }
   },
   "failure_catalog": [
