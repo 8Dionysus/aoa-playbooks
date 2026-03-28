@@ -40,8 +40,10 @@ The next coverage gaps are still more operational and federated:
 - release or migration cutover across neighboring AoA layers
 - incident or recovery routing with explicit rollback and handoff
 - validation-driven remediation across source-of-truth boundaries
+- split-wave cross-repo rollout where one repo must publish bridge surfaces before a downstream repo can validate or merge cleanly
 
 These gaps matter because they test whether the playbook layer can scale beyond introspective or checkpoint-heavy routes.
+They also matter because the current cross-repo boundary family covers shared change scope, but not yet the stricter choreography of ordered merges, rerun policy, and downstream revalidation against updated upstream `main`.
 
 ## Coverage rules
 
