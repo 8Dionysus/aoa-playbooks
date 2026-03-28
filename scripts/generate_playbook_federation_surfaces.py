@@ -20,7 +20,6 @@ FEDERATION_PLAYBOOK_IDS = (
     "AOA-P-0013",
     "AOA-P-0014",
     "AOA-P-0015",
-    "AOA-P-0016",
     "AOA-P-0017",
     "AOA-P-0018",
     "AOA-P-0019",

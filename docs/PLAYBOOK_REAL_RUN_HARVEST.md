@@ -6,6 +6,7 @@ This document defines the evidence-first harvest posture for real runs of select
 
 Harvest keeps reviewable evidence.
 It does not keep runtime state.
+Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 
 ## What harvest is for
 
@@ -31,6 +32,7 @@ This repository ships example-only harvest templates at:
 
 These templates are the only harvest objects validated in this repository.
 They exist to keep evidence scaffolding legible without introducing a second runtime substrate.
+They remain source templates for reviewed summaries rather than runtime logs.
 
 ## Required shape
 
@@ -44,6 +46,8 @@ Each shipped harvest template uses the same section set:
 - `Follow-On Route`
 - `Composition Signals`
 - `Residual Risk`
+
+Committed reviewed summaries, when they appear later under `docs/real-runs/`, must use the same section set plus `Evidence Links`.
 
 ## Promotion discipline
 

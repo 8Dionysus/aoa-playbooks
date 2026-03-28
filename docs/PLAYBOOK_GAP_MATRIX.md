@@ -35,7 +35,7 @@ Legend:
 | `invariants-first-refactor` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `local-stack-diagnosis` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `source-truth-then-share` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
-| `atm10-bounded-change` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
+| `atm10-bounded-change` | `A+Act+C` | `A+Act+F+C` | Medium | Hold outside federation until `atm10-source-of-truth-check` and `atm10-change-protocol` become federation-ready again in `aoa-skills`. |
 
 ## Current portfolio move
 
@@ -43,14 +43,16 @@ For this wave, the main portfolio advance is consolidation rather than catalog g
 
 The main move is:
 - use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to keep the operational family differentiated before adding more scenario classes
+- use [PLAYBOOK_REAL_RUN_WORKFLOW](PLAYBOOK_REAL_RUN_WORKFLOW.md) to move from chooser to real run, reviewed summary, and gate verdict without storing raw operational traces here
 - use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from the first real `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` runs
-- use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) to decide whether `AOA-P-0017`, `AOA-P-0019`, or `AOA-P-0020` honestly deserve composition
+- use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) and the per-playbook gate-review surfaces under `docs/gate-reviews/` to decide whether `AOA-P-0017`, `AOA-P-0019`, or `AOA-P-0020` honestly deserve composition
 
 No new playbook should enter the portfolio just to fill space while these chooser, harvest, and gate surfaces are still the next honest move.
+Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 
 ## Canonical gate surface
 
-`AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` now use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) as the canonical promotion rule.
+`AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` now use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) plus the matching per-playbook verdict surfaces under `docs/gate-reviews/` as the canonical promotion rule.
 This matrix keeps only the lifecycle summary.
 The gate doc owns the required artifact sets, minimum evidence threshold, dual-signal rule, and the default non-promotion posture.
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -69,6 +70,68 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "handoff_record",
     ),
 }
+REAL_RUN_WORKFLOW_PATH = REPO_ROOT / "docs" / "PLAYBOOK_REAL_RUN_WORKFLOW.md"
+REAL_RUN_SUMMARY_HOME_PATH = REPO_ROOT / "docs" / "real-runs" / "README.md"
+REAL_RUN_SUMMARY_DIR = REPO_ROOT / "docs" / "real-runs"
+GATE_REVIEW_DIR = REPO_ROOT / "docs" / "gate-reviews"
+REAL_RUN_SUMMARY_SLUG_REQUIREMENTS = {
+    "split-wave-cross-repo-rollout": (
+        "wave_plan",
+        "bridge_surface_pack",
+        "downstream_revalidation_pack",
+        "handoff_record",
+    ),
+    "release-migration-cutover": (
+        "cutover_plan",
+        "cutover_decision",
+        "post_cutover_verification_pack",
+        "handoff_record",
+    ),
+    "incident-recovery-routing": (
+        "incident_map",
+        "stabilization_plan",
+        "recovery_decision",
+        "recovery_verification_pack",
+        "handoff_record",
+    ),
+}
+GATE_REVIEW_REQUIREMENTS = {
+    GATE_REVIEW_DIR / "split-wave-cross-repo-rollout.md": {
+        "playbook_id": "AOA-P-0017",
+        "required_tokens": (
+            "wave_plan",
+            "bridge_surface_pack",
+            "downstream_revalidation_pack",
+            "handoff_record",
+            "No reviewed run is harvested yet.",
+        ),
+    },
+    GATE_REVIEW_DIR / "release-migration-cutover.md": {
+        "playbook_id": "AOA-P-0019",
+        "required_tokens": (
+            "cutover_plan",
+            "cutover_decision",
+            "post_cutover_verification_pack",
+            "handoff_record",
+            "No reviewed run is harvested yet.",
+        ),
+    },
+    GATE_REVIEW_DIR / "incident-recovery-routing.md": {
+        "playbook_id": "AOA-P-0020",
+        "required_tokens": (
+            "incident_map",
+            "stabilization_plan",
+            "recovery_decision",
+            "recovery_verification_pack",
+            "handoff_record",
+            "Only a live incident should open the first reviewed summary",
+        ),
+    },
+}
+REVIEWED_SUMMARY_GATE_SENTENCE = (
+    "Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still "
+    "require explicit gate review under `docs/gate-reviews/`."
+)
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0008",
     "AOA-P-0009",
@@ -95,7 +158,6 @@ FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0013",
     "AOA-P-0014",
     "AOA-P-0015",
-    "AOA-P-0016",
     "AOA-P-0017",
     "AOA-P-0018",
     "AOA-P-0019",
@@ -145,6 +207,17 @@ REQUIRED_HARVEST_TEMPLATE_SECTIONS = (
     "Composition Signals",
     "Residual Risk",
 )
+REQUIRED_REAL_RUN_SUMMARY_SECTIONS = REQUIRED_HARVEST_TEMPLATE_SECTIONS + ("Evidence Links",)
+REQUIRED_GATE_REVIEW_SECTIONS = (
+    "Gate Header",
+    "Minimum Evidence Threshold",
+    "Latest Reviewed Run",
+    "Dual Signal Check",
+    "Current Verdict",
+    "Next Trigger",
+)
+ALLOWED_GATE_VERDICT_TOKENS = ("hold", "ready-for-composition-review")
+REAL_RUN_SUMMARY_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)\.md$")
 BUNDLE_SEMANTIC_CHECKS = {
     "AOA-P-0006": {
         "frontmatter_lists": {
@@ -1929,6 +2002,94 @@ def validate_harvest_templates() -> None:
                 fail(f"{location} must mention '{token}' explicitly")
 
 
+def validate_real_run_workflow_surfaces() -> None:
+    workflow_text = read_text(REAL_RUN_WORKFLOW_PATH)
+    workflow_location = REAL_RUN_WORKFLOW_PATH.relative_to(REPO_ROOT).as_posix()
+    for token in (
+        REVIEWED_SUMMARY_GATE_SENTENCE,
+        "examples/harvests/",
+        "docs/real-runs/",
+        "docs/gate-reviews/",
+        "AOA-P-0017",
+        "AOA-P-0019",
+        "AOA-P-0020",
+    ):
+        if token not in workflow_text:
+            fail(f"{workflow_location} must mention '{token}' explicitly")
+
+    summary_home_text = read_text(REAL_RUN_SUMMARY_HOME_PATH)
+    summary_home_location = REAL_RUN_SUMMARY_HOME_PATH.relative_to(REPO_ROOT).as_posix()
+    for token in (
+        REVIEWED_SUMMARY_GATE_SENTENCE,
+        "YYYY-MM-DD.<playbook-slug>.md",
+        "split-wave-cross-repo-rollout",
+        "release-migration-cutover",
+        "incident-recovery-routing",
+        "Evidence Links",
+    ):
+        if token not in summary_home_text:
+            fail(f"{summary_home_location} must mention '{token}' explicitly")
+
+    for gate_path, requirement in GATE_REVIEW_REQUIREMENTS.items():
+        text = read_text(gate_path)
+        location = gate_path.relative_to(REPO_ROOT).as_posix()
+        sections = markdown_sections(text)
+
+        missing_sections = [
+            section_name for section_name in REQUIRED_GATE_REVIEW_SECTIONS if section_name not in sections
+        ]
+        if missing_sections:
+            fail(
+                f"{location} is missing required gate-review sections: "
+                + ", ".join(missing_sections)
+            )
+
+        current_verdict = sections.get("Current Verdict", "")
+        matching_verdicts = [
+            token for token in ALLOWED_GATE_VERDICT_TOKENS if token in current_verdict
+        ]
+        if len(matching_verdicts) != 1:
+            fail(
+                f"{location} must expose exactly one allowed verdict token in 'Current Verdict': "
+                + ", ".join(ALLOWED_GATE_VERDICT_TOKENS)
+            )
+
+        for token in (requirement["playbook_id"], *requirement["required_tokens"]):
+            if token not in text:
+                fail(f"{location} must mention '{token}' explicitly")
+
+    for summary_path in sorted(REAL_RUN_SUMMARY_DIR.glob("*.md")):
+        if summary_path.name == "README.md":
+            continue
+
+        location = summary_path.relative_to(REPO_ROOT).as_posix()
+        match = REAL_RUN_SUMMARY_FILENAME_RE.match(summary_path.name)
+        if not match:
+            fail(
+                f"{location} must match the filename pattern YYYY-MM-DD.<playbook-slug>.md"
+            )
+        slug = match.group(1)
+        if slug not in REAL_RUN_SUMMARY_SLUG_REQUIREMENTS:
+            fail(
+                f"{location} uses unsupported playbook slug '{slug}' for this wave"
+            )
+
+        text = read_text(summary_path)
+        sections = markdown_sections(text)
+        missing_sections = [
+            section_name for section_name in REQUIRED_REAL_RUN_SUMMARY_SECTIONS if section_name not in sections
+        ]
+        if missing_sections:
+            fail(
+                f"{location} is missing required reviewed-summary sections: "
+                + ", ".join(missing_sections)
+            )
+
+        for token in REAL_RUN_SUMMARY_SLUG_REQUIREMENTS[slug]:
+            if token not in text:
+                fail(f"{location} must mention '{token}' explicitly")
+
+
 def main() -> int:
     try:
         validate_nested_agents_surface()
@@ -1967,6 +2128,7 @@ def main() -> int:
             evals_by_name=evals_by_name,
         )
         validate_harvest_templates()
+        validate_real_run_workflow_surfaces()
     except ValidationError as exc:
         print(f"[error] {exc}", file=sys.stderr)
         return 1
@@ -1982,6 +2144,7 @@ def main() -> int:
     print("[ok] validated generated playbook composition surfaces")
     print("[ok] validated playbook activation examples")
     print("[ok] validated shipped playbook real-run harvest templates")
+    print("[ok] validated repo-first real-run workflow surfaces")
     return 0
 
 
