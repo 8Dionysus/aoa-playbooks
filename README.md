@@ -99,6 +99,7 @@ It now also requires the local guidance surfaces at `playbooks/AGENTS.md` and `g
 It now also validates the shipped real-run harvest templates under `examples/harvests/` so evidence scaffolding stays reviewable without becoming a runtime log substrate.
 It now also validates the repo-first real-run workflow surfaces under `docs/real-runs/` and `docs/gate-reviews/` without turning this repository into a runtime evidence store.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
+`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, but is intentionally out of the federation cohort while its ATM10 overlay skills reconcile as `project_overlay_eval_ready` in `aoa-skills`.
 
 Derived playbook surfaces live at:
 - `schemas/playbook-activation-surface.schema.json`

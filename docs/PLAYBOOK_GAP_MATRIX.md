@@ -26,16 +26,16 @@ Legend:
 | `long-horizon-model-tier-orchestra` | `A+Act+F` | `A+Act+F` | Low | Hold steady and add composition only if stable operational adjuncts recur. |
 | `restartable-inquiry-loop` | `A+Act+F` | `A+Act+F` | Low | Hold steady as the restartable recurrence reference route. |
 | `cross-repo-boundary-rollout` | `A+Act+F` | `A+Act+F` | High | Keep as the generic single-wave baseline and branch split-wave choreography into `AOA-P-0017`. |
-| `split-wave-cross-repo-rollout` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F`; evaluate promotion only through [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) after one real run with `wave_plan`, `bridge_surface_pack`, `downstream_revalidation_pack`, and `handoff_record`. |
+| `split-wave-cross-repo-rollout` | `A+Act+F` | `A+Act+F` | Medium | The March 28, 2026 selection pass found no qualifying closed case with `wave_plan`, `bridge_surface_pack`, `downstream_revalidation_pack`, `handoff_record`, and reviewable evidence links; keep `hold pending more evidence` and re-open only through [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) after the first qualifying reviewed summary. |
 | `validation-driven-remediation` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F` until remediation-specific adjuncts recur clearly enough to justify composition. |
-| `release-migration-cutover` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F`; evaluate promotion only through [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) after one real run with `cutover_plan`, `cutover_decision`, `post_cutover_verification_pack`, and `handoff_record`. |
-| `incident-recovery-routing` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F`; evaluate promotion only through [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) after one real run with `incident_map`, `stabilization_plan`, `recovery_decision`, `recovery_verification_pack`, and `handoff_record`. |
+| `release-migration-cutover` | `A+Act+F` | `A+Act+F` | Medium | The March 28, 2026 selection pass found no qualifying closed case with `cutover_plan`, `cutover_decision`, `post_cutover_verification_pack`, `handoff_record`, and reviewable evidence links; keep `hold pending more evidence` and re-open only through [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) after the first qualifying reviewed summary. |
+| `incident-recovery-routing` | `A+Act+F` | `A+Act+F` | Medium | Live-only hold; the March 28, 2026 selection pass found no qualifying live incident case. Re-open only through [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) after the first live incident reviewed summary with `incident_map`, `stabilization_plan`, `recovery_decision`, `recovery_verification_pack`, and `handoff_record`. |
 | `bounded-change-safe` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `infra-change-guarded` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `invariants-first-refactor` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `local-stack-diagnosis` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `source-truth-then-share` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
-| `atm10-bounded-change` | `A+Act+C` | `A+Act+F+C` | Medium | Hold outside federation until `atm10-source-of-truth-check` and `atm10-change-protocol` become federation-ready again in `aoa-skills`. |
+| `atm10-bounded-change` | `A+Act+C` | `A+Act+F+C` | Medium | Intentional repo-first hold outside federation while `atm10-source-of-truth-check` and `atm10-change-protocol` remain `project_overlay_eval_ready` in `aoa-skills`; revisit only after both become federation-eligible there. |
 
 ## Current portfolio move
 
@@ -49,6 +49,7 @@ The main move is:
 
 No new playbook should enter the portfolio just to fill space while these chooser, harvest, and gate surfaces are still the next honest move.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
+The March 28, 2026 selection pass did not yield a qualifying reviewed summary for `AOA-P-0017`, `AOA-P-0019`, or `AOA-P-0020`, so the next honest move remains evidence capture and gate review rather than composition growth.
 
 ## Canonical gate surface
 

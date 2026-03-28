@@ -53,3 +53,4 @@ Committed reviewed summaries, when they appear later under `docs/real-runs/`, mu
 
 Harvest is an input to future composition review, not a promotion signal by itself.
 If a real run suggests a new handoff bridge, subagent split, automation seed, or failure/follow-up mapping, that suggestion must still clear [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before it can enter composition-owned surfaces.
+If selection does not find a qualifying closed case with the required anchor artifacts and reviewable evidence links, harvest produces no committed summary and the verdict surface remains `hold`.

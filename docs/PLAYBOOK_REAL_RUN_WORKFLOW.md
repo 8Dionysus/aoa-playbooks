@@ -13,9 +13,11 @@ It is not a place to store raw logs, runtime traces, or execution-state packets.
 
 1. Choose the scenario route through [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md).
 2. Execute the real run in the owning repository or repositories that actually carry the operational work.
-3. Write one reviewed summary in `docs/real-runs/YYYY-MM-DD.<playbook-slug>.md` using the matching source template from `examples/harvests/` plus `Evidence Links`.
-4. Update the matching verdict surface under `docs/gate-reviews/` with the latest reviewed run, the dual-signal result, and the current verdict.
-5. Consider composition only if the verdict surface moves from `hold` to `ready-for-composition-review`.
+3. Select only a closed case that clearly satisfies the playbook boundary, the required anchor artifacts, and reviewable `Evidence Links`.
+4. If selection finds no qualifying case, do not create a placeholder summary; leave `docs/real-runs/` unchanged and keep the matching gate at `hold`.
+5. If a case qualifies, write one reviewed summary in `docs/real-runs/YYYY-MM-DD.<playbook-slug>.md` using the matching source template from `examples/harvests/` plus `Evidence Links`.
+6. Update the matching verdict surface under `docs/gate-reviews/` with the latest reviewed run, the dual-signal result, and the current verdict.
+7. Consider composition only if the verdict surface moves from `hold` to `ready-for-composition-review`.
 
 ## Source templates
 
@@ -37,8 +39,10 @@ A committed summary must:
 - stay within the allowed slug set for this wave
 - reuse the harvest heading set and add `Evidence Links`
 - state artifact presence, closure class, follow-on route, composition signals, residual risk, and pointers to external evidence
+- contain at least one reviewable Markdown link in `Evidence Links`
 
 If no real run has been harvested yet, `docs/real-runs/` should remain empty except for its `README.md`.
+A selection pass that finds no qualifying case should also leave `docs/real-runs/` empty except for its `README.md`.
 
 ## Gate review home
 
@@ -53,6 +57,7 @@ Each verdict doc keeps the current `hold` versus `ready-for-composition-review` 
 ## Active first candidates
 
 The first expected reviewed summaries are for `AOA-P-0017` and `AOA-P-0019`.
+As of March 28, 2026, no qualifying reviewed summary is yet committed for either playbook.
 `AOA-P-0020` uses the same summary and verdict workflow, but only a live incident should open its first reviewed run.
 
 ## Boundary to preserve

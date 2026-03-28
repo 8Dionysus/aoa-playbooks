@@ -48,3 +48,4 @@ Every committed summary file must contain:
 ## Current posture
 
 This folder should remain empty except for this `README.md` until the first real reviewed run is ready to commit.
+The March 28, 2026 selection pass did not identify a qualifying closed `AOA-P-0017` or `AOA-P-0019` case with the required anchor artifacts and reviewable evidence links, so no reviewed summary is committed yet.

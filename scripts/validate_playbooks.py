@@ -98,26 +98,27 @@ REAL_RUN_SUMMARY_SLUG_REQUIREMENTS = {
 GATE_REVIEW_REQUIREMENTS = {
     GATE_REVIEW_DIR / "split-wave-cross-repo-rollout.md": {
         "playbook_id": "AOA-P-0017",
+        "slug": "split-wave-cross-repo-rollout",
         "required_tokens": (
             "wave_plan",
             "bridge_surface_pack",
             "downstream_revalidation_pack",
             "handoff_record",
-            "No reviewed run is harvested yet.",
         ),
     },
     GATE_REVIEW_DIR / "release-migration-cutover.md": {
         "playbook_id": "AOA-P-0019",
+        "slug": "release-migration-cutover",
         "required_tokens": (
             "cutover_plan",
             "cutover_decision",
             "post_cutover_verification_pack",
             "handoff_record",
-            "No reviewed run is harvested yet.",
         ),
     },
     GATE_REVIEW_DIR / "incident-recovery-routing.md": {
         "playbook_id": "AOA-P-0020",
+        "slug": "incident-recovery-routing",
         "required_tokens": (
             "incident_map",
             "stabilization_plan",
@@ -218,6 +219,7 @@ REQUIRED_GATE_REVIEW_SECTIONS = (
 )
 ALLOWED_GATE_VERDICT_TOKENS = ("hold", "ready-for-composition-review")
 REAL_RUN_SUMMARY_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)\.md$")
+MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\([^)]+\)")
 BUNDLE_SEMANTIC_CHECKS = {
     "AOA-P-0006": {
         "frontmatter_lists": {
@@ -2058,6 +2060,16 @@ def validate_real_run_workflow_surfaces() -> None:
             if token not in text:
                 fail(f"{location} must mention '{token}' explicitly")
 
+        latest_review_section = sections.get("Latest Reviewed Run", "")
+        slug = requirement["slug"]
+        summary_reference_re = re.compile(
+            rf"docs/real-runs/(?:YYYY-MM-DD|\d{{4}}-\d{{2}}-\d{{2}})\.{re.escape(slug)}\.md"
+        )
+        if not summary_reference_re.search(latest_review_section):
+            fail(
+                f"{location} must reference the matching reviewed-summary path in 'Latest Reviewed Run'"
+            )
+
     for summary_path in sorted(REAL_RUN_SUMMARY_DIR.glob("*.md")):
         if summary_path.name == "README.md":
             continue
@@ -2088,6 +2100,16 @@ def validate_real_run_workflow_surfaces() -> None:
         for token in REAL_RUN_SUMMARY_SLUG_REQUIREMENTS[slug]:
             if token not in text:
                 fail(f"{location} must mention '{token}' explicitly")
+
+        if "No reviewed run is harvested yet." in text:
+            fail(f"{location} cannot use gate-review placeholder language")
+
+        evidence_links_section = sections.get("Evidence Links", "")
+        if not MARKDOWN_LINK_RE.search(evidence_links_section):
+            fail(f"{location} must include at least one Markdown link in 'Evidence Links'")
+
+        if slug == "incident-recovery-routing" and "live incident" not in text.lower():
+            fail(f"{location} must mention 'live incident' explicitly for incident recovery runs")
 
 
 def main() -> int:

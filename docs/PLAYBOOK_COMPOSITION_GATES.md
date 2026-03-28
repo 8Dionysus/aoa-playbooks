@@ -6,6 +6,7 @@ This document is the canonical gate surface for promoting selected operational p
 
 No new adjunct reaches `config/playbook_composition_overrides.json` until a real run proves both recurrence and distinct playbook-owned value.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
+A selection pass that finds no qualifying case keeps the verdict surface at `hold` and creates no reviewed summary.
 
 The minimum evidence threshold for every gate in this document is one real run.
 The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and record the current `hold` versus `ready-for-composition-review` posture.
