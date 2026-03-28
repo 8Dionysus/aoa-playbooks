@@ -43,6 +43,7 @@ ACTIVATION_EXAMPLE_PATHS = {
     "AOA-P-0008": REPO_ROOT / "examples" / "playbook_activation.long-horizon-model-tier-orchestra.example.json",
     "AOA-P-0009": REPO_ROOT / "examples" / "playbook_activation.restartable-inquiry-loop.example.json",
     "AOA-P-0010": REPO_ROOT / "examples" / "playbook_activation.cross-repo-boundary-rollout.example.json",
+    "AOA-P-0017": REPO_ROOT / "examples" / "playbook_activation.split-wave-cross-repo-rollout.example.json",
 }
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0008",
@@ -54,6 +55,7 @@ ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0014",
     "AOA-P-0015",
     "AOA-P-0016",
+    "AOA-P-0017",
 )
 FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0007",
@@ -66,6 +68,7 @@ FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0014",
     "AOA-P-0015",
     "AOA-P-0016",
+    "AOA-P-0017",
 )
 COMPOSITION_COLLECTION_PLAYBOOK_IDS = ("AOA-P-0011", "AOA-P-0012", "AOA-P-0013", "AOA-P-0014", "AOA-P-0015", "AOA-P-0016")
 FEDERATION_REQUIRED_FRONTMATTER_KEYS = ("required_skills", "memo_contract_refs", "memo_writeback_targets")
@@ -479,6 +482,50 @@ BUNDLE_SEMANTIC_CHECKS = {
             "architect",
             "coder",
             "reviewer",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0017": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-approval-boundary-adherence",
+                "aoa-scope-drift-detection",
+                "aoa-verification-honesty",
+            ),
+            "required_skills": (
+                "aoa-source-of-truth-check",
+                "aoa-bounded-context-map",
+                "aoa-approval-gate-check",
+                "aoa-dry-run-first",
+                "aoa-change-protocol",
+                "aoa-contract-test",
+                "aoa-adr-write",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-source-of-truth-check",
+            "aoa-bounded-context-map",
+            "aoa-approval-gate-check",
+            "aoa-dry-run-first",
+            "aoa-change-protocol",
+            "aoa-contract-test",
+            "aoa-adr-write",
+            "aoa-approval-boundary-adherence",
+            "aoa-scope-drift-detection",
+            "aoa-verification-honesty",
+            "architect",
+            "coder",
+            "reviewer",
+            "evaluator",
             "memory-keeper",
         ),
     },
