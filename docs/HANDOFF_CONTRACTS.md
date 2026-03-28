@@ -17,6 +17,7 @@ It must not absorb skill meaning from `aoa-skills`.
 
 Reviewable evidence templates for future handoff candidates also live under `examples/harvests/`.
 They are governed by [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) and do not create new composition entries by themselves.
+Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 
 The playbook bundle still owns the scenario route.
 `aoa-skills` still owns the bounded execution unit.

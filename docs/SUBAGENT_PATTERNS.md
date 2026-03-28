@@ -31,4 +31,5 @@ It keeps explicit splits reviewable for scenarios where a bounded parallel pass 
 ## Boundary to preserve
 
 Use subagent recipes only when the split is clean enough that the main thread can merge back short ledgers instead of raw traces.
+Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 If a real-run harvest suggests a new split, keep it as evidence until [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) approves composition growth.

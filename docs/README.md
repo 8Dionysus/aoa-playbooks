@@ -19,6 +19,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [PLAYBOOK_RECURRENCE_DISCIPLINE](PLAYBOOK_RECURRENCE_DISCIPLINE.md) for scenario-level recurrence posture.
 - Read [PLAYBOOK_LIFECYCLE](PLAYBOOK_LIFECYCLE.md) for graduation and lifecycle doctrine.
 - Read [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) for coverage matrix and portfolio guidance.
+- Read [PLAYBOOK_REAL_RUN_WORKFLOW](PLAYBOOK_REAL_RUN_WORKFLOW.md) for the repo-first chooser -> run -> review -> gate workflow.
 - Read [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) for reviewable evidence scaffolding for future real runs.
 - Read [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) for the composition promotion gate surface.
 - Read [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) for the current prioritized lifecycle posture of the portfolio.
@@ -39,6 +40,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - [PLAYBOOK_RECURRENCE_DISCIPLINE](PLAYBOOK_RECURRENCE_DISCIPLINE.md) - how scenario routes return to valid anchors without turning the playbook layer into runtime machinery
 - [PLAYBOOK_LIFECYCLE](PLAYBOOK_LIFECYCLE.md) - how playbooks graduate from registry rows to authored and federation-checked forms
 - [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) - how the playbook layer stays broad enough across scenario families without overfitting
+- [PLAYBOOK_REAL_RUN_WORKFLOW](PLAYBOOK_REAL_RUN_WORKFLOW.md) - how real operational runs become reviewed summaries and explicit gate verdicts without creating a runtime log layer
 - [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) - how reviewable real-run evidence stays distinct from runtime state and from composition promotion itself
 - [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) - how `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` must clear gate review before composition grows
 - [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) - the current prioritized lifecycle matrix and next bounded portfolio moves
@@ -46,4 +48,5 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 ## Notes
 
 This repository should stay bounded.
+Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 If a document starts trying to become a technique corpus, workflow corpus, proof corpus, memory store, or routing surface, it probably belongs in a neighboring AoA repository instead.
