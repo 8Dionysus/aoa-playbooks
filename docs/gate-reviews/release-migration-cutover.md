@@ -13,6 +13,7 @@
 
 - No reviewed run is harvested yet.
 - The March 28, 2026 strict AoA-only sourcing pass reviewed the strongest visible candidate families across local AoA repositories and GitHub PR history, including the `aoa-techniques#101` donor-evidence promotion chain with `aoa-skills#52` and `aoa-routing#9`, routing activation refreshes such as `aoa-routing#20`, and single-repo default-entrypoint promotions such as `aoa-techniques#115`, and still did not identify a closed case with `cutover_plan`, `cutover_decision`, `post_cutover_verification_pack`, `handoff_record`, and reviewable `Evidence Links`.
+- The March 28, 2026 adjacent-ecosystem widening pass then reviewed the strongest widened families across `aoa-*`, `abyss-stack`, and `ATM10-Agent`, including the same `aoa-techniques#101` donor chain, `abyss-stack#6` runtime readiness, and `ATM10-Agent#28` plus `ATM10-Agent#30` policy-promotion waves, and still found no qualifying cutover run: the AoA family remained donor or rollout-oriented, `abyss-stack` stayed runtime-policy only, and the ATM10 cases remained overlay or nightly-policy promotion without an AoA authority switch.
 - The first real cutover run should be summarized at `docs/real-runs/YYYY-MM-DD.release-migration-cutover.md`.
 
 ## Dual Signal Check
@@ -26,4 +27,4 @@
 
 ## Next Trigger
 
-- Re-open this gate only after a qualifying AoA-only cutover run closes with the required anchor artifacts and reviewable evidence links.
+- Re-open this gate only after a qualifying adjacent-ecosystem cutover run closes with the required anchor artifacts and reviewable evidence links, while still proving an AoA authority switch rather than a runtime-only or overlay-only promotion.
