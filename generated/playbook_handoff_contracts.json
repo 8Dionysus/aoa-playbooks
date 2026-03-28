@@ -772,6 +772,145 @@
           "bounded-change-safe"
         ]
       }
+    },
+    {
+      "playbook_id": "AOA-P-0017",
+      "name": "split-wave-cross-repo-rollout",
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test",
+        "aoa-adr-write"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-source-of-truth-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "consumes_artifact_tags": [
+            "repository-docs-surface",
+            "target-area-of-ambiguity-or-overlap",
+            "known-canonical-files-if-any",
+            "current-contributor-confusion-points"
+          ],
+          "provides_artifact_tags": [
+            "clearer-source-of-truth-map",
+            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
+            "note-of-overlaps-or-conflicts",
+            "proposed-or-implemented-document-role-clarification",
+            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
+            "verification-summary"
+          ]
+        },
+        {
+          "name": "aoa-bounded-context-map",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "consumes_artifact_tags": [
+            "target-area-or-subsystem",
+            "current-naming-and-responsibilities",
+            "known-neighboring-contexts",
+            "ambiguous-or-overloaded-terms"
+          ],
+          "provides_artifact_tags": [
+            "named-contexts-or-subsystems",
+            "rough-boundary-map",
+            "interface-notes-between-contexts",
+            "ambiguity-notes-and-recommended-vocabulary"
+          ]
+        },
+        {
+          "name": "aoa-change-protocol",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "consumes_artifact_tags": [
+            "target-goal",
+            "touched-files-or-surfaces",
+            "main-risk",
+            "intended-validation-path",
+            "rollback-idea"
+          ],
+          "provides_artifact_tags": [
+            "explicit-plan",
+            "scoped-change",
+            "named-verification-result",
+            "concise-final-report"
+          ]
+        },
+        {
+          "name": "aoa-contract-test",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
+          "consumes_artifact_tags": [
+            "boundary-under-review",
+            "expected-inputs-and-outputs",
+            "current-verification-surface",
+            "known-downstream-dependencies"
+          ],
+          "provides_artifact_tags": [
+            "explicit-contract-assumptions",
+            "tests-or-smoke-summary-changes",
+            "verification-notes",
+            "downstream-impact-notes"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide whether the route truly requires split-wave choreography instead of a single bounded cross-repo wave.",
+        "Decide which upstream bridge surfaces must be complete before downstream repositories are allowed to resume.",
+        "Decide what exact condition makes wave 1 bridge-complete and publishable.",
+        "Decide when downstream rebase and rerun steps are mandatory against updated upstream `main`.",
+        "Decide whether downstream revalidation supports merge, defer, rollback, or safe stop.",
+        "Decide whether loss of wave integrity requires return to the last valid `wave_plan` or `wave_decision` anchor before more motion.",
+        "Decide whether the route closes with a handoff record for a later wave or stops for explicit review."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the boundary map, wave plan, bridge surfaces, and rerun policy are explicit",
+        "`coder -> reviewer` after the current wave leaves a reviewable bridge surface pack or downstream change slice",
+        "`reviewer -> evaluator` after the downstream revalidation pack and current wave decision are explicit",
+        "`reviewer or evaluator -> architect` when wave boundaries, rerun policy, or rollback posture drift enough that the route must return to the last valid `wave_plan` or `wave_decision`",
+        "`evaluator -> memory-keeper` after the route can name merge, defer, rollback, or stop with a bounded rationale",
+        "`memory-keeper -> architect` only when the handoff record proves that another governed wave is required"
+      ],
+      "expected_artifacts": [
+        "boundary_map",
+        "wave_plan",
+        "bridge_surface_pack",
+        "wave_decision",
+        "downstream_revalidation_pack",
+        "handoff_record"
+      ],
+      "return_anchor_artifacts": [
+        "wave_plan",
+        "wave_decision",
+        "downstream_revalidation_pack"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "split-wave-cross-repo-rollout",
+        "carried_artifacts": [
+          "boundary_map",
+          "wave_plan",
+          "bridge_surface_pack",
+          "wave_decision",
+          "downstream_revalidation_pack",
+          "handoff_record"
+        ],
+        "required_skill_handoffs": [
+          "aoa-source-of-truth-check",
+          "aoa-bounded-context-map",
+          "aoa-change-protocol",
+          "aoa-contract-test"
+        ],
+        "failure_codes": [
+          "SOURCE_OF_TRUTH_AMBIGUOUS",
+          "BOUNDARY_UNCLEAR",
+          "VERIFICATION_WEAK",
+          "SESSION_LOST"
+        ],
+        "next_followups": [
+          "cross-repo-boundary-rollout",
+          "validation-driven-remediation"
+        ]
+      }
     }
   ]
 }

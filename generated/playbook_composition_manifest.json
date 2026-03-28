@@ -21,8 +21,9 @@
     "invariants-first-refactor",
     "local-stack-diagnosis",
     "source-truth-then-share",
-    "atm10-bounded-change"
+    "atm10-bounded-change",
+    "split-wave-cross-repo-rollout"
   ],
-  "composition_playbook_count": 6,
+  "composition_playbook_count": 7,
   "total_playbook_count": 20
 }

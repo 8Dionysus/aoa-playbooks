@@ -45,6 +45,7 @@ class GeneratePlaybookCompositionSurfacesTests(unittest.TestCase):
                 "local-stack-diagnosis",
                 "source-truth-then-share",
                 "atm10-bounded-change",
+                "split-wave-cross-repo-rollout",
             ],
         )
 

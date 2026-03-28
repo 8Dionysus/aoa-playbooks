@@ -7,9 +7,10 @@ This document is the canonical gate surface for promoting selected operational p
 No new adjunct reaches `config/playbook_composition_overrides.json` until a real run proves both recurrence and distinct playbook-owned value.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 A selection pass that finds no qualifying case keeps the verdict surface at `hold` and creates no reviewed summary.
+When a bounded review does land composition, the verdict surface should move to `composition-landed` so the repo does not pretend the playbook is still waiting on promotion.
 
 The minimum evidence threshold for every gate in this document is one real run.
-The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and record the current `hold` versus `ready-for-composition-review` posture.
+The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and record the current `hold`, `ready-for-composition-review`, or `composition-landed` posture.
 
 ## AOA-P-0017 split-wave-cross-repo-rollout
 
@@ -19,6 +20,7 @@ The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and reco
   - at least one stable failure or follow-up mapping not already covered by `AOA-P-0010` or the shared failure catalog
   - at least one stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`
 - Artifact anchor: `wave_plan`, `bridge_surface_pack`, `downstream_revalidation_pack`, `handoff_record`
+- First landing rule: if promotion lands, start with the smallest honest adjunct. For `AOA-P-0017`, that first landing is a minimal playbook-owned `handoff bridge` through `generated/playbook_handoff_contracts.json`, not a new failure code, subagent recipe, or automation seed.
 - Non-promotion default: if the run only shows one-off rollout noise or weak signal, keep `AOA-P-0017` at `A+Act+F`
 
 ## AOA-P-0019 release-migration-cutover
@@ -45,3 +47,4 @@ The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and reco
 
 Weak, single-use, or ambiguous signals do not justify composition growth.
 If a candidate adjunct is not clearly stable and scenario-owned, leave it out of composition and keep the evidence inside the harvest review surface.
+After a landing, keep later growth bounded. Another adjunct family still needs fresh evidence and a new explicit review rather than piggybacking on the first promotion.

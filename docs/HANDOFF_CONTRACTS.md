@@ -18,6 +18,8 @@ It must not absorb skill meaning from `aoa-skills`.
 Reviewable evidence templates for future handoff candidates also live under `examples/harvests/`.
 They are governed by [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) and do not create new composition entries by themselves.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
+`AOA-P-0017 split-wave-cross-repo-rollout` is the first operational playbook whose post-gate promotion lands here as a minimal playbook-owned handoff bridge.
+That bridge is derived from the playbook artifact contract plus upstream skill handoff contracts; it is not copied from source-repo PR prose or from reviewed-summary evidence.
 
 The playbook bundle still owns the scenario route.
 `aoa-skills` still owns the bounded execution unit.
@@ -42,3 +44,4 @@ The playbook bundle still owns the scenario route.
 
 If a handoff packet starts encoding runtime-local recovery or execution state, it has crossed out of the playbook layer.
 If a new handoff bridge candidate appears in a real-run harvest, it must still clear [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before it can enter `config/playbook_composition_overrides.json`.
+If a bounded review lands a handoff bridge, keep that landing scenario-level and skill-derived; do not widen it into routing-specific implementation doctrine.
