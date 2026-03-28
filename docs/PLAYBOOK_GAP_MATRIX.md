@@ -29,6 +29,7 @@ Legend:
 | `split-wave-cross-repo-rollout` | `A+Act+F` | `A+Act+F` | Medium | Evaluate `C` only after one real ordered-wave run finishes with `wave_plan`, `bridge_surface_pack`, `downstream_revalidation_pack`, and `handoff_record`. |
 | `validation-driven-remediation` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F` until remediation-specific adjuncts recur clearly enough to justify composition. |
 | `release-migration-cutover` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F` until cutover-specific adjuncts recur clearly enough to justify composition. |
+| `incident-recovery-routing` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F` until recovery-specific adjuncts recur clearly enough to justify composition. |
 | `bounded-change-safe` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `infra-change-guarded` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `invariants-first-refactor` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
@@ -41,11 +42,11 @@ Legend:
 For this wave, the main portfolio advance is not mass graduation.
 
 The main move is:
-- add `AOA-P-0019 release-migration-cutover` as `A+Act+F`
-- keep `AOA-P-0004 release-prep` as a registry umbrella rather than widening it into cutover
+- add `AOA-P-0020 incident-recovery-routing` as `A+Act+F`
+- keep `AOA-P-0004 release-prep` as a registry umbrella rather than widening it into cutover or recovery work
 - keep `AOA-P-0017 split-wave-cross-repo-rollout` at `A+Act+F` until one real ordered-wave run proves whether composition is honestly recurring
 
-With `AOA-P-0019` in place, the main remaining portfolio gap is incident or recovery routing with explicit rollback and handoff.
+With `AOA-P-0020` in place, the next portfolio move is an operational-family boundary pass across `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0018`, `AOA-P-0019`, and `AOA-P-0020` rather than another new playbook.
 
 ## AOA-P-0017 composition gate
 
