@@ -47,5 +47,6 @@ Every committed summary file must contain:
 
 ## Current posture
 
-This folder should remain empty except for this `README.md` until the first real reviewed run is ready to commit.
-The March 28, 2026 selection pass did not identify a qualifying closed `AOA-P-0017` or `AOA-P-0019` case with the required anchor artifacts and reviewable evidence links, so no reviewed summary is committed yet.
+This folder should stay sparse and hold only committed reviewed summaries that fully qualify under the workflow and validator rules.
+`docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md` is the first committed reviewed summary and captures the March 21, 2026 `AOA-P-0017` section-expand wave across source-owned AoA repos and `aoa-routing`.
+`AOA-P-0019` and `AOA-P-0020` still have no qualifying reviewed summary committed as of March 28, 2026.

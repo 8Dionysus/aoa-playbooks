@@ -41,8 +41,8 @@ A committed summary must:
 - state artifact presence, closure class, follow-on route, composition signals, residual risk, and pointers to external evidence
 - contain at least one reviewable Markdown link in `Evidence Links`
 
-If no real run has been harvested yet, `docs/real-runs/` should remain empty except for its `README.md`.
-A selection pass that finds no qualifying case should also leave `docs/real-runs/` empty except for its `README.md`.
+If a playbook has no harvested real run yet, its gate should remain at `hold` and no placeholder summary should be committed for that playbook.
+A selection pass that finds no qualifying case should leave the matching playbook summary absent rather than inventing one.
 
 ## Gate review home
 
@@ -57,7 +57,8 @@ Each verdict doc keeps the current `hold` versus `ready-for-composition-review` 
 ## Active first candidates
 
 The first expected reviewed summaries are for `AOA-P-0017` and `AOA-P-0019`.
-As of March 28, 2026, no qualifying reviewed summary is yet committed for either playbook.
+`AOA-P-0017` now has a first qualifying reviewed summary at `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md`.
+As of March 28, 2026, `AOA-P-0019` still has no qualifying reviewed summary committed.
 `AOA-P-0020` uses the same summary and verdict workflow, but only a live incident should open its first reviewed run.
 
 ## Boundary to preserve
