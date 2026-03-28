@@ -76,6 +76,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0015 source-truth-then-share`
 - `AOA-P-0016 atm10-bounded-change`
 - `AOA-P-0017 split-wave-cross-repo-rollout`
+- `AOA-P-0018 validation-driven-remediation`
 
 These runtime-readable playbooks already define:
 
@@ -138,6 +139,7 @@ They should not expose:
 
 The current federation-checked playbooks for this seam are:
 
+- `AOA-P-0006 self-agent-checkpoint-rollout`
 - `AOA-P-0007 witness-to-compost-pilot`
 - `AOA-P-0008 long-horizon-model-tier-orchestra`
 - `AOA-P-0009 restartable-inquiry-loop`
@@ -149,8 +151,10 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0015 source-truth-then-share`
 - `AOA-P-0016 atm10-bounded-change`
 - `AOA-P-0017 split-wave-cross-repo-rollout`
+- `AOA-P-0018 validation-driven-remediation`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
+`AOA-P-0006 self-agent-checkpoint-rollout` is intentionally federation-checked without joining the activation cohort because its route is still governed by approval and rollback checkpoints rather than a compact runtime-readable activation seam.
 
 ## Boundary to preserve
 

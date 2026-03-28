@@ -44,6 +44,7 @@ ACTIVATION_EXAMPLE_PATHS = {
     "AOA-P-0009": REPO_ROOT / "examples" / "playbook_activation.restartable-inquiry-loop.example.json",
     "AOA-P-0010": REPO_ROOT / "examples" / "playbook_activation.cross-repo-boundary-rollout.example.json",
     "AOA-P-0017": REPO_ROOT / "examples" / "playbook_activation.split-wave-cross-repo-rollout.example.json",
+    "AOA-P-0018": REPO_ROOT / "examples" / "playbook_activation.validation-driven-remediation.example.json",
 }
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0008",
@@ -56,8 +57,10 @@ ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0015",
     "AOA-P-0016",
     "AOA-P-0017",
+    "AOA-P-0018",
 )
 FEDERATION_COLLECTION_PLAYBOOK_IDS = (
+    "AOA-P-0006",
     "AOA-P-0007",
     "AOA-P-0008",
     "AOA-P-0009",
@@ -69,6 +72,7 @@ FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0015",
     "AOA-P-0016",
     "AOA-P-0017",
+    "AOA-P-0018",
 )
 COMPOSITION_COLLECTION_PLAYBOOK_IDS = ("AOA-P-0011", "AOA-P-0012", "AOA-P-0013", "AOA-P-0014", "AOA-P-0015", "AOA-P-0016")
 FEDERATION_REQUIRED_FRONTMATTER_KEYS = ("required_skills", "memo_contract_refs", "memo_writeback_targets")
@@ -106,6 +110,27 @@ REQUIRED_BUNDLE_SECTIONS = {
 }
 BUNDLE_SEMANTIC_CHECKS = {
     "AOA-P-0006": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-approval-boundary-adherence",
+                "aoa-bounded-change-quality",
+            ),
+            "required_skills": (
+                "aoa-source-of-truth-check",
+                "aoa-approval-gate-check",
+                "aoa-dry-run-first",
+                "aoa-change-protocol",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
         "text_tokens": (
             "aoa-source-of-truth-check",
             "aoa-approval-gate-check",
@@ -113,6 +138,9 @@ BUNDLE_SEMANTIC_CHECKS = {
             "aoa-change-protocol",
             "aoa-approval-boundary-adherence",
             "aoa-bounded-change-quality",
+            "decision",
+            "audit_event",
+            "provenance_thread",
             "architect",
             "coder",
             "reviewer",
@@ -486,6 +514,50 @@ BUNDLE_SEMANTIC_CHECKS = {
         ),
     },
     "AOA-P-0017": {
+        "frontmatter_lists": {
+            "eval_anchors": (
+                "aoa-approval-boundary-adherence",
+                "aoa-scope-drift-detection",
+                "aoa-verification-honesty",
+            ),
+            "required_skills": (
+                "aoa-source-of-truth-check",
+                "aoa-bounded-context-map",
+                "aoa-approval-gate-check",
+                "aoa-dry-run-first",
+                "aoa-change-protocol",
+                "aoa-contract-test",
+                "aoa-adr-write",
+            ),
+            "memo_contract_refs": (
+                "examples/checkpoint_to_memory_contract.example.json",
+                "examples/provenance_thread.example.json",
+            ),
+            "memo_writeback_targets": (
+                "decision",
+                "audit_event",
+                "provenance_thread",
+            ),
+        },
+        "text_tokens": (
+            "aoa-source-of-truth-check",
+            "aoa-bounded-context-map",
+            "aoa-approval-gate-check",
+            "aoa-dry-run-first",
+            "aoa-change-protocol",
+            "aoa-contract-test",
+            "aoa-adr-write",
+            "aoa-approval-boundary-adherence",
+            "aoa-scope-drift-detection",
+            "aoa-verification-honesty",
+            "architect",
+            "coder",
+            "reviewer",
+            "evaluator",
+            "memory-keeper",
+        ),
+    },
+    "AOA-P-0018": {
         "frontmatter_lists": {
             "eval_anchors": (
                 "aoa-approval-boundary-adherence",

@@ -10,6 +10,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 OUTPUT_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
 FEDERATION_PLAYBOOK_IDS = (
+    "AOA-P-0006",
     "AOA-P-0007",
     "AOA-P-0008",
     "AOA-P-0009",
@@ -21,6 +22,7 @@ FEDERATION_PLAYBOOK_IDS = (
     "AOA-P-0015",
     "AOA-P-0016",
     "AOA-P-0017",
+    "AOA-P-0018",
 )
 
 

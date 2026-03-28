@@ -33,6 +33,7 @@ The current authored set already covers these classes:
 | Restartable inquiry | preserve inquiry continuity across pauses and relaunches | `restartable-inquiry-loop` |
 | Cross-repo boundary rollout | coordinate bounded changes across more than one source-owned AoA repository | `cross-repo-boundary-rollout` |
 | Split-wave cross-repo rollout | coordinate ordered multi-wave cross-repo changes where upstream bridge surfaces must land before downstream revalidation or merge | `split-wave-cross-repo-rollout` |
+| Validation-driven remediation | remediate a failed validator or proof surface through bounded corrective change and revalidation across source-owned boundaries | `validation-driven-remediation` |
 
 ## Portfolio gaps
 
@@ -40,10 +41,9 @@ The current portfolio is strong on guarded, evidence-heavy, and restartable rout
 The next coverage gaps are still more operational and federated:
 - release or migration cutover across neighboring AoA layers
 - incident or recovery routing with explicit rollback and handoff
-- validation-driven remediation across source-of-truth boundaries
 
 These gaps matter because they test whether the playbook layer can scale beyond introspective or checkpoint-heavy routes.
-With `split-wave-cross-repo-rollout`, the current cross-repo family now covers both shared change scope and the stricter choreography of ordered merges, rerun policy, and downstream revalidation against updated upstream `main`.
+With `split-wave-cross-repo-rollout` and `validation-driven-remediation`, the current cross-boundary family now covers both ordered multi-wave rollout choreography and remediation after failing validator or proof surfaces across source-of-truth boundaries.
 
 ## Coverage rules
 

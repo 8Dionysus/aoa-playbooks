@@ -20,6 +20,11 @@ required_skill_families:
   - approval-gate
   - change-protocol
   - memory-curation
+required_skills:
+  - aoa-source-of-truth-check
+  - aoa-approval-gate-check
+  - aoa-dry-run-first
+  - aoa-change-protocol
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: rollback
@@ -31,6 +36,13 @@ expected_artifacts:
 eval_anchors:
   - aoa-approval-boundary-adherence
   - aoa-bounded-change-quality
+memo_contract_refs:
+  - examples/checkpoint_to_memory_contract.example.json
+  - examples/provenance_thread.example.json
+memo_writeback_targets:
+  - decision
+  - audit_event
+  - provenance_thread
 ---
 
 # self-agent-checkpoint-rollout
@@ -136,7 +148,7 @@ The route should finish with visible evidence for:
 
 - `approval_record` should survive as a `decision`
 - `rollback_marker` may survive as a referenced artifact or bounded state marker rather than a new memory taxonomy
-- `health_check` should survive as an `episode` or `audit_event`
+- `health_check` should survive as an `audit_event`
 - `improvement_log` should survive as a `provenance_thread`
 
 ## Canonical route
