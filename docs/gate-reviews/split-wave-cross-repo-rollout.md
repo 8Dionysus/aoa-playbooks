@@ -11,14 +11,13 @@
 
 ## Latest Reviewed Run
 
-- No reviewed run is harvested yet.
-- Selection pass completed on March 28, 2026 across local AoA repositories and GitHub PR and issue history did not identify a closed case with `wave_plan`, `bridge_surface_pack`, `downstream_revalidation_pack`, `handoff_record`, and reviewable `Evidence Links`.
-- The first real ordered-wave run should be summarized at `docs/real-runs/YYYY-MM-DD.split-wave-cross-repo-rollout.md`.
+- Reviewed summary: `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md`
+- The March 28, 2026 AoA+Runtime sourcing pass selected the March 21, 2026 section-expand wave across `aoa-techniques`, `aoa-skills`, `aoa-evals`, and `aoa-routing` as the first qualifying ordered-wave run with `wave_plan`, `bridge_surface_pack`, `downstream_revalidation_pack`, `handoff_record`, and reviewable `Evidence Links`.
 
 ## Dual Signal Check
 
-- Stable failure or follow-up mapping not already covered by `AOA-P-0010` or the shared failure catalog: cannot be evaluated until a qualifying reviewed summary exists
-- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: cannot be evaluated until a qualifying reviewed summary exists
+- Stable failure or follow-up mapping not already covered by `AOA-P-0010` or the shared failure catalog: not yet established from one section-expand wave; the ordered dependency is real, but the failure or follow-up mapping is not yet stable enough to treat as a new composition-owned adjunct
+- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: not yet established; reciprocal merge-note handoff and a possible ordered-wave readiness check remain plausible but weak
 
 ## Current Verdict
 
@@ -26,4 +25,4 @@
 
 ## Next Trigger
 
-- Re-open this gate only after a qualifying ordered-wave run closes with the required anchor artifacts and reviewable evidence links.
+- Re-open this gate after the next qualifying ordered-wave run or later evidence review only if both a stable failure or follow-up mapping and a stable `handoff bridge`, `subagent split`, or `automation seed` become explicit.
