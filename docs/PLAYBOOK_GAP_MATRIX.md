@@ -19,7 +19,7 @@ Legend:
 | `repo-bootstrap` | `R` | `R` | Low | Keep as a registry placeholder until the next real bootstrap route recurs. |
 | `safe-change-rollout` | `R` | `R` | Low | Keep as the umbrella archetype and do not duplicate `AOA-P-0011`, `AOA-P-0012`, or `AOA-P-0016`. |
 | `bounded-research-pass` | `R` | `R` | Low | Hold until a repeated short research route appears that is distinct from `AOA-P-0009`. |
-| `release-prep` | `R` | `R` | Medium | Defer uplift and cover the stronger near-term need with later cutover or migration work. |
+| `release-prep` | `R` | `R` | Low | Keep as the registry umbrella for checklist-style prep and do not widen it into `AOA-P-0019`. |
 | `memory-curation-pass` | `R` | `R` | Low | Keep as the umbrella until a standalone non-witness memory route recurs. |
 | `self-agent-checkpoint-rollout` | `A+F` | `A+F` | Low | Keep it federation-checked but intentionally non-activation unless a runtime-readable checkpoint seam becomes honest. |
 | `witness-to-compost-pilot` | `A+F` | `A+F` | Low | Keep as a federation-only pilot rather than widening it into activation. |
@@ -28,6 +28,7 @@ Legend:
 | `cross-repo-boundary-rollout` | `A+Act+F` | `A+Act+F` | High | Keep as the generic single-wave baseline and branch split-wave choreography into `AOA-P-0017`. |
 | `split-wave-cross-repo-rollout` | `A+Act+F` | `A+Act+F` | Medium | Evaluate `C` only after one real ordered-wave run finishes with `wave_plan`, `bridge_surface_pack`, `downstream_revalidation_pack`, and `handoff_record`. |
 | `validation-driven-remediation` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F` until remediation-specific adjuncts recur clearly enough to justify composition. |
+| `release-migration-cutover` | `A+Act+F` | `A+Act+F` | Medium | Hold at `A+Act+F` until cutover-specific adjuncts recur clearly enough to justify composition. |
 | `bounded-change-safe` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `infra-change-guarded` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `invariants-first-refactor` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
@@ -40,9 +41,11 @@ Legend:
 For this wave, the main portfolio advance is not mass graduation.
 
 The main move is:
-- complete the `AOA-P-0006 self-agent-checkpoint-rollout` federation pass without making it activation-eligible
-- add `AOA-P-0018 validation-driven-remediation` as `A+Act+F`
+- add `AOA-P-0019 release-migration-cutover` as `A+Act+F`
+- keep `AOA-P-0004 release-prep` as a registry umbrella rather than widening it into cutover
 - keep `AOA-P-0017 split-wave-cross-repo-rollout` at `A+Act+F` until one real ordered-wave run proves whether composition is honestly recurring
+
+With `AOA-P-0019` in place, the main remaining portfolio gap is incident or recovery routing with explicit rollback and handoff.
 
 ## AOA-P-0017 composition gate
 

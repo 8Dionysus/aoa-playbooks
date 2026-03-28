@@ -82,6 +82,7 @@ It now also includes authored playbook bundles at:
 - `playbooks/atm10-bounded-change/PLAYBOOK.md`
 - `playbooks/split-wave-cross-repo-rollout/PLAYBOOK.md`
 - `playbooks/validation-driven-remediation/PLAYBOOK.md`
+- `playbooks/release-migration-cutover/PLAYBOOK.md`
 
 The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` and checks that each one stays aligned with the registry surface.
 For the long-horizon experimental seam, it also checks that participating agents resolve in `aoa-agents`, model-tier artifact contracts stay aligned where applicable, and referenced eval anchors exist in `aoa-evals`.
@@ -105,6 +106,7 @@ Derived playbook surfaces live at:
 - `examples/playbook_activation.cross-repo-boundary-rollout.example.json`
 - `examples/playbook_activation.split-wave-cross-repo-rollout.example.json`
 - `examples/playbook_activation.validation-driven-remediation.example.json`
+- `examples/playbook_activation.release-migration-cutover.example.json`
 
 To validate the current playbook-layer surface locally, run:
 
@@ -117,7 +119,7 @@ python scripts/validate_playbooks.py
 
 ## Current status
 
-`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, restartable inquiry, cross-repo boundary rollout, split-wave cross-repo rollout, validation-driven remediation, bounded change safety, guarded infra changes, invariants-first refactors, local stack diagnosis, source-truth sharing, and ATM10 overlay change work.
+`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, restartable inquiry, cross-repo boundary rollout, split-wave cross-repo rollout, validation-driven remediation, release-migration cutover, bounded change safety, guarded infra changes, invariants-first refactors, local stack diagnosis, source-truth sharing, and ATM10 overlay change work.
 The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home plus a bounded derived composition surface.
 The current closure step is to keep federation-checked scenario routes machine-checkable against `aoa-skills` and `aoa-memo` without blurring boundaries or introducing a persisted run engine here.
 

@@ -162,6 +162,7 @@ The current playbooks that clearly justify recurrence discipline are:
 - `AOA-P-0016 atm10-bounded-change`
 - `AOA-P-0017 split-wave-cross-repo-rollout`
 - `AOA-P-0018 validation-driven-remediation`
+- `AOA-P-0019 release-migration-cutover`
 
 A secondary, non-activation example is:
 - `AOA-P-0006 self-agent-checkpoint-rollout`
