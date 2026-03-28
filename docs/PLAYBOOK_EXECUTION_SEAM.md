@@ -78,6 +78,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0017 split-wave-cross-repo-rollout`
 - `AOA-P-0018 validation-driven-remediation`
 - `AOA-P-0019 release-migration-cutover`
+- `AOA-P-0020 incident-recovery-routing`
 
 These runtime-readable playbooks already define:
 
@@ -154,6 +155,7 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0017 split-wave-cross-repo-rollout`
 - `AOA-P-0018 validation-driven-remediation`
 - `AOA-P-0019 release-migration-cutover`
+- `AOA-P-0020 incident-recovery-routing`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 `AOA-P-0006 self-agent-checkpoint-rollout` is intentionally federation-checked without joining the activation cohort because its route is still governed by approval and rollback checkpoints rather than a compact runtime-readable activation seam.

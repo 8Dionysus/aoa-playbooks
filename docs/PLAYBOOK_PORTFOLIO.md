@@ -35,15 +35,21 @@ The current authored set already covers these classes:
 | Split-wave cross-repo rollout | coordinate ordered multi-wave cross-repo changes where upstream bridge surfaces must land before downstream revalidation or merge | `split-wave-cross-repo-rollout` |
 | Validation-driven remediation | remediate a failed validator or proof surface through bounded corrective change and revalidation across source-owned boundaries | `validation-driven-remediation` |
 | Release or migration cutover | switch authority during a bounded cutover window through freeze posture, go-no-go gating, post-cutover verification, and rollback-or-handoff closure | `release-migration-cutover` |
+| Incident or recovery routing | stabilize a live cross-boundary incident through bounded rollback or degraded-mode recovery, recovery verification, and explicit handoff | `incident-recovery-routing` |
 
 ## Portfolio gaps
 
-The current portfolio is strong on guarded, evidence-heavy, and restartable routes.
-The next coverage gap is still more operational and federated:
-- incident or recovery routing with explicit rollback and handoff
+The current portfolio is strong on guarded, evidence-heavy, restartable, and operational cross-boundary routes.
+The last major operational and federated gap is now covered.
+The next portfolio move is an operational-family boundary pass rather than another new playbook:
+- `AOA-P-0012` = preview-first infra change before a live incident
+- `AOA-P-0014` = local-only stack diagnosis and blocker isolation
+- `AOA-P-0018` = post-failure remediation after the incident is already bounded
+- `AOA-P-0019` = planned authority-switch cutover window
+- `AOA-P-0020` = live cross-boundary incident stabilization and recovery handoff
 
-These gaps matter because they test whether the playbook layer can scale beyond introspective or checkpoint-heavy routes.
-With `split-wave-cross-repo-rollout`, `validation-driven-remediation`, and `release-migration-cutover`, the current cross-boundary family now covers ordered multi-wave rollout choreography, remediation after failing validator or proof surfaces across source-of-truth boundaries, and bounded authority-switch cutover windows.
+This matters because once the last big gap is closed, the main risk shifts from undercoverage to semantic overlap and boundary blur.
+With `split-wave-cross-repo-rollout`, `validation-driven-remediation`, `release-migration-cutover`, and `incident-recovery-routing`, the current cross-boundary family now covers ordered multi-wave rollout choreography, remediation after failing validator or proof surfaces, bounded authority-switch cutover windows, and live incident stabilization with recovery handoff.
 
 ## Coverage rules
 
