@@ -151,7 +151,6 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0013 invariants-first-refactor`
 - `AOA-P-0014 local-stack-diagnosis`
 - `AOA-P-0015 source-truth-then-share`
-- `AOA-P-0016 atm10-bounded-change`
 - `AOA-P-0017 split-wave-cross-repo-rollout`
 - `AOA-P-0018 validation-driven-remediation`
 - `AOA-P-0019 release-migration-cutover`
@@ -159,6 +158,7 @@ The current federation-checked playbooks for this seam are:
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 `AOA-P-0006 self-agent-checkpoint-rollout` is intentionally federation-checked without joining the activation cohort because its route is still governed by approval and rollback checkpoints rather than a compact runtime-readable activation seam.
+`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, but is intentionally out of the federation cohort while its ATM10 overlay skills stay project-overlay ready rather than federation-ready in `aoa-skills`.
 
 ## Boundary to preserve
 

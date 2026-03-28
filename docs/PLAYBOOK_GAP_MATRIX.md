@@ -35,7 +35,7 @@ Legend:
 | `invariants-first-refactor` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `local-stack-diagnosis` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
 | `source-truth-then-share` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
-| `atm10-bounded-change` | `A+Act+F+C` | `A+Act+F+C` | Low | Keep in steady state. |
+| `atm10-bounded-change` | `A+Act+C` | `A+Act+F+C` | Medium | Hold outside federation until `atm10-source-of-truth-check` and `atm10-change-protocol` become federation-ready again in `aoa-skills`. |
 
 ## Current portfolio move
 
