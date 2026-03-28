@@ -40,5 +40,14 @@
     "previous_phase",
     "router_reentry",
     "safe_stop"
-  ]
+  ],
+  "memo_recall_modes": [
+    "semantic",
+    "procedural"
+  ],
+  "memo_scope_default": "workspace",
+  "memo_scope_ceiling": "ecosystem",
+  "memo_read_path": "inspect_capsule_then_expand",
+  "memo_checkpoint_posture": "not_needed",
+  "memo_source_route_policy": "required"
 }

@@ -46,7 +46,16 @@ return_reentry_modes:
 eval_anchors:
   - aoa-long-horizon-depth
   - aoa-tool-trajectory-discipline
+memo_recall_modes:
+  - semantic
+  - procedural
+memo_scope_default: workspace
+memo_scope_ceiling: ecosystem
+memo_read_path: inspect_capsule_then_expand
+memo_checkpoint_posture: not_needed
+memo_source_route_policy: required
 memo_contract_refs:
+  - examples/recall_contract.router.semantic.json
   - examples/checkpoint_to_memory_contract.example.json
 memo_writeback_targets:
   - decision

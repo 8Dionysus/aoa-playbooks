@@ -94,12 +94,13 @@ The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` an
 For the long-horizon experimental seam, it also checks that participating agents resolve in `aoa-agents`, model-tier artifact contracts stay aligned where applicable, and referenced eval anchors exist in `aoa-evals`.
 It now also validates the derived activation surface used to make selected playbooks runtime-readable without changing bundle authorship.
 For the current federation-checked cohort, it also resolves exact skills in `aoa-skills` and memo contracts in `aoa-memo` without moving ownership out of those repositories.
+For the runtime-facing activation cohort, it now also projects flat memo recall defaults so a downstream runtime can derive bounded `inspect`, `capsule`, and `expand` posture from playbook-owned surfaces without inventing memo search or ranking here.
 It now also validates derived composition surfaces for handoff contracts, failure catalogs, subagent recipes, automation seeds, and a composition manifest without turning the playbook layer into a runtime engine.
 It now also requires the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md` to stay present and aligned with the authored-vs-derived split of this layer.
 It now also validates the shipped real-run harvest templates under `examples/harvests/` so evidence scaffolding stays reviewable without becoming a runtime log substrate.
 It now also validates the repo-first real-run workflow surfaces under `docs/real-runs/` and `docs/gate-reviews/` without turning this repository into a runtime evidence store.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
-`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, but is intentionally out of the federation cohort while its ATM10 overlay skills reconcile as `project_overlay_eval_ready` in `aoa-skills`.
+`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, and is now back in the federation cohort because its ATM10 overlay skills reconcile as `project_overlay_federation_ready` in `aoa-skills` without introducing a governance lane there.
 
 Derived playbook surfaces live at:
 - `schemas/playbook-activation-surface.schema.json`
@@ -133,6 +134,7 @@ python scripts/validate_playbooks.py
 `aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, restartable inquiry, cross-repo boundary rollout, split-wave cross-repo rollout, validation-driven remediation, release-migration cutover, incident-recovery routing, bounded change safety, guarded infra changes, invariants-first refactors, local stack diagnosis, source-truth sharing, and ATM10 overlay change work.
 The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home plus a bounded derived composition surface.
 The current closure step is to keep federation-checked scenario routes machine-checkable against `aoa-skills` and `aoa-memo` without blurring boundaries or introducing a persisted run engine here.
+The current runtime-facing extension is to let a bounded activation cohort publish explicit memo-read defaults while leaving actual memo recall truth, search posture, and routing ownership in `aoa-memo` and `aoa-routing`.
 
 ## Principles
 

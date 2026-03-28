@@ -94,6 +94,16 @@ class ValidatePlaybooksReturnContractTests(unittest.TestCase):
 
 
 class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
+    def test_project_overlay_federation_ready_counts_as_full_federation_readiness(self) -> None:
+        skill = {
+            "lineage_state": "published",
+            "readiness_reconciliation": "project_overlay_federation_ready",
+        }
+
+        self.assertTrue(
+            validate_playbooks.skill_is_federation_eligible(skill, playbook_status="active")
+        )
+
     def test_experimental_playbooks_may_use_published_governance_blocked_skills(self) -> None:
         skill = {
             "lineage_state": "published",

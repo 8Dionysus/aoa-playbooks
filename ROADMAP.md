@@ -55,6 +55,7 @@ Goals:
 - connect expected proof posture to `aoa-evals`
 - connect expected memory posture to `aoa-memo`
 - preserve clear boundaries relative to `aoa-routing`
+- let the runtime-facing cohort publish flat memo-read defaults without turning the playbook layer into recall search or routing ownership
 
 ## Phase 6: growth governance
 

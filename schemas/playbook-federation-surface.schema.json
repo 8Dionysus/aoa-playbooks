@@ -75,6 +75,60 @@
         "type": "string",
         "minLength": 3
       }
+    },
+    "memo_recall_modes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "working",
+          "episodic",
+          "semantic",
+          "procedural",
+          "lineage"
+        ]
+      }
+    },
+    "memo_scope_default": {
+      "type": "string",
+      "enum": [
+        "project",
+        "workspace",
+        "ecosystem"
+      ]
+    },
+    "memo_scope_ceiling": {
+      "type": "string",
+      "enum": [
+        "project",
+        "workspace",
+        "ecosystem"
+      ]
+    },
+    "memo_read_path": {
+      "type": "string",
+      "enum": [
+        "inspect_only",
+        "inspect_then_expand",
+        "inspect_capsule_then_expand"
+      ]
+    },
+    "memo_checkpoint_posture": {
+      "type": "string",
+      "enum": [
+        "not_needed",
+        "preferred",
+        "required"
+      ]
+    },
+    "memo_source_route_policy": {
+      "type": "string",
+      "enum": [
+        "not_needed",
+        "preferred",
+        "required"
+      ]
     }
   }
 }

@@ -46,7 +46,15 @@ return_reentry_modes:
   - safe_stop
 eval_anchors:
   - aoa-long-horizon-depth
+memo_recall_modes:
+  - working
+memo_scope_default: project
+memo_scope_ceiling: ecosystem
+memo_read_path: inspect_then_expand
+memo_checkpoint_posture: required
+memo_source_route_policy: preferred
 memo_contract_refs:
+  - examples/recall_contract.object.working.return.json
   - examples/checkpoint_to_memory_contract.example.json
 memo_writeback_targets:
   - state_capsule
