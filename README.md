@@ -26,7 +26,8 @@ If you are new to this repository, use this path:
 13. Read [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md) for the current lifecycle posture and next bounded move.
 14. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
 15. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
-16. Read [ROADMAP](ROADMAP.md) for the current direction.
+16. Read [docs/RELEASING](docs/RELEASING.md) if you need the bounded repo-level release flow.
+17. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
@@ -131,10 +132,11 @@ python scripts/validate_playbooks.py
 
 ## Current status
 
-`aoa-playbooks` is in bootstrap with authored playbook bundles for checkpoint work, witness/compost flow, model-tier orchestration, restartable inquiry, cross-repo boundary rollout, split-wave cross-repo rollout, validation-driven remediation, release-migration cutover, incident-recovery routing, bounded change safety, guarded infra changes, invariants-first refactors, local stack diagnosis, source-truth sharing, and ATM10 overlay change work.
-The current goal is to keep the playbook layer compact while giving scenario-level method one real source-owned home plus a bounded derived composition surface.
-The current closure step is to keep federation-checked scenario routes machine-checkable against `aoa-skills` and `aoa-memo` without blurring boundaries or introducing a persisted run engine here.
-The current runtime-facing extension is to let a bounded activation cohort publish explicit memo-read defaults while leaving actual memo recall truth, search posture, and routing ownership in `aoa-memo` and `aoa-routing`.
+`aoa-playbooks` has now reached its `v0.1.0` public baseline.
+The repository currently ships `20` registry entries, `15` authored playbook bundles, `13` activation-readable playbooks, `15` federation-checked playbooks, and `7` composition-managed playbooks.
+The current goal is no longer bootstrap catalog growth for its own sake.
+The next honest move is evidence-led maturation: keep `AOA-P-0017` stable, wait for a real qualifying cutover for `AOA-P-0019`, and wait for a live incident for `AOA-P-0020`.
+The runtime-facing extension remains intentionally bounded: a compact activation cohort may publish explicit memo-read defaults while memo recall truth, search posture, and routing ownership stay in `aoa-memo` and `aoa-routing`.
 
 ## Principles
 

@@ -4,10 +4,13 @@ This roadmap tracks the bootstrap and early shaping of the AoA playbook layer.
 
 ## Current phase
 
-`aoa-playbooks` is in bootstrap.
-The current goal is not to build a giant orchestration engine immediately.
-The goal is to define what the playbook layer is for, what it owns, and what it must not silently absorb.
-The first authored bundle now exists so scenario-level method has one real public home before the layer grows wider.
+`aoa-playbooks` has reached its `v0.1.0` public baseline.
+The immediate goal is no longer to prove that the repository can exist.
+The next goal is to keep the layer honest through evidence-led maturation:
+- preserve the current authored, activation, federation, and composition seams without widening them casually
+- wait for real cutover evidence for `AOA-P-0019`
+- wait for live incident evidence for `AOA-P-0020`
+- prefer steady-state maintenance over catalog expansion unless a clearly distinct scenario family appears
 
 ## Phase 1: playbook layer definition
 
