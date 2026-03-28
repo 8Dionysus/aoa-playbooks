@@ -34,16 +34,16 @@ The current authored set already covers these classes:
 | Cross-repo boundary rollout | coordinate bounded changes across more than one source-owned AoA repository | `cross-repo-boundary-rollout` |
 | Split-wave cross-repo rollout | coordinate ordered multi-wave cross-repo changes where upstream bridge surfaces must land before downstream revalidation or merge | `split-wave-cross-repo-rollout` |
 | Validation-driven remediation | remediate a failed validator or proof surface through bounded corrective change and revalidation across source-owned boundaries | `validation-driven-remediation` |
+| Release or migration cutover | switch authority during a bounded cutover window through freeze posture, go-no-go gating, post-cutover verification, and rollback-or-handoff closure | `release-migration-cutover` |
 
 ## Portfolio gaps
 
 The current portfolio is strong on guarded, evidence-heavy, and restartable routes.
-The next coverage gaps are still more operational and federated:
-- release or migration cutover across neighboring AoA layers
+The next coverage gap is still more operational and federated:
 - incident or recovery routing with explicit rollback and handoff
 
 These gaps matter because they test whether the playbook layer can scale beyond introspective or checkpoint-heavy routes.
-With `split-wave-cross-repo-rollout` and `validation-driven-remediation`, the current cross-boundary family now covers both ordered multi-wave rollout choreography and remediation after failing validator or proof surfaces across source-of-truth boundaries.
+With `split-wave-cross-repo-rollout`, `validation-driven-remediation`, and `release-migration-cutover`, the current cross-boundary family now covers ordered multi-wave rollout choreography, remediation after failing validator or proof surfaces across source-of-truth boundaries, and bounded authority-switch cutover windows.
 
 ## Coverage rules
 
