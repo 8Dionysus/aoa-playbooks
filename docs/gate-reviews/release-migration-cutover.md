@@ -12,12 +12,13 @@
 ## Latest Reviewed Run
 
 - No reviewed run is harvested yet.
+- Selection pass completed on March 28, 2026 across local AoA repositories and GitHub PR and issue history did not identify a closed case with `cutover_plan`, `cutover_decision`, `post_cutover_verification_pack`, `handoff_record`, and reviewable `Evidence Links`.
 - The first real cutover run should be summarized at `docs/real-runs/YYYY-MM-DD.release-migration-cutover.md`.
 
 ## Dual Signal Check
 
-- Stable failure or follow-up mapping not already covered by neighboring cutover or rollout playbooks or the shared failure catalog: not yet demonstrated
-- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: not yet demonstrated
+- Stable failure or follow-up mapping not already covered by neighboring cutover or rollout playbooks or the shared failure catalog: cannot be evaluated until a qualifying reviewed summary exists
+- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: cannot be evaluated until a qualifying reviewed summary exists
 
 ## Current Verdict
 
@@ -25,4 +26,4 @@
 
 ## Next Trigger
 
-- Re-open this gate after the first reviewed summary exists and the dual-signal rule can be checked against a real cutover run.
+- Re-open this gate only after a qualifying cutover run closes with the required anchor artifacts and reviewable evidence links.
