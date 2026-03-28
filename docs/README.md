@@ -23,6 +23,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) for reviewable evidence scaffolding for future real runs.
 - Read [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) for the composition promotion gate surface.
 - Read [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) for the current prioritized lifecycle posture of the portfolio.
+- Read [RELEASING](RELEASING.md) for the bounded repo-level release flow.
 - Open [../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first real playbook object.
 - Read [ROADMAP](../ROADMAP.md) for the current direction.
 
@@ -44,6 +45,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) - how reviewable real-run evidence stays distinct from runtime state and from composition promotion itself
 - [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) - how `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` must clear gate review before composition grows
 - [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) - the current prioritized lifecycle matrix and next bounded portfolio moves
+- [RELEASING](RELEASING.md) - how repo-level releases stay small, validated, and honest about remaining evidence gaps
 
 ## Notes
 
