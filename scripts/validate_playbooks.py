@@ -8,6 +8,8 @@ import re
 import sys
 from pathlib import Path
 
+import yaml
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -40,6 +42,36 @@ SKILL_GOVERNANCE_PATH = AOA_SKILLS_ROOT / "generated" / "governance_backlog.json
 SKILL_HANDOFF_CONTRACTS_PATH = AOA_SKILLS_ROOT / "generated" / "skill_handoff_contracts.json"
 ACTIVATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-activation-surface.schema.json"
 FEDERATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-federation-surface.schema.json"
+QUESTBOOK_PATH = REPO_ROOT / "QUESTBOOK.md"
+QUESTBOOK_HARVEST_DOC_PATH = REPO_ROOT / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
+QUESTBOOK_QUEST_IDS = ("AOA-PB-Q-0001", "AOA-PB-Q-0002")
+QUESTBOOK_REQUIRED_DOC_SECTIONS = (
+    "Core rule",
+    "What harvest is",
+    "What harvest is not",
+    "What reanchor is",
+    "What reanchor is not",
+    "Harvest thresholds",
+    "Valid anchor classes",
+    "Named promotion destinations",
+    "Anti-patterns",
+)
+QUESTBOOK_REQUIRED_DOC_TOKENS = (
+    "PLAYBOOK_RECURRENCE_DISCIPLINE",
+    "reanchor is not retry",
+    "docs/real-runs/",
+    "docs/gate-reviews/",
+    "artifact anchors",
+    "checkpoint anchors",
+    "review anchors",
+)
+QUESTBOOK_REQUIRED_INDEX_TOKENS = (
+    "AOA-PB-Q-0001",
+    "AOA-PB-Q-0002",
+    "Frontier",
+    "Near",
+    "docs/QUEST_HARVEST_AND_REANCHOR.md",
+)
 ACTIVATION_EXAMPLE_PATHS = {
     "AOA-P-0008": REPO_ROOT / "examples" / "playbook_activation.long-horizon-model-tier-orchestra.example.json",
     "AOA-P-0009": REPO_ROOT / "examples" / "playbook_activation.restartable-inquiry-loop.example.json",
@@ -1023,6 +1055,14 @@ def read_text(path: Path) -> str:
         return path.read_text(encoding="utf-8")
     except FileNotFoundError:
         fail(f"missing required file: {display_path(path)}")
+
+
+def read_yaml(path: Path) -> object:
+    text = read_text(path)
+    try:
+        return yaml.safe_load(text)
+    except yaml.YAMLError as exc:
+        fail(f"invalid YAML in {display_path(path)}: {exc}")
 
 
 def parse_scalar(value: str) -> str:
@@ -2432,6 +2472,47 @@ def validate_real_run_workflow_surfaces() -> None:
             fail(f"{location} must mention 'live incident' explicitly for incident recovery runs")
 
 
+def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
+    questbook_path = repo_root / "QUESTBOOK.md"
+    harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
+    quest_paths = {quest_id: repo_root / "quests" / f"{quest_id}.yaml" for quest_id in QUESTBOOK_QUEST_IDS}
+
+    questbook_text = read_text(questbook_path)
+    questbook_location = questbook_path.relative_to(repo_root).as_posix()
+    for token in QUESTBOOK_REQUIRED_INDEX_TOKENS:
+        if token not in questbook_text:
+            fail(f"{questbook_location} must mention '{token}' explicitly")
+
+    harvest_doc_text = read_text(harvest_doc_path)
+    harvest_doc_location = harvest_doc_path.relative_to(repo_root).as_posix()
+    sections = markdown_sections(harvest_doc_text)
+    missing_sections = [
+        section_name for section_name in QUESTBOOK_REQUIRED_DOC_SECTIONS if section_name not in sections
+    ]
+    if missing_sections:
+        fail(
+            f"{harvest_doc_location} is missing required questbook sections: "
+            + ", ".join(missing_sections)
+        )
+    for token in QUESTBOOK_REQUIRED_DOC_TOKENS:
+        if token not in harvest_doc_text:
+            fail(f"{harvest_doc_location} must mention '{token}' explicitly")
+
+    for quest_id, quest_path in quest_paths.items():
+        payload = read_yaml(quest_path)
+        location = quest_path.relative_to(repo_root).as_posix()
+        if not isinstance(payload, dict):
+            fail(f"{location} must contain a YAML mapping")
+        if payload.get("schema_version") != "work_quest_v1":
+            fail(f"{location} must declare schema_version 'work_quest_v1'")
+        if payload.get("id") != quest_id:
+            fail(f"{location} must declare id '{quest_id}'")
+        if payload.get("repo") != "aoa-playbooks":
+            fail(f"{location} must target repo 'aoa-playbooks'")
+        if payload.get("public_safe") is not True:
+            fail(f"{location} must declare public_safe: true")
+
+
 def main() -> int:
     try:
         validate_nested_agents_surface()
@@ -2471,6 +2552,7 @@ def main() -> int:
         )
         validate_harvest_templates()
         validate_real_run_workflow_surfaces()
+        validate_questbook_surface()
     except ValidationError as exc:
         print(f"[error] {exc}", file=sys.stderr)
         return 1
@@ -2487,6 +2569,7 @@ def main() -> int:
     print("[ok] validated playbook activation examples")
     print("[ok] validated shipped playbook real-run harvest templates")
     print("[ok] validated repo-first real-run workflow surfaces")
+    print("[ok] validated questbook foundation surface")
     return 0
 
 

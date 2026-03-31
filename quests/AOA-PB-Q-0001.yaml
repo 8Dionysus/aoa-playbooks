@@ -1,0 +1,46 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0001
+title: Publish the playbook recurrence and reanchor doctrine
+summary: ''
+repo: aoa-playbooks
+owner_surface: docs/QUEST_HARVEST_AND_REANCHOR.md
+theme_ref: ''
+milestone_ref: ''
+kind: doctrine
+state: ready
+band: frontier
+difficulty: d4_architecture
+risk: r2_contract
+control_mode: human_codex_copilot
+delegate_tier: conductor
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: docs_only
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 2
+parent: null
+depends_on: []
+activation:
+  mode: immediate
+anchor_ref:
+  artifact: recurrence_discipline
+  ref: docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md
+handoff_role: playbook-maintainer
+evidence:
+  - recurrence and return stay scenario-owned
+  - reanchor is not retry
+  - harvest stays evidence-first
+harvest:
+  target: recurrence_doctrine
+opened_at: '2026-03-31'
+touched_at: '2026-03-31'
+tags:
+  - playbooks
+  - recurrence
+  - reanchor
+notes: ''
+public_safe: true
