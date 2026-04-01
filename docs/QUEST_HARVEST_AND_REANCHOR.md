@@ -52,3 +52,9 @@ Reanchor is not permission to widen scope until the route feels stable.
 - treating reanchor as retry
 - promoting harvest into runtime state
 - hiding drift with repeated continuity claims
+
+## Manual-first pilot outcome
+
+- The March 31 manual-first questbook pilot produced one reviewed source/proof lane across `aoa-techniques`, `aoa-skills`, and `aoa-evals`.
+- That is enough to keep the harvest boundary explicit, but not enough recurrence to promote a reviewed summary or gate-review adjunct honestly.
+- `AOA-PB-Q-0002` therefore reanchors here until a second reviewed lane shows the same harvest destination without turning playbooks into a run ledger.

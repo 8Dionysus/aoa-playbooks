@@ -7,7 +7,7 @@ owner_surface: docs/QUEST_HARVEST_AND_REANCHOR.md
 theme_ref: ''
 milestone_ref: ''
 kind: seam
-state: triaged
+state: reanchor
 band: near
 difficulty: d3_seam
 risk: r1_repo_local
@@ -44,5 +44,7 @@ tags:
   - playbooks
   - harvest
   - evidence
-notes: ''
+notes: Reanchored during the Phase 2 manual-first pilot because one reviewed
+  source/proof lane is enough to name the harvest boundary but not enough
+  recurrence to promote a reviewed summary or gate-review adjunct honestly.
 public_safe: true
