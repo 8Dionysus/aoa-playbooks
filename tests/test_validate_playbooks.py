@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import tempfile
 from pathlib import Path
 import unittest
@@ -501,6 +502,39 @@ class ValidatePlaybookReviewPacketContractsSurfaceTests(unittest.TestCase):
                 1,
             )
             write_text(generated_dir / "playbook_review_packet_contracts.min.json", payload)
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "generated/playbook_review_packet_contracts.min.json is out of date",
+            ):
+                original_packet_path = validate_playbooks.PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH
+                try:
+                    validate_playbooks.PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = (
+                        generated_dir / "playbook_review_packet_contracts.min.json"
+                    )
+                    playbooks_by_id = validate_playbooks.validate_registry()
+                    validate_playbooks.validate_playbook_review_packet_contracts_surface(playbooks_by_id)
+                finally:
+                    validate_playbooks.PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = original_packet_path
+
+    def test_review_packet_contracts_surface_rejects_missing_source_review_refs_for_review_required_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            repo_root.mkdir(parents=True, exist_ok=True)
+            generated_dir = repo_root / "generated"
+            generated_dir.mkdir(parents=True, exist_ok=True)
+
+            payload = json.loads(
+                (REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json").read_text(encoding="utf-8")
+            )
+            for entry in payload["playbooks"]:
+                if entry["playbook_id"] == "AOA-P-0011":
+                    entry["source_review_refs"] = []
+                    break
+            write_text(
+                generated_dir / "playbook_review_packet_contracts.min.json",
+                json.dumps(payload, indent=2, ensure_ascii=True) + "\n",
+            )
 
             with self.assertRaisesRegex(
                 validate_playbooks.ValidationError,

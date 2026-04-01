@@ -147,6 +147,10 @@ def _candidate_packet_kinds(*, memo_runtime_surfaces: list[str], eval_anchors: l
     return [kind for kind in CANDIDATE_PACKET_KIND_ORDER if kind in packet_kinds]
 
 
+def _playbook_source_review_ref(playbook_name: str) -> str:
+    return f"playbooks/{playbook_name}/PLAYBOOK.md"
+
+
 def build_review_packet_contracts_payload() -> dict[str, object]:
     registry_by_id = _load_registry_by_id()
     activation_by_id = _load_surface_map(ACTIVATION_PATH, key_name="playbook_id")
@@ -184,7 +188,7 @@ def build_review_packet_contracts_payload() -> dict[str, object]:
         ):
             continue
 
-        source_review_refs: list[str] = []
+        source_review_refs: list[str] = [_playbook_source_review_ref(str(registry_entry["name"]))]
         gate_verdict: str | None = None
         if review_status_entry is not None:
             gate_review_ref = review_status_entry.get("gate_review_ref")

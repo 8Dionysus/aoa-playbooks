@@ -257,15 +257,37 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             ],
         )
         self.assertEqual(by_id["AOA-P-0011"]["memo_runtime_surfaces"], ["approval_record"])
+        self.assertEqual(
+            by_id["AOA-P-0011"]["source_review_refs"],
+            ["playbooks/bounded-change-safe/PLAYBOOK.md"],
+        )
         self.assertIsNone(by_id["AOA-P-0011"]["gate_verdict"])
 
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
         self.assertEqual(
             by_id["AOA-P-0017"]["source_review_refs"][0],
+            "playbooks/split-wave-cross-repo-rollout/PLAYBOOK.md",
+        )
+        self.assertEqual(
+            by_id["AOA-P-0017"]["source_review_refs"][1],
             "docs/gate-reviews/split-wave-cross-repo-rollout.md",
         )
         self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
+        self.assertEqual(
+            by_id["AOA-P-0019"]["source_review_refs"],
+            [
+                "playbooks/release-migration-cutover/PLAYBOOK.md",
+                "docs/gate-reviews/release-migration-cutover.md",
+            ],
+        )
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
+        self.assertEqual(
+            by_id["AOA-P-0020"]["source_review_refs"],
+            [
+                "playbooks/incident-recovery-routing/PLAYBOOK.md",
+                "docs/gate-reviews/incident-recovery-routing.md",
+            ],
+        )
 
 
 if __name__ == "__main__":
