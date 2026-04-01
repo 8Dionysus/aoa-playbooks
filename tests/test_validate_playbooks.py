@@ -273,6 +273,74 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
 
             validate_playbooks.validate_questbook_surface(repo_root)
 
+    def test_additive_questbook_quest_passes_when_referenced(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            self.write_valid_surface(repo_root)
+            write_text(
+                repo_root / "quests" / "AOA-PB-Q-0003.yaml",
+                "\n".join(
+                    (
+                        "schema_version: work_quest_v1",
+                        "id: AOA-PB-Q-0003",
+                        "title: Adjunct campaign outline",
+                        "summary: ''",
+                        "repo: aoa-playbooks",
+                        "owner_surface: docs/QUESTLINE_AND_CAMPAIGN_MODEL.md",
+                        "theme_ref: ''",
+                        "milestone_ref: ''",
+                        "kind: seam",
+                        "state: captured",
+                        "band: frontier",
+                        "difficulty: d3_seam",
+                        "risk: r1_repo_local",
+                        "control_mode: human_codex_copilot",
+                        "delegate_tier: planner",
+                        "fallback_tier: verifier",
+                        "wrapper_class: codex_primary",
+                        "write_scope: repo_local",
+                        "split_required: true",
+                        "complexity_basis:",
+                        "  scope: 2",
+                        "  ambiguity: 2",
+                        "  boundary: 2",
+                        "  verification: 1",
+                        "parent: null",
+                        "depends_on: []",
+                        "activation:",
+                        "  mode: manual",
+                        "anchor_ref:",
+                        "  artifact: questline_campaign_model",
+                        "  ref: docs/QUESTLINE_AND_CAMPAIGN_MODEL.md",
+                        "handoff_role: playbook-maintainer",
+                        "evidence:",
+                        "  - outline stays bounded",
+                        "  - reanchor stays governed return",
+                        "  - runtime ledger posture stays excluded",
+                        "harvest:",
+                        "  target: playbook",
+                        "opened_at: '2026-04-01'",
+                        "touched_at: '2026-04-01'",
+                        "tags:",
+                        "  - questline",
+                        "  - campaign",
+                        "notes: ''",
+                        "public_safe: true",
+                        "",
+                    )
+                ),
+            )
+            write_text(
+                repo_root / "QUESTBOOK.md",
+                (repo_root / "QUESTBOOK.md").read_text(encoding="utf-8").replace(
+                    "- none yet",
+                    "- `AOA-PB-Q-0003` Adjunct campaign outline surface.",
+                    1,
+                ),
+            )
+
+            validate_playbooks.validate_questbook_surface(repo_root)
+
     def test_missing_questbook_file_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "aoa-playbooks"
@@ -280,6 +348,18 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
             (repo_root / "QUESTBOOK.md").unlink()
 
             with self.assertRaisesRegex(validate_playbooks.ValidationError, "missing required file"):
+                validate_playbooks.validate_questbook_surface(repo_root)
+
+    def test_missing_foundation_quest_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            self.write_valid_surface(repo_root)
+            (repo_root / "quests" / "AOA-PB-Q-0001.yaml").unlink()
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "foundation quest ids: AOA-PB-Q-0001",
+            ):
                 validate_playbooks.validate_questbook_surface(repo_root)
 
     def test_quest_id_mismatch_fails(self) -> None:

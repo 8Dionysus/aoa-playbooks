@@ -1,0 +1,29 @@
+schema_version: questline_outline_v1
+id: AOA-PB-CAMP-0001
+title: Portable-layer hardening lane
+summary: Example-only questline that links one live source-owned quest with one new progression-proof quest and a reviewable reanchor posture.
+campaign_kind: questline
+entry_quest: AOA-SK-Q-0003
+recommended_cohort_pattern: pair
+stages:
+  - stage_id: stage-01
+    quest_ref: AOA-SK-Q-0003
+    anchor_class: artifact_anchor
+    success_signal: portable layer contract is tightened and verified
+    note: source-owned skill quest remains the authority
+  - stage_id: stage-02
+    quest_ref: AOA-EV-Q-0005
+    anchor_class: review_anchor
+    success_signal: progression evidence model is reviewed without score collapse
+reanchor_policy:
+  max_reanchors: 1
+  valid_anchor_classes:
+    - artifact_anchor
+    - checkpoint_anchor
+    - review_anchor
+  rule: reanchor is governed return, not retry
+harvest_policy:
+  min_reviewed_lanes: 2
+  promotion_target: playbook
+  note: one lane is enough for outline reflection, not enough for stable recurrence canon
+public_safe: true

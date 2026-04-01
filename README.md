@@ -24,10 +24,11 @@ If you are new to this repository, use this path:
 11. Read [docs/PLAYBOOK_REAL_RUN_HARVEST](docs/PLAYBOOK_REAL_RUN_HARVEST.md) for evidence-first real-run harvest doctrine.
 12. Read [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md) for promotion rules before any new adjunct reaches composition.
 13. Read [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md) for the current lifecycle posture and next bounded move.
-14. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
-15. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
-16. Read [docs/RELEASING](docs/RELEASING.md) if you need the bounded repo-level release flow.
-17. Read [ROADMAP](ROADMAP.md) for the current direction.
+14. Read [docs/QUESTLINE_AND_CAMPAIGN_MODEL](docs/QUESTLINE_AND_CAMPAIGN_MODEL.md) for the adjunct outline seam for questlines, campaigns, and rare raids.
+15. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
+16. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
+17. Read [docs/RELEASING](docs/RELEASING.md) if you need the bounded repo-level release flow.
+18. Read [ROADMAP](ROADMAP.md) for the current direction.
 
 ## What this repository is for
 
@@ -138,6 +139,8 @@ The repository currently ships `20` registry entries, `15` authored playbook bun
 The current goal is no longer bootstrap catalog growth for its own sake.
 The next honest move is evidence-led maturation: keep `AOA-P-0017` stable, wait for a real qualifying cutover for `AOA-P-0019`, and wait for a live incident for `AOA-P-0020`.
 The runtime-facing extension remains intentionally bounded: a compact activation cohort may publish explicit memo-read defaults while memo recall truth, search posture, and routing ownership stay in `aoa-memo` and `aoa-routing`.
+
+Questline and campaign reflection now also has a bounded adjunct note for reviewed outline posture, but it remains example-only and never becomes a runtime ledger or quest authority surface.
 
 ## Principles
 

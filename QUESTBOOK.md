@@ -5,7 +5,7 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 
 ## Frontier
 
-- none yet
+- `AOA-PB-Q-0003` Define questline and campaign outline posture for the RPG reflection layer
 
 ## Near
 

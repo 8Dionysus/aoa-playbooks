@@ -44,7 +44,8 @@ ACTIVATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-activation-surface.sc
 FEDERATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-federation-surface.schema.json"
 QUESTBOOK_PATH = REPO_ROOT / "QUESTBOOK.md"
 QUESTBOOK_HARVEST_DOC_PATH = REPO_ROOT / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
-QUESTBOOK_QUEST_IDS = ("AOA-PB-Q-0001", "AOA-PB-Q-0002")
+FOUNDATION_QUESTBOOK_QUEST_IDS = ("AOA-PB-Q-0001", "AOA-PB-Q-0002")
+QUESTBOOK_QUEST_IDS = FOUNDATION_QUESTBOOK_QUEST_IDS
 QUESTBOOK_REQUIRED_DOC_SECTIONS = (
     "Core rule",
     "What harvest is",
@@ -223,6 +224,29 @@ ALLOWED_RETURN_REENTRY_MODES = {
     "rollback_gate",
     "safe_stop",
 }
+
+
+def quest_sort_key(quest_id: str) -> tuple[int, str]:
+    suffix = quest_id.rsplit("-", 1)[-1]
+    try:
+        return (int(suffix), quest_id)
+    except ValueError:
+        return (sys.maxsize, quest_id)
+
+
+def discover_questbook_quest_ids(repo_root: Path = REPO_ROOT) -> tuple[str, ...]:
+    quests_dir = repo_root / "quests"
+    discovered = sorted(
+        {
+            path.stem
+            for path in quests_dir.glob("AOA-PB-Q-*.yaml")
+            if path.is_file()
+        },
+        key=quest_sort_key,
+    )
+    if not discovered:
+        return FOUNDATION_QUESTBOOK_QUEST_IDS
+    return tuple(discovered)
 RETURN_FIELD_NAMES = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
 MEMO_SPEC_FIELD_NAMES = (
     "memo_recall_modes",
@@ -2476,7 +2500,14 @@ def validate_real_run_workflow_surfaces() -> None:
 def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     questbook_path = repo_root / "QUESTBOOK.md"
     harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
-    quest_paths = {quest_id: repo_root / "quests" / f"{quest_id}.yaml" for quest_id in QUESTBOOK_QUEST_IDS}
+    quest_ids = discover_questbook_quest_ids(repo_root)
+    missing_foundation = [
+        quest_id for quest_id in FOUNDATION_QUESTBOOK_QUEST_IDS if quest_id not in quest_ids
+    ]
+    if missing_foundation:
+        missing_display = ", ".join(missing_foundation)
+        fail(f"quests/ must include the foundation quest ids: {missing_display}")
+    quest_paths = {quest_id: repo_root / "quests" / f"{quest_id}.yaml" for quest_id in quest_ids}
 
     questbook_text = read_text(questbook_path)
     questbook_location = questbook_path.relative_to(repo_root).as_posix()
