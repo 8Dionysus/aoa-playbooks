@@ -47,6 +47,7 @@ jobs:
 
       - name: Run unit tests
         env:
+          AOA_EVALS_ROOT: ${{ github.workspace }}/.deps/aoa-evals
           AOA_SKILLS_ROOT: ${{ github.workspace }}/.deps/aoa-skills
         run: python -m unittest discover -s tests
 

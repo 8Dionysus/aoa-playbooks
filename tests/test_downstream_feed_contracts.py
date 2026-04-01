@@ -24,6 +24,7 @@ activation_builder = load_module("generate_playbook_activation_surfaces.py")
 federation_builder = load_module("generate_playbook_federation_surfaces.py")
 composition_builder = load_module("generate_playbook_composition_surfaces.py")
 review_status_builder = load_module("generate_playbook_review_status.py")
+review_packet_contract_builder = load_module("generate_playbook_review_packet_contracts.py")
 
 
 def load_generated(name: str):
@@ -232,6 +233,39 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0019"]["reviewed_run_count"], 0)
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0020"]["reviewed_run_count"], 0)
+
+    def test_review_packet_contract_surface_is_deterministic_and_keeps_packet_posture(self) -> None:
+        expected = review_packet_contract_builder.build_review_packet_contracts_payload()
+        current = load_generated("playbook_review_packet_contracts.min.json")
+
+        self.assertEqual(current, expected)
+        self.assertEqual(
+            set(current.keys()),
+            {"schema_version", "layer", "source_of_truth", "playbooks"},
+        )
+        self.assertEqual(current["schema_version"], 1)
+        self.assertEqual(current["layer"], "aoa-playbooks")
+
+        by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
+        self.assertIn("AOA-P-0011", by_id)
+        self.assertEqual(
+            by_id["AOA-P-0011"]["candidate_packet_kinds"],
+            [
+                "memo_candidate",
+                "runtime_evidence_selection_candidate",
+                "artifact_hook_candidate",
+            ],
+        )
+        self.assertEqual(by_id["AOA-P-0011"]["memo_runtime_surfaces"], ["approval_record"])
+        self.assertIsNone(by_id["AOA-P-0011"]["gate_verdict"])
+
+        self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
+        self.assertEqual(
+            by_id["AOA-P-0017"]["source_review_refs"][0],
+            "docs/gate-reviews/split-wave-cross-repo-rollout.md",
+        )
+        self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
+        self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
 
 
 if __name__ == "__main__":
