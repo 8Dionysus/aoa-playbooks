@@ -101,6 +101,7 @@ It now also validates derived composition surfaces for handoff contracts, failur
 It now also requires the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md` to stay present and aligned with the authored-vs-derived split of this layer.
 It now also validates the shipped real-run harvest templates under `examples/harvests/` so evidence scaffolding stays reviewable without becoming a runtime log substrate.
 It now also validates the repo-first real-run workflow surfaces under `docs/real-runs/` and `docs/gate-reviews/` without turning this repository into a runtime evidence store.
+It now also derives a compact review-status surface so downstream readers can inspect current evidence posture without scraping Markdown or moving review truth out of authored run and gate-review notes.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 `AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, and is now back in the federation cohort because its ATM10 overlay skills reconcile as `project_overlay_federation_ready` in `aoa-skills` without introducing a governance lane there.
 
@@ -109,6 +110,8 @@ Derived playbook surfaces live at:
 - `schemas/playbook-federation-surface.schema.json`
 - `generated/playbook_activation_surfaces.min.json`
 - `generated/playbook_federation_surfaces.min.json`
+- `schemas/playbook-review-status.schema.json`
+- `generated/playbook_review_status.min.json`
 - `generated/playbook_handoff_contracts.json`
 - `generated/playbook_failure_catalog.json`
 - `generated/playbook_subagent_recipes.json`
@@ -128,6 +131,7 @@ To validate the current playbook-layer surface locally, run:
 python -m pip install -r requirements-dev.txt
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
+python scripts/generate_playbook_review_status.py --check
 python scripts/generate_playbook_composition_surfaces.py --check
 python scripts/validate_playbooks.py
 ```

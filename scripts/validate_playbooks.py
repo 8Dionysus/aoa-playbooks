@@ -33,7 +33,9 @@ PLAYBOOK_FAILURE_CATALOG_PATH = REPO_ROOT / "generated" / "playbook_failure_cata
 PLAYBOOK_SUBAGENT_RECIPES_PATH = REPO_ROOT / "generated" / "playbook_subagent_recipes.json"
 PLAYBOOK_AUTOMATION_SEEDS_PATH = REPO_ROOT / "generated" / "playbook_automation_seeds.json"
 PLAYBOOK_COMPOSITION_MANIFEST_PATH = REPO_ROOT / "generated" / "playbook_composition_manifest.json"
+PLAYBOOK_REVIEW_STATUS_PATH = REPO_ROOT / "generated" / "playbook_review_status.min.json"
 SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-registry.schema.json"
+REVIEW_STATUS_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-review-status.schema.json"
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
@@ -380,6 +382,7 @@ REQUIRED_GATE_REVIEW_SECTIONS = (
 ALLOWED_GATE_VERDICT_TOKENS = ("hold", "ready-for-composition-review", "composition-landed")
 REAL_RUN_SUMMARY_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)\.md$")
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\([^)]+\)")
+REVIEWED_RUN_REF_RE = re.compile(r"docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+\.md)")
 BUNDLE_SEMANTIC_CHECKS = {
     "AOA-P-0006": {
         "frontmatter_lists": {
@@ -1220,6 +1223,34 @@ def validate_federation_schema_surface() -> dict[str, object]:
     if not isinstance(surface_type, dict) or surface_type.get("const") != "playbook_federation_surface":
         fail("playbook federation schema must pin surface_type.const to 'playbook_federation_surface'")
     validate_memo_recall_spec_schema(schema, location="playbook federation schema")
+    return schema
+
+
+def validate_review_status_schema_surface() -> dict[str, object]:
+    schema = read_json(REVIEW_STATUS_SCHEMA_PATH)
+    if not isinstance(schema, dict):
+        fail("playbook review-status schema file must contain a JSON object")
+    required_top_level = {"$schema", "$id", "title", "type", "properties", "required"}
+    missing = sorted(required_top_level - set(schema))
+    if missing:
+        fail(f"playbook review-status schema is missing required top-level keys: {', '.join(missing)}")
+    if schema.get("type") != "object":
+        fail("playbook review-status schema must declare type 'object'")
+    properties = schema.get("properties")
+    if not isinstance(properties, dict):
+        fail("playbook review-status schema must expose properties")
+    playbooks = properties.get("playbooks")
+    if not isinstance(playbooks, dict):
+        fail("playbook review-status schema must expose a playbooks property")
+    items = playbooks.get("items")
+    if not isinstance(items, dict):
+        fail("playbook review-status schema playbooks.items must be an object schema")
+    composition_summary = items.get("properties", {}).get("composition_signal_summary")
+    if not isinstance(composition_summary, dict):
+        fail("playbook review-status schema must expose composition_signal_summary")
+    verdict_field = items.get("properties", {}).get("gate_verdict")
+    if not isinstance(verdict_field, dict) or set(verdict_field.get("enum", ())) != set(ALLOWED_GATE_VERDICT_TOKENS):
+        fail("playbook review-status schema must pin gate_verdict to the allowed verdict tokens")
     return schema
 
 
@@ -2497,6 +2528,118 @@ def validate_real_run_workflow_surfaces() -> None:
             fail(f"{location} must mention 'live incident' explicitly for incident recovery runs")
 
 
+def load_review_status_builder_module():
+    module_path = REPO_ROOT / "scripts" / "generate_playbook_review_status.py"
+    spec = importlib.util.spec_from_file_location("generate_playbook_review_status", module_path)
+    if spec is None or spec.loader is None:
+        fail("unable to load playbook review-status generator module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str, object]]) -> None:
+    builder = load_review_status_builder_module()
+    try:
+        expected = builder.build_review_status_payload()
+    except Exception as exc:
+        fail(str(exc))
+
+    payload = read_json(PLAYBOOK_REVIEW_STATUS_PATH)
+    if payload != expected:
+        fail(
+            "generated/playbook_review_status.min.json is out of date; "
+            "run scripts/generate_playbook_review_status.py"
+        )
+    if not isinstance(payload, dict):
+        fail("generated/playbook_review_status.min.json must contain a JSON object")
+    if payload.get("schema_version") != 1:
+        fail("generated/playbook_review_status.min.json must declare schema_version 1")
+    if payload.get("layer") != "aoa-playbooks":
+        fail("generated/playbook_review_status.min.json must declare layer 'aoa-playbooks'")
+    source_of_truth = payload.get("source_of_truth")
+    if not isinstance(source_of_truth, dict):
+        fail("generated/playbook_review_status.min.json must expose source_of_truth")
+    if source_of_truth.get("reviewed_runs_dir") != "docs/real-runs":
+        fail("generated/playbook_review_status.min.json must keep source_of_truth.reviewed_runs_dir")
+    if source_of_truth.get("gate_reviews_dir") != "docs/gate-reviews":
+        fail("generated/playbook_review_status.min.json must keep source_of_truth.gate_reviews_dir")
+
+    entries = payload.get("playbooks")
+    if not isinstance(entries, list):
+        fail("generated/playbook_review_status.min.json must expose playbooks as a list")
+
+    playbook_ids = [entry.get("playbook_id") for entry in entries if isinstance(entry, dict)]
+    if playbook_ids != sorted(playbook_ids):
+        fail("generated/playbook_review_status.min.json playbooks must stay ordered by playbook_id")
+    if len(playbook_ids) != len(set(playbook_ids)):
+        fail("generated/playbook_review_status.min.json playbooks must not duplicate playbook_id")
+
+    actual_reviewed_run_refs_by_playbook: dict[str, list[str]] = {}
+    for summary_path in sorted(REAL_RUN_SUMMARY_DIR.glob("*.md")):
+        if summary_path.name == "README.md":
+            continue
+        location = summary_path.relative_to(REPO_ROOT).as_posix()
+        text = read_text(summary_path)
+        sections = markdown_sections(text)
+        run_header = sections.get("Run Header", "")
+        match = re.search(r"\bAOA-P-\d{4}\b", run_header)
+        if match is None:
+            fail(f"{location} must mention an owning playbook id in 'Run Header'")
+        actual_reviewed_run_refs_by_playbook.setdefault(match.group(0), []).append(location)
+
+    for index, entry in enumerate(entries):
+        location = f"generated/playbook_review_status.min.json.playbooks[{index}]"
+        if not isinstance(entry, dict):
+            fail(f"{location} must be an object")
+        playbook_id = entry.get("playbook_id")
+        if not isinstance(playbook_id, str) or playbook_id not in playbooks_by_id:
+            fail(f"{location}.playbook_id must resolve in generated/playbook_registry.min.json")
+        if entry.get("playbook_name") != playbooks_by_id[playbook_id]["name"]:
+            fail(f"{location}.playbook_name must match generated/playbook_registry.min.json")
+        if entry.get("scenario") != playbooks_by_id[playbook_id]["scenario"]:
+            fail(f"{location}.scenario must match generated/playbook_registry.min.json")
+        gate_review_ref = entry.get("gate_review_ref")
+        if not isinstance(gate_review_ref, str) or not (REPO_ROOT / gate_review_ref).exists():
+            fail(f"{location}.gate_review_ref must point to an existing gate review")
+        reviewed_run_refs = entry.get("reviewed_run_refs")
+        if not isinstance(reviewed_run_refs, list):
+            fail(f"{location}.reviewed_run_refs must be a list")
+        expected_run_refs = actual_reviewed_run_refs_by_playbook.get(playbook_id, [])
+        if reviewed_run_refs != expected_run_refs:
+            fail(f"{location}.reviewed_run_refs must match the reviewed runs harvested for {playbook_id}")
+        if entry.get("reviewed_run_count") != len(expected_run_refs):
+            fail(f"{location}.reviewed_run_count must match the number of reviewed_run_refs")
+        expected_latest = expected_run_refs[-1] if expected_run_refs else None
+        if entry.get("latest_reviewed_run_ref") != expected_latest:
+            fail(f"{location}.latest_reviewed_run_ref must match the latest reviewed run ref")
+        if entry.get("gate_verdict") not in ALLOWED_GATE_VERDICT_TOKENS:
+            fail(f"{location}.gate_verdict must be an allowed verdict token")
+        composition_signal_summary = entry.get("composition_signal_summary")
+        if not isinstance(composition_signal_summary, dict):
+            fail(f"{location}.composition_signal_summary must be an object")
+        for field_name in ("failure_or_follow_up", "adjunct_candidate"):
+            value = composition_signal_summary.get(field_name)
+            if not isinstance(value, str) or len(value.strip()) < 10:
+                fail(f"{location}.composition_signal_summary.{field_name} must be a non-empty summary")
+
+        gate_review_text = read_text(REPO_ROOT / gate_review_ref)
+        sections = markdown_sections(gate_review_text)
+        latest_review_section = sections.get("Latest Reviewed Run", "")
+        referenced_run_refs = sorted(
+            {
+                f"docs/real-runs/{match.group(1)}"
+                for match in REVIEWED_RUN_REF_RE.finditer(latest_review_section)
+            }
+        )
+        missing_run_refs = [ref for ref in expected_run_refs if ref not in referenced_run_refs]
+        if missing_run_refs:
+            fail(
+                f"{gate_review_ref} must reference the reviewed runs it claims: "
+                + ", ".join(missing_run_refs)
+            )
+
+
 def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     questbook_path = repo_root / "QUESTBOOK.md"
     harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
@@ -2564,6 +2707,7 @@ def main() -> int:
         validate_schema_surface()
         validate_activation_schema_surface()
         validate_federation_schema_surface()
+        validate_review_status_schema_surface()
         playbooks_by_id = validate_registry()
         agent_names = load_agent_names()
         model_tier_artifacts = load_model_tier_artifacts()
@@ -2597,6 +2741,7 @@ def main() -> int:
         )
         validate_harvest_templates()
         validate_real_run_workflow_surfaces()
+        validate_playbook_review_status_surface(playbooks_by_id)
         validate_questbook_surface()
     except ValidationError as exc:
         print(f"[error] {exc}", file=sys.stderr)
@@ -2606,11 +2751,13 @@ def main() -> int:
     print("[ok] validated playbook registry schema surface")
     print("[ok] validated playbook activation schema surface")
     print("[ok] validated playbook federation schema surface")
+    print("[ok] validated playbook review-status schema surface")
     print("[ok] validated generated/playbook_registry.min.json")
     print("[ok] validated generated/playbook_activation_surfaces.min.json")
     print("[ok] validated authored playbook bundles")
     print("[ok] validated generated/playbook_federation_surfaces.min.json")
     print("[ok] validated generated playbook composition surfaces")
+    print("[ok] validated generated playbook review-status surface")
     print("[ok] validated playbook activation examples")
     print("[ok] validated shipped playbook real-run harvest templates")
     print("[ok] validated repo-first real-run workflow surfaces")

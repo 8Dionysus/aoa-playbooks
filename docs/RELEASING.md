@@ -2,7 +2,7 @@
 
 This guide defines the bounded publication flow for `aoa-playbooks`.
 
-`aoa-playbooks` is released as a repository of scenario-level doctrine, authored playbook bundles, and derived activation/federation/composition surfaces.
+`aoa-playbooks` is released as a repository of scenario-level doctrine, authored playbook bundles, reviewed evidence notes, and derived activation/federation/review-status/composition surfaces.
 
 See also:
 - [Documentation Map](README.md)
@@ -28,6 +28,7 @@ A release should make it easy to answer:
    - `python -m pip install -r requirements-dev.txt`
    - `python scripts/generate_playbook_activation_surfaces.py --check`
    - `python scripts/generate_playbook_federation_surfaces.py --check`
+   - `python scripts/generate_playbook_review_status.py --check`
    - `python scripts/generate_playbook_composition_surfaces.py --check`
    - `python scripts/validate_playbooks.py`
 4. If the release touches validator behavior directly, also run:
