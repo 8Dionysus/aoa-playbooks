@@ -7,7 +7,7 @@ owner_surface: docs/QUEST_HARVEST_AND_REANCHOR.md
 theme_ref: ''
 milestone_ref: ''
 kind: doctrine
-state: ready
+state: done
 band: frontier
 difficulty: d4_architecture
 risk: r2_contract
@@ -42,5 +42,6 @@ tags:
   - playbooks
   - recurrence
   - reanchor
-notes: ''
+notes: Closed in the Phase 2 manual-first hygiene pass after recurrence, reanchor,
+  and evidence-first harvest posture were all published locally.
 public_safe: true

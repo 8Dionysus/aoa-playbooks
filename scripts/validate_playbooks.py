@@ -66,12 +66,13 @@ QUESTBOOK_REQUIRED_DOC_TOKENS = (
     "review anchors",
 )
 QUESTBOOK_REQUIRED_INDEX_TOKENS = (
-    "AOA-PB-Q-0001",
-    "AOA-PB-Q-0002",
     "Frontier",
     "Near",
+    "Blocked / reanchor",
+    "Harvest candidates",
     "docs/QUEST_HARVEST_AND_REANCHOR.md",
 )
+CLOSED_QUEST_STATES = {"done", "dropped"}
 ACTIVATION_EXAMPLE_PATHS = {
     "AOA-P-0008": REPO_ROOT / "examples" / "playbook_activation.long-horizon-model-tier-orchestra.example.json",
     "AOA-P-0009": REPO_ROOT / "examples" / "playbook_activation.restartable-inquiry-loop.example.json",
@@ -2479,9 +2480,6 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
 
     questbook_text = read_text(questbook_path)
     questbook_location = questbook_path.relative_to(repo_root).as_posix()
-    for token in QUESTBOOK_REQUIRED_INDEX_TOKENS:
-        if token not in questbook_text:
-            fail(f"{questbook_location} must mention '{token}' explicitly")
 
     harvest_doc_text = read_text(harvest_doc_path)
     harvest_doc_location = harvest_doc_path.relative_to(repo_root).as_posix()
@@ -2498,6 +2496,8 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
         if token not in harvest_doc_text:
             fail(f"{harvest_doc_location} must mention '{token}' explicitly")
 
+    active_quest_ids: list[str] = []
+    closed_quest_ids: list[str] = []
     for quest_id, quest_path in quest_paths.items():
         payload = read_yaml(quest_path)
         location = quest_path.relative_to(repo_root).as_posix()
@@ -2511,6 +2511,20 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
             fail(f"{location} must target repo 'aoa-playbooks'")
         if payload.get("public_safe") is not True:
             fail(f"{location} must declare public_safe: true")
+        if payload.get("state") in CLOSED_QUEST_STATES:
+            closed_quest_ids.append(quest_id)
+        else:
+            active_quest_ids.append(quest_id)
+
+    for token in QUESTBOOK_REQUIRED_INDEX_TOKENS:
+        if token not in questbook_text:
+            fail(f"{questbook_location} must mention '{token}' explicitly")
+    for quest_id in active_quest_ids:
+        if quest_id not in questbook_text:
+            fail(f"{questbook_location} must reference active quest id '{quest_id}'")
+    for quest_id in closed_quest_ids:
+        if quest_id in questbook_text:
+            fail(f"{questbook_location} must not list closed quest id '{quest_id}'")
 
 
 def main() -> int:

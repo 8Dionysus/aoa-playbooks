@@ -5,11 +5,19 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 
 ## Frontier
 
-- `AOA-PB-Q-0001` Publish the recurrence and reanchor doctrine for this repository.
+- none yet
 
 ## Near
 
-- `AOA-PB-Q-0002` Define harvest thresholds, valid anchor classes, and named promotion destinations.
+- none yet
+
+## Blocked / reanchor
+
+- `AOA-PB-Q-0002` Define harvest thresholds, valid anchor classes, and named promotion destinations without promoting one reviewed lane into fake recurrence.
+
+## Harvest candidates
+
+- none yet
 
 ## Notes
 
