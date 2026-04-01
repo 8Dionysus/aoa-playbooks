@@ -124,6 +124,7 @@ Derived playbook surfaces live at:
 To validate the current playbook-layer surface locally, run:
 
 ```bash
+python -m pip install -r requirements-dev.txt
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_composition_surfaces.py --check
