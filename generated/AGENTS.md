@@ -49,6 +49,7 @@ For `playbook_activation_surfaces.min.json`, `playbook_federation_surfaces.min.j
 Whenever canonical inputs change, run:
 
 ```bash
+python -m pip install -r requirements-dev.txt
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_composition_surfaces.py --check

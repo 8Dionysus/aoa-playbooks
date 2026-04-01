@@ -71,6 +71,7 @@ The authored `PLAYBOOK.md` should remain the main object, not a forest of per-pl
 Run the normal playbook-layer checks:
 
 ```bash
+python -m pip install -r requirements-dev.txt
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_composition_surfaces.py --check
