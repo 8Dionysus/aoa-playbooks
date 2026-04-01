@@ -13,9 +13,6 @@ ACTIVATION_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.js
 FEDERATION_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
 REVIEW_STATUS_PATH = REPO_ROOT / "generated" / "playbook_review_status.min.json"
 OUTPUT_PATH = REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json"
-AOA_EVALS_ROOT = Path(
-    os.environ.get("AOA_EVALS_ROOT", str(REPO_ROOT.parent / "aoa-evals"))
-).expanduser().resolve()
 
 KNOWN_MEMO_RUNTIME_SURFACES = (
     "checkpoint_export",
@@ -32,6 +29,21 @@ CANDIDATE_PACKET_KIND_ORDER = (
     "runtime_evidence_selection_candidate",
     "artifact_hook_candidate",
 )
+
+
+def _resolve_aoa_evals_root() -> Path:
+    configured = os.environ.get("AOA_EVALS_ROOT")
+    if configured:
+        return Path(configured).expanduser().resolve()
+
+    for candidate in (REPO_ROOT.parent / "aoa-evals", REPO_ROOT / ".deps" / "aoa-evals"):
+        if candidate.exists():
+            return candidate.resolve()
+
+    return (REPO_ROOT.parent / "aoa-evals").resolve()
+
+
+AOA_EVALS_ROOT = _resolve_aoa_evals_root()
 
 
 def read_text(path: Path) -> str:
