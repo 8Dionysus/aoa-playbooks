@@ -517,6 +517,76 @@ class ValidatePlaybookReviewPacketContractsSurfaceTests(unittest.TestCase):
                 finally:
                     validate_playbooks.PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = original_packet_path
 
+
+class ValidatePlaybookReviewIntakeSurfaceTests(unittest.TestCase):
+    def test_review_intake_surface_passes_for_current_repo(self) -> None:
+        validate_playbooks.validate_playbook_review_intake_surface()
+
+    def test_review_intake_surface_rejects_accepted_packet_kind_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            repo_root.mkdir(parents=True, exist_ok=True)
+            generated_dir = repo_root / "generated"
+            generated_dir.mkdir(parents=True, exist_ok=True)
+
+            payload = json.loads(
+                (REPO_ROOT / "generated" / "playbook_review_intake.min.json").read_text(encoding="utf-8")
+            )
+            for entry in payload["playbooks"]:
+                if entry["playbook_id"] == "AOA-P-0011":
+                    entry["accepted_packet_kinds"] = ["unexpected_packet_kind"]
+                    break
+            write_text(
+                generated_dir / "playbook_review_intake.min.json",
+                json.dumps(payload, indent=2, ensure_ascii=True) + "\n",
+            )
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "generated/playbook_review_intake.min.json is out of date",
+            ):
+                original_intake_path = validate_playbooks.PLAYBOOK_REVIEW_INTAKE_PATH
+                try:
+                    validate_playbooks.PLAYBOOK_REVIEW_INTAKE_PATH = (
+                        generated_dir / "playbook_review_intake.min.json"
+                    )
+                    validate_playbooks.validate_playbook_review_intake_surface()
+                finally:
+                    validate_playbooks.PLAYBOOK_REVIEW_INTAKE_PATH = original_intake_path
+
+    def test_review_intake_surface_rejects_gate_review_ref_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            repo_root.mkdir(parents=True, exist_ok=True)
+            generated_dir = repo_root / "generated"
+            generated_dir.mkdir(parents=True, exist_ok=True)
+
+            payload = json.loads(
+                (REPO_ROOT / "generated" / "playbook_review_intake.min.json").read_text(encoding="utf-8")
+            )
+            for entry in payload["playbooks"]:
+                if entry["playbook_id"] == "AOA-P-0017":
+                    entry["gate_review_ref"] = "docs/gate-reviews/drifted.md"
+                    break
+            write_text(
+                generated_dir / "playbook_review_intake.min.json",
+                json.dumps(payload, indent=2, ensure_ascii=True) + "\n",
+            )
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "generated/playbook_review_intake.min.json is out of date",
+            ):
+                original_intake_path = validate_playbooks.PLAYBOOK_REVIEW_INTAKE_PATH
+                try:
+                    validate_playbooks.PLAYBOOK_REVIEW_INTAKE_PATH = (
+                        generated_dir / "playbook_review_intake.min.json"
+                    )
+                    validate_playbooks.validate_playbook_review_intake_surface()
+                finally:
+                    validate_playbooks.PLAYBOOK_REVIEW_INTAKE_PATH = original_intake_path
+
+class ValidatePlaybookReviewPacketContractRegressionTests(unittest.TestCase):
     def test_review_packet_contracts_surface_rejects_missing_source_review_refs_for_review_required_contract(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "aoa-playbooks"

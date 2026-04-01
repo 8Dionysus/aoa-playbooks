@@ -37,6 +37,7 @@ PLAYBOOK_REVIEW_STATUS_PATH = REPO_ROOT / "generated" / "playbook_review_status.
 PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = (
     REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json"
 )
+PLAYBOOK_REVIEW_INTAKE_PATH = REPO_ROOT / "generated" / "playbook_review_intake.min.json"
 SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-registry.schema.json"
 REVIEW_STATUS_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-review-status.schema.json"
 REVIEW_PACKET_CONTRACTS_SCHEMA_PATH = (
@@ -2593,6 +2594,19 @@ def load_review_packet_contract_builder_module():
     return module
 
 
+def load_review_intake_builder_module():
+    module_path = REPO_ROOT / "scripts" / "generate_playbook_review_intake.py"
+    spec = importlib.util.spec_from_file_location(
+        "generate_playbook_review_intake",
+        module_path,
+    )
+    if spec is None or spec.loader is None:
+        fail("unable to load playbook review intake generator module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str, object]]) -> None:
     builder = load_review_status_builder_module()
     try:
@@ -2860,6 +2874,132 @@ def validate_playbook_review_packet_contracts_surface(
                 fail(f"{location}.gate_verdict must match generated/playbook_review_status.min.json")
 
 
+def validate_playbook_review_intake_surface() -> None:
+    builder = load_review_intake_builder_module()
+    try:
+        expected = builder.build_review_intake_payload()
+    except Exception as exc:
+        fail(str(exc))
+
+    payload = read_json(PLAYBOOK_REVIEW_INTAKE_PATH)
+    if payload != expected:
+        fail(
+            "generated/playbook_review_intake.min.json is out of date; "
+            "run scripts/generate_playbook_review_intake.py"
+        )
+    if not isinstance(payload, dict):
+        fail("generated/playbook_review_intake.min.json must contain a JSON object")
+    if payload.get("schema_version") != 1:
+        fail("generated/playbook_review_intake.min.json must declare schema_version 1")
+    if payload.get("layer") != "aoa-playbooks":
+        fail("generated/playbook_review_intake.min.json must declare layer 'aoa-playbooks'")
+    expected_source_of_truth = {
+        "review_packet_contracts": "generated/playbook_review_packet_contracts.min.json",
+        "review_status": "generated/playbook_review_status.min.json",
+        "activation_examples": "examples/playbook_activation.*.example.json",
+        "gate_reviews_dir": "docs/gate-reviews",
+        "reviewed_runs_dir": "docs/real-runs",
+    }
+    if payload.get("source_of_truth") != expected_source_of_truth:
+        fail("generated/playbook_review_intake.min.json must keep source_of_truth stable")
+
+    entries = payload.get("playbooks")
+    if not isinstance(entries, list):
+        fail("generated/playbook_review_intake.min.json must expose playbooks as a list")
+
+    contract_payload = read_json(PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH)
+    if not isinstance(contract_payload, dict):
+        fail("generated/playbook_review_packet_contracts.min.json must stay an object")
+    contracts_by_id = {
+        entry["playbook_id"]: entry
+        for entry in contract_payload.get("playbooks", [])
+        if isinstance(entry, dict) and isinstance(entry.get("playbook_id"), str)
+    }
+    review_status_payload = read_json(PLAYBOOK_REVIEW_STATUS_PATH)
+    if not isinstance(review_status_payload, dict):
+        fail("generated/playbook_review_status.min.json must stay an object")
+    review_status_by_id = {
+        entry["playbook_id"]: entry
+        for entry in review_status_payload.get("playbooks", [])
+        if isinstance(entry, dict) and isinstance(entry.get("playbook_id"), str)
+    }
+
+    playbook_ids = [entry.get("playbook_id") for entry in entries if isinstance(entry, dict)]
+    if playbook_ids != sorted(playbook_ids):
+        fail("generated/playbook_review_intake.min.json playbooks must stay ordered by playbook_id")
+    if len(playbook_ids) != len(set(playbook_ids)):
+        fail("generated/playbook_review_intake.min.json playbooks must not duplicate playbook_id")
+    if set(playbook_ids) != set(contracts_by_id):
+        fail("generated/playbook_review_intake.min.json must cover every playbook review packet contract exactly once")
+
+    for index, entry in enumerate(entries):
+        location = f"generated/playbook_review_intake.min.json.playbooks[{index}]"
+        if not isinstance(entry, dict):
+            fail(f"{location} must be an object")
+
+        playbook_id = entry.get("playbook_id")
+        if not isinstance(playbook_id, str) or playbook_id not in contracts_by_id:
+            fail(f"{location}.playbook_id must resolve in generated/playbook_review_packet_contracts.min.json")
+
+        contract = contracts_by_id[playbook_id]
+        review_status = review_status_by_id.get(playbook_id)
+
+        if entry.get("playbook_name") != contract.get("playbook_name"):
+            fail(f"{location}.playbook_name must match generated/playbook_review_packet_contracts.min.json")
+        if entry.get("scenario") != contract.get("scenario"):
+            fail(f"{location}.scenario must match generated/playbook_review_packet_contracts.min.json")
+        if entry.get("required_artifact_set") != contract.get("expected_artifacts"):
+            fail(f"{location}.required_artifact_set must match expected_artifacts")
+        if entry.get("accepted_packet_kinds") != contract.get("candidate_packet_kinds"):
+            fail(f"{location}.accepted_packet_kinds must match candidate_packet_kinds")
+        if entry.get("source_review_refs") != contract.get("source_review_refs"):
+            fail(f"{location}.source_review_refs must match generated/playbook_review_packet_contracts.min.json")
+
+        expected_gate_verdict = (
+            review_status.get("gate_verdict")
+            if isinstance(review_status, dict)
+            else contract.get("gate_verdict")
+        )
+        if entry.get("gate_verdict") != expected_gate_verdict:
+            fail(f"{location}.gate_verdict must match generated/playbook_review_status.min.json when present")
+
+        expected_gate_review_ref = review_status.get("gate_review_ref") if isinstance(review_status, dict) else None
+        if entry.get("gate_review_ref") != expected_gate_review_ref:
+            fail(f"{location}.gate_review_ref must match generated/playbook_review_status.min.json when present")
+
+        expected_template_ref = f"examples/playbook_activation.{contract['playbook_name']}.example.json"
+        if (REPO_ROOT / expected_template_ref).is_file():
+            if entry.get("real_run_template_ref") != expected_template_ref:
+                fail(f"{location}.real_run_template_ref must match the current activation example")
+        elif entry.get("real_run_template_ref") is not None:
+            fail(f"{location}.real_run_template_ref must stay null when no activation example exists")
+
+        review_outcome_targets = entry.get("review_outcome_targets")
+        if not isinstance(review_outcome_targets, dict):
+            fail(f"{location}.review_outcome_targets must be an object")
+        expected_real_runs = review_status.get("reviewed_run_refs") if isinstance(review_status, dict) else []
+        if review_outcome_targets.get("real_runs") != expected_real_runs:
+            fail(f"{location}.review_outcome_targets.real_runs must match generated/playbook_review_status.min.json")
+        expected_gate_reviews = [expected_gate_review_ref] if expected_gate_review_ref else []
+        if review_outcome_targets.get("gate_reviews") != expected_gate_reviews:
+            fail(f"{location}.review_outcome_targets.gate_reviews must match the current gate review posture")
+
+        gate_verdict = entry.get("gate_verdict")
+        reviewed_run_count = len(expected_real_runs) if isinstance(expected_real_runs, list) else 0
+        if gate_verdict == "composition-landed":
+            expected_composition_posture = "landed"
+        elif gate_verdict == "ready-for-composition-review":
+            expected_composition_posture = "ready-for-composition-review"
+        elif gate_verdict == "hold" and reviewed_run_count > 0:
+            expected_composition_posture = "held-after-review"
+        elif gate_verdict == "hold":
+            expected_composition_posture = "awaiting-reviewed-run"
+        else:
+            expected_composition_posture = "ungated"
+        if entry.get("composition_posture") != expected_composition_posture:
+            fail(f"{location}.composition_posture must stay aligned with the current gate posture")
+
+
 def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     questbook_path = repo_root / "QUESTBOOK.md"
     harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
@@ -2964,6 +3104,7 @@ def main() -> int:
         validate_real_run_workflow_surfaces()
         validate_playbook_review_status_surface(playbooks_by_id)
         validate_playbook_review_packet_contracts_surface(playbooks_by_id)
+        validate_playbook_review_intake_surface()
         validate_questbook_surface()
     except ValidationError as exc:
         print(f"[error] {exc}", file=sys.stderr)
@@ -2982,6 +3123,7 @@ def main() -> int:
     print("[ok] validated generated playbook composition surfaces")
     print("[ok] validated generated playbook review-status surface")
     print("[ok] validated generated playbook review-packet contracts surface")
+    print("[ok] validated generated playbook review intake surface")
     print("[ok] validated playbook activation examples")
     print("[ok] validated shipped playbook real-run harvest templates")
     print("[ok] validated repo-first real-run workflow surfaces")

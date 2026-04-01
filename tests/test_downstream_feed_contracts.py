@@ -25,6 +25,7 @@ federation_builder = load_module("generate_playbook_federation_surfaces.py")
 composition_builder = load_module("generate_playbook_composition_surfaces.py")
 review_status_builder = load_module("generate_playbook_review_status.py")
 review_packet_contract_builder = load_module("generate_playbook_review_packet_contracts.py")
+review_intake_builder = load_module("generate_playbook_review_intake.py")
 
 
 def load_generated(name: str):
@@ -288,6 +289,37 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "docs/gate-reviews/incident-recovery-routing.md",
             ],
         )
+
+    def test_review_intake_surface_is_deterministic_and_keeps_live_review_alignment(self) -> None:
+        expected = review_intake_builder.build_review_intake_payload()
+        current = load_generated("playbook_review_intake.min.json")
+
+        self.assertEqual(current, expected)
+        self.assertEqual(
+            set(current.keys()),
+            {"schema_version", "layer", "source_of_truth", "playbooks"},
+        )
+        self.assertEqual(current["schema_version"], 1)
+        self.assertEqual(current["layer"], "aoa-playbooks")
+
+        by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
+        self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
+        self.assertEqual(
+            by_id["AOA-P-0017"]["review_outcome_targets"]["real_runs"],
+            [
+                "docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md",
+                "docs/real-runs/2026-03-28.split-wave-cross-repo-rollout.md",
+            ],
+        )
+        self.assertEqual(
+            by_id["AOA-P-0017"]["review_outcome_targets"]["gate_reviews"],
+            ["docs/gate-reviews/split-wave-cross-repo-rollout.md"],
+        )
+        self.assertEqual(by_id["AOA-P-0017"]["composition_posture"], "landed")
+        self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
+        self.assertEqual(by_id["AOA-P-0019"]["composition_posture"], "awaiting-reviewed-run")
+        self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
+        self.assertEqual(by_id["AOA-P-0020"]["composition_posture"], "awaiting-reviewed-run")
 
 
 if __name__ == "__main__":
