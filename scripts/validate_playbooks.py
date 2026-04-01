@@ -2831,16 +2831,31 @@ def validate_playbook_review_packet_contracts_surface(
         source_review_refs = entry.get("source_review_refs")
         if not isinstance(source_review_refs, list):
             fail(f"{location}.source_review_refs must be a list")
+        expected_playbook_ref = f"playbooks/{entry['playbook_name']}/PLAYBOOK.md"
         review_entry = review_entries.get(playbook_id)
+        if not source_review_refs or source_review_refs[0] != expected_playbook_ref:
+            fail(f"{location}.source_review_refs must start with the owning PLAYBOOK.md")
+        if entry.get("review_required") is True and not source_review_refs:
+            fail(f"{location}.source_review_refs must stay non-empty for review-required packet contracts")
         if review_entry is None:
-            if source_review_refs:
-                fail(f"{location}.source_review_refs must stay empty when no review status exists")
+            if source_review_refs != [expected_playbook_ref]:
+                fail(
+                    f"{location}.source_review_refs must stay limited to the owning PLAYBOOK.md "
+                    "when no review status exists"
+                )
             if entry.get("gate_verdict") is not None:
                 fail(f"{location}.gate_verdict must stay null when no review status exists")
         else:
-            expected_review_refs = [review_entry["gate_review_ref"], *review_entry["reviewed_run_refs"]]
+            expected_review_refs = [
+                expected_playbook_ref,
+                review_entry["gate_review_ref"],
+                *review_entry["reviewed_run_refs"],
+            ]
             if source_review_refs != expected_review_refs:
-                fail(f"{location}.source_review_refs must match gate review plus reviewed runs")
+                fail(
+                    f"{location}.source_review_refs must match the owning PLAYBOOK.md, "
+                    "gate review, and reviewed runs"
+                )
             if entry.get("gate_verdict") != review_entry.get("gate_verdict"):
                 fail(f"{location}.gate_verdict must match generated/playbook_review_status.min.json")
 
