@@ -443,5 +443,44 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                 validate_playbooks.validate_questbook_surface(repo_root)
 
 
+class ValidatePlaybookReviewStatusSurfaceTests(unittest.TestCase):
+    def test_review_status_surface_passes_for_current_repo(self) -> None:
+        playbooks_by_id = validate_playbooks.validate_registry()
+        validate_playbooks.validate_real_run_workflow_surfaces()
+        validate_playbooks.validate_playbook_review_status_surface(playbooks_by_id)
+
+    def test_review_status_surface_rejects_verdict_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            repo_root.mkdir(parents=True, exist_ok=True)
+            generated_dir = repo_root / "generated"
+            generated_dir.mkdir(parents=True, exist_ok=True)
+
+            source_path = REPO_ROOT / "generated" / "playbook_review_status.min.json"
+            payload = source_path.read_text(encoding="utf-8").replace("composition-landed", "hold", 1)
+            write_text(generated_dir / "playbook_review_status.min.json", payload)
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "generated/playbook_review_status.min.json is out of date",
+            ):
+                original_repo_root = validate_playbooks.REPO_ROOT
+                original_review_path = validate_playbooks.PLAYBOOK_REVIEW_STATUS_PATH
+                original_run_dir = validate_playbooks.REAL_RUN_SUMMARY_DIR
+                original_gate_dir = validate_playbooks.GATE_REVIEW_DIR
+                try:
+                    validate_playbooks.REPO_ROOT = REPO_ROOT
+                    validate_playbooks.PLAYBOOK_REVIEW_STATUS_PATH = generated_dir / "playbook_review_status.min.json"
+                    validate_playbooks.REAL_RUN_SUMMARY_DIR = REPO_ROOT / "docs" / "real-runs"
+                    validate_playbooks.GATE_REVIEW_DIR = REPO_ROOT / "docs" / "gate-reviews"
+                    playbooks_by_id = validate_playbooks.validate_registry()
+                    validate_playbooks.validate_playbook_review_status_surface(playbooks_by_id)
+                finally:
+                    validate_playbooks.REPO_ROOT = original_repo_root
+                    validate_playbooks.PLAYBOOK_REVIEW_STATUS_PATH = original_review_path
+                    validate_playbooks.REAL_RUN_SUMMARY_DIR = original_run_dir
+                    validate_playbooks.GATE_REVIEW_DIR = original_gate_dir
+
+
 if __name__ == "__main__":
     unittest.main()

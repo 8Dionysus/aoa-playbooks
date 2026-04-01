@@ -23,6 +23,7 @@ def load_module(script_name: str):
 activation_builder = load_module("generate_playbook_activation_surfaces.py")
 federation_builder = load_module("generate_playbook_federation_surfaces.py")
 composition_builder = load_module("generate_playbook_composition_surfaces.py")
+review_status_builder = load_module("generate_playbook_review_status.py")
 
 
 def load_generated(name: str):
@@ -207,6 +208,30 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "generated/playbook_composition_manifest.json",
             ],
         )
+
+    def test_review_status_surface_is_deterministic_and_keeps_live_verdicts(self) -> None:
+        expected = review_status_builder.build_review_status_payload()
+        current = load_generated("playbook_review_status.min.json")
+
+        self.assertEqual(current, expected)
+        self.assertEqual(
+            set(current.keys()),
+            {"schema_version", "layer", "source_of_truth", "playbooks"},
+        )
+        self.assertEqual(current["schema_version"], 1)
+        self.assertEqual(current["layer"], "aoa-playbooks")
+        self.assertEqual(
+            current["source_of_truth"],
+            {"reviewed_runs_dir": "docs/real-runs", "gate_reviews_dir": "docs/gate-reviews"},
+        )
+
+        by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
+        self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
+        self.assertEqual(by_id["AOA-P-0017"]["reviewed_run_count"], 2)
+        self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
+        self.assertEqual(by_id["AOA-P-0019"]["reviewed_run_count"], 0)
+        self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
+        self.assertEqual(by_id["AOA-P-0020"]["reviewed_run_count"], 0)
 
 
 if __name__ == "__main__":
