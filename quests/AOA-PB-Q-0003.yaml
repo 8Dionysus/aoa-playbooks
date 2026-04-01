@@ -1,0 +1,49 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0003
+title: Define questline and campaign outline posture for the RPG reflection layer
+summary: Add a bounded outline model for questlines, campaigns, and rare raids without turning playbooks into a runtime ledger.
+repo: aoa-playbooks
+owner_surface: playbook/questline-campaign
+theme_ref: ''
+milestone_ref: ''
+kind: seam
+state: captured
+band: frontier
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on: []
+activation:
+  mode: manual
+  note: open when the first bounded campaign reflection slice is ready to land
+anchor_ref:
+  artifact: questline_campaign_model
+  ref: docs/QUESTLINE_AND_CAMPAIGN_MODEL.md
+  note: campaign language must stay outline-shaped and anchor-aware
+handoff_role: playbook-maintainer
+evidence:
+  - questline and campaign rules stay distinct
+  - raid remains explicit and rare
+  - reanchor stays governed return instead of retry
+harvest:
+  target: playbook
+opened_at: '2026-04-01'
+touched_at: '2026-04-01'
+tags:
+  - questline
+  - campaign
+  - raid
+notes: >
+  This quest should leave a reviewed outline surface, not a run ledger or hidden orchestration state.
+public_safe: true
