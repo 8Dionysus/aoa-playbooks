@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/8Dionysus/aoa-playbooks/main/schemas/playbook-review-packet-contracts.schema.json",
+  "title": "AoA playbook review packet contracts surface",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "layer",
+    "source_of_truth",
+    "playbooks"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "layer": {
+      "type": "string",
+      "const": "aoa-playbooks"
+    },
+    "source_of_truth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registry",
+        "activation",
+        "federation",
+        "review_status"
+      ],
+      "properties": {
+        "registry": {
+          "type": "string",
+          "const": "generated/playbook_registry.min.json"
+        },
+        "activation": {
+          "type": "string",
+          "const": "generated/playbook_activation_surfaces.min.json"
+        },
+        "federation": {
+          "type": "string",
+          "const": "generated/playbook_federation_surfaces.min.json"
+        },
+        "review_status": {
+          "type": "string",
+          "const": "generated/playbook_review_status.min.json"
+        }
+      }
+    },
+    "playbooks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "playbook_id",
+          "playbook_name",
+          "scenario",
+          "expected_artifacts",
+          "eval_anchors",
+          "memo_runtime_surfaces",
+          "candidate_packet_kinds",
+          "review_required",
+          "source_review_refs",
+          "gate_verdict"
+        ],
+        "properties": {
+          "playbook_id": {
+            "type": "string",
+            "pattern": "^AOA-P-[0-9]{4}$"
+          },
+          "playbook_name": {
+            "type": "string",
+            "minLength": 3
+          },
+          "scenario": {
+            "type": "string",
+            "minLength": 3
+          },
+          "expected_artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "eval_anchors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "memo_runtime_surfaces": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "checkpoint_export",
+                "approval_record",
+                "transition_record",
+                "execution_trace",
+                "review_trace",
+                "distillation_claim_candidate",
+                "distillation_pattern_candidate",
+                "distillation_bridge_candidate"
+              ]
+            }
+          },
+          "candidate_packet_kinds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "memo_candidate",
+                "runtime_evidence_selection_candidate",
+                "artifact_hook_candidate"
+              ]
+            }
+          },
+          "review_required": {
+            "type": "boolean"
+          },
+          "source_review_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^docs/(gate-reviews|real-runs)/"
+            }
+          },
+          "gate_verdict": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "hold",
+              "ready-for-composition-review",
+              "composition-landed",
+              null
+            ]
+          }
+        }
+      }
+    }
+  }
+}

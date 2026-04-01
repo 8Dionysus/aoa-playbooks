@@ -34,8 +34,14 @@ PLAYBOOK_SUBAGENT_RECIPES_PATH = REPO_ROOT / "generated" / "playbook_subagent_re
 PLAYBOOK_AUTOMATION_SEEDS_PATH = REPO_ROOT / "generated" / "playbook_automation_seeds.json"
 PLAYBOOK_COMPOSITION_MANIFEST_PATH = REPO_ROOT / "generated" / "playbook_composition_manifest.json"
 PLAYBOOK_REVIEW_STATUS_PATH = REPO_ROOT / "generated" / "playbook_review_status.min.json"
+PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = (
+    REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json"
+)
 SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-registry.schema.json"
 REVIEW_STATUS_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-review-status.schema.json"
+REVIEW_PACKET_CONTRACTS_SCHEMA_PATH = (
+    REPO_ROOT / "schemas" / "playbook-review-packet-contracts.schema.json"
+)
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
@@ -1251,6 +1257,42 @@ def validate_review_status_schema_surface() -> dict[str, object]:
     verdict_field = items.get("properties", {}).get("gate_verdict")
     if not isinstance(verdict_field, dict) or set(verdict_field.get("enum", ())) != set(ALLOWED_GATE_VERDICT_TOKENS):
         fail("playbook review-status schema must pin gate_verdict to the allowed verdict tokens")
+    return schema
+
+
+def validate_review_packet_contracts_schema_surface() -> dict[str, object]:
+    schema = read_json(REVIEW_PACKET_CONTRACTS_SCHEMA_PATH)
+    if not isinstance(schema, dict):
+        fail("playbook review-packet contracts schema file must contain a JSON object")
+    required_top_level = {"$schema", "$id", "title", "type", "properties", "required"}
+    missing = sorted(required_top_level - set(schema))
+    if missing:
+        fail(
+            "playbook review-packet contracts schema is missing required top-level keys: "
+            + ", ".join(missing)
+        )
+    if schema.get("type") != "object":
+        fail("playbook review-packet contracts schema must declare type 'object'")
+    properties = schema.get("properties")
+    if not isinstance(properties, dict):
+        fail("playbook review-packet contracts schema must expose properties")
+    playbooks = properties.get("playbooks")
+    if not isinstance(playbooks, dict):
+        fail("playbook review-packet contracts schema must expose a playbooks property")
+    items = playbooks.get("items")
+    if not isinstance(items, dict):
+        fail("playbook review-packet contracts schema playbooks.items must be an object schema")
+    candidate_packet_kinds = items.get("properties", {}).get("candidate_packet_kinds")
+    if not isinstance(candidate_packet_kinds, dict):
+        fail("playbook review-packet contracts schema must expose candidate_packet_kinds")
+    allowed_packet_kinds = {
+        "memo_candidate",
+        "runtime_evidence_selection_candidate",
+        "artifact_hook_candidate",
+    }
+    packet_kind_items = candidate_packet_kinds.get("items")
+    if not isinstance(packet_kind_items, dict) or set(packet_kind_items.get("enum", ())) != allowed_packet_kinds:
+        fail("playbook review-packet contracts schema must pin candidate_packet_kinds to the allowed packet kinds")
     return schema
 
 
@@ -2538,6 +2580,19 @@ def load_review_status_builder_module():
     return module
 
 
+def load_review_packet_contract_builder_module():
+    module_path = REPO_ROOT / "scripts" / "generate_playbook_review_packet_contracts.py"
+    spec = importlib.util.spec_from_file_location(
+        "generate_playbook_review_packet_contracts",
+        module_path,
+    )
+    if spec is None or spec.loader is None:
+        fail("unable to load playbook review-packet contract generator module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str, object]]) -> None:
     builder = load_review_status_builder_module()
     try:
@@ -2640,6 +2695,156 @@ def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str,
             )
 
 
+def validate_playbook_review_packet_contracts_surface(
+    playbooks_by_id: dict[str, dict[str, object]]
+) -> None:
+    builder = load_review_packet_contract_builder_module()
+    try:
+        expected = builder.build_review_packet_contracts_payload()
+    except Exception as exc:
+        fail(str(exc))
+
+    payload = read_json(PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH)
+    if payload != expected:
+        fail(
+            "generated/playbook_review_packet_contracts.min.json is out of date; "
+            "run scripts/generate_playbook_review_packet_contracts.py"
+        )
+    if not isinstance(payload, dict):
+        fail("generated/playbook_review_packet_contracts.min.json must contain a JSON object")
+    if payload.get("schema_version") != 1:
+        fail("generated/playbook_review_packet_contracts.min.json must declare schema_version 1")
+    if payload.get("layer") != "aoa-playbooks":
+        fail("generated/playbook_review_packet_contracts.min.json must declare layer 'aoa-playbooks'")
+    expected_source_of_truth = {
+        "registry": "generated/playbook_registry.min.json",
+        "activation": "generated/playbook_activation_surfaces.min.json",
+        "federation": "generated/playbook_federation_surfaces.min.json",
+        "review_status": "generated/playbook_review_status.min.json",
+    }
+    if payload.get("source_of_truth") != expected_source_of_truth:
+        fail("generated/playbook_review_packet_contracts.min.json must keep source_of_truth stable")
+
+    entries = payload.get("playbooks")
+    if not isinstance(entries, list):
+        fail("generated/playbook_review_packet_contracts.min.json must expose playbooks as a list")
+
+    activation_payload = read_json(ACTIVATION_COLLECTION_PATH)
+    if not isinstance(activation_payload, list):
+        fail("generated/playbook_activation_surfaces.min.json must stay a list")
+    activation_entries = {
+        entry["playbook_id"]: entry for entry in activation_payload if isinstance(entry, dict)
+    }
+
+    federation_payload = read_json(FEDERATION_COLLECTION_PATH)
+    if not isinstance(federation_payload, list):
+        fail("generated/playbook_federation_surfaces.min.json must stay a list")
+    federation_entries = {
+        entry["playbook_id"]: entry for entry in federation_payload if isinstance(entry, dict)
+    }
+
+    review_status_payload = read_json(PLAYBOOK_REVIEW_STATUS_PATH)
+    if not isinstance(review_status_payload, dict):
+        fail("generated/playbook_review_status.min.json must stay an object")
+    review_entries = {
+        entry["playbook_id"]: entry
+        for entry in review_status_payload.get("playbooks", [])
+        if isinstance(entry, dict)
+    }
+
+    contract_ids = [entry.get("playbook_id") for entry in entries if isinstance(entry, dict)]
+    if contract_ids != sorted(contract_ids):
+        fail("generated/playbook_review_packet_contracts.min.json playbooks must stay ordered by playbook_id")
+    if len(contract_ids) != len(set(contract_ids)):
+        fail("generated/playbook_review_packet_contracts.min.json playbooks must not duplicate playbook_id")
+
+    allowed_packet_kinds = {
+        "memo_candidate",
+        "runtime_evidence_selection_candidate",
+        "artifact_hook_candidate",
+    }
+
+    for index, entry in enumerate(entries):
+        location = f"generated/playbook_review_packet_contracts.min.json.playbooks[{index}]"
+        if not isinstance(entry, dict):
+            fail(f"{location} must be an object")
+        playbook_id = entry.get("playbook_id")
+        if not isinstance(playbook_id, str) or playbook_id not in playbooks_by_id:
+            fail(f"{location}.playbook_id must resolve in generated/playbook_registry.min.json")
+        if entry.get("playbook_name") != playbooks_by_id[playbook_id]["name"]:
+            fail(f"{location}.playbook_name must match generated/playbook_registry.min.json")
+        if entry.get("scenario") != playbooks_by_id[playbook_id]["scenario"]:
+            fail(f"{location}.scenario must match generated/playbook_registry.min.json")
+
+        expected_artifacts = entry.get("expected_artifacts")
+        if not isinstance(expected_artifacts, list):
+            fail(f"{location}.expected_artifacts must be a list")
+        activation_entry = activation_entries.get(playbook_id)
+        if activation_entry is not None and expected_artifacts != activation_entry.get("expected_artifacts", []):
+            fail(f"{location}.expected_artifacts must match the activation surface when present")
+
+        eval_anchors = entry.get("eval_anchors")
+        if not isinstance(eval_anchors, list):
+            fail(f"{location}.eval_anchors must be a list")
+        available_eval_anchors = builder._available_runtime_eval_anchors()
+        expected_eval_anchors = []
+        if activation_entry is not None:
+            expected_eval_anchors.extend(activation_entry.get("eval_anchors", []))
+        federation_entry = federation_entries.get(playbook_id)
+        if federation_entry is not None:
+            expected_eval_anchors.extend(federation_entry.get("eval_anchors", []))
+        deduped_eval_anchors = []
+        for value in expected_eval_anchors:
+            if value in available_eval_anchors and value not in deduped_eval_anchors:
+                deduped_eval_anchors.append(value)
+        if eval_anchors != deduped_eval_anchors:
+            fail(
+                f"{location}.eval_anchors must match activation/federation eval anchors "
+                "that have live runtime template coverage"
+            )
+
+        memo_runtime_surfaces = entry.get("memo_runtime_surfaces")
+        if not isinstance(memo_runtime_surfaces, list):
+            fail(f"{location}.memo_runtime_surfaces must be a list")
+        if memo_runtime_surfaces != [
+            artifact for artifact in expected_artifacts if artifact in builder.KNOWN_MEMO_RUNTIME_SURFACES
+        ]:
+            fail(
+                f"{location}.memo_runtime_surfaces must resolve from expected_artifacts "
+                "using the known memo runtime surfaces"
+            )
+
+        candidate_packet_kinds = entry.get("candidate_packet_kinds")
+        if not isinstance(candidate_packet_kinds, list):
+            fail(f"{location}.candidate_packet_kinds must be a list")
+        if not set(candidate_packet_kinds).issubset(allowed_packet_kinds):
+            fail(f"{location}.candidate_packet_kinds must stay within the allowed packet kinds")
+        expected_packet_kinds = builder._candidate_packet_kinds(
+            memo_runtime_surfaces=memo_runtime_surfaces,
+            eval_anchors=eval_anchors,
+        )
+        if candidate_packet_kinds != expected_packet_kinds:
+            fail(f"{location}.candidate_packet_kinds must derive from memo_runtime_surfaces and eval_anchors")
+        if entry.get("review_required") is not bool(candidate_packet_kinds):
+            fail(f"{location}.review_required must reflect whether candidate packet kinds exist")
+
+        source_review_refs = entry.get("source_review_refs")
+        if not isinstance(source_review_refs, list):
+            fail(f"{location}.source_review_refs must be a list")
+        review_entry = review_entries.get(playbook_id)
+        if review_entry is None:
+            if source_review_refs:
+                fail(f"{location}.source_review_refs must stay empty when no review status exists")
+            if entry.get("gate_verdict") is not None:
+                fail(f"{location}.gate_verdict must stay null when no review status exists")
+        else:
+            expected_review_refs = [review_entry["gate_review_ref"], *review_entry["reviewed_run_refs"]]
+            if source_review_refs != expected_review_refs:
+                fail(f"{location}.source_review_refs must match gate review plus reviewed runs")
+            if entry.get("gate_verdict") != review_entry.get("gate_verdict"):
+                fail(f"{location}.gate_verdict must match generated/playbook_review_status.min.json")
+
+
 def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     questbook_path = repo_root / "QUESTBOOK.md"
     harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
@@ -2708,6 +2913,7 @@ def main() -> int:
         validate_activation_schema_surface()
         validate_federation_schema_surface()
         validate_review_status_schema_surface()
+        validate_review_packet_contracts_schema_surface()
         playbooks_by_id = validate_registry()
         agent_names = load_agent_names()
         model_tier_artifacts = load_model_tier_artifacts()
@@ -2742,6 +2948,7 @@ def main() -> int:
         validate_harvest_templates()
         validate_real_run_workflow_surfaces()
         validate_playbook_review_status_surface(playbooks_by_id)
+        validate_playbook_review_packet_contracts_surface(playbooks_by_id)
         validate_questbook_surface()
     except ValidationError as exc:
         print(f"[error] {exc}", file=sys.stderr)
@@ -2752,12 +2959,14 @@ def main() -> int:
     print("[ok] validated playbook activation schema surface")
     print("[ok] validated playbook federation schema surface")
     print("[ok] validated playbook review-status schema surface")
+    print("[ok] validated playbook review-packet contracts schema surface")
     print("[ok] validated generated/playbook_registry.min.json")
     print("[ok] validated generated/playbook_activation_surfaces.min.json")
     print("[ok] validated authored playbook bundles")
     print("[ok] validated generated/playbook_federation_surfaces.min.json")
     print("[ok] validated generated playbook composition surfaces")
     print("[ok] validated generated playbook review-status surface")
+    print("[ok] validated generated playbook review-packet contracts surface")
     print("[ok] validated playbook activation examples")
     print("[ok] validated shipped playbook real-run harvest templates")
     print("[ok] validated repo-first real-run workflow surfaces")

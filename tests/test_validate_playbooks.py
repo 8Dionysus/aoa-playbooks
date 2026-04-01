@@ -482,5 +482,40 @@ class ValidatePlaybookReviewStatusSurfaceTests(unittest.TestCase):
                     validate_playbooks.GATE_REVIEW_DIR = original_gate_dir
 
 
+class ValidatePlaybookReviewPacketContractsSurfaceTests(unittest.TestCase):
+    def test_review_packet_contracts_surface_passes_for_current_repo(self) -> None:
+        playbooks_by_id = validate_playbooks.validate_registry()
+        validate_playbooks.validate_playbook_review_packet_contracts_surface(playbooks_by_id)
+
+    def test_review_packet_contracts_surface_rejects_packet_kind_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            repo_root.mkdir(parents=True, exist_ok=True)
+            generated_dir = repo_root / "generated"
+            generated_dir.mkdir(parents=True, exist_ok=True)
+
+            source_path = REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json"
+            payload = source_path.read_text(encoding="utf-8").replace(
+                "\"artifact_hook_candidate\"",
+                "\"unexpected_packet_kind\"",
+                1,
+            )
+            write_text(generated_dir / "playbook_review_packet_contracts.min.json", payload)
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "generated/playbook_review_packet_contracts.min.json is out of date",
+            ):
+                original_packet_path = validate_playbooks.PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH
+                try:
+                    validate_playbooks.PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = (
+                        generated_dir / "playbook_review_packet_contracts.min.json"
+                    )
+                    playbooks_by_id = validate_playbooks.validate_registry()
+                    validate_playbooks.validate_playbook_review_packet_contracts_surface(playbooks_by_id)
+                finally:
+                    validate_playbooks.PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = original_packet_path
+
+
 if __name__ == "__main__":
     unittest.main()
