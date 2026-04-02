@@ -1,10 +1,9 @@
-name: Repo Validation
+name: Compatibility Canary
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  schedule:
+    - cron: "23 5 * * *"
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -17,28 +16,24 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-agents
-          ref: d3cace5a4ca5d7bc1ffc3c031660939d124dab53
           path: .deps/aoa-agents
 
       - name: Checkout aoa-evals
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-evals
-          ref: 036e9c66b0cbe9255708a4d4442c2c8aa28a0ccf
           path: .deps/aoa-evals
 
       - name: Checkout aoa-skills
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-skills
-          ref: f71955c5e970728e6a1d1fc3bebcd7a9fe6b5690
           path: .deps/aoa-skills
 
       - name: Checkout aoa-memo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-memo
-          ref: cd678fa2aea33132200d415cb88822c4dc577088
           path: .deps/aoa-memo
 
       - name: Setup Python
