@@ -2,128 +2,64 @@
 
 `aoa-playbooks` is the scenario and composition layer of the AoA ecosystem.
 
-It exists to make recurring operational recipes explicit, reviewable, and reusable.
-
-This repository is not the main home of reusable techniques, skill bundles, proof bundles, or memory objects.
-Its role is different: it should define scenario-shaped operating recipes that compose skills, agents, evaluation posture, memory posture, and fallback paths for recurring situations.
+It exists to make recurring operational recipes explicit, reviewable, and reusable. A playbook is not a skill. A skill is a bounded workflow. A playbook coordinates multiple surfaces, handoffs, fallbacks, and evidence expectations across a recurring scenario.
 
 ## Start here
 
-If you are new to this repository, use this path:
+Use the shortest route by need:
 
-1. Read [CHARTER](CHARTER.md) for the role and boundaries of the playbook layer.
-2. Read [docs/PLAYBOOK_MODEL](docs/PLAYBOOK_MODEL.md) for the conceptual model.
-3. Read [docs/BOUNDARIES](docs/BOUNDARIES.md) for ownership rules.
-4. Read [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
-5. Read [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md) for the derived runtime-readable activation seam.
-6. Read [docs/PLAYBOOK_OPERATIONAL_FAMILY](docs/PLAYBOOK_OPERATIONAL_FAMILY.md) for chooser rules across the operational playbook family.
-7. Read [docs/PLAYBOOK_RECURRENCE_DISCIPLINE](docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md) for scenario-level recurrence posture.
-8. Read [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md) for the playbook graduation path.
-9. Read [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md) for coverage and portfolio guidance.
-10. Read [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md) for the repo-first chooser -> run -> review -> gate workflow.
-11. Read [docs/PLAYBOOK_REAL_RUN_HARVEST](docs/PLAYBOOK_REAL_RUN_HARVEST.md) for evidence-first real-run harvest doctrine.
-12. Read [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md) for promotion rules before any new adjunct reaches composition.
-13. Read [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md) for the current lifecycle posture and next bounded move.
-14. Read [docs/QUESTLINE_AND_CAMPAIGN_MODEL](docs/QUESTLINE_AND_CAMPAIGN_MODEL.md) for the adjunct outline seam for questlines, campaigns, and rare raids.
-15. Open [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first checkpoint-method playbook object.
-16. Open [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md) for the witness/compost pilot route.
-17. Read [docs/RELEASING](docs/RELEASING.md) if you need the bounded repo-level release flow.
-18. Read [ROADMAP](ROADMAP.md) for the current direction.
+- role, boundaries, and conceptual model: [CHARTER](CHARTER.md), [docs/PLAYBOOK_MODEL](docs/PLAYBOOK_MODEL.md), and [docs/BOUNDARIES](docs/BOUNDARIES.md)
+- authored bundle and activation seam: [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md), [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md), [docs/PLAYBOOK_OPERATIONAL_FAMILY](docs/PLAYBOOK_OPERATIONAL_FAMILY.md), [docs/PLAYBOOK_RECURRENCE_DISCIPLINE](docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md), [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md), and [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md)
+- evidence, gates, and release posture: [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), [docs/PLAYBOOK_REAL_RUN_HARVEST](docs/PLAYBOOK_REAL_RUN_HARVEST.md), [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md), [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md), and [docs/RELEASING](docs/RELEASING.md)
+- adjunct outline seam: [docs/QUESTLINE_AND_CAMPAIGN_MODEL](docs/QUESTLINE_AND_CAMPAIGN_MODEL.md)
+- live authored examples: [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md), [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md), and the wider `playbooks/*/PLAYBOOK.md` family
+- current direction: [ROADMAP](ROADMAP.md)
 
-## What this repository is for
+## What `aoa-playbooks` owns
 
-`aoa-playbooks` should own playbook-layer meaning about:
+This repository is the source of truth for:
+
 - recurring operational scenarios
-- multi-step compositions of skills
-- scenario-level methods once a route spans skills, roles, memory posture, and proof posture
-- role-aware handoff patterns
-- decision points and fallback paths
-- governed return posture when scenario routes lose axis, boundary, or restart integrity
-- expected evidence and validation posture
-- compact playbook registries and validation
+- multi-step compositions across skills, roles, memory posture, and proof posture
+- scenario-level handoff, fallback, rollback, and return posture
+- expected evidence and validation posture for recurring routes
+- compact playbook registries and derived playbook-owned composition surfaces
 
-## What this repository is not for
+## What it does not own
 
-This repository should not become the main home for:
+Do not treat this repository as the main home for:
+
 - reusable techniques
 - single bounded skill bundles
-- eval bundles
+- proof doctrine or verdict logic
 - routing surfaces
-- memory objects
+- primary memory objects
 - infrastructure implementation details
 - giant prompt scripts pretending to be operations
 
-A playbook is not a skill.
-A skill is a bounded workflow.
-A playbook is a higher-level scenario recipe that coordinates multiple surfaces.
+When a route is really one bounded workflow, keep it in `aoa-skills` instead of inflating it into a playbook.
 
-When a route becomes a recurring cross-layer method, it belongs here rather than being smeared across skills, notes, and ad hoc orchestration.
+## Current public surfaces
 
-## Relationship to the AoA federation
+The committed public surfaces group into four families:
 
-Within AoA:
-- `aoa-techniques` owns practice meaning
-- `aoa-skills` owns execution meaning
-- `aoa-evals` owns bounded proof meaning
-- `aoa-routing` should own dispatch and navigation surfaces
-- `aoa-memo` should own memory and recall meaning
-- `aoa-agents` should own role and persona meaning
-- `aoa-playbooks` should own scenario-level compositions
+- root registry: `generated/playbook_registry.min.json`
+- authored bundles under `playbooks/*/PLAYBOOK.md`
+- derived activation, federation, and review-status surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, and `generated/playbook_review_status.min.json`
+- playbook-owned composition adjuncts such as `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json`
 
-## Local validation
+Real-run harvest templates under `examples/harvests/` and review notes under `docs/real-runs/` and `docs/gate-reviews/` stay bounded evidence surfaces. They do not turn this repository into a runtime log substrate.
 
-This repository includes a compact machine-readable playbook-layer registry at:
-- `generated/playbook_registry.min.json`
+## Go here when...
 
-It now also includes authored playbook bundles at:
-- `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`
-- `playbooks/witness-to-compost-pilot/PLAYBOOK.md`
-- `playbooks/long-horizon-model-tier-orchestra/PLAYBOOK.md`
-- `playbooks/restartable-inquiry-loop/PLAYBOOK.md`
-- `playbooks/cross-repo-boundary-rollout/PLAYBOOK.md`
-- `playbooks/bounded-change-safe/PLAYBOOK.md`
-- `playbooks/infra-change-guarded/PLAYBOOK.md`
-- `playbooks/invariants-first-refactor/PLAYBOOK.md`
-- `playbooks/local-stack-diagnosis/PLAYBOOK.md`
-- `playbooks/source-truth-then-share/PLAYBOOK.md`
-- `playbooks/atm10-bounded-change/PLAYBOOK.md`
-- `playbooks/split-wave-cross-repo-rollout/PLAYBOOK.md`
-- `playbooks/validation-driven-remediation/PLAYBOOK.md`
-- `playbooks/release-migration-cutover/PLAYBOOK.md`
-- `playbooks/incident-recovery-routing/PLAYBOOK.md`
+- you need a single bounded execution unit: [`aoa-skills`](https://github.com/8Dionysus/aoa-skills)
+- you need role and handoff contracts: [`aoa-agents`](https://github.com/8Dionysus/aoa-agents)
+- you need proof surfaces or evidence framing: [`aoa-evals`](https://github.com/8Dionysus/aoa-evals)
+- you need explicit memory objects or recall posture: [`aoa-memo`](https://github.com/8Dionysus/aoa-memo)
+- you need the smallest next object or dispatch hint: [`aoa-routing`](https://github.com/8Dionysus/aoa-routing)
+- you need the ecosystem center and boundary doctrine: [`Agents-of-Abyss`](https://github.com/8Dionysus/Agents-of-Abyss)
 
-The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md` and checks that each one stays aligned with the registry surface.
-For the long-horizon experimental seam, it also checks that participating agents resolve in `aoa-agents`, model-tier artifact contracts stay aligned where applicable, and referenced eval anchors exist in `aoa-evals`.
-It now also validates the derived activation surface used to make selected playbooks runtime-readable without changing bundle authorship.
-For the current federation-checked cohort, it also resolves exact skills in `aoa-skills` and memo contracts in `aoa-memo` without moving ownership out of those repositories.
-For the runtime-facing activation cohort, it now also projects flat memo recall defaults so a downstream runtime can derive bounded `inspect`, `capsule`, and `expand` posture from playbook-owned surfaces without inventing memo search or ranking here.
-It now also validates derived composition surfaces for handoff contracts, failure catalogs, subagent recipes, automation seeds, and a composition manifest without turning the playbook layer into a runtime engine.
-It now also requires the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md` to stay present and aligned with the authored-vs-derived split of this layer.
-It now also validates the shipped real-run harvest templates under `examples/harvests/` so evidence scaffolding stays reviewable without becoming a runtime log substrate.
-It now also validates the repo-first real-run workflow surfaces under `docs/real-runs/` and `docs/gate-reviews/` without turning this repository into a runtime evidence store.
-It now also derives a compact review-status surface so downstream readers can inspect current evidence posture without scraping Markdown or moving review truth out of authored run and gate-review notes.
-Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
-`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, and is now back in the federation cohort because its ATM10 overlay skills reconcile as `project_overlay_federation_ready` in `aoa-skills` without introducing a governance lane there.
-
-Derived playbook surfaces live at:
-- `schemas/playbook-activation-surface.schema.json`
-- `schemas/playbook-federation-surface.schema.json`
-- `generated/playbook_activation_surfaces.min.json`
-- `generated/playbook_federation_surfaces.min.json`
-- `schemas/playbook-review-status.schema.json`
-- `generated/playbook_review_status.min.json`
-- `generated/playbook_handoff_contracts.json`
-- `generated/playbook_failure_catalog.json`
-- `generated/playbook_subagent_recipes.json`
-- `generated/playbook_automation_seeds.json`
-- `generated/playbook_composition_manifest.json`
-- `examples/playbook_activation.long-horizon-model-tier-orchestra.example.json`
-- `examples/playbook_activation.restartable-inquiry-loop.example.json`
-- `examples/playbook_activation.cross-repo-boundary-rollout.example.json`
-- `examples/playbook_activation.split-wave-cross-repo-rollout.example.json`
-- `examples/playbook_activation.validation-driven-remediation.example.json`
-- `examples/playbook_activation.release-migration-cutover.example.json`
-- `examples/playbook_activation.incident-recovery-routing.example.json`
+## Build and validate
 
 To validate the current playbook-layer surface locally, run:
 
@@ -136,24 +72,15 @@ python scripts/generate_playbook_composition_surfaces.py --check
 python scripts/validate_playbooks.py
 ```
 
-## Current status
+The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md`, checks registry alignment, resolves federation-facing references into neighboring repositories, and validates the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md`.
 
-`aoa-playbooks` has now reached its `v0.1.0` public baseline.
-The repository currently ships `20` registry entries, `15` authored playbook bundles, `13` activation-readable playbooks, `15` federation-checked playbooks, and `7` composition-managed playbooks.
-The current goal is no longer bootstrap catalog growth for its own sake.
-The next honest move is evidence-led maturation: keep `AOA-P-0017` stable, wait for a real qualifying cutover for `AOA-P-0019`, and wait for a live incident for `AOA-P-0020`.
-The runtime-facing extension remains intentionally bounded: a compact activation cohort may publish explicit memo-read defaults while memo recall truth, search posture, and routing ownership stay in `aoa-memo` and `aoa-routing`.
+## Current contour
 
-Questline and campaign reflection now also has a bounded adjunct note for reviewed outline posture, but it remains example-only and never becomes a runtime ledger or quest authority surface.
+`aoa-playbooks` has reached its `v0.1.0` public baseline. The current honest move is evidence-led maturation rather than bootstrap growth for its own sake.
 
-## Principles
+The runtime-facing extension stays intentionally bounded: selected playbooks may publish explicit memo-read defaults and activation-readable surfaces, but memo truth, routing ownership, and source skill meaning remain in their owning repositories.
 
-- recurring scenarios should be explicit rather than folkloric
-- playbooks should stay bounded and reviewable
-- fallback and rollback posture should be named, not implied
-- return posture should be explicit when a recurring route can lose axis, ownership boundary, or restart integrity
-- evaluation posture should be visible, not retrofitted later
-- the playbook layer should not swallow neighboring AoA layers
+Questline and campaign reflection also remains adjunct-only. It is a reviewed outline seam, not a runtime ledger or quest authority surface.
 
 ## License
 
