@@ -7,6 +7,52 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-04-01
+
+Second public release of `aoa-playbooks`.
+
+This changelog entry uses the release-prep merge date.
+
+### Summary
+
+- this release focuses on reviewability after the `v0.1.0` baseline by adding playbook review status, review packet contracts, and review intake surfaces
+- the public playbook layer now ships stronger evidence-harvest and operator-audit support without collapsing back into raw runtime logging
+- scenario composition stays bounded: the repo adds execution feed contracts and adjunct questline/campaign surfaces while preserving skill, memo, eval, and routing ownership boundaries
+
+### Added
+
+- questbook harvest and reanchor foundation from the first manual harvest pass
+- questline and campaign adjunct surfaces
+- playbook execution feed contracts for downstream consumers
+- generated playbook review status surfaces
+- generated playbook review packet contracts
+- generated playbook review intake surfaces
+- CI canary and validator-hardening coverage for the expanded review families
+
+### Changed
+
+- hardened review packet contracts for operator audit and review prep
+- validated review-surface parity now sits beside the existing activation, federation, and composition checks
+
+### Included in this release
+
+- the authored playbook corpus under `playbooks/*/PLAYBOOK.md`
+- generated review surfaces under `generated/playbook_review_status.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_review_intake.min.json`
+- existing activation, federation, composition, handoff, failure-catalog, subagent-recipe, and automation-seed surfaces under `generated/`
+
+### Validation
+
+- `python scripts/generate_playbook_activation_surfaces.py --check`
+- `python scripts/generate_playbook_federation_surfaces.py --check`
+- `python scripts/generate_playbook_review_status.py --check`
+- `python scripts/generate_playbook_composition_surfaces.py --check`
+- `python scripts/validate_playbooks.py`
+- `python -m unittest tests.test_validate_playbooks`
+
+### Notes
+
+- this release continues the evidence-led maturation path from `v0.1.0`; it does not claim that every playbook has equal real-run evidence
+
 ## [0.1.0] - 2026-03-28
 
 First public baseline release of `aoa-playbooks` as the scenario and composition layer in the AoA public surface.
