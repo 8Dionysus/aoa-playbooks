@@ -8,12 +8,21 @@ It exists to make recurring operational recipes explicit, reviewable, and reusab
 
 Use the shortest route by need:
 
+- docs map: [docs/README](docs/README.md)
 - role, boundaries, and conceptual model: [CHARTER](CHARTER.md), [docs/PLAYBOOK_MODEL](docs/PLAYBOOK_MODEL.md), and [docs/BOUNDARIES](docs/BOUNDARIES.md)
 - authored bundle and activation seam: [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md), [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md), [docs/PLAYBOOK_OPERATIONAL_FAMILY](docs/PLAYBOOK_OPERATIONAL_FAMILY.md), [docs/PLAYBOOK_RECURRENCE_DISCIPLINE](docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md), [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md), and [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md)
 - evidence, gates, and release posture: [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), [docs/PLAYBOOK_REAL_RUN_HARVEST](docs/PLAYBOOK_REAL_RUN_HARVEST.md), [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md), [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md), and [docs/RELEASING](docs/RELEASING.md)
 - adjunct outline seam: [docs/QUESTLINE_AND_CAMPAIGN_MODEL](docs/QUESTLINE_AND_CAMPAIGN_MODEL.md)
 - live authored examples: [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md), [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md), and the wider `playbooks/*/PLAYBOOK.md` family
 - current direction: [ROADMAP](ROADMAP.md)
+
+## Route by need
+
+- activation, federation, and review-status surfaces: `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, and `generated/playbook_review_packet_contracts.min.json`
+- handoff, failure, automation, and subagent adjuncts: `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_automation_seeds.json`, `generated/playbook_subagent_recipes.json`, [docs/HANDOFF_CONTRACTS](docs/HANDOFF_CONTRACTS.md), [docs/FAILURE_RECOVERY](docs/FAILURE_RECOVERY.md), [docs/AUTOMATION_SEEDS](docs/AUTOMATION_SEEDS.md), and [docs/SUBAGENT_PATTERNS](docs/SUBAGENT_PATTERNS.md)
+- real-run and gate-review evidence: `docs/real-runs/`, `docs/gate-reviews/`, `examples/harvests/`, [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), and [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md)
+- live authored bundles and activation examples: `playbooks/*/PLAYBOOK.md` and `examples/playbook_activation.*.example.json`
+- local validation and rebuild path: `python scripts/generate_playbook_activation_surfaces.py --check`, `python scripts/generate_playbook_federation_surfaces.py --check`, `python scripts/generate_playbook_review_status.py --check`, `python scripts/generate_playbook_composition_surfaces.py --check`, and `python scripts/validate_playbooks.py`
 
 ## What `aoa-playbooks` owns
 
