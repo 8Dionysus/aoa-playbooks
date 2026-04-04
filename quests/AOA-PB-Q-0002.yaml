@@ -37,7 +37,7 @@ evidence:
   - named promotion destinations stay reviewable
   - valid anchor classes stay compact
 harvest:
-  target: reviewed_evidence
+  target: playbook
 opened_at: '2026-03-31'
 touched_at: '2026-03-31'
 tags:

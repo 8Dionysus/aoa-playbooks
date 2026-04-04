@@ -1,0 +1,61 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0006
+title: Align bounded-execution orchestrator quests to bounded route cards and artifact contracts
+summary: Define which bounded route and artifact surfaces the bounded-execution orchestrator may consume without widening route scope.
+repo: aoa-playbooks
+owner_surface: docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md
+theme_ref: ''
+milestone_ref: ''
+kind: seam
+state: captured
+band: frontier
+difficulty: d2_slice
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: docs_only
+split_required: false
+complexity_basis:
+  scope: 1
+  ambiguity: 1
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0001
+activation:
+  mode: manual
+  note: open when smallest-step alignment needs a public playbook-side contract map
+anchor_ref:
+  artifact: orchestrator_alignment
+  ref: docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md
+handoff_role: playbook-maintainer
+orchestrator_class_ref: aoa-agents:bounded_execution
+capability_target: bounded_next_step
+playbook_family_refs:
+  - generated/playbook_registry.min.json
+  - generated/playbook_review_intake.min.json
+  - docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md#bounded-execution
+proof_surface_refs:
+  - repo:aoa-evals/generated/eval_catalog.min.json
+  - repo:aoa-evals/docs/ORCHESTRATOR_PROOF_ALIGNMENT.md
+memory_surface_refs:
+  - repo:aoa-memo/examples/recall_contract.object.working.phase-alpha.json
+  - repo:aoa-memo/docs/ORCHESTRATOR_MEMORY_ALIGNMENT.md
+evidence:
+  - bounded execution alignment is smallest-step-shaped
+  - route cards and artifact contracts stay explicit
+  - playbooks do not widen execution beyond named boundaries
+harvest:
+  target: playbook
+opened_at: '2026-04-03'
+touched_at: '2026-04-03'
+tags:
+  - orchestrators
+  - bounded-execution
+  - alignment
+notes: >
+  Keep bounded execution inside named route contracts and stop conditions. It must not become a generic free-form executor.
+public_safe: true

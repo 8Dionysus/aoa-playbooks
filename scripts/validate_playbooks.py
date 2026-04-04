@@ -6,8 +6,10 @@ import json
 import os
 import re
 import sys
+from functools import lru_cache
 from pathlib import Path
 
+from jsonschema import Draft202012Validator
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -56,6 +58,13 @@ ACTIVATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-activation-surface.sc
 FEDERATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-federation-surface.schema.json"
 QUESTBOOK_PATH = REPO_ROOT / "QUESTBOOK.md"
 QUESTBOOK_HARVEST_DOC_PATH = REPO_ROOT / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
+ORCHESTRATOR_ALIGNMENT_DOC_PATH = REPO_ROOT / "docs" / "ORCHESTRATOR_ALIGNMENT_SURFACES.md"
+QUEST_CATALOG_PATH = REPO_ROOT / "generated" / "quest_catalog.min.json"
+QUEST_CATALOG_EXAMPLE_PATH = REPO_ROOT / "generated" / "quest_catalog.min.example.json"
+QUEST_DISPATCH_PATH = REPO_ROOT / "generated" / "quest_dispatch.min.json"
+QUEST_DISPATCH_EXAMPLE_PATH = REPO_ROOT / "generated" / "quest_dispatch.min.example.json"
+EXTERNAL_QUEST_SCHEMA_PATH = AOA_EVALS_ROOT / "schemas" / "quest.schema.json"
+EXTERNAL_QUEST_DISPATCH_SCHEMA_PATH = AOA_EVALS_ROOT / "schemas" / "quest_dispatch.schema.json"
 FOUNDATION_QUESTBOOK_QUEST_IDS = ("AOA-PB-Q-0001", "AOA-PB-Q-0002")
 QUESTBOOK_QUEST_IDS = FOUNDATION_QUESTBOOK_QUEST_IDS
 QUESTBOOK_REQUIRED_DOC_SECTIONS = (
@@ -84,6 +93,23 @@ QUESTBOOK_REQUIRED_INDEX_TOKENS = (
     "Blocked / reanchor",
     "Harvest candidates",
     "docs/QUEST_HARVEST_AND_REANCHOR.md",
+)
+ALLOWED_ORCHESTRATOR_CAPABILITY_TARGETS = {
+    "repo_layer_selection",
+    "evidence_closure",
+    "bounded_next_step",
+}
+ORCHESTRATOR_ALIGNMENT_QUESTS = {
+    "AOA-PB-Q-0004": ("aoa-agents:router", "repo_layer_selection"),
+    "AOA-PB-Q-0005": ("aoa-agents:review", "evidence_closure"),
+    "AOA-PB-Q-0006": ("aoa-agents:bounded_execution", "bounded_next_step"),
+}
+ORCHESTRATOR_ALIGNMENT_REQUIRED_TOKENS = (
+    "## Router",
+    "## Review",
+    "## Bounded execution",
+    "## Boundary rule",
+    "Orchestrator class identity lives in `aoa-agents`.",
 )
 CLOSED_QUEST_STATES = {"done", "dropped"}
 ACTIVATION_EXAMPLE_PATHS = {
@@ -298,6 +324,34 @@ def discover_questbook_quest_ids(repo_root: Path = REPO_ROOT) -> tuple[str, ...]
     if not discovered:
         return FOUNDATION_QUESTBOOK_QUEST_IDS
     return tuple(discovered)
+
+
+def validate_optional_orchestrator_quest_fields(
+    payload: dict[str, object], *, location: str, repo_root: Path
+) -> None:
+    orchestrator_class_ref = payload.get("orchestrator_class_ref")
+    capability_target = payload.get("capability_target")
+    if orchestrator_class_ref is None and capability_target is not None:
+        fail(f"{location} must not declare capability_target without orchestrator_class_ref")
+    if orchestrator_class_ref is None:
+        return
+    validate_orchestrator_class_ref(orchestrator_class_ref, location=location)
+    if capability_target not in ALLOWED_ORCHESTRATOR_CAPABILITY_TARGETS:
+        fail(f"{location}.capability_target must resolve to a supported orchestrator capability")
+    for field_name in ("playbook_family_refs", "proof_surface_refs", "memory_surface_refs"):
+        if field_name not in payload:
+            continue
+        value = payload.get(field_name)
+        if not isinstance(value, list) or not value:
+            fail(f"{location}.{field_name} must be a non-empty list when present")
+        for item in value:
+            if not isinstance(item, str) or len(item) < 3:
+                fail(f"{location}.{field_name} must contain non-empty string refs")
+            if item.startswith("repo:"):
+                continue
+            local_path = item.split("#", 1)[0]
+            if not (repo_root / local_path).exists():
+                fail(f"{location}.{field_name} local ref does not exist: {local_path}")
 RETURN_FIELD_NAMES = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
 MEMO_SPEC_FIELD_NAMES = (
     "memo_recall_modes",
@@ -1151,6 +1205,182 @@ def read_yaml(path: Path) -> object:
         return yaml.safe_load(text)
     except yaml.YAMLError as exc:
         fail(f"invalid YAML in {display_path(path)}: {exc}")
+
+
+def format_schema_path(path_parts: list[object]) -> str:
+    parts: list[str] = []
+    for part in path_parts:
+        if isinstance(part, int):
+            parts.append(f"[{part}]")
+        else:
+            if parts:
+                parts.append(f".{part}")
+            else:
+                parts.append(str(part))
+    return "".join(parts)
+
+
+@lru_cache(maxsize=None)
+def external_schema_validator(schema_path: Path) -> Draft202012Validator:
+    schema = read_json(schema_path)
+    if not isinstance(schema, dict):
+        fail(f"{display_path(schema_path)} must remain a JSON object")
+    Draft202012Validator.check_schema(schema)
+    return Draft202012Validator(schema)
+
+
+def validate_against_external_schema(data: object, schema_path: Path, *, location: str) -> None:
+    validator = external_schema_validator(schema_path)
+    errors = sorted(
+        validator.iter_errors(data),
+        key=lambda error: (list(error.absolute_path), error.message),
+    )
+    if not errors:
+        return
+    first = errors[0]
+    error_path = format_schema_path(list(first.absolute_path))
+    if error_path:
+        fail(f"{location} schema violation at '{error_path}': {first.message}")
+    fail(f"{location} schema violation: {first.message}")
+
+
+@lru_cache(maxsize=None)
+def load_live_orchestrator_class_ids() -> set[str]:
+    payload = read_json(AOA_AGENTS_ROOT / "generated" / "orchestrator_class_catalog.min.json")
+    if not isinstance(payload, dict):
+        fail("aoa-agents generated/orchestrator_class_catalog.min.json must be a JSON object")
+    entries = payload.get("orchestrator_classes")
+    if not isinstance(entries, list):
+        fail("aoa-agents generated/orchestrator_class_catalog.min.json must expose orchestrator_classes")
+    class_ids: set[str] = set()
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            fail(
+                "aoa-agents generated/orchestrator_class_catalog.min.json "
+                f"orchestrator_classes[{index}] must be an object"
+            )
+        class_id = entry.get("id")
+        if not isinstance(class_id, str) or not class_id:
+            fail(
+                "aoa-agents generated/orchestrator_class_catalog.min.json "
+                f"orchestrator_classes[{index}] must expose a string id"
+            )
+        class_ids.add(class_id)
+    return class_ids
+
+
+def validate_orchestrator_class_ref(orchestrator_class_ref: object, *, location: str) -> None:
+    if not isinstance(orchestrator_class_ref, str):
+        fail(f"{location}.orchestrator_class_ref must be a string")
+    repo_name, separator, class_id = orchestrator_class_ref.partition(":")
+    if separator != ":" or repo_name != "aoa-agents" or not class_id:
+        fail(f"{location}.orchestrator_class_ref must use the form 'aoa-agents:<class_id>'")
+    if class_id not in load_live_orchestrator_class_ids():
+        fail(
+            f"{location}.orchestrator_class_ref must resolve in "
+            "aoa-agents/generated/orchestrator_class_catalog.min.json"
+        )
+
+
+def build_expected_quest_catalog_entry(
+    quest: dict[str, object], *, source_path: str
+) -> dict[str, object]:
+    entry: dict[str, object] = {
+        "id": quest["id"],
+        "title": quest["title"],
+        "repo": quest["repo"],
+        "theme_ref": quest.get("theme_ref", ""),
+        "milestone_ref": quest.get("milestone_ref", ""),
+        "state": quest["state"],
+        "band": quest["band"],
+        "kind": quest["kind"],
+        "difficulty": quest["difficulty"],
+        "risk": quest["risk"],
+        "owner_surface": quest["owner_surface"],
+        "source_path": source_path,
+        "public_safe": quest["public_safe"],
+    }
+    for optional_key in (
+        "orchestrator_class_ref",
+        "capability_target",
+        "playbook_family_refs",
+        "proof_surface_refs",
+        "memory_surface_refs",
+    ):
+        if optional_key in quest:
+            entry[optional_key] = quest[optional_key]
+    return entry
+
+
+def build_expected_quest_dispatch_entry(
+    quest: dict[str, object], *, quest_id: str, source_path: str
+) -> dict[str, object]:
+    activation = quest.get("activation")
+    if not isinstance(activation, dict):
+        activation = {}
+    requires_artifacts = ["recurrence_evidence", "promotion_decision"] if quest.get("kind") == "harvest" else [
+        "bounded_plan",
+        "work_result",
+        "verification_result",
+    ]
+    entry: dict[str, object] = {
+        "schema_version": "quest_dispatch_v1",
+        "id": quest["id"],
+        "repo": quest["repo"],
+        "state": quest["state"],
+        "band": quest["band"],
+        "difficulty": quest["difficulty"],
+        "risk": quest["risk"],
+        "control_mode": quest["control_mode"],
+        "delegate_tier": quest["delegate_tier"],
+        "split_required": quest["split_required"],
+        "write_scope": quest["write_scope"],
+        "requires_artifacts": requires_artifacts,
+        "activation_mode": activation.get("mode"),
+        "source_path": source_path,
+        "public_safe": quest["public_safe"],
+    }
+    if "fallback_tier" in quest:
+        entry["fallback_tier"] = quest.get("fallback_tier")
+    if "wrapper_class" in quest:
+        entry["wrapper_class"] = quest.get("wrapper_class")
+    for optional_key in ("orchestrator_class_ref", "capability_target"):
+        if optional_key in quest:
+            entry[optional_key] = quest.get(optional_key)
+    return entry
+
+
+def build_quest_catalog_projection(repo_root: Path = REPO_ROOT) -> list[dict[str, object]]:
+    entries: list[dict[str, object]] = []
+    for quest_id in discover_questbook_quest_ids(repo_root):
+        quest_path = repo_root / "quests" / f"{quest_id}.yaml"
+        payload = read_yaml(quest_path)
+        if not isinstance(payload, dict):
+            fail(f"{quest_path.relative_to(repo_root).as_posix()} must contain a YAML mapping")
+        entries.append(
+            build_expected_quest_catalog_entry(
+                payload,
+                source_path=quest_path.relative_to(repo_root).as_posix(),
+            )
+        )
+    return entries
+
+
+def build_quest_dispatch_projection(repo_root: Path = REPO_ROOT) -> list[dict[str, object]]:
+    entries: list[dict[str, object]] = []
+    for quest_id in discover_questbook_quest_ids(repo_root):
+        quest_path = repo_root / "quests" / f"{quest_id}.yaml"
+        payload = read_yaml(quest_path)
+        if not isinstance(payload, dict):
+            fail(f"{quest_path.relative_to(repo_root).as_posix()} must contain a YAML mapping")
+        entries.append(
+            build_expected_quest_dispatch_entry(
+                payload,
+                quest_id=quest_id,
+                source_path=quest_path.relative_to(repo_root).as_posix(),
+            )
+        )
+    return entries
 
 
 def parse_scalar(value: str) -> str:
@@ -3257,6 +3487,7 @@ def validate_playbook_review_intake_surface() -> None:
 def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     questbook_path = repo_root / "QUESTBOOK.md"
     harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
+    alignment_doc_path = repo_root / "docs" / "ORCHESTRATOR_ALIGNMENT_SURFACES.md"
     quest_ids = discover_questbook_quest_ids(repo_root)
     missing_foundation = [
         quest_id for quest_id in FOUNDATION_QUESTBOOK_QUEST_IDS if quest_id not in quest_ids
@@ -3286,11 +3517,15 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
 
     active_quest_ids: list[str] = []
     closed_quest_ids: list[str] = []
+    expected_catalog_entries: list[dict[str, object]] = []
+    expected_dispatch_entries: list[dict[str, object]] = []
+    needs_alignment_doc = alignment_doc_path.exists()
     for quest_id, quest_path in quest_paths.items():
         payload = read_yaml(quest_path)
         location = quest_path.relative_to(repo_root).as_posix()
         if not isinstance(payload, dict):
             fail(f"{location} must contain a YAML mapping")
+        validate_against_external_schema(payload, EXTERNAL_QUEST_SCHEMA_PATH, location=location)
         if payload.get("schema_version") != "work_quest_v1":
             fail(f"{location} must declare schema_version 'work_quest_v1'")
         if payload.get("id") != quest_id:
@@ -3299,10 +3534,37 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
             fail(f"{location} must target repo 'aoa-playbooks'")
         if payload.get("public_safe") is not True:
             fail(f"{location} must declare public_safe: true")
+        validate_optional_orchestrator_quest_fields(payload, location=location, repo_root=repo_root)
+        expected_orchestrator_pair = ORCHESTRATOR_ALIGNMENT_QUESTS.get(quest_id)
+        if expected_orchestrator_pair is not None:
+            needs_alignment_doc = True
+            expected_ref, expected_target = expected_orchestrator_pair
+            if payload.get("kind") != "seam":
+                fail(f"{location} must keep kind 'seam' for orchestrator alignment quests")
+            if payload.get("owner_surface") != "docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md":
+                fail(f"{location} must keep owner_surface docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md")
+            if payload.get("orchestrator_class_ref") != expected_ref:
+                fail(f"{location} must keep orchestrator_class_ref '{expected_ref}'")
+            if payload.get("capability_target") != expected_target:
+                fail(f"{location} must keep capability_target '{expected_target}'")
         if payload.get("state") in CLOSED_QUEST_STATES:
             closed_quest_ids.append(quest_id)
         else:
             active_quest_ids.append(quest_id)
+        source_path = quest_path.relative_to(repo_root).as_posix()
+        expected_catalog_entries.append(
+            build_expected_quest_catalog_entry(payload, source_path=source_path)
+        )
+        expected_dispatch_entries.append(
+            build_expected_quest_dispatch_entry(payload, quest_id=quest_id, source_path=source_path)
+        )
+
+    if needs_alignment_doc:
+        alignment_text = read_text(alignment_doc_path)
+        alignment_location = alignment_doc_path.relative_to(repo_root).as_posix()
+        for token in ORCHESTRATOR_ALIGNMENT_REQUIRED_TOKENS:
+            if token not in alignment_text:
+                fail(f"{alignment_location} must mention '{token}' explicitly")
 
     for token in QUESTBOOK_REQUIRED_INDEX_TOKENS:
         if token not in questbook_text:
@@ -3313,6 +3575,35 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     for quest_id in closed_quest_ids:
         if quest_id in questbook_text:
             fail(f"{questbook_location} must not list closed quest id '{quest_id}'")
+
+    actual_catalog = read_json(repo_root / "generated" / "quest_catalog.min.json")
+    if actual_catalog != expected_catalog_entries:
+        fail("generated/quest_catalog.min.json is out of date or mismatched")
+    actual_catalog_example = read_json(repo_root / "generated" / "quest_catalog.min.example.json")
+    if actual_catalog_example != expected_catalog_entries:
+        fail("generated/quest_catalog.min.example.json is out of date or mismatched")
+    actual_dispatch = read_json(repo_root / "generated" / "quest_dispatch.min.json")
+    if not isinstance(actual_dispatch, list):
+        fail("generated/quest_dispatch.min.json must be an array")
+    for index, entry in enumerate(actual_dispatch):
+        validate_against_external_schema(
+            entry,
+            EXTERNAL_QUEST_DISPATCH_SCHEMA_PATH,
+            location=f"generated/quest_dispatch.min.json[{index}]",
+        )
+    if actual_dispatch != expected_dispatch_entries:
+        fail("generated/quest_dispatch.min.json is out of date or mismatched")
+    actual_dispatch_example = read_json(repo_root / "generated" / "quest_dispatch.min.example.json")
+    if not isinstance(actual_dispatch_example, list):
+        fail("generated/quest_dispatch.min.example.json must be an array")
+    for index, entry in enumerate(actual_dispatch_example):
+        validate_against_external_schema(
+            entry,
+            EXTERNAL_QUEST_DISPATCH_SCHEMA_PATH,
+            location=f"generated/quest_dispatch.min.example.json[{index}]",
+        )
+    if actual_dispatch_example != expected_dispatch_entries:
+        fail("generated/quest_dispatch.min.example.json is out of date or mismatched")
 
 
 def main() -> int:
