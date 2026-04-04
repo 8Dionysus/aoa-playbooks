@@ -111,6 +111,22 @@ ORCHESTRATOR_ALIGNMENT_REQUIRED_TOKENS = (
     "## Boundary rule",
     "Orchestrator class identity lives in `aoa-agents`.",
 )
+PARTY_TEMPLATE_MODEL_NAME = "docs/PARTY_TEMPLATE_MODEL.md"
+BUILD_SYNERGY_POSTURE_NAME = "docs/BUILD_SYNERGY_POSTURE.md"
+PARTY_TEMPLATE_SCHEMA_NAME = "schemas/party_template_catalog.schema.json"
+PARTY_TEMPLATE_EXAMPLE_NAME = "generated/party_template_cards.min.example.json"
+PARTY_TEMPLATE_MODEL_REQUIRED_TOKENS = (
+    "## Core rule",
+    "A party template is a scenario-owned derived composition surface.",
+    "It does not:",
+    "using party templates as a substitute for quests, playbooks, or evals themselves",
+)
+BUILD_SYNERGY_REQUIRED_TOKENS = (
+    "## Core rule",
+    "Synergy is scenario-shaped.",
+    "## Not allowed here",
+    "per-run item drops or economy loops",
+)
 CLOSED_QUEST_STATES = {"done", "dropped"}
 ACTIVATION_EXAMPLE_PATHS = {
     "AOA-P-0008": REPO_ROOT / "examples" / "playbook_activation.long-horizon-model-tier-orchestra.example.json",
@@ -3547,6 +3563,11 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
                 fail(f"{location} must keep orchestrator_class_ref '{expected_ref}'")
             if payload.get("capability_target") != expected_target:
                 fail(f"{location} must keep capability_target '{expected_target}'")
+        if quest_id == "AOA-PB-Q-0007":
+            if payload.get("kind") != "seam":
+                fail(f"{location} must keep kind 'seam' for the bridge-wave party template quest")
+            if payload.get("owner_surface") != "docs/PARTY_TEMPLATE_MODEL.md":
+                fail(f"{location} must keep owner_surface docs/PARTY_TEMPLATE_MODEL.md")
         if payload.get("state") in CLOSED_QUEST_STATES:
             closed_quest_ids.append(quest_id)
         else:
@@ -3604,6 +3625,66 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
         )
     if actual_dispatch_example != expected_dispatch_entries:
         fail("generated/quest_dispatch.min.example.json is out of date or mismatched")
+
+    if "AOA-PB-Q-0007" in quest_ids:
+        party_template_model_path = repo_root / PARTY_TEMPLATE_MODEL_NAME
+        build_synergy_posture_path = repo_root / BUILD_SYNERGY_POSTURE_NAME
+        party_template_schema_path = repo_root / PARTY_TEMPLATE_SCHEMA_NAME
+        party_template_example_path = repo_root / PARTY_TEMPLATE_EXAMPLE_NAME
+        playbook_registry_path = repo_root / "generated" / "playbook_registry.min.json"
+
+        party_template_model_text = read_text(party_template_model_path)
+        for token in PARTY_TEMPLATE_MODEL_REQUIRED_TOKENS:
+            if token not in party_template_model_text:
+                fail(f"{party_template_model_path.relative_to(repo_root).as_posix()} must mention '{token}' explicitly")
+
+        build_synergy_text = read_text(build_synergy_posture_path)
+        for token in BUILD_SYNERGY_REQUIRED_TOKENS:
+            if token not in build_synergy_text:
+                fail(f"{build_synergy_posture_path.relative_to(repo_root).as_posix()} must mention '{token}' explicitly")
+
+        schema_payload = read_json(party_template_schema_path)
+        if not isinstance(schema_payload, dict):
+            fail("schemas/party_template_catalog.schema.json must be a JSON object")
+        if schema_payload.get("title") != "party_template_catalog_v1":
+            fail("schemas/party_template_catalog.schema.json must keep title 'party_template_catalog_v1'")
+        Draft202012Validator.check_schema(schema_payload)
+
+        example_payload = read_json(party_template_example_path)
+        if not isinstance(example_payload, dict):
+            fail("generated/party_template_cards.min.example.json must be a JSON object")
+        validate_against_external_schema(
+            example_payload,
+            party_template_schema_path,
+            location=party_template_example_path.relative_to(repo_root).as_posix(),
+        )
+        if example_payload.get("schema_version") != "party_template_catalog_v1":
+            fail("generated/party_template_cards.min.example.json must keep schema_version 'party_template_catalog_v1'")
+        templates = example_payload.get("templates")
+        if not isinstance(templates, list) or not templates:
+            fail("generated/party_template_cards.min.example.json must expose a non-empty templates list")
+        playbook_registry_payload = read_json(playbook_registry_path)
+        if not isinstance(playbook_registry_payload, dict):
+            fail("generated/playbook_registry.min.json must remain a JSON object")
+        registry_entries = playbook_registry_payload.get("playbooks")
+        if not isinstance(registry_entries, list):
+            fail("generated/playbook_registry.min.json must expose a playbooks array")
+        playbooks_by_id = {
+            entry.get("id"): entry
+            for entry in registry_entries
+            if isinstance(entry, dict) and isinstance(entry.get("id"), str)
+        }
+        for index, template in enumerate(templates):
+            if not isinstance(template, dict):
+                fail(f"generated/party_template_cards.min.example.json.templates[{index}] must be an object")
+            playbook_id = template.get("playbook_id")
+            if playbook_id not in playbooks_by_id:
+                fail(
+                    "generated/party_template_cards.min.example.json references a playbook_id that does not resolve "
+                    f"in generated/playbook_registry.min.json: {playbook_id}"
+                )
+            if template.get("public_safe") is not True:
+                fail(f"generated/party_template_cards.min.example.json.templates[{index}] must keep public_safe true")
 
 
 def main() -> int:

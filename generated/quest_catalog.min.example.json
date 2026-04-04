@@ -133,5 +133,20 @@
       "repo:aoa-memo/examples/recall_contract.object.working.phase-alpha.json",
       "repo:aoa-memo/docs/ORCHESTRATOR_MEMORY_ALIGNMENT.md"
     ]
+  },
+  {
+    "id": "AOA-PB-Q-0007",
+    "title": "Add party-template and build-synergy doctrine for the RPG bridge wave",
+    "repo": "aoa-playbooks",
+    "theme_ref": "",
+    "milestone_ref": "",
+    "state": "triaged",
+    "band": "frontier",
+    "kind": "seam",
+    "difficulty": "d3_seam",
+    "risk": "r1_repo_local",
+    "owner_surface": "docs/PARTY_TEMPLATE_MODEL.md",
+    "source_path": "quests/AOA-PB-Q-0007.yaml",
+    "public_safe": true
   }
 ]

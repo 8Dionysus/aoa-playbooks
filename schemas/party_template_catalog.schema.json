@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "party_template_catalog_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "templates",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "party_template_catalog_v1"
+    },
+    "templates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schema_version",
+          "template_id",
+          "playbook_id",
+          "source_playbook_ref",
+          "title",
+          "scenario_kind",
+          "cohort_pattern",
+          "slots",
+          "loadout_posture",
+          "reanchor_posture",
+          "evidence_refs",
+          "public_safe"
+        ],
+        "properties": {
+          "schema_version": {
+            "const": "party_template_v1"
+          },
+          "template_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "playbook_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_playbook_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scenario_kind": {
+            "enum": [
+              "bounded_change",
+              "validation_remediation",
+              "cross_repo_rollout",
+              "incident_recovery",
+              "investigation",
+              "campaign_lane"
+            ]
+          },
+          "cohort_pattern": {
+            "enum": [
+              "solo",
+              "pair",
+              "checkpoint_cohort",
+              "orchestrated_loop",
+              "triad",
+              "raid"
+            ]
+          },
+          "stage_label": {
+            "type": "string"
+          },
+          "review_posture": {
+            "type": "string"
+          },
+          "slots": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "slot_id",
+                "role_ref",
+                "min_rank",
+                "preferred_axes",
+                "required_ability_ids",
+                "preferred_feat_ids"
+              ],
+              "properties": {
+                "slot_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "role_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "min_rank": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "preferred_axes": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required_ability_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "preferred_feat_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "required_reputation_slices": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "loadout_posture": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "required_ability_ids",
+              "optional_ability_ids",
+              "preferred_feat_ids",
+              "artifact_classes"
+            ],
+            "properties": {
+              "required_ability_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "optional_ability_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "preferred_feat_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "artifact_classes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          },
+          "unlock_gates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "gate_id",
+                "unlock_kind",
+                "recommended_proof_kinds",
+                "note"
+              ],
+              "properties": {
+                "gate_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "unlock_kind": {
+                  "enum": [
+                    "party_template",
+                    "campaign_lane",
+                    "cohort_pattern",
+                    "difficulty_ceiling",
+                    "risk_ceiling"
+                  ]
+                },
+                "recommended_proof_kinds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "note": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "synergy_tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "failure_followups": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "failure_code",
+                "next_ref"
+              ],
+              "properties": {
+                "failure_code": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "next_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "reanchor_posture": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mode",
+              "max_reanchors",
+              "anchor_refs"
+            ],
+            "properties": {
+              "mode": {
+                "type": "string",
+                "minLength": 1
+              },
+              "max_reanchors": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "anchor_refs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          },
+          "campaign_lane_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "public_safe": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

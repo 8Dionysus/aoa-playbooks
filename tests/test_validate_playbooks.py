@@ -22,6 +22,13 @@ def write_text(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def copy_repo_text(repo_root: Path, relative_path: str) -> None:
+    source = REPO_ROOT / relative_path
+    destination = repo_root / relative_path
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+
+
 class ValidatePlaybooksReturnContractTests(unittest.TestCase):
     def make_registry_entry(self) -> dict[str, object]:
         return {
@@ -134,6 +141,26 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
 
 
 class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
+    def rewrite_quest_projections(self, repo_root: Path) -> None:
+        catalog = validate_playbooks.build_quest_catalog_projection(repo_root)
+        dispatch = validate_playbooks.build_quest_dispatch_projection(repo_root)
+        write_text(
+            repo_root / "generated" / "quest_catalog.min.json",
+            json.dumps(catalog, separators=(",", ":")) + "\n",
+        )
+        write_text(
+            repo_root / "generated" / "quest_catalog.min.example.json",
+            json.dumps(catalog, indent=2) + "\n",
+        )
+        write_text(
+            repo_root / "generated" / "quest_dispatch.min.json",
+            json.dumps(dispatch, separators=(",", ":")) + "\n",
+        )
+        write_text(
+            repo_root / "generated" / "quest_dispatch.min.example.json",
+            json.dumps(dispatch, indent=2) + "\n",
+        )
+
     def write_valid_surface(self, repo_root: Path) -> None:
         write_text(
             repo_root / "QUESTBOOK.md",
@@ -268,24 +295,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                 ),
             )
 
-        catalog = validate_playbooks.build_quest_catalog_projection(repo_root)
-        dispatch = validate_playbooks.build_quest_dispatch_projection(repo_root)
-        write_text(
-            repo_root / "generated" / "quest_catalog.min.json",
-            json.dumps(catalog, separators=(",", ":")) + "\n",
-        )
-        write_text(
-            repo_root / "generated" / "quest_catalog.min.example.json",
-            json.dumps(catalog, indent=2) + "\n",
-        )
-        write_text(
-            repo_root / "generated" / "quest_dispatch.min.json",
-            json.dumps(dispatch, separators=(",", ":")) + "\n",
-        )
-        write_text(
-            repo_root / "generated" / "quest_dispatch.min.example.json",
-            json.dumps(dispatch, indent=2) + "\n",
-        )
+        self.rewrite_quest_projections(repo_root)
 
     def test_valid_questbook_surface_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -359,26 +369,67 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                     1,
                 ),
             )
-            catalog = validate_playbooks.build_quest_catalog_projection(repo_root)
-            dispatch = validate_playbooks.build_quest_dispatch_projection(repo_root)
-            write_text(
-                repo_root / "generated" / "quest_catalog.min.json",
-                json.dumps(catalog, separators=(",", ":")) + "\n",
-            )
-            write_text(
-                repo_root / "generated" / "quest_catalog.min.example.json",
-                json.dumps(catalog, indent=2) + "\n",
-            )
-            write_text(
-                repo_root / "generated" / "quest_dispatch.min.json",
-                json.dumps(dispatch, separators=(",", ":")) + "\n",
-            )
-            write_text(
-                repo_root / "generated" / "quest_dispatch.min.example.json",
-                json.dumps(dispatch, indent=2) + "\n",
-            )
+            self.rewrite_quest_projections(repo_root)
 
             validate_playbooks.validate_questbook_surface(repo_root)
+
+    def test_party_template_bridge_surface_passes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            self.write_valid_surface(repo_root)
+            for relative_path in [
+                "docs/PARTY_TEMPLATE_MODEL.md",
+                "docs/BUILD_SYNERGY_POSTURE.md",
+                "schemas/party_template_catalog.schema.json",
+                "generated/playbook_registry.min.json",
+                "generated/party_template_cards.min.example.json",
+                "quests/AOA-PB-Q-0007.yaml",
+            ]:
+                copy_repo_text(repo_root, relative_path)
+            write_text(
+                repo_root / "QUESTBOOK.md",
+                (repo_root / "QUESTBOOK.md").read_text(encoding="utf-8").replace(
+                    "## Near",
+                    "- `AOA-PB-Q-0007` Add party-template and build-synergy doctrine for the RPG bridge wave\n\n## Near",
+                ),
+            )
+            self.rewrite_quest_projections(repo_root)
+
+            validate_playbooks.validate_questbook_surface(repo_root)
+
+    def test_party_template_bridge_surface_rejects_legacy_playbook_quest_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            self.write_valid_surface(repo_root)
+            for relative_path in [
+                "docs/PARTY_TEMPLATE_MODEL.md",
+                "docs/BUILD_SYNERGY_POSTURE.md",
+                "schemas/party_template_catalog.schema.json",
+                "generated/playbook_registry.min.json",
+                "generated/party_template_cards.min.example.json",
+                "quests/AOA-PB-Q-0007.yaml",
+            ]:
+                copy_repo_text(repo_root, relative_path)
+            write_text(
+                repo_root / "generated" / "party_template_cards.min.example.json",
+                (REPO_ROOT / "generated" / "party_template_cards.min.example.json")
+                .read_text(encoding="utf-8")
+                .replace('"playbook_id": "AOA-P-0011"', '"playbook_id": "AOA-P-9999"', 1),
+            )
+            write_text(
+                repo_root / "QUESTBOOK.md",
+                (repo_root / "QUESTBOOK.md").read_text(encoding="utf-8").replace(
+                    "## Near",
+                    "- `AOA-PB-Q-0007` Add party-template and build-synergy doctrine for the RPG bridge wave\n\n## Near",
+                ),
+            )
+            self.rewrite_quest_projections(repo_root)
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "does not resolve in generated/playbook_registry.min.json: AOA-P-9999",
+            ):
+                validate_playbooks.validate_questbook_surface(repo_root)
 
     def test_missing_questbook_file_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
