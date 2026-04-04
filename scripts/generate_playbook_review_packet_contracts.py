@@ -44,6 +44,7 @@ def _resolve_aoa_evals_root() -> Path:
 
 
 AOA_EVALS_ROOT = _resolve_aoa_evals_root()
+EVAL_CATALOG_PATH = AOA_EVALS_ROOT / "generated" / "eval_catalog.min.json"
 
 
 def read_text(path: Path) -> str:
@@ -109,6 +110,15 @@ def _ordered_unique(items: list[str]) -> list[str]:
 
 def _available_runtime_eval_anchors() -> set[str]:
     anchors: set[str] = set()
+    catalog_payload = read_json(EVAL_CATALOG_PATH)
+    if isinstance(catalog_payload, dict):
+        eval_entries = catalog_payload.get("evals")
+        if isinstance(eval_entries, list):
+            for item in eval_entries:
+                if isinstance(item, dict):
+                    name = item.get("name")
+                    if isinstance(name, str):
+                        anchors.add(name)
     for path in sorted((AOA_EVALS_ROOT / "examples").glob("runtime_evidence_selection.*.example.json")):
         payload = read_json(path)
         if isinstance(payload, dict):
