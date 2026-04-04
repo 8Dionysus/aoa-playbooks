@@ -22,6 +22,25 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 
 - none yet
 
+## Quest-harvest posture
+
+`aoa-quest-harvest` may be installed at `.agents/skills/aoa-quest-harvest` as a post-session aid for playbook-owned review and reanchor work.
+
+- use it only after a reviewed run, closure, or pause
+- do not use it inside an active route
+- it does not define orchestrator identity
+- it does not replace playbook, memo, eval, or source-owned doctrine
+- do not promote on one anecdotal repeat
+
+Allowed verdicts:
+
+- `keep/open quest`
+- `promote to skill`
+- `promote to playbook`
+- `promote to orchestrator surface`
+- `promote to proof surface`
+- `promote to memo surface`
+
 ## Notes
 
 - Read [`docs/QUEST_HARVEST_AND_REANCHOR.md`](docs/QUEST_HARVEST_AND_REANCHOR.md) for the bounded note.
