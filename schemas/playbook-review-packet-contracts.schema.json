@@ -26,7 +26,8 @@
         "registry",
         "activation",
         "federation",
-        "review_status"
+        "review_status",
+        "runtime_template_index"
       ],
       "properties": {
         "registry": {
@@ -44,6 +45,10 @@
         "review_status": {
           "type": "string",
           "const": "generated/playbook_review_status.min.json"
+        },
+        "runtime_template_index": {
+          "type": "string",
+          "const": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json"
         }
       }
     },
