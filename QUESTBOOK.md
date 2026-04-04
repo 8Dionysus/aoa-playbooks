@@ -9,6 +9,7 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 - `AOA-PB-Q-0004` Align router orchestrator quests to activation, federation, and advisory playbook surfaces
 - `AOA-PB-Q-0005` Align review orchestrator quests to reviewed-run, readiness, and closure playbook surfaces
 - `AOA-PB-Q-0006` Align bounded-execution orchestrator quests to bounded route cards and artifact contracts
+- `AOA-PB-Q-0007` Add party-template and build-synergy doctrine for the RPG bridge wave
 
 ## Near
 
