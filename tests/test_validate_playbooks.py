@@ -5,6 +5,7 @@ import json
 import tempfile
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -487,6 +488,20 @@ class ValidatePlaybookReviewPacketContractsSurfaceTests(unittest.TestCase):
     def test_review_packet_contracts_surface_passes_for_current_repo(self) -> None:
         playbooks_by_id = validate_playbooks.validate_registry()
         validate_playbooks.validate_playbook_review_packet_contracts_surface(playbooks_by_id)
+
+    def test_review_packet_contracts_surface_reports_builder_system_exit(self) -> None:
+        class FailingBuilder:
+            def build_review_packet_contracts_payload(self) -> dict[str, object]:
+                raise SystemExit("builder-exit")
+
+        with patch.object(
+            validate_playbooks,
+            "load_review_packet_contract_builder_module",
+            return_value=FailingBuilder(),
+        ):
+            with self.assertRaisesRegex(validate_playbooks.ValidationError, "builder-exit"):
+                playbooks_by_id = validate_playbooks.validate_registry()
+                validate_playbooks.validate_playbook_review_packet_contracts_surface(playbooks_by_id)
 
     def test_review_packet_contracts_surface_rejects_packet_kind_drift(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

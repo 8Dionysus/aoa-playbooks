@@ -2968,7 +2968,7 @@ def validate_playbook_review_packet_contracts_surface(
     builder = load_review_packet_contract_builder_module()
     try:
         expected = builder.build_review_packet_contracts_payload()
-    except Exception as exc:
+    except (Exception, SystemExit) as exc:
         fail(str(exc))
 
     payload = read_json(PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH)
@@ -2988,6 +2988,7 @@ def validate_playbook_review_packet_contracts_surface(
         "activation": "generated/playbook_activation_surfaces.min.json",
         "federation": "generated/playbook_federation_surfaces.min.json",
         "review_status": "generated/playbook_review_status.min.json",
+        "runtime_template_index": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
     }
     if payload.get("source_of_truth") != expected_source_of_truth:
         fail("generated/playbook_review_packet_contracts.min.json must keep source_of_truth stable")

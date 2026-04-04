@@ -4,6 +4,7 @@ import importlib.util
 import json
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -289,6 +290,21 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "docs/gate-reviews/incident-recovery-routing.md",
             ],
         )
+        self.assertEqual(
+            current["source_of_truth"],
+            {
+                "registry": "generated/playbook_registry.min.json",
+                "activation": "generated/playbook_activation_surfaces.min.json",
+                "federation": "generated/playbook_federation_surfaces.min.json",
+                "review_status": "generated/playbook_review_status.min.json",
+                "runtime_template_index": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
+            },
+        )
+
+    def test_review_packet_contract_builder_rejects_missing_runtime_template_sources(self) -> None:
+        with self.assertRaises(SystemExit):
+            with patch.object(review_packet_contract_builder, "AOA_EVALS_ROOT", REPO_ROOT / ".missing-aoa-evals"):
+                review_packet_contract_builder.build_review_packet_contracts_payload()
 
     def test_review_intake_surface_is_deterministic_and_keeps_live_review_alignment(self) -> None:
         expected = review_intake_builder.build_review_intake_payload()

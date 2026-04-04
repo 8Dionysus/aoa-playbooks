@@ -44,7 +44,7 @@ def _resolve_aoa_evals_root() -> Path:
 
 
 AOA_EVALS_ROOT = _resolve_aoa_evals_root()
-EVAL_CATALOG_PATH = AOA_EVALS_ROOT / "generated" / "eval_catalog.min.json"
+RUNTIME_TEMPLATE_INDEX_PATH = AOA_EVALS_ROOT / "generated" / "runtime_candidate_template_index.min.json"
 
 
 def read_text(path: Path) -> str:
@@ -110,27 +110,30 @@ def _ordered_unique(items: list[str]) -> list[str]:
 
 def _available_runtime_eval_anchors() -> set[str]:
     anchors: set[str] = set()
-    catalog_payload = read_json(EVAL_CATALOG_PATH)
-    if isinstance(catalog_payload, dict):
-        eval_entries = catalog_payload.get("evals")
-        if isinstance(eval_entries, list):
-            for item in eval_entries:
-                if isinstance(item, dict):
-                    name = item.get("name")
-                    if isinstance(name, str):
-                        anchors.add(name)
-    for path in sorted((AOA_EVALS_ROOT / "examples").glob("runtime_evidence_selection.*.example.json")):
-        payload = read_json(path)
-        if isinstance(payload, dict):
-            target_eval = payload.get("target_eval")
-            if isinstance(target_eval, str):
-                anchors.add(target_eval)
-    for path in sorted((AOA_EVALS_ROOT / "examples").glob("artifact_to_verdict_hook.*.example.json")):
-        payload = read_json(path)
-        if isinstance(payload, dict):
-            eval_anchor = payload.get("eval_anchor")
-            if isinstance(eval_anchor, str):
-                anchors.add(eval_anchor)
+    payload = read_json(RUNTIME_TEMPLATE_INDEX_PATH)
+    if not isinstance(payload, dict) or not isinstance(payload.get("templates"), list):
+        raise SystemExit(
+            "[error] aoa-evals generated/runtime_candidate_template_index.min.json must contain a templates list"
+        )
+    for item in payload["templates"]:
+        if not isinstance(item, dict):
+            raise SystemExit(
+                "[error] aoa-evals generated/runtime_candidate_template_index.min.json templates entries must be objects"
+            )
+        source_example_ref = item.get("source_example_ref")
+        if not isinstance(source_example_ref, str) or not source_example_ref:
+            raise SystemExit(
+                "[error] aoa-evals runtime candidate template entries must keep source_example_ref"
+            )
+        source_example_path = AOA_EVALS_ROOT / source_example_ref
+        if not source_example_path.is_file():
+            raise SystemExit(
+                "[error] aoa-evals runtime candidate template source is unavailable: "
+                f"{source_example_path}"
+            )
+        eval_anchor = item.get("eval_anchor")
+        if isinstance(eval_anchor, str):
+            anchors.add(eval_anchor)
     return anchors
 
 
@@ -233,6 +236,7 @@ def build_review_packet_contracts_payload() -> dict[str, object]:
             "activation": "generated/playbook_activation_surfaces.min.json",
             "federation": "generated/playbook_federation_surfaces.min.json",
             "review_status": "generated/playbook_review_status.min.json",
+            "runtime_template_index": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
         },
         "playbooks": entries,
     }
