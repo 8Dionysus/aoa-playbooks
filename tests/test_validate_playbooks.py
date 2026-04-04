@@ -254,7 +254,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "  - reanchor is not retry" if quest_id == "AOA-PB-Q-0001" else "  - named promotion destinations stay reviewable",
                         "  - harvest stays evidence-first" if quest_id == "AOA-PB-Q-0001" else "  - valid anchor classes stay compact",
                         "harvest:",
-                        "  target: recurrence_doctrine" if quest_id == "AOA-PB-Q-0001" else "  target: reviewed_evidence",
+                        "  target: playbook",
                         "opened_at: '2026-03-31'",
                         "touched_at: '2026-03-31'",
                         "tags:",
@@ -267,6 +267,25 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                     )
                 ),
             )
+
+        catalog = validate_playbooks.build_quest_catalog_projection(repo_root)
+        dispatch = validate_playbooks.build_quest_dispatch_projection(repo_root)
+        write_text(
+            repo_root / "generated" / "quest_catalog.min.json",
+            json.dumps(catalog, separators=(",", ":")) + "\n",
+        )
+        write_text(
+            repo_root / "generated" / "quest_catalog.min.example.json",
+            json.dumps(catalog, indent=2) + "\n",
+        )
+        write_text(
+            repo_root / "generated" / "quest_dispatch.min.json",
+            json.dumps(dispatch, separators=(",", ":")) + "\n",
+        )
+        write_text(
+            repo_root / "generated" / "quest_dispatch.min.example.json",
+            json.dumps(dispatch, indent=2) + "\n",
+        )
 
     def test_valid_questbook_surface_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -340,6 +359,24 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                     1,
                 ),
             )
+            catalog = validate_playbooks.build_quest_catalog_projection(repo_root)
+            dispatch = validate_playbooks.build_quest_dispatch_projection(repo_root)
+            write_text(
+                repo_root / "generated" / "quest_catalog.min.json",
+                json.dumps(catalog, separators=(",", ":")) + "\n",
+            )
+            write_text(
+                repo_root / "generated" / "quest_catalog.min.example.json",
+                json.dumps(catalog, indent=2) + "\n",
+            )
+            write_text(
+                repo_root / "generated" / "quest_dispatch.min.json",
+                json.dumps(dispatch, separators=(",", ":")) + "\n",
+            )
+            write_text(
+                repo_root / "generated" / "quest_dispatch.min.example.json",
+                json.dumps(dispatch, indent=2) + "\n",
+            )
 
             validate_playbooks.validate_questbook_surface(repo_root)
 
@@ -411,7 +448,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "  - named promotion destinations stay reviewable",
                         "  - valid anchor classes stay compact",
                         "harvest:",
-                        "  target: reviewed_evidence",
+                        "  target: playbook",
                         "opened_at: '2026-03-31'",
                         "touched_at: '2026-03-31'",
                         "tags:",

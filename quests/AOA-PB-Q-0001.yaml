@@ -35,7 +35,7 @@ evidence:
   - reanchor is not retry
   - harvest stays evidence-first
 harvest:
-  target: recurrence_doctrine
+  target: playbook
 opened_at: '2026-03-31'
 touched_at: '2026-03-31'
 tags:
