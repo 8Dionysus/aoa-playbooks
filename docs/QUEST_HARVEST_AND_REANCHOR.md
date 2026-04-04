@@ -47,6 +47,24 @@ Reanchor is not permission to widen scope until the route feels stable.
 - `docs/real-runs/` for reviewed summaries
 - `docs/gate-reviews/` for gate-review notes
 
+## Installed quest-harvest posture
+
+`aoa-quest-harvest` may assist this repo only after a reviewed run, closure, or pause.
+
+- it is not used inside an active route
+- it does not define orchestrator identity
+- it does not replace playbook route canon, memo writeback, or eval proof
+- one anecdotal repeat is not enough to promote a route outcome
+
+Its allowed verdicts are:
+
+- `keep/open quest`
+- `promote to skill`
+- `promote to playbook`
+- `promote to orchestrator surface`
+- `promote to proof surface`
+- `promote to memo surface`
+
 ## Anti-patterns
 
 - treating reanchor as retry
