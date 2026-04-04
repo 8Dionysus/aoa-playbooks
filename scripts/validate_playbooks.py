@@ -38,6 +38,9 @@ PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = (
     REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json"
 )
 PLAYBOOK_REVIEW_INTAKE_PATH = REPO_ROOT / "generated" / "playbook_review_intake.min.json"
+PHASE_ALPHA_CONFIG_PATH = REPO_ROOT / "config" / "phase_alpha_curated_core.json"
+PHASE_ALPHA_REVIEW_PACKETS_PATH = REPO_ROOT / "generated" / "phase_alpha_review_packets.min.json"
+PHASE_ALPHA_RUN_MATRIX_PATH = REPO_ROOT / "generated" / "phase_alpha_run_matrix.min.json"
 SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-registry.schema.json"
 REVIEW_STATUS_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-review-status.schema.json"
 REVIEW_PACKET_CONTRACTS_SCHEMA_PATH = (
@@ -117,6 +120,45 @@ REAL_RUN_WORKFLOW_PATH = REPO_ROOT / "docs" / "PLAYBOOK_REAL_RUN_WORKFLOW.md"
 REAL_RUN_SUMMARY_HOME_PATH = REPO_ROOT / "docs" / "real-runs" / "README.md"
 REAL_RUN_SUMMARY_DIR = REPO_ROOT / "docs" / "real-runs"
 GATE_REVIEW_DIR = REPO_ROOT / "docs" / "gate-reviews"
+PHASE_ALPHA_HARVESTS_DIR = REPO_ROOT / "examples" / "alpha_harvests"
+PHASE_ALPHA_REVIEWED_RUNS_DIR = REPO_ROOT / "docs" / "alpha-reviewed-runs"
+PHASE_ALPHA_READINESS_DIR = REPO_ROOT / "docs" / "alpha-readiness"
+PHASE_ALPHA_PLAYBOOK_ORDER = (
+    "AOA-P-0014",
+    "AOA-P-0006",
+    "AOA-P-0018",
+    "AOA-P-0008",
+    "AOA-P-0009",
+)
+PHASE_ALPHA_FINAL_RERUN_ID = "alpha-06-validation-driven-remediation-recall-rerun"
+PHASE_ALPHA_REQUIRED_HARVEST_SECTIONS = (
+    "Route Header",
+    "Required Artifacts",
+    "Eval Anchors",
+    "Memo Writeback",
+    "Stop Conditions",
+    "Evidence Links",
+)
+PHASE_ALPHA_REQUIRED_REVIEWED_RUN_SECTIONS = (
+    "Run Header",
+    "Runtime Path",
+    "Entry Signal",
+    "Required Artifacts",
+    "Eval Anchors",
+    "Memo Writeback",
+    "Stop Conditions",
+    "Recurrence Posture",
+    "Evidence Links",
+)
+PHASE_ALPHA_REQUIRED_READINESS_SECTIONS = (
+    "Readiness Header",
+    "Fixed Route Order",
+    "Required Evidence",
+    "Eval Coverage",
+    "Memo Coverage",
+    "Current Verdict",
+    "Next Trigger",
+)
 REAL_RUN_SUMMARY_SLUG_REQUIREMENTS = {
     "split-wave-cross-repo-rollout": (
         "wave_plan",
@@ -1090,6 +1132,17 @@ def read_text(path: Path) -> str:
         return path.read_text(encoding="utf-8")
     except FileNotFoundError:
         fail(f"missing required file: {display_path(path)}")
+
+
+def local_ref_error(ref_value: object, label: str) -> str | None:
+    if not isinstance(ref_value, str) or not ref_value:
+        return f"{label}: reference must be a non-empty string"
+    if ref_value.startswith(("repo:", "http://", "https://")):
+        return None
+    target = REPO_ROOT / ref_value
+    if not target.exists():
+        return f"{label}: referenced path does not exist: {ref_value}"
+    return None
 
 
 def read_yaml(path: Path) -> object:
@@ -2607,6 +2660,206 @@ def load_review_intake_builder_module():
     return module
 
 
+def load_phase_alpha_builder_module():
+    module_path = REPO_ROOT / "scripts" / "generate_phase_alpha_surfaces.py"
+    spec = importlib.util.spec_from_file_location("generate_phase_alpha_surfaces", module_path)
+    if spec is None or spec.loader is None:
+        fail("unable to load Phase Alpha surface generator module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def validate_phase_alpha_surfaces(
+    playbooks_by_id: dict[str, dict[str, object]],
+    *,
+    evals_by_name: dict[str, dict[str, object]],
+) -> None:
+    config = read_json(PHASE_ALPHA_CONFIG_PATH)
+    if not isinstance(config, dict):
+        fail("config/phase_alpha_curated_core.json must stay a JSON object")
+
+    runtime_paths = config.get("runtime_paths")
+    if not isinstance(runtime_paths, dict):
+        fail("config/phase_alpha_curated_core.json must expose runtime_paths")
+    primary_runtime = runtime_paths.get("primary")
+    control_runtime = runtime_paths.get("control")
+    if not isinstance(primary_runtime, str) or "5403" not in primary_runtime or "LangGraph" not in primary_runtime:
+        fail("config/phase_alpha_curated_core.json runtime_paths.primary must keep the llama.cpp + LangGraph worker path")
+    if (
+        not isinstance(control_runtime, str)
+        or "5403" not in control_runtime
+        or "llama.cpp" not in control_runtime
+        or "recurrence" not in control_runtime
+    ):
+        fail("config/phase_alpha_curated_core.json runtime_paths.control must keep the canonical llama.cpp second-pass recurrence path")
+
+    playbooks = config.get("playbooks")
+    if not isinstance(playbooks, list) or len(playbooks) != len(PHASE_ALPHA_PLAYBOOK_ORDER):
+        fail("config/phase_alpha_curated_core.json must expose the five Alpha core playbooks in order")
+
+    seen_ids: list[str] = []
+    for index, entry in enumerate(playbooks):
+        location = f"config/phase_alpha_curated_core.json.playbooks[{index}]"
+        if not isinstance(entry, dict):
+            fail(f"{location} must be an object")
+        playbook_id = entry.get("playbook_id")
+        playbook_name = entry.get("playbook_name")
+        if playbook_id != PHASE_ALPHA_PLAYBOOK_ORDER[index]:
+            fail(f"{location}.playbook_id must stay in the fixed Phase Alpha order")
+        if playbook_id not in playbooks_by_id:
+            fail(f"{location}.playbook_id '{playbook_id}' does not resolve in generated/playbook_registry.min.json")
+        registry_entry = playbooks_by_id[playbook_id]
+        if playbook_name != registry_entry.get("name"):
+            fail(f"{location}.playbook_name must match generated/playbook_registry.min.json")
+        seen_ids.append(playbook_id)
+
+        for field_name in (
+            "required_artifacts",
+            "eval_anchors",
+            "memo_outputs",
+            "stop_conditions",
+            "allowed_reentry_modes",
+            "source_review_refs",
+        ):
+            value = entry.get(field_name)
+            if not isinstance(value, list) or not value:
+                fail(f"{location}.{field_name} must stay a non-empty list")
+            if len(value) != len(set(value)):
+                fail(f"{location}.{field_name} must not duplicate entries")
+
+        for anchor in entry["eval_anchors"]:
+            if anchor not in evals_by_name:
+                fail(f"{location}.eval_anchors contains unknown eval '{anchor}'")
+
+        for ref_field in (
+            "harvest_template_ref",
+            "reviewed_run_ref",
+            "readiness_review_ref",
+        ):
+            error = local_ref_error(entry.get(ref_field), f"{location}.{ref_field}")
+            if error:
+                fail(error)
+        for ref_index, ref in enumerate(entry["source_review_refs"]):
+            error = local_ref_error(ref, f"{location}.source_review_refs[{ref_index}]")
+            if error:
+                fail(error)
+
+        harvest_text = read_text(REPO_ROOT / entry["harvest_template_ref"])
+        harvest_sections = markdown_sections(harvest_text)
+        missing_harvest_sections = [
+            section_name
+            for section_name in PHASE_ALPHA_REQUIRED_HARVEST_SECTIONS
+            if section_name not in harvest_sections
+        ]
+        if missing_harvest_sections:
+            fail(
+                f"{entry['harvest_template_ref']} is missing required Alpha harvest sections: "
+                + ", ".join(missing_harvest_sections)
+            )
+        for artifact in entry["required_artifacts"]:
+            if artifact not in harvest_sections["Required Artifacts"]:
+                fail(f"{entry['harvest_template_ref']} must mention required artifact '{artifact}'")
+
+        reviewed_run_text = read_text(REPO_ROOT / entry["reviewed_run_ref"])
+        reviewed_sections = markdown_sections(reviewed_run_text)
+        missing_review_sections = [
+            section_name
+            for section_name in PHASE_ALPHA_REQUIRED_REVIEWED_RUN_SECTIONS
+            if section_name not in reviewed_sections
+        ]
+        if missing_review_sections:
+            fail(
+                f"{entry['reviewed_run_ref']} is missing required Alpha reviewed-run sections: "
+                + ", ".join(missing_review_sections)
+            )
+        if playbook_id not in reviewed_sections["Run Header"]:
+            fail(f"{entry['reviewed_run_ref']} Run Header must mention {playbook_id}")
+        for artifact in entry["required_artifacts"]:
+            if artifact not in reviewed_sections["Required Artifacts"]:
+                fail(f"{entry['reviewed_run_ref']} must mention required artifact '{artifact}'")
+        for anchor in entry["eval_anchors"]:
+            if anchor not in reviewed_sections["Eval Anchors"]:
+                fail(f"{entry['reviewed_run_ref']} must mention eval anchor '{anchor}'")
+        for memo_output in entry["memo_outputs"]:
+            if memo_output not in reviewed_sections["Memo Writeback"]:
+                fail(f"{entry['reviewed_run_ref']} must mention memo output '{memo_output}'")
+
+        readiness_text = read_text(REPO_ROOT / entry["readiness_review_ref"])
+        readiness_sections = markdown_sections(readiness_text)
+        missing_readiness_sections = [
+            section_name
+            for section_name in PHASE_ALPHA_REQUIRED_READINESS_SECTIONS
+            if section_name not in readiness_sections
+        ]
+        if missing_readiness_sections:
+            fail(
+                f"{entry['readiness_review_ref']} is missing required Alpha readiness sections: "
+                + ", ".join(missing_readiness_sections)
+            )
+        if "Alpha is a readiness proof lane, not composition promotion." not in readiness_text:
+            fail(
+                f"{entry['readiness_review_ref']} must preserve the readiness-proof-lane boundary sentence"
+            )
+        if "curated-ready" not in readiness_sections["Current Verdict"]:
+            fail(f"{entry['readiness_review_ref']} Current Verdict must expose curated-ready")
+
+    if tuple(seen_ids) != PHASE_ALPHA_PLAYBOOK_ORDER:
+        fail("config/phase_alpha_curated_core.json playbooks drifted from the fixed Phase Alpha order")
+
+    final_rerun = config.get("final_rerun")
+    if not isinstance(final_rerun, dict):
+        fail("config/phase_alpha_curated_core.json must expose final_rerun")
+    if final_rerun.get("run_id") != PHASE_ALPHA_FINAL_RERUN_ID:
+        fail("config/phase_alpha_curated_core.json final_rerun.run_id must stay fixed")
+    if final_rerun.get("playbook_id") != "AOA-P-0018":
+        fail("config/phase_alpha_curated_core.json final_rerun.playbook_id must stay AOA-P-0018")
+    if final_rerun.get("recall_mode") != "memo_only":
+        fail("config/phase_alpha_curated_core.json final_rerun.recall_mode must stay memo_only")
+    for field_name in ("required_artifacts", "eval_anchors", "memo_outputs", "stop_conditions"):
+        value = final_rerun.get(field_name)
+        if not isinstance(value, list) or not value:
+            fail(f"config/phase_alpha_curated_core.json final_rerun.{field_name} must stay a non-empty list")
+    for anchor in final_rerun["eval_anchors"]:
+        if anchor not in evals_by_name:
+            fail(f"config/phase_alpha_curated_core.json final_rerun.eval_anchors contains unknown eval '{anchor}'")
+    for ref_field in ("run_ref", "recall_contract_ref"):
+        error = local_ref_error(final_rerun.get(ref_field), f"config/phase_alpha_curated_core.json.final_rerun.{ref_field}")
+        if error:
+            fail(error)
+
+    final_run_text = read_text(REPO_ROOT / final_rerun["run_ref"])
+    final_sections = markdown_sections(final_run_text)
+    missing_final_sections = [
+        section_name
+        for section_name in PHASE_ALPHA_REQUIRED_REVIEWED_RUN_SECTIONS
+        if section_name not in final_sections
+    ]
+    if missing_final_sections:
+        fail(
+            f"{final_rerun['run_ref']} is missing required Alpha reviewed-run sections: "
+            + ", ".join(missing_final_sections)
+        )
+    if "memo-only" not in final_sections["Recurrence Posture"]:
+        fail(f"{final_rerun['run_ref']} Recurrence Posture must name memo-only recall")
+
+    builder = load_phase_alpha_builder_module()
+    expected_review_packets = builder.build_phase_alpha_review_packets_payload()
+    actual_review_packets = read_json(PHASE_ALPHA_REVIEW_PACKETS_PATH)
+    if actual_review_packets != expected_review_packets:
+        fail(
+            "generated/phase_alpha_review_packets.min.json drifted from "
+            "config/phase_alpha_curated_core.json"
+        )
+    expected_run_matrix = builder.build_phase_alpha_run_matrix_payload()
+    actual_run_matrix = read_json(PHASE_ALPHA_RUN_MATRIX_PATH)
+    if actual_run_matrix != expected_run_matrix:
+        fail(
+            "generated/phase_alpha_run_matrix.min.json drifted from "
+            "config/phase_alpha_curated_core.json"
+        )
+
+
 def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str, object]]) -> None:
     builder = load_review_status_builder_module()
     try:
@@ -3105,6 +3358,7 @@ def main() -> int:
         validate_playbook_review_status_surface(playbooks_by_id)
         validate_playbook_review_packet_contracts_surface(playbooks_by_id)
         validate_playbook_review_intake_surface()
+        validate_phase_alpha_surfaces(playbooks_by_id, evals_by_name=evals_by_name)
         validate_questbook_surface()
     except ValidationError as exc:
         print(f"[error] {exc}", file=sys.stderr)
@@ -3124,6 +3378,7 @@ def main() -> int:
     print("[ok] validated generated playbook review-status surface")
     print("[ok] validated generated playbook review-packet contracts surface")
     print("[ok] validated generated playbook review intake surface")
+    print("[ok] validated Phase Alpha readiness surfaces")
     print("[ok] validated playbook activation examples")
     print("[ok] validated shipped playbook real-run harvest templates")
     print("[ok] validated repo-first real-run workflow surfaces")
