@@ -1,0 +1,251 @@
+{
+  "phase": "alpha",
+  "lane": "curated-readiness",
+  "runtime_paths": {
+    "primary": "qwen3.5:9b on llama.cpp -> langchain-api /run at 5403 with LangGraph execution",
+    "control": "same qwen3.5:9b on llama.cpp -> langchain-api /run at 5403 after controlled restart or surface refresh for recurrence proof"
+  },
+  "playbooks": [
+    {
+      "sequence": 1,
+      "playbook_id": "AOA-P-0014",
+      "playbook_name": "local-stack-diagnosis",
+      "runtime_path_key": "primary",
+      "required_artifacts": [
+        "startup_canon_map",
+        "preview_evidence",
+        "blocker_list",
+        "verification_pack",
+        "shareable_summary"
+      ],
+      "eval_anchors": [
+        "aoa-verification-honesty",
+        "aoa-tool-trajectory-discipline"
+      ],
+      "memo_outputs": [
+        "episode",
+        "state_capsule",
+        "decision"
+      ],
+      "stop_conditions": [
+        "stop if runtime preflight fails",
+        "stop if the canonical startup path is still unclear after verification",
+        "stop if the blocker list cannot be bounded to source-owned surfaces"
+      ],
+      "allowed_reentry_modes": [
+        "previous_phase",
+        "safe_stop"
+      ],
+      "recurrence_proof_mode": "canonical-second-pass",
+      "harvest_template_ref": "examples/alpha_harvests/local-stack-diagnosis.harvest-template.md",
+      "reviewed_run_ref": "docs/alpha-reviewed-runs/2026-04-02.local-stack-diagnosis.md",
+      "readiness_review_ref": "docs/alpha-readiness/local-stack-diagnosis.md",
+      "source_review_refs": [
+        "examples/alpha_harvests/local-stack-diagnosis.harvest-template.md",
+        "docs/alpha-reviewed-runs/2026-04-02.local-stack-diagnosis.md",
+        "docs/alpha-readiness/local-stack-diagnosis.md",
+        "repo:aoa-agents/examples/alpha_reference_routes/local-stack-diagnosis.example.json"
+      ]
+    },
+    {
+      "sequence": 2,
+      "playbook_id": "AOA-P-0006",
+      "playbook_name": "self-agent-checkpoint-rollout",
+      "runtime_path_key": "primary",
+      "required_artifacts": [
+        "approval_record",
+        "rollback_marker",
+        "health_check",
+        "improvement_log"
+      ],
+      "eval_anchors": [
+        "aoa-approval-boundary-adherence",
+        "aoa-bounded-change-quality"
+      ],
+      "memo_outputs": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "stop_conditions": [
+        "stop if approval is not explicit",
+        "stop if rollback posture becomes ambiguous",
+        "stop if post-change health cannot be closed by review"
+      ],
+      "allowed_reentry_modes": [
+        "review_gate",
+        "rollback_gate",
+        "safe_stop"
+      ],
+      "recurrence_proof_mode": "canonical-second-pass",
+      "harvest_template_ref": "examples/alpha_harvests/self-agent-checkpoint-rollout.harvest-template.md",
+      "reviewed_run_ref": "docs/alpha-reviewed-runs/2026-04-02.self-agent-checkpoint-rollout.md",
+      "readiness_review_ref": "docs/alpha-readiness/self-agent-checkpoint-rollout.md",
+      "source_review_refs": [
+        "examples/alpha_harvests/self-agent-checkpoint-rollout.harvest-template.md",
+        "docs/alpha-reviewed-runs/2026-04-02.self-agent-checkpoint-rollout.md",
+        "docs/alpha-readiness/self-agent-checkpoint-rollout.md",
+        "repo:aoa-agents/examples/alpha_reference_routes/self-agent-checkpoint-rollout.example.json"
+      ]
+    },
+    {
+      "sequence": 3,
+      "playbook_id": "AOA-P-0018",
+      "playbook_name": "validation-driven-remediation",
+      "runtime_path_key": "primary",
+      "required_artifacts": [
+        "failure_map",
+        "boundary_map",
+        "remediation_change_set",
+        "revalidation_pack",
+        "remediation_decision",
+        "handoff_record"
+      ],
+      "eval_anchors": [
+        "aoa-scope-drift-detection",
+        "aoa-verification-honesty",
+        "aoa-approval-boundary-adherence"
+      ],
+      "memo_outputs": [
+        "episode",
+        "decision",
+        "audit_event"
+      ],
+      "stop_conditions": [
+        "stop if failure scope cannot be bounded",
+        "stop if remediation widens beyond the named change axis",
+        "stop if revalidation remains blocked after reviewer closure"
+      ],
+      "allowed_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "rollback_gate",
+        "safe_stop"
+      ],
+      "recurrence_proof_mode": "second-pass-plus-recall-rerun",
+      "harvest_template_ref": "examples/alpha_harvests/validation-driven-remediation.harvest-template.md",
+      "reviewed_run_ref": "docs/alpha-reviewed-runs/2026-04-02.validation-driven-remediation.md",
+      "readiness_review_ref": "docs/alpha-readiness/validation-driven-remediation.md",
+      "source_review_refs": [
+        "examples/alpha_harvests/validation-driven-remediation.harvest-template.md",
+        "docs/alpha-reviewed-runs/2026-04-02.validation-driven-remediation.md",
+        "docs/alpha-readiness/validation-driven-remediation.md",
+        "repo:aoa-agents/examples/alpha_reference_routes/validation-driven-remediation.example.json"
+      ]
+    },
+    {
+      "sequence": 4,
+      "playbook_id": "AOA-P-0008",
+      "playbook_name": "long-horizon-model-tier-orchestra",
+      "runtime_path_key": "primary",
+      "required_artifacts": [
+        "route_decision",
+        "bounded_plan",
+        "verification_result",
+        "transition_decision",
+        "distillation_pack"
+      ],
+      "eval_anchors": [
+        "aoa-long-horizon-depth",
+        "aoa-tool-trajectory-discipline"
+      ],
+      "memo_outputs": [
+        "state_capsule",
+        "decision",
+        "episode"
+      ],
+      "stop_conditions": [
+        "stop if route depth requires a stronger source authority than the named playbook",
+        "stop if transition posture becomes unreviewable",
+        "stop if distillation would be treated as canon instead of candidate memory"
+      ],
+      "allowed_reentry_modes": [
+        "previous_phase",
+        "router_reentry",
+        "safe_stop"
+      ],
+      "recurrence_proof_mode": "primary-run",
+      "harvest_template_ref": "examples/alpha_harvests/long-horizon-model-tier-orchestra.harvest-template.md",
+      "reviewed_run_ref": "docs/alpha-reviewed-runs/2026-04-02.long-horizon-model-tier-orchestra.md",
+      "readiness_review_ref": "docs/alpha-readiness/long-horizon-model-tier-orchestra.md",
+      "source_review_refs": [
+        "examples/alpha_harvests/long-horizon-model-tier-orchestra.harvest-template.md",
+        "docs/alpha-reviewed-runs/2026-04-02.long-horizon-model-tier-orchestra.md",
+        "docs/alpha-readiness/long-horizon-model-tier-orchestra.md",
+        "repo:aoa-agents/examples/alpha_reference_routes/long-horizon-model-tier-orchestra.example.json"
+      ]
+    },
+    {
+      "sequence": 5,
+      "playbook_id": "AOA-P-0009",
+      "playbook_name": "restartable-inquiry-loop",
+      "runtime_path_key": "primary",
+      "required_artifacts": [
+        "inquiry_checkpoint",
+        "decision_ledger",
+        "contradiction_map",
+        "memory_delta",
+        "canon_delta",
+        "next_pass_brief"
+      ],
+      "eval_anchors": [
+        "aoa-long-horizon-depth",
+        "aoa-return-anchor-integrity"
+      ],
+      "memo_outputs": [
+        "state_capsule",
+        "decision",
+        "provenance_thread"
+      ],
+      "stop_conditions": [
+        "stop if checkpoint continuity is lost",
+        "stop if contradiction handling widens into unbounded canon work",
+        "stop if the next pass brief cannot name a bounded return anchor"
+      ],
+      "allowed_reentry_modes": [
+        "checkpoint_relaunch",
+        "safe_stop"
+      ],
+      "recurrence_proof_mode": "primary-run",
+      "harvest_template_ref": "examples/alpha_harvests/restartable-inquiry-loop.harvest-template.md",
+      "reviewed_run_ref": "docs/alpha-reviewed-runs/2026-04-02.restartable-inquiry-loop.md",
+      "readiness_review_ref": "docs/alpha-readiness/restartable-inquiry-loop.md",
+      "source_review_refs": [
+        "examples/alpha_harvests/restartable-inquiry-loop.harvest-template.md",
+        "docs/alpha-reviewed-runs/2026-04-02.restartable-inquiry-loop.md",
+        "docs/alpha-readiness/restartable-inquiry-loop.md",
+        "repo:aoa-agents/examples/alpha_reference_routes/restartable-inquiry-loop.example.json"
+      ]
+    }
+  ],
+  "final_rerun": {
+    "run_id": "alpha-06-validation-driven-remediation-recall-rerun",
+    "playbook_id": "AOA-P-0018",
+    "playbook_name": "validation-driven-remediation",
+    "runtime_path_key": "primary",
+    "recall_mode": "memo_only",
+    "required_artifacts": [
+      "failure_map",
+      "revalidation_pack",
+      "remediation_decision",
+      "handoff_record"
+    ],
+    "eval_anchors": [
+      "aoa-memo-recall-integrity",
+      "aoa-return-anchor-integrity",
+      "aoa-verification-honesty"
+    ],
+    "memo_outputs": [
+      "decision",
+      "audit_event",
+      "pattern"
+    ],
+    "stop_conditions": [
+      "stop if memo recall cannot name the last valid capsule",
+      "stop if the rerun attempts to recover hidden scratchpad state",
+      "stop if stronger source artifacts must be consulted and are not explicitly escalated"
+    ],
+    "run_ref": "docs/alpha-reviewed-runs/2026-04-02.validation-driven-remediation-recall-rerun.md",
+    "recall_contract_ref": "repo:aoa-memo/examples/recall_contract.object.working.phase-alpha.json"
+  }
+}
