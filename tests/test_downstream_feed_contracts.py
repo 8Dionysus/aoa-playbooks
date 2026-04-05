@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -301,10 +302,40 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             },
         )
 
-    def test_review_packet_contract_builder_rejects_missing_runtime_template_sources(self) -> None:
-        with self.assertRaises(SystemExit):
+    def test_review_packet_contract_builder_rejects_missing_runtime_template_index(self) -> None:
+        with self.assertRaisesRegex(
+            SystemExit,
+            "missing required file: generated/runtime_candidate_template_index.min.json",
+        ):
             with patch.object(review_packet_contract_builder, "AOA_EVALS_ROOT", REPO_ROOT / ".missing-aoa-evals"):
                 review_packet_contract_builder.build_review_packet_contracts_payload()
+
+    def test_review_packet_contract_builder_rejects_missing_runtime_template_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            evals_root = Path(tmpdir) / "aoa-evals"
+            template_index_path = evals_root / "generated" / "runtime_candidate_template_index.min.json"
+            template_index_path.parent.mkdir(parents=True, exist_ok=True)
+            template_index_path.write_text(
+                json.dumps(
+                    {
+                        "templates": [
+                            {
+                                "eval_anchor": "runtime_evidence_selection.demo",
+                                "source_example_ref": "examples/runtime_evidence_selection.demo.example.json",
+                            }
+                        ]
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(
+                SystemExit,
+                "runtime candidate template source is unavailable: examples/runtime_evidence_selection.demo.example.json",
+            ):
+                with patch.object(review_packet_contract_builder, "AOA_EVALS_ROOT", evals_root):
+                    review_packet_contract_builder.build_review_packet_contracts_payload()
 
     def test_review_intake_surface_is_deterministic_and_keeps_live_review_alignment(self) -> None:
         expected = review_intake_builder.build_review_intake_payload()

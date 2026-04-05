@@ -2960,9 +2960,9 @@ def validate_phase_alpha_surfaces(
             fail(f"{location}.playbook_name must match generated/playbook_registry.min.json")
         seen_ids.append(playbook_id)
         runtime_path_key = entry.get("runtime_path_key")
-        runtime_path = runtime_paths.get(runtime_path_key)
         if not isinstance(runtime_path_key, str) or not runtime_path_key:
             fail(f"{location}.runtime_path_key must stay a non-empty string")
+        runtime_path = runtime_paths.get(runtime_path_key)
         if not isinstance(runtime_path, str) or not runtime_path:
             fail(f"{location}.runtime_path_key must resolve in config/phase_alpha_curated_core.json.runtime_paths")
 
@@ -3069,9 +3069,9 @@ def validate_phase_alpha_surfaces(
     if final_rerun.get("recall_mode") != "memo_only":
         fail("config/phase_alpha_curated_core.json final_rerun.recall_mode must stay memo_only")
     final_runtime_path_key = final_rerun.get("runtime_path_key")
-    final_runtime_path = runtime_paths.get(final_runtime_path_key)
     if not isinstance(final_runtime_path_key, str) or not final_runtime_path_key:
         fail("config/phase_alpha_curated_core.json final_rerun.runtime_path_key must stay a non-empty string")
+    final_runtime_path = runtime_paths.get(final_runtime_path_key)
     if not isinstance(final_runtime_path, str) or not final_runtime_path:
         fail("config/phase_alpha_curated_core.json final_rerun.runtime_path_key must resolve in runtime_paths")
     for field_name in ("required_artifacts", "eval_anchors", "memo_outputs", "stop_conditions"):

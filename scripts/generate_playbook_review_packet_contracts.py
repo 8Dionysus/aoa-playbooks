@@ -44,21 +44,31 @@ def _resolve_aoa_evals_root() -> Path:
 
 
 AOA_EVALS_ROOT = _resolve_aoa_evals_root()
-RUNTIME_TEMPLATE_INDEX_PATH = AOA_EVALS_ROOT / "generated" / "runtime_candidate_template_index.min.json"
 
 
-def read_text(path: Path) -> str:
+def describe_path(path: Path, *, root: Path = REPO_ROOT) -> str:
+    try:
+        return path.relative_to(root).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def runtime_template_index_path() -> Path:
+    return AOA_EVALS_ROOT / "generated" / "runtime_candidate_template_index.min.json"
+
+
+def read_text(path: Path, *, root: Path = REPO_ROOT) -> str:
     try:
         return path.read_text(encoding="utf-8")
     except FileNotFoundError:
-        raise SystemExit(f"[error] missing required file: {path.relative_to(REPO_ROOT).as_posix()}")
+        raise SystemExit(f"[error] missing required file: {describe_path(path, root=root)}")
 
 
-def read_json(path: Path) -> object:
+def read_json(path: Path, *, root: Path = REPO_ROOT) -> object:
     try:
-        return json.loads(read_text(path))
+        return json.loads(read_text(path, root=root))
     except json.JSONDecodeError as exc:
-        raise SystemExit(f"[error] invalid JSON in {path.relative_to(REPO_ROOT).as_posix()}: {exc}")
+        raise SystemExit(f"[error] invalid JSON in {describe_path(path, root=root)}: {exc}")
 
 
 def _load_registry_by_id() -> dict[str, dict[str, object]]:
@@ -110,7 +120,7 @@ def _ordered_unique(items: list[str]) -> list[str]:
 
 def _available_runtime_eval_anchors() -> set[str]:
     anchors: set[str] = set()
-    payload = read_json(RUNTIME_TEMPLATE_INDEX_PATH)
+    payload = read_json(runtime_template_index_path(), root=AOA_EVALS_ROOT)
     if not isinstance(payload, dict) or not isinstance(payload.get("templates"), list):
         raise SystemExit(
             "[error] aoa-evals generated/runtime_candidate_template_index.min.json must contain a templates list"
@@ -129,7 +139,7 @@ def _available_runtime_eval_anchors() -> set[str]:
         if not source_example_path.is_file():
             raise SystemExit(
                 "[error] aoa-evals runtime candidate template source is unavailable: "
-                f"{source_example_path}"
+                f"{describe_path(source_example_path, root=AOA_EVALS_ROOT)}"
             )
         eval_anchor = item.get("eval_anchor")
         if isinstance(eval_anchor, str):
