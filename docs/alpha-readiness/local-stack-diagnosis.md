@@ -36,7 +36,7 @@ Alpha is a readiness proof lane, not composition promotion.
 ## Current Verdict
 
 - `curated-ready`
-- `live-ready`
+- `bounded-live-confirmed`
 
 ## Next Trigger
 

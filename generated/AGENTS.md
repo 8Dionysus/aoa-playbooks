@@ -24,6 +24,9 @@ Keep this mapping legible:
 - `generated/playbook_activation_surfaces.min.json` is produced from the registry by `scripts/generate_playbook_activation_surfaces.py`
 - `generated/playbook_federation_surfaces.min.json` is produced from `playbooks/*/PLAYBOOK.md` by `scripts/generate_playbook_federation_surfaces.py`
 - `generated/playbook_review_status.min.json` is produced from `docs/real-runs/*.md` plus `docs/gate-reviews/*.md` by `scripts/generate_playbook_review_status.py`
+- `generated/playbook_review_packet_contracts.min.json` is produced by `scripts/generate_playbook_review_packet_contracts.py`
+- `generated/playbook_review_intake.min.json` is produced by `scripts/generate_playbook_review_intake.py`
+- `generated/phase_alpha_review_packets.min.json` and `generated/phase_alpha_run_matrix.min.json` are produced by `scripts/generate_phase_alpha_surfaces.py`
 - `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json` are produced by `scripts/generate_playbook_composition_surfaces.py`
 
 The derived surfaces should stay compact, reviewable, and playbook-owned.
@@ -55,8 +58,12 @@ python -m pip install -r requirements-dev.txt
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_review_status.py --check
+python scripts/generate_playbook_review_packet_contracts.py --check
+python scripts/generate_playbook_review_intake.py --check
 python scripts/generate_playbook_composition_surfaces.py --check
+python scripts/generate_phase_alpha_surfaces.py --check
 python scripts/validate_playbooks.py
+python -m pytest -q tests
 ```
 
 If a derived file is out of date, regenerate it with the matching generator script before finishing.

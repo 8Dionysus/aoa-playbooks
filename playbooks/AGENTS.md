@@ -74,8 +74,13 @@ Run the normal playbook-layer checks:
 python -m pip install -r requirements-dev.txt
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
+python scripts/generate_playbook_review_status.py --check
+python scripts/generate_playbook_review_packet_contracts.py --check
+python scripts/generate_playbook_review_intake.py --check
 python scripts/generate_playbook_composition_surfaces.py --check
+python scripts/generate_phase_alpha_surfaces.py --check
 python scripts/validate_playbooks.py
+python -m pytest -q tests
 ```
 
 If a playbook edit changed scenario meaning, say so explicitly in the final report.

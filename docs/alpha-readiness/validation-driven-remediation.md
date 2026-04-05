@@ -44,7 +44,7 @@ Alpha is a readiness proof lane, not composition promotion.
 - `curated-ready`
 - `live-primary-pass`
 - `recurrence-proven`
-- `live-ready`
+- `bounded-live-confirmed`
 
 ## Next Trigger
 
