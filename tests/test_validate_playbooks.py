@@ -15,6 +15,15 @@ if SPEC is None or SPEC.loader is None:
     raise RuntimeError(f"unable to load validator module from {MODULE_PATH}")
 validate_playbooks = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(validate_playbooks)
+GENERATOR_MODULE_PATH = REPO_ROOT / "scripts" / "generate_phase_alpha_surfaces.py"
+GENERATOR_SPEC = importlib.util.spec_from_file_location(
+    "generate_phase_alpha_surfaces",
+    GENERATOR_MODULE_PATH,
+)
+if GENERATOR_SPEC is None or GENERATOR_SPEC.loader is None:
+    raise RuntimeError(f"unable to load generator module from {GENERATOR_MODULE_PATH}")
+generate_phase_alpha_surfaces = importlib.util.module_from_spec(GENERATOR_SPEC)
+GENERATOR_SPEC.loader.exec_module(generate_phase_alpha_surfaces)
 
 
 def write_text(path: Path, text: str) -> None:
@@ -138,6 +147,43 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
         self.assertFalse(
             validate_playbooks.skill_is_federation_eligible(skill, playbook_status="active")
         )
+
+
+class PhaseAlphaSurfaceContractTests(unittest.TestCase):
+    def test_generator_rejects_unknown_runtime_path_key(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo_root = Path(tmpdir) / "aoa-playbooks"
+            config_path = repo_root / "config" / "phase_alpha_curated_core.json"
+            config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+            config["playbooks"][0]["runtime_path_key"] = "missing-runtime"
+            write_text(config_path, json.dumps(config, indent=2) + "\n")
+
+            with patch.object(generate_phase_alpha_surfaces, "REPO_ROOT", repo_root):
+                with patch.object(generate_phase_alpha_surfaces, "CONFIG_PATH", config_path):
+                    with self.assertRaisesRegex(SystemExit, "playbooks\\[0\\] runtime_path_key 'missing-runtime'"):
+                        generate_phase_alpha_surfaces.build_phase_alpha_run_matrix_payload()
+
+    def test_validator_rejects_unknown_final_rerun_runtime_path_key(self) -> None:
+        config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+        config["final_rerun"]["runtime_path_key"] = "missing-runtime"
+        original_read_json = validate_playbooks.read_json
+
+        def side_effect(path: Path) -> object:
+            if Path(path) == validate_playbooks.PHASE_ALPHA_CONFIG_PATH:
+                return config
+            return original_read_json(path)
+
+        with patch.object(validate_playbooks, "read_json", side_effect=side_effect):
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "final_rerun.runtime_path_key must resolve in runtime_paths",
+            ):
+                playbooks_by_id = validate_playbooks.validate_registry()
+                evals_by_name = validate_playbooks.load_eval_catalog()
+                validate_playbooks.validate_phase_alpha_surfaces(
+                    playbooks_by_id,
+                    evals_by_name=evals_by_name,
+                )
 
 
 class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):

@@ -33,6 +33,22 @@ def _load_config() -> dict[str, object]:
     return payload
 
 
+def _require_runtime_path(
+    runtime_paths: dict[str, object],
+    runtime_path_key: object,
+    *,
+    location: str,
+) -> str:
+    if not isinstance(runtime_path_key, str) or not runtime_path_key:
+        raise SystemExit(f"[error] {location} runtime_path_key must be a non-empty string")
+    runtime_path = runtime_paths.get(runtime_path_key)
+    if not isinstance(runtime_path, str) or not runtime_path:
+        raise SystemExit(
+            f"[error] {location} runtime_path_key '{runtime_path_key}' must resolve in runtime_paths"
+        )
+    return runtime_path
+
+
 def build_phase_alpha_review_packets_payload() -> dict[str, object]:
     config = _load_config()
     playbooks = config.get("playbooks", [])
@@ -80,17 +96,21 @@ def build_phase_alpha_run_matrix_payload() -> dict[str, object]:
     runtime_paths = config.get("runtime_paths", {})
     if not isinstance(runtime_paths, dict):
         raise SystemExit("[error] Phase Alpha config runtime_paths must stay an object")
+    control_path = _require_runtime_path(runtime_paths, "control", location="Phase Alpha config")
 
     runs: list[dict[str, object]] = []
     playbooks = config.get("playbooks", [])
     if not isinstance(playbooks, list):
         raise SystemExit("[error] Phase Alpha config playbooks must stay a list")
-    for entry in playbooks:
+    for index, entry in enumerate(playbooks):
         if not isinstance(entry, dict):
             continue
         runtime_path_key = entry.get("runtime_path_key")
-        runtime_path = runtime_paths.get(runtime_path_key)
-        control_path = runtime_paths.get("control")
+        runtime_path = _require_runtime_path(
+            runtime_paths,
+            runtime_path_key,
+            location=f"playbooks[{index}]",
+        )
         runs.append(
             {
                 "run_id": f"alpha-{int(entry['sequence']):02d}-{entry.get('playbook_name')}",
@@ -113,6 +133,11 @@ def build_phase_alpha_run_matrix_payload() -> dict[str, object]:
     if not isinstance(final_rerun, dict):
         raise SystemExit("[error] Phase Alpha config final_rerun must stay an object")
     final_runtime_path_key = final_rerun.get("runtime_path_key")
+    final_runtime_path = _require_runtime_path(
+        runtime_paths,
+        final_runtime_path_key,
+        location="final_rerun",
+    )
     runs.append(
         {
             "run_id": final_rerun.get("run_id"),
@@ -120,8 +145,8 @@ def build_phase_alpha_run_matrix_payload() -> dict[str, object]:
             "playbook_id": final_rerun.get("playbook_id"),
             "playbook_name": final_rerun.get("playbook_name"),
             "runtime_path_key": final_runtime_path_key,
-            "runtime_path": runtime_paths.get(final_runtime_path_key),
-            "control_path": runtime_paths.get("control"),
+            "runtime_path": final_runtime_path,
+            "control_path": control_path,
             "required_artifacts": final_rerun.get("required_artifacts"),
             "eval_anchors": final_rerun.get("eval_anchors"),
             "memo_outputs": final_rerun.get("memo_outputs"),
