@@ -144,6 +144,14 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "downstream_revalidation_pack",
         "handoff_record",
     ),
+    REPO_ROOT / "examples" / "harvests" / "validation-driven-remediation.harvest-template.md": (
+        "failure_map",
+        "boundary_map",
+        "remediation_change_set",
+        "revalidation_pack",
+        "remediation_decision",
+        "handoff_record",
+    ),
     REPO_ROOT / "examples" / "harvests" / "release-migration-cutover.harvest-template.md": (
         "cutover_plan",
         "cutover_decision",
@@ -208,6 +216,14 @@ REAL_RUN_SUMMARY_SLUG_REQUIREMENTS = {
         "downstream_revalidation_pack",
         "handoff_record",
     ),
+    "validation-driven-remediation": (
+        "failure_map",
+        "boundary_map",
+        "remediation_change_set",
+        "revalidation_pack",
+        "remediation_decision",
+        "handoff_record",
+    ),
     "release-migration-cutover": (
         "cutover_plan",
         "cutover_decision",
@@ -230,6 +246,18 @@ GATE_REVIEW_REQUIREMENTS = {
             "wave_plan",
             "bridge_surface_pack",
             "downstream_revalidation_pack",
+            "handoff_record",
+        ),
+    },
+    GATE_REVIEW_DIR / "validation-driven-remediation.md": {
+        "playbook_id": "AOA-P-0018",
+        "slug": "validation-driven-remediation",
+        "required_tokens": (
+            "failure_map",
+            "boundary_map",
+            "remediation_change_set",
+            "revalidation_pack",
+            "remediation_decision",
             "handoff_record",
         ),
     },

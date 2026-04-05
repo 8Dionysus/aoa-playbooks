@@ -23,6 +23,16 @@ The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and reco
 - First landing rule: if promotion lands, start with the smallest honest adjunct. For `AOA-P-0017`, that first landing is a minimal playbook-owned `handoff bridge` through `generated/playbook_handoff_contracts.json`, not a new failure code, subagent recipe, or automation seed.
 - Non-promotion default: if the run only shows one-off rollout noise or weak signal, keep `AOA-P-0017` at `A+Act+F`
 
+## AOA-P-0018 validation-driven-remediation
+
+- Required real-run artifact set: `failure_map`, `boundary_map`, `remediation_change_set`, `revalidation_pack`, `remediation_decision`, `handoff_record`
+- Minimum evidence threshold: one real remediation run
+- Required dual signal for promotion:
+  - at least one stable failure or follow-up mapping not already covered by neighboring rollout, cutover, or incident playbooks or the shared failure catalog
+  - at least one stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`
+- Artifact anchor: `failure_map`, `boundary_map`, `remediation_change_set`, `revalidation_pack`, `remediation_decision`, `handoff_record`
+- Non-promotion default: if the run only confirms existing remediation wording or weak signal, keep `AOA-P-0018` at `A+Act+F`
+
 ## AOA-P-0019 release-migration-cutover
 
 - Required real-run artifact set: `cutover_plan`, `cutover_decision`, `post_cutover_verification_pack`, `handoff_record`

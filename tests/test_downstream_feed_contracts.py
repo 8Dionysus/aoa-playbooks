@@ -266,6 +266,15 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         )
         self.assertIsNone(by_id["AOA-P-0011"]["gate_verdict"])
 
+        self.assertEqual(by_id["AOA-P-0018"]["gate_verdict"], "hold")
+        self.assertEqual(
+            by_id["AOA-P-0018"]["source_review_refs"],
+            [
+                "playbooks/validation-driven-remediation/PLAYBOOK.md",
+                "docs/gate-reviews/validation-driven-remediation.md",
+                "docs/real-runs/2026-04-05.validation-driven-remediation.md",
+            ],
+        )
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
         self.assertEqual(
             by_id["AOA-P-0017"]["source_review_refs"][0],
@@ -350,6 +359,16 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(current["layer"], "aoa-playbooks")
 
         by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
+        self.assertEqual(by_id["AOA-P-0018"]["gate_verdict"], "hold")
+        self.assertEqual(
+            by_id["AOA-P-0018"]["review_outcome_targets"]["real_runs"],
+            ["docs/real-runs/2026-04-05.validation-driven-remediation.md"],
+        )
+        self.assertEqual(
+            by_id["AOA-P-0018"]["review_outcome_targets"]["gate_reviews"],
+            ["docs/gate-reviews/validation-driven-remediation.md"],
+        )
+        self.assertEqual(by_id["AOA-P-0018"]["composition_posture"], "held-after-review")
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
         self.assertEqual(
             by_id["AOA-P-0017"]["review_outcome_targets"]["real_runs"],

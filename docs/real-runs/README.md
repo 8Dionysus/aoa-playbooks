@@ -28,6 +28,7 @@ Future summary files must use:
 Allowed slug values in this wave:
 
 - `split-wave-cross-repo-rollout`
+- `validation-driven-remediation`
 - `release-migration-cutover`
 - `incident-recovery-routing`
 
@@ -49,4 +50,5 @@ Every committed summary file must contain:
 
 This folder should stay sparse and hold only committed reviewed summaries that fully qualify under the workflow and validator rules.
 `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md` is the first committed reviewed summary and captures the March 21, 2026 `AOA-P-0017` section-expand wave across source-owned AoA repos and `aoa-routing`.
+`docs/real-runs/2026-04-05.validation-driven-remediation.md` is the first committed general reviewed summary for `AOA-P-0018` and keeps the playbook at `hold` pending a second different-family remediation run or a stable adjunct candidate.
 `AOA-P-0019` and `AOA-P-0020` still have no qualifying reviewed summary committed as of March 28, 2026.
