@@ -29,8 +29,12 @@ A release should make it easy to answer:
    - `python scripts/generate_playbook_activation_surfaces.py --check`
    - `python scripts/generate_playbook_federation_surfaces.py --check`
    - `python scripts/generate_playbook_review_status.py --check`
+   - `python scripts/generate_playbook_review_packet_contracts.py --check`
+   - `python scripts/generate_playbook_review_intake.py --check`
    - `python scripts/generate_playbook_composition_surfaces.py --check`
+   - `python scripts/generate_phase_alpha_surfaces.py --check`
    - `python scripts/validate_playbooks.py`
+   - `python -m pytest -q tests`
 4. If the release touches validator behavior directly, also run:
    - `python -m unittest tests.test_validate_playbooks`
 5. Confirm generated surfaces are current when the release touches authored bundles, schemas, cohort membership, or composition overrides.

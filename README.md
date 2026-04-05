@@ -18,11 +18,12 @@ Use the shortest route by need:
 
 ## Route by need
 
+- source-authored playbook truth: `playbooks/*/PLAYBOOK.md` for scenario routes and `generated/playbook_registry.min.json` for compact registry metadata
 - activation, federation, and review-status surfaces: `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, and `generated/playbook_review_packet_contracts.min.json`
 - handoff, failure, automation, and subagent adjuncts: `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_automation_seeds.json`, `generated/playbook_subagent_recipes.json`, [docs/HANDOFF_CONTRACTS](docs/HANDOFF_CONTRACTS.md), [docs/FAILURE_RECOVERY](docs/FAILURE_RECOVERY.md), [docs/AUTOMATION_SEEDS](docs/AUTOMATION_SEEDS.md), and [docs/SUBAGENT_PATTERNS](docs/SUBAGENT_PATTERNS.md)
 - real-run and gate-review evidence: `docs/real-runs/`, `docs/gate-reviews/`, `examples/harvests/`, [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), and [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md)
 - live authored bundles and activation examples: `playbooks/*/PLAYBOOK.md` and `examples/playbook_activation.*.example.json`
-- local validation and rebuild path: `python scripts/generate_playbook_activation_surfaces.py --check`, `python scripts/generate_playbook_federation_surfaces.py --check`, `python scripts/generate_playbook_review_status.py --check`, `python scripts/generate_playbook_composition_surfaces.py --check`, and `python scripts/validate_playbooks.py`
+- full non-mutating verify path: the seven `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
 
 ## What `aoa-playbooks` owns
 
@@ -52,10 +53,10 @@ When a route is really one bounded workflow, keep it in `aoa-skills` instead of 
 
 The committed public surfaces group into four families:
 
-- root registry: `generated/playbook_registry.min.json`
-- authored bundles under `playbooks/*/PLAYBOOK.md`
-- derived activation, federation, and review-status surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, and `generated/playbook_review_status.min.json`
+- source-authored playbook canon: `playbooks/*/PLAYBOOK.md` for route meaning and `generated/playbook_registry.min.json` for compact registry metadata
+- derived activation, federation, review-status, review-packet, and review-intake surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_review_intake.min.json`
 - playbook-owned composition adjuncts such as `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json`
+- bounded evidence and readiness adjuncts under `docs/real-runs/`, `docs/gate-reviews/`, `generated/phase_alpha_review_packets.min.json`, `generated/phase_alpha_run_matrix.min.json`, and `QUESTBOOK.md`
 
 Real-run harvest templates under `examples/harvests/` and review notes under `docs/real-runs/` and `docs/gate-reviews/` stay bounded evidence surfaces. They do not turn this repository into a runtime log substrate.
 
@@ -77,11 +78,15 @@ python -m pip install -r requirements-dev.txt
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_review_status.py --check
+python scripts/generate_playbook_review_packet_contracts.py --check
+python scripts/generate_playbook_review_intake.py --check
 python scripts/generate_playbook_composition_surfaces.py --check
+python scripts/generate_phase_alpha_surfaces.py --check
 python scripts/validate_playbooks.py
+python -m pytest -q tests
 ```
 
-The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md`, checks registry alignment, resolves federation-facing references into neighboring repositories, and validates the local guidance surfaces at `playbooks/AGENTS.md` and `generated/AGENTS.md`.
+The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md`, checks registry alignment, resolves federation-facing references into neighboring repositories, and validates review, Phase Alpha, questbook, and local guidance surfaces including `playbooks/AGENTS.md` and `generated/AGENTS.md`.
 
 ## Current contour
 
