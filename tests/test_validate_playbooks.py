@@ -185,6 +185,50 @@ class PhaseAlphaSurfaceContractTests(unittest.TestCase):
                     evals_by_name=evals_by_name,
                 )
 
+    def test_validator_rejects_non_string_runtime_path_key_before_lookup(self) -> None:
+        config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+        config["playbooks"][0]["runtime_path_key"] = []
+        original_read_json = validate_playbooks.read_json
+
+        def side_effect(path: Path) -> object:
+            if Path(path) == validate_playbooks.PHASE_ALPHA_CONFIG_PATH:
+                return config
+            return original_read_json(path)
+
+        with patch.object(validate_playbooks, "read_json", side_effect=side_effect):
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                r"playbooks\[0\]\.runtime_path_key must stay a non-empty string",
+            ):
+                playbooks_by_id = validate_playbooks.validate_registry()
+                evals_by_name = validate_playbooks.load_eval_catalog()
+                validate_playbooks.validate_phase_alpha_surfaces(
+                    playbooks_by_id,
+                    evals_by_name=evals_by_name,
+                )
+
+    def test_validator_rejects_non_string_final_rerun_runtime_path_key_before_lookup(self) -> None:
+        config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+        config["final_rerun"]["runtime_path_key"] = {}
+        original_read_json = validate_playbooks.read_json
+
+        def side_effect(path: Path) -> object:
+            if Path(path) == validate_playbooks.PHASE_ALPHA_CONFIG_PATH:
+                return config
+            return original_read_json(path)
+
+        with patch.object(validate_playbooks, "read_json", side_effect=side_effect):
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "final_rerun.runtime_path_key must stay a non-empty string",
+            ):
+                playbooks_by_id = validate_playbooks.validate_registry()
+                evals_by_name = validate_playbooks.load_eval_catalog()
+                validate_playbooks.validate_phase_alpha_surfaces(
+                    playbooks_by_id,
+                    evals_by_name=evals_by_name,
+                )
+
 
 class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
     def rewrite_quest_projections(self, repo_root: Path) -> None:
