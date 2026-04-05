@@ -27,6 +27,7 @@ Reviewed summaries may enter this repository under `docs/real-runs/`, but compos
 This repository ships example-only harvest templates at:
 
 - `examples/harvests/split-wave-cross-repo-rollout.harvest-template.md`
+- `examples/harvests/validation-driven-remediation.harvest-template.md`
 - `examples/harvests/release-migration-cutover.harvest-template.md`
 - `examples/harvests/incident-recovery-routing.harvest-template.md`
 

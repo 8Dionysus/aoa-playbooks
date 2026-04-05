@@ -24,6 +24,7 @@ It is not a place to store raw logs, runtime traces, or execution-state packets.
 The shipped templates under `examples/harvests/` remain the only source templates for reviewed summaries:
 
 - `split-wave-cross-repo-rollout.harvest-template.md`
+- `validation-driven-remediation.harvest-template.md`
 - `release-migration-cutover.harvest-template.md`
 - `incident-recovery-routing.harvest-template.md`
 
@@ -49,6 +50,7 @@ A selection pass that finds no qualifying case should leave the matching playboo
 `docs/gate-reviews/` stores one living verdict surface per playbook:
 
 - `split-wave-cross-repo-rollout.md`
+- `validation-driven-remediation.md`
 - `release-migration-cutover.md`
 - `incident-recovery-routing.md`
 
@@ -57,8 +59,9 @@ If a bounded review does land composition, the verdict doc should move to `compo
 
 ## Active first candidates
 
-The active evidence gaps are now `AOA-P-0019` and `AOA-P-0020`.
+The remaining first-run evidence gaps are now `AOA-P-0019` and `AOA-P-0020`.
 `AOA-P-0017` now has reviewed summaries at `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md` and `docs/real-runs/2026-03-28.split-wave-cross-repo-rollout.md`, and its first bounded composition review has landed a minimal handoff bridge.
+`AOA-P-0018` now has a first qualifying general reviewed summary at `docs/real-runs/2026-04-05.validation-driven-remediation.md`, and its gate remains `hold` pending a second different-family remediation run or a stable adjunct candidate.
 As of March 28, 2026, `AOA-P-0019` still has no qualifying reviewed summary committed.
 `AOA-P-0020` uses the same summary and verdict workflow, but only a live incident should open its first reviewed run.
 

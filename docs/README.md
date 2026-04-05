@@ -43,7 +43,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) - how the playbook layer stays broad enough across scenario families without overfitting
 - [PLAYBOOK_REAL_RUN_WORKFLOW](PLAYBOOK_REAL_RUN_WORKFLOW.md) - how real operational runs become reviewed summaries and explicit gate verdicts without creating a runtime log layer
 - [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) - how reviewable real-run evidence stays distinct from runtime state and from composition promotion itself
-- [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) - how `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` must clear gate review before composition grows
+- [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) - how `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, and `AOA-P-0020` must clear gate review before composition grows
 - [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) - the current prioritized lifecycle matrix and next bounded portfolio moves
 - [RELEASING](RELEASING.md) - how repo-level releases stay small, validated, and honest about remaining evidence gaps
 
