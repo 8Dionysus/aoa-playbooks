@@ -28,6 +28,7 @@ composition_builder = load_module("generate_playbook_composition_surfaces.py")
 review_status_builder = load_module("generate_playbook_review_status.py")
 review_packet_contract_builder = load_module("generate_playbook_review_packet_contracts.py")
 review_intake_builder = load_module("generate_playbook_review_intake.py")
+landing_governance_builder = load_module("generate_playbook_landing_governance.py")
 
 
 def load_generated(name: str):
@@ -386,6 +387,34 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0019"]["composition_posture"], "awaiting-reviewed-run")
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0020"]["composition_posture"], "awaiting-reviewed-run")
+
+    def test_landing_governance_surface_is_deterministic_and_review_track_scoped(self) -> None:
+        expected = landing_governance_builder.build_playbook_landing_governance_payload()
+        current = load_generated("playbook_landing_governance.min.json")
+
+        self.assertEqual(current, expected)
+        self.assertEqual(
+            set(current.keys()),
+            {"schema_version", "layer", "scope", "source_of_truth", "playbooks"},
+        )
+        self.assertEqual(current["schema_version"], 1)
+        self.assertEqual(current["layer"], "aoa-playbooks")
+        self.assertEqual(current["scope"], "review-track")
+
+        by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
+        self.assertNotIn("AOA-P-0021", by_id)
+        self.assertNotIn("AOA-P-0001", by_id)
+        self.assertTrue(by_id["AOA-P-0017"]["landing_passed"])
+        self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
+        self.assertTrue(by_id["AOA-P-0017"]["in_composition_manifest"])
+        self.assertEqual(by_id["AOA-P-0017"]["registry_status"], "experimental")
+        self.assertTrue(by_id["AOA-P-0018"]["landing_passed"])
+        self.assertEqual(by_id["AOA-P-0018"]["gate_verdict"], "hold")
+        self.assertFalse(by_id["AOA-P-0018"]["in_composition_manifest"])
+        self.assertTrue(all(entry["landing_passed"] for entry in current["playbooks"]))
+        self.assertTrue(all(entry["registry_status"] == "experimental" for entry in current["playbooks"]))
+        self.assertTrue(all(entry["in_review_packet_contracts"] for entry in current["playbooks"]))
+        self.assertTrue(all(entry["in_review_intake"] for entry in current["playbooks"]))
 
 
 if __name__ == "__main__":
