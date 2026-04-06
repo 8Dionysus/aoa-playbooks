@@ -43,6 +43,7 @@ class GeneratePlaybookCompositionSurfacesTests(unittest.TestCase):
                 "infra-change-guarded",
                 "invariants-first-refactor",
                 "local-stack-diagnosis",
+                "owner-first-capability-landing",
                 "source-truth-then-share",
                 "atm10-bounded-change",
                 "split-wave-cross-repo-rollout",

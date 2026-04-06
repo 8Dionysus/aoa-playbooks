@@ -20,10 +20,11 @@
     "infra-change-guarded",
     "invariants-first-refactor",
     "local-stack-diagnosis",
+    "owner-first-capability-landing",
     "source-truth-then-share",
     "atm10-bounded-change",
     "split-wave-cross-repo-rollout"
   ],
-  "composition_playbook_count": 7,
-  "total_playbook_count": 20
+  "composition_playbook_count": 8,
+  "total_playbook_count": 21
 }
