@@ -22,6 +22,7 @@ Use the shortest route by need:
 - activation, federation, and review-status surfaces: `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, and `generated/playbook_review_packet_contracts.min.json`
 - handoff, failure, automation, and subagent adjuncts: `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_automation_seeds.json`, `generated/playbook_subagent_recipes.json`, [docs/HANDOFF_CONTRACTS](docs/HANDOFF_CONTRACTS.md), [docs/FAILURE_RECOVERY](docs/FAILURE_RECOVERY.md), [docs/AUTOMATION_SEEDS](docs/AUTOMATION_SEEDS.md), and [docs/SUBAGENT_PATTERNS](docs/SUBAGENT_PATTERNS.md)
 - real-run and gate-review evidence: `docs/real-runs/`, `docs/gate-reviews/`, `examples/harvests/`, [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), and [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md)
+- owner-local live receipt publication for closeout/stats integration: `scripts/publish_live_receipts.py` and `.aoa/live_receipts/playbook-receipts.jsonl`
 - live authored bundles and activation examples: `playbooks/*/PLAYBOOK.md` and `examples/playbook_activation.*.example.json`
 - full non-mutating verify path: the seven `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
 
