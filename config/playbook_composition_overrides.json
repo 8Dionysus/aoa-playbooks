@@ -94,6 +94,29 @@
         "aoa-sanitized-share"
       ]
     },
+    "owner-first-capability-landing": {
+      "failure_codes": [
+        "APPROVAL_REQUIRED",
+        "SOURCE_OF_TRUTH_AMBIGUOUS",
+        "BOUNDARY_UNCLEAR",
+        "VERIFICATION_WEAK",
+        "SESSION_LOST"
+      ],
+      "subagent_recipes": [],
+      "automation_seeds": [],
+      "followup_playbooks": [
+        "split-wave-cross-repo-rollout",
+        "validation-driven-remediation",
+        "source-truth-then-share"
+      ],
+      "handoff_skill_refs": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ]
+    },
     "source-truth-then-share": {
       "failure_codes": [
         "SOURCE_OF_TRUTH_AMBIGUOUS",

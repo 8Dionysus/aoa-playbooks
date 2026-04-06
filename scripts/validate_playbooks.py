@@ -325,6 +325,7 @@ COMPOSITION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0012",
     "AOA-P-0013",
     "AOA-P-0014",
+    "AOA-P-0021",
     "AOA-P-0015",
     "AOA-P-0016",
     "AOA-P-0017",

@@ -17,7 +17,8 @@
       ],
       "used_by_playbooks": [
         "bounded-change-safe",
-        "infra-change-guarded"
+        "infra-change-guarded",
+        "owner-first-capability-landing"
       ]
     },
     {
@@ -37,6 +38,7 @@
         "atm10-bounded-change",
         "bounded-change-safe",
         "local-stack-diagnosis",
+        "owner-first-capability-landing",
         "source-truth-then-share",
         "split-wave-cross-repo-rollout"
       ]
@@ -56,6 +58,7 @@
       ],
       "used_by_playbooks": [
         "invariants-first-refactor",
+        "owner-first-capability-landing",
         "split-wave-cross-repo-rollout"
       ]
     },
@@ -114,6 +117,7 @@
         "atm10-bounded-change",
         "bounded-change-safe",
         "invariants-first-refactor",
+        "owner-first-capability-landing",
         "split-wave-cross-repo-rollout"
       ]
     },
@@ -201,6 +205,7 @@
         "bounded-change-safe",
         "invariants-first-refactor",
         "local-stack-diagnosis",
+        "owner-first-capability-landing",
         "split-wave-cross-repo-rollout"
       ]
     }
