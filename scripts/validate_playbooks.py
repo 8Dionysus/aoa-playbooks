@@ -40,6 +40,7 @@ PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = (
     REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json"
 )
 PLAYBOOK_REVIEW_INTAKE_PATH = REPO_ROOT / "generated" / "playbook_review_intake.min.json"
+PLAYBOOK_LANDING_GOVERNANCE_PATH = REPO_ROOT / "generated" / "playbook_landing_governance.min.json"
 PHASE_ALPHA_CONFIG_PATH = REPO_ROOT / "config" / "phase_alpha_curated_core.json"
 PHASE_ALPHA_REVIEW_PACKETS_PATH = REPO_ROOT / "generated" / "phase_alpha_review_packets.min.json"
 PHASE_ALPHA_RUN_MATRIX_PATH = REPO_ROOT / "generated" / "phase_alpha_run_matrix.min.json"
@@ -2935,6 +2936,19 @@ def load_review_intake_builder_module():
     return module
 
 
+def load_playbook_landing_governance_builder_module():
+    module_path = REPO_ROOT / "scripts" / "generate_playbook_landing_governance.py"
+    spec = importlib.util.spec_from_file_location(
+        "generate_playbook_landing_governance",
+        module_path,
+    )
+    if spec is None or spec.loader is None:
+        fail("unable to load playbook landing governance generator module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def load_phase_alpha_builder_module():
     module_path = REPO_ROOT / "scripts" / "generate_phase_alpha_surfaces.py"
     spec = importlib.util.spec_from_file_location("generate_phase_alpha_surfaces", module_path)
@@ -3541,6 +3555,149 @@ def validate_playbook_review_intake_surface() -> None:
             fail(f"{location}.composition_posture must stay aligned with the current gate posture")
 
 
+def validate_playbook_landing_governance_surface(playbooks_by_id: dict[str, dict[str, object]]) -> None:
+    builder = load_playbook_landing_governance_builder_module()
+    try:
+        expected = builder.build_playbook_landing_governance_payload()
+    except Exception as exc:
+        fail(str(exc))
+
+    payload = read_json(PLAYBOOK_LANDING_GOVERNANCE_PATH)
+    if payload != expected:
+        fail(
+            "generated/playbook_landing_governance.min.json is out of date; "
+            "run scripts/generate_playbook_landing_governance.py"
+        )
+    if not isinstance(payload, dict):
+        fail("generated/playbook_landing_governance.min.json must contain a JSON object")
+    if payload.get("schema_version") != 1:
+        fail("generated/playbook_landing_governance.min.json must declare schema_version 1")
+    if payload.get("layer") != "aoa-playbooks":
+        fail("generated/playbook_landing_governance.min.json must declare layer 'aoa-playbooks'")
+    if payload.get("scope") != "review-track":
+        fail("generated/playbook_landing_governance.min.json must declare scope 'review-track'")
+    expected_source_of_truth = {
+        "registry": "generated/playbook_registry.min.json",
+        "review_packet_contracts": "generated/playbook_review_packet_contracts.min.json",
+        "review_intake": "generated/playbook_review_intake.min.json",
+        "review_status": "generated/playbook_review_status.min.json",
+        "composition_manifest": "generated/playbook_composition_manifest.json",
+    }
+    if payload.get("source_of_truth") != expected_source_of_truth:
+        fail("generated/playbook_landing_governance.min.json must keep source_of_truth stable")
+
+    entries = payload.get("playbooks")
+    if not isinstance(entries, list):
+        fail("generated/playbook_landing_governance.min.json must expose playbooks as a list")
+
+    review_packet_payload = read_json(PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH)
+    if not isinstance(review_packet_payload, dict):
+        fail("generated/playbook_review_packet_contracts.min.json must stay an object")
+    packet_by_id = {
+        entry["playbook_id"]: entry
+        for entry in review_packet_payload.get("playbooks", [])
+        if isinstance(entry, dict) and isinstance(entry.get("playbook_id"), str)
+    }
+
+    review_intake_payload = read_json(PLAYBOOK_REVIEW_INTAKE_PATH)
+    if not isinstance(review_intake_payload, dict):
+        fail("generated/playbook_review_intake.min.json must stay an object")
+    intake_by_id = {
+        entry["playbook_id"]: entry
+        for entry in review_intake_payload.get("playbooks", [])
+        if isinstance(entry, dict) and isinstance(entry.get("playbook_id"), str)
+    }
+    if set(packet_by_id) != set(intake_by_id):
+        fail(
+            "generated/playbook_review_packet_contracts.min.json and "
+            "generated/playbook_review_intake.min.json must keep review-track scope identical"
+        )
+
+    review_status_payload = read_json(PLAYBOOK_REVIEW_STATUS_PATH)
+    if not isinstance(review_status_payload, dict):
+        fail("generated/playbook_review_status.min.json must stay an object")
+    review_status_by_id = {
+        entry["playbook_id"]: entry
+        for entry in review_status_payload.get("playbooks", [])
+        if isinstance(entry, dict) and isinstance(entry.get("playbook_id"), str)
+    }
+
+    composition_manifest_payload = read_json(PLAYBOOK_COMPOSITION_MANIFEST_PATH)
+    if not isinstance(composition_manifest_payload, dict):
+        fail("generated/playbook_composition_manifest.json must stay an object")
+    managed_playbook_names = composition_manifest_payload.get("managed_playbooks")
+    if not isinstance(managed_playbook_names, list):
+        fail("generated/playbook_composition_manifest.json must expose managed_playbooks")
+    managed_playbook_names = {item for item in managed_playbook_names if isinstance(item, str)}
+
+    scoped_ids = [entry.get("playbook_id") for entry in entries if isinstance(entry, dict)]
+    expected_scope = sorted(set(packet_by_id) & set(intake_by_id))
+    if scoped_ids != expected_scope:
+        fail("generated/playbook_landing_governance.min.json must cover the review-track scope exactly once")
+    if "AOA-P-0021" in scoped_ids:
+        fail(
+            "generated/playbook_landing_governance.min.json must not include AOA-P-0021 "
+            "before it lands in both review packet and intake surfaces"
+        )
+
+    for index, entry in enumerate(entries):
+        location = f"generated/playbook_landing_governance.min.json.playbooks[{index}]"
+        if not isinstance(entry, dict):
+            fail(f"{location} must be an object")
+
+        playbook_id = entry.get("playbook_id")
+        if not isinstance(playbook_id, str) or playbook_id not in packet_by_id or playbook_id not in intake_by_id:
+            fail(f"{location}.playbook_id must resolve in the shared review-track scope")
+        packet_entry = packet_by_id[playbook_id]
+        intake_entry = intake_by_id[playbook_id]
+        registry_entry = playbooks_by_id.get(playbook_id)
+        review_status_entry = review_status_by_id.get(playbook_id)
+
+        expected_name = packet_entry.get("playbook_name")
+        if entry.get("playbook_name") != expected_name:
+            fail(f"{location}.playbook_name must match generated/playbook_review_packet_contracts.min.json")
+        if intake_entry.get("playbook_name") != expected_name:
+            fail(f"{location}.playbook_name must stay aligned with generated/playbook_review_intake.min.json")
+
+        expected_status = registry_entry.get("status") if registry_entry is not None else None
+        if entry.get("registry_status") != expected_status:
+            fail(f"{location}.registry_status must match generated/playbook_registry.min.json")
+        if expected_status != "experimental":
+            fail(f"{location} review-track playbooks must stay experimental in generated/playbook_registry.min.json")
+
+        if entry.get("in_registry") is not (registry_entry is not None):
+            fail(f"{location}.in_registry must reflect generated/playbook_registry.min.json")
+        if entry.get("in_review_packet_contracts") is not True:
+            fail(f"{location}.in_review_packet_contracts must stay true for every scoped playbook")
+        if entry.get("in_review_intake") is not True:
+            fail(f"{location}.in_review_intake must stay true for every scoped playbook")
+        if entry.get("in_review_status") is not (review_status_entry is not None):
+            fail(f"{location}.in_review_status must reflect generated/playbook_review_status.min.json")
+
+        expected_gate_verdict = review_status_entry.get("gate_verdict") if review_status_entry is not None else None
+        if entry.get("gate_verdict") != expected_gate_verdict:
+            fail(f"{location}.gate_verdict must match generated/playbook_review_status.min.json when present")
+        if expected_gate_verdict is not None and expected_gate_verdict not in {"composition-landed", "hold"}:
+            fail(f"{location}.gate_verdict must stay within the review-track landing verdict set")
+
+        expected_in_manifest = isinstance(expected_name, str) and expected_name in managed_playbook_names
+        if entry.get("in_composition_manifest") is not expected_in_manifest:
+            fail(f"{location}.in_composition_manifest must reflect generated/playbook_composition_manifest.json")
+        if expected_gate_verdict == "composition-landed" and not expected_in_manifest:
+            fail(
+                f"{location} must be represented in generated/playbook_composition_manifest.json "
+                "when gate_verdict is composition-landed"
+            )
+
+        blockers = entry.get("blockers")
+        if not isinstance(blockers, list) or not all(isinstance(item, str) for item in blockers):
+            fail(f"{location}.blockers must be a list of strings")
+        if entry.get("landing_passed") is not (len(blockers) == 0):
+            fail(f"{location}.landing_passed must reflect whether blockers is empty")
+        if blockers:
+            fail(f"{location} must not carry blockers in the committed governance surface")
+
+
 def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     questbook_path = repo_root / "QUESTBOOK.md"
     harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
@@ -3772,6 +3929,7 @@ def main() -> int:
         validate_playbook_review_status_surface(playbooks_by_id)
         validate_playbook_review_packet_contracts_surface(playbooks_by_id)
         validate_playbook_review_intake_surface()
+        validate_playbook_landing_governance_surface(playbooks_by_id)
         validate_phase_alpha_surfaces(playbooks_by_id, evals_by_name=evals_by_name)
         validate_questbook_surface()
     except ValidationError as exc:
@@ -3792,6 +3950,7 @@ def main() -> int:
     print("[ok] validated generated playbook review-status surface")
     print("[ok] validated generated playbook review-packet contracts surface")
     print("[ok] validated generated playbook review intake surface")
+    print("[ok] validated generated playbook landing governance surface")
     print("[ok] validated Phase Alpha readiness surfaces")
     print("[ok] validated playbook activation examples")
     print("[ok] validated shipped playbook real-run harvest templates")

@@ -35,6 +35,8 @@ The current compiled federation output lives at `generated/playbook_federation_s
 It is a validator-facing closure surface, not a runtime execution interface.
 The current compact reviewed-evidence output lives at `generated/playbook_review_status.min.json` and is produced by `scripts/generate_playbook_review_status.py`.
 It is an evidence-posture surface for downstream readers, not a replacement for authored reviewed summaries or gate-review notes.
+The current review-track landing gate lives at `generated/playbook_landing_governance.min.json` and is produced by `scripts/generate_playbook_landing_governance.py`.
+It is a release-facing governance surface for the review-governed experimental layer only, not a verdict engine for the whole playbook corpus.
 The current derived composition outputs live at `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json`, and are produced by `scripts/generate_playbook_composition_surfaces.py`.
 They are scenario-owned projections for downstream readers, not persisted execution state.
 
