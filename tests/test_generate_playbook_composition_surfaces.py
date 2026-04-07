@@ -45,6 +45,7 @@ class GeneratePlaybookCompositionSurfacesTests(unittest.TestCase):
                 "local-stack-diagnosis",
                 "owner-first-capability-landing",
                 "project-foundation-workspace-landing",
+                "closeout-owner-follow-through-continuity",
                 "source-truth-then-share",
                 "atm10-bounded-change",
                 "split-wave-cross-repo-rollout",

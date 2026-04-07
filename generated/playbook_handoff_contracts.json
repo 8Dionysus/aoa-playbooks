@@ -916,6 +916,168 @@
       }
     },
     {
+      "playbook_id": "AOA-P-0023",
+      "name": "closeout-owner-follow-through-continuity",
+      "required_skills": [
+        "aoa-session-donor-harvest",
+        "aoa-quest-harvest",
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-adr-write"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-source-of-truth-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "consumes_artifact_tags": [
+            "repository-docs-surface",
+            "target-area-of-ambiguity-or-overlap",
+            "known-canonical-files-if-any",
+            "current-contributor-confusion-points"
+          ],
+          "provides_artifact_tags": [
+            "clearer-source-of-truth-map",
+            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
+            "note-of-overlaps-or-conflicts",
+            "proposed-or-implemented-document-role-clarification",
+            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
+            "verification-summary"
+          ]
+        },
+        {
+          "name": "aoa-bounded-context-map",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "consumes_artifact_tags": [
+            "target-area-or-subsystem",
+            "current-naming-and-responsibilities",
+            "known-neighboring-contexts",
+            "ambiguous-or-overloaded-terms"
+          ],
+          "provides_artifact_tags": [
+            "named-contexts-or-subsystems",
+            "rough-boundary-map",
+            "interface-notes-between-contexts",
+            "ambiguity-notes-and-recommended-vocabulary"
+          ]
+        },
+        {
+          "name": "aoa-approval-gate-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "touched-surfaces",
+            "known-approval-state",
+            "risk-signals",
+            "possible-fallback-or-inspect-only-path"
+          ],
+          "provides_artifact_tags": [
+            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
+            "note-on-whether-explicit-approval-is-needed",
+            "bounded-next-step-recommendation",
+            "report-of-unresolved-authority-assumptions",
+            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+          ]
+        },
+        {
+          "name": "aoa-dry-run-first",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "available-preview-or-dry-run-mechanisms",
+            "touched-surfaces",
+            "known-limits-of-the-preview-path"
+          ],
+          "provides_artifact_tags": [
+            "dry-run-or-preview-recommendation",
+            "bounded-preview-result-or-plan",
+            "note-on-what-the-preview-does-and-does-not-prove",
+            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
+            "recommendation-for-next-step"
+          ]
+        },
+        {
+          "name": "aoa-change-protocol",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "consumes_artifact_tags": [
+            "target-goal",
+            "touched-files-or-surfaces",
+            "main-risk",
+            "intended-validation-path",
+            "rollback-idea"
+          ],
+          "provides_artifact_tags": [
+            "explicit-plan",
+            "scoped-change",
+            "named-verification-result",
+            "concise-final-report"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide whether the reviewed source is strong enough for donor-harvest now.",
+        "Decide whether a bounded candidate should stay a harvest draft or close",
+        "Decide which owner repo and next surface are the truthful follow-through",
+        "Decide whether the current wave can author the owner artifact now or should",
+        "Decide what validation pack proves the authored owner artifact is merge-ready.",
+        "Decide whether merge closes the route or leaves a residual handoff for later.",
+        "Decide whether the authored wave itself warrants a new harvest pass."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the reviewed source, owner handoff, owner repo, and",
+        "`coder -> reviewer` after the owner authorship bundle and validation notes",
+        "`reviewer -> evaluator` after merge, defer, or residual handoff posture is",
+        "`reviewer or evaluator -> architect` when owner selection, next-surface",
+        "`evaluator -> memory-keeper` after the route can name merge, defer, or",
+        "`memory-keeper -> architect` only when the residual handoff proves that"
+      ],
+      "expected_artifacts": [
+        "reviewed_closeout_pack",
+        "owner_handoff_bundle",
+        "owner_authorship_bundle",
+        "validation_pack",
+        "merge_record",
+        "residual_handoff_record"
+      ],
+      "return_anchor_artifacts": [
+        "owner_handoff_bundle",
+        "owner_authorship_bundle",
+        "validation_pack"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "closeout-owner-follow-through-continuity",
+        "carried_artifacts": [
+          "reviewed_closeout_pack",
+          "owner_handoff_bundle",
+          "owner_authorship_bundle",
+          "validation_pack",
+          "merge_record",
+          "residual_handoff_record"
+        ],
+        "required_skill_handoffs": [
+          "aoa-source-of-truth-check",
+          "aoa-bounded-context-map",
+          "aoa-approval-gate-check",
+          "aoa-dry-run-first",
+          "aoa-change-protocol"
+        ],
+        "failure_codes": [
+          "APPROVAL_REQUIRED",
+          "SOURCE_OF_TRUTH_AMBIGUOUS",
+          "BOUNDARY_UNCLEAR",
+          "VERIFICATION_WEAK",
+          "SESSION_LOST"
+        ],
+        "next_followups": [
+          "owner-first-capability-landing",
+          "validation-driven-remediation",
+          "source-truth-then-share"
+        ]
+      }
+    },
+    {
       "playbook_id": "AOA-P-0015",
       "name": "source-truth-then-share",
       "required_skills": [

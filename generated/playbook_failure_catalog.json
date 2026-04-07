@@ -17,6 +17,7 @@
       ],
       "used_by_playbooks": [
         "bounded-change-safe",
+        "closeout-owner-follow-through-continuity",
         "infra-change-guarded",
         "owner-first-capability-landing",
         "project-foundation-workspace-landing"
@@ -38,6 +39,7 @@
       "used_by_playbooks": [
         "atm10-bounded-change",
         "bounded-change-safe",
+        "closeout-owner-follow-through-continuity",
         "local-stack-diagnosis",
         "owner-first-capability-landing",
         "project-foundation-workspace-landing",
@@ -59,6 +61,7 @@
         "Resume the route only once the seam is reviewable."
       ],
       "used_by_playbooks": [
+        "closeout-owner-follow-through-continuity",
         "invariants-first-refactor",
         "owner-first-capability-landing",
         "split-wave-cross-repo-rollout"
@@ -120,6 +123,7 @@
       "used_by_playbooks": [
         "atm10-bounded-change",
         "bounded-change-safe",
+        "closeout-owner-follow-through-continuity",
         "invariants-first-refactor",
         "owner-first-capability-landing",
         "project-foundation-workspace-landing",
@@ -208,6 +212,7 @@
       ],
       "used_by_playbooks": [
         "bounded-change-safe",
+        "closeout-owner-follow-through-continuity",
         "invariants-first-refactor",
         "local-stack-diagnosis",
         "owner-first-capability-landing",
