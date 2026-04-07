@@ -159,8 +159,6 @@
         "source-truth-then-share"
       ],
       "handoff_skill_refs": [
-        "aoa-session-donor-harvest",
-        "aoa-quest-harvest",
         "aoa-source-of-truth-check",
         "aoa-bounded-context-map",
         "aoa-approval-gate-check",
