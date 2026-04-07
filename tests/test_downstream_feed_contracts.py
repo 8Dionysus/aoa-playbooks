@@ -10,6 +10,7 @@ from unittest.mock import patch
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 GENERATED_ROOT = REPO_ROOT / "generated"
+DOCS_ROOT = REPO_ROOT / "docs"
 
 
 def load_module(script_name: str):
@@ -33,6 +34,10 @@ landing_governance_builder = load_module("generate_playbook_landing_governance.p
 
 def load_generated(name: str):
     return json.loads((GENERATED_ROOT / name).read_text(encoding="utf-8"))
+
+
+def read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
 
 
 class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
@@ -333,6 +338,28 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "runtime_template_index": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
             },
         )
+
+    def test_review_track_docs_cover_all_live_review_status_playbooks(self) -> None:
+        review_status = load_generated("playbook_review_status.min.json")
+        review_ids = [entry["playbook_id"] for entry in review_status["playbooks"]]
+
+        docs_by_path = {
+            "docs/README.md": read_text(DOCS_ROOT / "README.md"),
+            "docs/PLAYBOOK_OPERATIONAL_FAMILY.md": read_text(DOCS_ROOT / "PLAYBOOK_OPERATIONAL_FAMILY.md"),
+            "docs/PLAYBOOK_PORTFOLIO.md": read_text(DOCS_ROOT / "PLAYBOOK_PORTFOLIO.md"),
+            "docs/PLAYBOOK_GAP_MATRIX.md": read_text(DOCS_ROOT / "PLAYBOOK_GAP_MATRIX.md"),
+        }
+
+        for path_label, text in docs_by_path.items():
+            for playbook_id in review_ids:
+                self.assertIn(
+                    playbook_id,
+                    text,
+                    msg=(
+                        f"{path_label} must mention {playbook_id} while it remains live in "
+                        "generated/playbook_review_status.min.json"
+                    ),
+                )
 
     def test_review_packet_contract_builder_rejects_missing_runtime_template_index(self) -> None:
         with self.assertRaisesRegex(

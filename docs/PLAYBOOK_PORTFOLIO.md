@@ -36,14 +36,16 @@ The current authored set already covers these classes:
 | Validation-driven remediation | remediate a failed validator or proof surface through bounded corrective change and revalidation across source-owned boundaries | `validation-driven-remediation` |
 | Release or migration cutover | switch authority during a bounded cutover window through freeze posture, go-no-go gating, post-cutover verification, and rollback-or-handoff closure | `release-migration-cutover` |
 | Incident or recovery routing | stabilize a live cross-boundary incident through bounded rollback or degraded-mode recovery, recovery verification, and explicit handoff | `incident-recovery-routing` |
+| Owner-first capability landing | land a reviewed capability through owner-first landing, bounded rollout, and post-landing hardening across neighboring AoA layers | `owner-first-capability-landing` |
+| Federated live publisher activation | activate known live publishers in owner order through readiness audit, publication checks, and stats-visible closure | `federated-live-publisher-activation` |
 
 ## Portfolio gaps
 
 The current portfolio is strong on guarded, evidence-heavy, restartable, and operational cross-boundary routes.
 The last major operational and federated gap is now covered, so the main risk has shifted from undercoverage to semantic overlap and premature composition.
 The next portfolio move is a consolidation wave, not another new playbook:
-- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, and `AOA-P-0020`
-- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from real `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020` runs
+- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, and `AOA-P-0024`
+- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, and `AOA-P-0024` follow-on runs while keeping already-landed `AOA-P-0017` and `AOA-P-0021` bounded
 - use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
 
 The operational family now covers:
@@ -54,6 +56,8 @@ The operational family now covers:
 - `AOA-P-0018` = post-failure remediation after the incident is already bounded
 - `AOA-P-0019` = planned authority-switch cutover window
 - `AOA-P-0020` = live cross-boundary incident stabilization and recovery handoff
+- `AOA-P-0021` = owner-first landing from reviewed lineage into bounded rollout and post-landing hardening
+- `AOA-P-0024` = owner-ordered live publisher activation after a reviewed readiness audit
 
 ## Coverage rules
 
