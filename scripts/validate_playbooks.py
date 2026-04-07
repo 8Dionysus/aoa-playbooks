@@ -166,6 +166,15 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "recovery_verification_pack",
         "handoff_record",
     ),
+    REPO_ROOT / "examples" / "harvests" / "owner-first-capability-landing.harvest-template.md": (
+        "candidate_lineage_pack",
+        "owner_landing_bundle",
+        "landing_decision",
+        "rollout_pack",
+        "validation_pack",
+        "hardening_record",
+        "handoff_record",
+    ),
 }
 REAL_RUN_WORKFLOW_PATH = REPO_ROOT / "docs" / "PLAYBOOK_REAL_RUN_WORKFLOW.md"
 REAL_RUN_SUMMARY_HOME_PATH = REPO_ROOT / "docs" / "real-runs" / "README.md"
@@ -238,6 +247,15 @@ REAL_RUN_SUMMARY_SLUG_REQUIREMENTS = {
         "recovery_verification_pack",
         "handoff_record",
     ),
+    "owner-first-capability-landing": (
+        "candidate_lineage_pack",
+        "owner_landing_bundle",
+        "landing_decision",
+        "rollout_pack",
+        "validation_pack",
+        "hardening_record",
+        "handoff_record",
+    ),
 }
 GATE_REVIEW_REQUIREMENTS = {
     GATE_REVIEW_DIR / "split-wave-cross-repo-rollout.md": {
@@ -282,6 +300,19 @@ GATE_REVIEW_REQUIREMENTS = {
             "recovery_verification_pack",
             "handoff_record",
             "Only a live incident should open the first reviewed summary",
+        ),
+    },
+    GATE_REVIEW_DIR / "owner-first-capability-landing.md": {
+        "playbook_id": "AOA-P-0021",
+        "slug": "owner-first-capability-landing",
+        "required_tokens": (
+            "candidate_lineage_pack",
+            "owner_landing_bundle",
+            "landing_decision",
+            "rollout_pack",
+            "validation_pack",
+            "hardening_record",
+            "handoff_record",
         ),
     },
 }
@@ -2792,6 +2823,7 @@ def validate_real_run_workflow_surfaces() -> None:
         "docs/real-runs/",
         "docs/gate-reviews/",
         "AOA-P-0017",
+        "AOA-P-0021",
         "AOA-P-0019",
         "AOA-P-0020",
     ):
@@ -2804,6 +2836,7 @@ def validate_real_run_workflow_surfaces() -> None:
         REVIEWED_SUMMARY_GATE_SENTENCE,
         "YYYY-MM-DD.<playbook-slug>.md",
         "split-wave-cross-repo-rollout",
+        "owner-first-capability-landing",
         "release-migration-cutover",
         "incident-recovery-routing",
         "Evidence Links",
@@ -3636,11 +3669,6 @@ def validate_playbook_landing_governance_surface(playbooks_by_id: dict[str, dict
     expected_scope = sorted(set(packet_by_id) & set(intake_by_id))
     if scoped_ids != expected_scope:
         fail("generated/playbook_landing_governance.min.json must cover the review-track scope exactly once")
-    if "AOA-P-0021" in scoped_ids:
-        fail(
-            "generated/playbook_landing_governance.min.json must not include AOA-P-0021 "
-            "before it lands in both review packet and intake surfaces"
-        )
 
     for index, entry in enumerate(entries):
         location = f"generated/playbook_landing_governance.min.json.playbooks[{index}]"

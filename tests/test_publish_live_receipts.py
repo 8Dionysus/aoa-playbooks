@@ -36,12 +36,12 @@ def build_receipt(event_kind: str = "playbook_review_harvest_receipt") -> dict:
         "evidence_refs": [
             {
                 "kind": "reviewed_run",
-                "ref": "repo:aoa-playbooks/docs/real-runs/2026-04-06.owner-first-capability-landing.md",
+                "ref": "repo:aoa-playbooks/docs/real-runs/2026-04-07.owner-first-capability-landing.md",
             }
         ],
         "payload": {
             "gate_verdict": "composition-landed",
-            "reviewed_run_ref": "docs/real-runs/2026-04-06.owner-first-capability-landing.md",
+            "reviewed_run_ref": "docs/real-runs/2026-04-07.owner-first-capability-landing.md",
         },
     }
 

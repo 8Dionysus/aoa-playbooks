@@ -233,6 +233,8 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
         self.assertEqual(by_id["AOA-P-0017"]["reviewed_run_count"], 2)
+        self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
+        self.assertEqual(by_id["AOA-P-0021"]["reviewed_run_count"], 1)
         self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0019"]["reviewed_run_count"], 0)
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
@@ -299,6 +301,15 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             [
                 "playbooks/incident-recovery-routing/PLAYBOOK.md",
                 "docs/gate-reviews/incident-recovery-routing.md",
+            ],
+        )
+        self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
+        self.assertEqual(
+            by_id["AOA-P-0021"]["source_review_refs"],
+            [
+                "playbooks/owner-first-capability-landing/PLAYBOOK.md",
+                "docs/gate-reviews/owner-first-capability-landing.md",
+                "docs/real-runs/2026-04-07.owner-first-capability-landing.md",
             ],
         )
         self.assertEqual(
@@ -383,6 +394,16 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             ["docs/gate-reviews/split-wave-cross-repo-rollout.md"],
         )
         self.assertEqual(by_id["AOA-P-0017"]["composition_posture"], "landed")
+        self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
+        self.assertEqual(
+            by_id["AOA-P-0021"]["review_outcome_targets"]["real_runs"],
+            ["docs/real-runs/2026-04-07.owner-first-capability-landing.md"],
+        )
+        self.assertEqual(
+            by_id["AOA-P-0021"]["review_outcome_targets"]["gate_reviews"],
+            ["docs/gate-reviews/owner-first-capability-landing.md"],
+        )
+        self.assertEqual(by_id["AOA-P-0021"]["composition_posture"], "landed")
         self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0019"]["composition_posture"], "awaiting-reviewed-run")
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
@@ -402,12 +423,15 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(current["scope"], "review-track")
 
         by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
-        self.assertNotIn("AOA-P-0021", by_id)
         self.assertNotIn("AOA-P-0001", by_id)
         self.assertTrue(by_id["AOA-P-0017"]["landing_passed"])
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
         self.assertTrue(by_id["AOA-P-0017"]["in_composition_manifest"])
         self.assertEqual(by_id["AOA-P-0017"]["registry_status"], "experimental")
+        self.assertTrue(by_id["AOA-P-0021"]["landing_passed"])
+        self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
+        self.assertTrue(by_id["AOA-P-0021"]["in_composition_manifest"])
+        self.assertEqual(by_id["AOA-P-0021"]["registry_status"], "experimental")
         self.assertTrue(by_id["AOA-P-0018"]["landing_passed"])
         self.assertEqual(by_id["AOA-P-0018"]["gate_verdict"], "hold")
         self.assertFalse(by_id["AOA-P-0018"]["in_composition_manifest"])
