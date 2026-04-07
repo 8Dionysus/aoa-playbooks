@@ -32,6 +32,7 @@ Allowed slug values in this wave:
 - `release-migration-cutover`
 - `incident-recovery-routing`
 - `owner-first-capability-landing`
+- `federated-live-publisher-activation`
 
 ## Required headings
 
@@ -53,4 +54,5 @@ This folder should stay sparse and hold only committed reviewed summaries that f
 `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md` is the first committed reviewed summary and captures the March 21, 2026 `AOA-P-0017` section-expand wave across source-owned AoA repos and `aoa-routing`.
 `docs/real-runs/2026-04-05.validation-driven-remediation.md` is the first committed general reviewed summary for `AOA-P-0018` and keeps the playbook at `hold` pending a second different-family remediation run or a stable adjunct candidate.
 `docs/real-runs/2026-04-07.owner-first-capability-landing.md` is the first committed reviewed summary for `AOA-P-0021` and closes the federated audit remediation pack as a composition-landed owner-first route rather than leaving it as staged lineage fiction.
+`docs/real-runs/2026-04-07.federated-live-publisher-activation.md` is the first committed reviewed summary for `AOA-P-0024` and closes the owner-local publisher readiness route at the audit layer while keeping the gate at `hold` until a stable playbook-owned adjunct candidate appears.
 `AOA-P-0019` and `AOA-P-0020` still have no qualifying reviewed summary committed as of March 28, 2026.

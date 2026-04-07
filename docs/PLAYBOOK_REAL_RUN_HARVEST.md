@@ -30,6 +30,8 @@ This repository ships example-only harvest templates at:
 - `examples/harvests/validation-driven-remediation.harvest-template.md`
 - `examples/harvests/release-migration-cutover.harvest-template.md`
 - `examples/harvests/incident-recovery-routing.harvest-template.md`
+- `examples/harvests/owner-first-capability-landing.harvest-template.md`
+- `examples/harvests/federated-live-publisher-activation.harvest-template.md`
 
 These templates are the only harvest objects validated in this repository.
 They exist to keep evidence scaffolding legible without introducing a second runtime substrate.
