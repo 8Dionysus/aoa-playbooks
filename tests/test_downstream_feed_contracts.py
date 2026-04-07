@@ -237,7 +237,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
 
         by_id = {entry["playbook_id"]: entry for entry in current["playbooks"]}
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
-        self.assertEqual(by_id["AOA-P-0017"]["reviewed_run_count"], 2)
+        self.assertEqual(by_id["AOA-P-0017"]["reviewed_run_count"], 3)
         self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
         self.assertEqual(by_id["AOA-P-0021"]["reviewed_run_count"], 1)
         self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
@@ -287,12 +287,14 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         )
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
         self.assertEqual(
-            by_id["AOA-P-0017"]["source_review_refs"][0],
-            "playbooks/split-wave-cross-repo-rollout/PLAYBOOK.md",
-        )
-        self.assertEqual(
-            by_id["AOA-P-0017"]["source_review_refs"][1],
-            "docs/gate-reviews/split-wave-cross-repo-rollout.md",
+            by_id["AOA-P-0017"]["source_review_refs"],
+            [
+                "playbooks/split-wave-cross-repo-rollout/PLAYBOOK.md",
+                "docs/gate-reviews/split-wave-cross-repo-rollout.md",
+                "docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md",
+                "docs/real-runs/2026-03-28.split-wave-cross-repo-rollout.md",
+                "docs/real-runs/2026-04-07.split-wave-cross-repo-rollout.md",
+            ],
         )
         self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
         self.assertEqual(
@@ -425,6 +427,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             [
                 "docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md",
                 "docs/real-runs/2026-03-28.split-wave-cross-repo-rollout.md",
+                "docs/real-runs/2026-04-07.split-wave-cross-repo-rollout.md",
             ],
         )
         self.assertEqual(
