@@ -53,6 +53,17 @@ The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and reco
 - Artifact anchor: `incident_map`, `stabilization_plan`, `recovery_decision`, `recovery_verification_pack`, `handoff_record`
 - Non-promotion default: if the run only shows one-off recovery handling or weak signal, keep `AOA-P-0020` at `A+Act+F`
 
+## AOA-P-0021 owner-first-capability-landing
+
+- Required real-run artifact set: `candidate_lineage_pack`, `owner_landing_bundle`, `landing_decision`, `rollout_pack`, `validation_pack`, `hardening_record`, `handoff_record`
+- Minimum evidence threshold: one real owner-first capability landing route
+- Required dual signal for promotion:
+  - at least one stable follow-up mapping showing that a reviewed staged lineage pack must land through owner-first closure and post-merge reality sync before broader rollout can stay honest
+  - at least one stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`
+- Artifact anchor: `candidate_lineage_pack`, `owner_landing_bundle`, `landing_decision`, `rollout_pack`, `validation_pack`, `hardening_record`, `handoff_record`
+- First landing rule: if review-track landing becomes honest, start with the smallest truthful playbook-owned bridge. For `AOA-P-0021`, that first landing is the bounded bridge between staged lineage intake and merged owner truth plus post-merge reality sync, not a new automation seed or subagent recipe.
+- Non-promotion default: if the route never leaves staged lineage, never lands in owner surfaces, or never closes with reality sync, keep `AOA-P-0021` at `A+Act+F`
+
 ## Default posture
 
 Weak, single-use, or ambiguous signals do not justify composition growth.
