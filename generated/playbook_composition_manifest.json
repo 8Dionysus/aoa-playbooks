@@ -21,10 +21,11 @@
     "invariants-first-refactor",
     "local-stack-diagnosis",
     "owner-first-capability-landing",
+    "project-foundation-workspace-landing",
     "source-truth-then-share",
     "atm10-bounded-change",
     "split-wave-cross-repo-rollout"
   ],
-  "composition_playbook_count": 8,
-  "total_playbook_count": 21
+  "composition_playbook_count": 9,
+  "total_playbook_count": 22
 }

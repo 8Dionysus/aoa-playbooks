@@ -117,6 +117,32 @@
         "aoa-contract-test"
       ]
     },
+    "project-foundation-workspace-landing": {
+      "failure_codes": [
+        "APPROVAL_REQUIRED",
+        "SOURCE_OF_TRUTH_AMBIGUOUS",
+        "PREVIEW_REQUIRED",
+        "LOCAL_STACK_UNSTABLE",
+        "VERIFICATION_WEAK",
+        "SESSION_LOST"
+      ],
+      "subagent_recipes": [],
+      "automation_seeds": [],
+      "followup_playbooks": [
+        "local-stack-diagnosis",
+        "source-truth-then-share",
+        "cross-repo-boundary-rollout"
+      ],
+      "handoff_skill_refs": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-local-stack-bringup",
+        "aoa-adr-write"
+      ]
+    },
     "source-truth-then-share": {
       "failure_codes": [
         "SOURCE_OF_TRUTH_AMBIGUOUS",

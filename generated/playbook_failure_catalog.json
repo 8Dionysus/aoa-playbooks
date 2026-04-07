@@ -18,7 +18,8 @@
       "used_by_playbooks": [
         "bounded-change-safe",
         "infra-change-guarded",
-        "owner-first-capability-landing"
+        "owner-first-capability-landing",
+        "project-foundation-workspace-landing"
       ]
     },
     {
@@ -39,6 +40,7 @@
         "bounded-change-safe",
         "local-stack-diagnosis",
         "owner-first-capability-landing",
+        "project-foundation-workspace-landing",
         "source-truth-then-share",
         "split-wave-cross-repo-rollout"
       ]
@@ -78,7 +80,8 @@
         "atm10-bounded-change",
         "bounded-change-safe",
         "infra-change-guarded",
-        "local-stack-diagnosis"
+        "local-stack-diagnosis",
+        "project-foundation-workspace-landing"
       ]
     },
     {
@@ -96,7 +99,8 @@
       ],
       "used_by_playbooks": [
         "infra-change-guarded",
-        "local-stack-diagnosis"
+        "local-stack-diagnosis",
+        "project-foundation-workspace-landing"
       ]
     },
     {
@@ -118,6 +122,7 @@
         "bounded-change-safe",
         "invariants-first-refactor",
         "owner-first-capability-landing",
+        "project-foundation-workspace-landing",
         "split-wave-cross-repo-rollout"
       ]
     },
@@ -206,6 +211,7 @@
         "invariants-first-refactor",
         "local-stack-diagnosis",
         "owner-first-capability-landing",
+        "project-foundation-workspace-landing",
         "split-wave-cross-repo-rollout"
       ]
     }

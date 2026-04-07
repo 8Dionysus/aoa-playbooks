@@ -715,6 +715,207 @@
       }
     },
     {
+      "playbook_id": "AOA-P-0022",
+      "name": "project-foundation-workspace-landing",
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-local-stack-bringup",
+        "aoa-adr-write"
+      ],
+      "upstream_skill_handoffs": [
+        {
+          "name": "aoa-source-of-truth-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "consumes_artifact_tags": [
+            "repository-docs-surface",
+            "target-area-of-ambiguity-or-overlap",
+            "known-canonical-files-if-any",
+            "current-contributor-confusion-points"
+          ],
+          "provides_artifact_tags": [
+            "clearer-source-of-truth-map",
+            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
+            "note-of-overlaps-or-conflicts",
+            "proposed-or-implemented-document-role-clarification",
+            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
+            "verification-summary"
+          ]
+        },
+        {
+          "name": "aoa-bounded-context-map",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "consumes_artifact_tags": [
+            "target-area-or-subsystem",
+            "current-naming-and-responsibilities",
+            "known-neighboring-contexts",
+            "ambiguous-or-overloaded-terms"
+          ],
+          "provides_artifact_tags": [
+            "named-contexts-or-subsystems",
+            "rough-boundary-map",
+            "interface-notes-between-contexts",
+            "ambiguity-notes-and-recommended-vocabulary"
+          ]
+        },
+        {
+          "name": "aoa-approval-gate-check",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "touched-surfaces",
+            "known-approval-state",
+            "risk-signals",
+            "possible-fallback-or-inspect-only-path"
+          ],
+          "provides_artifact_tags": [
+            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
+            "note-on-whether-explicit-approval-is-needed",
+            "bounded-next-step-recommendation",
+            "report-of-unresolved-authority-assumptions",
+            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+          ]
+        },
+        {
+          "name": "aoa-dry-run-first",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "consumes_artifact_tags": [
+            "requested-action",
+            "available-preview-or-dry-run-mechanisms",
+            "touched-surfaces",
+            "known-limits-of-the-preview-path"
+          ],
+          "provides_artifact_tags": [
+            "dry-run-or-preview-recommendation",
+            "bounded-preview-result-or-plan",
+            "note-on-what-the-preview-does-and-does-not-prove",
+            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
+            "recommendation-for-next-step"
+          ]
+        },
+        {
+          "name": "aoa-change-protocol",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "consumes_artifact_tags": [
+            "target-goal",
+            "touched-files-or-surfaces",
+            "main-risk",
+            "intended-validation-path",
+            "rollback-idea"
+          ],
+          "provides_artifact_tags": [
+            "explicit-plan",
+            "scoped-change",
+            "named-verification-result",
+            "concise-final-report"
+          ]
+        },
+        {
+          "name": "aoa-local-stack-bringup",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-local-stack-bringup",
+          "consumes_artifact_tags": [
+            "selected-local-runtime-profile-or-preset",
+            "available-render-truth-surface-for-the-chosen-runtime",
+            "available-readiness-or-doctor-surface-for-the-chosen-runtime",
+            "one-explicit-local-lifecycle-entrypoint",
+            "intended-stop-path-or-cleanup-path"
+          ],
+          "provides_artifact_tags": [
+            "rendered-runtime-truth-summary-for-what-would-actually-start",
+            "selector-aware-readiness-verdict-with-named-blockers-or-warnings",
+            "explicit-go-hold-or-confirm-before-launch-recommendation",
+            "started-bounded-local-stack-with-visible-stop-path-or-a-deferred",
+            "concise-runtime-report-with-unresolved-warnings-blockers-or-clea"
+          ]
+        },
+        {
+          "name": "aoa-adr-write",
+          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-adr-write",
+          "consumes_artifact_tags": [
+            "decision-to-record",
+            "context-and-problem-statement",
+            "relevant-options-or-alternatives",
+            "chosen-path-and-rationale",
+            "known-consequences-or-tradeoffs"
+          ],
+          "provides_artifact_tags": [
+            "concise-decision-note-or-adr-draft",
+            "statement-of-rationale",
+            "consequence-notes",
+            "canonical-placement-or-reference-for-the-note",
+            "verification-that-the-note-landed-in-the-expected-decision-surfa",
+            "verification-that-the-note-matches-the-actual-change"
+          ]
+        }
+      ],
+      "decision_points": [
+        "Decide which directory is the workspace root and which sibling repositories belong to the bounded landing wave.",
+        "Decide whether `repo-project-foundation` is the exact shared install layer or whether the route should stop before forcing a different baseline.",
+        "Decide what belongs in root guidance versus the owner repos that define canon for install, bootstrap, or session posture.",
+        "Decide whether repo-local `.agents/skills` rollout belongs in the current wave or should remain deferred.",
+        "Decide what verify path proves shared install, ingress posture, and mutation-gate behavior strongly enough to close the route.",
+        "Decide whether portability beyond the current root needs a bounded bootstrap path now or can remain future work.",
+        "Decide whether the route closes with a verified workspace landing or hands off to a later owner-specific rollout or documentation pass."
+      ],
+      "handoffs": [
+        "`architect -> coder` after the workspace boundary, install target, and authority split are explicit",
+        "`coder -> reviewer` after the foundation install report, root guidance record, and bootstrap pack exist",
+        "`reviewer -> evaluator` after the ingress and mutation-gate verification pack is explicit enough to support closure or defer",
+        "`reviewer or evaluator -> architect` when workspace boundary, authority split, or portability posture drifts enough that the route must return to the last valid anchor",
+        "`evaluator -> memory-keeper` after the landing decision and residual handoff are explicit enough to survive the route",
+        "`memory-keeper -> architect` only when the handoff record proves another governed route still remains"
+      ],
+      "expected_artifacts": [
+        "workspace_layout_map",
+        "foundation_install_report",
+        "root_guidance_record",
+        "ingress_guard_verification_pack",
+        "portability_bootstrap_pack",
+        "handoff_record"
+      ],
+      "return_anchor_artifacts": [
+        "workspace_layout_map",
+        "foundation_install_report",
+        "ingress_guard_verification_pack"
+      ],
+      "handoff_packet_template": {
+        "from_playbook": "project-foundation-workspace-landing",
+        "carried_artifacts": [
+          "workspace_layout_map",
+          "foundation_install_report",
+          "root_guidance_record",
+          "ingress_guard_verification_pack",
+          "portability_bootstrap_pack",
+          "handoff_record"
+        ],
+        "required_skill_handoffs": [
+          "aoa-source-of-truth-check",
+          "aoa-bounded-context-map",
+          "aoa-approval-gate-check",
+          "aoa-dry-run-first",
+          "aoa-change-protocol",
+          "aoa-local-stack-bringup",
+          "aoa-adr-write"
+        ],
+        "failure_codes": [
+          "APPROVAL_REQUIRED",
+          "SOURCE_OF_TRUTH_AMBIGUOUS",
+          "PREVIEW_REQUIRED",
+          "LOCAL_STACK_UNSTABLE",
+          "VERIFICATION_WEAK",
+          "SESSION_LOST"
+        ],
+        "next_followups": [
+          "local-stack-diagnosis",
+          "source-truth-then-share",
+          "cross-repo-boundary-rollout"
+        ]
+      }
+    },
+    {
       "playbook_id": "AOA-P-0015",
       "name": "source-truth-then-share",
       "required_skills": [
