@@ -175,6 +175,14 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "hardening_record",
         "handoff_record",
     ),
+    REPO_ROOT / "examples" / "harvests" / "federated-live-publisher-activation.harvest-template.md": (
+        "readiness_audit_pack",
+        "owner_activation_plan",
+        "owner_change_set",
+        "publication_verification_pack",
+        "stats_visibility_pack",
+        "residual_handoff_record",
+    ),
 }
 REAL_RUN_WORKFLOW_PATH = REPO_ROOT / "docs" / "PLAYBOOK_REAL_RUN_WORKFLOW.md"
 REAL_RUN_SUMMARY_HOME_PATH = REPO_ROOT / "docs" / "real-runs" / "README.md"
@@ -256,6 +264,14 @@ REAL_RUN_SUMMARY_SLUG_REQUIREMENTS = {
         "hardening_record",
         "handoff_record",
     ),
+    "federated-live-publisher-activation": (
+        "readiness_audit_pack",
+        "owner_activation_plan",
+        "owner_change_set",
+        "publication_verification_pack",
+        "stats_visibility_pack",
+        "residual_handoff_record",
+    ),
 }
 GATE_REVIEW_REQUIREMENTS = {
     GATE_REVIEW_DIR / "split-wave-cross-repo-rollout.md": {
@@ -313,6 +329,18 @@ GATE_REVIEW_REQUIREMENTS = {
             "validation_pack",
             "hardening_record",
             "handoff_record",
+        ),
+    },
+    GATE_REVIEW_DIR / "federated-live-publisher-activation.md": {
+        "playbook_id": "AOA-P-0024",
+        "slug": "federated-live-publisher-activation",
+        "required_tokens": (
+            "readiness_audit_pack",
+            "owner_activation_plan",
+            "owner_change_set",
+            "publication_verification_pack",
+            "stats_visibility_pack",
+            "residual_handoff_record",
         ),
     },
 }
@@ -2824,6 +2852,7 @@ def validate_real_run_workflow_surfaces() -> None:
         "docs/gate-reviews/",
         "AOA-P-0017",
         "AOA-P-0021",
+        "AOA-P-0024",
         "AOA-P-0019",
         "AOA-P-0020",
     ):
@@ -2837,6 +2866,7 @@ def validate_real_run_workflow_surfaces() -> None:
         "YYYY-MM-DD.<playbook-slug>.md",
         "split-wave-cross-repo-rollout",
         "owner-first-capability-landing",
+        "federated-live-publisher-activation",
         "release-migration-cutover",
         "incident-recovery-routing",
         "Evidence Links",

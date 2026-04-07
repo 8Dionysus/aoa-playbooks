@@ -235,6 +235,8 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0017"]["reviewed_run_count"], 2)
         self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
         self.assertEqual(by_id["AOA-P-0021"]["reviewed_run_count"], 1)
+        self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
+        self.assertEqual(by_id["AOA-P-0024"]["reviewed_run_count"], 1)
         self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0019"]["reviewed_run_count"], 0)
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
@@ -310,6 +312,15 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "playbooks/owner-first-capability-landing/PLAYBOOK.md",
                 "docs/gate-reviews/owner-first-capability-landing.md",
                 "docs/real-runs/2026-04-07.owner-first-capability-landing.md",
+            ],
+        )
+        self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
+        self.assertEqual(
+            by_id["AOA-P-0024"]["source_review_refs"],
+            [
+                "playbooks/federated-live-publisher-activation/PLAYBOOK.md",
+                "docs/gate-reviews/federated-live-publisher-activation.md",
+                "docs/real-runs/2026-04-07.federated-live-publisher-activation.md",
             ],
         )
         self.assertEqual(
@@ -404,6 +415,16 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             ["docs/gate-reviews/owner-first-capability-landing.md"],
         )
         self.assertEqual(by_id["AOA-P-0021"]["composition_posture"], "landed")
+        self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
+        self.assertEqual(
+            by_id["AOA-P-0024"]["review_outcome_targets"]["real_runs"],
+            ["docs/real-runs/2026-04-07.federated-live-publisher-activation.md"],
+        )
+        self.assertEqual(
+            by_id["AOA-P-0024"]["review_outcome_targets"]["gate_reviews"],
+            ["docs/gate-reviews/federated-live-publisher-activation.md"],
+        )
+        self.assertEqual(by_id["AOA-P-0024"]["composition_posture"], "held-after-review")
         self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0019"]["composition_posture"], "awaiting-reviewed-run")
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
@@ -432,6 +453,10 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
         self.assertTrue(by_id["AOA-P-0021"]["in_composition_manifest"])
         self.assertEqual(by_id["AOA-P-0021"]["registry_status"], "experimental")
+        self.assertTrue(by_id["AOA-P-0024"]["landing_passed"])
+        self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
+        self.assertFalse(by_id["AOA-P-0024"]["in_composition_manifest"])
+        self.assertEqual(by_id["AOA-P-0024"]["registry_status"], "experimental")
         self.assertTrue(by_id["AOA-P-0018"]["landing_passed"])
         self.assertEqual(by_id["AOA-P-0018"]["gate_verdict"], "hold")
         self.assertFalse(by_id["AOA-P-0018"]["in_composition_manifest"])

@@ -64,6 +64,17 @@ The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and reco
 - First landing rule: if review-track landing becomes honest, start with the smallest truthful playbook-owned bridge. For `AOA-P-0021`, that first landing is the bounded bridge between staged lineage intake and merged owner truth plus post-merge reality sync, not a new automation seed or subagent recipe.
 - Non-promotion default: if the route never leaves staged lineage, never lands in owner surfaces, or never closes with reality sync, keep `AOA-P-0021` at `A+Act+F`
 
+## AOA-P-0024 federated-live-publisher-activation
+
+- Required real-run artifact set: `readiness_audit_pack`, `owner_activation_plan`, `owner_change_set`, `publication_verification_pack`, `stats_visibility_pack`, `residual_handoff_record`
+- Minimum evidence threshold: one real owner-local publisher activation route
+- Required dual signal for promotion:
+  - at least one stable follow-up mapping showing that a reviewed readiness audit and explicit owner-local publication gap must close through owner-ordered publisher activation before the federation can honestly claim live closure
+  - at least one stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`
+- Artifact anchor: `readiness_audit_pack`, `owner_activation_plan`, `owner_change_set`, `publication_verification_pack`, `stats_visibility_pack`, `residual_handoff_record`
+- First landing rule: if review-track landing becomes honest, start with the smallest truthful adjunct tied to readiness closure, such as a bounded bridge between warning-first readiness audit and later strict non-empty closure, not a new runtime ledger or broad automation claim.
+- Non-promotion default: if the route only proves one owner-local activation wave or never surfaces a stable adjunct candidate, keep `AOA-P-0024` at `A+Act+F`
+
 ## Default posture
 
 Weak, single-use, or ambiguous signals do not justify composition growth.
