@@ -21,6 +21,7 @@ If two playbooks seem equally plausible, prefer the one whose dominant move and 
 | `AOA-P-0019 release-migration-cutover` | planned release or migration window requiring authority switch | freeze, go/no-go gate, authority switch, post-cutover verification | neighboring repos or layers with named authority switch | `review_required` with cutover or rollback gate | confirm switch, reverse switch, handoff, or stop | `AOA-P-0004`, `AOA-P-0010`, `AOA-P-0017`, `AOA-P-0020` | follow-on migration work, consumer handoff, or rollback review |
 | `AOA-P-0020 incident-recovery-routing` | unplanned incident requiring cross-boundary stabilization | stabilize, roll back, or degrade with recovery verification | cross-boundary incident surface, blast radius, and downstream consumers | `review_required` with recovery-anchor return | `restored`, `degraded-with-handoff`, `rollback-complete`, or `review-stop` | `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0018`, `AOA-P-0019` | `AOA-P-0018`, `AOA-P-0010`, or later governed follow-on work |
 | `AOA-P-0021 owner-first-capability-landing` | reviewed capability candidate needing owner-first landing before broader rollout | owner-first landing, bounded rollout, and post-merge hardening | one owner repo plus neighboring lineage surfaces and bounded downstream rollout | `review_required` with owner-anchor return | owner landing plus rollout closure, hardening closure, or handoff | `AOA-P-0010`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0015` | `AOA-P-0017`, `AOA-P-0018`, or later bounded documentation cleanup |
+| `AOA-P-0023 closeout-owner-follow-through-continuity` | reviewed closeout already names the next owner move | persistent owner handoff plus bounded owner authorship and merge closure | one owner repo plus reviewed closeout, explicit handoff, and neighboring validation surfaces | `review_required` with handoff-anchor return | merge closure, defer, or residual handoff | `AOA-P-0015`, `AOA-P-0021`, `AOA-P-0022`, `AOA-P-0024` | `AOA-P-0021`, `AOA-P-0018`, or `AOA-P-0015` |
 | `AOA-P-0024 federated-live-publisher-activation` | reviewed readiness audit naming missing or empty owner-local live publishers | owner-ordered publisher activation with publication and stats-visible verification | more than one owner repo plus a shared consumer closure surface | `review_required` with readiness-audit return | live closure, residual handoff, or `review-stop` | `AOA-P-0010`, `AOA-P-0018`, `AOA-P-0021`, `AOA-P-0023` | later owner activation wave, `AOA-P-0018`, or defer handoff |
 
 ## Family differentiation
@@ -33,6 +34,7 @@ If two playbooks seem equally plausible, prefer the one whose dominant move and 
 - `AOA-P-0019` = planned cutover window
 - `AOA-P-0020` = live cross-boundary incident stabilization and recovery handoff
 - `AOA-P-0021` = owner-first landing from reviewed lineage into bounded rollout and hardening
+- `AOA-P-0023` = reviewed closeout continuity into explicit owner follow-through and merged closure
 - `AOA-P-0024` = owner-ordered live publisher activation after a reviewed readiness audit
 
 ## Boundary discipline
