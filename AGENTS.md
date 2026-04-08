@@ -4,9 +4,15 @@ Guidance for coding agents and humans contributing to `aoa-playbooks`.
 
 ## Purpose
 
-`aoa-playbooks` is the scenario and composition layer of AoA. It stores explicit playbooks for recurring operational situations, multi-step compositions across neighboring layers, handoff-aware scenarios, fallback paths, and expected evidence posture for those scenarios.
+`aoa-playbooks` is the scenario and composition layer of AoA.
+It stores explicit playbooks for recurring operational situations, multi-step
+compositions across neighboring layers, handoff-aware scenarios, fallback
+paths, expected evidence posture, and, in the current wave, reviewed
+questline / campaign outline adjuncts for long-horizon recurrence.
 
-This repository is for scenario-level composition, not for the underlying technique, skill, proof, memory, or routing layer itself.
+This repository is for scenario-level composition.
+It is not the underlying technique, skill, proof, memory, routing, or role
+layer itself.
 
 ## Owns
 
@@ -15,10 +21,12 @@ This repository is the source of truth for:
 - playbook structure
 - scenario-level intent and composition wording
 - step ordering and scenario posture
-- fallback, rollback, and return posture at the playbook layer
+- fallback, rollback, return, and reanchor posture at the playbook layer
 - expected evidence posture for a scenario
 - playbook-layer metadata and generated registry surfaces
 - bounded composition adjuncts such as handoff contracts, failure catalogs, subagent recipes, automation seeds, and composition manifests
+- questline, campaign, and raid outline posture when those surfaces are explicitly defined in playbook-owned docs
+- playbook-owned harvest posture hints for reviewed long-horizon routes
 
 ## Does not own
 
@@ -28,17 +36,21 @@ Do not treat this repository as the source of truth for:
 - bounded skill execution meaning in `aoa-skills`
 - proof doctrine or verdict logic in `aoa-evals`
 - routing and dispatch logic in `aoa-routing`
-- role contracts in `aoa-agents`
+- role contracts or progression doctrine in `aoa-agents`
 - explicit memory-object meaning in `aoa-memo`
 - derived knowledge substrate semantics in `aoa-kag`
+- live quest state, progression state, or runtime ledger state
 
-A playbook coordinates these layers. It does not replace them.
+A playbook coordinates these layers.
+It does not replace them.
 
-## Core rule
+## Core rules
 
 A playbook is not a skill.
 
-If the task really belongs to one bounded workflow, keep it in `aoa-skills` instead of inflating it into a playbook.
+Questline and campaign reflection are reviewed outline seams, not runtime state.
+A questbook is evidence-first. It is not a hidden run ledger, not a quest
+sovereign, and not the harvest authority for the whole federation.
 
 ## Read this first
 
@@ -50,7 +62,14 @@ Before making changes, read in this order:
 4. any affected generated registry or composition surfaces
 5. neighboring repo docs if the playbook touches skills, agents, memo, evals, or routing
 
-If you are editing inside `playbooks/` or `generated/`, also follow the nested `AGENTS.md` in that directory.
+Then branch by task:
+
+- questline / campaign / raid / reanchor changes: `docs/QUESTLINE_AND_CAMPAIGN_MODEL.md`, `docs/QUEST_HARVEST_AND_REANCHOR.md`, and `QUESTBOOK.md`
+- orchestrator-facing alignment surfaces: `docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md`
+- playbook recurrence or reviewed-run posture: the recurrence and reviewed-run docs referenced from `README.md`
+
+If you are editing inside `playbooks/` or `generated/`, also follow the nested
+`AGENTS.md` in that directory.
 
 ## Primary objects
 
@@ -58,7 +77,8 @@ The most important objects in this repository are:
 
 - playbook definitions under `playbooks/*/PLAYBOOK.md`
 - `config/playbook_composition_overrides.json`
-- scenario-composition, fallback, and evidence-posture docs
+- scenario-composition, fallback, evidence-posture, and recurrence docs
+- `QUESTBOOK.md` and its backing files when the task touches quest reflection
 - generated playbook registry, activation, federation, review-status, and composition surfaces
 
 ## Hard NO
@@ -70,6 +90,11 @@ Do not:
 - store secrets, private infrastructure details, or unsafe operational specifics
 - create vague scenario prose with no bounded steps, fallbacks, or evidence posture
 - let “composition” become an excuse for hidden orchestration sprawl
+- turn questline or campaign surfaces into a run ledger
+- use campaign language to hide unbounded sprawl
+- use raid language for ordinary multi-file work
+- hide missing anchors behind continuity language
+- let `QUESTBOOK.md` replace source docs, memo truth, eval truth, or harvest authority
 
 ## Contribution doctrine
 
@@ -79,14 +104,16 @@ Use this flow: `PLAN -> DIFF -> VERIFY -> REPORT`
 
 State:
 
-- what playbook or scenario surface is changing
-- what composition, fallback, or evidence risk exists
+- what playbook, outline surface, or quest reflection surface is changing
+- what composition, fallback, anchor, or evidence risk exists
 - which neighboring layers are involved
-- whether the change is semantic or metadata-only
+- whether the change is semantic, metadata-only, or reviewed-outline-only
 
 ### DIFF
 
-Keep the change focused. Do not mix unrelated cleanup into a playbook change unless it is necessary for repository integrity.
+Keep the change focused.
+Do not mix unrelated cleanup into a playbook change unless it is necessary for
+repository integrity.
 
 ### VERIFY
 
@@ -95,38 +122,25 @@ Confirm that:
 - the scenario remains bounded
 - the scenario is still clearly more than one skill
 - handoffs remain explicit
-- fallback posture remains coherent
+- fallback and return posture remain coherent
 - expected evidence posture is still visible
 - generated outputs remain aligned if metadata surfaces changed
+- any questline or campaign surface keeps anchors, reanchor posture, stop conditions, and harvest posture explicit when applicable
+- `QUESTBOOK.md` remains evidence-first and does not become a runtime ledger
 
 ### REPORT
 
 Summarize:
 
-- what playbooks changed
+- what playbooks or outline surfaces changed
 - whether semantics changed or only metadata changed
-- whether fallback, handoff, or evidence posture changed
+- whether fallback, handoff, anchor, reanchor, or evidence posture changed
+- whether quest reflection remained adjunct-only
 - what validation was run
 - any neighboring repo follow-up likely needed
 
 ## Validation
 
 Run the validation commands documented in `README.md`.
-
-If generated playbook surfaces changed, regenerate and validate them before finishing.
-
-The canonical commands are:
-
-```bash
-python scripts/generate_playbook_activation_surfaces.py --check
-python scripts/generate_playbook_federation_surfaces.py --check
-python scripts/generate_playbook_review_status.py --check
-python scripts/generate_playbook_review_packet_contracts.py --check
-python scripts/generate_playbook_review_intake.py --check
-python scripts/generate_playbook_composition_surfaces.py --check
-python scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_playbooks.py
-python -m pytest -q tests
-```
-
-Do not claim checks you did not run.
+If generated playbook surfaces changed, regenerate and validate them before
+finishing.
