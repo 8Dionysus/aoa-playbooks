@@ -1,6 +1,6 @@
 # Playbook Composition Gates
 
-This document is the canonical gate surface for promoting selected operational playbooks from `A+Act+F` toward composition.
+This document is the canonical gate surface for promoting selected operational playbooks from their smallest honest authored or federated posture toward composition.
 
 ## Core rule
 
@@ -63,6 +63,17 @@ The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and reco
 - Artifact anchor: `candidate_lineage_pack`, `owner_landing_bundle`, `landing_decision`, `rollout_pack`, `validation_pack`, `hardening_record`, `handoff_record`
 - First landing rule: if review-track landing becomes honest, start with the smallest truthful playbook-owned bridge. For `AOA-P-0021`, that first landing is the bounded bridge between staged lineage intake and merged owner truth plus post-merge reality sync, not a new automation seed or subagent recipe.
 - Non-promotion default: if the route never leaves staged lineage, never lands in owner surfaces, or never closes with reality sync, keep `AOA-P-0021` at `A+Act+F`
+
+## AOA-P-0023 closeout-owner-follow-through-continuity
+
+- Required real-run artifact set: `reviewed_closeout_pack`, `owner_handoff_bundle`, `owner_authorship_bundle`, `validation_pack`, `merge_record`, `residual_handoff_record`
+- Minimum evidence threshold: one real reviewed-closeout continuity route
+- Required dual signal for promotion:
+  - at least one stable follow-up mapping showing that a reviewed closeout plus explicit owner handoff must survive through bounded owner authorship, validation, and merged closure before the next move can stay honest
+  - at least one stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`
+- Artifact anchor: `reviewed_closeout_pack`, `owner_handoff_bundle`, `owner_authorship_bundle`, `validation_pack`, `merge_record`, `residual_handoff_record`
+- First landing rule: if review-track landing becomes honest, start with the smallest truthful continuity bridge. For `AOA-P-0023`, that first landing is the bounded bridge between reviewed closeout, persistent owner handoff, bounded owner authorship, and merged closure, not a new automation seed or subagent recipe.
+- Non-promotion default: if the route never persists the owner handoff beyond chat memory or never closes through bounded validation and merge evidence, keep `AOA-P-0023` at authored route plus non-promoted continuity guidance.
 
 ## AOA-P-0024 federated-live-publisher-activation
 

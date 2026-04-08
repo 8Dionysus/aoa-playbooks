@@ -28,6 +28,7 @@ The shipped templates under `examples/harvests/` remain the only source template
 - `release-migration-cutover.harvest-template.md`
 - `incident-recovery-routing.harvest-template.md`
 - `owner-first-capability-landing.harvest-template.md`
+- `closeout-owner-follow-through-continuity.harvest-template.md`
 - `federated-live-publisher-activation.harvest-template.md`
 
 Do not create a second template family for the same summaries.
@@ -56,6 +57,7 @@ A selection pass that finds no qualifying case should leave the matching playboo
 - `release-migration-cutover.md`
 - `incident-recovery-routing.md`
 - `owner-first-capability-landing.md`
+- `closeout-owner-follow-through-continuity.md`
 - `federated-live-publisher-activation.md`
 
 Each verdict doc keeps the current `hold`, `ready-for-composition-review`, or `composition-landed` posture explicit without pretending that composition exists before it really lands.
@@ -67,8 +69,9 @@ The remaining first-run evidence gaps are now `AOA-P-0019` and `AOA-P-0020`.
 `AOA-P-0017` now has reviewed summaries at `docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md`, `docs/real-runs/2026-03-28.split-wave-cross-repo-rollout.md`, and `docs/real-runs/2026-04-07.split-wave-cross-repo-rollout.md`, and its composition-landed handoff bridge now covers both routing-adjacent and surface-detection split-wave closures.
 `AOA-P-0018` now has a first qualifying general reviewed summary at `docs/real-runs/2026-04-05.validation-driven-remediation.md`, and its gate remains `hold` pending a second different-family remediation run or a stable adjunct candidate.
 `AOA-P-0021` now has a first qualifying reviewed summary at `docs/real-runs/2026-04-07.owner-first-capability-landing.md`, and its gate has moved to `composition-landed` because the route now proves a stable owner-first landing bridge from staged lineage intake to merged owner truth and post-merge reality sync.
+`AOA-P-0023` now has a first qualifying reviewed summary at `docs/real-runs/2026-04-08.closeout-owner-follow-through-continuity.md`, and its gate has moved to `composition-landed` because the route now proves a stable continuity bridge from reviewed closeout through owner handoff, bounded owner authorship, and merged closure.
 `AOA-P-0024` now has a first qualifying reviewed summary at `docs/real-runs/2026-04-07.federated-live-publisher-activation.md`, and its gate remains `hold` because the route now proves a real owner-local publisher activation closure but not yet a stable playbook-owned adjunct candidate.
-As of March 28, 2026, `AOA-P-0019` still has no qualifying reviewed summary committed.
+As of April 8, 2026, `AOA-P-0019` still has no qualifying reviewed summary committed.
 `AOA-P-0020` uses the same summary and verdict workflow, but only a live incident should open its first reviewed run.
 
 ## Boundary to preserve

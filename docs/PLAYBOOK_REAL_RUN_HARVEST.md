@@ -31,6 +31,7 @@ This repository ships example-only harvest templates at:
 - `examples/harvests/release-migration-cutover.harvest-template.md`
 - `examples/harvests/incident-recovery-routing.harvest-template.md`
 - `examples/harvests/owner-first-capability-landing.harvest-template.md`
+- `examples/harvests/closeout-owner-follow-through-continuity.harvest-template.md`
 - `examples/harvests/federated-live-publisher-activation.harvest-template.md`
 
 These templates are the only harvest objects validated in this repository.
