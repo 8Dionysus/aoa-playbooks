@@ -34,8 +34,12 @@ REQUIRED_GATE_REVIEW_SECTIONS = (
     "Next Trigger",
 )
 ALLOWED_GATE_VERDICT_TOKENS = ("hold", "ready-for-composition-review", "composition-landed")
-REAL_RUN_SUMMARY_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)\.md$")
-REVIEWED_RUN_REF_RE = re.compile(r"docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+\.md)")
+REAL_RUN_SUMMARY_FILENAME_RE = re.compile(
+    r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)(?:\.([a-z0-9-]+))?\.md$"
+)
+REVIEWED_RUN_REF_RE = re.compile(
+    r"docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+(?:\.[a-z0-9-]+)?\.md)"
+)
 PLAYBOOK_ID_RE = re.compile(r"\bAOA-P-\d{4}\b")
 
 

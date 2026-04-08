@@ -636,9 +636,13 @@ REQUIRED_GATE_REVIEW_SECTIONS = (
     "Next Trigger",
 )
 ALLOWED_GATE_VERDICT_TOKENS = ("hold", "ready-for-composition-review", "composition-landed")
-REAL_RUN_SUMMARY_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)\.md$")
+REAL_RUN_SUMMARY_FILENAME_RE = re.compile(
+    r"^\d{4}-\d{2}-\d{2}\.([a-z0-9-]+)(?:\.([a-z0-9-]+))?\.md$"
+)
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\([^)]+\)")
-REVIEWED_RUN_REF_RE = re.compile(r"docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+\.md)")
+REVIEWED_RUN_REF_RE = re.compile(
+    r"docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+(?:\.[a-z0-9-]+)?\.md)"
+)
 BUNDLE_SEMANTIC_CHECKS = {
     "AOA-P-0006": {
         "frontmatter_lists": {
@@ -3009,7 +3013,7 @@ def validate_real_run_workflow_surfaces() -> None:
         latest_review_section = sections.get("Latest Reviewed Run", "")
         slug = requirement["slug"]
         summary_reference_re = re.compile(
-            rf"docs/real-runs/(?:YYYY-MM-DD|\d{{4}}-\d{{2}}-\d{{2}})\.{re.escape(slug)}\.md"
+            rf"docs/real-runs/(?:YYYY-MM-DD|\d{{4}}-\d{{2}}-\d{{2}})\.{re.escape(slug)}(?:\.[a-z0-9-]+)?\.md"
         )
         if not summary_reference_re.search(latest_review_section):
             fail(
@@ -3024,7 +3028,7 @@ def validate_real_run_workflow_surfaces() -> None:
         match = REAL_RUN_SUMMARY_FILENAME_RE.match(summary_path.name)
         if not match:
             fail(
-                f"{location} must match the filename pattern YYYY-MM-DD.<playbook-slug>.md"
+                f"{location} must match the filename pattern YYYY-MM-DD.<playbook-slug>[.<run-label>].md"
             )
         slug = match.group(1)
         if slug not in REAL_RUN_SUMMARY_SLUG_REQUIREMENTS:

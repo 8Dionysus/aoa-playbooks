@@ -21,9 +21,13 @@ Reviewed summaries may enter this repository under `docs/real-runs/`, but compos
 
 ## Filename rule
 
-Future summary files must use:
+Future summary files must use one of these bounded forms:
 
 - `YYYY-MM-DD.<playbook-slug>.md`
+- `YYYY-MM-DD.<playbook-slug>.<run-label>.md`
+
+Use the optional `run-label` only when the same playbook has more than one reviewed summary on the same date and both runs need to remain distinct.
+The label must stay short, lowercase, and hyphenated.
 
 Allowed slug values in this wave:
 
@@ -56,7 +60,8 @@ This folder should stay sparse and hold only committed reviewed summaries that f
 `docs/real-runs/2026-04-07.split-wave-cross-repo-rollout.md` is the latest committed reviewed summary for `AOA-P-0017` and captures the surface-detection second-wave bridge from sibling surface publication through downstream validation, review-tail repair, merge, and merged-reality sync.
 `docs/real-runs/2026-04-05.validation-driven-remediation.md` is the first committed general reviewed summary for `AOA-P-0018` and keeps the playbook at `hold` pending a second different-family remediation run or a stable adjunct candidate.
 `docs/real-runs/2026-04-07.owner-first-capability-landing.md` is the first committed reviewed summary for `AOA-P-0021` and closes the federated audit remediation pack as a composition-landed owner-first route rather than leaving it as staged lineage fiction.
-`docs/real-runs/2026-04-08.owner-first-capability-landing.md` is the latest committed reviewed summary for `AOA-P-0021` and confirms that the same owner-first bridge also governs the via-negativa doctrine/checklist wave from staged lineage to merged owner truth.
+`docs/real-runs/2026-04-08.owner-first-capability-landing.md` confirms that the same owner-first bridge also governs the via-negativa doctrine/checklist wave from staged lineage to merged owner truth.
+`docs/real-runs/2026-04-08.owner-first-capability-landing.tos-graph-curation.md` is the latest committed reviewed summary for `AOA-P-0021` and confirms that the same owner-first bridge also governs the `tos-graph` curation landing from staged lineage through bounded runtime hardening and lineage-safe closeout.
 `docs/real-runs/2026-04-08.closeout-owner-follow-through-continuity.md` is the first committed reviewed summary for `AOA-P-0023` and closes the diagnostic-spine follow-through route as a composition-landed continuity bridge from reviewed closeout to merged owner truth.
 `docs/real-runs/2026-04-07.federated-live-publisher-activation.md` is the first committed reviewed summary for `AOA-P-0024` and closes the owner-local publisher readiness route at the audit layer while keeping the gate at `hold` until a stable playbook-owned adjunct candidate appears.
 `AOA-P-0019` and `AOA-P-0020` still have no qualifying reviewed summary committed as of April 8, 2026.
