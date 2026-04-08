@@ -13,12 +13,13 @@
 
 - Reviewed summaries:
   - `docs/real-runs/2026-04-07.owner-first-capability-landing.md`
-- The April 7, 2026 federated audit remediation closure route selected the staged `federated_audit_remediation_seed_pack` as the first qualifying `AOA-P-0021` run because it landed through bounded owner-first slices, widened only after owner truth existed, closed a GitHub-only endcap in `ATM10-Agent`, and finished with reviewable `candidate_lineage_pack`, `owner_landing_bundle`, `landing_decision`, `rollout_pack`, `validation_pack`, `hardening_record`, `handoff_record`, and `Evidence Links`.
+  - `docs/real-runs/2026-04-08.owner-first-capability-landing.md`
+- The April 8, 2026 via-negativa owner-first landing is now the latest qualifying `AOA-P-0021` run because it started from a reviewed staged prep pack in `Dionysus`, landed bounded owner-local doctrine/checklist surfaces across the center plus thirteen owner repos, kept inspect-first pruning authority inside the owners, and closed with reviewable `candidate_lineage_pack`, `owner_landing_bundle`, `landing_decision`, `rollout_pack`, `validation_pack`, `hardening_record`, `handoff_record`, and `Evidence Links`.
 
 ## Dual Signal Check
 
-- Stable failure or follow-up mapping not already covered by neighboring rollout, remediation, cutover, or incident playbooks or the shared doctrine: established. The April 7 route proves a stable path from reviewed staged lineage intake into owner-first landings, bounded rollout, and post-merge reality sync, which is not the same thing as generic cross-repo rollout, fresh remediation triage, or cutover/recovery handling.
-- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: established as a `handoff bridge`. The route now exposes a stable bridge between staged lineage in `Dionysus` and merged owner truth across local and GitHub-only repositories.
+- Stable failure or follow-up mapping not already covered by neighboring rollout, remediation, cutover, incident, or closeout-continuity playbooks or the shared doctrine: established across two reviewed runs. The April 7 remediation closure and the April 8 via-negativa wave both prove the same stable path from reviewed staged lineage into merged owner truth and post-merge `Dionysus` sync, even though one family landed capability/hardening slices and the other landed inspect-first doctrine/checklist surfaces.
+- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: still established as a `handoff bridge`. The second reviewed run strengthens the same bounded bridge between staged lineage in `Dionysus` and merged owner truth across local, GitHub-only, and doctrine/checklist owner surfaces without turning that bridge into automation authority.
 
 ## Current Verdict
 
@@ -26,4 +27,4 @@
 
 ## Next Trigger
 
-- Re-open this gate only if a later run falsifies the owner-first boundary or a distinct adjunct family appears. Otherwise keep the current bounded owner-first landing bridge as the stable `AOA-P-0021` composition landing.
+- Re-open this gate only if a later run falsifies the owner-first boundary or a distinct adjunct family appears. Otherwise keep the current bounded owner-first landing bridge as the stable `AOA-P-0021` composition landing across both remediation-heavy and inspect-first staged-lineage families.
