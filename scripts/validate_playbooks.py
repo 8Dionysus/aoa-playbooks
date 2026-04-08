@@ -49,6 +49,12 @@ REVIEW_STATUS_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-review-status.sche
 REVIEW_PACKET_CONTRACTS_SCHEMA_PATH = (
     REPO_ROOT / "schemas" / "playbook-review-packet-contracts.schema.json"
 )
+PLAYBOOK_STRESS_LANES_DOC_PATH = REPO_ROOT / "docs" / "PLAYBOOK_STRESS_LANES.md"
+PLAYBOOK_STRESS_HARVEST_DOC_PATH = REPO_ROOT / "docs" / "PLAYBOOK_STRESS_HARVEST.md"
+PLAYBOOK_STRESS_LANE_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook_stress_lane_v1.json"
+PLAYBOOK_REENTRY_GATE_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook_reentry_gate_v1.json"
+PLAYBOOK_STRESS_LANE_EXAMPLE_PATH = REPO_ROOT / "examples" / "playbook_stress_lane.example.json"
+PLAYBOOK_REENTRY_GATE_EXAMPLE_PATH = REPO_ROOT / "examples" / "playbook_reentry_gate.example.json"
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
@@ -347,6 +353,18 @@ GATE_REVIEW_REQUIREMENTS = {
 REVIEWED_SUMMARY_GATE_SENTENCE = (
     "Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still "
     "require explicit gate review under `docs/gate-reviews/`."
+)
+REQUIRED_PLAYBOOK_STRESS_LANE_SNIPPETS = (
+    "Teach recurring playbooks to expose what happens when the normal route becomes unsafe, under-evidenced, or derived-surface dependent.",
+    "do not let playbooks replace source-owned receipts",
+    "do not confuse scenario composition with proof or source meaning",
+    "It is a named branch of the same recurring scenario.",
+)
+REQUIRED_PLAYBOOK_STRESS_HARVEST_SNIPPETS = (
+    "Make recurring stressed runs leave behind enough usable structure to improve the next run.",
+    "That decision should cite evidence, not mood.",
+    "do not let playbook harvest become the only record of what happened",
+    "one machine-readable re-entry gate family",
 )
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0008",
@@ -1685,6 +1703,51 @@ def validate_review_packet_contracts_schema_surface() -> dict[str, object]:
     if not isinstance(packet_kind_items, dict) or set(packet_kind_items.get("enum", ())) != allowed_packet_kinds:
         fail("playbook review-packet contracts schema must pin candidate_packet_kinds to the allowed packet kinds")
     return schema
+
+
+def validate_antifragility_stress_surfaces() -> None:
+    readme = read_text(REPO_ROOT / "README.md")
+    docs_readme = read_text(REPO_ROOT / "docs" / "README.md")
+    lanes_doc = read_text(PLAYBOOK_STRESS_LANES_DOC_PATH)
+    harvest_doc = read_text(PLAYBOOK_STRESS_HARVEST_DOC_PATH)
+
+    for token in ("docs/PLAYBOOK_STRESS_LANES.md", "docs/PLAYBOOK_STRESS_HARVEST.md"):
+        if token not in readme:
+            fail(f"README.md must link {token}")
+    for token in ("PLAYBOOK_STRESS_LANES", "PLAYBOOK_STRESS_HARVEST"):
+        if token not in docs_readme:
+            fail(f"docs/README.md must mention {token}")
+    for snippet in REQUIRED_PLAYBOOK_STRESS_LANE_SNIPPETS:
+        if snippet not in lanes_doc:
+            fail(f"docs/PLAYBOOK_STRESS_LANES.md is missing required stress-lane guidance: {snippet}")
+    for snippet in REQUIRED_PLAYBOOK_STRESS_HARVEST_SNIPPETS:
+        if snippet not in harvest_doc:
+            fail(f"docs/PLAYBOOK_STRESS_HARVEST.md is missing required harvest guidance: {snippet}")
+
+    for schema_path, example_path in (
+        (PLAYBOOK_STRESS_LANE_SCHEMA_PATH, PLAYBOOK_STRESS_LANE_EXAMPLE_PATH),
+        (PLAYBOOK_REENTRY_GATE_SCHEMA_PATH, PLAYBOOK_REENTRY_GATE_EXAMPLE_PATH),
+    ):
+        schema = read_json(schema_path)
+        if not isinstance(schema, dict):
+            fail(f"{display_path(schema_path)} must remain a JSON object")
+        Draft202012Validator.check_schema(schema)
+        payload = read_json(example_path)
+        errors = sorted(
+            Draft202012Validator(schema).iter_errors(payload),
+            key=lambda error: (list(error.absolute_path), error.message),
+        )
+        if errors:
+            first = errors[0]
+            error_path = format_schema_path(list(first.absolute_path))
+            if error_path:
+                fail(f"{display_path(example_path)} schema violation at '{error_path}': {first.message}")
+            fail(f"{display_path(example_path)} schema violation: {first.message}")
+        if isinstance(payload, dict):
+            playbook_ref = payload.get("playbook_id")
+            error = local_ref_error(playbook_ref, f"{display_path(example_path)}.playbook_id")
+            if error is not None:
+                fail(error)
 
 
 def validate_return_contract_schema(schema: dict[str, object], *, location: str) -> None:
@@ -3953,6 +4016,7 @@ def main() -> int:
         validate_federation_schema_surface()
         validate_review_status_schema_surface()
         validate_review_packet_contracts_schema_surface()
+        validate_antifragility_stress_surfaces()
         playbooks_by_id = validate_registry()
         agent_names = load_agent_names()
         model_tier_artifacts = load_model_tier_artifacts()
@@ -4002,6 +4066,7 @@ def main() -> int:
     print("[ok] validated playbook federation schema surface")
     print("[ok] validated playbook review-status schema surface")
     print("[ok] validated playbook review-packet contracts schema surface")
+    print("[ok] validated antifragility stress-lane adjunct surfaces")
     print("[ok] validated generated/playbook_registry.min.json")
     print("[ok] validated generated/playbook_activation_surfaces.min.json")
     print("[ok] validated authored playbook bundles")

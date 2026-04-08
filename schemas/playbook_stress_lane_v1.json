@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aoa.local/aoa-playbooks/schemas/playbook_stress_lane_v1.json",
+  "title": "playbook_stress_lane_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "lane_id",
+    "playbook_id",
+    "scenario_family",
+    "stress_family",
+    "activation_triggers",
+    "stop_conditions",
+    "degraded_lane",
+    "evidence_expectations",
+    "handoff_targets",
+    "adaptation_expectation"
+  ],
+  "$defs": {
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "target",
+        "reason"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "role",
+            "skill",
+            "doc",
+            "command",
+            "artifact",
+            "playbook_section"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "const": "playbook_stress_lane_v1"
+    },
+    "lane_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "playbook_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenario_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stress_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activation_triggers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "stop_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "degraded_lane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "posture",
+        "entry_conditions",
+        "steps",
+        "bounded_output"
+      ],
+      "properties": {
+        "posture": {
+          "enum": [
+            "reground_first",
+            "human_review_first",
+            "stop_before_mutation",
+            "continue_bounded"
+          ]
+        },
+        "entry_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/step"
+          }
+        },
+        "bounded_output": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "evidence_expectations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "handoff_targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reentry_gate_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "adaptation_expectation": {
+      "enum": [
+        "none",
+        "optional_review",
+        "required_if_repeated"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

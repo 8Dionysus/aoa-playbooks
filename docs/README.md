@@ -21,6 +21,8 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) for coverage matrix and portfolio guidance.
 - Read [PLAYBOOK_REAL_RUN_WORKFLOW](PLAYBOOK_REAL_RUN_WORKFLOW.md) for the repo-first chooser -> run -> review -> gate workflow.
 - Read [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) for reviewable evidence scaffolding for future real runs.
+- Read [PLAYBOOK_STRESS_LANES](PLAYBOOK_STRESS_LANES.md) for additive degraded-lane doctrine inside recurring scenarios.
+- Read [PLAYBOOK_STRESS_HARVEST](PLAYBOOK_STRESS_HARVEST.md) for bounded harvest and re-entry posture for stressed runs.
 - Read [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) for the composition promotion gate surface.
 - Read [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) for the current prioritized lifecycle posture of the portfolio.
 - Read [RELEASING](RELEASING.md) for the bounded repo-level release flow.
@@ -43,6 +45,8 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) - how the playbook layer stays broad enough across scenario families without overfitting
 - [PLAYBOOK_REAL_RUN_WORKFLOW](PLAYBOOK_REAL_RUN_WORKFLOW.md) - how real operational runs become reviewed summaries and explicit gate verdicts without creating a runtime log layer
 - [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) - how reviewable real-run evidence stays distinct from runtime state and from composition promotion itself
+- [PLAYBOOK_STRESS_LANES](PLAYBOOK_STRESS_LANES.md) - how recurring playbooks expose a weaker, reviewable degraded lane without replacing source-owned receipts or proof
+- [PLAYBOOK_STRESS_HARVEST](PLAYBOOK_STRESS_HARVEST.md) - how stressed runs harvest bounded evidence and explicit re-entry gates without seizing ownership of what happened
 - [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) - how `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, and `AOA-P-0024` use explicit gate review before composition grows
 - [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) - the current prioritized lifecycle matrix and next bounded portfolio moves
 - [RELEASING](RELEASING.md) - how repo-level releases stay small, validated, and honest about remaining evidence gaps
