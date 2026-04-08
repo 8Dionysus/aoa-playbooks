@@ -239,7 +239,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0017"]["gate_verdict"], "composition-landed")
         self.assertEqual(by_id["AOA-P-0017"]["reviewed_run_count"], 3)
         self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
-        self.assertEqual(by_id["AOA-P-0021"]["reviewed_run_count"], 1)
+        self.assertEqual(by_id["AOA-P-0021"]["reviewed_run_count"], 2)
         self.assertEqual(by_id["AOA-P-0023"]["gate_verdict"], "composition-landed")
         self.assertEqual(by_id["AOA-P-0023"]["reviewed_run_count"], 1)
         self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
@@ -321,6 +321,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "playbooks/owner-first-capability-landing/PLAYBOOK.md",
                 "docs/gate-reviews/owner-first-capability-landing.md",
                 "docs/real-runs/2026-04-07.owner-first-capability-landing.md",
+                "docs/real-runs/2026-04-08.owner-first-capability-landing.md",
             ],
         )
         self.assertEqual(by_id["AOA-P-0023"]["gate_verdict"], "composition-landed")
@@ -449,7 +450,10 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
         self.assertEqual(
             by_id["AOA-P-0021"]["review_outcome_targets"]["real_runs"],
-            ["docs/real-runs/2026-04-07.owner-first-capability-landing.md"],
+            [
+                "docs/real-runs/2026-04-07.owner-first-capability-landing.md",
+                "docs/real-runs/2026-04-08.owner-first-capability-landing.md",
+            ],
         )
         self.assertEqual(
             by_id["AOA-P-0021"]["review_outcome_targets"]["gate_reviews"],
