@@ -1848,14 +1848,17 @@ def validate_return_contract_schema(schema: dict[str, object], *, location: str)
 
 
 def validate_return_configuration(payload: dict[str, object], *, location: str) -> None:
+    has_return_posture = "return_posture" in payload
+    has_return_anchor_artifacts = "return_anchor_artifacts" in payload
+    has_return_reentry_modes = "return_reentry_modes" in payload
     return_posture = payload.get("return_posture")
     return_anchor_artifacts = payload.get("return_anchor_artifacts")
     return_reentry_modes = payload.get("return_reentry_modes")
 
-    if return_posture is None:
-        if return_anchor_artifacts is not None:
+    if not has_return_posture:
+        if has_return_anchor_artifacts:
             fail(f"{location}.return_anchor_artifacts must not appear without return_posture")
-        if return_reentry_modes is not None:
+        if has_return_reentry_modes:
             fail(f"{location}.return_reentry_modes must not appear without return_posture")
         return
 

@@ -94,6 +94,27 @@ class ValidatePlaybooksReturnContractTests(unittest.TestCase):
         ):
             validate_playbooks.validate_return_configuration(payload, location="playbooks[0]")
 
+    def test_null_return_posture_fails(self) -> None:
+        payload = self.make_registry_entry()
+        payload["return_posture"] = None
+
+        with self.assertRaisesRegex(
+            validate_playbooks.ValidationError,
+            "return_posture 'None' is not allowed",
+        ):
+            validate_playbooks.validate_return_configuration(payload, location="playbooks[0]")
+
+    def test_null_return_anchor_artifacts_without_return_posture_fails(self) -> None:
+        payload = self.make_registry_entry()
+        payload.pop("return_posture")
+        payload["return_anchor_artifacts"] = None
+
+        with self.assertRaisesRegex(
+            validate_playbooks.ValidationError,
+            "return_anchor_artifacts must not appear without return_posture",
+        ):
+            validate_playbooks.validate_return_configuration(payload, location="playbooks[0]")
+
     def test_activation_surface_passthrough_keeps_return_fields(self) -> None:
         payload = self.make_registry_entry()
 
