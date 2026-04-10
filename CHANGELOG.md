@@ -25,6 +25,17 @@ Tracking starts with the community-docs baseline for this repository.
 - refreshed compatibility-canary scheduling, remediation-gate notes, and
   questline posture docs around the current reviewed-run contour
 
+### Included in this release
+
+- authored playbook and review-track expansions across `playbooks/`, `docs/`,
+  `generated/`, `schemas/`, `examples/`, and `config/`, including Phase Alpha
+  readiness runs, owner-first capability landing and review flows,
+  remediation-harvest surfaces, and RPG party-template adjuncts
+- repo-local quest, follow-through, and operating surfaces under `.agents/`,
+  `.github/`, `QUESTBOOK.md`, `quests/`, `AGENTS.md`, `README.md`, `scripts/`,
+  and `tests/`, including live receipt publishing, project-foundation
+  installs, checkpoint-closeout follow-through, and canary schedule updates
+
 ## [0.2.0] - 2026-04-01
 
 Second public release of `aoa-playbooks`.
