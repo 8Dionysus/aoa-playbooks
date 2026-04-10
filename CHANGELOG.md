@@ -7,6 +7,35 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-04-10
+
+### Added
+
+- owner-first capability review track, federated live-publisher activation
+  evidence, split-wave reviewed runs, and labeled same-day reviewed summaries
+- closeout owner follow-through and workspace checkpoint-growth playbook
+  surfaces plus checkpoint closeout bridge install
+- third-wave playbook stress surfaces and a via negativa checklist for the
+  scenario-composition layer
+
+### Changed
+
+- hardened playbook review-status contracts, evidence posture, and live-gate
+  alignment for owner-first reviewed runs
+- refreshed compatibility-canary scheduling, remediation-gate notes, and
+  questline posture docs around the current reviewed-run contour
+
+### Included in this release
+
+- authored playbook and review-track expansions across `playbooks/`, `docs/`,
+  `generated/`, `schemas/`, `examples/`, and `config/`, including Phase Alpha
+  readiness runs, owner-first capability landing and review flows,
+  remediation-harvest surfaces, and RPG party-template adjuncts
+- repo-local quest, follow-through, and operating surfaces under `.agents/`,
+  `.github/`, `QUESTBOOK.md`, `quests/`, `AGENTS.md`, `README.md`, `scripts/`,
+  and `tests/`, including live receipt publishing, project-foundation
+  installs, checkpoint-closeout follow-through, and canary schedule updates
+
 ## [0.2.0] - 2026-04-01
 
 Second public release of `aoa-playbooks`.
