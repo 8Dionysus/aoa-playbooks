@@ -209,13 +209,22 @@ def build_review_status_payload() -> dict[str, object]:
             }
         )
         actual_run_refs = reviewed_run_refs_by_playbook.get(playbook_id, [])
-        if actual_run_refs:
-            missing_refs = [ref for ref in actual_run_refs if ref not in referenced_run_refs]
+        missing_refs = [ref for ref in actual_run_refs if ref not in referenced_run_refs]
+        unexpected_refs = [ref for ref in referenced_run_refs if ref not in actual_run_refs]
+        if missing_refs or unexpected_refs:
+            details: list[str] = []
             if missing_refs:
-                raise SystemExit(
-                    f"[error] {location} must reference reviewed runs listed under docs/real-runs/: "
-                    + ", ".join(missing_refs)
+                details.append(
+                    "missing reviewed runs: " + ", ".join(missing_refs)
                 )
+            if unexpected_refs:
+                details.append(
+                    "unexpected reviewed runs: " + ", ".join(unexpected_refs)
+                )
+            raise SystemExit(
+                f"[error] {location} must reference exactly the reviewed runs listed under docs/real-runs/: "
+                + "; ".join(details)
+            )
 
         entries.append(
             {

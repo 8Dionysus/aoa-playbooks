@@ -249,6 +249,109 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0020"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0020"]["reviewed_run_count"], 0)
 
+    def test_review_status_builder_rejects_stale_gate_review_refs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp) / "aoa-playbooks"
+            generated_dir = repo_root / "generated"
+            real_runs_dir = repo_root / "docs" / "real-runs"
+            gate_reviews_dir = repo_root / "docs" / "gate-reviews"
+            generated_dir.mkdir(parents=True, exist_ok=True)
+            real_runs_dir.mkdir(parents=True, exist_ok=True)
+            gate_reviews_dir.mkdir(parents=True, exist_ok=True)
+
+            (generated_dir / "playbook_registry.min.json").write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "layer": "aoa-playbooks",
+                        "playbooks": [
+                            {
+                                "id": "AOA-P-9999",
+                                "name": "stale-review-status-example",
+                                "scenario": "stale_review_status_example",
+                            }
+                        ],
+                    },
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (real_runs_dir / "2026-04-09.stale-review-status-example.md").write_text(
+                "\n".join(
+                    [
+                        "## Run Header",
+                        "AOA-P-9999",
+                        "",
+                        "## Entry Signal",
+                        "signal",
+                        "",
+                        "## Boundary Summary",
+                        "boundary",
+                        "",
+                        "## Required Artifacts",
+                        "- artifact",
+                        "",
+                        "## Closure Class",
+                        "closure",
+                        "",
+                        "## Follow-On Route",
+                        "route",
+                        "",
+                        "## Composition Signals",
+                        "- signal one",
+                        "- signal two",
+                        "",
+                        "## Residual Risk",
+                        "risk",
+                        "",
+                        "## Evidence Links",
+                        "- evidence",
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            (gate_reviews_dir / "stale-review-status-example.md").write_text(
+                "\n".join(
+                    [
+                        "## Gate Header",
+                        "AOA-P-9999",
+                        "",
+                        "## Minimum Evidence Threshold",
+                        "- one reviewed run",
+                        "",
+                        "## Latest Reviewed Run",
+                        "- docs/real-runs/2026-04-09.stale-review-status-example.md",
+                        "- docs/real-runs/2026-04-08.stale-review-status-example.md",
+                        "",
+                        "## Dual Signal Check",
+                        "- failure or follow-up",
+                        "- adjunct candidate",
+                        "",
+                        "## Current Verdict",
+                        "hold",
+                        "",
+                        "## Next Trigger",
+                        "trigger",
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            with (
+                patch.object(review_status_builder, "REPO_ROOT", repo_root),
+                patch.object(review_status_builder, "REGISTRY_PATH", generated_dir / "playbook_registry.min.json"),
+                patch.object(review_status_builder, "REAL_RUN_SUMMARY_DIR", real_runs_dir),
+                patch.object(review_status_builder, "GATE_REVIEW_DIR", gate_reviews_dir),
+                self.assertRaisesRegex(
+                    SystemExit,
+                    "unexpected reviewed runs: docs/real-runs/2026-04-08.stale-review-status-example.md",
+                ),
+            ):
+                review_status_builder.build_review_status_payload()
+
     def test_review_packet_contract_surface_is_deterministic_and_keeps_packet_posture(self) -> None:
         expected = review_packet_contract_builder.build_review_packet_contracts_payload()
         current = load_generated("playbook_review_packet_contracts.min.json")
