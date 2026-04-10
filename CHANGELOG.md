@@ -9,6 +9,20 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [0.3.0] - 2026-04-10
 
+### Summary
+
+- this release adds owner-first capability review tracks, live-publisher activation evidence, checkpoint-growth playbook surfaces, and stress/via-negativa adjuncts
+- review-status contracts, evidence posture, and canary/remediation guidance are hardened around the current reviewed-run contour
+- `aoa-playbooks` remains the scenario-composition and review layer rather than a generic runtime logging surface
+
+### Validation
+
+- `python scripts/release_check.py`
+
+### Notes
+
+- detailed playbook, review-track, generated-surface, and operator-surface coverage for this release remains enumerated below under `Added`, `Changed`, and `Included in this release`
+
 ### Added
 
 - owner-first capability review track, federated live-publisher activation
