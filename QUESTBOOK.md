@@ -13,7 +13,7 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 
 ## Near
 
-- `AOA-PB-Q-0008` Keep the workspace checkpoint-growth route open as bounded owner follow-through
+- none right now
 
 ## Blocked / reanchor
 

@@ -7,7 +7,7 @@ owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
-state: captured
+state: done
 band: near
 difficulty: d3_seam
 risk: r1_repo_local
@@ -37,7 +37,7 @@ handoff_role: playbook-maintainer
 evidence:
   - the reviewed workspace closeout ended with keep_open_quest for the route candidate
   - owner follow-through is named, but recurrence is still too thin to mint a new playbook truth claim
-  - the next honest move is a bounded quest that preserves the route and its stop conditions
+  - the route is now represented by a committed AOA-P-0023 reviewed summary rather than only by a repo-local quest carry
 harvest:
   target: playbook
   trigger_count: 2
@@ -51,6 +51,7 @@ tags:
   - recurrence
 notes: >
   Anchored by session:2026-04-09-workspace-checkpoint-growth and its reviewed
-  owner handoff. Keep this as quest continuity, not a fake session-shaped
-  playbook bundle.
+  owner handoff. Closed once the route landed as a committed AOA-P-0023
+  reviewed summary, so the continuity claim no longer depends on a still-open
+  repo-local quest.
 public_safe: true

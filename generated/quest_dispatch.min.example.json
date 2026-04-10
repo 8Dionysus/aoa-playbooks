@@ -170,7 +170,7 @@
     "schema_version": "quest_dispatch_v1",
     "id": "AOA-PB-Q-0008",
     "repo": "aoa-playbooks",
-    "state": "captured",
+    "state": "done",
     "band": "near",
     "difficulty": "d3_seam",
     "risk": "r1_repo_local",
