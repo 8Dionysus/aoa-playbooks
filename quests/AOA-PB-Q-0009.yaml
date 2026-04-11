@@ -1,0 +1,57 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0009
+title: Reanchor checkpoint automation closeout as early route recurrence evidence
+summary: Track the reviewed aoa-sdk checkpoint automation closeout as route-shaped recurrence evidence without promoting one owner-ambiguous handoff into new playbook canon.
+repo: aoa-playbooks
+owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 1
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0008
+activation:
+  mode: on_review_of
+  ref: session:2026-04-10T19-59-19-444382Z-aoa-sdk-checkpoint-growth-228d9e46-6c8
+  note: open when checkpoint closeout produces route recurrence evidence that should survive as early tracked playbook status
+anchor_ref:
+  artifact: closeout_owner_follow_through_continuity
+  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  note: keep recurrence evidence under owner-follow-through continuity until another reviewed run proves a stronger route shape
+handoff_role: playbook-maintainer
+evidence:
+  - candidate:route:aoa-playbooks-playbook-registry-min reached 13 checkpoint hits
+  - the handoff marked the candidate reviewable with owner-ambiguity rather than ready for final promotion
+  - surface detection kept aoa-playbooks primary while leaving aoa-techniques as an adjacent ambiguity to review later
+harvest:
+  target: playbook
+  trigger_count: 13
+  note: promote only after another reviewed run confirms the same route with stable owner boundaries
+opened_at: '2026-04-11'
+touched_at: '2026-04-11'
+tags:
+  - checkpoint
+  - owner-follow-through
+  - recurrence
+  - reanchor
+notes: >
+  This quest prevents the candidate from being lost between sessions while
+  preserving the early status honestly. The current verdict is reanchor:
+  review the route as playbook-owned continuity evidence before any new
+  playbook, technique, or automation claim is minted.
+public_safe: true

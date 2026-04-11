@@ -18,10 +18,11 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 ## Blocked / reanchor
 
 - `AOA-PB-Q-0002` Define harvest thresholds, valid anchor classes, and named promotion destinations without promoting one reviewed lane into fake recurrence.
+- `AOA-PB-Q-0009` Reanchor checkpoint automation closeout as early route recurrence evidence.
 
 ## Harvest candidates
 
-- none yet
+- `AOA-PB-Q-0009` Reanchor checkpoint automation closeout as early route recurrence evidence.
 
 ## Quest-harvest posture
 
