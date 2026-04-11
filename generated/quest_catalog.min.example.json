@@ -163,5 +163,20 @@
     "owner_surface": "playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md",
     "source_path": "quests/AOA-PB-Q-0008.yaml",
     "public_safe": true
+  },
+  {
+    "id": "AOA-PB-Q-0009",
+    "title": "Reanchor checkpoint automation closeout as early route recurrence evidence",
+    "repo": "aoa-playbooks",
+    "theme_ref": "",
+    "milestone_ref": "",
+    "state": "reanchor",
+    "band": "near",
+    "kind": "harvest",
+    "difficulty": "d3_seam",
+    "risk": "r1_repo_local",
+    "owner_surface": "playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md",
+    "source_path": "quests/AOA-PB-Q-0009.yaml",
+    "public_safe": true
   }
 ]
