@@ -38,15 +38,16 @@ The current authored set already covers these classes:
 | Incident or recovery routing | stabilize a live cross-boundary incident through bounded rollback or degraded-mode recovery, recovery verification, and explicit handoff | `incident-recovery-routing` |
 | Owner-first capability landing | land a reviewed capability through owner-first landing, bounded rollout, and post-landing hardening across neighboring AoA layers | `owner-first-capability-landing` |
 | Closeout-to-owner continuity | carry a reviewed closeout through persistent owner handoff, bounded owner authorship, and merged follow-through | `closeout-owner-follow-through-continuity` |
+| Session-growth cycle | carry one reviewed session route through lineage-aware harvest, seed staging, owner landing, proof, bounded writeback, and stats refresh | `session-growth-cycle` |
 | Federated live publisher activation | activate known live publishers in owner order through readiness audit, publication checks, and stats-visible closure | `federated-live-publisher-activation` |
 
 ## Portfolio gaps
 
 The current portfolio is strong on guarded, evidence-heavy, restartable, and operational cross-boundary routes.
-The last major operational and federated gap is now covered, so the main risk has shifted from undercoverage to semantic overlap and premature composition.
-The next portfolio move is a consolidation wave, not another new playbook:
-- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, and `AOA-P-0024`
-- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, and `AOA-P-0024` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded
+The recurring growth-refinery family is now named as `AOA-P-0025`, so the main risk has shifted from undercoverage to semantic overlap and premature authority drift.
+The next portfolio move is still a consolidation wave, not another catalog burst:
+- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, and `AOA-P-0025`
+- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, and `AOA-P-0025` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded
 - use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
 
 The operational family now covers:
@@ -59,6 +60,7 @@ The operational family now covers:
 - `AOA-P-0020` = live cross-boundary incident stabilization and recovery handoff
 - `AOA-P-0021` = owner-first landing from reviewed lineage into bounded rollout and post-landing hardening
 - `AOA-P-0023` = reviewed closeout continuity into persistent owner follow-through and merged closure
+- `AOA-P-0025` = recurring session-growth cycle across landed lineage seams
 - `AOA-P-0024` = owner-ordered live publisher activation after a reviewed readiness audit
 
 ## Coverage rules
