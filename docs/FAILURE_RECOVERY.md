@@ -33,6 +33,7 @@ Actual execution-state recovery remains outside this repository until a separate
 Real-run evidence captured through `examples/harvests/` is reviewable scaffolding, not persisted recovery state, orchestration history, or memory canon.
 Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still require explicit gate review under `docs/gate-reviews/`.
 If a harvest suggests a new failure or follow-up mapping, that mapping still stays out of `config/playbook_composition_overrides.json` until [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) clears promotion.
+`AOA-P-0025 session-growth-cycle` may name stop lines around candidate loss, owner-fit drift, proof overreach, or repair widening, but it does not become a persisted recovery engine for checkpoint carry, proof, memo, or stats.
 
 ## Incident-recovery routing boundary
 

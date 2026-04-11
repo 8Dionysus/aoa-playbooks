@@ -45,3 +45,5 @@ The playbook bundle still owns the scenario route.
 If a handoff packet starts encoding runtime-local recovery or execution state, it has crossed out of the playbook layer.
 If a new handoff bridge candidate appears in a real-run harvest, it must still clear [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before it can enter `config/playbook_composition_overrides.json`.
 If a bounded review lands a handoff bridge, keep that landing scenario-level and skill-derived; do not widen it into routing-specific implementation doctrine.
+`AOA-P-0025 session-growth-cycle` currently keeps checkpoint carry, reviewed harvest, seed-stage follow-through, and owner-layer handoff in the authored playbook itself.
+That recurring route may later justify a smaller playbook-owned handoff bridge, but not before reviewed evidence proves that the bridge adds scenario value without becoming a hidden runner.

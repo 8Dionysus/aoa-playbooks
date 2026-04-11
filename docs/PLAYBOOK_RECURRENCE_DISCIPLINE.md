@@ -164,6 +164,7 @@ The current playbooks that clearly justify recurrence discipline are:
 - `AOA-P-0018 validation-driven-remediation`
 - `AOA-P-0019 release-migration-cutover`
 - `AOA-P-0020 incident-recovery-routing`
+- `AOA-P-0025 session-growth-cycle`
 
 A secondary, non-activation example is:
 - `AOA-P-0006 self-agent-checkpoint-rollout`
