@@ -18,14 +18,14 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-agents
-          ref: bf974accbf426a0574c3e63e2c13fef76057e190
+          ref: c84916099b3200659b57a752a44f8e5972f948d8
           path: .deps/aoa-agents
 
       - name: Checkout aoa-evals
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-evals
-          ref: d99eb605e75d11be91fa24e7a4443789fb95736b
+          ref: 991097f9e0d1c5dc8bcf4bb9864d29f7c515e2b4
           path: .deps/aoa-evals
 
       - name: Checkout aoa-skills
@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-memo
-          ref: 1b76d89b3d497d70f1604ba7531db3402c9b18ca
+          ref: 06eb973bd5ee5d5bac1c3613d932d1e8940d8b0a
           path: .deps/aoa-memo
 
       - name: Checkout 8Dionysus
@@ -53,14 +53,14 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-sdk
-          ref: 154b007338e1d1a65269532aa13c463214fa09d6
+          ref: f80efd52db3d3fa735a228276f968c420737de53
           path: .deps/aoa-sdk
 
       - name: Checkout aoa-stats
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-stats
-          ref: 4fc12a9997852c974001934db35b6b532c8a07e3
+          ref: c3cd213d5bb983961eaca1fa873eb4dc70b8bb20
           path: .deps/aoa-stats
 
       - name: Setup Python

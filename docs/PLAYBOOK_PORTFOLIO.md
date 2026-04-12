@@ -41,6 +41,7 @@ The current authored set already covers these classes:
 | Owner follow-through campaign | carry one reviewed candidate or staged seed through the next honest owner move without widening into full rollout, closeout continuity, or full session growth | `owner-followthrough-campaign` |
 | Reviewed automation follow-through | carry one reviewed automation candidate through a playbook-seed decision and real-run review gate without granting scheduler authority | `reviewed-automation-followthrough` |
 | Session-growth cycle | carry one reviewed session route through lineage-aware harvest, seed staging, owner landing, proof, bounded writeback, and stats refresh | `session-growth-cycle` |
+| Self-agency continuity | preserve bounded long-arc continuity across reviewed anchors, revision windows, explicit reanchor, and bounded relaunch aids | `self-agency-continuity-cycle` |
 | Federated live publisher activation | activate known live publishers in owner order through readiness audit, publication checks, and stats-visible closure | `federated-live-publisher-activation` |
 
 ## Portfolio gaps
@@ -54,12 +55,15 @@ Shared-root Codex rollout operations now stand as the separate
 `AOA-P-0028 trusted-rollout-operations` route, with
 `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` remaining its companion lane rather than a
 second playbook.
-That closes a real operational-family gap, but the main risk remains semantic
-overlap and premature authority drift.
-The next portfolio move is therefore boundary repair plus consolidation, not
-another catalog burst:
-- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, and `AOA-P-0028`
-- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, and `AOA-P-0028` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
+The long-arc continuity family now also has its first honest sovereign route:
+`AOA-P-0029 self-agency-continuity-cycle`, which is narrower than mythic
+autonomy and distinct from both `AOA-P-0025` and `AOA-P-0028`.
+That closes a real continuity-family gap, but the main risk remains semantic
+overlap, premature authority drift, and continuity claims that outrun anchors.
+The next portfolio move is therefore boundary repair plus reviewed evidence,
+not another catalog burst:
+- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, `AOA-P-0028`, and `AOA-P-0029`
+- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, `AOA-P-0028`, and `AOA-P-0029` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
 - use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture the first reviewed `AOA-P-0027` route before any automation seed or handoff adjunct reaches composition
 - use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
 
@@ -77,6 +81,7 @@ The operational family now covers:
 - `AOA-P-0027` = automation-specific reviewed follow-through across playbook-seed candidacy, defer, and explicit real-run gating
 - `AOA-P-0025` = recurring session-growth cycle across landed lineage seams
 - `AOA-P-0028` = shared-root Codex rollout operations across drift observation, bounded repair, rollback, checked-in receipt publication, and bounded follow-through
+- `AOA-P-0029` = long-arc self-agency continuity across reviewed anchors, bounded revision windows, explicit reanchor, and bounded relaunch aids
 - `AOA-P-0024` = owner-ordered live publisher activation after a reviewed readiness audit
 
 ## Coverage rules
