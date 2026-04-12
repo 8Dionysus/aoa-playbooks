@@ -42,6 +42,7 @@ The current authored set already covers these classes:
 | Reviewed automation follow-through | carry one reviewed automation candidate through a playbook-seed decision and real-run review gate without granting scheduler authority | `reviewed-automation-followthrough` |
 | Session-growth cycle | carry one reviewed session route through lineage-aware harvest, seed staging, owner landing, proof, bounded writeback, and stats refresh | `session-growth-cycle` |
 | Self-agency continuity | preserve bounded long-arc continuity across reviewed anchors, revision windows, explicit reanchor, and bounded relaunch aids | `self-agency-continuity-cycle` |
+| Component refresh cycle | carry one reviewed internal component drift signal through a named owner law, bounded refresh decision, owner validation, and derived summary refresh without granting scheduler authority | `component-refresh-cycle` |
 | Federated live publisher activation | activate known live publishers in owner order through readiness audit, publication checks, and stats-visible closure | `federated-live-publisher-activation` |
 
 ## Portfolio gaps
@@ -58,12 +59,17 @@ second playbook.
 The long-arc continuity family now also has its first honest sovereign route:
 `AOA-P-0029 self-agency-continuity-cycle`, which is narrower than mythic
 autonomy and distinct from both `AOA-P-0025` and `AOA-P-0028`.
-That closes a real continuity-family gap, but the main risk remains semantic
-overlap, premature authority drift, and continuity claims that outrun anchors.
+The owner-law internal refresh family now has its first honest sovereign route:
+`AOA-P-0030 component-refresh-cycle`, which is narrower than both generic
+remediation and shared-root rollout and refuses scheduler or hidden-runner
+authority.
+That closes a real owner-refresh gap, but the main risk remains semantic
+overlap, premature authority drift, and maintenance claims that outrun owner
+law and validation.
 The next portfolio move is therefore boundary repair plus reviewed evidence,
 not another catalog burst:
-- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, `AOA-P-0028`, and `AOA-P-0029`
-- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, `AOA-P-0028`, and `AOA-P-0029` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
+- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, `AOA-P-0028`, `AOA-P-0029`, and `AOA-P-0030`
+- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, `AOA-P-0028`, `AOA-P-0029`, and `AOA-P-0030` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
 - use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture the first reviewed `AOA-P-0027` route before any automation seed or handoff adjunct reaches composition
 - use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
 
@@ -82,6 +88,7 @@ The operational family now covers:
 - `AOA-P-0025` = recurring session-growth cycle across landed lineage seams
 - `AOA-P-0028` = shared-root Codex rollout operations across drift observation, bounded repair, rollback, checked-in receipt publication, and bounded follow-through
 - `AOA-P-0029` = long-arc self-agency continuity across reviewed anchors, bounded revision windows, explicit reanchor, and bounded relaunch aids
+- `AOA-P-0030` = owner-law component refresh across reviewed drift hints, bounded refresh decisions, owner validation, and derived summary refresh
 - `AOA-P-0024` = owner-ordered live publisher activation after a reviewed readiness audit
 
 ## Coverage rules
