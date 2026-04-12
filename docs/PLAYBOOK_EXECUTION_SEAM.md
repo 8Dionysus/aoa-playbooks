@@ -83,6 +83,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0018 validation-driven-remediation`
 - `AOA-P-0019 release-migration-cutover`
 - `AOA-P-0020 incident-recovery-routing`
+- `AOA-P-0025 session-growth-cycle`
 
 These runtime-readable playbooks already define:
 
@@ -168,6 +169,7 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0018 validation-driven-remediation`
 - `AOA-P-0019 release-migration-cutover`
 - `AOA-P-0020 incident-recovery-routing`
+- `AOA-P-0025 session-growth-cycle`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 For the runtime-facing memo cohort, they also carry flat memo recall defaults so downstream runtimes can derive `inspect`, `capsule`, and `expand` posture without inventing new playbook semantics.
