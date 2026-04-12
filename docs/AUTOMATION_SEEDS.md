@@ -16,6 +16,10 @@ candidate example for `AOA-P-0027 reviewed-automation-followthrough`, but it
 stays outside `config/playbook_composition_overrides.json` and
 `generated/playbook_automation_seeds.json` until a reviewed real run clears
 the composition gate honestly.
+`examples/automations/reviewed-closeout-receipt-followthrough.md` is a newer
+example-only seed candidate for the same playbook family, grounded in the
+April 12, 2026 reviewed closeout receipt follow-through route and its explicit
+quest-promotion handoff into `aoa-playbooks`.
 
 ## What a seed may contain
 
