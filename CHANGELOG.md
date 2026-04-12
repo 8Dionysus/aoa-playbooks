@@ -7,6 +7,30 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-04-12
+
+### Summary
+
+- this patch advances the trusted-rollout line with the reviewed hold track,
+  rollout cadence adjunct, and self-agency continuity playbook
+- release-audit pins and reviewed-case counting are tightened around the
+  current evidence path
+- `aoa-playbooks` remains the scenario-composition and review layer
+
+### Added
+
+- the reviewed rollout hold track for `AOA-P-0028`, a trusted rollout campaign
+  cadence adjunct, and a self-agency continuity playbook.
+
+### Changed
+
+- release-audit dependency pins and reviewed-case counting are refreshed for
+  the current rollout evidence path.
+
+### Validation
+
+- `python scripts/release_check.py`
+
 ## [0.3.0] - 2026-04-10
 
 ### Summary
