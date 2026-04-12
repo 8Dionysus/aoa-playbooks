@@ -47,3 +47,7 @@ If a new handoff bridge candidate appears in a real-run harvest, it must still c
 If a bounded review lands a handoff bridge, keep that landing scenario-level and skill-derived; do not widen it into routing-specific implementation doctrine.
 `AOA-P-0025 session-growth-cycle` currently keeps checkpoint carry, reviewed harvest, seed-stage follow-through, and owner-layer handoff in the authored playbook itself.
 That recurring route may later justify a smaller playbook-owned handoff bridge, but not before reviewed evidence proves that the bridge adds scenario value without becoming a hidden runner.
+`AOA-P-0027 reviewed-automation-followthrough` likewise keeps its automation
+candidate, playbook-seed decision, and real-run review gate inside the authored
+bundle until reviewed evidence proves that a playbook-owned handoff bridge adds
+scenario value without smuggling in scheduler authority.

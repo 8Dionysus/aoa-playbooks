@@ -111,8 +111,16 @@ This playbook is wider than `AOA-P-0021` once the route already spans reviewed
 harvest, seed staging, owner landing, proof, writeback, and stats refresh.
 It is wider than `AOA-P-0023` once the main question is not one persistent
 owner follow-through move but the recurring cycle itself.
+Use `AOA-P-0027` when the current route is specifically a reviewed automation
+follow-through candidate needing one playbook-seed decision and one real-run
+gate rather than the full recurring cycle.
 It is narrower than generic ecosystem rollout because it only coordinates the
 session-growth path that the landed lineage seams already make possible.
+The shared-root Codex-plane deployment continuity lane lives in
+`docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
+`examples/codex_plane_rollout_lane.example.json` as a companion route card.
+It stays inside `AOA-P-0025` rather than becoming a second playbook or a
+hidden rollout runner.
 
 ## Trigger boundary
 
@@ -130,6 +138,9 @@ Do not use this playbook when:
   checkpoint carry or reviewed closeout
 - the truthful next move is only one owner-first landing campaign, one
   continuity handoff, or one bounded remediation wave
+- the current question is one reviewed automation follow-through candidate and
+  one real-run gate rather than the full recurring cycle, which belongs in
+  `AOA-P-0027`
 - proof, memory, or stats are being asked to invent owner truth that does not
   exist in reviewed owner-local artifacts
 - the route would become a hidden runner instead of a reviewable scenario
