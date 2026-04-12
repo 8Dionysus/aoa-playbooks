@@ -37,3 +37,6 @@ def test_codex_plane_rollout_cycle_stays_companion_to_trusted_rollout_operations
     assert "codex-plane-rollout-cycle" not in registry_names
     assert "codex-plane-rollout-cycle" not in activation_names
     assert "codex-plane-rollout-cycle" not in federation_names
+    assert "trusted-rollout-campaign-cadence" not in registry_names
+    assert "trusted-rollout-campaign-cadence" not in activation_names
+    assert "trusted-rollout-campaign-cadence" not in federation_names

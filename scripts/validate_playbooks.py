@@ -1902,6 +1902,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     workflow = read_text(REAL_RUN_WORKFLOW_PATH)
     session_growth_cycle = read_text(REPO_ROOT / "playbooks" / "session-growth-cycle" / "PLAYBOOK.md")
     cycle_doc = read_text(CODEX_PLANE_ROLLOUT_CYCLE_DOC_PATH)
+    cadence_doc = read_text(REPO_ROOT / "docs" / "TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md")
 
     for text, location in (
         (readme, "README.md"),
@@ -1909,6 +1910,8 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     ):
         if "CODEX_PLANE_ROLLOUT_CYCLE.md" not in text:
             fail(f"{location} must mention docs/CODEX_PLANE_ROLLOUT_CYCLE.md")
+        if "TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md" not in text:
+            fail(f"{location} must mention docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md")
     if "examples/codex_plane_rollout_lane.example.json" not in readme:
         fail("README.md must mention examples/codex_plane_rollout_lane.example.json")
     if "docs/CODEX_PLANE_ROLLOUT_CYCLE.md" not in execution_seam:
@@ -1926,6 +1929,16 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     for snippet in CODEX_PLANE_ROLLOUT_DOC_SNIPPETS:
         if snippet not in cycle_doc:
             fail(f"docs/CODEX_PLANE_ROLLOUT_CYCLE.md is missing required guidance: {snippet}")
+    for snippet in (
+        "AOA-P-0028",
+        "rollout_campaign_window",
+        "drift_review_window",
+        "rollback_followthrough_window",
+        "not a second playbook",
+        "not a hidden runner",
+    ):
+        if snippet not in cadence_doc:
+            fail(f"docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md is missing required guidance: {snippet}")
 
     payload = read_json(CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH)
     if not isinstance(payload, dict):

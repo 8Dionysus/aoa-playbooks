@@ -19,7 +19,7 @@
 ## Dual Signal Check
 
 - Stable failure or follow-up mapping not already covered by neighboring preview-first infra change, incident recovery, or session-growth playbooks: established across two reviewed runs. The earlier stabilized regeneration route and the later hook-tightening rollback route together prove that shared-root rollout activation, checked-in drift history, optional rollback closure, and subordinate stats/memo follow-through belong to one distinct family before the route can honestly close.
-- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: not yet established. Two reviewed rollout shapes are enough to justify the playbook boundary and strengthen the `hold` verdict, but still too weak for composition review because no stable playbook-owned adjunct has appeared.
+- Stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`: now named, but not yet established. `docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md` is the first honest playbook-owned adjunct candidate for `AOA-P-0028`, but it still lacks a reviewed real cadence run, so the route remains too weak for composition review.
 
 ## Current Verdict
 
@@ -27,4 +27,4 @@
 
 ## Next Trigger
 
-- Re-open this gate after one stable playbook-owned adjunct candidate becomes clear enough to review, or after a later materially different third `AOA-P-0028` rollout adds more than the current stabilized-plus-rollback pair without inflating rollout history into composition.
+- Re-open this gate after one reviewed real cadence run proves that `docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md` stays a stable adjunct under `AOA-P-0028`, or after a later materially different third `AOA-P-0028` rollout adds more than the current stabilized-plus-rollback pair without inflating rollout history into composition.
