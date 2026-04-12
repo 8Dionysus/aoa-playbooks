@@ -114,13 +114,13 @@ owner follow-through move but the recurring cycle itself.
 Use `AOA-P-0027` when the current route is specifically a reviewed automation
 follow-through candidate needing one playbook-seed decision and one real-run
 gate rather than the full recurring cycle.
+Use `AOA-P-0028` when the route is specifically a shared-root Codex rollout
+campaign with drift, rollback, checked-in rollout history, derived stats, and
+bounded memo follow-through, with the companion lane kept explicit in
+`docs/CODEX_PLANE_ROLLOUT_CYCLE.md` and
+`examples/codex_plane_rollout_lane.example.json`.
 It is narrower than generic ecosystem rollout because it only coordinates the
 session-growth path that the landed lineage seams already make possible.
-The shared-root Codex-plane deployment continuity lane lives in
-`docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
-`examples/codex_plane_rollout_lane.example.json` as a companion route card.
-It stays inside `AOA-P-0025` rather than becoming a second playbook or a
-hidden rollout runner.
 
 ## Trigger boundary
 
@@ -141,9 +141,14 @@ Do not use this playbook when:
 - the current question is one reviewed automation follow-through candidate and
   one real-run gate rather than the full recurring cycle, which belongs in
   `AOA-P-0027`
+- the current question is a shared-root rollout operations cycle, which belongs
+  in `AOA-P-0028` and stays companion-scoped through
+  `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
+  `examples/codex_plane_rollout_lane.example.json`
 - proof, memory, or stats are being asked to invent owner truth that does not
   exist in reviewed owner-local artifacts
-- the route would become a hidden runner instead of a reviewable scenario
+- the route would become a hidden rollout runner instead of a reviewable
+  scenario
 
 ## Prerequisites
 

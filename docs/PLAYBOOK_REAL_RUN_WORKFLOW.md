@@ -30,6 +30,7 @@ The shipped templates under `examples/harvests/` remain the only source template
 - `owner-first-capability-landing.harvest-template.md`
 - `closeout-owner-follow-through-continuity.harvest-template.md`
 - `session-growth-cycle.harvest-template.md`
+- `trusted-rollout-operations.harvest-template.md`
 - `federated-live-publisher-activation.harvest-template.md`
 
 Do not create a second template family for the same summaries.
@@ -60,6 +61,7 @@ A selection pass that finds no qualifying case should leave the matching playboo
 - `owner-first-capability-landing.md`
 - `closeout-owner-follow-through-continuity.md`
 - `federated-live-publisher-activation.md`
+- `trusted-rollout-operations.md`
 
 Each verdict doc keeps the current `hold`, `ready-for-composition-review`, or `composition-landed` posture explicit without pretending that composition exists before it really lands.
 If a bounded review does land composition, the verdict doc should move to `composition-landed` rather than leaving the playbook in a permanent pre-promotion state.
@@ -75,7 +77,8 @@ The remaining first-run evidence gaps are now `AOA-P-0019`, `AOA-P-0020`, and `A
 As of April 11, 2026, `AOA-P-0019` still has no qualifying reviewed summary committed.
 `AOA-P-0020` uses the same summary and verdict workflow, but only a live incident should open its first reviewed run.
 `AOA-P-0025` now ships the matching harvest scaffold, but it still has no qualifying reviewed proving run committed and therefore remains outside composition-owned adjunct surfaces until a real reviewed cycle clears the gate.
-Its shared-root deployment continuity lane now lives at
+`AOA-P-0028` now has reviewed summaries at `docs/real-runs/2026-04-11.trusted-rollout-operations.initial-stable-regen.md` and `docs/real-runs/2026-04-11.trusted-rollout-operations.md`, and its gate remains `hold` because the stabilized-plus-rollback pair still proves route identity more strongly than it proves a stable playbook-owned adjunct.
+Its shared-root deployment continuity lane still lives at
 `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
 `examples/codex_plane_rollout_lane.example.json`, but that companion does not
 count as a reviewed run or a gate verdict by itself.

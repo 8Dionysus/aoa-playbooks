@@ -86,6 +86,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0026 owner-followthrough-campaign`
 - `AOA-P-0027 reviewed-automation-followthrough`
 - `AOA-P-0025 session-growth-cycle`
+- `AOA-P-0028 trusted-rollout-operations`
 
 These runtime-readable playbooks already define:
 
@@ -111,11 +112,11 @@ The activation surface may project:
 These fields describe where the scenario may return, not how a runtime performs that return.
 The memo fields describe bounded default recall posture only; they do not move memo search, ranking, or truth-judgment logic into the playbook layer.
 
-The shared-root Codex-plane deployment continuity lane for `AOA-P-0025` lives
-only in `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
+The shared-root Codex-plane deployment continuity lane for `AOA-P-0028` keeps
+one companion route card in `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
 `examples/codex_plane_rollout_lane.example.json`.
-It is a companion route card, not a new activation surface, federation
-surface, or persisted execution packet.
+That companion note is not a second activation surface, federation surface, or
+persisted execution packet.
 
 Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
 
@@ -179,6 +180,7 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0020 incident-recovery-routing`
 - `AOA-P-0026 owner-followthrough-campaign`
 - `AOA-P-0025 session-growth-cycle`
+- `AOA-P-0028 trusted-rollout-operations`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 For the runtime-facing memo cohort, they also carry flat memo recall defaults so downstream runtimes can derive `inspect`, `capsule`, and `expand` posture without inventing new playbook semantics.

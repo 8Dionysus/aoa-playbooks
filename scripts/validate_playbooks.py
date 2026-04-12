@@ -213,6 +213,16 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "stats_visibility_pack",
         "residual_handoff_record",
     ),
+    REPO_ROOT / "examples" / "harvests" / "trusted-rollout-operations.harvest-template.md": (
+        "rollout_decision",
+        "doctor_report_ref",
+        "smoke_report_ref",
+        "deploy_receipt_ref",
+        "drift_window_ref",
+        "rollback_window_ref",
+        "stats_refresh_ref",
+        "memo_writeback_ref",
+    ),
 }
 REAL_RUN_WORKFLOW_PATH = REPO_ROOT / "docs" / "PLAYBOOK_REAL_RUN_WORKFLOW.md"
 REAL_RUN_SUMMARY_HOME_PATH = REPO_ROOT / "docs" / "real-runs" / "README.md"
@@ -310,6 +320,16 @@ REAL_RUN_SUMMARY_SLUG_REQUIREMENTS = {
         "stats_visibility_pack",
         "residual_handoff_record",
     ),
+    "trusted-rollout-operations": (
+        "rollout_decision",
+        "doctor_report_ref",
+        "smoke_report_ref",
+        "deploy_receipt_ref",
+        "drift_window_ref",
+        "rollback_window_ref",
+        "stats_refresh_ref",
+        "memo_writeback_ref",
+    ),
 }
 GATE_REVIEW_REQUIREMENTS = {
     GATE_REVIEW_DIR / "split-wave-cross-repo-rollout.md": {
@@ -393,6 +413,20 @@ GATE_REVIEW_REQUIREMENTS = {
             "residual_handoff_record",
         ),
     },
+    GATE_REVIEW_DIR / "trusted-rollout-operations.md": {
+        "playbook_id": "AOA-P-0028",
+        "slug": "trusted-rollout-operations",
+        "required_tokens": (
+            "rollout_decision",
+            "doctor_report_ref",
+            "smoke_report_ref",
+            "deploy_receipt_ref",
+            "drift_window_ref",
+            "rollback_window_ref",
+            "stats_refresh_ref",
+            "memo_writeback_ref",
+        ),
+    },
 }
 REVIEWED_SUMMARY_GATE_SENTENCE = (
     "Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still "
@@ -423,15 +457,24 @@ CODEX_PLANE_ROLLOUT_PHASES = (
     ("dry-run-validate", "regeneration_report"),
     ("execute-apply", "rollout_receipt"),
     ("doctor-verify", "deploy_status_snapshot"),
-    ("rollback-decision", "rollout_receipt"),
-    ("stats-refresh", "deployment_summary"),
+    ("activate-bounded-rollout", "rollout_campaign_record"),
+    ("observe-drift-window", "drift_window_record"),
+    ("repair-or-rollback", "rollback_window_record"),
+    ("publish-rollout-history", "rollout_campaign_record"),
+    ("stats-refresh", "rollout_operations_summary"),
+    ("memo-writeback", "memo_writeback_record"),
 )
 CODEX_PLANE_REQUIRED_ARTIFACTS = (
     "trust_state",
     "regeneration_report",
     "rollout_receipt",
     "deploy_status_snapshot",
-    "deployment_summary",
+    "rollout_campaign_record",
+    "drift_window_record",
+    "rollback_window_record",
+    "rollout_operations_summary",
+    "rollout_drift_summary",
+    "memo_writeback_record",
 )
 CODEX_PLANE_STOP_BEFORE_APPLY = (
     "trust_posture=root_mismatch",
@@ -444,6 +487,7 @@ CODEX_PLANE_ROLLBACK_TRIGGERS = (
     "hooks_active=false",
     "project_config_active=false",
     "drift_detected=true",
+    "drift_state=material",
 )
 CODEX_PLANE_STABLE_MCP_NAMES = {"aoa_workspace", "aoa_stats", "dionysus"}
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
@@ -463,6 +507,7 @@ ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0026",
     "AOA-P-0027",
     "AOA-P-0025",
+    "AOA-P-0028",
 )
 FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0006",
@@ -483,6 +528,7 @@ FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0026",
     "AOA-P-0027",
     "AOA-P-0025",
+    "AOA-P-0028",
 )
 COMPOSITION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0011",
@@ -1884,16 +1930,16 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     payload = read_json(CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH)
     if not isinstance(payload, dict):
         fail("examples/codex_plane_rollout_lane.example.json must contain a JSON object")
-    if payload.get("playbook_id") != "AOA-P-0025":
-        fail("examples/codex_plane_rollout_lane.example.json must keep playbook_id AOA-P-0025")
-    if payload.get("playbook") != "session-growth-cycle":
-        fail("examples/codex_plane_rollout_lane.example.json must keep playbook session-growth-cycle")
+    if payload.get("playbook_id") != "AOA-P-0028":
+        fail("examples/codex_plane_rollout_lane.example.json must keep playbook_id AOA-P-0028")
+    if payload.get("playbook") != "trusted-rollout-operations":
+        fail("examples/codex_plane_rollout_lane.example.json must keep playbook trusted-rollout-operations")
     if payload.get("lane") != "codex-plane-rollout":
         fail("examples/codex_plane_rollout_lane.example.json must keep lane codex-plane-rollout")
     if payload.get("workspace_scope") != "shared-root":
         fail("examples/codex_plane_rollout_lane.example.json must keep workspace_scope shared-root")
-    if payload.get("success_condition") != "deployment_state=verified":
-        fail("examples/codex_plane_rollout_lane.example.json must keep success_condition deployment_state=verified")
+    if payload.get("success_condition") != "latest_state=stabilized":
+        fail("examples/codex_plane_rollout_lane.example.json must keep success_condition latest_state=stabilized")
 
     phases = payload.get("phases")
     if not isinstance(phases, list):
@@ -1932,26 +1978,43 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
         AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_regeneration_report.example.json"
     )
     receipt_payload = read_json(AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_rollout_receipt.example.json")
+    rollout_latest_payload = read_json(
+        AOA_8DIONYSUS_ROOT / "generated" / "codex" / "rollout" / "rollout_latest.min.json"
+    )
+    rollback_payload = read_json(
+        AOA_8DIONYSUS_ROOT / "generated" / "codex" / "rollout" / "rollback_windows.min.json"
+    )
     status_payload = read_json(AOA_SDK_ROOT / "examples" / "codex_plane_deploy_status_snapshot.example.json")
     stats_payload = read_json(AOA_STATS_ROOT / "examples" / "codex_plane_deployment_summary.example.json")
+    drift_summary_payload = read_json(AOA_STATS_ROOT / "generated" / "codex_rollout_drift_summary.min.json")
 
     for sibling_payload, label in (
         (trust_payload, "8Dionysus trust-state example"),
         (regeneration_payload, "8Dionysus regeneration-report example"),
         (receipt_payload, "8Dionysus rollout-receipt example"),
+        (rollout_latest_payload, "8Dionysus rollout-latest generated surface"),
+        (rollback_payload, "8Dionysus rollback-windows generated surface"),
         (status_payload, "aoa-sdk deploy-status example"),
         (stats_payload, "aoa-stats deployment-summary example"),
+        (drift_summary_payload, "aoa-stats rollout-drift generated surface"),
     ):
         if not isinstance(sibling_payload, dict):
             fail(f"{label} must remain a JSON object")
 
     evidence_refs = payload.get("evidence_refs")
-    if not isinstance(evidence_refs, list) or len(evidence_refs) != 3 or len(evidence_refs) != len(set(evidence_refs)):
-        fail("examples/codex_plane_rollout_lane.example.json must keep three unique evidence_refs")
+    if not isinstance(evidence_refs, list) or len(evidence_refs) != 4 or len(evidence_refs) != len(set(evidence_refs)):
+        fail("examples/codex_plane_rollout_lane.example.json must keep four unique evidence_refs")
+    rollback_windows = rollback_payload.get("rollback_windows")
+    if not isinstance(rollback_windows, list) or not rollback_windows:
+        fail("8Dionysus rollback-windows generated surface must expose at least one rollback window")
+    first_rollback_window = rollback_windows[0]
+    if not isinstance(first_rollback_window, dict):
+        fail("8Dionysus rollback-windows generated surface entries must remain objects")
     expected_evidence_refs = [
-        trust_payload.get("trust_state_id"),
-        regeneration_payload.get("regeneration_report_id"),
-        receipt_payload.get("rollout_receipt_id"),
+        rollout_latest_payload.get("latest_stable_rollout_campaign_ref"),
+        rollout_latest_payload.get("latest_rollout_campaign_ref"),
+        drift_summary_payload.get("drift_window_ref"),
+        first_rollback_window.get("rollback_window_ref"),
     ]
     if evidence_refs != expected_evidence_refs:
         fail("examples/codex_plane_rollout_lane.example.json evidence_refs must match sibling rollout examples")
@@ -3163,6 +3226,7 @@ def validate_real_run_workflow_surfaces() -> None:
         "owner-first-capability-landing",
         "closeout-owner-follow-through-continuity",
         "federated-live-publisher-activation",
+        "trusted-rollout-operations",
         "release-migration-cutover",
         "incident-recovery-routing",
         "Evidence Links",

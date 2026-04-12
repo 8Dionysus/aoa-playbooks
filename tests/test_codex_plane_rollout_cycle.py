@@ -22,7 +22,7 @@ def test_codex_plane_rollout_cycle_companion_stays_discoverable_and_aligned() ->
     validate_playbooks.validate_codex_plane_rollout_cycle_companion()
 
 
-def test_codex_plane_rollout_cycle_does_not_create_new_playbook_identity() -> None:
+def test_codex_plane_rollout_cycle_stays_companion_to_trusted_rollout_operations() -> None:
     registry = load_generated("playbook_registry.min.json")
     activation = load_generated("playbook_activation_surfaces.min.json")
     federation = load_generated("playbook_federation_surfaces.min.json")
@@ -31,9 +31,9 @@ def test_codex_plane_rollout_cycle_does_not_create_new_playbook_identity() -> No
     activation_names = {entry["name"] for entry in activation}
     federation_names = {entry["name"] for entry in federation}
 
-    assert "session-growth-cycle" in registry_names
-    assert "session-growth-cycle" in activation_names
-    assert "session-growth-cycle" in federation_names
+    assert "trusted-rollout-operations" in registry_names
+    assert "trusted-rollout-operations" in activation_names
+    assert "trusted-rollout-operations" in federation_names
     assert "codex-plane-rollout-cycle" not in registry_names
     assert "codex-plane-rollout-cycle" not in activation_names
     assert "codex-plane-rollout-cycle" not in federation_names
