@@ -116,6 +116,11 @@ follow-through candidate needing one playbook-seed decision and one real-run
 gate rather than the full recurring cycle.
 It is narrower than generic ecosystem rollout because it only coordinates the
 session-growth path that the landed lineage seams already make possible.
+The shared-root Codex-plane deployment continuity lane lives in
+`docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
+`examples/codex_plane_rollout_lane.example.json` as a companion route card.
+It stays inside `AOA-P-0025` rather than becoming a second playbook or a
+hidden rollout runner.
 
 ## Trigger boundary
 

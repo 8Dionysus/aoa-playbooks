@@ -50,6 +50,8 @@ The recurring growth-refinery family now has three honest playbook scales:
 `AOA-P-0026` for the narrower post-candidate owner-followthrough campaign,
 `AOA-P-0027` for the automation-specific follow-through bridge, and
 `AOA-P-0025` for the full recurring session-growth cycle.
+The shared-root Codex-plane rollout lane stays a companion of `AOA-P-0025`,
+not a new playbook family.
 That closes a real family gap, but the main risk remains semantic overlap and
 premature authority drift.
 The next portfolio move is therefore boundary repair plus consolidation, not

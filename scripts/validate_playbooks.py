@@ -26,6 +26,9 @@ AOA_AGENTS_ROOT = repo_root_from_env("AOA_AGENTS_ROOT", REPO_ROOT.parent / "aoa-
 AOA_EVALS_ROOT = repo_root_from_env("AOA_EVALS_ROOT", REPO_ROOT.parent / "aoa-evals")
 AOA_SKILLS_ROOT = repo_root_from_env("AOA_SKILLS_ROOT", REPO_ROOT.parent / "aoa-skills")
 AOA_MEMO_ROOT = repo_root_from_env("AOA_MEMO_ROOT", REPO_ROOT.parent / "aoa-memo")
+AOA_8DIONYSUS_ROOT = repo_root_from_env("AOA_8DIONYSUS_ROOT", REPO_ROOT.parent / "8Dionysus")
+AOA_SDK_ROOT = repo_root_from_env("AOA_SDK_ROOT", REPO_ROOT.parent / "aoa-sdk")
+AOA_STATS_ROOT = repo_root_from_env("AOA_STATS_ROOT", REPO_ROOT.parent / "aoa-stats")
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 ACTIVATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.json"
 FEDERATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
@@ -55,6 +58,8 @@ PLAYBOOK_STRESS_LANE_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook_stress_lane
 PLAYBOOK_REENTRY_GATE_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook_reentry_gate_v1.json"
 PLAYBOOK_STRESS_LANE_EXAMPLE_PATH = REPO_ROOT / "examples" / "playbook_stress_lane.example.json"
 PLAYBOOK_REENTRY_GATE_EXAMPLE_PATH = REPO_ROOT / "examples" / "playbook_reentry_gate.example.json"
+CODEX_PLANE_ROLLOUT_CYCLE_DOC_PATH = REPO_ROOT / "docs" / "CODEX_PLANE_ROLLOUT_CYCLE.md"
+CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH = REPO_ROOT / "examples" / "codex_plane_rollout_lane.example.json"
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
@@ -405,6 +410,42 @@ REQUIRED_PLAYBOOK_STRESS_HARVEST_SNIPPETS = (
     "do not let playbook harvest become the only record of what happened",
     "one machine-readable re-entry gate family",
 )
+CODEX_PLANE_ROLLOUT_DOC_SNIPPETS = (
+    "This note is the shared-root deployment continuity companion for",
+    "It does not authorize rollout by itself.",
+    "It does not introduce a new playbook, activation surface, or hidden runner.",
+    "stable MCP names drift from `aoa_workspace`, `aoa_stats`, and `dionysus`",
+    "The deployment summary may shape continuity review, but it does not overrule",
+)
+CODEX_PLANE_ROLLOUT_PHASES = (
+    ("render", "regeneration_report"),
+    ("trust-check", "trust_state"),
+    ("dry-run-validate", "regeneration_report"),
+    ("execute-apply", "rollout_receipt"),
+    ("doctor-verify", "deploy_status_snapshot"),
+    ("rollback-decision", "rollout_receipt"),
+    ("stats-refresh", "deployment_summary"),
+)
+CODEX_PLANE_REQUIRED_ARTIFACTS = (
+    "trust_state",
+    "regeneration_report",
+    "rollout_receipt",
+    "deploy_status_snapshot",
+    "deployment_summary",
+)
+CODEX_PLANE_STOP_BEFORE_APPLY = (
+    "trust_posture=root_mismatch",
+    "trust_posture=config_inactive",
+    "stable_mcp_name_set_drifted=true",
+    "dry_run_ok=false",
+)
+CODEX_PLANE_ROLLBACK_TRIGGERS = (
+    "doctor_result=fail",
+    "hooks_active=false",
+    "project_config_active=false",
+    "drift_detected=true",
+)
+CODEX_PLANE_STABLE_MCP_NAMES = {"aoa_workspace", "aoa_stats", "dionysus"}
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0008",
     "AOA-P-0009",
@@ -1314,7 +1355,16 @@ def validate_nested_agents_surface() -> None:
 
 
 def display_path(path: Path) -> str:
-    for root in (REPO_ROOT, AOA_AGENTS_ROOT, AOA_EVALS_ROOT, AOA_SKILLS_ROOT, AOA_MEMO_ROOT):
+    for root in (
+        REPO_ROOT,
+        AOA_AGENTS_ROOT,
+        AOA_EVALS_ROOT,
+        AOA_SKILLS_ROOT,
+        AOA_MEMO_ROOT,
+        AOA_8DIONYSUS_ROOT,
+        AOA_SDK_ROOT,
+        AOA_STATS_ROOT,
+    ):
         try:
             return path.relative_to(root).as_posix()
         except ValueError:
@@ -1797,6 +1847,135 @@ def validate_antifragility_stress_surfaces() -> None:
             error = local_ref_error(playbook_ref, f"{display_path(example_path)}.playbook_id")
             if error is not None:
                 fail(error)
+
+
+def validate_codex_plane_rollout_cycle_companion() -> None:
+    readme = read_text(REPO_ROOT / "README.md")
+    docs_readme = read_text(REPO_ROOT / "docs" / "README.md")
+    execution_seam = read_text(REPO_ROOT / "docs" / "PLAYBOOK_EXECUTION_SEAM.md")
+    workflow = read_text(REAL_RUN_WORKFLOW_PATH)
+    session_growth_cycle = read_text(REPO_ROOT / "playbooks" / "session-growth-cycle" / "PLAYBOOK.md")
+    cycle_doc = read_text(CODEX_PLANE_ROLLOUT_CYCLE_DOC_PATH)
+
+    for text, location in (
+        (readme, "README.md"),
+        (docs_readme, "docs/README.md"),
+    ):
+        if "CODEX_PLANE_ROLLOUT_CYCLE.md" not in text:
+            fail(f"{location} must mention docs/CODEX_PLANE_ROLLOUT_CYCLE.md")
+    if "examples/codex_plane_rollout_lane.example.json" not in readme:
+        fail("README.md must mention examples/codex_plane_rollout_lane.example.json")
+    if "docs/CODEX_PLANE_ROLLOUT_CYCLE.md" not in execution_seam:
+        fail("docs/PLAYBOOK_EXECUTION_SEAM.md must mention docs/CODEX_PLANE_ROLLOUT_CYCLE.md")
+    if "docs/CODEX_PLANE_ROLLOUT_CYCLE.md" not in workflow:
+        fail("docs/PLAYBOOK_REAL_RUN_WORKFLOW.md must mention docs/CODEX_PLANE_ROLLOUT_CYCLE.md")
+    for token in (
+        "docs/CODEX_PLANE_ROLLOUT_CYCLE.md",
+        "examples/codex_plane_rollout_lane.example.json",
+        "hidden rollout runner",
+    ):
+        if token not in session_growth_cycle:
+            fail(f"playbooks/session-growth-cycle/PLAYBOOK.md must mention '{token}'")
+
+    for snippet in CODEX_PLANE_ROLLOUT_DOC_SNIPPETS:
+        if snippet not in cycle_doc:
+            fail(f"docs/CODEX_PLANE_ROLLOUT_CYCLE.md is missing required guidance: {snippet}")
+
+    payload = read_json(CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH)
+    if not isinstance(payload, dict):
+        fail("examples/codex_plane_rollout_lane.example.json must contain a JSON object")
+    if payload.get("playbook_id") != "AOA-P-0025":
+        fail("examples/codex_plane_rollout_lane.example.json must keep playbook_id AOA-P-0025")
+    if payload.get("playbook") != "session-growth-cycle":
+        fail("examples/codex_plane_rollout_lane.example.json must keep playbook session-growth-cycle")
+    if payload.get("lane") != "codex-plane-rollout":
+        fail("examples/codex_plane_rollout_lane.example.json must keep lane codex-plane-rollout")
+    if payload.get("workspace_scope") != "shared-root":
+        fail("examples/codex_plane_rollout_lane.example.json must keep workspace_scope shared-root")
+    if payload.get("success_condition") != "deployment_state=verified":
+        fail("examples/codex_plane_rollout_lane.example.json must keep success_condition deployment_state=verified")
+
+    phases = payload.get("phases")
+    if not isinstance(phases, list):
+        fail("examples/codex_plane_rollout_lane.example.json phases must be a list")
+    actual_phases: list[tuple[str, str]] = []
+    for index, phase in enumerate(phases):
+        if not isinstance(phase, dict):
+            fail(f"examples/codex_plane_rollout_lane.example.json phases[{index}] must be an object")
+        name = phase.get("name")
+        artifact = phase.get("required_artifact")
+        if not isinstance(name, str) or not isinstance(artifact, str):
+            fail(
+                "examples/codex_plane_rollout_lane.example.json phases entries must keep "
+                "string name and required_artifact"
+            )
+        actual_phases.append((name, artifact))
+    if tuple(actual_phases) != CODEX_PLANE_ROLLOUT_PHASES:
+        fail("examples/codex_plane_rollout_lane.example.json phases drifted from the rollout lane order")
+
+    required_artifacts = payload.get("required_artifacts")
+    if tuple(required_artifacts or ()) != CODEX_PLANE_REQUIRED_ARTIFACTS:
+        fail("examples/codex_plane_rollout_lane.example.json required_artifacts drifted")
+    stop_before_apply = payload.get("stop_before_apply")
+    if tuple(stop_before_apply or ()) != CODEX_PLANE_STOP_BEFORE_APPLY:
+        fail("examples/codex_plane_rollout_lane.example.json stop_before_apply drifted")
+    rollback_triggers = payload.get("rollback_triggers")
+    if tuple(rollback_triggers or ()) != CODEX_PLANE_ROLLBACK_TRIGGERS:
+        fail("examples/codex_plane_rollout_lane.example.json rollback_triggers drifted")
+
+    stable_mcp_names = payload.get("stable_mcp_names")
+    if not isinstance(stable_mcp_names, list) or set(stable_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
+        fail("examples/codex_plane_rollout_lane.example.json must keep the stable MCP name set")
+
+    trust_payload = read_json(AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_trust_state.example.json")
+    regeneration_payload = read_json(
+        AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_regeneration_report.example.json"
+    )
+    receipt_payload = read_json(AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_rollout_receipt.example.json")
+    status_payload = read_json(AOA_SDK_ROOT / "examples" / "codex_plane_deploy_status_snapshot.example.json")
+    stats_payload = read_json(AOA_STATS_ROOT / "examples" / "codex_plane_deployment_summary.example.json")
+
+    for sibling_payload, label in (
+        (trust_payload, "8Dionysus trust-state example"),
+        (regeneration_payload, "8Dionysus regeneration-report example"),
+        (receipt_payload, "8Dionysus rollout-receipt example"),
+        (status_payload, "aoa-sdk deploy-status example"),
+        (stats_payload, "aoa-stats deployment-summary example"),
+    ):
+        if not isinstance(sibling_payload, dict):
+            fail(f"{label} must remain a JSON object")
+
+    evidence_refs = payload.get("evidence_refs")
+    if not isinstance(evidence_refs, list) or len(evidence_refs) != 3 or len(evidence_refs) != len(set(evidence_refs)):
+        fail("examples/codex_plane_rollout_lane.example.json must keep three unique evidence_refs")
+    expected_evidence_refs = [
+        trust_payload.get("trust_state_id"),
+        regeneration_payload.get("regeneration_report_id"),
+        receipt_payload.get("rollout_receipt_id"),
+    ]
+    if evidence_refs != expected_evidence_refs:
+        fail("examples/codex_plane_rollout_lane.example.json evidence_refs must match sibling rollout examples")
+
+    if status_payload.get("latest_trust_state_ref") != trust_payload.get("trust_state_id"):
+        fail("aoa-sdk deploy-status example must point at the 8Dionysus trust-state example")
+    if status_payload.get("latest_rollout_receipt_ref") != receipt_payload.get("rollout_receipt_id"):
+        fail("aoa-sdk deploy-status example must point at the 8Dionysus rollout-receipt example")
+    if status_payload.get("rollout_state") != "verified":
+        fail("aoa-sdk deploy-status example must keep rollout_state verified")
+    status_mcp_names = status_payload.get("active_mcp_servers")
+    if not isinstance(status_mcp_names, list) or set(status_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
+        fail("aoa-sdk deploy-status example must keep the stable MCP name set")
+
+    if receipt_payload.get("regeneration_report_id") != regeneration_payload.get("regeneration_report_id"):
+        fail("8Dionysus rollout-receipt example must point at the 8Dionysus regeneration-report example")
+
+    if stats_payload.get("latest_receipt_ref") != receipt_payload.get("rollout_receipt_id"):
+        fail("aoa-stats deployment summary example must point at the 8Dionysus rollout receipt")
+    if stats_payload.get("latest_rollout_state") != "verified":
+        fail("aoa-stats deployment summary example must keep latest_rollout_state verified")
+    stats_mcp_names = stats_payload.get("stable_mcp_name_set")
+    if not isinstance(stats_mcp_names, list) or set(stats_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
+        fail("aoa-stats deployment summary example must keep the stable MCP name set")
 
 
 def validate_return_contract_schema(schema: dict[str, object], *, location: str) -> None:
@@ -4071,6 +4250,7 @@ def main() -> int:
         validate_review_status_schema_surface()
         validate_review_packet_contracts_schema_surface()
         validate_antifragility_stress_surfaces()
+        validate_codex_plane_rollout_cycle_companion()
         playbooks_by_id = validate_registry()
         agent_names = load_agent_names()
         model_tier_artifacts = load_model_tier_artifacts()
@@ -4121,6 +4301,7 @@ def main() -> int:
     print("[ok] validated playbook review-status schema surface")
     print("[ok] validated playbook review-packet contracts schema surface")
     print("[ok] validated antifragility stress-lane adjunct surfaces")
+    print("[ok] validated codex-plane rollout cycle companion surfaces")
     print("[ok] validated generated/playbook_registry.min.json")
     print("[ok] validated generated/playbook_activation_surfaces.min.json")
     print("[ok] validated authored playbook bundles")

@@ -75,6 +75,10 @@ The remaining first-run evidence gaps are now `AOA-P-0019`, `AOA-P-0020`, and `A
 As of April 11, 2026, `AOA-P-0019` still has no qualifying reviewed summary committed.
 `AOA-P-0020` uses the same summary and verdict workflow, but only a live incident should open its first reviewed run.
 `AOA-P-0025` now ships the matching harvest scaffold, but it still has no qualifying reviewed proving run committed and therefore remains outside composition-owned adjunct surfaces until a real reviewed cycle clears the gate.
+Its shared-root deployment continuity lane now lives at
+`docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
+`examples/codex_plane_rollout_lane.example.json`, but that companion does not
+count as a reviewed run or a gate verdict by itself.
 
 ## Boundary to preserve
 

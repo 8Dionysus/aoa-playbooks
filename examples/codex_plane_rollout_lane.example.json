@@ -1,0 +1,66 @@
+{
+  "playbook_id": "AOA-P-0025",
+  "playbook": "session-growth-cycle",
+  "lane": "codex-plane-rollout",
+  "workspace_scope": "shared-root",
+  "phases": [
+    {
+      "name": "render",
+      "required_artifact": "regeneration_report"
+    },
+    {
+      "name": "trust-check",
+      "required_artifact": "trust_state"
+    },
+    {
+      "name": "dry-run-validate",
+      "required_artifact": "regeneration_report"
+    },
+    {
+      "name": "execute-apply",
+      "required_artifact": "rollout_receipt"
+    },
+    {
+      "name": "doctor-verify",
+      "required_artifact": "deploy_status_snapshot"
+    },
+    {
+      "name": "rollback-decision",
+      "required_artifact": "rollout_receipt"
+    },
+    {
+      "name": "stats-refresh",
+      "required_artifact": "deployment_summary"
+    }
+  ],
+  "required_artifacts": [
+    "trust_state",
+    "regeneration_report",
+    "rollout_receipt",
+    "deploy_status_snapshot",
+    "deployment_summary"
+  ],
+  "stable_mcp_names": [
+    "aoa_workspace",
+    "aoa_stats",
+    "dionysus"
+  ],
+  "stop_before_apply": [
+    "trust_posture=root_mismatch",
+    "trust_posture=config_inactive",
+    "stable_mcp_name_set_drifted=true",
+    "dry_run_ok=false"
+  ],
+  "rollback_triggers": [
+    "doctor_result=fail",
+    "hooks_active=false",
+    "project_config_active=false",
+    "drift_detected=true"
+  ],
+  "success_condition": "deployment_state=verified",
+  "evidence_refs": [
+    "cptrust-2026-04-11T210400Z-root-srv",
+    "cpregen-2026-04-11T210500Z-root-srv",
+    "cprollout-2026-04-11T210700Z-root-srv"
+  ]
+}

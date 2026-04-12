@@ -111,6 +111,12 @@ The activation surface may project:
 These fields describe where the scenario may return, not how a runtime performs that return.
 The memo fields describe bounded default recall posture only; they do not move memo search, ranking, or truth-judgment logic into the playbook layer.
 
+The shared-root Codex-plane deployment continuity lane for `AOA-P-0025` lives
+only in `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
+`examples/codex_plane_rollout_lane.example.json`.
+It is a companion route card, not a new activation surface, federation
+surface, or persisted execution packet.
+
 Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
 
 ## Federation surface
