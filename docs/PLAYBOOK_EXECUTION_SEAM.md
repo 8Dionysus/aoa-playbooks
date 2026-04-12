@@ -87,6 +87,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0027 reviewed-automation-followthrough`
 - `AOA-P-0025 session-growth-cycle`
 - `AOA-P-0028 trusted-rollout-operations`
+- `AOA-P-0029 self-agency-continuity-cycle`
 
 These runtime-readable playbooks already define:
 
@@ -117,6 +118,10 @@ one companion route card in `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` plus
 `examples/codex_plane_rollout_lane.example.json`.
 That companion note is not a second activation surface, federation surface, or
 persisted execution packet.
+`AOA-P-0029 self-agency-continuity-cycle` is activation-readable because the
+route needs compact return posture around reviewed anchors, revision windows,
+and explicit reanchor, but it still does not become runtime autonomy or a
+hidden retry runner.
 
 Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
 
@@ -181,6 +186,7 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0026 owner-followthrough-campaign`
 - `AOA-P-0025 session-growth-cycle`
 - `AOA-P-0028 trusted-rollout-operations`
+- `AOA-P-0029 self-agency-continuity-cycle`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 For the runtime-facing memo cohort, they also carry flat memo recall defaults so downstream runtimes can derive `inspect`, `capsule`, and `expand` posture without inventing new playbook semantics.
