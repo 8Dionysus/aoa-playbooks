@@ -16,7 +16,7 @@ Use the shortest route by need:
 - evidence, gates, and release posture: [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), [docs/PLAYBOOK_REAL_RUN_HARVEST](docs/PLAYBOOK_REAL_RUN_HARVEST.md), [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md), [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md), and [docs/RELEASING](docs/RELEASING.md)
 - additive stress-lane and re-entry doctrine: [docs/PLAYBOOK_STRESS_LANES](docs/PLAYBOOK_STRESS_LANES.md) and [docs/PLAYBOOK_STRESS_HARVEST](docs/PLAYBOOK_STRESS_HARVEST.md)
 - adjunct outline seam: [docs/QUESTLINE_AND_CAMPAIGN_MODEL](docs/QUESTLINE_AND_CAMPAIGN_MODEL.md)
-- live authored examples: [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md), [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md), [playbooks/session-growth-cycle/PLAYBOOK.md](playbooks/session-growth-cycle/PLAYBOOK.md), and the wider `playbooks/*/PLAYBOOK.md` family
+- live authored examples: [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md), [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md), [playbooks/session-growth-cycle/PLAYBOOK.md](playbooks/session-growth-cycle/PLAYBOOK.md), [playbooks/owner-followthrough-campaign/PLAYBOOK.md](playbooks/owner-followthrough-campaign/PLAYBOOK.md), and the wider `playbooks/*/PLAYBOOK.md` family
 - current direction: [ROADMAP](ROADMAP.md)
 
 ## Route by need

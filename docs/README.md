@@ -26,7 +26,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) for the composition promotion gate surface.
 - Read [PLAYBOOK_GAP_MATRIX](PLAYBOOK_GAP_MATRIX.md) for the current prioritized lifecycle posture of the portfolio.
 - Read [RELEASING](RELEASING.md) for the bounded repo-level release flow.
-- Open [../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first real playbook object and [../playbooks/session-growth-cycle/PLAYBOOK.md](../playbooks/session-growth-cycle/PLAYBOOK.md) for the recurring lineage-aware growth route.
+- Open [../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](../playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md) for the first real playbook object, [../playbooks/session-growth-cycle/PLAYBOOK.md](../playbooks/session-growth-cycle/PLAYBOOK.md) for the recurring lineage-aware growth route, and [../playbooks/owner-followthrough-campaign/PLAYBOOK.md](../playbooks/owner-followthrough-campaign/PLAYBOOK.md) for the narrower post-candidate owner follow-through route.
 - Read [ROADMAP](../ROADMAP.md) for the current direction.
 
 ## Docs in this repository
