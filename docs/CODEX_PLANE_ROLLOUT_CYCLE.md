@@ -10,6 +10,9 @@ after regeneration has already produced reviewable rollout artifacts and
 It does not authorize rollout by itself.
 It does not replace live trust-state, rollout receipts, or owner-local proof.
 It does not introduce a new playbook, activation surface, or hidden runner.
+The grouped cadence adjunct for repeated maintenance lives in
+`docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md` and stays subordinate to
+`AOA-P-0028` rather than becoming a second playbook.
 
 ## Phase order
 
@@ -24,6 +27,18 @@ It does not introduce a new playbook, activation surface, or hidden runner.
 9. publish rollout history
 10. stats refresh
 11. memo writeback
+
+## Cadence adjunct
+
+When the same shared-root route needs one grouped review window above the
+checked-in rollout history, keep the adjunct explicit as:
+
+- `rollout_campaign_window`
+- `drift_review_window`
+- `rollback_followthrough_window`
+
+Those windows stay source-owned in `8Dionysus`.
+This companion only names the recurring lane around them.
 
 ## Stop lines before apply
 
@@ -48,6 +63,9 @@ It does not introduce a new playbook, activation surface, or hidden runner.
 - rollout campaign record
 - drift window record
 - rollback window record
+- rollout campaign window
+- drift review window
+- rollback followthrough window
 - rollout operations summary
 - rollout drift summary
 - memo writeback record

@@ -114,6 +114,11 @@ The shared-root Codex-plane continuity lane keeps its companion route card in
 `examples/codex_plane_rollout_lane.example.json`, but that companion stays
 subordinate to this sovereign playbook rather than acting like a second
 playbook or hidden runner.
+When repeated maintenance needs one grouped cadence layer above checked-in
+rollout history, the adjunct lives in
+`docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md`; it stays under this playbook
+instead of minting a second sovereign playbook, activation surface, or
+scheduler.
 
 ## Trigger boundary
 

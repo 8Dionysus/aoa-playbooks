@@ -22,6 +22,7 @@ def test_trusted_rollout_operations_docs_and_routes_stay_discoverable() -> None:
     execution_seam = (DOCS_ROOT / "PLAYBOOK_EXECUTION_SEAM.md").read_text(encoding="utf-8")
     workflow = (DOCS_ROOT / "PLAYBOOK_REAL_RUN_WORKFLOW.md").read_text(encoding="utf-8")
     cycle_doc = (DOCS_ROOT / "CODEX_PLANE_ROLLOUT_CYCLE.md").read_text(encoding="utf-8")
+    cadence_doc = (DOCS_ROOT / "TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md").read_text(encoding="utf-8")
     real_runs_home = (DOCS_ROOT / "real-runs" / "README.md").read_text(encoding="utf-8")
     gate_review = (DOCS_ROOT / "gate-reviews" / "trusted-rollout-operations.md").read_text(encoding="utf-8")
     reviewed_run_initial = (
@@ -43,6 +44,7 @@ def test_trusted_rollout_operations_docs_and_routes_stay_discoverable() -> None:
         execution_seam,
         workflow,
         cycle_doc,
+        cadence_doc,
         real_runs_home,
         gate_review,
         reviewed_run_initial,
@@ -52,11 +54,15 @@ def test_trusted_rollout_operations_docs_and_routes_stay_discoverable() -> None:
 
     assert "playbooks/trusted-rollout-operations/PLAYBOOK.md" in readme
     assert "playbooks/trusted-rollout-operations/PLAYBOOK.md" in docs_map
+    assert "docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md" in readme
+    assert "TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md" in docs_map
     assert "examples/codex_plane_rollout_lane.example.json" in readme
     assert "trusted-rollout-operations.harvest-template.md" in workflow
     assert "docs/gate-reviews/trusted-rollout-operations.md" in reviewed_run_initial
     assert "docs/gate-reviews/trusted-rollout-operations.md" in reviewed_run
     assert "docs/real-runs/2026-04-11.trusted-rollout-operations.md" in gate_review
+    assert "docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md" in gate_review
+    assert "not a second playbook" in cadence_doc
     assert "AOA-P-0028" in decision_note
 
 
@@ -101,3 +107,4 @@ def test_trusted_rollout_operations_stays_out_of_composition_after_two_reviewed_
     assert landing_by_id["AOA-P-0028"]["in_composition_manifest"] is False
     assert landing_by_id["AOA-P-0028"]["gate_verdict"] == "hold"
     assert "trusted-rollout-operations" not in manifest["managed_playbooks"]
+    assert "trusted-rollout-campaign-cadence" not in manifest["managed_playbooks"]
