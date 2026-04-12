@@ -86,6 +86,17 @@ The living per-playbook verdict surfaces sit under `docs/gate-reviews/` and reco
 - First landing rule: if review-track landing becomes honest, start with the smallest truthful adjunct tied to readiness closure, such as a bounded bridge between warning-first readiness audit and later strict non-empty closure, not a new runtime ledger or broad automation claim.
 - Non-promotion default: if the route only proves one owner-local activation wave or never surfaces a stable adjunct candidate, keep `AOA-P-0024` at `A+Act+F`
 
+## AOA-P-0028 trusted-rollout-operations
+
+- Required real-run artifact set: `rollout_decision`, `doctor_report_ref`, `smoke_report_ref`, `deploy_receipt_ref`, `drift_window_ref`, `rollback_window_ref`, `stats_refresh_ref`, `memo_writeback_ref`
+- Minimum evidence threshold: one real shared-root rollout-operations route
+- Required dual signal for promotion:
+  - at least one stable follow-up mapping showing that shared-root rollout activation must sometimes stay reviewable through checked-in drift observation, rollback closure, and subordinate stats/memo follow-through rather than collapsing into generic infra mutation or incident language
+  - at least one stable adjunct candidate in the form of a `handoff bridge`, `subagent split`, or `automation seed`
+- Artifact anchor: `rollout_decision`, `deploy_receipt_ref`, `drift_window_ref`, `rollback_window_ref`, `stats_refresh_ref`
+- First landing rule: if review-track landing becomes honest, start with the smallest truthful rollout-owned adjunct, such as a bounded bridge between checked-in rollout closure and later derived follow-through, not a scheduler, runtime ledger, or broad automation claim.
+- Non-promotion default: if the route only proves one rollout rollback window or never surfaces a stable adjunct candidate, keep `AOA-P-0028` at `A+Act+F`
+
 ## Default posture
 
 Weak, single-use, or ambiguous signals do not justify composition growth.

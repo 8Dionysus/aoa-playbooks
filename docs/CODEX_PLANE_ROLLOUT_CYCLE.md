@@ -1,10 +1,11 @@
 # Codex Plane Rollout Cycle
 
 This note is the shared-root deployment continuity companion for
-`AOA-P-0025 session-growth-cycle`.
+`AOA-P-0028 trusted-rollout-operations`.
 
 It keeps one recurring rollout lane explicit for the live AoA Codex plane
-after regeneration has already produced reviewable rollout artifacts.
+after regeneration has already produced reviewable rollout artifacts and
+`8Dionysus` is publishing checked-in rollout campaign history.
 
 It does not authorize rollout by itself.
 It does not replace live trust-state, rollout receipts, or owner-local proof.
@@ -17,8 +18,12 @@ It does not introduce a new playbook, activation surface, or hidden runner.
 3. dry-run validate
 4. execute apply
 5. doctor verify
-6. rollback decision
-7. stats refresh
+6. activate bounded rollout
+7. observe drift window
+8. repair or rollback
+9. publish rollout history
+10. stats refresh
+11. memo writeback
 
 ## Stop lines before apply
 
@@ -40,13 +45,19 @@ It does not introduce a new playbook, activation surface, or hidden runner.
 - regeneration report
 - rollout receipt
 - deploy-status snapshot
-- deployment summary
+- rollout campaign record
+- drift window record
+- rollback window record
+- rollout operations summary
+- rollout drift summary
+- memo writeback record
 
 ## Source precedence
 
 1. `8Dionysus` trust-state and rollout receipt
-2. `aoa-sdk` typed deploy-status snapshot
-3. `aoa-stats` derived deployment summary
+2. `8Dionysus` checked-in rollout campaign history
+3. `aoa-sdk` typed deploy-status snapshot
+4. `aoa-stats` derived deployment, rollout-operations, and drift summaries
 
 The deployment summary may shape continuity review, but it does not overrule
-live trust evidence or rollout receipts.
+live trust evidence, checked-in rollout history, or rollout receipts.

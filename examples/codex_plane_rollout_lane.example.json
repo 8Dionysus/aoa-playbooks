@@ -1,6 +1,6 @@
 {
-  "playbook_id": "AOA-P-0025",
-  "playbook": "session-growth-cycle",
+  "playbook_id": "AOA-P-0028",
+  "playbook": "trusted-rollout-operations",
   "lane": "codex-plane-rollout",
   "workspace_scope": "shared-root",
   "phases": [
@@ -25,12 +25,28 @@
       "required_artifact": "deploy_status_snapshot"
     },
     {
-      "name": "rollback-decision",
-      "required_artifact": "rollout_receipt"
+      "name": "activate-bounded-rollout",
+      "required_artifact": "rollout_campaign_record"
+    },
+    {
+      "name": "observe-drift-window",
+      "required_artifact": "drift_window_record"
+    },
+    {
+      "name": "repair-or-rollback",
+      "required_artifact": "rollback_window_record"
+    },
+    {
+      "name": "publish-rollout-history",
+      "required_artifact": "rollout_campaign_record"
     },
     {
       "name": "stats-refresh",
-      "required_artifact": "deployment_summary"
+      "required_artifact": "rollout_operations_summary"
+    },
+    {
+      "name": "memo-writeback",
+      "required_artifact": "memo_writeback_record"
     }
   ],
   "required_artifacts": [
@@ -38,7 +54,12 @@
     "regeneration_report",
     "rollout_receipt",
     "deploy_status_snapshot",
-    "deployment_summary"
+    "rollout_campaign_record",
+    "drift_window_record",
+    "rollback_window_record",
+    "rollout_operations_summary",
+    "rollout_drift_summary",
+    "memo_writeback_record"
   ],
   "stable_mcp_names": [
     "aoa_workspace",
@@ -55,12 +76,14 @@
     "doctor_result=fail",
     "hooks_active=false",
     "project_config_active=false",
-    "drift_detected=true"
+    "drift_detected=true",
+    "drift_state=material"
   ],
-  "success_condition": "deployment_state=verified",
+  "success_condition": "latest_state=stabilized",
   "evidence_refs": [
-    "cptrust-2026-04-11T210400Z-root-srv",
-    "cpregen-2026-04-11T210500Z-root-srv",
-    "cprollout-2026-04-11T210700Z-root-srv"
+    "ROLL-20260411-codex-plane-regen-01",
+    "ROLL-20260411-codex-hooks-tighten-02",
+    "DRIFT-20260411-codex-hooks-tighten-02",
+    "RBK-20260411-codex-hooks-tighten-02"
   ]
 }

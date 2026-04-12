@@ -28,6 +28,7 @@ FEDERATION_PLAYBOOK_IDS = (
     "AOA-P-0026",
     "AOA-P-0027",
     "AOA-P-0025",
+    "AOA-P-0028",
 )
 OPTIONAL_MEMO_SPEC_FIELDS = (
     "memo_recall_modes",

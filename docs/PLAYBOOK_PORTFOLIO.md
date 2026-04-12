@@ -50,14 +50,16 @@ The recurring growth-refinery family now has three honest playbook scales:
 `AOA-P-0026` for the narrower post-candidate owner-followthrough campaign,
 `AOA-P-0027` for the automation-specific follow-through bridge, and
 `AOA-P-0025` for the full recurring session-growth cycle.
-The shared-root Codex-plane rollout lane stays a companion of `AOA-P-0025`,
-not a new playbook family.
-That closes a real family gap, but the main risk remains semantic overlap and
-premature authority drift.
+Shared-root Codex rollout operations now stand as the separate
+`AOA-P-0028 trusted-rollout-operations` route, with
+`docs/CODEX_PLANE_ROLLOUT_CYCLE.md` remaining its companion lane rather than a
+second playbook.
+That closes a real operational-family gap, but the main risk remains semantic
+overlap and premature authority drift.
 The next portfolio move is therefore boundary repair plus consolidation, not
 another catalog burst:
-- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, and `AOA-P-0027`
-- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, and `AOA-P-0025` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
+- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, and `AOA-P-0028`
+- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, and `AOA-P-0028` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
 - use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture the first reviewed `AOA-P-0027` route before any automation seed or handoff adjunct reaches composition
 - use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
 
@@ -74,6 +76,7 @@ The operational family now covers:
 - `AOA-P-0026` = narrower post-candidate owner follow-through across direct landing, seed trace, reanchor, merge, defer, or drop
 - `AOA-P-0027` = automation-specific reviewed follow-through across playbook-seed candidacy, defer, and explicit real-run gating
 - `AOA-P-0025` = recurring session-growth cycle across landed lineage seams
+- `AOA-P-0028` = shared-root Codex rollout operations across drift observation, bounded repair, rollback, checked-in receipt publication, and bounded follow-through
 - `AOA-P-0024` = owner-ordered live publisher activation after a reviewed readiness audit
 
 ## Coverage rules
