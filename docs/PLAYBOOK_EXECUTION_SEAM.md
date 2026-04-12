@@ -84,6 +84,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0019 release-migration-cutover`
 - `AOA-P-0020 incident-recovery-routing`
 - `AOA-P-0026 owner-followthrough-campaign`
+- `AOA-P-0027 reviewed-automation-followthrough`
 - `AOA-P-0025 session-growth-cycle`
 
 These runtime-readable playbooks already define:

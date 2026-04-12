@@ -100,6 +100,9 @@ It is narrower than `AOA-P-0021` because the main route is not broader rollout
 and post-landing hardening.
 It is distinct from `AOA-P-0023` because the route anchor is not a reviewed
 closeout handoff but the already-named candidate or staged seed itself.
+Use `AOA-P-0027` when the main question is whether reviewed automation
+follow-through deserves one explicit playbook home rather than a generic next
+owner move.
 
 ## Trigger boundary
 
@@ -119,6 +122,9 @@ Do not use this playbook when:
   neighboring repos
 - the route anchor is still a reviewed closeout continuity handoff rather than
   the candidate or seed itself
+- the route is specifically an automation follow-through question that still
+  needs one playbook-seed decision and one real-run gate, which belongs in
+  `AOA-P-0027`
 - the candidate is too weak for any honest next owner move and should return to
   diagnosis, repair, or reviewed harvest instead
 
