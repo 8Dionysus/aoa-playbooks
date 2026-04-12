@@ -189,6 +189,17 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "merge_record",
         "residual_handoff_record",
     ),
+    REPO_ROOT / "examples" / "harvests" / "session-growth-cycle.harvest-template.md": (
+        "checkpoint_carry_bundle",
+        "reviewed_closeout_context",
+        "candidate_harvest_packet",
+        "route_follow_through_decision",
+        "seed_trace",
+        "owner_landing_bundle",
+        "proof_packet",
+        "writeback_record",
+        "stats_refresh_record",
+    ),
     REPO_ROOT / "examples" / "harvests" / "federated-live-publisher-activation.harvest-template.md": (
         "readiness_audit_pack",
         "owner_activation_plan",
