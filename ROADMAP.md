@@ -1,10 +1,12 @@
 # AoA Playbooks Roadmap
 
-This roadmap tracks the bootstrap and early shaping of the AoA playbook layer.
+This roadmap tracks the playbook layer from its public baseline into its
+evidence-led shaping phase.
 
 ## Current phase
 
-`aoa-playbooks` has reached its `v0.1.0` public baseline.
+`aoa-playbooks` established its `v0.1.0` public baseline and has moved beyond
+that initial baseline.
 The immediate goal is no longer to prove that the repository can exist.
 The next goal is to keep the layer honest through evidence-led maturation:
 - preserve the current authored, activation, federation, and composition seams without widening them casually
