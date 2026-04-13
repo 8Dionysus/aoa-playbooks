@@ -1,18 +1,33 @@
 # AoA Playbooks Roadmap
 
 This roadmap tracks the playbook layer from its public baseline into its
-evidence-led shaping phase.
+current `v0.3.1` portfolio-hardening phase.
 
 ## Current phase
 
-`aoa-playbooks` established its `v0.1.0` public baseline and has moved beyond
-that initial baseline.
+`aoa-playbooks` established its `v0.3.1` public contour and has moved well
+beyond the bootstrap question.
 The immediate goal is no longer to prove that the repository can exist.
-The next goal is to keep the layer honest through evidence-led maturation:
-- preserve the current authored, activation, federation, and composition seams without widening them casually
-- wait for real cutover evidence for `AOA-P-0019`
-- wait for live incident evidence for `AOA-P-0020`
-- prefer steady-state maintenance over catalog expansion unless a clearly distinct scenario family appears
+The next goal is to keep the current portfolio honest through boundary repair,
+reviewed evidence, and maintenance discipline:
+- preserve the current authored, activation, federation, review-status, landing-governance, and composition seams without widening them casually
+- keep `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, and `AOA-P-0030 component-refresh-cycle` aligned with their authored docs, generated surfaces, and reviewed evidence
+- keep `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` as the companion lane to `AOA-P-0028` rather than a second sovereign playbook
+- keep questline, campaign, and `QUESTBOOK.md` adjunct posture evidence-first and bounded
+- treat `AOA-P-0019` and `AOA-P-0020` as evidence-gated operational routes rather than the sole frontier of the repository
+- prefer steady-state maintenance, portfolio hardening, and reviewed evidence over catalog expansion unless a clearly distinct scenario family appears
+
+## Current published contour
+
+The currently published playbook canon already includes:
+- baseline public routes `AOA-P-0001` through `AOA-P-0005`
+- the current growth, follow-through, shared-root rollout, continuity, and component-refresh routes `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, and `AOA-P-0030 component-refresh-cycle`
+- generated coordination surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_landing_governance.min.json`
+- generated composition adjuncts such as `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_subagent_recipes.json`
+
+The near-term roadmap should therefore read the repository as a portfolio
+hardening pass, not as an early shaping pass waiting only on cutover or
+incident proof.
 
 ## Phase 1: playbook layer definition
 
