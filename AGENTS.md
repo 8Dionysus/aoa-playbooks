@@ -57,10 +57,11 @@ sovereign, and not the harvest authority for the whole federation.
 Before making changes, read in this order:
 
 1. `README.md`
-2. the relevant model, bundle, gate, or evidence docs referenced there
-3. the target playbook source you plan to edit
-4. any affected generated registry or composition surfaces
-5. neighboring repo docs if the playbook touches skills, agents, memo, evals, or routing
+2. `ROADMAP.md`
+3. the relevant model, bundle, gate, or evidence docs referenced there
+4. the target playbook source you plan to edit
+5. any affected generated registry or composition surfaces
+6. neighboring repo docs if the playbook touches skills, agents, memo, evals, or routing
 
 Then branch by task:
 
