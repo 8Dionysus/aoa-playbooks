@@ -89,6 +89,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0028 trusted-rollout-operations`
 - `AOA-P-0029 self-agency-continuity-cycle`
 - `AOA-P-0030 component-refresh-cycle`
+- `AOA-P-0031 a2a-summon-return-checkpoint`
 
 These runtime-readable playbooks already define:
 
@@ -127,6 +128,11 @@ hidden retry runner.
 needs compact return posture around reviewed drift hints, owner-law refresh
 decisions, and rollback/safe-stop return, but it is not scheduler authority,
 not a hidden runner, and not autonomous self-maintenance.
+`AOA-P-0031 a2a-summon-return-checkpoint` is activation-readable because the
+route needs compact return posture around summon request, SDK A2A decision,
+Codex-local target, reviewed child result, checkpoint bridge, proof, memo
+writeback, and runtime dry-run receipt, but it is not live child automation or
+runtime execution authority.
 
 Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
 
@@ -193,6 +199,7 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0028 trusted-rollout-operations`
 - `AOA-P-0029 self-agency-continuity-cycle`
 - `AOA-P-0030 component-refresh-cycle`
+- `AOA-P-0031 a2a-summon-return-checkpoint`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 For the runtime-facing memo cohort, they also carry flat memo recall defaults so downstream runtimes can derive `inspect`, `capsule`, and `expand` posture without inventing new playbook semantics.
