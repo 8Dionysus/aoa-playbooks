@@ -1,0 +1,103 @@
+{
+  "schema_version": "aoa_hook_binding_set_v1",
+  "component_ref": "component:playbooks:scenario-composition-beacons",
+  "owner_repo": "aoa-playbooks",
+  "notes": "Session-stop harvest and real-run observation bridge for scenario and subagent pressure.",
+  "bindings": [
+    {
+      "binding_ref": "playbooks.harvest_patterns.session_stop",
+      "event": "session_stop",
+      "producer": "harvest_pattern_watch",
+      "component_ref": "component:playbooks:scenario-composition-beacons",
+      "owner_repo": "aoa-playbooks",
+      "input_ref": "real-run-harvests",
+      "path_globs": [
+        "examples/harvests/*",
+        "docs/real-runs/*",
+        "docs/gate-reviews/*"
+      ],
+      "config": {
+        "record_id_field": "harvest_ref",
+        "phrase_signals": [
+          {
+            "signal": "repeated_scenario_shape",
+            "category": "repeat_pattern",
+            "phrases": [
+              "recurring scenario",
+              "same route"
+            ],
+            "mode": "all",
+            "notes": "markdown harvest notes point to a repeated scenario shape"
+          },
+          {
+            "signal": "bounded_parallel_split_seen",
+            "category": "repeat_pattern",
+            "phrases": [
+              "bounded parallel split",
+              "short ledgers"
+            ],
+            "mode": "all",
+            "notes": "markdown note describes a bounded split that merges through short ledgers"
+          },
+          {
+            "signal": "automation_readiness_signal",
+            "category": "review_signal",
+            "phrases": [
+              "automation readiness",
+              "reviewed automation"
+            ],
+            "mode": "any",
+            "notes": "markdown note claims bounded automation readiness pressure"
+          }
+        ],
+        "json_field_signals": [
+          {
+            "signal": "repeated_scenario_shape",
+            "category": "repeat_pattern",
+            "match": "exists",
+            "field": "scenario_repeat",
+            "attributes_from_fields": [
+              "scenario_repeat",
+              "playbook_ref"
+            ]
+          },
+          {
+            "signal": "bounded_parallel_split_seen",
+            "category": "repeat_pattern",
+            "match": "equals",
+            "field": "bounded_parallel_split",
+            "value": true,
+            "attributes_from_fields": [
+              "bounded_parallel_split",
+              "playbook_ref"
+            ]
+          },
+          {
+            "signal": "reviewable_split_repeated",
+            "category": "review_signal",
+            "match": "equals",
+            "field": "reviewable_split_repeated",
+            "value": true,
+            "attributes_from_fields": [
+              "reviewable_split_repeated",
+              "playbook_ref"
+            ]
+          },
+          {
+            "signal": "automation_readiness_signal",
+            "category": "review_signal",
+            "match": "equals",
+            "field": "automation_readiness",
+            "value": true,
+            "attributes_from_fields": [
+              "automation_readiness",
+              "playbook_ref"
+            ]
+          }
+        ]
+      },
+      "signal_rules": [],
+      "notes": "Read harvests and gate reviews as pressure signals without creating live automation."
+    }
+  ]
+}

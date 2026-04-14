@@ -1,0 +1,259 @@
+{
+  "schema_version": "aoa_recurrence_component_v2",
+  "component_ref": "component:playbooks:scenario-composition-beacons",
+  "owner_repo": "aoa-playbooks",
+  "description": "Recurring scenario composition, composition gates, subagent recipes, and automation-seed surfaces.",
+  "source_inputs": [
+    "playbooks/*/PLAYBOOK.md",
+    "docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md",
+    "docs/SUBAGENT_PATTERNS.md",
+    "docs/AUTOMATION_SEEDS.md",
+    "docs/PLAYBOOK_COMPOSITION_GATES.md",
+    "docs/PLAYBOOK_REAL_RUN_HARVEST.md"
+  ],
+  "generated_surfaces": [
+    "generated/playbook_registry.min.json",
+    "generated/playbook_subagent_recipes.json",
+    "generated/playbook_automation_seeds.json",
+    "generated/playbook_composition_manifest.json"
+  ],
+  "contract_surfaces": [
+    "docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md",
+    "docs/SUBAGENT_PATTERNS.md",
+    "docs/AUTOMATION_SEEDS.md",
+    "docs/PLAYBOOK_COMPOSITION_GATES.md"
+  ],
+  "documentation_surfaces": [
+    "README.md",
+    "QUESTBOOK.md"
+  ],
+  "proof_surfaces": [
+    "python scripts/validate_playbooks.py",
+    "python -m pytest -q tests"
+  ],
+  "receipt_surfaces": [
+    ".aoa/live_receipts/playbook-receipts.jsonl"
+  ],
+  "refresh_routes": [
+    {
+      "action": "revalidate",
+      "commands": [
+        "python scripts/validate_playbooks.py",
+        "python -m pytest -q tests"
+      ],
+      "notes": "keep playbook canon, composition adjuncts, and evidence surfaces aligned"
+    },
+    {
+      "action": "repair",
+      "commands": [
+        "python scripts/validate_playbooks.py"
+      ],
+      "notes": "repair scenario or composition drift without inventing scheduler behavior"
+    }
+  ],
+  "consumer_edges": [],
+  "drift_signals": [
+    {
+      "signal": "subagent_recipe_changed_without_review_refresh",
+      "recommended_action": "revalidate",
+      "severity": "medium"
+    },
+    {
+      "signal": "automation_seed_changed_without_gate_refresh",
+      "recommended_action": "repair",
+      "severity": "medium"
+    }
+  ],
+  "freshness": {
+    "stale_after_days": 21,
+    "repeat_trigger_threshold": 2,
+    "open_window_days": 14
+  },
+  "rollback_anchors": [
+    "docs/SUBAGENT_PATTERNS.md",
+    "docs/AUTOMATION_SEEDS.md",
+    "playbooks/component-refresh-cycle/PLAYBOOK.md"
+  ],
+  "tags": [
+    "playbooks",
+    "composition",
+    "subagents",
+    "automation-seeds",
+    "beacons"
+  ],
+  "signal_edges": [
+    {
+      "kind": "implemented_by_skill",
+      "target": "component:skills:bundle-and-activation-beacons",
+      "target_repo": "aoa-skills",
+      "notes": "playbooks coordinate skills without owning single bounded workflow meaning"
+    },
+    {
+      "kind": "proved_by_eval",
+      "target": "component:evals:portable-proof-beacons",
+      "target_repo": "aoa-evals",
+      "notes": "playbooks inherit bounded evidence expectations rather than replacing proof doctrine"
+    }
+  ],
+  "observation_inputs": [
+    {
+      "input_ref": "real-run-harvests",
+      "kind": "harvest",
+      "path_globs": [
+        "examples/harvests/*",
+        "docs/real-runs/*"
+      ],
+      "notes": "bounded real-run and harvest evidence"
+    },
+    {
+      "input_ref": "playbook-live-receipts",
+      "kind": "receipt",
+      "path_globs": [
+        ".aoa/live_receipts/playbook-receipts.jsonl"
+      ],
+      "notes": "owner-local public-safe playbook receipts"
+    },
+    {
+      "input_ref": "composition-gates",
+      "kind": "review_note",
+      "path_globs": [
+        "docs/PLAYBOOK_COMPOSITION_GATES.md",
+        "docs/gate-reviews/*"
+      ],
+      "notes": "composition readiness and gate review posture"
+    }
+  ],
+  "beacon_rules": [
+    {
+      "beacon_ref": "playbooks.recurring_scenario.candidate",
+      "kind": "playbook_candidate",
+      "decision_surface": "docs/PLAYBOOK_COMPOSITION_GATES.md",
+      "target_repo": "aoa-playbooks",
+      "observation_inputs": [
+        "change_signal",
+        "real-run-harvests",
+        "playbook-live-receipts",
+        "composition-gates"
+      ],
+      "match_signals": [
+        "repeated_scenario_shape",
+        "real_run_harvest_ready",
+        "composition_gate_pressure",
+        "receipt_changed"
+      ],
+      "match_categories": [
+        "repeat_pattern",
+        "evidence_pressure",
+        "review_signal"
+      ],
+      "thresholds": {
+        "watch_observations": 1,
+        "candidate_observations": 2,
+        "review_ready_observations": 3,
+        "min_unique_sources": 2,
+        "min_unique_evidence_refs": 2
+      },
+      "status_ladder": [
+        "hint",
+        "watch",
+        "candidate",
+        "review_ready"
+      ],
+      "suppress_when": [],
+      "recommended_actions": [
+        "capture the recurring scenario as a playbook candidate"
+      ],
+      "notes": "scenario repetition should open a bounded review surface rather than silently widening a skill"
+    },
+    {
+      "beacon_ref": "playbooks.subagent.recipe_pressure",
+      "kind": "subagent_recipe_candidate",
+      "decision_surface": "docs/SUBAGENT_PATTERNS.md",
+      "target_repo": "aoa-playbooks",
+      "observation_inputs": [
+        "change_signal",
+        "real-run-harvests",
+        "composition-gates"
+      ],
+      "match_signals": [
+        "bounded_parallel_split_seen",
+        "subagent_handoff_receipt_ready",
+        "reviewable_split_repeated"
+      ],
+      "match_categories": [
+        "repeat_pattern",
+        "review_signal"
+      ],
+      "thresholds": {
+        "watch_observations": 1,
+        "candidate_observations": 2,
+        "review_ready_observations": 3,
+        "min_unique_sources": 2,
+        "min_unique_evidence_refs": 2
+      },
+      "status_ladder": [
+        "hint",
+        "watch",
+        "candidate",
+        "review_ready"
+      ],
+      "suppress_when": [
+        "automatic_orchestration_requested"
+      ],
+      "recommended_actions": [
+        "record an explicit subagent recipe without turning it into auto-orchestration"
+      ],
+      "notes": "subagent recipes stay scenario helpers, not role canon and not automatic orchestration"
+    },
+    {
+      "beacon_ref": "playbooks.automation.seed_pressure",
+      "kind": "automation_seed_candidate",
+      "decision_surface": "docs/AUTOMATION_SEEDS.md",
+      "target_repo": "aoa-playbooks",
+      "observation_inputs": [
+        "change_signal",
+        "real-run-harvests",
+        "composition-gates"
+      ],
+      "match_signals": [
+        "manual_route_repeated",
+        "automation_readiness_signal",
+        "schedule_boundary_declared"
+      ],
+      "match_categories": [
+        "repeat_pattern",
+        "review_signal"
+      ],
+      "thresholds": {
+        "watch_observations": 1,
+        "candidate_observations": 2,
+        "review_ready_observations": 3,
+        "min_unique_sources": 2,
+        "min_unique_evidence_refs": 2
+      },
+      "status_ladder": [
+        "hint",
+        "watch",
+        "candidate",
+        "review_ready"
+      ],
+      "suppress_when": [
+        "live_scheduler_requested"
+      ],
+      "recommended_actions": [
+        "record an automation seed example without creating a live scheduler lane"
+      ],
+      "notes": "automation seeds stay examples, not schedules"
+    }
+  ],
+  "decision_surfaces": [
+    "docs/PLAYBOOK_COMPOSITION_GATES.md",
+    "docs/SUBAGENT_PATTERNS.md",
+    "docs/AUTOMATION_SEEDS.md",
+    "playbooks/component-refresh-cycle/PLAYBOOK.md"
+  ],
+  "candidate_targets": [
+    "generated/playbook_subagent_recipes.json",
+    "generated/playbook_automation_seeds.json"
+  ]
+}
