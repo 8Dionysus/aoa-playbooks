@@ -101,6 +101,11 @@ The route keeps eight things explicit:
 - which `runtime_closeout_dry_run_receipt` proves only adapter assembly, not
   live runtime execution
 
+The current canonical full-chain example is the SDK-owned fixture
+`repo:aoa-sdk/examples/a2a/summon_return_checkpoint_e2e.fixture.json`. This
+playbook may cite it as a route walkthrough, but the fixture remains a
+control-plane example rather than playbook authority or runtime execution.
+
 This playbook is narrower than `AOA-P-0025` because it does not attempt the
 whole session-growth route. It is narrower than `AOA-P-0027` because the route
 is not deciding whether automation should become a playbook-owned candidate.
@@ -228,6 +233,7 @@ continuity.
 ## Expected evidence posture
 
 The route should finish with visible evidence for:
+- which SDK-owned E2E fixture, if any, connected the full dry-run route
 - which parent route and `summon_request` governed the child task
 - which `summon_decision` allowed, narrowed, blocked, or split the route
 - which Codex-local target was selected and what owner role source supported it
@@ -274,6 +280,11 @@ The route should finish with visible evidence for:
    only if they are earned.
 7. Assemble one `runtime_closeout_dry_run_receipt` that remains dry-run only.
 8. Close as return-ready, split-required, human-gated, or safe-stop.
+
+When using the current fixture, confirm its `routing_reentry.primary_action`
+returns to `aoa-playbooks/generated/playbook_registry.min.json` with
+`target_value=AOA-P-0031`; routing must not become the source of playbook
+meaning.
 
 ## Expected artifacts
 
