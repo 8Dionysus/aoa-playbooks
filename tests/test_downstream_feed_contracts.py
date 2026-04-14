@@ -241,7 +241,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
         self.assertEqual(by_id["AOA-P-0021"]["reviewed_run_count"], 3)
         self.assertEqual(by_id["AOA-P-0023"]["gate_verdict"], "composition-landed")
-        self.assertEqual(by_id["AOA-P-0023"]["reviewed_run_count"], 2)
+        self.assertEqual(by_id["AOA-P-0023"]["reviewed_run_count"], 3)
         self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0024"]["reviewed_run_count"], 1)
         self.assertEqual(by_id["AOA-P-0019"]["gate_verdict"], "hold")
@@ -436,6 +436,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "docs/gate-reviews/closeout-owner-follow-through-continuity.md",
                 "docs/real-runs/2026-04-08.closeout-owner-follow-through-continuity.md",
                 "docs/real-runs/2026-04-09.closeout-owner-follow-through-continuity.workspace-checkpoint-growth.md",
+                "docs/real-runs/2026-04-13.closeout-owner-follow-through-continuity.aoa-kag-owner-followthrough.md",
             ],
         )
         self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
@@ -572,6 +573,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             [
                 "docs/real-runs/2026-04-08.closeout-owner-follow-through-continuity.md",
                 "docs/real-runs/2026-04-09.closeout-owner-follow-through-continuity.workspace-checkpoint-growth.md",
+                "docs/real-runs/2026-04-13.closeout-owner-follow-through-continuity.aoa-kag-owner-followthrough.md",
             ],
         )
         self.assertEqual(
