@@ -178,5 +178,20 @@
     "owner_surface": "playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md",
     "source_path": "quests/AOA-PB-Q-0009.yaml",
     "public_safe": true
+  },
+  {
+    "id": "AOA-PB-Q-0010",
+    "title": "Keep Wave5 A2A summon return closeout survivors owner-routed",
+    "repo": "aoa-playbooks",
+    "theme_ref": "",
+    "milestone_ref": "",
+    "state": "reanchor",
+    "band": "near",
+    "kind": "harvest",
+    "difficulty": "d3_seam",
+    "risk": "r1_repo_local",
+    "owner_surface": "playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md",
+    "source_path": "quests/AOA-PB-Q-0010.yaml",
+    "public_safe": true
   }
 ]

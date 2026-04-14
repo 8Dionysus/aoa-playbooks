@@ -1,0 +1,59 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0010
+title: Keep Wave5 A2A summon return closeout survivors owner-routed
+summary: Carry the Wave5 A2A summon return checkpoint closeout survivors into owner-local follow-through without promoting one reviewed route into skill, proof, memo, or agent canon.
+repo: aoa-playbooks
+owner_surface: playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0009
+activation:
+  mode: on_review_of
+  ref: session:2026-04-13T23-45-25-274328Z-aoa-sdk-checkpoint-growth-8a1bacd7-bd9
+  note: open after reviewed closeout kept the Wave5 A2A summon return survivors as owner-routed follow-through rather than immediate promotion
+anchor_ref:
+  artifact: a2a_summon_return_checkpoint
+  ref: playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md
+  note: keep the route on the A2A summon return checkpoint boundary while owner-local proof, memo, skill, and agent holds stay subordinate
+handoff_role: playbook-maintainer
+evidence:
+  - reviewed closeout produced fourteen surviving units from the Wave5 A2A summon return checkpoint route
+  - the quest promotion verdict was keep_open_quest, with multi-candidate follow-up required rather than final promotion
+  - owner handoff spans Dionysus, aoa-sdk, aoa-skills, aoa-evals, aoa-playbooks, aoa-memo, aoa-routing, aoa-agents, and abyss-stack without moving their source truth into aoa-playbooks
+harvest:
+  target: playbook
+  trigger_count: 14
+  note: keep as owner-routed follow-through until another reviewed route proves stronger recurrence or closure
+opened_at: '2026-04-13'
+touched_at: '2026-04-13'
+tags:
+  - a2a
+  - summon-return
+  - checkpoint
+  - owner-follow-through
+  - reanchor
+notes: >
+  Anchored by
+  session:2026-04-13T23-45-25-274328Z-aoa-sdk-checkpoint-growth-8a1bacd7-bd9.
+  This quest keeps the route-level survivor visible while the workflow-shaped,
+  proof-shaped, memo-shaped, and agent-shaped survivors land in their owner
+  repositories as bounded hold surfaces.
+public_safe: true
