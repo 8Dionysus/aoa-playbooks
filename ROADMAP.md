@@ -11,7 +11,7 @@ The immediate goal is no longer to prove that the repository can exist.
 The next goal is to keep the current portfolio honest through boundary repair,
 reviewed evidence, and maintenance discipline:
 - preserve the current authored, activation, federation, review-status, landing-governance, and composition seams without widening them casually
-- keep `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, and `AOA-P-0030 component-refresh-cycle` aligned with their authored docs, generated surfaces, and reviewed evidence
+- keep `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, `AOA-P-0030 component-refresh-cycle`, and `AOA-P-0031 a2a-summon-return-checkpoint` aligned with their authored docs, generated surfaces, and reviewed evidence
 - keep `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` as the companion lane to `AOA-P-0028` rather than a second sovereign playbook
 - keep questline, campaign, and `QUESTBOOK.md` adjunct posture evidence-first and bounded
 - treat `AOA-P-0019` and `AOA-P-0020` as evidence-gated operational routes rather than the sole frontier of the repository
@@ -21,7 +21,7 @@ reviewed evidence, and maintenance discipline:
 
 The currently published playbook canon already includes:
 - baseline public routes `AOA-P-0001` through `AOA-P-0005`
-- the current growth, follow-through, shared-root rollout, continuity, and component-refresh routes `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, and `AOA-P-0030 component-refresh-cycle`
+- the current growth, follow-through, shared-root rollout, continuity, component-refresh, and A2A summon-return routes `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, `AOA-P-0030 component-refresh-cycle`, and `AOA-P-0031 a2a-summon-return-checkpoint`
 - generated coordination surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_landing_governance.min.json`
 - generated composition adjuncts such as `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_subagent_recipes.json`
 
