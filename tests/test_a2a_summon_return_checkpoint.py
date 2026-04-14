@@ -39,6 +39,11 @@ def test_a2a_summon_return_checkpoint_docs_stay_discoverable() -> None:
     assert "a2a-summon-return-checkpoint" in docs_map
     assert "hidden child automation" in readme
     assert "runtime dry-run receipt" in execution_seam
+    playbook = (
+        REPO_ROOT / "playbooks" / "a2a-summon-return-checkpoint" / "PLAYBOOK.md"
+    ).read_text(encoding="utf-8")
+    assert "repo:aoa-sdk/examples/a2a/summon_return_checkpoint_e2e.fixture.json" in playbook
+    assert "routing_reentry.primary_action" in playbook
 
 
 def test_a2a_summon_return_checkpoint_stays_out_of_composition_until_reviewed_run() -> None:
