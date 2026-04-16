@@ -1,0 +1,64 @@
+{
+  "schema_version": "playbook_stress_lane_v1",
+  "lane_id": "playbook:stress-lane:runtime-chaos-recovery:retrieval-outage-honesty",
+  "playbook_id": "playbooks/runtime-chaos-recovery/PLAYBOOK.md",
+  "scenario_family": "runtime_chaos_recovery",
+  "stress_family": "retrieval_outage_honesty",
+  "activation_triggers": [
+    "service_degradation_receipt_v1 incident_class=derived_projection_unavailable",
+    "KAG projection health is degraded_source_first or quarantined",
+    "derived continuation would otherwise fabricate retrieval continuity"
+  ],
+  "stop_conditions": [
+    "a quarantined projection is still required for the next route",
+    "re-entry evidence is weaker than the gate requires",
+    "any route would silently reopen blocked mutation families"
+  ],
+  "degraded_lane": {
+    "posture": "reground_first",
+    "entry_conditions": [
+      "owner-local runtime receipt exists",
+      "source-owned fallback surfaces are readable"
+    ],
+    "steps": [
+      {
+        "kind": "artifact",
+        "target": "abyss-stack:service_degradation_receipt_v1#runtime:degrade:route-api:2026-04-13T12:55:00Z:retrieval-outage-honesty",
+        "reason": "Start from the honest runtime outage receipt."
+      },
+      {
+        "kind": "artifact",
+        "target": "aoa-kag:projection_health_receipt_v1#kag:health:retrieval-bridge-projection:2026-04-13T13:05:00Z",
+        "reason": "Read derived-surface health from the KAG-owned receipt."
+      },
+      {
+        "kind": "artifact",
+        "target": "aoa-kag:regrounding_ticket_v1#kag:reground:retrieval-bridge-projection:2026-04-13",
+        "reason": "Reground through the bounded ticket instead of inventing a repair in the playbook."
+      },
+      {
+        "kind": "role",
+        "target": "aoa-agents:reviewer",
+        "reason": "Keep broader movement held until the re-entry gate is reviewed."
+      }
+    ],
+    "bounded_output": [
+      "source-first continuation",
+      "explicit hold or resume_degraded decision",
+      "artifact-hook candidate with no runtime verdict"
+    ]
+  },
+  "evidence_expectations": [
+    "owner-local runtime receipt",
+    "projection-health receipt",
+    "regrounding ticket",
+    "explicit re-entry gate"
+  ],
+  "handoff_targets": [
+    "aoa-agents:reviewer",
+    "aoa-kag:regrounding_ticket_v1"
+  ],
+  "reentry_gate_ref": "aoa-playbooks:playbook_reentry_gate_v1#gate:runtime-chaos-recovery:retrieval-outage-honesty",
+  "adaptation_expectation": "required_if_repeated",
+  "notes": "This lane keeps the route source-first until the derived surface validates again."
+}

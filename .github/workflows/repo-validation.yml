@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: 8Dionysus/aoa-evals
-          ref: 9b7a0ae939bc53fa542f468b2b858cd13bb4e5a9
+          ref: 2b5fda73e31d5c24a5b687c5f5d3d33a6bf9f92c
           path: .deps/aoa-evals
 
       - name: Checkout aoa-skills

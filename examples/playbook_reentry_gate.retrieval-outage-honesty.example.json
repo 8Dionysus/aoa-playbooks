@@ -1,0 +1,37 @@
+{
+  "schema_version": "playbook_reentry_gate_v1",
+  "gate_id": "gate:runtime-chaos-recovery:retrieval-outage-honesty",
+  "generated_at_utc": "2026-04-13T13:25:00Z",
+  "playbook_id": "playbooks/runtime-chaos-recovery/PLAYBOOK.md",
+  "scope": {
+    "repo": "abyss-stack",
+    "surface": "route-api",
+    "stress_family": "retrieval_outage_honesty"
+  },
+  "required_evidence": [
+    "abyss-stack:service_degradation_receipt_v1#runtime:degrade:route-api:2026-04-13T12:55:00Z:retrieval-outage-honesty",
+    "aoa-kag:projection_health_receipt_v1#kag:health:retrieval-bridge-projection:2026-04-13T13:05:00Z",
+    "aoa-kag:regrounding_ticket_v1#kag:reground:retrieval-bridge-projection:2026-04-13"
+  ],
+  "readiness_checks": [
+    {
+      "kind": "artifact",
+      "target": "aoa-kag:regrounding_ticket_v1#kag:reground:retrieval-bridge-projection:2026-04-13",
+      "pass_condition": "The bounded regrounding plan exists and names real validation steps."
+    },
+    {
+      "kind": "validator",
+      "target": "python scripts/validate_kag.py",
+      "pass_condition": "The regrounded derived surface validates before re-entry is reopened."
+    },
+    {
+      "kind": "operator",
+      "target": "reviewer",
+      "pass_condition": "The reviewer confirms that source-first posture stayed visible and blocked routes remain blocked."
+    }
+  ],
+  "decision": "hold",
+  "decided_by": "reviewer",
+  "reopen_actions": [],
+  "notes": "The honest re-entry decision for this seed is hold-until-pass, not decorative resume."
+}

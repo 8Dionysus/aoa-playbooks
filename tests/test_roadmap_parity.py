@@ -37,6 +37,8 @@ class RoadmapParityTestCase(unittest.TestCase):
             "AOA-P-0028",
             "AOA-P-0029",
             "AOA-P-0030",
+            "AOA-P-0031",
+            "AOA-P-0032",
         ):
             self.assertIn(playbook_id, registry_ids)
 
@@ -49,6 +51,8 @@ class RoadmapParityTestCase(unittest.TestCase):
             "AOA-P-0028",
             "AOA-P-0029",
             "AOA-P-0030",
+            "AOA-P-0031",
+            "AOA-P-0032",
         ):
             self.assertIn(playbook_id, roadmap)
 
@@ -73,6 +77,8 @@ class RoadmapParityTestCase(unittest.TestCase):
         self.assertIn("AOA-P-0028", portfolio)
         self.assertIn("AOA-P-0029", portfolio)
         self.assertIn("AOA-P-0030", portfolio)
+        self.assertIn("AOA-P-0031", portfolio)
+        self.assertIn("AOA-P-0032", portfolio)
         self.assertIn("docs/CODEX_PLANE_ROLLOUT_CYCLE.md", readme)
         self.assertIn("docs/CODEX_PLANE_ROLLOUT_CYCLE.md", roadmap)
         self.assertIn("QUESTBOOK.md", readme)
