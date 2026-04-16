@@ -90,6 +90,7 @@ The current activation-eligible scenarios for this seam are:
 - `AOA-P-0029 self-agency-continuity-cycle`
 - `AOA-P-0030 component-refresh-cycle`
 - `AOA-P-0031 a2a-summon-return-checkpoint`
+- `AOA-P-0032 runtime-chaos-recovery`
 
 These runtime-readable playbooks already define:
 
@@ -133,6 +134,10 @@ route needs compact return posture around summon request, SDK A2A decision,
 Codex-local target, reviewed child result, checkpoint bridge, proof, memo
 writeback, and runtime dry-run receipt, but it is not live child automation or
 runtime execution authority.
+`AOA-P-0032 runtime-chaos-recovery` is activation-readable because the route
+needs compact return posture around runtime receipt, degraded lane, explicit
+re-entry gate, source-first regrounding, and proof-facing handoff, but it is
+not runtime repair authority, KAG health truth, or a verdict engine.
 
 Their derived activation entries are validated against the generated collection and the matching fixture examples in `examples/`.
 
@@ -200,6 +205,7 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0029 self-agency-continuity-cycle`
 - `AOA-P-0030 component-refresh-cycle`
 - `AOA-P-0031 a2a-summon-return-checkpoint`
+- `AOA-P-0032 runtime-chaos-recovery`
 
 Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
 For the runtime-facing memo cohort, they also carry flat memo recall defaults so downstream runtimes can derive `inspect`, `capsule`, and `expand` posture without inventing new playbook semantics.

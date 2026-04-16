@@ -25,6 +25,22 @@ class AntifragilityPublicSurfaceTests(unittest.TestCase):
                 "schemas/playbook_reentry_gate_v1.json",
                 "examples/playbook_reentry_gate.example.json",
             ),
+            (
+                "schemas/playbook_stress_lane_v1.json",
+                "examples/playbook_stress_lane.runtime-timeout-chaos.example.json",
+            ),
+            (
+                "schemas/playbook_reentry_gate_v1.json",
+                "examples/playbook_reentry_gate.runtime-timeout-chaos.example.json",
+            ),
+            (
+                "schemas/playbook_stress_lane_v1.json",
+                "examples/playbook_stress_lane.retrieval-outage-honesty.example.json",
+            ),
+            (
+                "schemas/playbook_reentry_gate_v1.json",
+                "examples/playbook_reentry_gate.retrieval-outage-honesty.example.json",
+            ),
         )
 
         for schema_path, example_path in surfaces:
@@ -40,11 +56,14 @@ class AntifragilityPublicSurfaceTests(unittest.TestCase):
         docs_readme = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
         lanes = (REPO_ROOT / "docs" / "PLAYBOOK_STRESS_LANES.md").read_text(encoding="utf-8")
         harvest = (REPO_ROOT / "docs" / "PLAYBOOK_STRESS_HARVEST.md").read_text(encoding="utf-8")
+        chaos = (REPO_ROOT / "docs" / "PLAYBOOK_STRESS_CHAOS_WAVE1.md").read_text(encoding="utf-8")
 
         self.assertIn("docs/PLAYBOOK_STRESS_LANES.md", readme)
         self.assertIn("docs/PLAYBOOK_STRESS_HARVEST.md", readme)
+        self.assertIn("docs/PLAYBOOK_STRESS_CHAOS_WAVE1.md", readme)
         self.assertIn("PLAYBOOK_STRESS_LANES", docs_readme)
         self.assertIn("PLAYBOOK_STRESS_HARVEST", docs_readme)
+        self.assertIn("PLAYBOOK_STRESS_CHAOS_WAVE1", docs_readme)
 
         for token in (
             "do not let playbooks replace source-owned receipts",
@@ -60,10 +79,21 @@ class AntifragilityPublicSurfaceTests(unittest.TestCase):
         ):
             self.assertIn(token, harvest)
 
+        for token in (
+            "structured degraded lanes and explicit re-entry gates",
+            "AOA-P-0032 runtime-chaos-recovery",
+            "runtime repair implementation",
+        ):
+            self.assertIn(token, chaos)
+
     def test_examples_target_existing_playbook(self) -> None:
         for example_path in (
             "examples/playbook_stress_lane.example.json",
             "examples/playbook_reentry_gate.example.json",
+            "examples/playbook_stress_lane.runtime-timeout-chaos.example.json",
+            "examples/playbook_reentry_gate.runtime-timeout-chaos.example.json",
+            "examples/playbook_stress_lane.retrieval-outage-honesty.example.json",
+            "examples/playbook_reentry_gate.retrieval-outage-honesty.example.json",
         ):
             with self.subTest(example=example_path):
                 payload = load_json(example_path)

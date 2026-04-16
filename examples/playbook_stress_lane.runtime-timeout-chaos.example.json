@@ -1,0 +1,63 @@
+{
+  "schema_version": "playbook_stress_lane_v1",
+  "lane_id": "playbook:stress-lane:runtime-chaos-recovery:timeout-chaos",
+  "playbook_id": "playbooks/runtime-chaos-recovery/PLAYBOOK.md",
+  "scenario_family": "runtime_chaos_recovery",
+  "stress_family": "timeout_chaos",
+  "activation_triggers": [
+    "service_degradation_receipt_v1 incident_class=timeout_chaos",
+    "operator-visible degraded continuation exists but the full-service budget is exhausted",
+    "repair would otherwise widen beyond the bounded runtime lane"
+  ],
+  "stop_conditions": [
+    "full-service path still exceeds the bounded timeout budget",
+    "evidence continuity is thinner than the re-entry gate requires",
+    "repair would require unrelated service restarts or hidden mutation"
+  ],
+  "degraded_lane": {
+    "posture": "human_review_first",
+    "entry_conditions": [
+      "owner-local runtime receipt exists",
+      "operator-visible degraded continuation is explicit"
+    ],
+    "steps": [
+      {
+        "kind": "artifact",
+        "target": "abyss-stack:service_degradation_receipt_v1#runtime:degrade:route-api:2026-04-13T12:10:00Z:timeout-chaos",
+        "reason": "Start from the owner-local runtime receipt."
+      },
+      {
+        "kind": "doc",
+        "target": "abyss-stack:docs/ANTIFRAGILITY_RUNTIME.md",
+        "reason": "Re-read the runtime stress doctrine before any repair story."
+      },
+      {
+        "kind": "role",
+        "target": "aoa-agents:reviewer",
+        "reason": "Keep broader action held until a reviewer sees the bounded receipt trail."
+      },
+      {
+        "kind": "doc",
+        "target": "aoa-evals:docs/TRACE_EVAL_BRIDGE.md",
+        "reason": "Prepare later proof reading without moving verdict logic into runtime."
+      }
+    ],
+    "bounded_output": [
+      "operator-visible degraded continuation",
+      "reviewed runtime closeout receipt",
+      "optional runtime evidence-selection candidate"
+    ]
+  },
+  "evidence_expectations": [
+    "owner-local runtime receipt",
+    "reviewed closeout receipt",
+    "explicit blocked-widening posture"
+  ],
+  "handoff_targets": [
+    "aoa-agents:reviewer",
+    "aoa-evals:runtime_evidence_selection"
+  ],
+  "reentry_gate_ref": "aoa-playbooks:playbook_reentry_gate_v1#gate:runtime-chaos-recovery:timeout-chaos",
+  "adaptation_expectation": "required_if_repeated",
+  "notes": "Degraded continuation is allowed only as a bounded reviewed lane."
+}

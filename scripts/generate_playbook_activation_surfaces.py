@@ -30,6 +30,7 @@ ACTIVATION_PLAYBOOK_IDS = (
     "AOA-P-0029",
     "AOA-P-0030",
     "AOA-P-0031",
+    "AOA-P-0032",
 )
 OPTIONAL_RETURN_FIELDS = ("return_posture", "return_anchor_artifacts", "return_reentry_modes")
 OPTIONAL_MEMO_SPEC_FIELDS = (

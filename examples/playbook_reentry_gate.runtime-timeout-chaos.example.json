@@ -1,0 +1,39 @@
+{
+  "schema_version": "playbook_reentry_gate_v1",
+  "gate_id": "gate:runtime-chaos-recovery:timeout-chaos",
+  "generated_at_utc": "2026-04-13T12:45:00Z",
+  "playbook_id": "playbooks/runtime-chaos-recovery/PLAYBOOK.md",
+  "scope": {
+    "repo": "abyss-stack",
+    "surface": "route-api",
+    "stress_family": "timeout_chaos"
+  },
+  "required_evidence": [
+    "abyss-stack:service_degradation_receipt_v1#runtime:degrade:route-api:2026-04-13T12:10:00Z:timeout-chaos",
+    "abyss-stack:repair_safe_closeout_receipt_v1#runtime:closeout:route-api:2026-04-13T12:40:00Z:timeout-chaos"
+  ],
+  "readiness_checks": [
+    {
+      "kind": "receipt",
+      "target": "abyss-stack:repair_safe_closeout_receipt_v1#runtime:closeout:route-api:2026-04-13T12:40:00Z:timeout-chaos",
+      "pass_condition": "The closeout is reviewed and mutation widening remained blocked."
+    },
+    {
+      "kind": "validator",
+      "target": "python scripts/validate_stack.py --parity-check",
+      "pass_condition": "Parity checks show the bounded runtime lane is coherent again."
+    },
+    {
+      "kind": "operator",
+      "target": "reviewer",
+      "pass_condition": "The reviewer agrees that only degraded continuation or bounded resume is reopened."
+    }
+  ],
+  "decision": "resume_degraded",
+  "decided_by": "reviewer",
+  "reopen_actions": [
+    "bounded operator-visible degraded continuation",
+    "source-first diagnostic inspection"
+  ],
+  "notes": "Full-service reopen requires a later stronger pass. This gate only reopens the bounded route."
+}
