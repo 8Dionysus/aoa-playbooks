@@ -1,0 +1,66 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0011
+title: Keep chaos-wave1 runtime closeout survivors owner-routed
+summary: Carry the reviewed chaos-wave1 runtime closeout survivors into owner-local
+  follow-through without promoting one re-entry route into skill, proof,
+  technique, memo, or agent canon.
+repo: aoa-playbooks
+owner_surface: playbooks/runtime-chaos-recovery/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0010
+activation:
+  mode: on_review_of
+  ref: session:2026-04-16T15-16-30-804824Z-abyss-stack-checkpoint-growth-74c888d1-3a8
+  note: open after reviewed closeout keeps the chaos-wave1 runtime survivors
+    owner-routed instead of minting new layer canon
+anchor_ref:
+  artifact: runtime_chaos_recovery
+  ref: playbooks/runtime-chaos-recovery/PLAYBOOK.md
+  note: keep the route on the runtime-chaos-recovery boundary while owner-local
+    proof, technique, and skill holds stay subordinate
+handoff_role: playbook-maintainer
+evidence:
+  - reviewed closeout accepted 17 candidate refs from the chaos-wave1 session,
+    but bounded quest triage kept only one route-shaped owner follow-through open
+  - the quest promotion verdict stayed keep_open_quest on
+    candidate:route:aoa-playbooks-playbook-registry-min
+  - owner handoff routed the remaining bounded follow-through into aoa-evals,
+    aoa-techniques, and aoa-skills without moving their source truth into
+    aoa-playbooks
+harvest:
+  target: playbook
+  trigger_count: 17
+  note: keep this as owner-routed follow-through until another reviewed
+    runtime-chaos route proves stronger recurrence or closure
+opened_at: '2026-04-17'
+touched_at: '2026-04-17'
+tags:
+  - chaos-wave1
+  - runtime-chaos
+  - owner-follow-through
+  - reanchor
+notes: >
+  The later route-api repair and federated doctor warning narrowed the runtime
+  result without changing the playbook boundary. `aoa-playbooks` owns the
+  recurring route and re-entry posture here, not the runtime repair act or the
+  later proof and technique follow-through.
+public_safe: true
