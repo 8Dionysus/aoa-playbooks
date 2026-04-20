@@ -93,6 +93,17 @@ def collapse_text(text: str) -> str:
     return " ".join(text.replace("`", "").split())
 
 
+def extract_reviewed_run_refs(section_text: str) -> list[str]:
+    refs: list[str] = []
+    seen: set[str] = set()
+    for match in REVIEWED_RUN_REF_RE.finditer(section_text):
+        ref = f"docs/real-runs/{match.group(1)}"
+        if ref not in seen:
+            refs.append(ref)
+            seen.add(ref)
+    return refs
+
+
 def parse_playbook_id(section_text: str, *, location: str) -> str:
     match = PLAYBOOK_ID_RE.search(section_text)
     if match is None:
@@ -202,12 +213,7 @@ def build_review_status_payload() -> dict[str, object]:
                 f"for {playbook_id}"
             )
 
-        referenced_run_refs = sorted(
-            {
-                f"docs/real-runs/{match.group(1)}"
-                for match in REVIEWED_RUN_REF_RE.finditer(sections["Latest Reviewed Run"])
-            }
-        )
+        referenced_run_refs = extract_reviewed_run_refs(sections["Latest Reviewed Run"])
         actual_run_refs = reviewed_run_refs_by_playbook.get(playbook_id, [])
         missing_refs = [ref for ref in actual_run_refs if ref not in referenced_run_refs]
         unexpected_refs = [ref for ref in referenced_run_refs if ref not in actual_run_refs]
@@ -232,9 +238,9 @@ def build_review_status_payload() -> dict[str, object]:
                 "playbook_name": registry_entry["name"],
                 "scenario": registry_entry["scenario"],
                 "gate_review_ref": location,
-                "reviewed_run_count": len(actual_run_refs),
-                "reviewed_run_refs": actual_run_refs,
-                "latest_reviewed_run_ref": actual_run_refs[-1] if actual_run_refs else None,
+                "reviewed_run_count": len(referenced_run_refs),
+                "reviewed_run_refs": referenced_run_refs,
+                "latest_reviewed_run_ref": referenced_run_refs[-1] if referenced_run_refs else None,
                 "minimum_evidence_threshold": minimum_threshold_items[0],
                 "gate_verdict": parse_gate_verdict(sections["Current Verdict"], location=location),
                 "next_trigger": collapse_text(sections["Next Trigger"]),
