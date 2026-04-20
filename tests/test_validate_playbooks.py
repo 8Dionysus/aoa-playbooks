@@ -170,6 +170,35 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
         )
 
 
+class ValidatePlaybooksFutureEvalOwnerRequestTests(unittest.TestCase):
+    def test_projection_refs_allow_future_eval_owner_requests_when_explicitly_enabled(self) -> None:
+        validate_playbooks.validate_projection_refs(
+            location="playbooks/test:AOA-P-0033",
+            participating_agents=["architect"],
+            expected_artifacts=["trace_gap_note"],
+            eval_anchors=["aoa-future-anchor"],
+            agent_names={"architect"},
+            model_tier_artifacts=set(),
+            evals_by_name={},
+            allow_missing_eval_anchors=True,
+        )
+
+    def test_projection_refs_reject_missing_eval_anchors_without_future_request_flag(self) -> None:
+        with self.assertRaisesRegex(
+            validate_playbooks.ValidationError,
+            "references eval_anchors that do not resolve in aoa-evals",
+        ):
+            validate_playbooks.validate_projection_refs(
+                location="playbooks/test:AOA-P-0033",
+                participating_agents=["architect"],
+                expected_artifacts=["trace_gap_note"],
+                eval_anchors=["aoa-future-anchor"],
+                agent_names={"architect"},
+                model_tier_artifacts=set(),
+                evals_by_name={},
+            )
+
+
 class PhaseAlphaSurfaceContractTests(unittest.TestCase):
     def test_generator_rejects_unknown_runtime_path_key(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

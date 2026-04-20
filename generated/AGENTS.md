@@ -7,6 +7,7 @@ This file applies to artifacts under `generated/`.
 `generated/` contains two different kinds of surfaces in this repository:
 
 - `playbook_registry.min.json` is a source-authored machine-readable registry surface for the playbook layer
+- `agon_trial_playbook_registry.min.json` is a derived Wave VI trial-registry projection for the pre-protocol Agon choreography family
 - `playbook_activation_surfaces.min.json` is a derived activation projection
 - `playbook_federation_surfaces.min.json` is a derived federation-closure projection
 - `playbook_review_status.min.json` is a derived evidence-status projection over reviewed summaries and gate-review notes
@@ -22,6 +23,7 @@ The activation and federation files are generated projections of canonical input
 Keep this mapping legible:
 
 - `generated/playbook_registry.min.json` stays aligned with authored scenario metadata and is validated by `scripts/validate_playbooks.py`
+- `generated/agon_trial_playbook_registry.min.json` is produced from `config/agon_trial_playbooks.seed.json` by `scripts/build_agon_trial_playbook_registry.py`
 - `generated/playbook_activation_surfaces.min.json` is produced from the registry by `scripts/generate_playbook_activation_surfaces.py`
 - `generated/playbook_federation_surfaces.min.json` is produced from `playbooks/*/PLAYBOOK.md` by `scripts/generate_playbook_federation_surfaces.py`
 - `generated/playbook_review_status.min.json` is produced from `docs/real-runs/*.md` plus `docs/gate-reviews/*.md` by `scripts/generate_playbook_review_status.py`
@@ -42,7 +44,7 @@ For `playbook_registry.min.json`:
 - preserve stable ids, names, and ordering unless a real semantic change requires otherwise
 - keep it aligned with the corresponding authored `PLAYBOOK.md` bundles
 
-For `playbook_activation_surfaces.min.json`, `playbook_federation_surfaces.min.json`, `playbook_review_status.min.json`, `playbook_landing_governance.min.json`, and the composition outputs:
+For `agon_trial_playbook_registry.min.json`, `playbook_activation_surfaces.min.json`, `playbook_federation_surfaces.min.json`, `playbook_review_status.min.json`, `playbook_landing_governance.min.json`, and the composition outputs:
 
 - Do not hand-edit derived payloads
 - regenerate them from canonical inputs
@@ -57,6 +59,8 @@ Whenever canonical inputs change, run:
 
 ```bash
 python -m pip install -r requirements-dev.txt
+python scripts/build_agon_trial_playbook_registry.py --check
+python scripts/validate_agon_trial_playbooks.py
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_review_status.py --check

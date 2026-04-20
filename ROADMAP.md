@@ -11,17 +11,20 @@ The immediate goal is no longer to prove that the repository can exist.
 The next goal is to keep the current portfolio honest through boundary repair,
 reviewed evidence, and maintenance discipline:
 - preserve the current authored, activation, federation, review-status, landing-governance, and composition seams without widening them casually
-- keep `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, `AOA-P-0030 component-refresh-cycle`, `AOA-P-0031 a2a-summon-return-checkpoint`, and `AOA-P-0032 runtime-chaos-recovery` aligned with their authored docs, generated surfaces, and reviewed evidence
+- keep `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, `AOA-P-0030 component-refresh-cycle`, `AOA-P-0031 a2a-summon-return-checkpoint`, `AOA-P-0032 runtime-chaos-recovery`, and the Wave VI Agon trial cohort `AOA-P-0033` through `AOA-P-0039` aligned with their authored docs, generated surfaces, and owner-boundary language
+- keep `docs/AGON_TRIAL_PLAYBOOKS.md` and `generated/agon_trial_playbook_registry.min.json` as the compact doctrine and registry for the bounded Agon trial family rather than second sovereign playbook truth
 - keep `docs/CODEX_PLANE_ROLLOUT_CYCLE.md` as the companion lane to `AOA-P-0028` rather than a second sovereign playbook
 - keep questline, campaign, and `QUESTBOOK.md` adjunct posture evidence-first and bounded
 - treat `AOA-P-0019` and `AOA-P-0020` as evidence-gated operational routes rather than the sole frontier of the repository
-- prefer steady-state maintenance, portfolio hardening, and reviewed evidence over catalog expansion unless a clearly distinct scenario family appears
+- prefer steady-state maintenance, portfolio hardening, and reviewed evidence over further catalog expansion unless another clearly distinct scenario family appears
 
 ## Current published contour
 
 The currently published playbook canon already includes:
 - baseline public routes `AOA-P-0001` through `AOA-P-0005`
 - the current growth, follow-through, shared-root rollout, continuity, component-refresh, A2A summon-return, and runtime-chaos routes `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, `AOA-P-0030 component-refresh-cycle`, `AOA-P-0031 a2a-summon-return-checkpoint`, and `AOA-P-0032 runtime-chaos-recovery`
+- the first pre-protocol Agon mechanical trial routes `AOA-P-0033 agon-broken-trace-trial`, `AOA-P-0034 agon-fallback-honor-trial`, `AOA-P-0035 agon-contradiction-endurance-trial`, `AOA-P-0036 agon-costly-closure-trial`, `AOA-P-0037 agon-assistant-escalation-trial`, `AOA-P-0038 agon-prediction-trial`, and `AOA-P-0039 agon-expensive-summon-intent-trial`
+- Wave VI doctrine and registry surfaces `docs/AGON_TRIAL_PLAYBOOKS.md`, `docs/AGON_MECHANICAL_TRIAL_MODEL.md`, `docs/AGON_TRIAL_CHOREOGRAPHY_BOUNDARY.md`, `docs/AGON_TRIAL_ASSISTANT_SERVICE_BOUNDARY.md`, `docs/AGON_TRIAL_OWNER_HANDOFFS.md`, `docs/AGON_WAVE6_PLAYBOOK_LANDING.md`, and `generated/agon_trial_playbook_registry.min.json`
 - generated coordination surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_landing_governance.min.json`
 - generated composition adjuncts such as `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_subagent_recipes.json`
 

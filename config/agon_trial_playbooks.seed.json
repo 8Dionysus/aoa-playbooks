@@ -1,0 +1,1138 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "gate_trigger_source": "aoa-routing/generated/agon_gate_routing_registry.min.json",
+  "lawful_move_source": "Agents-of-Abyss/generated/agon_lawful_move_registry.min.json",
+  "live_protocol": false,
+  "repo": "aoa-playbooks",
+  "runtime_effect": "none",
+  "schema_version": "agon-trial-playbook-registry-v1",
+  "source": "config/agon_trial_playbooks.seed.json",
+  "status": "seeded_pre_protocol_trial_playbooks",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "trial_count": 7,
+  "trials": [
+    {
+      "assistant_forbidden_authority": [
+        "contestant_seat",
+        "judge_seat",
+        "closer_jurisdiction",
+        "summon_initiator_jurisdiction",
+        "scar_writer",
+        "rank_mutator",
+        "tos_promoter"
+      ],
+      "assistant_support": [
+        "notary",
+        "monitor",
+        "steward"
+      ],
+      "decision_points": [
+        "Decide whether the trace claim can be probed without inventing runtime state.",
+        "Decide whether the disputed segment blocks closure or only narrows confidence.",
+        "Decide whether a witness request is required before any continuation.",
+        "Decide whether the route must end as defer_with_cost or owner_review_required."
+      ],
+      "display_name": "Broken Trace Trial",
+      "eval_anchors": [
+        "aoa-witness-trace-integrity",
+        "aoa-closure-discipline"
+      ],
+      "eval_owner_requests": [
+        "trace_integrity_review",
+        "closure_legality_review"
+      ],
+      "evaluation_posture": "strict_pre_protocol_review",
+      "expected_artifacts": [
+        "trace_gap_note",
+        "closure_denial_note",
+        "witness_request_candidate",
+        "owner_review_ticket"
+      ],
+      "expected_evidence": [
+        "named trace claim",
+        "named gap or continuity dispute",
+        "closure pressure receipt",
+        "witness request or reason it is not yet legal",
+        "explicit stop or defer posture"
+      ],
+      "fallback_mode": "review_required",
+      "gate_triggers": [
+        "broken_trace_or_trace_gap",
+        "contested_closure",
+        "evidence_floor_collapse"
+      ],
+      "handoffs": [
+        "architect -> reviewer after the disputed trace segment is named",
+        "reviewer -> evaluator when trace adequacy needs proof-facing review",
+        "reviewer/evaluator -> memory-keeper only for a bounded chronicle candidate, not a scar write",
+        "any actor -> steward assistant for receipt packaging only"
+      ],
+      "id": "AOA-P-0033",
+      "lawful_moves": [
+        "probe_trace",
+        "deny_trace_closure",
+        "request_evidence",
+        "request_witness",
+        "deny_closure",
+        "defer_with_cost"
+      ],
+      "live_protocol": false,
+      "memo_contract_refs": [
+        "examples/recall_contract.router.semantic.json",
+        "examples/checkpoint_to_memory_contract.example.json",
+        "examples/provenance_thread.example.json"
+      ],
+      "memo_owner_requests": [
+        "bounded_trace_gap_chronicle_candidate"
+      ],
+      "memo_writeback_targets": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "memory_posture": "bounded_chronicle_candidate_only",
+      "name": "agon-broken-trace-trial",
+      "participating_agents": [
+        "architect",
+        "reviewer",
+        "evaluator",
+        "memory-keeper"
+      ],
+      "prerequisites": [
+        "one_candidate_trace_claim_named",
+        "one_missing_or_disputed_trace_segment_named",
+        "closure_pressure_named",
+        "witness_or_receipt_surface_available",
+        "owner_review_boundary_named"
+      ],
+      "required_skill_families": [
+        "source-of-truth",
+        "approval-gate",
+        "change-protocol",
+        "review",
+        "evaluation",
+        "memory-curation"
+      ],
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ],
+      "requires_center_lawful_moves": true,
+      "requires_formation_trial": true,
+      "return_anchor_artifacts": [
+        "trace_gap_note",
+        "closure_denial_note",
+        "witness_request_candidate"
+      ],
+      "return_posture": "artifact_anchor",
+      "return_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "safe_stop"
+      ],
+      "routing_owner_requests": [
+        "broken_trace_or_trace_gap_gate_hint"
+      ],
+      "runtime_effect": "none",
+      "scenario": "agon_mechanical_broken_trace_trial",
+      "slug": "agon-broken-trace-trial",
+      "stats_owner_requests": [
+        "trace_gap_frequency",
+        "closure_denial_rate"
+      ],
+      "status": "seeded_pre_protocol_trial_playbook",
+      "stop_lines": [
+        "no_arena_session_creation",
+        "no_sealed_commit_runtime",
+        "no_live_move_execution",
+        "no_verdict_authority",
+        "no_scar_write",
+        "no_retention_schedule",
+        "no_rank_mutation",
+        "no_tos_promotion",
+        "no_hidden_assistant_contestant",
+        "no_runtime_substrate_claim"
+      ],
+      "summary": "Coordinates a pre-protocol mechanical trial for detecting trace gaps, refusing false closure, and preserving owner review without creating arena verdict authority.",
+      "terminal_pre_protocol_outcomes": [
+        "trial_passed_pre_protocol",
+        "trial_deferred_with_cost",
+        "owner_review_required",
+        "quarantine_hint"
+      ],
+      "trial_id": "agon.trial.mechanical.broken_trace",
+      "trial_intent": "Force the route to prove trace continuity or stop honestly before closure language hardens into a false win.",
+      "trigger": "broken_trace_or_trace_gap_with_closure_pressure",
+      "wave": "VI"
+    },
+    {
+      "assistant_forbidden_authority": [
+        "contestant_seat",
+        "judge_seat",
+        "closer_jurisdiction",
+        "summon_initiator_jurisdiction",
+        "scar_writer",
+        "rank_mutator",
+        "tos_promoter"
+      ],
+      "assistant_support": [
+        "monitor",
+        "notary",
+        "steward"
+      ],
+      "decision_points": [
+        "Decide whether the route may continue in a weaker mode.",
+        "Decide which completion claims are now illegal.",
+        "Decide what evidence would be required to reopen full closure.",
+        "Decide whether assistant receipt support is enough or agonic review is needed."
+      ],
+      "display_name": "Fallback Honor Trial",
+      "eval_anchors": [
+        "aoa-stress-recovery-window",
+        "aoa-repair-boundedness"
+      ],
+      "eval_owner_requests": [
+        "fallback_honesty_review",
+        "evidence_floor_review"
+      ],
+      "evaluation_posture": "strict_pre_protocol_review",
+      "expected_artifacts": [
+        "degradation_honor_note",
+        "blocked_claims_receipt",
+        "degraded_continuation_boundary",
+        "owner_review_ticket"
+      ],
+      "expected_evidence": [
+        "degradation family receipt",
+        "weakened capability list",
+        "blocked completion claims",
+        "safe-stop or degraded continuation note"
+      ],
+      "fallback_mode": "review_required",
+      "gate_triggers": [
+        "evidence_floor_collapse",
+        "repeated_failure_without_delta",
+        "novelty_above_service_threshold"
+      ],
+      "handoffs": [
+        "monitor assistant -> reviewer when degradation could hide false completion",
+        "reviewer -> evaluator when proof posture must distinguish weak continuation from closure",
+        "evaluator -> memory-keeper only for bounded lesson candidate after owner review",
+        "architect -> steward assistant to preserve blocked actions and budgets"
+      ],
+      "id": "AOA-P-0034",
+      "lawful_moves": [
+        "flag_scope_breach",
+        "request_evidence",
+        "stand_fast",
+        "defer_with_cost",
+        "deny_closure",
+        "request_witness"
+      ],
+      "live_protocol": false,
+      "memo_contract_refs": [
+        "examples/recall_contract.router.semantic.json",
+        "examples/checkpoint_to_memory_contract.example.json",
+        "examples/provenance_thread.example.json"
+      ],
+      "memo_owner_requests": [
+        "bounded_fallback_lesson_candidate"
+      ],
+      "memo_writeback_targets": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "memory_posture": "bounded_chronicle_candidate_only",
+      "name": "agon-fallback-honor-trial",
+      "participating_agents": [
+        "architect",
+        "reviewer",
+        "evaluator",
+        "memory-keeper"
+      ],
+      "prerequisites": [
+        "degradation_family_named",
+        "weakened_capability_or_missing_evidence_named",
+        "blocked_completion_claim_named",
+        "safe_stop_or_degraded_continuation_boundary_named"
+      ],
+      "required_skill_families": [
+        "source-of-truth",
+        "approval-gate",
+        "change-protocol",
+        "review",
+        "evaluation",
+        "memory-curation"
+      ],
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ],
+      "requires_center_lawful_moves": true,
+      "requires_formation_trial": true,
+      "return_anchor_artifacts": [
+        "degradation_honor_note",
+        "blocked_claims_receipt",
+        "degraded_continuation_boundary"
+      ],
+      "return_posture": "artifact_anchor",
+      "return_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "safe_stop"
+      ],
+      "routing_owner_requests": [
+        "evidence_floor_collapse_gate_hint"
+      ],
+      "runtime_effect": "none",
+      "scenario": "agon_mechanical_fallback_honor_trial",
+      "slug": "agon-fallback-honor-trial",
+      "stats_owner_requests": [
+        "honest_degradation_rate",
+        "false_completion_prevention_count"
+      ],
+      "status": "seeded_pre_protocol_trial_playbook",
+      "stop_lines": [
+        "no_arena_session_creation",
+        "no_sealed_commit_runtime",
+        "no_live_move_execution",
+        "no_verdict_authority",
+        "no_scar_write",
+        "no_retention_schedule",
+        "no_rank_mutation",
+        "no_tos_promotion",
+        "no_hidden_assistant_contestant",
+        "no_runtime_substrate_claim"
+      ],
+      "summary": "Coordinates a pre-protocol trial for honest degradation when evidence, retrieval, tools, or context are weakened, without letting smooth language masquerade as completion.",
+      "terminal_pre_protocol_outcomes": [
+        "trial_passed_pre_protocol",
+        "failed_honorably_pre_protocol",
+        "owner_review_required",
+        "safe_stop"
+      ],
+      "trial_id": "agon.trial.mechanical.fallback_honor",
+      "trial_intent": "Make degraded operation legible, bounded, and honorable instead of allowing fallback prose to impersonate success.",
+      "trigger": "degraded_lane_with_risk_of_false_completion",
+      "wave": "VI"
+    },
+    {
+      "assistant_forbidden_authority": [
+        "contestant_seat",
+        "judge_seat",
+        "closer_jurisdiction",
+        "summon_initiator_jurisdiction",
+        "scar_writer",
+        "rank_mutator",
+        "tos_promoter"
+      ],
+      "assistant_support": [
+        "notary",
+        "monitor"
+      ],
+      "decision_points": [
+        "Decide whether the contradiction is material or only wording noise.",
+        "Decide whether it can be localized without arena verdict authority.",
+        "Decide whether closure must be denied.",
+        "Decide whether owner review or future arena gate is the honest next hop."
+      ],
+      "display_name": "Contradiction Endurance Trial",
+      "eval_anchors": [
+        "aoa-contradiction-localization",
+        "aoa-closure-discipline"
+      ],
+      "eval_owner_requests": [
+        "contradiction_materiality_review",
+        "localization_legality_review"
+      ],
+      "evaluation_posture": "strict_pre_protocol_review",
+      "expected_artifacts": [
+        "contradiction_marker",
+        "localization_note",
+        "closure_denial_note",
+        "agon_gate_hint_candidate"
+      ],
+      "expected_evidence": [
+        "two incompatible claims",
+        "materiality note",
+        "localization attempt or reason absent",
+        "closure denial or defer-with-cost posture"
+      ],
+      "fallback_mode": "review_required",
+      "gate_triggers": [
+        "open_material_contradiction",
+        "contested_closure",
+        "model_divergence_above_threshold"
+      ],
+      "handoffs": [
+        "reviewer -> evaluator when materiality must be checked",
+        "evaluator -> reviewer when proof posture is too weak for localization",
+        "notary assistant -> memory-keeper for contradiction receipt packaging only",
+        "architect -> routing owner when the contradiction should become a gate hint"
+      ],
+      "id": "AOA-P-0035",
+      "lawful_moves": [
+        "mark_contradiction",
+        "localize_contradiction",
+        "challenge_claim",
+        "request_evidence",
+        "deny_closure",
+        "defer_with_cost"
+      ],
+      "live_protocol": false,
+      "memo_contract_refs": [
+        "examples/recall_contract.router.semantic.json",
+        "examples/checkpoint_to_memory_contract.example.json",
+        "examples/provenance_thread.example.json"
+      ],
+      "memo_owner_requests": [
+        "contradiction_chronicle_candidate"
+      ],
+      "memo_writeback_targets": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "memory_posture": "bounded_chronicle_candidate_only",
+      "name": "agon-contradiction-endurance-trial",
+      "participating_agents": [
+        "architect",
+        "reviewer",
+        "evaluator",
+        "memory-keeper"
+      ],
+      "prerequisites": [
+        "two_incompatible_claims_named",
+        "materiality_reason_named",
+        "closure_pressure_or_routing_pressure_named",
+        "localization_candidate_or_missing_context_named"
+      ],
+      "required_skill_families": [
+        "source-of-truth",
+        "approval-gate",
+        "change-protocol",
+        "review",
+        "evaluation",
+        "memory-curation"
+      ],
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ],
+      "requires_center_lawful_moves": true,
+      "requires_formation_trial": true,
+      "return_anchor_artifacts": [
+        "contradiction_marker",
+        "localization_note",
+        "closure_denial_note"
+      ],
+      "return_posture": "artifact_anchor",
+      "return_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "safe_stop"
+      ],
+      "routing_owner_requests": [
+        "open_material_contradiction_gate_hint"
+      ],
+      "runtime_effect": "none",
+      "scenario": "agon_mechanical_contradiction_endurance_trial",
+      "slug": "agon-contradiction-endurance-trial",
+      "stats_owner_requests": [
+        "open_contradiction_count",
+        "localization_rate"
+      ],
+      "status": "seeded_pre_protocol_trial_playbook",
+      "stop_lines": [
+        "no_arena_session_creation",
+        "no_sealed_commit_runtime",
+        "no_live_move_execution",
+        "no_verdict_authority",
+        "no_scar_write",
+        "no_retention_schedule",
+        "no_rank_mutation",
+        "no_tos_promotion",
+        "no_hidden_assistant_contestant",
+        "no_runtime_substrate_claim"
+      ],
+      "summary": "Coordinates a pre-protocol trial that prevents closure over an open material contradiction and forces localization, deferment, or review.",
+      "terminal_pre_protocol_outcomes": [
+        "localized_pre_protocol",
+        "deferred_with_cost",
+        "owner_review_required",
+        "quarantine_hint"
+      ],
+      "trial_id": "agon.trial.mechanical.contradiction_endurance",
+      "trial_intent": "Make the system endure an unresolved contradiction long enough to name its locus instead of laundering it into consensus.",
+      "trigger": "open_material_contradiction_with_pressure_to_resolve_by_language",
+      "wave": "VI"
+    },
+    {
+      "assistant_forbidden_authority": [
+        "contestant_seat",
+        "judge_seat",
+        "closer_jurisdiction",
+        "summon_initiator_jurisdiction",
+        "scar_writer",
+        "rank_mutator",
+        "tos_promoter"
+      ],
+      "assistant_support": [
+        "steward",
+        "notary",
+        "monitor"
+      ],
+      "decision_points": [
+        "Decide whether closure review is legal before a future arena protocol exists.",
+        "Decide which missing evidence or open contradiction blocks closure.",
+        "Decide whether the outcome is closure denied, defer-with-cost, or owner review.",
+        "Decide whether a future closer jurisdiction candidate should remain absent."
+      ],
+      "display_name": "Costly Closure Trial",
+      "eval_anchors": [
+        "aoa-closure-discipline",
+        "aoa-witness-trace-integrity"
+      ],
+      "eval_owner_requests": [
+        "closure_legality_review",
+        "evidence_floor_review"
+      ],
+      "evaluation_posture": "strict_pre_protocol_review",
+      "expected_artifacts": [
+        "closure_review_note",
+        "closure_denial_receipt",
+        "evidence_floor_gap_note",
+        "owner_review_ticket"
+      ],
+      "expected_evidence": [
+        "closure request receipt",
+        "evidence floor note",
+        "trace status note",
+        "contradiction status note",
+        "closure denial or deferred posture"
+      ],
+      "fallback_mode": "review_required",
+      "gate_triggers": [
+        "contested_closure",
+        "broken_trace_or_trace_gap",
+        "open_material_contradiction",
+        "evidence_floor_collapse"
+      ],
+      "handoffs": [
+        "steward assistant -> reviewer with closure request receipt",
+        "reviewer -> evaluator for closure legality review",
+        "evaluator -> architect when closure policy boundaries need recharter",
+        "reviewer/evaluator -> memory-keeper for bounded closure denial chronicle candidate only"
+      ],
+      "id": "AOA-P-0036",
+      "lawful_moves": [
+        "request_closure_review",
+        "deny_closure",
+        "probe_trace",
+        "request_evidence",
+        "mark_contradiction",
+        "defer_with_cost"
+      ],
+      "live_protocol": false,
+      "memo_contract_refs": [
+        "examples/recall_contract.router.semantic.json",
+        "examples/checkpoint_to_memory_contract.example.json",
+        "examples/provenance_thread.example.json"
+      ],
+      "memo_owner_requests": [
+        "closure_denial_chronicle_candidate"
+      ],
+      "memo_writeback_targets": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "memory_posture": "bounded_chronicle_candidate_only",
+      "name": "agon-costly-closure-trial",
+      "participating_agents": [
+        "architect",
+        "reviewer",
+        "evaluator",
+        "memory-keeper"
+      ],
+      "prerequisites": [
+        "closure_request_named",
+        "claimed_closure_basis_named",
+        "evidence_floor_named",
+        "trace_and_contradiction_status_named",
+        "closer_jurisdiction_absent_or_unearned_named"
+      ],
+      "required_skill_families": [
+        "source-of-truth",
+        "approval-gate",
+        "change-protocol",
+        "review",
+        "evaluation",
+        "memory-curation"
+      ],
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ],
+      "requires_center_lawful_moves": true,
+      "requires_formation_trial": true,
+      "return_anchor_artifacts": [
+        "closure_review_note",
+        "closure_denial_receipt",
+        "evidence_floor_gap_note"
+      ],
+      "return_posture": "artifact_anchor",
+      "return_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "safe_stop"
+      ],
+      "routing_owner_requests": [
+        "contested_closure_gate_hint"
+      ],
+      "runtime_effect": "none",
+      "scenario": "agon_mechanical_costly_closure_trial",
+      "slug": "agon-costly-closure-trial",
+      "stats_owner_requests": [
+        "premature_closure_prevention_count",
+        "closure_review_rate"
+      ],
+      "status": "seeded_pre_protocol_trial_playbook",
+      "stop_lines": [
+        "no_arena_session_creation",
+        "no_sealed_commit_runtime",
+        "no_live_move_execution",
+        "no_verdict_authority",
+        "no_scar_write",
+        "no_retention_schedule",
+        "no_rank_mutation",
+        "no_tos_promotion",
+        "no_hidden_assistant_contestant",
+        "no_runtime_substrate_claim"
+      ],
+      "summary": "Coordinates a pre-protocol closure review trial that treats finalization as earned jurisdiction, not a default exit.",
+      "terminal_pre_protocol_outcomes": [
+        "closure_denied_pre_protocol",
+        "deferred_with_cost",
+        "owner_review_required",
+        "safe_stop"
+      ],
+      "trial_id": "agon.trial.mechanical.costly_closure",
+      "trial_intent": "Make closure expensive enough that the system cannot end a route by smoothness, fatigue, or authority drift.",
+      "trigger": "closure_requested_with_unproven_jurisdiction_or_missing_evidence",
+      "wave": "VI"
+    },
+    {
+      "assistant_forbidden_authority": [
+        "contestant_seat",
+        "judge_seat",
+        "closer_jurisdiction",
+        "summon_initiator_jurisdiction",
+        "scar_writer",
+        "rank_mutator",
+        "tos_promoter"
+      ],
+      "assistant_support": [
+        "concierge",
+        "notary",
+        "monitor",
+        "steward",
+        "librarian"
+      ],
+      "decision_points": [
+        "Decide whether the service actor can resolve the issue inside its contract.",
+        "Decide whether escalation to an agonic actor is required.",
+        "Decide which assistant actions are forbidden before handoff.",
+        "Decide whether the output should be a receipt, gate hint, or owner review ticket."
+      ],
+      "display_name": "Assistant Escalation Trial",
+      "eval_anchors": [
+        "aoa-assistant-anti-drift-boundary",
+        "aoa-scope-discipline"
+      ],
+      "eval_owner_requests": [
+        "assistant_anti_drift_review",
+        "scope_boundary_review"
+      ],
+      "evaluation_posture": "strict_pre_protocol_review",
+      "expected_artifacts": [
+        "assistant_scope_breach_receipt",
+        "agonic_escalation_candidate",
+        "anti_drift_note",
+        "owner_review_ticket"
+      ],
+      "expected_evidence": [
+        "assistant variant identity",
+        "service contract boundary",
+        "scope breach or anti-drift alarm note",
+        "handoff receipt",
+        "explicit forbidden actions retained"
+      ],
+      "fallback_mode": "review_required",
+      "gate_triggers": [
+        "assistant_scope_breach",
+        "assistant_anti_drift_alarm",
+        "actor_kind_mismatch",
+        "novelty_above_service_threshold"
+      ],
+      "handoffs": [
+        "assistant -> reviewer with receipt, not argument",
+        "reviewer -> architect when actor-kind mismatch must be mapped",
+        "reviewer -> evaluator when anti-drift boundary needs review",
+        "evaluator -> memory-keeper only for bounded audit-event candidate"
+      ],
+      "id": "AOA-P-0037",
+      "lawful_moves": [
+        "flag_scope_breach",
+        "escalate_to_agon_gate",
+        "request_witness",
+        "request_evidence",
+        "defer_with_cost"
+      ],
+      "live_protocol": false,
+      "memo_contract_refs": [
+        "examples/recall_contract.router.semantic.json",
+        "examples/checkpoint_to_memory_contract.example.json",
+        "examples/provenance_thread.example.json"
+      ],
+      "memo_owner_requests": [
+        "assistant_escalation_audit_candidate"
+      ],
+      "memo_writeback_targets": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "memory_posture": "bounded_chronicle_candidate_only",
+      "name": "agon-assistant-escalation-trial",
+      "participating_agents": [
+        "architect",
+        "reviewer",
+        "evaluator",
+        "memory-keeper"
+      ],
+      "prerequisites": [
+        "assistant_variant_named",
+        "service_contract_or_scope_boundary_named",
+        "scope_breach_or_anti_drift_alarm_named",
+        "target_agonic_actor_or_owner_review_boundary_named"
+      ],
+      "required_skill_families": [
+        "source-of-truth",
+        "approval-gate",
+        "change-protocol",
+        "review",
+        "evaluation",
+        "memory-curation"
+      ],
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ],
+      "requires_center_lawful_moves": true,
+      "requires_formation_trial": true,
+      "return_anchor_artifacts": [
+        "assistant_scope_breach_receipt",
+        "agonic_escalation_candidate",
+        "anti_drift_note"
+      ],
+      "return_posture": "artifact_anchor",
+      "return_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "safe_stop"
+      ],
+      "routing_owner_requests": [
+        "assistant_scope_breach_gate_hint",
+        "assistant_anti_drift_alarm_gate_hint"
+      ],
+      "runtime_effect": "none",
+      "scenario": "agon_mechanical_assistant_escalation_trial",
+      "slug": "agon-assistant-escalation-trial",
+      "stats_owner_requests": [
+        "assistant_escalation_rate",
+        "assistant_drift_prevention_count"
+      ],
+      "status": "seeded_pre_protocol_trial_playbook",
+      "stop_lines": [
+        "no_arena_session_creation",
+        "no_sealed_commit_runtime",
+        "no_live_move_execution",
+        "no_verdict_authority",
+        "no_scar_write",
+        "no_retention_schedule",
+        "no_rank_mutation",
+        "no_tos_promotion",
+        "no_hidden_assistant_contestant",
+        "no_runtime_substrate_claim"
+      ],
+      "summary": "Coordinates a pre-protocol trial for service actors that must flag scope breach, preserve receipt clarity, and escalate without becoming hidden contestants.",
+      "terminal_pre_protocol_outcomes": [
+        "service_resolved_with_receipt",
+        "agon_gate_candidate_prepared",
+        "owner_review_required",
+        "safe_stop"
+      ],
+      "trial_id": "agon.trial.mechanical.assistant_escalation",
+      "trial_intent": "Prove that assistants can serve boundary clarity and escalation while refusing any hidden drift into arena authority.",
+      "trigger": "assistant_scope_breach_or_anti_drift_alarm_needing_agonic_escalation",
+      "wave": "VI"
+    },
+    {
+      "assistant_forbidden_authority": [
+        "contestant_seat",
+        "judge_seat",
+        "closer_jurisdiction",
+        "summon_initiator_jurisdiction",
+        "scar_writer",
+        "rank_mutator",
+        "tos_promoter"
+      ],
+      "assistant_support": [
+        "notary",
+        "monitor"
+      ],
+      "decision_points": [
+        "Decide whether the prediction is bounded enough to record as pre-protocol evidence.",
+        "Decide whether the prediction exposes model divergence or only missing context.",
+        "Decide whether revise_position is warranted without future sealed commit machinery.",
+        "Decide whether the result should become an owner review note or remain a rehearsal receipt."
+      ],
+      "display_name": "Prediction Trial",
+      "eval_anchors": [
+        "aoa-prediction-boundedness",
+        "aoa-model-divergence-discipline"
+      ],
+      "eval_owner_requests": [
+        "prediction_boundedness_review",
+        "model_divergence_review"
+      ],
+      "evaluation_posture": "strict_pre_protocol_review",
+      "expected_artifacts": [
+        "prediction_rehearsal_receipt",
+        "model_divergence_note",
+        "revision_condition_note",
+        "future_commit_candidate"
+      ],
+      "expected_evidence": [
+        "actor subjectivity surface ref",
+        "target actor or role",
+        "prediction claim",
+        "uncertainty floor",
+        "revision condition"
+      ],
+      "fallback_mode": "review_required",
+      "gate_triggers": [
+        "model_divergence_above_threshold",
+        "repeated_failure_without_delta",
+        "canonical_risk"
+      ],
+      "handoffs": [
+        "architect -> reviewer after prediction claim and boundary are explicit",
+        "reviewer -> evaluator when the prediction affects future contestant readiness",
+        "notary assistant -> memory-keeper for receipt packaging only",
+        "memory-keeper preserves only bounded rehearsal context, not durable scar"
+      ],
+      "id": "AOA-P-0038",
+      "lawful_moves": [
+        "assert_position",
+        "challenge_claim",
+        "request_evidence",
+        "stand_fast",
+        "revise_position",
+        "defer_with_cost"
+      ],
+      "live_protocol": false,
+      "memo_contract_refs": [
+        "examples/recall_contract.router.semantic.json",
+        "examples/checkpoint_to_memory_contract.example.json",
+        "examples/provenance_thread.example.json"
+      ],
+      "memo_owner_requests": [
+        "prediction_rehearsal_chronicle_candidate"
+      ],
+      "memo_writeback_targets": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "memory_posture": "bounded_chronicle_candidate_only",
+      "name": "agon-prediction-trial",
+      "participating_agents": [
+        "architect",
+        "reviewer",
+        "evaluator",
+        "memory-keeper"
+      ],
+      "prerequisites": [
+        "actor_subjectivity_surface_named",
+        "other_actor_or_role_named",
+        "prediction_claim_named",
+        "evidence_or_uncertainty_floor_named",
+        "revision_condition_named"
+      ],
+      "required_skill_families": [
+        "source-of-truth",
+        "approval-gate",
+        "change-protocol",
+        "review",
+        "evaluation",
+        "memory-curation"
+      ],
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ],
+      "requires_center_lawful_moves": true,
+      "requires_formation_trial": true,
+      "return_anchor_artifacts": [
+        "prediction_rehearsal_receipt",
+        "model_divergence_note",
+        "revision_condition_note"
+      ],
+      "return_posture": "artifact_anchor",
+      "return_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "safe_stop"
+      ],
+      "routing_owner_requests": [
+        "model_divergence_gate_hint"
+      ],
+      "runtime_effect": "none",
+      "scenario": "agon_mechanical_prediction_trial",
+      "slug": "agon-prediction-trial",
+      "stats_owner_requests": [
+        "prediction_rehearsal_count",
+        "model_divergence_signal_count"
+      ],
+      "status": "seeded_pre_protocol_trial_playbook",
+      "stop_lines": [
+        "no_arena_session_creation",
+        "no_sealed_commit_runtime",
+        "no_live_move_execution",
+        "no_verdict_authority",
+        "no_scar_write",
+        "no_retention_schedule",
+        "no_rank_mutation",
+        "no_tos_promotion",
+        "no_hidden_assistant_contestant",
+        "no_runtime_substrate_claim"
+      ],
+      "summary": "Coordinates a pre-protocol trial for making an actor state its model of another actor before any future arena reveal can reward or break that prediction.",
+      "terminal_pre_protocol_outcomes": [
+        "prediction_rehearsed",
+        "model_divergence_named",
+        "owner_review_required",
+        "deferred_with_cost"
+      ],
+      "trial_id": "agon.trial.mechanical.prediction",
+      "trial_intent": "Prepare future sealed-commit discipline by making model-of-other claims visible before a protocol session exists.",
+      "trigger": "model_divergence_or_future_contestant_readiness_needs_prediction_discipline",
+      "wave": "VI"
+    },
+    {
+      "assistant_forbidden_authority": [
+        "contestant_seat",
+        "judge_seat",
+        "closer_jurisdiction",
+        "summon_initiator_jurisdiction",
+        "scar_writer",
+        "rank_mutator",
+        "tos_promoter"
+      ],
+      "assistant_support": [
+        "steward",
+        "notary",
+        "monitor"
+      ],
+      "decision_points": [
+        "Decide whether the request is utility, adversarial, perspective, witness, or not yet legal.",
+        "Decide whether local evidence or skill work should happen before summon intent review.",
+        "Decide whether the request should be denied, deferred, or handed to owner review.",
+        "Decide what assistant support may package without initiating summon."
+      ],
+      "display_name": "Expensive Summon Intent Trial",
+      "eval_anchors": [
+        "aoa-summon-intent-cost",
+        "aoa-evidence-before-summon"
+      ],
+      "eval_owner_requests": [
+        "summon_intent_legality_review",
+        "evidence_before_summon_review"
+      ],
+      "evaluation_posture": "strict_pre_protocol_review",
+      "expected_artifacts": [
+        "summon_intent_receipt",
+        "summon_cost_note",
+        "local_insufficiency_note",
+        "owner_review_ticket"
+      ],
+      "expected_evidence": [
+        "summon intent receipt",
+        "local insufficiency claim",
+        "requested summon class",
+        "cost boundary",
+        "forbidden hidden summon acknowledgment"
+      ],
+      "fallback_mode": "review_required",
+      "gate_triggers": [
+        "summon_intent_requires_review",
+        "repeated_failure_without_delta",
+        "novelty_above_service_threshold"
+      ],
+      "handoffs": [
+        "steward assistant -> reviewer with budget and cost receipt",
+        "reviewer -> evaluator when summon intent could mask weak evidence",
+        "evaluator -> architect when summon classes or boundaries need recharter",
+        "reviewer/evaluator -> memory-keeper only for bounded summon-intent audit candidate"
+      ],
+      "id": "AOA-P-0039",
+      "lawful_moves": [
+        "request_summon_intent",
+        "request_witness",
+        "challenge_claim",
+        "request_evidence",
+        "defer_with_cost",
+        "flag_scope_breach"
+      ],
+      "live_protocol": false,
+      "memo_contract_refs": [
+        "examples/recall_contract.router.semantic.json",
+        "examples/checkpoint_to_memory_contract.example.json",
+        "examples/provenance_thread.example.json"
+      ],
+      "memo_owner_requests": [
+        "summon_intent_audit_candidate"
+      ],
+      "memo_writeback_targets": [
+        "decision",
+        "audit_event",
+        "provenance_thread"
+      ],
+      "memory_posture": "bounded_chronicle_candidate_only",
+      "name": "agon-expensive-summon-intent-trial",
+      "participating_agents": [
+        "architect",
+        "reviewer",
+        "evaluator",
+        "memory-keeper"
+      ],
+      "prerequisites": [
+        "summon_intent_named",
+        "reason_local_form_is_insufficient_named",
+        "requested_summon_class_named",
+        "cost_or_budget_boundary_named",
+        "forbidden_hidden_or_runtime_summon_named"
+      ],
+      "required_skill_families": [
+        "source-of-truth",
+        "approval-gate",
+        "change-protocol",
+        "review",
+        "evaluation",
+        "memory-curation"
+      ],
+      "required_skills": [
+        "aoa-source-of-truth-check",
+        "aoa-bounded-context-map",
+        "aoa-approval-gate-check",
+        "aoa-dry-run-first",
+        "aoa-change-protocol",
+        "aoa-contract-test"
+      ],
+      "requires_center_lawful_moves": true,
+      "requires_formation_trial": true,
+      "return_anchor_artifacts": [
+        "summon_intent_receipt",
+        "summon_cost_note",
+        "local_insufficiency_note"
+      ],
+      "return_posture": "artifact_anchor",
+      "return_reentry_modes": [
+        "previous_phase",
+        "review_gate",
+        "safe_stop"
+      ],
+      "routing_owner_requests": [
+        "summon_intent_requires_review_gate_hint"
+      ],
+      "runtime_effect": "none",
+      "scenario": "agon_mechanical_expensive_summon_intent_trial",
+      "slug": "agon-expensive-summon-intent-trial",
+      "stats_owner_requests": [
+        "summon_intent_review_rate",
+        "summon_deferral_count"
+      ],
+      "status": "seeded_pre_protocol_trial_playbook",
+      "stop_lines": [
+        "no_arena_session_creation",
+        "no_sealed_commit_runtime",
+        "no_live_move_execution",
+        "no_verdict_authority",
+        "no_scar_write",
+        "no_retention_schedule",
+        "no_rank_mutation",
+        "no_tos_promotion",
+        "no_hidden_assistant_contestant",
+        "no_runtime_substrate_claim"
+      ],
+      "summary": "Coordinates a pre-protocol trial for reviewing summon intent as a costly, visible request rather than a panic button or hidden orchestration shortcut.",
+      "terminal_pre_protocol_outcomes": [
+        "summon_intent_denied_pre_protocol",
+        "summon_intent_deferred_with_cost",
+        "owner_review_required",
+        "safe_stop"
+      ],
+      "trial_id": "agon.trial.mechanical.expensive_summon_intent",
+      "trial_intent": "Force every summon-shaped desire to name its purpose, cost, limits, and owner review before summon becomes arena authority.",
+      "trigger": "summon_intent_requires_review_before_any_future_summon_authority_exists",
+      "wave": "VI"
+    }
+  ],
+  "wave": "VI"
+}

@@ -1,0 +1,158 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "assistant_support": [
+    "notary",
+    "monitor",
+    "steward"
+  ],
+  "decision_points": [
+    "Decide whether the trace claim can be probed without inventing runtime state.",
+    "Decide whether the disputed segment blocks closure or only narrows confidence.",
+    "Decide whether a witness request is required before any continuation.",
+    "Decide whether the route must end as defer_with_cost or owner_review_required."
+  ],
+  "display_name": "Broken Trace Trial",
+  "eval_anchors": [
+    "aoa-witness-trace-integrity",
+    "aoa-closure-discipline"
+  ],
+  "eval_owner_requests": [
+    "trace_integrity_review",
+    "closure_legality_review"
+  ],
+  "evaluation_posture": "strict_pre_protocol_review",
+  "expected_artifacts": [
+    "trace_gap_note",
+    "closure_denial_note",
+    "witness_request_candidate",
+    "owner_review_ticket"
+  ],
+  "expected_evidence": [
+    "named trace claim",
+    "named gap or continuity dispute",
+    "closure pressure receipt",
+    "witness request or reason it is not yet legal",
+    "explicit stop or defer posture"
+  ],
+  "fallback_mode": "review_required",
+  "gate_triggers": [
+    "broken_trace_or_trace_gap",
+    "contested_closure",
+    "evidence_floor_collapse"
+  ],
+  "handoffs": [
+    "architect -> reviewer after the disputed trace segment is named",
+    "reviewer -> evaluator when trace adequacy needs proof-facing review",
+    "reviewer/evaluator -> memory-keeper only for a bounded chronicle candidate, not a scar write",
+    "any actor -> steward assistant for receipt packaging only"
+  ],
+  "id": "AOA-P-0033",
+  "lawful_moves": [
+    "probe_trace",
+    "deny_trace_closure",
+    "request_evidence",
+    "request_witness",
+    "deny_closure",
+    "defer_with_cost"
+  ],
+  "live_protocol": false,
+  "memo_contract_refs": [
+    "examples/recall_contract.router.semantic.json",
+    "examples/checkpoint_to_memory_contract.example.json",
+    "examples/provenance_thread.example.json"
+  ],
+  "memo_owner_requests": [
+    "bounded_trace_gap_chronicle_candidate"
+  ],
+  "memo_writeback_targets": [
+    "decision",
+    "audit_event",
+    "provenance_thread"
+  ],
+  "memory_posture": "bounded_chronicle_candidate_only",
+  "name": "agon-broken-trace-trial",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "prerequisites": [
+    "one_candidate_trace_claim_named",
+    "one_missing_or_disputed_trace_segment_named",
+    "closure_pressure_named",
+    "witness_or_receipt_surface_available",
+    "owner_review_boundary_named"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "approval-gate",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "required_skills": [
+    "aoa-source-of-truth-check",
+    "aoa-bounded-context-map",
+    "aoa-approval-gate-check",
+    "aoa-dry-run-first",
+    "aoa-change-protocol",
+    "aoa-contract-test"
+  ],
+  "requires_center_lawful_moves": true,
+  "requires_formation_trial": true,
+  "return_anchor_artifacts": [
+    "trace_gap_note",
+    "closure_denial_note",
+    "witness_request_candidate"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
+  ],
+  "routing_owner_requests": [
+    "broken_trace_or_trace_gap_gate_hint"
+  ],
+  "runtime_effect": "none",
+  "scenario": "agon_mechanical_broken_trace_trial",
+  "slug": "agon-broken-trace-trial",
+  "stats_owner_requests": [
+    "trace_gap_frequency",
+    "closure_denial_rate"
+  ],
+  "status": "seeded_pre_protocol_trial_playbook",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "summary": "Coordinates a pre-protocol mechanical trial for detecting trace gaps, refusing false closure, and preserving owner review without creating arena verdict authority.",
+  "terminal_pre_protocol_outcomes": [
+    "trial_passed_pre_protocol",
+    "trial_deferred_with_cost",
+    "owner_review_required",
+    "quarantine_hint"
+  ],
+  "trial_id": "agon.trial.mechanical.broken_trace",
+  "trial_intent": "Force the route to prove trace continuity or stop honestly before closure language hardens into a false win.",
+  "trigger": "broken_trace_or_trace_gap_with_closure_pressure",
+  "wave": "VI"
+}

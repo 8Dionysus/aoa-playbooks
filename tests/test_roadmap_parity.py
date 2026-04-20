@@ -39,6 +39,13 @@ class RoadmapParityTestCase(unittest.TestCase):
             "AOA-P-0030",
             "AOA-P-0031",
             "AOA-P-0032",
+            "AOA-P-0033",
+            "AOA-P-0034",
+            "AOA-P-0035",
+            "AOA-P-0036",
+            "AOA-P-0037",
+            "AOA-P-0038",
+            "AOA-P-0039",
         ):
             self.assertIn(playbook_id, registry_ids)
 
@@ -53,10 +60,18 @@ class RoadmapParityTestCase(unittest.TestCase):
             "AOA-P-0030",
             "AOA-P-0031",
             "AOA-P-0032",
+            "AOA-P-0033",
+            "AOA-P-0034",
+            "AOA-P-0035",
+            "AOA-P-0036",
+            "AOA-P-0037",
+            "AOA-P-0038",
+            "AOA-P-0039",
         ):
             self.assertIn(playbook_id, roadmap)
 
         for surface_name in (
+            "agon_trial_playbook_registry.min.json",
             "playbook_activation_surfaces.min.json",
             "playbook_federation_surfaces.min.json",
             "playbook_review_status.min.json",
@@ -79,8 +94,17 @@ class RoadmapParityTestCase(unittest.TestCase):
         self.assertIn("AOA-P-0030", portfolio)
         self.assertIn("AOA-P-0031", portfolio)
         self.assertIn("AOA-P-0032", portfolio)
+        self.assertIn("AOA-P-0033", portfolio)
+        self.assertIn("AOA-P-0034", portfolio)
+        self.assertIn("AOA-P-0035", portfolio)
+        self.assertIn("AOA-P-0036", portfolio)
+        self.assertIn("AOA-P-0037", portfolio)
+        self.assertIn("AOA-P-0038", portfolio)
+        self.assertIn("AOA-P-0039", portfolio)
         self.assertIn("docs/CODEX_PLANE_ROLLOUT_CYCLE.md", readme)
         self.assertIn("docs/CODEX_PLANE_ROLLOUT_CYCLE.md", roadmap)
+        self.assertIn("docs/AGON_TRIAL_PLAYBOOKS.md", readme)
+        self.assertIn("docs/AGON_TRIAL_PLAYBOOKS.md", roadmap)
         self.assertIn("QUESTBOOK.md", readme)
         self.assertIn("QUESTBOOK.md", roadmap)
 

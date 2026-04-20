@@ -1,0 +1,43 @@
+{
+  "$id": "https://8dionysus.local/schemas/agon-trial-playbook.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "live_protocol": {
+      "const": false
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "status": {
+      "const": "seeded_pre_protocol_trial_playbook"
+    },
+    "trial_id": {
+      "pattern": "^agon\\.trial\\.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "trial_id",
+    "slug",
+    "display_name",
+    "status",
+    "live_protocol",
+    "runtime_effect",
+    "gate_triggers",
+    "lawful_moves",
+    "participating_agents",
+    "assistant_support",
+    "prerequisites",
+    "decision_points",
+    "handoffs",
+    "expected_evidence",
+    "expected_artifacts",
+    "stop_lines",
+    "assistant_forbidden_authority",
+    "terminal_pre_protocol_outcomes"
+  ],
+  "title": "Agon Trial Playbook",
+  "type": "object"
+}

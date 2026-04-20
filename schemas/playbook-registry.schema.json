@@ -45,8 +45,14 @@
           "prerequisites": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 2}},
           "participating_agents": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 2}},
           "required_skill_families": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 2}},
-          "evaluation_posture": {"type": "string", "enum": ["minimal", "required", "strict", "paired_eval"]},
-          "memory_posture": {"type": "string", "enum": ["none", "light_recall", "bounded_recall", "deep_recall"]},
+          "evaluation_posture": {
+            "type": "string",
+            "enum": ["minimal", "required", "strict", "paired_eval", "strict_pre_protocol_review"]
+          },
+          "memory_posture": {
+            "type": "string",
+            "enum": ["none", "light_recall", "bounded_recall", "deep_recall", "bounded_chronicle_candidate_only"]
+          },
           "fallback_mode": {"type": "string", "enum": ["none", "handoff", "rollback", "safe_stop", "review_required"]},
           "expected_artifacts": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 2}},
           "eval_anchors": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 3}},

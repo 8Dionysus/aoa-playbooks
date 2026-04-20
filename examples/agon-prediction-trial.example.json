@@ -1,0 +1,157 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "assistant_support": [
+    "notary",
+    "monitor"
+  ],
+  "decision_points": [
+    "Decide whether the prediction is bounded enough to record as pre-protocol evidence.",
+    "Decide whether the prediction exposes model divergence or only missing context.",
+    "Decide whether revise_position is warranted without future sealed commit machinery.",
+    "Decide whether the result should become an owner review note or remain a rehearsal receipt."
+  ],
+  "display_name": "Prediction Trial",
+  "eval_anchors": [
+    "aoa-prediction-boundedness",
+    "aoa-model-divergence-discipline"
+  ],
+  "eval_owner_requests": [
+    "prediction_boundedness_review",
+    "model_divergence_review"
+  ],
+  "evaluation_posture": "strict_pre_protocol_review",
+  "expected_artifacts": [
+    "prediction_rehearsal_receipt",
+    "model_divergence_note",
+    "revision_condition_note",
+    "future_commit_candidate"
+  ],
+  "expected_evidence": [
+    "actor subjectivity surface ref",
+    "target actor or role",
+    "prediction claim",
+    "uncertainty floor",
+    "revision condition"
+  ],
+  "fallback_mode": "review_required",
+  "gate_triggers": [
+    "model_divergence_above_threshold",
+    "repeated_failure_without_delta",
+    "canonical_risk"
+  ],
+  "handoffs": [
+    "architect -> reviewer after prediction claim and boundary are explicit",
+    "reviewer -> evaluator when the prediction affects future contestant readiness",
+    "notary assistant -> memory-keeper for receipt packaging only",
+    "memory-keeper preserves only bounded rehearsal context, not durable scar"
+  ],
+  "id": "AOA-P-0038",
+  "lawful_moves": [
+    "assert_position",
+    "challenge_claim",
+    "request_evidence",
+    "stand_fast",
+    "revise_position",
+    "defer_with_cost"
+  ],
+  "live_protocol": false,
+  "memo_contract_refs": [
+    "examples/recall_contract.router.semantic.json",
+    "examples/checkpoint_to_memory_contract.example.json",
+    "examples/provenance_thread.example.json"
+  ],
+  "memo_owner_requests": [
+    "prediction_rehearsal_chronicle_candidate"
+  ],
+  "memo_writeback_targets": [
+    "decision",
+    "audit_event",
+    "provenance_thread"
+  ],
+  "memory_posture": "bounded_chronicle_candidate_only",
+  "name": "agon-prediction-trial",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "prerequisites": [
+    "actor_subjectivity_surface_named",
+    "other_actor_or_role_named",
+    "prediction_claim_named",
+    "evidence_or_uncertainty_floor_named",
+    "revision_condition_named"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "approval-gate",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "required_skills": [
+    "aoa-source-of-truth-check",
+    "aoa-bounded-context-map",
+    "aoa-approval-gate-check",
+    "aoa-dry-run-first",
+    "aoa-change-protocol",
+    "aoa-contract-test"
+  ],
+  "requires_center_lawful_moves": true,
+  "requires_formation_trial": true,
+  "return_anchor_artifacts": [
+    "prediction_rehearsal_receipt",
+    "model_divergence_note",
+    "revision_condition_note"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
+  ],
+  "routing_owner_requests": [
+    "model_divergence_gate_hint"
+  ],
+  "runtime_effect": "none",
+  "scenario": "agon_mechanical_prediction_trial",
+  "slug": "agon-prediction-trial",
+  "stats_owner_requests": [
+    "prediction_rehearsal_count",
+    "model_divergence_signal_count"
+  ],
+  "status": "seeded_pre_protocol_trial_playbook",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "summary": "Coordinates a pre-protocol trial for making an actor state its model of another actor before any future arena reveal can reward or break that prediction.",
+  "terminal_pre_protocol_outcomes": [
+    "prediction_rehearsed",
+    "model_divergence_named",
+    "owner_review_required",
+    "deferred_with_cost"
+  ],
+  "trial_id": "agon.trial.mechanical.prediction",
+  "trial_intent": "Prepare future sealed-commit discipline by making model-of-other claims visible before a protocol session exists.",
+  "trigger": "model_divergence_or_future_contestant_readiness_needs_prediction_discipline",
+  "wave": "VI"
+}

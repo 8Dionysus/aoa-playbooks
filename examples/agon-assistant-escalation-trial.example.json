@@ -1,0 +1,160 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "assistant_support": [
+    "concierge",
+    "notary",
+    "monitor",
+    "steward",
+    "librarian"
+  ],
+  "decision_points": [
+    "Decide whether the service actor can resolve the issue inside its contract.",
+    "Decide whether escalation to an agonic actor is required.",
+    "Decide which assistant actions are forbidden before handoff.",
+    "Decide whether the output should be a receipt, gate hint, or owner review ticket."
+  ],
+  "display_name": "Assistant Escalation Trial",
+  "eval_anchors": [
+    "aoa-assistant-anti-drift-boundary",
+    "aoa-scope-discipline"
+  ],
+  "eval_owner_requests": [
+    "assistant_anti_drift_review",
+    "scope_boundary_review"
+  ],
+  "evaluation_posture": "strict_pre_protocol_review",
+  "expected_artifacts": [
+    "assistant_scope_breach_receipt",
+    "agonic_escalation_candidate",
+    "anti_drift_note",
+    "owner_review_ticket"
+  ],
+  "expected_evidence": [
+    "assistant variant identity",
+    "service contract boundary",
+    "scope breach or anti-drift alarm note",
+    "handoff receipt",
+    "explicit forbidden actions retained"
+  ],
+  "fallback_mode": "review_required",
+  "gate_triggers": [
+    "assistant_scope_breach",
+    "assistant_anti_drift_alarm",
+    "actor_kind_mismatch",
+    "novelty_above_service_threshold"
+  ],
+  "handoffs": [
+    "assistant -> reviewer with receipt, not argument",
+    "reviewer -> architect when actor-kind mismatch must be mapped",
+    "reviewer -> evaluator when anti-drift boundary needs review",
+    "evaluator -> memory-keeper only for bounded audit-event candidate"
+  ],
+  "id": "AOA-P-0037",
+  "lawful_moves": [
+    "flag_scope_breach",
+    "escalate_to_agon_gate",
+    "request_witness",
+    "request_evidence",
+    "defer_with_cost"
+  ],
+  "live_protocol": false,
+  "memo_contract_refs": [
+    "examples/recall_contract.router.semantic.json",
+    "examples/checkpoint_to_memory_contract.example.json",
+    "examples/provenance_thread.example.json"
+  ],
+  "memo_owner_requests": [
+    "assistant_escalation_audit_candidate"
+  ],
+  "memo_writeback_targets": [
+    "decision",
+    "audit_event",
+    "provenance_thread"
+  ],
+  "memory_posture": "bounded_chronicle_candidate_only",
+  "name": "agon-assistant-escalation-trial",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "prerequisites": [
+    "assistant_variant_named",
+    "service_contract_or_scope_boundary_named",
+    "scope_breach_or_anti_drift_alarm_named",
+    "target_agonic_actor_or_owner_review_boundary_named"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "approval-gate",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "required_skills": [
+    "aoa-source-of-truth-check",
+    "aoa-bounded-context-map",
+    "aoa-approval-gate-check",
+    "aoa-dry-run-first",
+    "aoa-change-protocol",
+    "aoa-contract-test"
+  ],
+  "requires_center_lawful_moves": true,
+  "requires_formation_trial": true,
+  "return_anchor_artifacts": [
+    "assistant_scope_breach_receipt",
+    "agonic_escalation_candidate",
+    "anti_drift_note"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
+  ],
+  "routing_owner_requests": [
+    "assistant_scope_breach_gate_hint",
+    "assistant_anti_drift_alarm_gate_hint"
+  ],
+  "runtime_effect": "none",
+  "scenario": "agon_mechanical_assistant_escalation_trial",
+  "slug": "agon-assistant-escalation-trial",
+  "stats_owner_requests": [
+    "assistant_escalation_rate",
+    "assistant_drift_prevention_count"
+  ],
+  "status": "seeded_pre_protocol_trial_playbook",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "summary": "Coordinates a pre-protocol trial for service actors that must flag scope breach, preserve receipt clarity, and escalate without becoming hidden contestants.",
+  "terminal_pre_protocol_outcomes": [
+    "service_resolved_with_receipt",
+    "agon_gate_candidate_prepared",
+    "owner_review_required",
+    "safe_stop"
+  ],
+  "trial_id": "agon.trial.mechanical.assistant_escalation",
+  "trial_intent": "Prove that assistants can serve boundary clarity and escalation while refusing any hidden drift into arena authority.",
+  "trigger": "assistant_scope_breach_or_anti_drift_alarm_needing_agonic_escalation",
+  "wave": "VI"
+}
