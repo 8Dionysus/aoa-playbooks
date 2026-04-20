@@ -1,0 +1,71 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0012
+title: Keep reviewed workspace closeout continuity survivors owner-routed
+summary: Carry the reviewed workspace checkpoint-growth closeout survivor into
+  repo-local playbook continuity without promoting one owner handoff into fresh
+  playbook, skill, eval, or technique canon.
+repo: aoa-playbooks
+owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0011
+activation:
+  mode: on_review_of
+  ref: session:2026-04-17T15-28-42-371944Z-workspace-checkpoint-growth-74c888d1-3a8
+  note: open after reviewed closeout kept the workspace checkpoint-growth
+    survivor owner-routed inside AOA-P-0023 rather than minting new layer
+    canon
+anchor_ref:
+  artifact: closeout_owner_follow_through_continuity
+  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  note: keep the route on the closeout-owner-follow-through continuity boundary
+    while owner-local skill, eval, and playbook follow-through stays subordinate
+handoff_role: playbook-maintainer
+evidence:
+  - reviewed closeout accepted 23 candidate refs, but quest promotion kept only
+    one route-shaped survivor open with keep_open_quest rather than final
+    promotion
+  - owner handoff routed the remaining bounded follow-through into aoa-evals
+    and aoa-skills without moving their source truth into aoa-playbooks
+  - progression closed in reanchor with negative boundary_integrity, so the
+    honest playbook move is bounded continuity rather than fresh canon
+harvest:
+  target: playbook
+  trigger_count: 23
+  note: keep this as owner-routed continuity until another reviewed closeout
+    either closes the route inside AOA-P-0023 or proves a distinct recurring
+    family
+opened_at: '2026-04-20'
+touched_at: '2026-04-20'
+tags:
+  - closeout
+  - workspace
+  - owner-follow-through
+  - continuity
+  - reanchor
+notes: >
+  Anchored by
+  session:2026-04-17T15-28-42-371944Z-workspace-checkpoint-growth-74c888d1-3a8.
+  The closeout handoff suggested a session-shaped quest artifact, but the
+  truthful owner move here is repo-local continuity under AOA-P-0023 so the
+  follow-through no longer depends on operator memory or provisional closeout
+  prose alone.
+public_safe: true
