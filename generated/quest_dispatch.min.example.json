@@ -192,7 +192,7 @@
     "schema_version": "quest_dispatch_v1",
     "id": "AOA-PB-Q-0009",
     "repo": "aoa-playbooks",
-    "state": "reanchor",
+    "state": "done",
     "band": "near",
     "difficulty": "d3_seam",
     "risk": "r1_repo_local",

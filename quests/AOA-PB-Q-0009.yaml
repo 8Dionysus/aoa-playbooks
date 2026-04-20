@@ -1,13 +1,13 @@
 schema_version: work_quest_v1
 id: AOA-PB-Q-0009
 title: Reanchor checkpoint automation closeout as early route recurrence evidence
-summary: Track the reviewed aoa-sdk checkpoint automation closeout as route-shaped recurrence evidence without promoting one owner-ambiguous handoff into new playbook canon.
+summary: Close the checkpoint automation closeout recurrence reanchor after another reviewed run confirms the same route with stable owner boundaries and no need for new playbook canon.
 repo: aoa-playbooks
 owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
-state: reanchor
+state: done
 band: near
 difficulty: d3_seam
 risk: r1_repo_local
@@ -38,12 +38,13 @@ evidence:
   - candidate:route:aoa-playbooks-playbook-registry-min reached 13 checkpoint hits
   - the handoff marked the candidate reviewable with owner-ambiguity rather than ready for final promotion
   - surface detection kept aoa-playbooks primary while leaving aoa-techniques as an adjacent ambiguity to review later
+  - the 2026-04-19 live Codex finding repair route added another reviewed AOA-P-0023 run with stable owner boundaries and rejected fresh playbook inflation
 harvest:
   target: playbook
   trigger_count: 13
-  note: promote only after another reviewed run confirms the same route with stable owner boundaries
+  note: close the reanchor once another reviewed run confirms the same route with stable owner boundaries while keeping the family inside AOA-P-0023
 opened_at: '2026-04-11'
-touched_at: '2026-04-11'
+touched_at: '2026-04-19'
 tags:
   - checkpoint
   - owner-follow-through
@@ -53,5 +54,8 @@ notes: >
   This quest prevents the candidate from being lost between sessions while
   preserving the early status honestly. The current verdict is reanchor:
   review the route as playbook-owned continuity evidence before any new
-  playbook, technique, or automation claim is minted.
+  playbook, technique, or automation claim is minted. Closed after the
+  2026-04-19 live Codex finding repair route confirmed the same continuity
+  family with stable owner boundaries and without needing a new playbook
+  family.
 public_safe: true
