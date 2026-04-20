@@ -766,6 +766,17 @@ MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\([^)]+\)")
 REVIEWED_RUN_REF_RE = re.compile(
     r"docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+(?:\.[a-z0-9-]+)?\.md)"
 )
+
+
+def extract_reviewed_run_refs(section_text: str) -> list[str]:
+    refs: list[str] = []
+    seen: set[str] = set()
+    for match in REVIEWED_RUN_REF_RE.finditer(section_text):
+        ref = f"docs/real-runs/{match.group(1)}"
+        if ref not in seen:
+            refs.append(ref)
+            seen.add(ref)
+    return refs
 BUNDLE_SEMANTIC_CHECKS = {
     "AOA-P-0006": {
         "frontmatter_lists": {
@@ -3685,14 +3696,6 @@ def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str,
         reviewed_run_refs = entry.get("reviewed_run_refs")
         if not isinstance(reviewed_run_refs, list):
             fail(f"{location}.reviewed_run_refs must be a list")
-        expected_run_refs = actual_reviewed_run_refs_by_playbook.get(playbook_id, [])
-        if reviewed_run_refs != expected_run_refs:
-            fail(f"{location}.reviewed_run_refs must match the reviewed runs harvested for {playbook_id}")
-        if entry.get("reviewed_run_count") != len(expected_run_refs):
-            fail(f"{location}.reviewed_run_count must match the number of reviewed_run_refs")
-        expected_latest = expected_run_refs[-1] if expected_run_refs else None
-        if entry.get("latest_reviewed_run_ref") != expected_latest:
-            fail(f"{location}.latest_reviewed_run_ref must match the latest reviewed run ref")
         if entry.get("gate_verdict") not in ALLOWED_GATE_VERDICT_TOKENS:
             fail(f"{location}.gate_verdict must be an allowed verdict token")
         composition_signal_summary = entry.get("composition_signal_summary")
@@ -3706,18 +3709,27 @@ def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str,
         gate_review_text = read_text(REPO_ROOT / gate_review_ref)
         sections = markdown_sections(gate_review_text)
         latest_review_section = sections.get("Latest Reviewed Run", "")
-        referenced_run_refs = sorted(
-            {
-                f"docs/real-runs/{match.group(1)}"
-                for match in REVIEWED_RUN_REF_RE.finditer(latest_review_section)
-            }
-        )
-        missing_run_refs = [ref for ref in expected_run_refs if ref not in referenced_run_refs]
-        if missing_run_refs:
+        referenced_run_refs = extract_reviewed_run_refs(latest_review_section)
+        harvested_run_refs = actual_reviewed_run_refs_by_playbook.get(playbook_id, [])
+        missing_run_refs = [ref for ref in harvested_run_refs if ref not in referenced_run_refs]
+        unexpected_run_refs = [ref for ref in referenced_run_refs if ref not in harvested_run_refs]
+        if missing_run_refs or unexpected_run_refs:
+            details: list[str] = []
+            if missing_run_refs:
+                details.append("missing reviewed runs: " + ", ".join(missing_run_refs))
+            if unexpected_run_refs:
+                details.append("unexpected reviewed runs: " + ", ".join(unexpected_run_refs))
             fail(
-                f"{gate_review_ref} must reference the reviewed runs it claims: "
-                + ", ".join(missing_run_refs)
+                f"{gate_review_ref} must reference exactly the reviewed runs it claims: "
+                + "; ".join(details)
             )
+        if reviewed_run_refs != referenced_run_refs:
+            fail(f"{location}.reviewed_run_refs must follow the gate-review reviewed-run order for {playbook_id}")
+        if entry.get("reviewed_run_count") != len(referenced_run_refs):
+            fail(f"{location}.reviewed_run_count must match the number of reviewed_run_refs")
+        expected_latest = referenced_run_refs[-1] if referenced_run_refs else None
+        if entry.get("latest_reviewed_run_ref") != expected_latest:
+            fail(f"{location}.latest_reviewed_run_ref must match the latest gate-reviewed run ref")
 
 
 def validate_playbook_review_packet_contracts_surface(
