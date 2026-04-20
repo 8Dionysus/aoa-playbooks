@@ -2599,6 +2599,55 @@ def allows_future_eval_owner_requests(*, status: object, evaluation_posture: obj
     return status == "experimental" and evaluation_posture == "strict_pre_protocol_review"
 
 
+def validate_strict_pre_protocol_eval_posture(
+    *,
+    bundle_location: str,
+    frontmatter: dict[str, object],
+    sections: dict[str, str],
+    evals_by_name: dict[str, dict[str, object]],
+) -> None:
+    eval_anchors = frontmatter.get("eval_anchors")
+    future_eval_owner_requests = allows_future_eval_owner_requests(
+        status=frontmatter.get("status"),
+        evaluation_posture=frontmatter.get("evaluation_posture"),
+    )
+    if eval_anchors is None:
+        if future_eval_owner_requests:
+            fail(
+                f"{bundle_location} with strict_pre_protocol_review must expose non-empty 'eval_anchors'"
+            )
+        return
+    if future_eval_owner_requests:
+        if frontmatter.get("agon_pre_protocol") not in {True, "true"}:
+            fail(
+                f"{bundle_location} with strict_pre_protocol_review must declare agon_pre_protocol: true"
+            )
+        eval_anchor_section = sections.get("Eval anchors", "").lower()
+        if "future eval-owner requests" not in eval_anchor_section or "not verdicts" not in eval_anchor_section:
+            fail(
+                f"{bundle_location} must state that strict_pre_protocol_review eval_anchors are future "
+                "eval-owner requests and not verdicts in the 'Eval anchors' section"
+            )
+    draft_eval_anchors = [
+        anchor
+        for anchor in eval_anchors
+        if isinstance(anchor, str) and anchor in evals_by_name and evals_by_name[anchor].get("status") == "draft"
+    ]
+    if draft_eval_anchors:
+        if frontmatter.get("status") != "experimental":
+            fail(
+                f"{bundle_location} uses draft eval_anchors and must remain experimental: "
+                + ", ".join(draft_eval_anchors)
+            )
+        if not future_eval_owner_requests:
+            eval_anchor_section = sections.get("Eval anchors", "").lower()
+            if "draft" not in eval_anchor_section or "review-only" not in eval_anchor_section:
+                fail(
+                    f"{bundle_location} must state that draft eval_anchors are draft and review-only in the "
+                    "'Eval anchors' section"
+                )
+
+
 def activation_surface_for_playbook(playbook_id: str, registry_entry: dict[str, object]) -> dict[str, object]:
     payload: dict[str, object] = {
         "surface_type": "playbook_activation_surface",
@@ -3073,42 +3122,12 @@ def validate_cross_repo_bundle(
         ),
     )
 
-    eval_anchors = frontmatter.get("eval_anchors")
-    if eval_anchors is None:
-        return
-    future_eval_owner_requests = allows_future_eval_owner_requests(
-        status=frontmatter.get("status"),
-        evaluation_posture=frontmatter.get("evaluation_posture"),
+    validate_strict_pre_protocol_eval_posture(
+        bundle_location=bundle_location,
+        frontmatter=frontmatter,
+        sections=sections,
+        evals_by_name=evals_by_name,
     )
-    if future_eval_owner_requests:
-        if frontmatter.get("agon_pre_protocol") not in {True, "true"}:
-            fail(
-                f"{bundle_location} with strict_pre_protocol_review must declare agon_pre_protocol: true"
-            )
-        eval_anchor_section = sections.get("Eval anchors", "").lower()
-        if "future eval-owner requests" not in eval_anchor_section or "not verdicts" not in eval_anchor_section:
-            fail(
-                f"{bundle_location} must state that strict_pre_protocol_review eval_anchors are future "
-                "eval-owner requests and not verdicts in the 'Eval anchors' section"
-            )
-    draft_eval_anchors = [
-        anchor
-        for anchor in eval_anchors
-        if isinstance(anchor, str) and anchor in evals_by_name and evals_by_name[anchor].get("status") == "draft"
-    ]
-    if draft_eval_anchors:
-        if frontmatter.get("status") != "experimental":
-            fail(
-                f"{bundle_location} uses draft eval_anchors and must remain experimental: "
-                + ", ".join(draft_eval_anchors)
-            )
-        if not future_eval_owner_requests:
-            eval_anchor_section = sections.get("Eval anchors", "").lower()
-            if "draft" not in eval_anchor_section or "review-only" not in eval_anchor_section:
-                fail(
-                    f"{bundle_location} must state that draft eval_anchors are draft and review-only in the "
-                    "'Eval anchors' section"
-                )
 
 
 def validate_authored_bundles(

@@ -34,9 +34,14 @@
             "mode": "any",
             "notes": "documentation repeats a pre-protocol stop-line",
             "phrases": [
-              "no verdict",
-              "no scar",
-              "no arena"
+              "no_arena_session_creation",
+              "no_verdict_authority",
+              "no_scar_write",
+              "no_retention_schedule",
+              "arena session",
+              "verdict authority",
+              "scar write",
+              "retention schedule"
             ],
             "signal": "agon_stop_line_repeated"
           }
@@ -101,9 +106,14 @@
             "mode": "any",
             "notes": "documentation repeats a pre-protocol stop-line",
             "phrases": [
-              "no verdict",
-              "no scar",
-              "no arena"
+              "no_arena_session_creation",
+              "no_verdict_authority",
+              "no_scar_write",
+              "no_retention_schedule",
+              "arena session",
+              "verdict authority",
+              "scar write",
+              "retention schedule"
             ],
             "signal": "agon_stop_line_repeated"
           }

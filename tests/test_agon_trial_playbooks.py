@@ -27,3 +27,13 @@ def test_agon_trial_playbooks_are_pre_protocol():
         assert (ROOT / trial["playbook_path"]).exists()
         assert trial["lawful_moves"]
         assert trial["gate_triggers"]
+
+
+def test_agon_trial_playbook_validator_passes():
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_agon_trial_playbooks.py")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr + result.stdout

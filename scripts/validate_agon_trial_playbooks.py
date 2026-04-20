@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, subprocess, sys
+
+import json
+import subprocess
+import sys
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CFG = ROOT / "config" / "agon_trial_playbooks.seed.json"
@@ -31,6 +36,20 @@ def fail(msg: str) -> int:
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_frontmatter(path: Path) -> tuple[dict[str, object], str]:
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        return {}, text
+    _, remainder = text.split("---\n", 1)
+    frontmatter_text, separator, body = remainder.partition("\n---\n")
+    if not separator:
+        return {}, text
+    frontmatter = yaml.safe_load(frontmatter_text) or {}
+    if not isinstance(frontmatter, dict):
+        raise ValueError(f"{path} frontmatter must decode to a mapping")
+    return frontmatter, body
 
 def optional_neighbor_note() -> None:
     workspace = ROOT.parent
@@ -94,10 +113,18 @@ def main() -> int:
         pb = ROOT / "playbooks" / t["slug"] / "PLAYBOOK.md"
         if not pb.exists():
             return fail(f"missing authored playbook bundle: {pb}")
-        text = pb.read_text(encoding="utf-8")
-        for needle in ["agon_pre_protocol: true", "live_protocol: false", "runtime_effect: none", "## Terminal pre-protocol outcomes"]:
-            if needle not in text:
-                return fail(f"{pb} missing {needle}")
+        try:
+            frontmatter, body = load_frontmatter(pb)
+        except ValueError as exc:
+            return fail(str(exc))
+        if frontmatter.get("agon_pre_protocol") is not True:
+            return fail(f"{pb} frontmatter agon_pre_protocol must be true")
+        if frontmatter.get("live_protocol") is not False:
+            return fail(f"{pb} frontmatter live_protocol must be false")
+        if frontmatter.get("runtime_effect") != "none":
+            return fail(f"{pb} frontmatter runtime_effect must be none")
+        if "## Terminal pre-protocol outcomes" not in body:
+            return fail(f"{pb} missing ## Terminal pre-protocol outcomes")
     if reg.get("trial_count") != len(trials):
         return fail("registry trial_count mismatch")
     print("agon trial playbook validation passed")

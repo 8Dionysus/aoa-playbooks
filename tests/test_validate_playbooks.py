@@ -198,6 +198,22 @@ class ValidatePlaybooksFutureEvalOwnerRequestTests(unittest.TestCase):
                 evals_by_name={},
             )
 
+    def test_strict_pre_protocol_review_requires_eval_anchors(self) -> None:
+        with self.assertRaisesRegex(
+            validate_playbooks.ValidationError,
+            "must expose non-empty 'eval_anchors'",
+        ):
+            validate_playbooks.validate_strict_pre_protocol_eval_posture(
+                bundle_location="playbooks/agon-broken-trace-trial/PLAYBOOK.md",
+                frontmatter={
+                    "status": "experimental",
+                    "evaluation_posture": "strict_pre_protocol_review",
+                    "agon_pre_protocol": True,
+                },
+                sections={"Eval anchors": "These are future eval-owner requests. They are not verdicts."},
+                evals_by_name={},
+            )
+
 
 class PhaseAlphaSurfaceContractTests(unittest.TestCase):
     def test_generator_rejects_unknown_runtime_path_key(self) -> None:
