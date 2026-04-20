@@ -1,0 +1,159 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "assistant_support": [
+    "steward",
+    "notary",
+    "monitor"
+  ],
+  "decision_points": [
+    "Decide whether closure review is legal before a future arena protocol exists.",
+    "Decide which missing evidence or open contradiction blocks closure.",
+    "Decide whether the outcome is closure denied, defer-with-cost, or owner review.",
+    "Decide whether a future closer jurisdiction candidate should remain absent."
+  ],
+  "display_name": "Costly Closure Trial",
+  "eval_anchors": [
+    "aoa-closure-discipline",
+    "aoa-witness-trace-integrity"
+  ],
+  "eval_owner_requests": [
+    "closure_legality_review",
+    "evidence_floor_review"
+  ],
+  "evaluation_posture": "strict_pre_protocol_review",
+  "expected_artifacts": [
+    "closure_review_note",
+    "closure_denial_receipt",
+    "evidence_floor_gap_note",
+    "owner_review_ticket"
+  ],
+  "expected_evidence": [
+    "closure request receipt",
+    "evidence floor note",
+    "trace status note",
+    "contradiction status note",
+    "closure denial or deferred posture"
+  ],
+  "fallback_mode": "review_required",
+  "gate_triggers": [
+    "contested_closure",
+    "broken_trace_or_trace_gap",
+    "open_material_contradiction",
+    "evidence_floor_collapse"
+  ],
+  "handoffs": [
+    "steward assistant -> reviewer with closure request receipt",
+    "reviewer -> evaluator for closure legality review",
+    "evaluator -> architect when closure policy boundaries need recharter",
+    "reviewer/evaluator -> memory-keeper for bounded closure denial chronicle candidate only"
+  ],
+  "id": "AOA-P-0036",
+  "lawful_moves": [
+    "request_closure_review",
+    "deny_closure",
+    "probe_trace",
+    "request_evidence",
+    "mark_contradiction",
+    "defer_with_cost"
+  ],
+  "live_protocol": false,
+  "memo_contract_refs": [
+    "examples/recall_contract.router.semantic.json",
+    "examples/checkpoint_to_memory_contract.example.json",
+    "examples/provenance_thread.example.json"
+  ],
+  "memo_owner_requests": [
+    "closure_denial_chronicle_candidate"
+  ],
+  "memo_writeback_targets": [
+    "decision",
+    "audit_event",
+    "provenance_thread"
+  ],
+  "memory_posture": "bounded_chronicle_candidate_only",
+  "name": "agon-costly-closure-trial",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "prerequisites": [
+    "closure_request_named",
+    "claimed_closure_basis_named",
+    "evidence_floor_named",
+    "trace_and_contradiction_status_named",
+    "closer_jurisdiction_absent_or_unearned_named"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "approval-gate",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "required_skills": [
+    "aoa-source-of-truth-check",
+    "aoa-bounded-context-map",
+    "aoa-approval-gate-check",
+    "aoa-dry-run-first",
+    "aoa-change-protocol",
+    "aoa-contract-test"
+  ],
+  "requires_center_lawful_moves": true,
+  "requires_formation_trial": true,
+  "return_anchor_artifacts": [
+    "closure_review_note",
+    "closure_denial_receipt",
+    "evidence_floor_gap_note"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
+  ],
+  "routing_owner_requests": [
+    "contested_closure_gate_hint"
+  ],
+  "runtime_effect": "none",
+  "scenario": "agon_mechanical_costly_closure_trial",
+  "slug": "agon-costly-closure-trial",
+  "stats_owner_requests": [
+    "premature_closure_prevention_count",
+    "closure_review_rate"
+  ],
+  "status": "seeded_pre_protocol_trial_playbook",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "summary": "Coordinates a pre-protocol closure review trial that treats finalization as earned jurisdiction, not a default exit.",
+  "terminal_pre_protocol_outcomes": [
+    "closure_denied_pre_protocol",
+    "deferred_with_cost",
+    "owner_review_required",
+    "safe_stop"
+  ],
+  "trial_id": "agon.trial.mechanical.costly_closure",
+  "trial_intent": "Make closure expensive enough that the system cannot end a route by smoothness, fatigue, or authority drift.",
+  "trigger": "closure_requested_with_unproven_jurisdiction_or_missing_evidence",
+  "wave": "VI"
+}

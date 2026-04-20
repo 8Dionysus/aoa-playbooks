@@ -41,7 +41,8 @@
         "none",
         "light_recall",
         "bounded_recall",
-        "deep_recall"
+        "deep_recall",
+        "bounded_chronicle_candidate_only"
       ]
     },
     "required_skills": {

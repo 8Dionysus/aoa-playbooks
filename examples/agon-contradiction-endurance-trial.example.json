@@ -1,0 +1,155 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "assistant_support": [
+    "notary",
+    "monitor"
+  ],
+  "decision_points": [
+    "Decide whether the contradiction is material or only wording noise.",
+    "Decide whether it can be localized without arena verdict authority.",
+    "Decide whether closure must be denied.",
+    "Decide whether owner review or future arena gate is the honest next hop."
+  ],
+  "display_name": "Contradiction Endurance Trial",
+  "eval_anchors": [
+    "aoa-contradiction-localization",
+    "aoa-closure-discipline"
+  ],
+  "eval_owner_requests": [
+    "contradiction_materiality_review",
+    "localization_legality_review"
+  ],
+  "evaluation_posture": "strict_pre_protocol_review",
+  "expected_artifacts": [
+    "contradiction_marker",
+    "localization_note",
+    "closure_denial_note",
+    "agon_gate_hint_candidate"
+  ],
+  "expected_evidence": [
+    "two incompatible claims",
+    "materiality note",
+    "localization attempt or reason absent",
+    "closure denial or defer-with-cost posture"
+  ],
+  "fallback_mode": "review_required",
+  "gate_triggers": [
+    "open_material_contradiction",
+    "contested_closure",
+    "model_divergence_above_threshold"
+  ],
+  "handoffs": [
+    "reviewer -> evaluator when materiality must be checked",
+    "evaluator -> reviewer when proof posture is too weak for localization",
+    "notary assistant -> memory-keeper for contradiction receipt packaging only",
+    "architect -> routing owner when the contradiction should become a gate hint"
+  ],
+  "id": "AOA-P-0035",
+  "lawful_moves": [
+    "mark_contradiction",
+    "localize_contradiction",
+    "challenge_claim",
+    "request_evidence",
+    "deny_closure",
+    "defer_with_cost"
+  ],
+  "live_protocol": false,
+  "memo_contract_refs": [
+    "examples/recall_contract.router.semantic.json",
+    "examples/checkpoint_to_memory_contract.example.json",
+    "examples/provenance_thread.example.json"
+  ],
+  "memo_owner_requests": [
+    "contradiction_chronicle_candidate"
+  ],
+  "memo_writeback_targets": [
+    "decision",
+    "audit_event",
+    "provenance_thread"
+  ],
+  "memory_posture": "bounded_chronicle_candidate_only",
+  "name": "agon-contradiction-endurance-trial",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "prerequisites": [
+    "two_incompatible_claims_named",
+    "materiality_reason_named",
+    "closure_pressure_or_routing_pressure_named",
+    "localization_candidate_or_missing_context_named"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "approval-gate",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "required_skills": [
+    "aoa-source-of-truth-check",
+    "aoa-bounded-context-map",
+    "aoa-approval-gate-check",
+    "aoa-dry-run-first",
+    "aoa-change-protocol",
+    "aoa-contract-test"
+  ],
+  "requires_center_lawful_moves": true,
+  "requires_formation_trial": true,
+  "return_anchor_artifacts": [
+    "contradiction_marker",
+    "localization_note",
+    "closure_denial_note"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
+  ],
+  "routing_owner_requests": [
+    "open_material_contradiction_gate_hint"
+  ],
+  "runtime_effect": "none",
+  "scenario": "agon_mechanical_contradiction_endurance_trial",
+  "slug": "agon-contradiction-endurance-trial",
+  "stats_owner_requests": [
+    "open_contradiction_count",
+    "localization_rate"
+  ],
+  "status": "seeded_pre_protocol_trial_playbook",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "summary": "Coordinates a pre-protocol trial that prevents closure over an open material contradiction and forces localization, deferment, or review.",
+  "terminal_pre_protocol_outcomes": [
+    "localized_pre_protocol",
+    "deferred_with_cost",
+    "owner_review_required",
+    "quarantine_hint"
+  ],
+  "trial_id": "agon.trial.mechanical.contradiction_endurance",
+  "trial_intent": "Make the system endure an unresolved contradiction long enough to name its locus instead of laundering it into consensus.",
+  "trigger": "open_material_contradiction_with_pressure_to_resolve_by_language",
+  "wave": "VI"
+}

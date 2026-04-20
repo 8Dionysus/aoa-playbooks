@@ -1,0 +1,156 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "assistant_support": [
+    "monitor",
+    "notary",
+    "steward"
+  ],
+  "decision_points": [
+    "Decide whether the route may continue in a weaker mode.",
+    "Decide which completion claims are now illegal.",
+    "Decide what evidence would be required to reopen full closure.",
+    "Decide whether assistant receipt support is enough or agonic review is needed."
+  ],
+  "display_name": "Fallback Honor Trial",
+  "eval_anchors": [
+    "aoa-stress-recovery-window",
+    "aoa-repair-boundedness"
+  ],
+  "eval_owner_requests": [
+    "fallback_honesty_review",
+    "evidence_floor_review"
+  ],
+  "evaluation_posture": "strict_pre_protocol_review",
+  "expected_artifacts": [
+    "degradation_honor_note",
+    "blocked_claims_receipt",
+    "degraded_continuation_boundary",
+    "owner_review_ticket"
+  ],
+  "expected_evidence": [
+    "degradation family receipt",
+    "weakened capability list",
+    "blocked completion claims",
+    "safe-stop or degraded continuation note"
+  ],
+  "fallback_mode": "review_required",
+  "gate_triggers": [
+    "evidence_floor_collapse",
+    "repeated_failure_without_delta",
+    "novelty_above_service_threshold"
+  ],
+  "handoffs": [
+    "monitor assistant -> reviewer when degradation could hide false completion",
+    "reviewer -> evaluator when proof posture must distinguish weak continuation from closure",
+    "evaluator -> memory-keeper only for bounded lesson candidate after owner review",
+    "architect -> steward assistant to preserve blocked actions and budgets"
+  ],
+  "id": "AOA-P-0034",
+  "lawful_moves": [
+    "flag_scope_breach",
+    "request_evidence",
+    "stand_fast",
+    "defer_with_cost",
+    "deny_closure",
+    "request_witness"
+  ],
+  "live_protocol": false,
+  "memo_contract_refs": [
+    "examples/recall_contract.router.semantic.json",
+    "examples/checkpoint_to_memory_contract.example.json",
+    "examples/provenance_thread.example.json"
+  ],
+  "memo_owner_requests": [
+    "bounded_fallback_lesson_candidate"
+  ],
+  "memo_writeback_targets": [
+    "decision",
+    "audit_event",
+    "provenance_thread"
+  ],
+  "memory_posture": "bounded_chronicle_candidate_only",
+  "name": "agon-fallback-honor-trial",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "prerequisites": [
+    "degradation_family_named",
+    "weakened_capability_or_missing_evidence_named",
+    "blocked_completion_claim_named",
+    "safe_stop_or_degraded_continuation_boundary_named"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "approval-gate",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "required_skills": [
+    "aoa-source-of-truth-check",
+    "aoa-bounded-context-map",
+    "aoa-approval-gate-check",
+    "aoa-dry-run-first",
+    "aoa-change-protocol",
+    "aoa-contract-test"
+  ],
+  "requires_center_lawful_moves": true,
+  "requires_formation_trial": true,
+  "return_anchor_artifacts": [
+    "degradation_honor_note",
+    "blocked_claims_receipt",
+    "degraded_continuation_boundary"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
+  ],
+  "routing_owner_requests": [
+    "evidence_floor_collapse_gate_hint"
+  ],
+  "runtime_effect": "none",
+  "scenario": "agon_mechanical_fallback_honor_trial",
+  "slug": "agon-fallback-honor-trial",
+  "stats_owner_requests": [
+    "honest_degradation_rate",
+    "false_completion_prevention_count"
+  ],
+  "status": "seeded_pre_protocol_trial_playbook",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "summary": "Coordinates a pre-protocol trial for honest degradation when evidence, retrieval, tools, or context are weakened, without letting smooth language masquerade as completion.",
+  "terminal_pre_protocol_outcomes": [
+    "trial_passed_pre_protocol",
+    "failed_honorably_pre_protocol",
+    "owner_review_required",
+    "safe_stop"
+  ],
+  "trial_id": "agon.trial.mechanical.fallback_honor",
+  "trial_intent": "Make degraded operation legible, bounded, and honorable instead of allowing fallback prose to impersonate success.",
+  "trigger": "degraded_lane_with_risk_of_false_completion",
+  "wave": "VI"
+}

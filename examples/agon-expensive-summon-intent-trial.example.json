@@ -1,0 +1,158 @@
+{
+  "assistant_forbidden_authority": [
+    "contestant_seat",
+    "judge_seat",
+    "closer_jurisdiction",
+    "summon_initiator_jurisdiction",
+    "scar_writer",
+    "rank_mutator",
+    "tos_promoter"
+  ],
+  "assistant_support": [
+    "steward",
+    "notary",
+    "monitor"
+  ],
+  "decision_points": [
+    "Decide whether the request is utility, adversarial, perspective, witness, or not yet legal.",
+    "Decide whether local evidence or skill work should happen before summon intent review.",
+    "Decide whether the request should be denied, deferred, or handed to owner review.",
+    "Decide what assistant support may package without initiating summon."
+  ],
+  "display_name": "Expensive Summon Intent Trial",
+  "eval_anchors": [
+    "aoa-summon-intent-cost",
+    "aoa-evidence-before-summon"
+  ],
+  "eval_owner_requests": [
+    "summon_intent_legality_review",
+    "evidence_before_summon_review"
+  ],
+  "evaluation_posture": "strict_pre_protocol_review",
+  "expected_artifacts": [
+    "summon_intent_receipt",
+    "summon_cost_note",
+    "local_insufficiency_note",
+    "owner_review_ticket"
+  ],
+  "expected_evidence": [
+    "summon intent receipt",
+    "local insufficiency claim",
+    "requested summon class",
+    "cost boundary",
+    "forbidden hidden summon acknowledgment"
+  ],
+  "fallback_mode": "review_required",
+  "gate_triggers": [
+    "summon_intent_requires_review",
+    "repeated_failure_without_delta",
+    "novelty_above_service_threshold"
+  ],
+  "handoffs": [
+    "steward assistant -> reviewer with budget and cost receipt",
+    "reviewer -> evaluator when summon intent could mask weak evidence",
+    "evaluator -> architect when summon classes or boundaries need recharter",
+    "reviewer/evaluator -> memory-keeper only for bounded summon-intent audit candidate"
+  ],
+  "id": "AOA-P-0039",
+  "lawful_moves": [
+    "request_summon_intent",
+    "request_witness",
+    "challenge_claim",
+    "request_evidence",
+    "defer_with_cost",
+    "flag_scope_breach"
+  ],
+  "live_protocol": false,
+  "memo_contract_refs": [
+    "examples/recall_contract.router.semantic.json",
+    "examples/checkpoint_to_memory_contract.example.json",
+    "examples/provenance_thread.example.json"
+  ],
+  "memo_owner_requests": [
+    "summon_intent_audit_candidate"
+  ],
+  "memo_writeback_targets": [
+    "decision",
+    "audit_event",
+    "provenance_thread"
+  ],
+  "memory_posture": "bounded_chronicle_candidate_only",
+  "name": "agon-expensive-summon-intent-trial",
+  "participating_agents": [
+    "architect",
+    "reviewer",
+    "evaluator",
+    "memory-keeper"
+  ],
+  "prerequisites": [
+    "summon_intent_named",
+    "reason_local_form_is_insufficient_named",
+    "requested_summon_class_named",
+    "cost_or_budget_boundary_named",
+    "forbidden_hidden_or_runtime_summon_named"
+  ],
+  "required_skill_families": [
+    "source-of-truth",
+    "approval-gate",
+    "change-protocol",
+    "review",
+    "evaluation",
+    "memory-curation"
+  ],
+  "required_skills": [
+    "aoa-source-of-truth-check",
+    "aoa-bounded-context-map",
+    "aoa-approval-gate-check",
+    "aoa-dry-run-first",
+    "aoa-change-protocol",
+    "aoa-contract-test"
+  ],
+  "requires_center_lawful_moves": true,
+  "requires_formation_trial": true,
+  "return_anchor_artifacts": [
+    "summon_intent_receipt",
+    "summon_cost_note",
+    "local_insufficiency_note"
+  ],
+  "return_posture": "artifact_anchor",
+  "return_reentry_modes": [
+    "previous_phase",
+    "review_gate",
+    "safe_stop"
+  ],
+  "routing_owner_requests": [
+    "summon_intent_requires_review_gate_hint"
+  ],
+  "runtime_effect": "none",
+  "scenario": "agon_mechanical_expensive_summon_intent_trial",
+  "slug": "agon-expensive-summon-intent-trial",
+  "stats_owner_requests": [
+    "summon_intent_review_rate",
+    "summon_deferral_count"
+  ],
+  "status": "seeded_pre_protocol_trial_playbook",
+  "stop_lines": [
+    "no_arena_session_creation",
+    "no_sealed_commit_runtime",
+    "no_live_move_execution",
+    "no_verdict_authority",
+    "no_scar_write",
+    "no_retention_schedule",
+    "no_rank_mutation",
+    "no_tos_promotion",
+    "no_hidden_assistant_contestant",
+    "no_runtime_substrate_claim"
+  ],
+  "summary": "Coordinates a pre-protocol trial for reviewing summon intent as a costly, visible request rather than a panic button or hidden orchestration shortcut.",
+  "terminal_pre_protocol_outcomes": [
+    "summon_intent_denied_pre_protocol",
+    "summon_intent_deferred_with_cost",
+    "owner_review_required",
+    "safe_stop"
+  ],
+  "trial_id": "agon.trial.mechanical.expensive_summon_intent",
+  "trial_intent": "Force every summon-shaped desire to name its purpose, cost, limits, and owner review before summon becomes arena authority.",
+  "trigger": "summon_intent_requires_review_before_any_future_summon_authority_exists",
+  "wave": "VI"
+}

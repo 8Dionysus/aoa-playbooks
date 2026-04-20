@@ -51,6 +51,8 @@ Use exact neighboring references instead:
 
 Composition-owned adjuncts such as failure codes, subagent recipe refs, automation seed refs, and bounded playbook-to-playbook followups belong in `config/playbook_composition_overrides.json` and the derived `generated/playbook_*` composition surfaces, not in ad hoc prose or runtime-only notes.
 
+For `agon_pre_protocol: true` playbooks, future eval-owner requests may stay experimental and unresolved in `aoa-evals`, but the `Eval anchors` section must say they are future owner requests and not verdicts.
+
 Keep handoffs, fallback posture, and expected evidence explicit in the authored bundle rather than hiding them in surrounding prose.
 Keep return posture explicit inside existing sections when a playbook can lose axis, ownership boundary, or checkpoint integrity.
 
@@ -72,6 +74,8 @@ Run the normal playbook-layer checks:
 
 ```bash
 python -m pip install -r requirements-dev.txt
+python scripts/build_agon_trial_playbook_registry.py --check
+python scripts/validate_agon_trial_playbooks.py
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_review_status.py --check

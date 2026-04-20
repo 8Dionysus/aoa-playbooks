@@ -45,6 +45,7 @@ The current authored set already covers these classes:
 | Component refresh cycle | carry one reviewed internal component drift signal through a named owner law, bounded refresh decision, owner validation, and derived summary refresh without granting scheduler authority | `component-refresh-cycle` |
 | A2A summon return checkpoint | carry one reviewed summon child route through SDK A2A decision, Codex-local target selection, reviewed child return, checkpoint bridge, proof hook, memo writeback, and runtime dry-run receipt without granting hidden child automation | `a2a-summon-return-checkpoint` |
 | Runtime chaos recovery | carry one reviewed runtime stress receipt through a bounded degraded lane, explicit re-entry gate, source-first regrounding, and proof-facing handoff without granting runtime repair or verdict authority | `runtime-chaos-recovery` |
+| Agon pre-protocol mechanical trial | rehearse one named Agon pressure family through recurring choreography, assistant-service boundaries, expected evidence, owner-review artifacts, and stop-lines without opening a live arena protocol | `agon-broken-trace-trial`, `agon-fallback-honor-trial`, `agon-contradiction-endurance-trial`, `agon-costly-closure-trial`, `agon-assistant-escalation-trial`, `agon-prediction-trial`, `agon-expensive-summon-intent-trial` |
 | Federated live publisher activation | activate known live publishers in owner order through readiness audit, publication checks, and stats-visible closure | `federated-live-publisher-activation` |
 
 ## Portfolio gaps
@@ -74,11 +75,16 @@ The runtime-chaos degraded-lane family now also has its first honest route:
 stabilization, distinct from shared-root rollout and owner-law refresh, and
 keeps runtime repair, KAG health truth, and eval verdicts in their owning
 layers.
-That closes real owner-refresh and runtime-chaos gaps, but the main risk
+The pre-protocol Agon mechanical trial family now also has its first honest
+routes: `AOA-P-0033` through `AOA-P-0039`. They are narrower than live arena
+protocol, distinct from generic remediation, incident, continuity, or refresh
+routes, and keep future eval, memo, routing, stats, skill, technique, and
+runtime ownership explicitly outside the playbook layer.
+That closes the first mechanical trial choreography gap, but the main risk
 remains semantic overlap, premature authority drift, and maintenance claims
 that outrun owner law and validation.
-The next portfolio move is therefore boundary repair plus reviewed evidence,
-not another catalog burst:
+The next portfolio move after this landing is therefore boundary repair plus
+reviewed evidence, not another catalog burst:
 - use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, `AOA-P-0028`, `AOA-P-0029`, `AOA-P-0030`, `AOA-P-0031`, and `AOA-P-0032`
 - use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, `AOA-P-0028`, `AOA-P-0029`, `AOA-P-0030`, and `AOA-P-0032` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
 - use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture the first reviewed `AOA-P-0027` route before any automation seed or handoff adjunct reaches composition
@@ -102,6 +108,13 @@ The operational family now covers:
 - `AOA-P-0030` = owner-law component refresh across reviewed drift hints, bounded refresh decisions, owner validation, and derived summary refresh
 - `AOA-P-0031` = reviewed A2A summon child-return checkpoint across SDK decision, Codex-local target, checkpoint bridge, proof, memo writeback, and runtime dry-run receipt
 - `AOA-P-0032` = runtime-chaos degraded lane and re-entry route across runtime receipt, explicit gate, source-first regrounding, and proof-facing handoff
+- `AOA-P-0033` = broken-trace trial across named trace gaps, closure denial, witness request candidacy, and owner review
+- `AOA-P-0034` = fallback-honor trial across degraded capability naming, blocked completion claims, and honest degraded continuation boundaries
+- `AOA-P-0035` = contradiction-endurance trial across open material contradiction, localization pressure, and closure refusal
+- `AOA-P-0036` = costly-closure trial across closure review, evidence-floor gaps, and denied jurisdiction
+- `AOA-P-0037` = assistant-escalation trial across service-boundary breach, anti-drift receipts, and escalation without hidden contestant drift
+- `AOA-P-0038` = prediction trial across bounded prediction claims, model divergence notes, and revision conditions
+- `AOA-P-0039` = expensive summon intent trial across costly summon intent review, local insufficiency notes, and owner review before any summon authority exists
 - `AOA-P-0024` = owner-ordered live publisher activation after a reviewed readiness audit
 
 ## Coverage rules

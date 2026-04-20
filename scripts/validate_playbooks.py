@@ -523,6 +523,13 @@ ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0030",
     "AOA-P-0031",
     "AOA-P-0032",
+    "AOA-P-0033",
+    "AOA-P-0034",
+    "AOA-P-0035",
+    "AOA-P-0036",
+    "AOA-P-0037",
+    "AOA-P-0038",
+    "AOA-P-0039",
 )
 FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0006",
@@ -548,6 +555,13 @@ FEDERATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0030",
     "AOA-P-0031",
     "AOA-P-0032",
+    "AOA-P-0033",
+    "AOA-P-0034",
+    "AOA-P-0035",
+    "AOA-P-0036",
+    "AOA-P-0037",
+    "AOA-P-0038",
+    "AOA-P-0039",
 )
 COMPOSITION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0011",
@@ -564,8 +578,20 @@ COMPOSITION_COLLECTION_PLAYBOOK_IDS = (
 FEDERATION_REQUIRED_FRONTMATTER_KEYS = ("required_skills", "memo_contract_refs", "memo_writeback_targets")
 
 ALLOWED_STATUS = {"active", "planned", "experimental", "deprecated"}
-ALLOWED_MEMORY_POSTURE = {"none", "light_recall", "bounded_recall", "deep_recall"}
-ALLOWED_EVAL_POSTURE = {"minimal", "required", "strict", "paired_eval"}
+ALLOWED_MEMORY_POSTURE = {
+    "none",
+    "light_recall",
+    "bounded_recall",
+    "deep_recall",
+    "bounded_chronicle_candidate_only",
+}
+ALLOWED_EVAL_POSTURE = {
+    "minimal",
+    "required",
+    "strict",
+    "paired_eval",
+    "strict_pre_protocol_review",
+}
 ALLOWED_FALLBACK = {"none", "handoff", "rollback", "safe_stop", "review_required"}
 ALLOWED_RETURN_POSTURE = {"artifact_anchor", "checkpoint_anchor", "review_anchor", "mixed_anchor"}
 ALLOWED_RETURN_REENTRY_MODES = {
@@ -2522,6 +2548,7 @@ def validate_projection_refs(
     agent_names: set[str],
     model_tier_artifacts: set[str],
     evals_by_name: dict[str, dict[str, object]],
+    allow_missing_eval_anchors: bool = False,
 ) -> None:
     if not isinstance(participating_agents, list) or not participating_agents:
         fail(f"{location} must expose a non-empty participating_agents list")
@@ -2552,14 +2579,24 @@ def validate_projection_refs(
         return
     if not isinstance(eval_anchors, list) or not eval_anchors:
         fail(f"{location} must expose a non-empty eval_anchors list when present")
-    missing_eval_anchors = [
-        anchor for anchor in eval_anchors if not isinstance(anchor, str) or anchor not in evals_by_name
-    ]
+    invalid_eval_anchors = [anchor for anchor in eval_anchors if not isinstance(anchor, str)]
+    if invalid_eval_anchors:
+        fail(
+            f"{location} contains invalid eval_anchors entries: "
+            + ", ".join(str(item) for item in invalid_eval_anchors)
+        )
+    missing_eval_anchors = [anchor for anchor in eval_anchors if anchor not in evals_by_name]
     if missing_eval_anchors:
+        if allow_missing_eval_anchors:
+            return
         fail(
             f"{location} references eval_anchors that do not resolve in aoa-evals: "
             + ", ".join(str(item) for item in missing_eval_anchors)
         )
+
+
+def allows_future_eval_owner_requests(*, status: object, evaluation_posture: object) -> bool:
+    return status == "experimental" and evaluation_posture == "strict_pre_protocol_review"
 
 
 def activation_surface_for_playbook(playbook_id: str, registry_entry: dict[str, object]) -> dict[str, object]:
@@ -2640,6 +2677,10 @@ def validate_activation_collection(
             agent_names=agent_names,
             model_tier_artifacts=model_tier_artifacts,
             evals_by_name=evals_by_name,
+            allow_missing_eval_anchors=allows_future_eval_owner_requests(
+                status=playbooks_by_id[playbook_id].get("status"),
+                evaluation_posture=playbooks_by_id[playbook_id].get("evaluation_posture"),
+            ),
         )
 
 
@@ -2847,14 +2888,22 @@ def validate_federation_collection(
             fail(
                 f"generated/playbook_federation_surfaces.min.json[{index}] must expose a non-empty eval_anchors list"
             )
-        missing_eval_anchors = [
-            anchor for anchor in eval_anchors if not isinstance(anchor, str) or anchor not in evals_by_name
-        ]
-        if missing_eval_anchors:
+        invalid_eval_anchors = [anchor for anchor in eval_anchors if not isinstance(anchor, str)]
+        if invalid_eval_anchors:
             fail(
-                f"generated/playbook_federation_surfaces.min.json[{index}] references eval_anchors that do not "
-                f"resolve in aoa-evals: {', '.join(str(item) for item in missing_eval_anchors)}"
+                f"generated/playbook_federation_surfaces.min.json[{index}] contains invalid eval_anchors: "
+                f"{', '.join(str(item) for item in invalid_eval_anchors)}"
             )
+        missing_eval_anchors = [anchor for anchor in eval_anchors if anchor not in evals_by_name]
+        if missing_eval_anchors:
+            if not allows_future_eval_owner_requests(
+                status=frontmatter_by_id[playbook_id].get("status"),
+                evaluation_posture=frontmatter_by_id[playbook_id].get("evaluation_posture"),
+            ):
+                fail(
+                    f"generated/playbook_federation_surfaces.min.json[{index}] references eval_anchors that do not "
+                    f"resolve in aoa-evals: {', '.join(str(item) for item in missing_eval_anchors)}"
+                )
 
         required_skills = surface.get("required_skills")
         if not isinstance(required_skills, list) or not required_skills:
@@ -3018,15 +3067,34 @@ def validate_cross_repo_bundle(
         agent_names=agent_names,
         model_tier_artifacts=model_tier_artifacts,
         evals_by_name=evals_by_name,
+        allow_missing_eval_anchors=allows_future_eval_owner_requests(
+            status=frontmatter.get("status"),
+            evaluation_posture=frontmatter.get("evaluation_posture"),
+        ),
     )
 
     eval_anchors = frontmatter.get("eval_anchors")
     if eval_anchors is None:
         return
+    future_eval_owner_requests = allows_future_eval_owner_requests(
+        status=frontmatter.get("status"),
+        evaluation_posture=frontmatter.get("evaluation_posture"),
+    )
+    if future_eval_owner_requests:
+        if frontmatter.get("agon_pre_protocol") not in {True, "true"}:
+            fail(
+                f"{bundle_location} with strict_pre_protocol_review must declare agon_pre_protocol: true"
+            )
+        eval_anchor_section = sections.get("Eval anchors", "").lower()
+        if "future eval-owner requests" not in eval_anchor_section or "not verdicts" not in eval_anchor_section:
+            fail(
+                f"{bundle_location} must state that strict_pre_protocol_review eval_anchors are future "
+                "eval-owner requests and not verdicts in the 'Eval anchors' section"
+            )
     draft_eval_anchors = [
         anchor
         for anchor in eval_anchors
-        if isinstance(anchor, str) and evals_by_name[anchor].get("status") == "draft"
+        if isinstance(anchor, str) and anchor in evals_by_name and evals_by_name[anchor].get("status") == "draft"
     ]
     if draft_eval_anchors:
         if frontmatter.get("status") != "experimental":
@@ -3034,12 +3102,13 @@ def validate_cross_repo_bundle(
                 f"{bundle_location} uses draft eval_anchors and must remain experimental: "
                 + ", ".join(draft_eval_anchors)
             )
-        eval_anchor_section = sections.get("Eval anchors", "").lower()
-        if "draft" not in eval_anchor_section or "review-only" not in eval_anchor_section:
-            fail(
-                f"{bundle_location} must state that draft eval_anchors are draft and review-only in the "
-                "'Eval anchors' section"
-            )
+        if not future_eval_owner_requests:
+            eval_anchor_section = sections.get("Eval anchors", "").lower()
+            if "draft" not in eval_anchor_section or "review-only" not in eval_anchor_section:
+                fail(
+                    f"{bundle_location} must state that draft eval_anchors are draft and review-only in the "
+                    "'Eval anchors' section"
+                )
 
 
 def validate_authored_bundles(
@@ -3219,6 +3288,10 @@ def validate_activation_examples(
             agent_names=agent_names,
             model_tier_artifacts=model_tier_artifacts,
             evals_by_name=evals_by_name,
+            allow_missing_eval_anchors=allows_future_eval_owner_requests(
+                status=registry_entry.get("status"),
+                evaluation_posture=registry_entry.get("evaluation_posture"),
+            ),
         )
 
 

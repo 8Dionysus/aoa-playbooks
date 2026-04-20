@@ -19,9 +19,10 @@ Use the shortest route by need:
 - owner-law component refresh route without scheduler authority: [AOA-P-0030 component-refresh-cycle](playbooks/component-refresh-cycle/PLAYBOOK.md)
 - A2A summon return checkpoint route without hidden child automation: [AOA-P-0031 a2a-summon-return-checkpoint](playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md)
 - runtime-chaos degraded lane and re-entry route: [AOA-P-0032 runtime-chaos-recovery](playbooks/runtime-chaos-recovery/PLAYBOOK.md), [docs/PLAYBOOK_STRESS_CHAOS_WAVE1.md](docs/PLAYBOOK_STRESS_CHAOS_WAVE1.md), and [examples/playbook_stress_lane.runtime-timeout-chaos.example.json](examples/playbook_stress_lane.runtime-timeout-chaos.example.json)
+- Agon pre-protocol mechanical trial family: [docs/AGON_TRIAL_PLAYBOOKS](docs/AGON_TRIAL_PLAYBOOKS.md), [docs/AGON_MECHANICAL_TRIAL_MODEL](docs/AGON_MECHANICAL_TRIAL_MODEL.md), [AOA-P-0033 agon-broken-trace-trial](playbooks/agon-broken-trace-trial/PLAYBOOK.md), [AOA-P-0039 agon-expensive-summon-intent-trial](playbooks/agon-expensive-summon-intent-trial/PLAYBOOK.md), and [generated/agon_trial_playbook_registry.min.json](generated/agon_trial_playbook_registry.min.json)
 - additive stress-lane and re-entry doctrine: [docs/PLAYBOOK_STRESS_LANES](docs/PLAYBOOK_STRESS_LANES.md), [docs/PLAYBOOK_STRESS_HARVEST](docs/PLAYBOOK_STRESS_HARVEST.md), and [docs/PLAYBOOK_STRESS_CHAOS_WAVE1.md](docs/PLAYBOOK_STRESS_CHAOS_WAVE1.md)
 - adjunct outline seam: [docs/QUESTLINE_AND_CAMPAIGN_MODEL](docs/QUESTLINE_AND_CAMPAIGN_MODEL.md)
-- live authored examples: [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md), [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md), [playbooks/session-growth-cycle/PLAYBOOK.md](playbooks/session-growth-cycle/PLAYBOOK.md), [playbooks/owner-followthrough-campaign/PLAYBOOK.md](playbooks/owner-followthrough-campaign/PLAYBOOK.md), [AOA-P-0027 reviewed-automation-followthrough](playbooks/reviewed-automation-followthrough/PLAYBOOK.md), [AOA-P-0028 trusted-rollout-operations](playbooks/trusted-rollout-operations/PLAYBOOK.md), [AOA-P-0029 self-agency-continuity-cycle](playbooks/self-agency-continuity-cycle/PLAYBOOK.md), [AOA-P-0030 component-refresh-cycle](playbooks/component-refresh-cycle/PLAYBOOK.md), [AOA-P-0031 a2a-summon-return-checkpoint](playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md), and [AOA-P-0032 runtime-chaos-recovery](playbooks/runtime-chaos-recovery/PLAYBOOK.md) inside the wider `playbooks/*/PLAYBOOK.md` family
+- live authored examples: [playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md](playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md), [playbooks/witness-to-compost-pilot/PLAYBOOK.md](playbooks/witness-to-compost-pilot/PLAYBOOK.md), [playbooks/session-growth-cycle/PLAYBOOK.md](playbooks/session-growth-cycle/PLAYBOOK.md), [playbooks/owner-followthrough-campaign/PLAYBOOK.md](playbooks/owner-followthrough-campaign/PLAYBOOK.md), [AOA-P-0027 reviewed-automation-followthrough](playbooks/reviewed-automation-followthrough/PLAYBOOK.md), [AOA-P-0028 trusted-rollout-operations](playbooks/trusted-rollout-operations/PLAYBOOK.md), [AOA-P-0029 self-agency-continuity-cycle](playbooks/self-agency-continuity-cycle/PLAYBOOK.md), [AOA-P-0030 component-refresh-cycle](playbooks/component-refresh-cycle/PLAYBOOK.md), [AOA-P-0031 a2a-summon-return-checkpoint](playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md), [AOA-P-0032 runtime-chaos-recovery](playbooks/runtime-chaos-recovery/PLAYBOOK.md), and the Wave VI Agon cohort under `playbooks/agon-*/PLAYBOOK.md`
 - current direction: [ROADMAP](ROADMAP.md)
 
 ## Route by need
@@ -33,13 +34,14 @@ Use the shortest route by need:
 - owner-law component refresh route: `playbooks/component-refresh-cycle/PLAYBOOK.md`
 - A2A summon return checkpoint route: `playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md`
 - runtime-chaos degraded lane and re-entry route: `playbooks/runtime-chaos-recovery/PLAYBOOK.md`, `docs/PLAYBOOK_STRESS_CHAOS_WAVE1.md`, and `examples/playbook_stress_lane.runtime-timeout-chaos.example.json`
+- Agon pre-protocol mechanical trial family: `docs/AGON_TRIAL_PLAYBOOKS.md`, `docs/AGON_MECHANICAL_TRIAL_MODEL.md`, `docs/AGON_TRIAL_CHOREOGRAPHY_BOUNDARY.md`, `docs/AGON_TRIAL_ASSISTANT_SERVICE_BOUNDARY.md`, `docs/AGON_TRIAL_OWNER_HANDOFFS.md`, `docs/AGON_WAVE6_PLAYBOOK_LANDING.md`, `playbooks/agon-*/PLAYBOOK.md`, and `generated/agon_trial_playbook_registry.min.json`
 - handoff, failure, automation, and subagent adjuncts: `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_automation_seeds.json`, `generated/playbook_subagent_recipes.json`, [docs/HANDOFF_CONTRACTS](docs/HANDOFF_CONTRACTS.md), [docs/FAILURE_RECOVERY](docs/FAILURE_RECOVERY.md), [docs/AUTOMATION_SEEDS](docs/AUTOMATION_SEEDS.md), and [docs/SUBAGENT_PATTERNS](docs/SUBAGENT_PATTERNS.md)
 - additive stress-lane adjuncts: `schemas/playbook_stress_lane_v1.json`, `schemas/playbook_reentry_gate_v1.json`, `examples/playbook_stress_lane.example.json`, `examples/playbook_reentry_gate.example.json`, [docs/PLAYBOOK_STRESS_LANES](docs/PLAYBOOK_STRESS_LANES.md), and [docs/PLAYBOOK_STRESS_HARVEST](docs/PLAYBOOK_STRESS_HARVEST.md)
 - via negativa pruning checklist: [docs/VIA_NEGATIVA_CHECKLIST](docs/VIA_NEGATIVA_CHECKLIST.md)
 - real-run and gate-review evidence: `docs/real-runs/`, `docs/gate-reviews/`, `examples/harvests/`, [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), and [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md)
 - owner-local live receipt publication for closeout/stats integration: `scripts/publish_live_receipts.py` and `.aoa/live_receipts/playbook-receipts.jsonl`
 - live authored bundles and activation examples: `playbooks/*/PLAYBOOK.md` and `examples/playbook_activation.*.example.json`
-- full non-mutating verify path: the eight `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
+- full non-mutating verify path: `python scripts/build_agon_trial_playbook_registry.py --check`, `python scripts/validate_agon_trial_playbooks.py`, the eight `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
 
 ## What `aoa-playbooks` owns
 
@@ -70,6 +72,7 @@ When a route is really one bounded workflow, keep it in `aoa-skills` instead of 
 The committed public surfaces group into four families:
 
 - source-authored playbook canon: `playbooks/*/PLAYBOOK.md` for route meaning and `generated/playbook_registry.min.json` for compact registry metadata
+- Wave VI Agon trial registry and doctrine: `generated/agon_trial_playbook_registry.min.json`, `docs/AGON_TRIAL_PLAYBOOKS.md`, `docs/AGON_MECHANICAL_TRIAL_MODEL.md`, `docs/AGON_TRIAL_CHOREOGRAPHY_BOUNDARY.md`, `docs/AGON_TRIAL_ASSISTANT_SERVICE_BOUNDARY.md`, `docs/AGON_TRIAL_OWNER_HANDOFFS.md`, and `docs/AGON_WAVE6_PLAYBOOK_LANDING.md`
 - derived activation, federation, review-status, review-packet, review-intake, and landing-governance surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_packet_contracts.min.json`, `generated/playbook_review_intake.min.json`, and `generated/playbook_landing_governance.min.json`
 - playbook-owned composition adjuncts such as `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json`
 - bounded evidence and readiness adjuncts under `docs/real-runs/`, `docs/gate-reviews/`, `generated/phase_alpha_review_packets.min.json`, `generated/phase_alpha_run_matrix.min.json`, and `QUESTBOOK.md`
@@ -91,6 +94,8 @@ To validate the current playbook-layer surface locally, run:
 
 ```bash
 python -m pip install -r requirements-dev.txt
+python scripts/build_agon_trial_playbook_registry.py --check
+python scripts/validate_agon_trial_playbooks.py
 python scripts/generate_playbook_activation_surfaces.py --check
 python scripts/generate_playbook_federation_surfaces.py --check
 python scripts/generate_playbook_review_status.py --check
@@ -103,11 +108,11 @@ python scripts/validate_playbooks.py
 python -m pytest -q tests
 ```
 
-The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md`, checks registry alignment, resolves federation-facing references into neighboring repositories, and validates the review-governed experimental landing layer, Phase Alpha, questbook, and local guidance surfaces including `playbooks/AGENTS.md` and `generated/AGENTS.md`.
+The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md`, checks registry alignment, resolves federation-facing references into neighboring repositories, and validates the review-governed experimental landing layer, the Wave VI Agon trial family, Phase Alpha, questbook, and local guidance surfaces including `playbooks/AGENTS.md` and `generated/AGENTS.md`.
 
 ## Current contour
 
-`aoa-playbooks` is currently at `v0.3.2` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation rather than bootstrap growth for its own sake.
+`aoa-playbooks` is currently at `v0.3.2` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation with one new bounded family: the Wave VI Agon mechanical trials stay experimental, pre-protocol, and choreography-only.
 
 The runtime-facing extension stays intentionally bounded: selected playbooks may publish explicit memo-read defaults and activation-readable surfaces, but memo truth, routing ownership, and source skill meaning remain in their owning repositories.
 
