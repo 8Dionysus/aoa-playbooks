@@ -20,6 +20,12 @@ the composition gate honestly.
 example-only seed candidate for the same playbook family, grounded in the
 April 12, 2026 reviewed closeout receipt follow-through route and its explicit
 quest-promotion handoff into `aoa-playbooks`.
+`examples/automations/release-wave-closeout-followthrough.md` is another
+example-only seed candidate for that same family, grounded in the April 20,
+2026 release-wave closeout and owner-handoff route. It remains outside
+`config/playbook_composition_overrides.json` and
+`generated/playbook_automation_seeds.json` until a later gate review decides
+that repeated evidence really supports composition-owned automation.
 
 ## What a seed may contain
 
