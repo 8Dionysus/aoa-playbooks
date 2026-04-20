@@ -1,11 +1,11 @@
 # AoA Playbooks Roadmap
 
 This roadmap tracks the playbook layer from its public baseline into its
-current `v0.3.1` portfolio-hardening phase.
+current `v0.3.2` portfolio-hardening phase.
 
 ## Current phase
 
-`aoa-playbooks` established its `v0.3.1` public contour and has moved well
+`aoa-playbooks` established its `v0.3.2` public contour and has moved well
 beyond the bootstrap question.
 The immediate goal is no longer to prove that the repository can exist.
 The next goal is to keep the current portfolio honest through boundary repair,

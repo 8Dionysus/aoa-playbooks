@@ -7,6 +7,38 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-04-19
+
+### Summary
+
+- this patch adds runtime chaos recovery, A2A summon return, and live Codex
+  repair closeout playbooks to the reviewed rollout lane
+- closeout continuity, recurrence beacons, and release-audit pins are
+  tightened around current owner-routed playbook evidence
+- `aoa-playbooks` remains the scenario-composition and review layer
+
+### Added
+
+- a runtime chaos recovery playbook, an A2A summon return checkpoint playbook,
+  and live Codex repair closeout run capture
+- recurrence beacons with hook bindings and reviewed closeout follow-through
+  seed examples
+
+### Changed
+
+- aoa-kag closeout continuity carry, Wave5 survivor routing,
+  roadmap/current-direction docs, and CI/protection surfaces are aligned with
+  the current playbook contour
+
+### Validation
+
+- `python scripts/release_check.py`
+
+### Notes
+
+- this patch grows reviewed scenario composition and closeout evidence without
+  changing routing or runtime ownership boundaries
+
 ## [0.3.1] - 2026-04-12
 
 ### Summary
