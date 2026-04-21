@@ -1,0 +1,314 @@
+{
+  "campaign_playbooks": [
+    {
+      "allowed_sources": [
+        "Wave XIII mechanical trials",
+        "Wave XV epistemic Agon"
+      ],
+      "assistant_contestant_allowed": false,
+      "authority_posture": "non_authority",
+      "canonical_status": "non_canonical_candidate",
+      "choreography_status": "candidate_only",
+      "forbidden_effects": [
+        "live_verdict_authority",
+        "durable_scar_write",
+        "retention_execution",
+        "rank_mutation",
+        "trust_mutation",
+        "tree_of_sophia_promotion",
+        "kag_promotion",
+        "hidden_scheduler_action",
+        "assistant_contestant_drift",
+        "auto_doctrine_rewrite",
+        "school_authority",
+        "lineage_canonization",
+        "live_campaign_arena"
+      ],
+      "live_protocol": false,
+      "output_candidates": [
+        "campaign_episode_candidate",
+        "lineage_episode_candidate"
+      ],
+      "playbook_id": "agon-campaign-false-consensus-resistance",
+      "purpose": "Repeated trials that test whether consensus emerged from pressure or convenience.",
+      "review_status": "candidate_only",
+      "runtime_effect": "none",
+      "stop_lines": [
+        "no_live_verdict_authority",
+        "no_durable_scar_write",
+        "no_retention_execution",
+        "no_rank_or_trust_mutation",
+        "no_tree_of_sophia_promotion",
+        "no_kag_promotion",
+        "no_hidden_scheduler_action",
+        "no_assistant_contestant_drift",
+        "no_auto_doctrine_rewrite",
+        "no_school_as_authority",
+        "no_lineage_as_canon",
+        "no_campaign_as_live_arena",
+        "no_center_takeover_of_owner_truth"
+      ],
+      "title": "False Consensus Resistance Campaign",
+      "wave": "XVI"
+    },
+    {
+      "allowed_sources": [
+        "Wave XIII mechanical trials",
+        "Wave XV epistemic Agon"
+      ],
+      "assistant_contestant_allowed": false,
+      "authority_posture": "non_authority",
+      "canonical_status": "non_canonical_candidate",
+      "choreography_status": "candidate_only",
+      "forbidden_effects": [
+        "live_verdict_authority",
+        "durable_scar_write",
+        "retention_execution",
+        "rank_mutation",
+        "trust_mutation",
+        "tree_of_sophia_promotion",
+        "kag_promotion",
+        "hidden_scheduler_action",
+        "assistant_contestant_drift",
+        "auto_doctrine_rewrite",
+        "school_authority",
+        "lineage_canonization",
+        "live_campaign_arena"
+      ],
+      "live_protocol": false,
+      "output_candidates": [
+        "campaign_episode_candidate",
+        "lineage_episode_candidate"
+      ],
+      "playbook_id": "agon-campaign-bifurcation-survival",
+      "purpose": "Repeated branch tests after honest split rather than forced agreement.",
+      "review_status": "candidate_only",
+      "runtime_effect": "none",
+      "stop_lines": [
+        "no_live_verdict_authority",
+        "no_durable_scar_write",
+        "no_retention_execution",
+        "no_rank_or_trust_mutation",
+        "no_tree_of_sophia_promotion",
+        "no_kag_promotion",
+        "no_hidden_scheduler_action",
+        "no_assistant_contestant_drift",
+        "no_auto_doctrine_rewrite",
+        "no_school_as_authority",
+        "no_lineage_as_canon",
+        "no_campaign_as_live_arena",
+        "no_center_takeover_of_owner_truth"
+      ],
+      "title": "Bifurcation Survival Campaign",
+      "wave": "XVI"
+    },
+    {
+      "allowed_sources": [
+        "Wave XIII mechanical trials",
+        "Wave XV epistemic Agon"
+      ],
+      "assistant_contestant_allowed": false,
+      "authority_posture": "non_authority",
+      "canonical_status": "non_canonical_candidate",
+      "choreography_status": "candidate_only",
+      "forbidden_effects": [
+        "live_verdict_authority",
+        "durable_scar_write",
+        "retention_execution",
+        "rank_mutation",
+        "trust_mutation",
+        "tree_of_sophia_promotion",
+        "kag_promotion",
+        "hidden_scheduler_action",
+        "assistant_contestant_drift",
+        "auto_doctrine_rewrite",
+        "school_authority",
+        "lineage_canonization",
+        "live_campaign_arena"
+      ],
+      "live_protocol": false,
+      "output_candidates": [
+        "campaign_episode_candidate",
+        "lineage_episode_candidate"
+      ],
+      "playbook_id": "agon-campaign-prediction-rivalry",
+      "purpose": "Repeated model-of-other prediction contests between actors or schools.",
+      "review_status": "candidate_only",
+      "runtime_effect": "none",
+      "stop_lines": [
+        "no_live_verdict_authority",
+        "no_durable_scar_write",
+        "no_retention_execution",
+        "no_rank_or_trust_mutation",
+        "no_tree_of_sophia_promotion",
+        "no_kag_promotion",
+        "no_hidden_scheduler_action",
+        "no_assistant_contestant_drift",
+        "no_auto_doctrine_rewrite",
+        "no_school_as_authority",
+        "no_lineage_as_canon",
+        "no_campaign_as_live_arena",
+        "no_center_takeover_of_owner_truth"
+      ],
+      "title": "Prediction Rivalry Campaign",
+      "wave": "XVI"
+    },
+    {
+      "allowed_sources": [
+        "Wave XIII mechanical trials",
+        "Wave XV epistemic Agon"
+      ],
+      "assistant_contestant_allowed": false,
+      "authority_posture": "non_authority",
+      "canonical_status": "non_canonical_candidate",
+      "choreography_status": "candidate_only",
+      "forbidden_effects": [
+        "live_verdict_authority",
+        "durable_scar_write",
+        "retention_execution",
+        "rank_mutation",
+        "trust_mutation",
+        "tree_of_sophia_promotion",
+        "kag_promotion",
+        "hidden_scheduler_action",
+        "assistant_contestant_drift",
+        "auto_doctrine_rewrite",
+        "school_authority",
+        "lineage_canonization",
+        "live_campaign_arena"
+      ],
+      "live_protocol": false,
+      "output_candidates": [
+        "campaign_episode_candidate",
+        "lineage_episode_candidate"
+      ],
+      "playbook_id": "agon-campaign-doctrine-revision-review",
+      "purpose": "Bounded review of doctrine evolution pressure without automatic rewrite.",
+      "review_status": "candidate_only",
+      "runtime_effect": "none",
+      "stop_lines": [
+        "no_live_verdict_authority",
+        "no_durable_scar_write",
+        "no_retention_execution",
+        "no_rank_or_trust_mutation",
+        "no_tree_of_sophia_promotion",
+        "no_kag_promotion",
+        "no_hidden_scheduler_action",
+        "no_assistant_contestant_drift",
+        "no_auto_doctrine_rewrite",
+        "no_school_as_authority",
+        "no_lineage_as_canon",
+        "no_campaign_as_live_arena",
+        "no_center_takeover_of_owner_truth"
+      ],
+      "title": "Doctrine Revision Review Campaign",
+      "wave": "XVI"
+    },
+    {
+      "allowed_sources": [
+        "Wave XIII mechanical trials",
+        "Wave XV epistemic Agon"
+      ],
+      "assistant_contestant_allowed": false,
+      "authority_posture": "non_authority",
+      "canonical_status": "non_canonical_candidate",
+      "choreography_status": "candidate_only",
+      "forbidden_effects": [
+        "live_verdict_authority",
+        "durable_scar_write",
+        "retention_execution",
+        "rank_mutation",
+        "trust_mutation",
+        "tree_of_sophia_promotion",
+        "kag_promotion",
+        "hidden_scheduler_action",
+        "assistant_contestant_drift",
+        "auto_doctrine_rewrite",
+        "school_authority",
+        "lineage_canonization",
+        "live_campaign_arena"
+      ],
+      "live_protocol": false,
+      "output_candidates": [
+        "campaign_episode_candidate",
+        "lineage_episode_candidate"
+      ],
+      "playbook_id": "agon-campaign-closure-discipline-lineage",
+      "purpose": "Repeated closure-denial and closure-candidate trials across time.",
+      "review_status": "candidate_only",
+      "runtime_effect": "none",
+      "stop_lines": [
+        "no_live_verdict_authority",
+        "no_durable_scar_write",
+        "no_retention_execution",
+        "no_rank_or_trust_mutation",
+        "no_tree_of_sophia_promotion",
+        "no_kag_promotion",
+        "no_hidden_scheduler_action",
+        "no_assistant_contestant_drift",
+        "no_auto_doctrine_rewrite",
+        "no_school_as_authority",
+        "no_lineage_as_canon",
+        "no_campaign_as_live_arena",
+        "no_center_takeover_of_owner_truth"
+      ],
+      "title": "Closure Discipline Lineage Campaign",
+      "wave": "XVI"
+    },
+    {
+      "allowed_sources": [
+        "Wave XIII mechanical trials",
+        "Wave XV epistemic Agon"
+      ],
+      "assistant_contestant_allowed": false,
+      "authority_posture": "non_authority",
+      "canonical_status": "non_canonical_candidate",
+      "choreography_status": "candidate_only",
+      "forbidden_effects": [
+        "live_verdict_authority",
+        "durable_scar_write",
+        "retention_execution",
+        "rank_mutation",
+        "trust_mutation",
+        "tree_of_sophia_promotion",
+        "kag_promotion",
+        "hidden_scheduler_action",
+        "assistant_contestant_drift",
+        "auto_doctrine_rewrite",
+        "school_authority",
+        "lineage_canonization",
+        "live_campaign_arena"
+      ],
+      "live_protocol": false,
+      "output_candidates": [
+        "campaign_episode_candidate",
+        "lineage_episode_candidate"
+      ],
+      "playbook_id": "agon-campaign-epistemic-rupture-followthrough",
+      "purpose": "Followthrough on rupture candidates through delta, retention, and lineage episode candidates.",
+      "review_status": "candidate_only",
+      "runtime_effect": "none",
+      "stop_lines": [
+        "no_live_verdict_authority",
+        "no_durable_scar_write",
+        "no_retention_execution",
+        "no_rank_or_trust_mutation",
+        "no_tree_of_sophia_promotion",
+        "no_kag_promotion",
+        "no_hidden_scheduler_action",
+        "no_assistant_contestant_drift",
+        "no_auto_doctrine_rewrite",
+        "no_school_as_authority",
+        "no_lineage_as_canon",
+        "no_campaign_as_live_arena",
+        "no_center_takeover_of_owner_truth"
+      ],
+      "title": "Epistemic Rupture Followthrough Campaign",
+      "wave": "XVI"
+    }
+  ],
+  "registry_id": "agon.campaign_playbook.registry.v1",
+  "runtime_posture": "candidate_only",
+  "wave": "XVI",
+  "wave_name": "Schools / Lineages / Campaigns"
+}
