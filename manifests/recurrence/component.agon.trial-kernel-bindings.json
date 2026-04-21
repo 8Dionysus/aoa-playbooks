@@ -1,0 +1,10 @@
+{
+  "authority": "observation_only",
+  "component_id": "component.agon.trial-kernel-bindings",
+  "observation_intent": "Detect drift between trial playbooks and duel kernel bindings.",
+  "repo": "aoa-playbooks",
+  "surfaces": [
+    "generated/agon_trial_kernel_binding_registry.min.json"
+  ],
+  "wave": "XIII"
+}
