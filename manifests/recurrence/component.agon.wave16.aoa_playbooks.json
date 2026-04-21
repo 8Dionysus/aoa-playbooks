@@ -1,0 +1,23 @@
+{
+  "component_id": "component.agon.wave16.aoa_playbooks",
+  "forbidden_actions": [
+    "open_arena_session",
+    "issue_verdict",
+    "write_scar",
+    "mutate_rank",
+    "promote_to_tree_of_sophia",
+    "auto_rewrite_owner_repo",
+    "hidden_scheduler_action"
+  ],
+  "observation_only": true,
+  "repo": "aoa-playbooks",
+  "surfaces": [
+    "generated/agon_campaign_playbook_registry.min.json",
+    "config/agon_campaign_playbooks.seed.json",
+    "docs/AGON_CAMPAIGN_PLAYBOOKS.md",
+    "docs/AGON_CAMPAIGN_CHOREOGRAPHY_BOUNDARY.md",
+    "docs/AGON_WAVE16_PLAYBOOKS_LANDING.md"
+  ],
+  "title": "Wave XVI aoa-playbooks surfaces",
+  "wave": "XVI"
+}
