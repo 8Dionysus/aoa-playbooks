@@ -78,6 +78,8 @@ def validate_item(item: dict[str, Any]) -> str | None:
         return f'{key} canonical_status must remain non-canonical'
     if item.get('review_status') != 'candidate_only':
         return f'{key} review_status must be candidate_only'
+    if item.get('choreography_status') != 'candidate_only':
+        return f'{key} choreography_status must be candidate_only'
 
     stop_err = require_string_list(item.get('stop_lines'), 'stop_lines', key)
     if stop_err:
