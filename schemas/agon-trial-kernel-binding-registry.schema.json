@@ -1,13 +1,38 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
+    "bindings": {
+      "items": {
+        "$ref": "./agon-trial-kernel-binding.schema.json"
+      },
+      "type": "array"
+    },
+    "count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
     "registry_id": {
+      "const": "agon.trial_kernel_binding.registry.v0"
+    },
+    "runtime_posture": {
       "type": "string"
     },
     "wave": {
-      "type": "string"
+      "const": "XIII"
     }
   },
+  "required": [
+    "registry_id",
+    "wave",
+    "runtime_posture",
+    "count",
+    "bindings",
+    "digest"
+  ],
   "type": "object"
 }
