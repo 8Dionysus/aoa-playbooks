@@ -26,8 +26,7 @@
       ]
     },
     "choreography_status": {
-      "minLength": 1,
-      "type": "string"
+      "const": "candidate_only"
     },
     "forbidden_effects": {
       "allOf": [
