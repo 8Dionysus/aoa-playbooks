@@ -1,13 +1,78 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
-    "registry_id": {
+    "allowed_lawful_moves": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "assistant_contestant_allowed": {
+      "const": false
+    },
+    "assistant_support": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "binding_id": {
       "type": "string"
     },
-    "wave": {
+    "dry_run_allowed": {
+      "type": "boolean"
+    },
+    "gate_trigger": {
+      "type": "string"
+    },
+    "kernel_model_id": {
+      "type": "string"
+    },
+    "live_protocol": {
+      "const": false
+    },
+    "owner_handoffs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "playbook_id": {
+      "type": "string"
+    },
+    "playbook_slug": {
+      "type": "string"
+    },
+    "required_packets": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "runtime_effect": {
+      "type": "string"
+    },
+    "runtime_kernel_id": {
+      "type": "string"
+    },
+    "trial_id": {
       "type": "string"
     }
   },
+  "required": [
+    "binding_id",
+    "trial_id",
+    "playbook_id",
+    "kernel_model_id",
+    "runtime_kernel_id",
+    "allowed_lawful_moves",
+    "required_packets",
+    "live_protocol",
+    "runtime_effect",
+    "assistant_contestant_allowed"
+  ],
   "type": "object"
 }
