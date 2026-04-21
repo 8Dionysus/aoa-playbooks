@@ -1,0 +1,39 @@
+{
+  "allowed_lawful_moves": [
+    "probe_trace",
+    "deny_trace_closure",
+    "request_witness",
+    "defer_with_cost"
+  ],
+  "assistant_contestant_allowed": false,
+  "assistant_support": [
+    "coder.assistant:notary",
+    "evaluator.assistant:steward"
+  ],
+  "binding_id": "agon.playbook_kernel_binding.broken_trace.v0",
+  "dry_run_allowed": true,
+  "gate_trigger": "broken_trace_or_trace_gap",
+  "kernel_model_id": "agon.duel_kernel.mechanical_duel.v0",
+  "live_protocol": false,
+  "owner_handoffs": [
+    "Agents-of-Abyss",
+    "abyss-stack",
+    "aoa-evals",
+    "aoa-memo",
+    "aoa-stats",
+    "aoa-sdk"
+  ],
+  "playbook_id": "AOA-P-0033",
+  "playbook_slug": "agon-broken-trace-trial",
+  "required_packets": [
+    "agon.sealed_commit",
+    "agon.commit_receipt",
+    "agon.reveal_view",
+    "agon.move_declaration",
+    "agon.adjudication_request",
+    "agon.inscription_candidate"
+  ],
+  "runtime_effect": "none",
+  "runtime_kernel_id": "abyss.runtime.agon.mechanical_duel_kernel.v0",
+  "trial_id": "agon.trial.mechanical.broken_trace.v0"
+}
