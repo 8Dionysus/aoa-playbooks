@@ -1,0 +1,74 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0013
+title: Keep Agon seed-wave closeout survivors owner-routed
+summary: Carry the reviewed Agon seed-wave and seed-garden closeout survivor
+  into owner-local follow-through without promoting one broad wave session into
+  a new playbook family, skill, proof surface, memo canon, or runtime route.
+repo: aoa-playbooks
+owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0012
+activation:
+  mode: on_review_of
+  ref: session:2026-04-21T04-51-17-705729Z-Dionysus-checkpoint-growth-99fa9f93-c4b
+  note: open after the reviewed Agon Wave XV seed-garden closeout kept the
+    route-shaped survivor as quest follow-through rather than immediate
+    playbook, skill, proof, memo, or runtime promotion
+anchor_ref:
+  artifact: closeout_owner_follow_through_continuity
+  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  note: keep the seed-wave route on the owner-follow-through continuity
+    boundary while any later Agon seed-wave playbook remains a candidate, not
+    current canon
+handoff_role: playbook-maintainer
+evidence:
+  - reviewed closeout accepted 25 candidate refs from the Agon seed-wave and
+    seed-garden session, so multi-candidate follow-up is required before any
+    stronger promotion
+  - the quest promotion verdict stayed keep_open_quest, rejected
+    promote_to_skill as the nearest wrong target, and named route as the repeat
+    shape
+  - the Dionysus seed garden archived the downloaded zip seed packs while owner
+    landings remained in their own repositories, so aoa-playbooks owns only the
+    route follow-through surface
+harvest:
+  target: playbook
+  trigger_count: 25
+  note: keep this as owner-routed follow-through until another reviewed
+    seed-wave route proves a distinct recurring playbook family with stable
+    phase names, acceptance gates, and owner-repo boundaries
+opened_at: '2026-04-21'
+touched_at: '2026-04-21'
+tags:
+  - agon
+  - seed-wave
+  - seed-garden
+  - owner-follow-through
+  - reanchor
+notes: >
+  The closeout handoff suggested a generated session follow-up path, but the
+  careful owner move is repo-local continuity under the existing closeout owner
+  follow-through family. A future `playbooks/agon-seed-wave-owner-landing`
+  surface needs separate reviewed evidence: repeated seed intake, owner
+  landing, review repair, seed-garden hydration, and merge closeout phases with
+  no hidden installer, runtime, stats-refresh, or source-truth transfer claim.
+public_safe: true
