@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "shared_pattern_review_run",
+  "id": "shared_pattern_review_run.example",
+  "status": "candidate",
+  "summary": "Example shared_pattern_review_run object for v0.6 federation harvest seed.",
+  "owner_repo": "aoa-playbooks",
+  "evidence_refs": [
+    "receipt://v0.6/shared_pattern_review_run/example"
+  ],
+  "payload": {
+    "candidate_id": "pattern.wrong_surface.cross_repo.001",
+    "reviewers": [
+      "operator",
+      "owner_repo"
+    ],
+    "outcome": "approved"
+  }
+}
