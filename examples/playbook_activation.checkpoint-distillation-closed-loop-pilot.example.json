@@ -6,6 +6,7 @@
   "trigger": "reviewed_checkpoint_needing_distillation_into_a_closed_loop_pilot_runbook",
   "participating_agents": [
     "architect",
+    "coder",
     "reviewer",
     "evaluator",
     "memory-keeper"
