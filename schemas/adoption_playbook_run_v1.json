@@ -63,7 +63,8 @@
         "related": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -94,13 +95,16 @@
           "type": "string"
         },
         "requires_owner_consent": {
-          "type": "boolean"
+          "type": "boolean",
+          "const": true
         },
         "rollback_required": {
-          "type": "boolean"
+          "type": "boolean",
+          "const": true
         },
         "retention_cycles": {
-          "type": "integer"
+          "type": "integer",
+          "minimum": 1
         }
       }
     }
