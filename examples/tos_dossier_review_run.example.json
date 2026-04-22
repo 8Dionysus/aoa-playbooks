@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "tos_dossier_review_run",
+  "id": "tos_dossier_review_run.example",
+  "status": "candidate",
+  "summary": "Example tos_dossier_review_run object for v0.6 federation harvest seed.",
+  "owner_repo": "aoa-playbooks",
+  "evidence_refs": [
+    "receipt://v0.6/tos_dossier_review_run/example"
+  ],
+  "payload": {
+    "dossier_id": "tos.dossier.pattern.001",
+    "direct_write_attempted": false
+  }
+}

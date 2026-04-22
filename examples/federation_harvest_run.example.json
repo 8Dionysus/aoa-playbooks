@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "kind": "federation_harvest_run",
+  "id": "federation_harvest_run.example",
+  "status": "candidate",
+  "summary": "Example federation_harvest_run object for v0.6 federation harvest seed.",
+  "owner_repo": "aoa-playbooks",
+  "evidence_refs": [
+    "receipt://v0.6/federation_harvest_run/example"
+  ],
+  "payload": {
+    "runbook": "federation_harvest",
+    "steps": [
+      "collect",
+      "rollup",
+      "candidate",
+      "eval",
+      "gate",
+      "dispatch"
+    ]
+  }
+}
