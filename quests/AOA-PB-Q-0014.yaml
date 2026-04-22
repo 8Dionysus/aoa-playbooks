@@ -1,0 +1,84 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0014
+title: Keep recurrence seed archive closeout survivors owner-routed
+summary: Carry the reviewed recurrence seed archive closeout survivor into
+  repo-local follow-through without promoting one archive repair session into a
+  new playbook family, skill, proof surface, memo canon, stats truth, or runtime
+  route.
+repo: aoa-playbooks
+owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0013
+activation:
+  mode: on_review_of
+  ref: session:2026-04-21T23-05-05-350761Z-Dionysus-checkpoint-growth-aedea414-203
+  note: open after the reviewed recurrence seed archive closeout kept the
+    route-shaped survivor as quest follow-through rather than immediate
+    playbook, skill, proof, memo, stats, or runtime promotion
+anchor_ref:
+  artifact: closeout_owner_follow_through_continuity
+  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  note: keep the recurrence seed archive route on the owner-follow-through
+    continuity boundary while any later recurrence archive or owner-landing
+    playbook remains a candidate, not current canon
+handoff_role: playbook-maintainer
+evidence:
+  - >
+    Dionysus PR #100 merged the seven missing recurrence zip seed packs into
+    archive/seed_pack_exports with sha256 parity against the downloaded sources
+    and no duplicate archive bytes
+  - >
+    reviewed closeout accepted 20 candidate refs from the recurrence seed
+    archive and session-growth closeout, so multi-candidate follow-up is
+    required before any stronger promotion
+  - >
+    the quest promotion verdict stayed keep_open_quest, rejected
+    promote_to_skill as the nearest wrong target, and named route as the repeat
+    shape
+  - >
+    downstream publication appended three session-harvest-family receipts and
+    three core skill receipts, and aoa-stats refreshed 99 live receipts without
+    turning stats into promotion authority
+harvest:
+  target: playbook
+  trigger_count: 20
+  note: keep this as owner-routed follow-through until another reviewed
+    recurrence archive route proves a distinct recurring playbook family with
+    stable phase names, acceptance gates, archive hygiene, stats refresh
+    boundaries, and owner-repo handoffs
+opened_at: '2026-04-22'
+touched_at: '2026-04-22'
+tags:
+  - recurrence
+  - seed-archive
+  - seed-garden
+  - owner-follow-through
+  - reanchor
+notes: >
+  The closeout handoff suggested a generated session follow-up path, but the
+  careful owner move is repo-local continuity under the existing closeout owner
+  follow-through family. A future recurrence archive follow-through playbook
+  needs separate reviewed evidence: missing-pack detection, byte-level archive
+  parity, duplicate prevention, reviewed closeout publication, stats refresh,
+  and owner-layer routing with no hidden installer, runtime authority,
+  stats-promotion authority, or source-truth transfer claim.
+public_safe: true
