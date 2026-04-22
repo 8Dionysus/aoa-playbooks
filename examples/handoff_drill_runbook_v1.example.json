@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-04-22T00:00:00Z",
+  "drill": "concierge_to_courier_to_notary",
+  "evidence_refs": [
+    "generated/multi_office_train_clean_flow/release_train.json"
+  ],
+  "id": "handoff_drill_runbook_v1_example",
+  "kind": "handoff_drill_runbook_v1",
+  "notes": "Example artifact for handoff_drill_runbook_v1.",
+  "owner_repo": "aoa-playbooks",
+  "passed": true,
+  "status": "draft",
+  "version": "1.1.0"
+}
