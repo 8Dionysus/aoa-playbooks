@@ -1,0 +1,15 @@
+{
+  "id": "promotion.plan.notary.001",
+  "kind": "release_candidate_promotion_plan",
+  "candidate": "rc.notary.1.1.0.001",
+  "preconditions": [
+    "certification_approved",
+    "rollback_passed",
+    "release_note_ready"
+  ],
+  "postconditions": [
+    "active_version_updated",
+    "revision_ledger_written",
+    "watch_scheduled"
+  ]
+}

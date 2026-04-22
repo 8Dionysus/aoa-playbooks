@@ -1,0 +1,12 @@
+{
+  "step_id": "deploy.step.001",
+  "name": "activate_ring_0",
+  "owner": "operator",
+  "inputs": [
+    "certification_result",
+    "deployment_plan"
+  ],
+  "outputs": [
+    "deployment_state"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "produces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocking": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "kind",
+    "name",
+    "requires",
+    "produces",
+    "blocking"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Certification Runbook Step V1"
+}

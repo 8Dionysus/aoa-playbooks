@@ -1,0 +1,17 @@
+{
+  "id": "reg.manifest.notary.001",
+  "kind": "regression_pack_manifest",
+  "pack_id": "reg.pack.notary.001",
+  "case_groups": {
+    "golden": [
+      "gold.notary.receipt.001"
+    ],
+    "boundary": [
+      "gold.notary.scope.001"
+    ],
+    "negative": [
+      "neg.notary.self_rewrite.001"
+    ]
+  },
+  "runner": "scripts/run_regression_pack.py"
+}

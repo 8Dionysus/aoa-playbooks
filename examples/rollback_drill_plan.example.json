@@ -1,0 +1,13 @@
+{
+  "id": "rollback.plan.notary.001",
+  "kind": "rollback_drill_plan",
+  "candidate": "rc.notary.1.1.0.001",
+  "steps": [
+    "snapshot_base",
+    "activate_candidate",
+    "trigger_revoke",
+    "restore_base",
+    "replay_golden"
+  ],
+  "pass_condition": "base_version_contract_restored"
+}

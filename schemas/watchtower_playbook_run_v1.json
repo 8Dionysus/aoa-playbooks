@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "watchtower_playbook_run",
+  "type": "object",
+  "description": "watchtower_playbook_run schema for AoA experience deployment watchtower v0.5.",
+  "required": [
+    "run_id",
+    "playbook",
+    "release_id",
+    "status",
+    "evidence_refs"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "playbook": {
+      "type": "string"
+    },
+    "release_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
