@@ -30,6 +30,7 @@ The current authored set already covers these classes:
 | Self-agent checkpoint rollout | handle policy-sensitive or self-changing work with approval and rollback | `self-agent-checkpoint-rollout` |
 | Witness to compost | preserve a witness and promote it toward memo or knowledge forms | `witness-to-compost-pilot` |
 | Long-horizon tier orchestration | coordinate a long route through explicit tier handoffs | `long-horizon-model-tier-orchestra` |
+| Checkpoint distillation pilot | distill a reviewed checkpoint into a closed-loop pilot runbook without granting execution authority | `checkpoint-distillation-closed-loop-pilot` |
 | Restartable inquiry | preserve inquiry continuity across pauses and relaunches | `restartable-inquiry-loop` |
 | Cross-repo boundary rollout | coordinate bounded changes across more than one source-owned AoA repository | `cross-repo-boundary-rollout` |
 | Split-wave cross-repo rollout | coordinate ordered multi-wave cross-repo changes where upstream bridge surfaces must land before downstream revalidation or merge | `split-wave-cross-repo-rollout` |
@@ -51,6 +52,7 @@ The current authored set already covers these classes:
 ## Portfolio gaps
 
 The current portfolio is strong on guarded, evidence-heavy, restartable, and operational cross-boundary routes.
+The checkpoint-distillation pilot route now covers the bounded pilot-runbook gap.
 The recurring growth-refinery family now has three honest playbook scales:
 `AOA-P-0026` for the narrower post-candidate owner-followthrough campaign,
 `AOA-P-0027` for the automation-specific follow-through bridge, and

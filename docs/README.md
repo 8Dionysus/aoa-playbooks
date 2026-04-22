@@ -21,6 +21,7 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 - Read [PLAYBOOK_PORTFOLIO](PLAYBOOK_PORTFOLIO.md) for coverage matrix and portfolio guidance.
 - Read [PLAYBOOK_REAL_RUN_WORKFLOW](PLAYBOOK_REAL_RUN_WORKFLOW.md) for the repo-first chooser -> run -> review -> gate workflow.
 - Read [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) for reviewable evidence scaffolding for future real runs.
+- Read [CHECKPOINT_DISTILLATION_CLOSED_LOOP_PILOT](CHECKPOINT_DISTILLATION_CLOSED_LOOP_PILOT.md) for the bounded checkpoint-distillation pilot-runbook route.
 - Read [CODEX_PLANE_ROLLOUT_CYCLE](CODEX_PLANE_ROLLOUT_CYCLE.md) for the shared-root deployment continuity companion under `AOA-P-0028`.
 - Read [TRUSTED_ROLLOUT_CAMPAIGN_CADENCE](TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md) for the bounded cadence adjunct that stays under `AOA-P-0028` without minting a second playbook.
 - Read [PLAYBOOK_STRESS_LANES](PLAYBOOK_STRESS_LANES.md) for additive degraded-lane doctrine inside recurring scenarios.
