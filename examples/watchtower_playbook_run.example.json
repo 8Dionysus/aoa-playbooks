@@ -1,0 +1,9 @@
+{
+  "run_id": "watch.run.001",
+  "playbook": "canary_watch_runbook",
+  "release_id": "assistant.notary.1.1.0",
+  "status": "completed",
+  "evidence_refs": [
+    "canary.result.001"
+  ]
+}

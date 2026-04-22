@@ -1,0 +1,14 @@
+{
+  "id": "cert.step.004",
+  "kind": "certification_runbook_step",
+  "name": "run_regression_pack",
+  "requires": [
+    "release_candidate",
+    "regression_pack"
+  ],
+  "produces": [
+    "regression_run",
+    "regression_verdict"
+  ],
+  "blocking": true
+}

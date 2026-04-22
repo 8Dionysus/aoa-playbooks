@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "pack_id": {
+      "type": "string"
+    },
+    "case_groups": {
+      "type": "object",
+      "properties": {
+        "golden": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "boundary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "negative": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "golden",
+        "boundary",
+        "negative"
+      ],
+      "additionalProperties": false
+    },
+    "runner": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "kind",
+    "pack_id",
+    "case_groups",
+    "runner"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Regression Pack Manifest V1"
+}

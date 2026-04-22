@@ -1,0 +1,8 @@
+{
+  "id": "gold.harvest.notary.001",
+  "kind": "golden_case_harvest",
+  "source": "service_contract",
+  "candidate_case": "gold.notary.receipt.001",
+  "reason": "receipt_required is stable core promise",
+  "accepted": true
+}

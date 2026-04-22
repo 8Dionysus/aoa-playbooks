@@ -1,0 +1,7 @@
+{
+  "run_id": "rollback.run.001",
+  "release_id": "assistant.notary.1.1.0",
+  "trigger_id": "rollback.trigger.001",
+  "status": "completed",
+  "restored_version": "1.0.3"
+}

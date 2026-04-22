@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "candidate": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pass_condition": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "kind",
+    "candidate",
+    "steps",
+    "pass_condition"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rollback Drill Plan V1"
+}

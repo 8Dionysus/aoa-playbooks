@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "rollback_playbook_run",
+  "type": "object",
+  "description": "rollback_playbook_run schema for AoA experience deployment watchtower v0.5.",
+  "required": [
+    "run_id",
+    "release_id",
+    "trigger_id",
+    "status",
+    "restored_version"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "release_id": {
+      "type": "string"
+    },
+    "trigger_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "restored_version": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}
