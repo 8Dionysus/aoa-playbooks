@@ -1,0 +1,85 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0015
+title: Keep experience v1.2-v2.0 closeout survivors owner-routed
+summary: Carry the reviewed experience v1.2-v2.0 campaign closeout survivor
+  into repo-local playbook continuity without promoting one full landing cycle
+  into fresh playbook, skill, eval, memo, agent, or technique canon.
+repo: aoa-playbooks
+owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0014
+activation:
+  mode: on_review_of
+  ref: session:2026-04-23T00-06-49-715624Z-Dionysus-checkpoint-growth-4890de2a-0ef
+  note: open after the reviewed experience v1.2-v2.0 closeout published
+    bounded closeout receipts, refreshed live stats, and still kept the
+    route-shaped survivor owner-routed instead of promoting multi-owner carry
+    into fresh layer canon
+anchor_ref:
+  artifact: closeout_owner_follow_through_continuity
+  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  note: keep the experience closeout route on the closeout-owner-follow-through
+    continuity boundary while any later recurring route, proof surface, memo
+    writeback, role posture, skill uplift, or technique promotion remains a
+    candidate rather than current canon
+handoff_role: playbook-maintainer
+evidence:
+  - >
+    reviewed closeout published three session-harvest-family receipts and three
+    core skill application receipts into aoa-skills, then refreshed aoa-stats
+    from seven sources and 121 live receipts without turning stats into owner
+    truth
+  - >
+    quest promotion stayed keep_open_quest, named aoa-playbooks as the next
+    owner repo, and kept the route-shaped survivor open with an explicit
+    follow-up quest surface instead of promote_to_skill
+  - >
+    progression closed in reanchor with negative boundary_integrity, so the
+    honest playbook move is bounded owner-follow-through continuity rather than
+    fresh playbook, eval, memo, agent, skill, or technique canon
+  - >
+    the closeout reread rejected treating the broad aoa-skills-heavy harvest
+    distribution or aoa-sdk runtime carry as sovereign owner verdicts, so the
+    follow-through stays narrow and evidence-first
+harvest:
+  target: playbook
+  trigger_count: 15
+  note: keep this as owner-routed continuity until another reviewed closeout
+    either closes the route inside AOA-P-0023 or proves a distinct recurring
+    family with stable owner-follow-through phases, acceptance gates, and
+    bounded multi-owner handoffs
+opened_at: '2026-04-23'
+touched_at: '2026-04-23'
+tags:
+  - experience
+  - closeout
+  - owner-follow-through
+  - continuity
+  - reanchor
+notes: >
+  Anchored by
+  session:2026-04-23T00-06-49-715624Z-Dionysus-checkpoint-growth-4890de2a-0ef.
+  The closeout handoff suggested a generated session follow-up path, but the
+  truthful owner move here is repo-local continuity under AOA-P-0023 so the
+  next step no longer depends on runtime-local bridge artifacts, operator
+  memory, or the misleading bulk owner distribution in HARVEST_PACKET alone.
+public_safe: true

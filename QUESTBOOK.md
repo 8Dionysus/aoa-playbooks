@@ -23,6 +23,7 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 - `AOA-PB-Q-0012` Keep reviewed workspace closeout continuity survivors owner-routed.
 - `AOA-PB-Q-0013` Keep Agon seed-wave closeout survivors owner-routed.
 - `AOA-PB-Q-0014` Keep recurrence seed archive closeout survivors owner-routed.
+- `AOA-PB-Q-0015` Keep experience v1.2-v2.0 closeout survivors owner-routed.
 
 ## Harvest candidates
 
@@ -31,6 +32,7 @@ It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECU
 - `AOA-PB-Q-0012` Keep reviewed workspace closeout continuity survivors owner-routed.
 - `AOA-PB-Q-0013` Keep Agon seed-wave closeout survivors owner-routed.
 - `AOA-PB-Q-0014` Keep recurrence seed archive closeout survivors owner-routed.
+- `AOA-PB-Q-0015` Keep experience v1.2-v2.0 closeout survivors owner-routed.
 
 ## Quest-harvest posture
 
