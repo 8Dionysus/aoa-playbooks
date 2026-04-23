@@ -241,10 +241,10 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0021"]["gate_verdict"], "composition-landed")
         self.assertEqual(by_id["AOA-P-0021"]["reviewed_run_count"], 3)
         self.assertEqual(by_id["AOA-P-0023"]["gate_verdict"], "composition-landed")
-        self.assertEqual(by_id["AOA-P-0023"]["reviewed_run_count"], 7)
+        self.assertEqual(by_id["AOA-P-0023"]["reviewed_run_count"], 8)
         self.assertEqual(
             by_id["AOA-P-0023"]["latest_reviewed_run_ref"],
-            "docs/real-runs/2026-04-22.closeout-owner-follow-through-continuity.wave5-repair-post-closeout.md",
+            "docs/real-runs/2026-04-23.closeout-owner-follow-through-continuity.experience-v1-2-v2-0.md",
         )
         self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
         self.assertEqual(by_id["AOA-P-0024"]["reviewed_run_count"], 1)
@@ -445,6 +445,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "docs/real-runs/2026-04-20.closeout-owner-follow-through-continuity.release-wave-closeout.md",
                 "docs/real-runs/2026-04-20.closeout-owner-follow-through-continuity.aoa-evals-proof-gates.md",
                 "docs/real-runs/2026-04-22.closeout-owner-follow-through-continuity.wave5-repair-post-closeout.md",
+                "docs/real-runs/2026-04-23.closeout-owner-follow-through-continuity.experience-v1-2-v2-0.md",
             ],
         )
         self.assertEqual(by_id["AOA-P-0024"]["gate_verdict"], "hold")
@@ -586,6 +587,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "docs/real-runs/2026-04-20.closeout-owner-follow-through-continuity.release-wave-closeout.md",
                 "docs/real-runs/2026-04-20.closeout-owner-follow-through-continuity.aoa-evals-proof-gates.md",
                 "docs/real-runs/2026-04-22.closeout-owner-follow-through-continuity.wave5-repair-post-closeout.md",
+                "docs/real-runs/2026-04-23.closeout-owner-follow-through-continuity.experience-v1-2-v2-0.md",
             ],
         )
         self.assertEqual(
