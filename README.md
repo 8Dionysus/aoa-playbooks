@@ -4,7 +4,7 @@
 
 It exists to make recurring operational recipes explicit, reviewable, and reusable. A playbook is not a skill. A skill is a bounded workflow. A playbook coordinates multiple surfaces, handoffs, fallbacks, and evidence expectations across a recurring scenario.
 
-> Current release: `v0.3.2`. See [CHANGELOG](CHANGELOG.md) for release notes.
+> Current release: `v0.3.3`. See [CHANGELOG](CHANGELOG.md) for release notes.
 
 ## Start here
 

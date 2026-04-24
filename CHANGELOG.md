@@ -7,6 +7,51 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-04-23
+
+### Summary
+
+- this patch expands reviewed playbook continuity across release-wave,
+  workspace closeout, eval closeout, owner follow-through, Agon trial,
+  recurrence, mechanical-kernel, schools/lineages/campaigns, Titan, and
+  Experience follow-through routes
+- Titan live-session drills, Experience closed-loop pilot, certification
+  forge, adoption, rollback, retention, governance, sovereign-office,
+  service-mesh incident response, and wave5 repair closeout follow-through are
+  added or tightened
+- `aoa-playbooks` remains the scenario-composition and reviewed-evidence layer
+  rather than a runtime ledger, source-of-truth owner, or automation scheduler
+
+### Added
+
+- reviewed workspace/release/eval closeout continuity surfaces,
+  closeout-owner follow-through records, real-run notes, and owner adoption
+  quest playbooks
+- Agon Wave VI trial playbooks, recurrence trial-playbook manifests,
+  Wave XIII trial-kernel bindings, mechanical-trial rehearsal boundaries,
+  schools/lineages/campaign playbooks, and seed-wave closeout follow-through
+- Titan playbooks and live-session drill route plus Experience closed-loop
+  pilot, certification forge, adoption, rollback, retention, governance,
+  first-release, installation, office bootstrap, service mesh incident
+  response, sovereign-office, and repair closeout follow-through surfaces
+
+### Changed
+
+- reviewed-run ordering, Agon and playbook contract follow-ups, recurrence
+  observation boundaries, wave2/wave3 schema and contract guards, Titan drill
+  review posture, gate-review posture, and closeout-owner continuity were
+  tightened
+
+### Validation
+
+- `python scripts/release_check.py`
+
+### Notes
+
+- this patch grows scenario composition and reviewed continuity evidence only;
+  source repos, runtime, memory, routing, and eval layers keep their own
+  authority
+
 ## [0.3.2] - 2026-04-19
 
 ### Summary
