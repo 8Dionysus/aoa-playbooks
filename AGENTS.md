@@ -1,147 +1,61 @@
 # AGENTS.md
 
-Guidance for coding agents and humans contributing to `aoa-playbooks`.
+Root route card for `aoa-playbooks`.
 
 ## Purpose
 
 `aoa-playbooks` is the scenario and composition layer of AoA.
-It stores explicit playbooks for recurring operational situations, multi-step
-compositions across neighboring layers, handoff-aware scenarios, fallback
-paths, expected evidence posture, and, in the current wave, reviewed
-questline / campaign outline adjuncts for long-horizon recurrence.
+It stores recurring operational situations, multi-step compositions, handoff-aware scenarios, fallback paths, evidence posture, and reviewed questline or campaign outline adjuncts.
+A playbook coordinates neighboring layers. It does not replace them.
 
-This repository is for scenario-level composition.
-It is not the underlying technique, skill, proof, memory, routing, or role
-layer itself.
+## Owner lane
 
-## Owns
+This repository owns:
 
-This repository is the source of truth for:
+- playbook structure, scenario intent, step ordering, fallback, rollback, return, and reanchor posture
+- expected evidence posture at the scenario layer
+- playbook metadata, generated registries, handoff contracts, failure catalogs, and composition manifests
+- questline, campaign, raid, and harvest posture only when defined as playbook-owned reviewed outlines
 
-- playbook structure
-- scenario-level intent and composition wording
-- step ordering and scenario posture
-- fallback, rollback, return, and reanchor posture at the playbook layer
-- expected evidence posture for a scenario
-- playbook-layer metadata and generated registry surfaces
-- bounded composition adjuncts such as handoff contracts, failure catalogs, subagent recipes, automation seeds, and composition manifests
-- questline, campaign, and raid outline posture when those surfaces are explicitly defined in playbook-owned docs
-- playbook-owned harvest posture hints for reviewed long-horizon routes
+It does not own:
 
-## Does not own
+- technique, skill, eval, routing, role, memory, KAG, stats, runtime, or live quest-state truth
 
-Do not treat this repository as the source of truth for:
-
-- reusable engineering practice in `aoa-techniques`
-- bounded skill execution meaning in `aoa-skills`
-- proof doctrine or verdict logic in `aoa-evals`
-- routing and dispatch logic in `aoa-routing`
-- role contracts or progression doctrine in `aoa-agents`
-- explicit memory-object meaning in `aoa-memo`
-- derived knowledge substrate semantics in `aoa-kag`
-- live quest state, progression state, or runtime ledger state
-
-A playbook coordinates these layers.
-It does not replace them.
-
-## Core rules
-
-A playbook is not a skill.
-
-Questline and campaign reflection are reviewed outline seams, not runtime state.
-A questbook is evidence-first. It is not a hidden run ledger, not a quest
-sovereign, and not the harvest authority for the whole federation.
-
-## Read this first
-
-Before making changes, read in this order:
+## Start here
 
 1. `README.md`
 2. `ROADMAP.md`
 3. the relevant model, bundle, gate, or evidence docs referenced there
-4. the target playbook source you plan to edit
-5. any affected generated registry or composition surfaces
-6. neighboring repo docs if the playbook touches skills, agents, memo, evals, or routing
+4. the target `playbooks/*/PLAYBOOK.md` or outline surface
+5. affected generated registry or composition surfaces
+6. neighboring repo docs when the playbook touches their meaning
+7. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
 
-Then branch by task:
 
-- questline / campaign / raid / reanchor changes: `docs/QUESTLINE_AND_CAMPAIGN_MODEL.md`, `docs/QUEST_HARVEST_AND_REANCHOR.md`, and `QUESTBOOK.md`
-- orchestrator-facing alignment surfaces: `docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md`
-- playbook recurrence or reviewed-run posture: the recurrence and reviewed-run docs referenced from `README.md`
+## AGENTS stack law
 
-If you are editing inside `playbooks/` or `generated/`, also follow the nested
-`AGENTS.md` in that directory.
+- Start with this root card, then follow the nearest nested `AGENTS.md` for every touched path.
+- Root guidance owns repository identity, owner boundaries, route choice, and the shortest honest verification path.
+- Nested guidance owns local contracts, local risk, exact files, and local checks.
+- Authored source surfaces own meaning. Generated, exported, compact, derived, runtime, and adapter surfaces summarize, transport, or support meaning.
+- Self-agency, recurrence, quest, progression, checkpoint, or growth language must stay bounded, reviewable, evidence-linked, and reversible.
+- Report what changed, what was verified, what was not verified, and where the next agent should resume.
 
-## Primary objects
+## Route away when
 
-The most important objects in this repository are:
+- the change is really one skill, reusable technique, proof doctrine, memory object, role contract, routing logic, or runtime state
+- campaign or raid language hides unbounded sprawl or missing anchors
 
-- playbook definitions under `playbooks/*/PLAYBOOK.md`
-- `config/playbook_composition_overrides.json`
-- scenario-composition, fallback, evidence-posture, and recurrence docs
-- `QUESTBOOK.md` and its backing files when the task touches quest reflection
-- generated playbook registry, activation, federation, review-status, and composition surfaces
+## Verify
 
-## Hard NO
+Run the validation commands documented in `README.md` for the touched surface.
+If generated playbook surfaces change, regenerate and validate them before finishing.
+Use `docs/AGENTS_ROOT_REFERENCE.md` for preserved branch guidance around questline, campaign, raid, reanchor, and evidence posture.
 
-Do not:
+## Report
 
-- turn a playbook into a single skill
-- turn a playbook into a role contract, proof doctrine, or routing logic
-- store secrets, private infrastructure details, or unsafe operational specifics
-- create vague scenario prose with no bounded steps, fallbacks, or evidence posture
-- let “composition” become an excuse for hidden orchestration sprawl
-- turn questline or campaign surfaces into a run ledger
-- use campaign language to hide unbounded sprawl
-- use raid language for ordinary multi-file work
-- hide missing anchors behind continuity language
-- let `QUESTBOOK.md` replace source docs, memo truth, eval truth, or harvest authority
+State which playbook or outline changed, whether semantics or metadata changed, whether fallback, handoff, anchor, reanchor, or evidence posture changed, and what validation ran.
 
-## Contribution doctrine
+## Full reference
 
-Use this flow: `PLAN -> DIFF -> VERIFY -> REPORT`
-
-### PLAN
-
-State:
-
-- what playbook, outline surface, or quest reflection surface is changing
-- what composition, fallback, anchor, or evidence risk exists
-- which neighboring layers are involved
-- whether the change is semantic, metadata-only, or reviewed-outline-only
-
-### DIFF
-
-Keep the change focused.
-Do not mix unrelated cleanup into a playbook change unless it is necessary for
-repository integrity.
-
-### VERIFY
-
-Confirm that:
-
-- the scenario remains bounded
-- the scenario is still clearly more than one skill
-- handoffs remain explicit
-- fallback and return posture remain coherent
-- expected evidence posture is still visible
-- generated outputs remain aligned if metadata surfaces changed
-- any questline or campaign surface keeps anchors, reanchor posture, stop conditions, and harvest posture explicit when applicable
-- `QUESTBOOK.md` remains evidence-first and does not become a runtime ledger
-
-### REPORT
-
-Summarize:
-
-- what playbooks or outline surfaces changed
-- whether semantics changed or only metadata changed
-- whether fallback, handoff, anchor, reanchor, or evidence posture changed
-- whether quest reflection remained adjunct-only
-- what validation was run
-- any neighboring repo follow-up likely needed
-
-## Validation
-
-Run the validation commands documented in `README.md`.
-If generated playbook surfaces changed, regenerate and validate them before
-finishing.
+`docs/AGENTS_ROOT_REFERENCE.md` preserves the former detailed root guidance, including hard boundaries and verification questions.
