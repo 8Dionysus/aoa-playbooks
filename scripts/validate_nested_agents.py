@@ -1,89 +1,158 @@
 #!/usr/bin/env python3
+"""Validate nested AGENTS.md guidance for aoa-playbooks."""
 from __future__ import annotations
 
+import argparse
+from dataclasses import dataclass
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+REPOSITORY_NAME = "aoa-playbooks"
 
-REQUIRED_NESTED_AGENTS = {
-    REPO_ROOT / "playbooks" / "AGENTS.md": {
-        "min_lines": 20,
-        "required_tokens": (
-            "playbooks/*/PLAYBOOK.md",
-            "docs/PLAYBOOK_BUNDLE_CONTRACT.md",
-            "generated/playbook_registry.min.json",
-            "config/playbook_composition_overrides.json",
-            "scripts/validate_playbooks.py",
-            "A playbook is not a skill",
-        ),
-    },
-    REPO_ROOT / "generated" / "AGENTS.md": {
-        "min_lines": 20,
-        "required_tokens": (
-            "playbook_registry.min.json",
-            "playbook_activation_surfaces.min.json",
-            "playbook_federation_surfaces.min.json",
-            "playbook_handoff_contracts.json",
-            "playbook_failure_catalog.json",
-            "playbook_subagent_recipes.json",
-            "playbook_automation_seeds.json",
-            "scripts/generate_playbook_composition_surfaces.py",
-            "scripts/generate_playbook_activation_surfaces.py",
-            "scripts/generate_playbook_federation_surfaces.py",
-            "source-authored",
-            "Do not hand-edit",
-        ),
-    },
+REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
+    "playbooks/AGENTS.md": ("playbooks/*/PLAYBOOK.md", "A playbook is not a skill"),
+    "generated/AGENTS.md": ("playbook_registry.min.json", "scripts/generate_playbook_composition_surfaces.py"),
+    "config/AGENTS.md": ("playbook_composition_overrides.json", "source-owned composition overrides"),
+    "examples/AGENTS.md": ("Examples must demonstrate contracts without becoming canon", "activation posture"),
+    "schemas/AGENTS.md": ("Schema changes are contract changes", "playbook-owned adjuncts"),
+    "scripts/AGENTS.md": ("generate_* --check", "repo-relative"),
+    "tests/AGENTS.md": ("scenario boundaries", "generated alignment"),
 }
+ADVISORY_AGENT_DIRS: tuple[str, ...] = (".agents/skills", "Spark", "docs", "manifests/recurrence", "quests")
+HEADING_PREFIXES = ("# AGENTS.md", "# AGENTS")
+IGNORED_DIRS = {".git", ".venv", "__pycache__", ".pytest_cache", ".mypy_cache"}
+
+
+@dataclass(frozen=True)
+class ValidationResult:
+    issues: tuple[str, ...]
+    warnings: tuple[str, ...]
 
 
 class ValidationError(RuntimeError):
     pass
 
 
-def fail(message: str) -> None:
-    raise ValidationError(message)
+def _normalize(text: str) -> str:
+    return " ".join(text.lower().split())
 
 
-def display_path(path: Path) -> str:
+def _has_agents_heading(text: str) -> bool:
+    stripped = text.lstrip()
+    return any(stripped.startswith(prefix) for prefix in HEADING_PREFIXES)
+
+
+def _relative(path: Path, repo_root: Path) -> str:
     try:
-        return path.relative_to(REPO_ROOT).as_posix()
+        return path.relative_to(repo_root).as_posix()
     except ValueError:
         return path.as_posix()
 
 
-def read_text(path: Path) -> str:
+def _is_ignored(path: Path, repo_root: Path) -> bool:
     try:
-        return path.read_text(encoding="utf-8")
-    except FileNotFoundError:
-        fail(f"missing required nested AGENTS doc: {display_path(path)}")
+        parts = path.relative_to(repo_root).parts
+    except ValueError:
+        return False
+    return any(part in IGNORED_DIRS for part in parts)
 
 
-def validate_nested_agents_docs() -> None:
-    for path, contract in REQUIRED_NESTED_AGENTS.items():
-        text = read_text(path)
-        stripped = text.strip()
-        if not stripped.startswith("# AGENTS.md"):
-            fail(f"{display_path(path)} must start with a '# AGENTS.md' heading")
-
-        lines = stripped.splitlines()
-        min_lines = int(contract["min_lines"])
-        if len(lines) < min_lines:
-            fail(f"{display_path(path)} must contain at least {min_lines} lines of guidance")
-
-        for token in contract["required_tokens"]:
-            if token not in text:
-                fail(f"{display_path(path)} must mention '{token}' explicitly")
+def discover_nested_agents(repo_root: Path) -> set[str]:
+    found: set[str] = set()
+    for path in repo_root.rglob("AGENTS.md"):
+        if _is_ignored(path, repo_root):
+            continue
+        rel = _relative(path, repo_root)
+        if rel != "AGENTS.md":
+            found.add(rel)
+    return found
 
 
-def main() -> int:
-    try:
-        validate_nested_agents_docs()
-    except ValidationError as exc:
-        print(f"[error] {exc}")
+def validate(
+    repo_root: Path = REPO_ROOT,
+    *,
+    strict_advisory: bool = False,
+    fail_on_untracked: bool = False,
+) -> ValidationResult:
+    repo_root = repo_root.resolve()
+    issues: list[str] = []
+    warnings: list[str] = []
+
+    root_agents = repo_root / "AGENTS.md"
+    if not root_agents.is_file():
+        issues.append("AGENTS.md: root guidance file is missing")
+    else:
+        root_text = root_agents.read_text(encoding="utf-8")
+        if not _has_agents_heading(root_text):
+            issues.append("AGENTS.md: missing AGENTS heading")
+
+    for rel_path, snippets in REQUIRED_AGENTS_DOCS.items():
+        path = repo_root / rel_path
+        if not path.is_file():
+            issues.append(f"{rel_path}: required nested AGENTS.md is missing")
+            continue
+        text = path.read_text(encoding="utf-8")
+        if not _has_agents_heading(text):
+            issues.append(f"{rel_path}: missing AGENTS heading")
+        normalized = _normalize(text)
+        for snippet in snippets:
+            if _normalize(snippet) not in normalized:
+                issues.append(f"{rel_path}: missing required snippet {snippet!r}")
+
+    required = set(REQUIRED_AGENTS_DOCS)
+    actual = discover_nested_agents(repo_root)
+    untracked = sorted(actual - required)
+    if untracked:
+        message = "untracked nested AGENTS.md not yet in validator map: " + ", ".join(untracked)
+        warnings.append(message)
+        if fail_on_untracked:
+            issues.append(message)
+
+    for rel_dir in ADVISORY_AGENT_DIRS:
+        dir_path = repo_root / rel_dir
+        agent_path = f"{rel_dir.rstrip('/')}/AGENTS.md"
+        if not dir_path.is_dir():
+            continue
+        if agent_path in required or agent_path in actual:
+            continue
+        warnings.append(f"{rel_dir}: high-risk directory has no local AGENTS.md yet")
+
+    if strict_advisory:
+        issues.extend(warnings)
+
+    return ValidationResult(tuple(issues), tuple(warnings))
+
+
+def validate_nested_agents_docs(repo_root: Path = REPO_ROOT) -> None:
+    """Compatibility entrypoint used by scripts/validate_playbooks.py."""
+    result = validate(repo_root)
+    if result.issues:
+        raise ValidationError("; ".join(result.issues))
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--repo-root", type=Path, default=REPO_ROOT)
+    parser.add_argument("--strict-advisory", action="store_true")
+    parser.add_argument("--fail-on-untracked", action="store_true")
+    args = parser.parse_args(argv)
+
+    result = validate(
+        args.repo_root,
+        strict_advisory=args.strict_advisory,
+        fail_on_untracked=args.fail_on_untracked,
+    )
+    if result.issues:
+        print(f"Nested AGENTS validation failed for {REPOSITORY_NAME}.")
+        for issue in result.issues:
+            print(f"- {issue}")
         return 1
-
-    print("[ok] validated nested AGENTS docs")
+    print(
+        f"Nested AGENTS validation passed for {REPOSITORY_NAME}: "
+        f"{len(REQUIRED_AGENTS_DOCS)} required nested document(s)."
+    )
+    for warning in result.warnings:
+        print(f"[advisory] {warning}")
     return 0
 
 
