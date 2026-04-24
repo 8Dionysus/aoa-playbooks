@@ -4,7 +4,7 @@
 
 It exists to make recurring operational recipes explicit, reviewable, and reusable. A playbook is not a skill. A skill is a bounded workflow. A playbook coordinates multiple surfaces, handoffs, fallbacks, and evidence expectations across a recurring scenario.
 
-> Current release: `v0.3.2`. See [CHANGELOG](CHANGELOG.md) for release notes.
+> Current release: `v0.3.3`. See [CHANGELOG](CHANGELOG.md) for release notes.
 
 ## Start here
 
@@ -115,7 +115,7 @@ The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md`, c
 
 ## Current contour
 
-`aoa-playbooks` is currently at `v0.3.2` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation with one new bounded family: the Wave VI Agon mechanical trials stay experimental, pre-protocol, and choreography-only.
+`aoa-playbooks` is currently at `v0.3.3` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation across reviewed continuity, Titan drills, Experience follow-through, and Agon trial/campaign surfaces while keeping mechanical trials experimental, pre-protocol, and choreography-only.
 
 The runtime-facing extension stays intentionally bounded: selected playbooks may publish explicit memo-read defaults and activation-readable surfaces, but memo truth, routing ownership, and source skill meaning remain in their owning repositories.
 
