@@ -22,9 +22,9 @@ Suggested seed:
 
 Primary evidence anchors:
 
-- `/srv/aoa-sdk/.aoa/closeout/handoffs/closeout-2026-04-12-checkpoint-growth-agent-reviewed-quest.owner-handoff.json`
-- `/srv/aoa-sdk/.aoa/session-growth/current/d19d75d6-b295-4644-9f8d-9064c59e9f6e/aoa-sdk/reviewed-closeout/session-2026-04-12T20-42-26-439863Z-aoa-sdk-checkpoint-growth-d19d75d6-b29/agent-reviewed-receipts/QUEST_PROMOTION.agent-reviewed.json`
-- `/srv/aoa-sdk/.aoa/session-growth/current/d19d75d6-b295-4644-9f8d-9064c59e9f6e/aoa-sdk/reviewed-closeout/session-2026-04-12T20-42-26-439863Z-aoa-sdk-checkpoint-growth-d19d75d6-b29/agent-reviewed-receipts/PROGRESSION_DELTA.agent-reviewed.v2.json`
+- `/srv/AbyssOS/aoa-sdk/.aoa/closeout/handoffs/closeout-2026-04-12-checkpoint-growth-agent-reviewed-quest.owner-handoff.json`
+- `/srv/AbyssOS/aoa-sdk/.aoa/session-growth/current/d19d75d6-b295-4644-9f8d-9064c59e9f6e/aoa-sdk/reviewed-closeout/session-2026-04-12T20-42-26-439863Z-aoa-sdk-checkpoint-growth-d19d75d6-b29/agent-reviewed-receipts/QUEST_PROMOTION.agent-reviewed.json`
+- `/srv/AbyssOS/aoa-sdk/.aoa/session-growth/current/d19d75d6-b295-4644-9f8d-9064c59e9f6e/aoa-sdk/reviewed-closeout/session-2026-04-12T20-42-26-439863Z-aoa-sdk-checkpoint-growth-d19d75d6-b29/agent-reviewed-receipts/PROGRESSION_DELTA.agent-reviewed.v2.json`
 
 This example is illustrative only.
 It is not a live schedule, not a composition-owned automation seed, and not a

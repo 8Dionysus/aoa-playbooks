@@ -656,7 +656,7 @@
         "Decide whether the owner landing should be scaffold, pinned lineage, or direct canonical bundle.",
         "Decide whether decomposition or lineage pinning must happen before downstream rollout can stay honest.",
         "Decide whether the rollout can remain one bounded wave or must hand off later to `AOA-P-0017`.",
-        "Decide what exact validation pack is required before downstream repos and `/srv` can be updated.",
+        "Decide what exact validation pack is required before downstream repos and `/srv/AbyssOS` can be updated.",
         "Decide whether live hardening exposes only a local seam repair or forces return to the last valid owner anchor.",
         "Decide whether the route closes cleanly or hands off to later rollout, remediation, or documentation cleanup."
       ],
