@@ -86,7 +86,7 @@ The route keeps seven things explicit:
 - which repository owns the first truthful landing
 - whether the owner landing is scaffold, pinned lineage, or direct canonical bundle
 - whether decomposition or lineage pinning must happen before wider rollout
-- what rollout order keeps downstream repos and `/srv` honest
+- what rollout order keeps downstream repos and `/srv/AbyssOS` honest
 - what validation and live hardening must run before the route can close
 - what durable decision and handoff survive the campaign
 
@@ -115,7 +115,7 @@ Do not use this playbook when:
 - the reviewed candidate, staged seed, or lineage pack is named before landing begins
 - the candidate owner repo is explicit enough to keep the first landing honest
 - neighboring lineage surfaces are mapped before mutation begins
-- the rollout scope is bounded before downstream repos or `/srv` are touched
+- the rollout scope is bounded before downstream repos or `/srv/AbyssOS` are touched
 - the validation and live hardening surfaces are named before the first merge closes
 - the route can say whether scaffold, defer, or direct canonical landing is the honest first posture
 
@@ -144,7 +144,7 @@ Do not use this playbook when:
 3. Decide whether the owner landing should be scaffold, pinned lineage, or direct canonical bundle.
 4. Decide whether decomposition or lineage pinning must happen before downstream rollout can stay honest.
 5. Decide whether the rollout can remain one bounded wave or must hand off later to `AOA-P-0017`.
-6. Decide what exact validation pack is required before downstream repos and `/srv` can be updated.
+6. Decide what exact validation pack is required before downstream repos and `/srv/AbyssOS` can be updated.
 7. Decide whether live hardening exposes only a local seam repair or forces return to the last valid owner anchor.
 8. Decide whether the route closes cleanly or hands off to later rollout, remediation, or documentation cleanup.
 
@@ -166,7 +166,7 @@ Pause or stop when:
 - the owner repo remains ambiguous across neighboring layers
 - scaffold posture starts being narrated as finished canon
 - decomposition or lineage pinning debt must land before rollout but still remains unresolved
-- downstream rollout or `/srv` install outruns owner validation
+- downstream rollout or `/srv/AbyssOS` install outruns owner validation
 - live hardening reveals a seam whose repair would widen the route beyond the named campaign
 
 If owner truth, validation closure, or hardening integrity is lost, return to the last valid `owner_landing_bundle`, `landing_decision`, or `validation_pack` anchor before further mutation.
@@ -180,7 +180,7 @@ The route should finish with visible evidence for:
 - why the chosen owner repo was the first truthful landing surface
 - what landed as scaffold, pinned lineage, or direct canon
 - whether decomposition or lineage pinning happened before wider rollout
-- what validations ran in the owner repo, downstream roots, and `/srv`
+- what validations ran in the owner repo, downstream roots, and `/srv/AbyssOS`
 - what live hardening proved, repaired, or deferred
 - what handoff remains for later rollout, remediation, or reporting
 
@@ -202,7 +202,7 @@ The route should finish with visible evidence for:
 
 Use `aoa-approval-boundary-adherence` to check that the route respected owner-first boundaries instead of landing meaning in the nearest convenient repo.
 Use `aoa-scope-drift-detection` to check that the campaign did not silently widen from bounded landing into unrelated ecosystem cleanup.
-Use `aoa-verification-honesty` to check that rollout, `/srv` install, and live hardening claims match what actually ran.
+Use `aoa-verification-honesty` to check that rollout, `/srv/AbyssOS` install, and live hardening claims match what actually ran.
 
 ## Memory writeback
 
@@ -221,5 +221,5 @@ The playbook does not create a new memory-object kind and does not move skill, t
 4. Land the capability in the owner repo through `aoa-change-protocol` and capture any durable boundary or lineage decision through `aoa-adr-write`.
 5. If the owner landing introduces pending lineage debt, complete the smallest required decomposition or pinning step before wider rollout.
 6. Build the `validation_pack` for the owner repo and tighten interface or install parity with `aoa-contract-test` before the route widens.
-7. Roll out to dependent repos and `/srv` only after owner truth is explicit, and keep the `rollout_pack` reviewable enough to defer or stop without losing the route.
+7. Roll out to dependent repos and `/srv/AbyssOS` only after owner truth is explicit, and keep the `rollout_pack` reviewable enough to defer or stop without losing the route.
 8. Run one bounded live hardening pass; if seams appear, return to the last valid owner anchor and re-enter through `previous_phase`, `review_gate`, `rollback_gate`, or `safe_stop` before closing with the `landing_decision`, `hardening_record`, and `handoff_record`.
