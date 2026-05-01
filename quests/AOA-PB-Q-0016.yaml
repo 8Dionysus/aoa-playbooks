@@ -1,0 +1,88 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0016
+title: Keep Agents-of-Abyss v0.4.0 closeout survivors owner-routed
+summary: Carry the reviewed Agents-of-Abyss v0.4.0 release closeout survivor
+  into repo-local playbook continuity without promoting one release cycle into
+  fresh playbook, skill, eval, memo, agent, or technique canon.
+repo: aoa-playbooks
+owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0015
+activation:
+  mode: on_review_of
+  ref: session:2026-04-24T00-40-24-854570Z-Agents-of-Abyss-checkpoint-growth-6737c0da-e58
+  note: open after the reviewed Agents-of-Abyss v0.4.0 closeout published
+    bounded closeout receipts, refreshed live stats, and named owner-layer
+    follow-through without proving a new playbook family.
+anchor_ref:
+  artifact: closeout_owner_follow_through_continuity
+  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  note: keep the AoA v0.4.0 release closeout route on the
+    closeout-owner-follow-through continuity boundary while any later route,
+    proof, memo, role, skill, or technique promotion remains owner-local
+    candidate evidence rather than playbook canon.
+handoff_role: playbook-maintainer
+evidence:
+  - >
+    Agents-of-Abyss v0.4.0 published with postpublish checks green, then the
+    reviewed closeout bridge emitted a closeout report and owner handoff instead
+    of leaving the downstream route in chat memory.
+  - >
+    closeout publication added three session-harvest-family receipts and three
+    core skill application receipts into aoa-skills, then refreshed aoa-stats
+    from seven sources and 139 live receipts without turning stats into owner
+    truth.
+  - >
+    the owner handoff named follow-through across aoa-agents, aoa-evals,
+    aoa-memo, aoa-playbooks, aoa-skills, and aoa-techniques, so aoa-playbooks
+    owns only the route-continuity readout and must not convenience-capture the
+    neighboring layer work.
+  - >
+    route-shaped candidates such as candidate:route:aoa-playbooks-playbook-
+    registry-min and candidate:growth:aoa-playbooks-commit-code remained
+    continuity evidence, not enough to mint a literal generated
+    Recurring-route-candidate playbook.
+harvest:
+  target: playbook
+  trigger_count: 16
+  note: keep this as owner-routed continuity until another reviewed AoA release
+    closeout either closes the route inside AOA-P-0023 or proves a distinct
+    recurring playbook family with stable owner phases, acceptance gates, and
+    bounded downstream handoffs.
+opened_at: '2026-05-01'
+touched_at: '2026-05-01'
+tags:
+  - agents-of-abyss
+  - release
+  - closeout
+  - owner-follow-through
+  - continuity
+  - reanchor
+notes: >
+  Anchored by
+  session:2026-04-24T00-40-24-854570Z-Agents-of-Abyss-checkpoint-growth-6737c0da-e58.
+  The closeout handoff suggested generated route and growth candidates, but the
+  truthful owner move here is repo-local continuity under AOA-P-0023. Do not
+  create playbooks/Recurring-route-candidate/PLAYBOOK.md from this single
+  release closeout; future promotion needs repeated reviewed evidence and a
+  narrower owner-local playbook shape.
+public_safe: true
