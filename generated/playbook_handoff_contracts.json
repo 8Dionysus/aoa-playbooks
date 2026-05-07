@@ -47,7 +47,9 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
           "consumes_artifact_tags": [
             "target-goal",
+            "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
+            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -56,6 +58,7 @@
             "explicit-plan",
             "scoped-change",
             "named-verification-result",
+            "post-change-route-review-when-source-of-truth-generated-decision",
             "concise-final-report"
           ]
         },
@@ -64,15 +67,18 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
           "consumes_artifact_tags": [
             "boundary-under-review",
+            "producer-and-named-consumer",
             "expected-inputs-and-outputs",
             "current-verification-surface",
-            "known-downstream-dependencies"
+            "known-downstream-dependencies",
+            "contract-limits-and-out-of-contract-behavior"
           ],
           "provides_artifact_tags": [
             "explicit-contract-assumptions",
-            "tests-or-smoke-summary-changes",
+            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
             "verification-notes",
-            "downstream-impact-notes"
+            "downstream-impact-notes",
+            "contract-limits-that-say-what-the-check-does-not-prove"
           ]
         },
         {
@@ -306,13 +312,17 @@
             "target-area-or-subsystem",
             "current-naming-and-responsibilities",
             "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms"
+            "ambiguous-or-overloaded-terms",
+            "owner-layers-stronger-source-surfaces-or-portability-constraints",
+            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
           ],
           "provides_artifact_tags": [
             "named-contexts-or-subsystems",
             "rough-boundary-map",
             "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary"
+            "ambiguity-notes-and-recommended-vocabulary",
+            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
+            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
           ]
         },
         {
@@ -322,28 +332,34 @@
             "target-rule-or-domain-truth",
             "current-examples-or-tests",
             "input-space-or-generators",
-            "known-edge-cases"
+            "known-edge-cases",
+            "artifact-families-transformations-lifecycle-states-or-generated-",
+            "invalid-cases-exclusion-rules-and-claim-limits-for-the-property"
           ],
           "provides_artifact_tags": [
             "explicit-invariants",
             "property-oriented-tests-or-checks",
             "notes-on-generator-assumptions",
-            "verification-summary"
+            "verification-summary",
+            "notes-on-what-the-property-proves-and-what-remains-outside-its-c"
           ]
         },
         {
           "name": "aoa-port-adapter-refactor",
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-port-adapter-refactor",
           "consumes_artifact_tags": [
-            "target-module-or-slice",
-            "concrete-dependency-that-currently-leaks-into-the-core-logic",
+            "target-module-builder-tool-workflow-or-slice",
+            "concrete-dependency-or-runtime-concern-that-currently-leaks-into",
             "desired-scope-of-refactor",
-            "validation-expectations"
+            "validation-expectations",
+            "behavior-the-reusable-center-actually-needs-from-the-dependency",
+            "callers-consumers-or-generated-export-surfaces-affected-by-the-s"
           ],
           "provides_artifact_tags": [
             "clearer-boundary-between-logic-and-infrastructure",
             "proposed-or-implemented-port-shape",
             "proposed-or-implemented-adapter-shape",
+            "notes-on-what-remains-inside-the-reusable-center-and-what-the-ad",
             "verification-summary"
           ]
         },
@@ -352,16 +368,18 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-invariant-coverage-audit",
           "consumes_artifact_tags": [
             "target-rule-or-stable-truth",
-            "current-tests-checks-or-examples",
+            "current-tests-checks-schemas-fixtures-reports-generated-parity-c",
             "known-edge-cases-and-stress-cases",
-            "the-input-space-or-states-that-matter-most"
+            "the-input-space-or-states-that-matter-most",
+            "known-claim-limits-or-downstream-surfaces-that-rely-on-the-invar"
           ],
           "provides_artifact_tags": [
             "invariant-coverage-map",
             "gap-list-for-weak-or-missing-checks",
             "bounded-follow-up-checks-or-revisions",
             "concise-verification-summary",
-            "audit-verdict-on-whether-coverage-is-strong-enough-for-the-curre"
+            "audit-verdict-on-whether-coverage-is-strong-enough-for-the-curre",
+            "claim-limit-notes-that-say-what-the-current-validation-surface-d"
           ]
         }
       ],
@@ -433,13 +451,16 @@
           "name": "aoa-source-of-truth-check",
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
           "consumes_artifact_tags": [
-            "repository-docs-surface",
+            "repository-guidance-source-configuration-schema-manifest-generat",
             "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-if-any",
+            "known-canonical-files-or-source-owned-surfaces-if-any",
+            "active-legacy-provenance-generated-or-decision-surfaces-involved",
+            "owner-repositories-or-stronger-owner-layers-involved",
             "current-contributor-confusion-points"
           ],
           "provides_artifact_tags": [
             "clearer-source-of-truth-map",
+            "active-current-versus-historical-provenance-generated-placement-",
             "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
             "note-of-overlaps-or-conflicts",
             "proposed-or-implemented-document-role-clarification",
@@ -568,13 +589,16 @@
           "name": "aoa-source-of-truth-check",
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
           "consumes_artifact_tags": [
-            "repository-docs-surface",
+            "repository-guidance-source-configuration-schema-manifest-generat",
             "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-if-any",
+            "known-canonical-files-or-source-owned-surfaces-if-any",
+            "active-legacy-provenance-generated-or-decision-surfaces-involved",
+            "owner-repositories-or-stronger-owner-layers-involved",
             "current-contributor-confusion-points"
           ],
           "provides_artifact_tags": [
             "clearer-source-of-truth-map",
+            "active-current-versus-historical-provenance-generated-placement-",
             "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
             "note-of-overlaps-or-conflicts",
             "proposed-or-implemented-document-role-clarification",
@@ -589,13 +613,17 @@
             "target-area-or-subsystem",
             "current-naming-and-responsibilities",
             "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms"
+            "ambiguous-or-overloaded-terms",
+            "owner-layers-stronger-source-surfaces-or-portability-constraints",
+            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
           ],
           "provides_artifact_tags": [
             "named-contexts-or-subsystems",
             "rough-boundary-map",
             "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary"
+            "ambiguity-notes-and-recommended-vocabulary",
+            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
+            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
           ]
         },
         {
@@ -621,7 +649,9 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
           "consumes_artifact_tags": [
             "target-goal",
+            "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
+            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -630,6 +660,7 @@
             "explicit-plan",
             "scoped-change",
             "named-verification-result",
+            "post-change-route-review-when-source-of-truth-generated-decision",
             "concise-final-report"
           ]
         },
@@ -638,15 +669,18 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
           "consumes_artifact_tags": [
             "boundary-under-review",
+            "producer-and-named-consumer",
             "expected-inputs-and-outputs",
             "current-verification-surface",
-            "known-downstream-dependencies"
+            "known-downstream-dependencies",
+            "contract-limits-and-out-of-contract-behavior"
           ],
           "provides_artifact_tags": [
             "explicit-contract-assumptions",
-            "tests-or-smoke-summary-changes",
+            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
             "verification-notes",
-            "downstream-impact-notes"
+            "downstream-impact-notes",
+            "contract-limits-that-say-what-the-check-does-not-prove"
           ]
         }
       ],
@@ -731,13 +765,16 @@
           "name": "aoa-source-of-truth-check",
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
           "consumes_artifact_tags": [
-            "repository-docs-surface",
+            "repository-guidance-source-configuration-schema-manifest-generat",
             "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-if-any",
+            "known-canonical-files-or-source-owned-surfaces-if-any",
+            "active-legacy-provenance-generated-or-decision-surfaces-involved",
+            "owner-repositories-or-stronger-owner-layers-involved",
             "current-contributor-confusion-points"
           ],
           "provides_artifact_tags": [
             "clearer-source-of-truth-map",
+            "active-current-versus-historical-provenance-generated-placement-",
             "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
             "note-of-overlaps-or-conflicts",
             "proposed-or-implemented-document-role-clarification",
@@ -752,13 +789,17 @@
             "target-area-or-subsystem",
             "current-naming-and-responsibilities",
             "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms"
+            "ambiguous-or-overloaded-terms",
+            "owner-layers-stronger-source-surfaces-or-portability-constraints",
+            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
           ],
           "provides_artifact_tags": [
             "named-contexts-or-subsystems",
             "rough-boundary-map",
             "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary"
+            "ambiguity-notes-and-recommended-vocabulary",
+            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
+            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
           ]
         },
         {
@@ -801,7 +842,9 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
           "consumes_artifact_tags": [
             "target-goal",
+            "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
+            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -810,6 +853,7 @@
             "explicit-plan",
             "scoped-change",
             "named-verification-result",
+            "post-change-route-review-when-source-of-truth-generated-decision",
             "concise-final-report"
           ]
         },
@@ -839,7 +883,8 @@
             "context-and-problem-statement",
             "relevant-options-or-alternatives",
             "chosen-path-and-rationale",
-            "known-consequences-or-tradeoffs"
+            "known-consequences-or-tradeoffs",
+            "owner-source-evidence-placement-or-lifecycle-boundaries-that-sha"
           ],
           "provides_artifact_tags": [
             "concise-decision-note-or-adr-draft",
@@ -847,7 +892,8 @@
             "consequence-notes",
             "canonical-placement-or-reference-for-the-note",
             "verification-that-the-note-landed-in-the-expected-decision-surfa",
-            "verification-that-the-note-matches-the-actual-change"
+            "verification-that-the-note-matches-the-actual-change",
+            "decision-boundary-notes-that-say-what-the-adr-records-and-what-s"
           ]
         }
       ],
@@ -933,13 +979,16 @@
           "name": "aoa-source-of-truth-check",
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
           "consumes_artifact_tags": [
-            "repository-docs-surface",
+            "repository-guidance-source-configuration-schema-manifest-generat",
             "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-if-any",
+            "known-canonical-files-or-source-owned-surfaces-if-any",
+            "active-legacy-provenance-generated-or-decision-surfaces-involved",
+            "owner-repositories-or-stronger-owner-layers-involved",
             "current-contributor-confusion-points"
           ],
           "provides_artifact_tags": [
             "clearer-source-of-truth-map",
+            "active-current-versus-historical-provenance-generated-placement-",
             "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
             "note-of-overlaps-or-conflicts",
             "proposed-or-implemented-document-role-clarification",
@@ -954,13 +1003,17 @@
             "target-area-or-subsystem",
             "current-naming-and-responsibilities",
             "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms"
+            "ambiguous-or-overloaded-terms",
+            "owner-layers-stronger-source-surfaces-or-portability-constraints",
+            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
           ],
           "provides_artifact_tags": [
             "named-contexts-or-subsystems",
             "rough-boundary-map",
             "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary"
+            "ambiguity-notes-and-recommended-vocabulary",
+            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
+            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
           ]
         },
         {
@@ -1003,7 +1056,9 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
           "consumes_artifact_tags": [
             "target-goal",
+            "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
+            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -1012,6 +1067,7 @@
             "explicit-plan",
             "scoped-change",
             "named-verification-result",
+            "post-change-route-review-when-source-of-truth-generated-decision",
             "concise-final-report"
           ]
         }
@@ -1090,13 +1146,16 @@
           "name": "aoa-source-of-truth-check",
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
           "consumes_artifact_tags": [
-            "repository-docs-surface",
+            "repository-guidance-source-configuration-schema-manifest-generat",
             "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-if-any",
+            "known-canonical-files-or-source-owned-surfaces-if-any",
+            "active-legacy-provenance-generated-or-decision-surfaces-involved",
+            "owner-repositories-or-stronger-owner-layers-involved",
             "current-contributor-confusion-points"
           ],
           "provides_artifact_tags": [
             "clearer-source-of-truth-map",
+            "active-current-versus-historical-provenance-generated-placement-",
             "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
             "note-of-overlaps-or-conflicts",
             "proposed-or-implemented-document-role-clarification",
@@ -1219,15 +1278,18 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
           "consumes_artifact_tags": [
             "boundary-under-review",
+            "producer-and-named-consumer",
             "expected-inputs-and-outputs",
             "current-verification-surface",
-            "known-downstream-dependencies"
+            "known-downstream-dependencies",
+            "contract-limits-and-out-of-contract-behavior"
           ],
           "provides_artifact_tags": [
             "explicit-contract-assumptions",
-            "tests-or-smoke-summary-changes",
+            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
             "verification-notes",
-            "downstream-impact-notes"
+            "downstream-impact-notes",
+            "contract-limits-that-say-what-the-check-does-not-prove"
           ]
         },
         {
@@ -1316,13 +1378,16 @@
           "name": "aoa-source-of-truth-check",
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
           "consumes_artifact_tags": [
-            "repository-docs-surface",
+            "repository-guidance-source-configuration-schema-manifest-generat",
             "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-if-any",
+            "known-canonical-files-or-source-owned-surfaces-if-any",
+            "active-legacy-provenance-generated-or-decision-surfaces-involved",
+            "owner-repositories-or-stronger-owner-layers-involved",
             "current-contributor-confusion-points"
           ],
           "provides_artifact_tags": [
             "clearer-source-of-truth-map",
+            "active-current-versus-historical-provenance-generated-placement-",
             "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
             "note-of-overlaps-or-conflicts",
             "proposed-or-implemented-document-role-clarification",
@@ -1337,13 +1402,17 @@
             "target-area-or-subsystem",
             "current-naming-and-responsibilities",
             "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms"
+            "ambiguous-or-overloaded-terms",
+            "owner-layers-stronger-source-surfaces-or-portability-constraints",
+            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
           ],
           "provides_artifact_tags": [
             "named-contexts-or-subsystems",
             "rough-boundary-map",
             "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary"
+            "ambiguity-notes-and-recommended-vocabulary",
+            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
+            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
           ]
         },
         {
@@ -1351,7 +1420,9 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
           "consumes_artifact_tags": [
             "target-goal",
+            "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
+            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -1360,6 +1431,7 @@
             "explicit-plan",
             "scoped-change",
             "named-verification-result",
+            "post-change-route-review-when-source-of-truth-generated-decision",
             "concise-final-report"
           ]
         },
@@ -1368,15 +1440,18 @@
           "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
           "consumes_artifact_tags": [
             "boundary-under-review",
+            "producer-and-named-consumer",
             "expected-inputs-and-outputs",
             "current-verification-surface",
-            "known-downstream-dependencies"
+            "known-downstream-dependencies",
+            "contract-limits-and-out-of-contract-behavior"
           ],
           "provides_artifact_tags": [
             "explicit-contract-assumptions",
-            "tests-or-smoke-summary-changes",
+            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
             "verification-notes",
-            "downstream-impact-notes"
+            "downstream-impact-notes",
+            "contract-limits-that-say-what-the-check-does-not-prove"
           ]
         }
       ],
