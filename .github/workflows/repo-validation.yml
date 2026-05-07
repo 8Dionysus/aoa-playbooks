@@ -18,49 +18,49 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-agents
-          ref: 07bca3e91bca485334ae9664eecbf250102008af
+          ref: c73b5f66c6fe0e2c14b478e1a99826fbd7e0efb6
           path: .deps/aoa-agents
 
       - name: Checkout aoa-evals
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-evals
-          ref: 67249e19d6d81ebadef94f21514a96a2a4852c2b
+          ref: e46e56c41c264968364820516e9b75b34f713976
           path: .deps/aoa-evals
 
       - name: Checkout aoa-skills
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-skills
-          ref: da85c9aac59edd081e1a3cc8ee921dcb7bf8b800
+          ref: d98eaac04619b977558eeec0d244967a74e9353e
           path: .deps/aoa-skills
 
       - name: Checkout aoa-memo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-memo
-          ref: 1dd85f6beb66fb8c518c4aac1727dee7c4055b29
+          ref: e4c84b41ea58571fda5815d2d20bc2968cd184d3
           path: .deps/aoa-memo
 
       - name: Checkout 8Dionysus
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/8Dionysus
-          ref: c0fd29bbf1250a5ac2a9d0bfd4f59cad46a9a490
+          ref: d995db6313035df5e721b986f80a9b9c1e86d717
           path: .deps/8Dionysus
 
       - name: Checkout aoa-sdk
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-sdk
-          ref: 9609e776a567140f686c7a52240c845352225148
+          ref: 1ed091f1f1da40848f897b2e389dfca1a8b328d5
           path: .deps/aoa-sdk
 
       - name: Checkout aoa-stats
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-stats
-          ref: 0e283be6d9dd6f5a6b344add7cb8bf4169c8d9a6
+          ref: 6cb257c6d008e89e1808cd50211c0cee2f4bff59
           path: .deps/aoa-stats
 
       - name: Setup Python
