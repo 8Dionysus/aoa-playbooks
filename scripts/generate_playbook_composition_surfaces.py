@@ -4,24 +4,20 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
+
+try:
+    from scripts.dependency_roots import default_dependency_root, repo_root_from_env
+except ModuleNotFoundError:
+    from dependency_roots import default_dependency_root, repo_root_from_env
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def repo_root_from_env(env_name: str, default: Path) -> Path:
-    override = os.environ.get(env_name)
-    if not override:
-        return default
-    return Path(override).expanduser().resolve()
-
-
 def default_aoa_skills_root() -> Path:
-    deps_root = REPO_ROOT / ".deps" / "aoa-skills"
-    if deps_root.exists():
-        return deps_root.resolve()
-    return (REPO_ROOT.parent / "aoa-skills").resolve()
+    return default_dependency_root(REPO_ROOT, "aoa-skills")
 
 
 AOA_SKILLS_ROOT = repo_root_from_env("AOA_SKILLS_ROOT", default_aoa_skills_root())
@@ -76,10 +72,14 @@ def read_json(path: Path) -> object:
         fail(f"invalid JSON in {display_path(path)}: {exc}")
 
 
-def parse_scalar(value: str) -> str:
+def parse_scalar(value: str, *, location: str) -> str:
     scalar = value.strip()
-    if len(scalar) >= 2 and scalar[0] in {"'", '"'} and scalar[-1] == scalar[0]:
+    if len(scalar) >= 2 and scalar[0] in {"'", '"'}:
+        if scalar[-1] != scalar[0]:
+            fail(f"{location} has mismatched scalar quote delimiters")
         return scalar[1:-1]
+    if len(scalar) >= 2 and scalar[-1] in {"'", '"'}:
+        fail(f"{location} has mismatched scalar quote delimiters")
     return scalar
 
 
@@ -104,7 +104,12 @@ def parse_frontmatter(text: str, path: Path) -> tuple[dict[str, object], str]:
                 fail(f"{display_path(path)} has a list item without a key in frontmatter")
             frontmatter.setdefault(current_key, [])
             assert isinstance(frontmatter[current_key], list)
-            frontmatter[current_key].append(parse_scalar(line.split("-", 1)[1]))
+            frontmatter[current_key].append(
+                parse_scalar(
+                    line.split("-", 1)[1],
+                    location=f"{display_path(path)} frontmatter '{current_key}'",
+                )
+            )
             continue
         if ":" not in line:
             fail(f"{display_path(path)} has an invalid frontmatter line: {line}")
@@ -115,7 +120,10 @@ def parse_frontmatter(text: str, path: Path) -> tuple[dict[str, object], str]:
             frontmatter[key] = []
             current_key = key
             continue
-        frontmatter[key] = parse_scalar(value)
+        frontmatter[key] = parse_scalar(
+            value,
+            location=f"{display_path(path)} frontmatter '{key}'",
+        )
         current_key = key
     else:
         fail(f"{display_path(path)} is missing the closing YAML frontmatter boundary")
@@ -143,15 +151,30 @@ def markdown_sections(body: str) -> dict[str, str]:
 
 def extract_list_items(section_text: str) -> list[str]:
     items: list[str] = []
+    current_item: list[str] | None = None
+
+    def flush_current_item() -> None:
+        nonlocal current_item
+        if current_item is not None:
+            items.append(" ".join(current_item))
+            current_item = None
+
     for raw_line in section_text.splitlines():
         line = raw_line.strip()
-        if line.startswith("- "):
-            items.append(line[2:].strip())
+        if not line:
             continue
-        if ". " in line:
-            prefix, rest = line.split(". ", 1)
-            if prefix.isdigit() and rest.strip():
-                items.append(rest.strip())
+        if line.startswith("- "):
+            flush_current_item()
+            current_item = [line[2:].strip()]
+            continue
+        numbered_match = re.match(r"^\d+\.\s+(?P<item>.+)$", line)
+        if numbered_match is not None:
+            flush_current_item()
+            current_item = [numbered_match.group("item").strip()]
+            continue
+        if current_item is not None and raw_line[: len(raw_line) - len(raw_line.lstrip())]:
+            current_item.append(line)
+    flush_current_item()
     return items
 
 

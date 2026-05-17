@@ -52,6 +52,24 @@ class GeneratePlaybookCompositionSurfacesTests(unittest.TestCase):
             ],
         )
 
+    def test_multiline_decision_and_handoff_items_are_preserved(self) -> None:
+        outputs = builder.build_outputs()
+        payload = outputs[builder.PLAYBOOK_HANDOFF_CONTRACTS_PATH]
+        playbook = next(
+            item
+            for item in payload["playbooks"]
+            if item["name"] == "closeout-owner-follow-through-continuity"
+        )
+
+        self.assertIn(
+            "Decide whether a bounded candidate should stay a harvest draft or close through quest promotion.",
+            playbook["decision_points"],
+        )
+        self.assertIn(
+            "`architect -> coder` after the reviewed source, owner handoff, owner repo, and next-surface boundary are explicit",
+            playbook["handoffs"],
+        )
+
     def test_recipe_and_seed_refs_resolve_to_known_playbooks_and_skills(self) -> None:
         outputs = builder.build_outputs()
         handoff_payload = outputs[builder.PLAYBOOK_HANDOFF_CONTRACTS_PATH]

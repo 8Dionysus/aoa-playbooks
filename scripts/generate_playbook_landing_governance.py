@@ -115,7 +115,11 @@ def build_playbook_landing_governance_payload() -> dict[str, object]:
             and packet_entry.get("scenario") != intake_entry.get("scenario")
         ):
             blockers.append("packet_intake_scenario_mismatch")
-        if gate_verdict is not None and gate_verdict not in {"composition-landed", "hold"}:
+        if gate_verdict is not None and gate_verdict not in {
+            "hold",
+            "ready-for-composition-review",
+            "composition-landed",
+        }:
             blockers.append("unsupported_gate_verdict")
         in_composition_manifest = isinstance(playbook_name, str) and playbook_name in managed_playbook_names
         if gate_verdict == "composition-landed" and not in_composition_manifest:
