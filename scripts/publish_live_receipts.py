@@ -53,6 +53,8 @@ def validate_receipt(receipt: dict[str, Any], *, location: str) -> None:
         if field not in receipt:
             raise ReceiptPublishError(f"{location}: missing field {field!r}")
     event_kind = receipt["event_kind"]
+    if not isinstance(event_kind, str) or not event_kind:
+        raise ReceiptPublishError(f"{location}.event_kind: must be a non-empty string")
     if event_kind not in ALLOWED_EVENT_KINDS:
         raise ReceiptPublishError(
             f"{location}.event_kind: unsupported playbook receipt kind {event_kind!r}"

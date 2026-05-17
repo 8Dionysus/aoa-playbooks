@@ -9,26 +9,49 @@ import sys
 from functools import lru_cache
 from pathlib import Path
 
-from jsonschema import Draft202012Validator
-import yaml
+try:
+    from jsonschema import Draft202012Validator
+except ImportError as exc:
+    raise SystemExit(
+        "[error] missing Python dependency 'jsonschema'; install requirements-dev.txt"
+    ) from exc
+
+try:
+    import yaml
+except ImportError as exc:
+    raise SystemExit(
+        "[error] missing Python dependency 'PyYAML'; install requirements-dev.txt"
+    ) from exc
+
+try:
+    from scripts.dependency_roots import default_dependency_root, repo_root_from_env
+except ModuleNotFoundError:
+    from dependency_roots import default_dependency_root, repo_root_from_env
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def repo_root_from_env(env_name: str, default: Path) -> Path:
-    override = os.environ.get(env_name)
-    if not override:
-        return default
-    return Path(override).expanduser().resolve()
-
-
-AOA_AGENTS_ROOT = repo_root_from_env("AOA_AGENTS_ROOT", REPO_ROOT.parent / "aoa-agents")
-AOA_EVALS_ROOT = repo_root_from_env("AOA_EVALS_ROOT", REPO_ROOT.parent / "aoa-evals")
-AOA_SKILLS_ROOT = repo_root_from_env("AOA_SKILLS_ROOT", REPO_ROOT.parent / "aoa-skills")
-AOA_MEMO_ROOT = repo_root_from_env("AOA_MEMO_ROOT", REPO_ROOT.parent / "aoa-memo")
-AOA_8DIONYSUS_ROOT = repo_root_from_env("AOA_8DIONYSUS_ROOT", REPO_ROOT.parent / "8Dionysus")
-AOA_SDK_ROOT = repo_root_from_env("AOA_SDK_ROOT", REPO_ROOT.parent / "aoa-sdk")
-AOA_STATS_ROOT = repo_root_from_env("AOA_STATS_ROOT", REPO_ROOT.parent / "aoa-stats")
+AOA_AGENTS_ROOT = repo_root_from_env(
+    "AOA_AGENTS_ROOT", default_dependency_root(REPO_ROOT, "aoa-agents")
+)
+AOA_EVALS_ROOT = repo_root_from_env(
+    "AOA_EVALS_ROOT", default_dependency_root(REPO_ROOT, "aoa-evals")
+)
+AOA_SKILLS_ROOT = repo_root_from_env(
+    "AOA_SKILLS_ROOT", default_dependency_root(REPO_ROOT, "aoa-skills")
+)
+AOA_MEMO_ROOT = repo_root_from_env(
+    "AOA_MEMO_ROOT", default_dependency_root(REPO_ROOT, "aoa-memo")
+)
+AOA_8DIONYSUS_ROOT = repo_root_from_env(
+    "AOA_8DIONYSUS_ROOT", default_dependency_root(REPO_ROOT, "8Dionysus")
+)
+AOA_SDK_ROOT = repo_root_from_env(
+    "AOA_SDK_ROOT", default_dependency_root(REPO_ROOT, "aoa-sdk")
+)
+AOA_STATS_ROOT = repo_root_from_env(
+    "AOA_STATS_ROOT", default_dependency_root(REPO_ROOT, "aoa-stats")
+)
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 ACTIVATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.json"
 FEDERATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
@@ -1709,10 +1732,14 @@ def build_quest_dispatch_projection(repo_root: Path = REPO_ROOT) -> list[dict[st
     return entries
 
 
-def parse_scalar(value: str) -> str:
+def parse_scalar(value: str, *, location: str) -> str:
     scalar = value.strip()
-    if len(scalar) >= 2 and scalar[0] in {"'", '"'} and scalar[-1] == scalar[0]:
+    if len(scalar) >= 2 and scalar[0] in {"'", '"'}:
+        if scalar[-1] != scalar[0]:
+            fail(f"{location} has mismatched scalar quote delimiters")
         return scalar[1:-1]
+    if len(scalar) >= 2 and scalar[-1] in {"'", '"'}:
+        fail(f"{location} has mismatched scalar quote delimiters")
     return scalar
 
 
@@ -1737,7 +1764,12 @@ def parse_frontmatter(text: str, path: Path) -> tuple[dict[str, object], str]:
                 fail(f"{path.relative_to(REPO_ROOT).as_posix()} has a list item without a key in frontmatter")
             frontmatter.setdefault(current_key, [])
             assert isinstance(frontmatter[current_key], list)
-            frontmatter[current_key].append(parse_scalar(line.split("-", 1)[1]))
+            frontmatter[current_key].append(
+                parse_scalar(
+                    line.split("-", 1)[1],
+                    location=f"{path.relative_to(REPO_ROOT).as_posix()} frontmatter '{current_key}'",
+                )
+            )
             continue
         if ":" not in line:
             fail(f"{path.relative_to(REPO_ROOT).as_posix()} has an invalid frontmatter line: {line}")
@@ -1748,7 +1780,10 @@ def parse_frontmatter(text: str, path: Path) -> tuple[dict[str, object], str]:
             frontmatter[key] = []
             current_key = key
             continue
-        frontmatter[key] = parse_scalar(value)
+        frontmatter[key] = parse_scalar(
+            value,
+            location=f"{path.relative_to(REPO_ROOT).as_posix()} frontmatter '{key}'",
+        )
         current_key = key
     else:
         fail(f"{path.relative_to(REPO_ROOT).as_posix()} is missing the closing YAML frontmatter boundary")
@@ -4233,7 +4268,7 @@ def validate_playbook_landing_governance_surface(playbooks_by_id: dict[str, dict
         expected_gate_verdict = review_status_entry.get("gate_verdict") if review_status_entry is not None else None
         if entry.get("gate_verdict") != expected_gate_verdict:
             fail(f"{location}.gate_verdict must match generated/playbook_review_status.min.json when present")
-        if expected_gate_verdict is not None and expected_gate_verdict not in {"composition-landed", "hold"}:
+        if expected_gate_verdict is not None and expected_gate_verdict not in set(ALLOWED_GATE_VERDICT_TOKENS):
             fail(f"{location}.gate_verdict must stay within the review-track landing verdict set")
 
         expected_in_manifest = isinstance(expected_name, str) and expected_name in managed_playbook_names
@@ -4322,11 +4357,14 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
                 fail(f"{location} must keep kind 'seam' for the bridge-wave party template quest")
             if payload.get("owner_surface") != "docs/PARTY_TEMPLATE_MODEL.md":
                 fail(f"{location} must keep owner_surface docs/PARTY_TEMPLATE_MODEL.md")
-        if payload.get("state") in CLOSED_QUEST_STATES:
+        source_path = quest_path.relative_to(repo_root).as_posix()
+        state = payload.get("state")
+        if not isinstance(state, str) or not state:
+            fail(f"{source_path} must keep a non-empty string state")
+        if state in CLOSED_QUEST_STATES:
             closed_quest_ids.append(quest_id)
         else:
             active_quest_ids.append(quest_id)
-        source_path = quest_path.relative_to(repo_root).as_posix()
         expected_catalog_entries.append(
             build_expected_quest_catalog_entry(payload, source_path=source_path)
         )

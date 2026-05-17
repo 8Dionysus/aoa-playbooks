@@ -1,4 +1,8 @@
-# Titan Runtime Harness Playbook
+# Titan Runtime Harness Route Note
+
+This is a supporting Titan route note, not an authored playbook bundle. The
+validated scenario surface for Titan-backed closeout lives at
+`playbooks/titan-closeout-audit/PLAYBOOK.md`.
 
 ## Scenario A: read-only orientation
 
@@ -26,11 +30,13 @@
 
 ## Scenario D: implementation plus verdict
 
-1. Gate Forge for mutation.
-2. Implement.
-3. Gate Delta for judgment.
-4. Evaluate.
-5. Close receipt with both gate trails.
+1. Run Scenario A.
+2. Record both mutation intent and judgment intent.
+3. Gate Forge for mutation.
+4. Implement.
+5. Gate Delta for judgment.
+6. Evaluate.
+7. Close receipt with orientation, mutation, and judgment gate trails.
 
 ## Prohibited route
 

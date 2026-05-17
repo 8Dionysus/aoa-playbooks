@@ -6,6 +6,11 @@ import json
 import os
 from pathlib import Path
 
+try:
+    from scripts.dependency_roots import default_dependency_root
+except ModuleNotFoundError:
+    from dependency_roots import default_dependency_root
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
@@ -36,11 +41,7 @@ def _resolve_aoa_evals_root() -> Path:
     if configured:
         return Path(configured).expanduser().resolve()
 
-    for candidate in (REPO_ROOT.parent / "aoa-evals", REPO_ROOT / ".deps" / "aoa-evals"):
-        if candidate.exists():
-            return candidate.resolve()
-
-    return (REPO_ROOT.parent / "aoa-evals").resolve()
+    return default_dependency_root(REPO_ROOT, "aoa-evals")
 
 
 AOA_EVALS_ROOT = _resolve_aoa_evals_root()

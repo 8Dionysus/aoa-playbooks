@@ -1,4 +1,8 @@
-# Titan Service Cohort Playbook
+# Titan Service Cohort Route Note
+
+This is a supporting Titan route note, not an authored playbook bundle. The
+validated scenario surface for Titan-backed closeout lives at
+`playbooks/titan-closeout-audit/PLAYBOOK.md`.
 
 ## Opening
 
@@ -38,7 +42,8 @@ Verdict form
 
 ## Closeout
 
-Every Titan-backed session should close with:
+Every Titan-backed session should close through the validated
+`titan-closeout-audit` route with:
 
 ```text
 active roster
