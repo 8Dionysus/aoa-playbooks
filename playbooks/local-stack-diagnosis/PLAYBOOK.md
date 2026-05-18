@@ -49,7 +49,7 @@ eval_anchors:
   - aoa-verification-honesty
   - aoa-tool-trajectory-discipline
 memo_contract_refs:
-  - examples/checkpoint_to_memory_contract.example.json
+  - mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json
   - examples/provenance_thread.example.json
 memo_writeback_targets:
   - decision

@@ -109,7 +109,7 @@ It is a reviewable playbook-layer report that checks whether the targeted experi
 ### Memo-contract drift
 
 - No blocking memo-contract drift found.
-- `examples/checkpoint_to_memory_contract.example.json` resolves in `aoa-memo` and supports `decision` and `audit_event` targets through its current mapping rules.
+- `mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json` resolves in `aoa-memo` and supports `decision` and `audit_event` targets through its current mapping rules.
 - `examples/provenance_thread.example.json` resolves in `aoa-memo` and keeps the route history aligned to `provenance_thread` rather than hidden state.
 
 ### Lineage drift

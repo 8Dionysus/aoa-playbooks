@@ -68,7 +68,7 @@ memo_checkpoint_posture: preferred
 memo_source_route_policy: preferred
 memo_contract_refs:
   - examples/recall_contract.object.working.return.json
-  - examples/checkpoint_to_memory_contract.example.json
+  - mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json
   - examples/provenance_thread.example.json
 memo_writeback_targets:
   - decision
