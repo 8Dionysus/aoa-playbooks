@@ -1738,8 +1738,6 @@ def parse_scalar(value: str, *, location: str) -> str:
         if scalar[-1] != scalar[0]:
             fail(f"{location} has mismatched scalar quote delimiters")
         return scalar[1:-1]
-    if len(scalar) >= 2 and scalar[-1] in {"'", '"'}:
-        fail(f"{location} has mismatched scalar quote delimiters")
     return scalar
 
 

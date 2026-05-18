@@ -24,6 +24,15 @@ if GENERATOR_SPEC is None or GENERATOR_SPEC.loader is None:
     raise RuntimeError(f"unable to load generator module from {GENERATOR_MODULE_PATH}")
 generate_phase_alpha_surfaces = importlib.util.module_from_spec(GENERATOR_SPEC)
 GENERATOR_SPEC.loader.exec_module(generate_phase_alpha_surfaces)
+COMPOSITION_GENERATOR_MODULE_PATH = REPO_ROOT / "scripts" / "generate_playbook_composition_surfaces.py"
+COMPOSITION_GENERATOR_SPEC = importlib.util.spec_from_file_location(
+    "generate_playbook_composition_surfaces",
+    COMPOSITION_GENERATOR_MODULE_PATH,
+)
+if COMPOSITION_GENERATOR_SPEC is None or COMPOSITION_GENERATOR_SPEC.loader is None:
+    raise RuntimeError(f"unable to load generator module from {COMPOSITION_GENERATOR_MODULE_PATH}")
+generate_playbook_composition_surfaces = importlib.util.module_from_spec(COMPOSITION_GENERATOR_SPEC)
+COMPOSITION_GENERATOR_SPEC.loader.exec_module(generate_playbook_composition_surfaces)
 
 
 def write_text(path: Path, text: str) -> None:
@@ -39,6 +48,33 @@ def copy_repo_text(repo_root: Path, relative_path: str) -> None:
 
 
 class ValidatePlaybooksReturnContractTests(unittest.TestCase):
+    def test_plain_frontmatter_scalars_may_end_with_quote_punctuation(self) -> None:
+        value = 'Close with "ready"'
+
+        self.assertEqual(
+            validate_playbooks.parse_scalar(value, location="frontmatter 'summary'"),
+            value,
+        )
+        self.assertEqual(
+            generate_playbook_composition_surfaces.parse_scalar(
+                value,
+                location="frontmatter 'summary'",
+            ),
+            value,
+        )
+
+    def test_started_quote_scalars_still_require_matching_delimiter(self) -> None:
+        with self.assertRaisesRegex(validate_playbooks.ValidationError, "mismatched scalar quote delimiters"):
+            validate_playbooks.parse_scalar('"missing close', location="frontmatter 'summary'")
+        with self.assertRaisesRegex(
+            generate_playbook_composition_surfaces.BuilderError,
+            "mismatched scalar quote delimiters",
+        ):
+            generate_playbook_composition_surfaces.parse_scalar(
+                '"missing close',
+                location="frontmatter 'summary'",
+            )
+
     def make_registry_entry(self) -> dict[str, object]:
         return {
             "id": "AOA-P-0008",
