@@ -840,7 +840,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-change-protocol",
             ),
             "memo_contract_refs": (
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -877,7 +877,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.router.semantic.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -912,7 +912,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.router.semantic.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -943,7 +943,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.object.working.return.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
             ),
             "memo_writeback_targets": (
                 "state_capsule",
@@ -974,7 +974,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.router.semantic.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1020,7 +1020,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1060,7 +1060,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1104,7 +1104,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-adr-write",
             ),
             "memo_contract_refs": (
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1144,7 +1144,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1182,7 +1182,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1218,7 +1218,7 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1260,7 +1260,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.router.semantic.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1308,7 +1308,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.router.semantic.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1357,7 +1357,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.object.working.return.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
@@ -1416,7 +1416,7 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
             "memo_contract_refs": (
                 "examples/recall_contract.object.working.return.json",
-                "examples/checkpoint_to_memory_contract.example.json",
+                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
                 "examples/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (

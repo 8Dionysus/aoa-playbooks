@@ -69,7 +69,7 @@ memo_checkpoint_posture: not_needed
 memo_source_route_policy: required
 memo_contract_refs:
   - examples/recall_contract.router.lineage.json
-  - examples/checkpoint_to_memory_contract.example.json
+  - mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json
   - examples/provenance_thread.example.json
 memo_writeback_targets:
   - decision

@@ -52,7 +52,7 @@ eval_anchors:
   - aoa-scope-drift-detection
   - aoa-verification-honesty
 memo_contract_refs:
-  - examples/checkpoint_to_memory_contract.example.json
+  - mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json
   - examples/provenance_thread.example.json
 memo_writeback_targets:
   - decision
