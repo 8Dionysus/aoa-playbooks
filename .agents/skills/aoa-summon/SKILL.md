@@ -68,7 +68,7 @@ Do not use this skill when:
 
 ## Procedure
 1. start from the parent anchor and quest passport, not from raw pressure to delegate
-2. default `transport_preference` to local execution when the request leaves it open
+2. default `transport_preference` to `codex_local` when the request leaves it open
 3. verify that expected outputs are named before picking a lane
 4. classify the lane with difficulty, risk, control mode, requested role, and
    `references/passport-lane-matrix.v3.md`
@@ -152,10 +152,10 @@ Do not use this skill when:
 
 ## Technique traceability
 Manifest-backed techniques:
-- AOA-T-0078 from `8Dionysus/aoa-techniques` at `b0f7e094bf81abaf0895a729d504a97f3af91ae8` using path `techniques/governance/decision-routing/decision-fork-cards/TECHNIQUE.md` and sections: Intent, Inputs, Outputs, Core procedure, Contracts, Validation
-- AOA-T-0079 from `8Dionysus/aoa-techniques` at `b0f7e094bf81abaf0895a729d504a97f3af91ae8` using path `techniques/governance/decision-routing/risk-passport-lift/TECHNIQUE.md` and sections: Intent, Inputs, Outputs, Contracts, Risks, Validation
-- AOA-T-0062 from `8Dionysus/aoa-techniques` at `b0f7e094bf81abaf0895a729d504a97f3af91ae8` using path `techniques/continuity/handoff-continuation/episode-bounded-agent-loop/TECHNIQUE.md` and sections: Intent, Outputs, Core procedure, Contracts, Risks, Validation
-- AOA-T-0058 from `8Dionysus/aoa-techniques` at `b0f7e094bf81abaf0895a729d504a97f3af91ae8` using path `techniques/continuity/handoff-continuation/receipt-confirmed-handoff-packet/TECHNIQUE.md` and sections: Intent, Outputs, Core procedure, Contracts, Risks, Validation
+- AOA-T-0078 from `8Dionysus/aoa-techniques` at `3b1d5d623569aa4920b87280d0db0e911d2e29d5` using path `techniques/governance/decision-routing/decision-fork-cards/TECHNIQUE.md` and sections: Intent, Inputs, Outputs, Core procedure, Contracts, Validation
+- AOA-T-0079 from `8Dionysus/aoa-techniques` at `3b1d5d623569aa4920b87280d0db0e911d2e29d5` using path `techniques/governance/decision-routing/risk-passport-lift/TECHNIQUE.md` and sections: Intent, Inputs, Outputs, Contracts, Risks, Validation
+- AOA-T-0062 from `8Dionysus/aoa-techniques` at `fe4b04ed877916c46e60e70aaa9a1d4c86e81b6e` using path `techniques/continuity/handoff-continuation/episode-bounded-agent-loop/TECHNIQUE.md` and sections: Intent, Outputs, Core procedure, Contracts, Risks, Validation
+- AOA-T-0058 from `8Dionysus/aoa-techniques` at `3b1d5d623569aa4920b87280d0db0e911d2e29d5` using path `techniques/continuity/handoff-continuation/receipt-confirmed-handoff-packet/TECHNIQUE.md` and sections: Intent, Outputs, Core procedure, Contracts, Risks, Validation
 
 ## Adaptation points
 - project overlays may add local child-role labels, control modes, or transport
