@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-memo
-          ref: 4d30734803d5c689628b728278f28ab7b06041b0
+          ref: 56303e8094788b9f97f8611ea690ce641bd942a1
           path: .deps/aoa-memo
 
       - name: Checkout 8Dionysus
