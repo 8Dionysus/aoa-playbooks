@@ -59,7 +59,7 @@ It is a reviewable playbook-layer report that checks whether the targeted experi
 ### Recall-rights drift
 
 - No blocking recall-rights drift found.
-- The router-facing semantic recall contract in `aoa-memo/examples/recall_contract.router.semantic.json` allows `repo`, `project`, and `ecosystem`.
+- The router-facing semantic recall contract in `aoa-memo/examples/recall/recall_contract.router.semantic.json` allows `repo`, `project`, and `ecosystem`.
 - `memory-keeper` remains the only active role with deep enough write posture to carry the surviving witness route into memo-facing objects without widening the role contract.
 - Freeze finalization remains outside the active role set. That keeps this route pilot-safe.
 
@@ -109,8 +109,8 @@ It is a reviewable playbook-layer report that checks whether the targeted experi
 ### Memo-contract drift
 
 - No blocking memo-contract drift found.
-- `mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json` resolves in `aoa-memo` and supports `decision` and `audit_event` targets through its current mapping rules.
-- `examples/provenance_thread.example.json` resolves in `aoa-memo` and keeps the route history aligned to `provenance_thread` rather than hidden state.
+- `mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json` resolves in `aoa-memo` and supports `decision` and `audit_event` targets through its current mapping rules.
+- `examples/support-objects/provenance_thread.example.json` resolves in `aoa-memo` and keeps the route history aligned to `provenance_thread` rather than hidden state.
 
 ### Lineage drift
 

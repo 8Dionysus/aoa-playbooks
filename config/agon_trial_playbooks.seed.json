@@ -97,9 +97,9 @@
       ],
       "live_protocol": false,
       "memo_contract_refs": [
-        "examples/recall_contract.router.semantic.json",
-        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-        "examples/provenance_thread.example.json"
+        "examples/recall/recall_contract.router.semantic.json",
+        "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+        "examples/support-objects/provenance_thread.example.json"
       ],
       "memo_owner_requests": [
         "bounded_trace_gap_chronicle_candidate"
@@ -254,9 +254,9 @@
       ],
       "live_protocol": false,
       "memo_contract_refs": [
-        "examples/recall_contract.router.semantic.json",
-        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-        "examples/provenance_thread.example.json"
+        "examples/recall/recall_contract.router.semantic.json",
+        "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+        "examples/support-objects/provenance_thread.example.json"
       ],
       "memo_owner_requests": [
         "bounded_fallback_lesson_candidate"
@@ -409,9 +409,9 @@
       ],
       "live_protocol": false,
       "memo_contract_refs": [
-        "examples/recall_contract.router.semantic.json",
-        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-        "examples/provenance_thread.example.json"
+        "examples/recall/recall_contract.router.semantic.json",
+        "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+        "examples/support-objects/provenance_thread.example.json"
       ],
       "memo_owner_requests": [
         "contradiction_chronicle_candidate"
@@ -567,9 +567,9 @@
       ],
       "live_protocol": false,
       "memo_contract_refs": [
-        "examples/recall_contract.router.semantic.json",
-        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-        "examples/provenance_thread.example.json"
+        "examples/recall/recall_contract.router.semantic.json",
+        "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+        "examples/support-objects/provenance_thread.example.json"
       ],
       "memo_owner_requests": [
         "closure_denial_chronicle_candidate"
@@ -727,9 +727,9 @@
       ],
       "live_protocol": false,
       "memo_contract_refs": [
-        "examples/recall_contract.router.semantic.json",
-        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-        "examples/provenance_thread.example.json"
+        "examples/recall/recall_contract.router.semantic.json",
+        "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+        "examples/support-objects/provenance_thread.example.json"
       ],
       "memo_owner_requests": [
         "assistant_escalation_audit_candidate"
@@ -884,9 +884,9 @@
       ],
       "live_protocol": false,
       "memo_contract_refs": [
-        "examples/recall_contract.router.semantic.json",
-        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-        "examples/provenance_thread.example.json"
+        "examples/recall/recall_contract.router.semantic.json",
+        "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+        "examples/support-objects/provenance_thread.example.json"
       ],
       "memo_owner_requests": [
         "prediction_rehearsal_chronicle_candidate"
@@ -1042,9 +1042,9 @@
       ],
       "live_protocol": false,
       "memo_contract_refs": [
-        "examples/recall_contract.router.semantic.json",
-        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-        "examples/provenance_thread.example.json"
+        "examples/recall/recall_contract.router.semantic.json",
+        "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+        "examples/support-objects/provenance_thread.example.json"
       ],
       "memo_owner_requests": [
         "summon_intent_audit_candidate"

@@ -205,6 +205,26 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
             validate_playbooks.skill_is_federation_eligible(skill, playbook_status="active")
         )
 
+    def test_memo_contract_path_accepts_current_ref_via_legacy_dependency_alias(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            memo_root = Path(tmpdir) / "aoa-memo"
+            legacy_ref = "examples/recall_contract.router.semantic.json"
+            current_ref = "examples/recall/recall_contract.router.semantic.json"
+            write_text(
+                memo_root / legacy_ref,
+                json.dumps({"target_kind": "semantic_recall"}) + "\n",
+            )
+
+            with patch.object(validate_playbooks, "AOA_MEMO_ROOT", memo_root):
+                self.assertEqual(
+                    validate_playbooks.memo_contract_path(current_ref),
+                    memo_root / legacy_ref,
+                )
+                self.assertEqual(
+                    validate_playbooks.memo_kinds_for_contract(current_ref),
+                    {"semantic_recall"},
+                )
+
 
 class ValidatePlaybooksFutureEvalOwnerRequestTests(unittest.TestCase):
     def test_projection_refs_allow_future_eval_owner_requests_when_explicitly_enabled(self) -> None:

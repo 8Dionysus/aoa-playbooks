@@ -246,6 +246,6 @@
       "stop if stronger source artifacts must be consulted and are not explicitly escalated"
     ],
     "run_ref": "docs/alpha-reviewed-runs/2026-04-02.validation-driven-remediation-recall-rerun.md",
-    "recall_contract_ref": "repo:aoa-memo/examples/recall_contract.object.working.phase-alpha.json"
+    "recall_contract_ref": "repo:aoa-memo/examples/recall/recall_contract.object.working.phase-alpha.json"
   }
 }

@@ -42,8 +42,8 @@ proof_surface_refs:
   - repo:aoa-evals/generated/eval_catalog.min.json
   - repo:aoa-evals/docs/ORCHESTRATOR_PROOF_ALIGNMENT.md
 memory_surface_refs:
-  - repo:aoa-memo/generated/memory_object_capsules.json
-  - repo:aoa-memo/docs/ORCHESTRATOR_MEMORY_ALIGNMENT.md
+  - repo:aoa-memo/generated/memory-objects/memory_object_capsules.json
+  - repo:aoa-memo/mechanics/consumer-handoff/docs/ORCHESTRATOR_MEMORY_ALIGNMENT.md
 evidence:
   - review alignment is closure-shaped
   - reviewed-run and readiness surfaces stay explicit

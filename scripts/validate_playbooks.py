@@ -98,8 +98,34 @@ QUEST_CATALOG_PATH = REPO_ROOT / "generated" / "quest_catalog.min.json"
 QUEST_CATALOG_EXAMPLE_PATH = REPO_ROOT / "generated" / "quest_catalog.min.example.json"
 QUEST_DISPATCH_PATH = REPO_ROOT / "generated" / "quest_dispatch.min.json"
 QUEST_DISPATCH_EXAMPLE_PATH = REPO_ROOT / "generated" / "quest_dispatch.min.example.json"
-EXTERNAL_QUEST_SCHEMA_PATH = AOA_EVALS_ROOT / "schemas" / "quest.schema.json"
-EXTERNAL_QUEST_DISPATCH_SCHEMA_PATH = AOA_EVALS_ROOT / "schemas" / "quest_dispatch.schema.json"
+
+
+def first_existing_path(primary: Path, fallback: Path) -> Path:
+    if primary.exists():
+        return primary
+    return fallback
+
+
+EXTERNAL_QUEST_SCHEMA_PATH = first_existing_path(
+    AOA_EVALS_ROOT
+    / "mechanics"
+    / "questbook"
+    / "parts"
+    / "source-record-contract"
+    / "schemas"
+    / "quest.schema.json",
+    AOA_EVALS_ROOT / "schemas" / "quest.schema.json",
+)
+EXTERNAL_QUEST_DISPATCH_SCHEMA_PATH = first_existing_path(
+    AOA_EVALS_ROOT
+    / "mechanics"
+    / "questbook"
+    / "parts"
+    / "dispatch-reader"
+    / "schemas"
+    / "quest_dispatch.schema.json",
+    AOA_EVALS_ROOT / "schemas" / "quest_dispatch.schema.json",
+)
 FOUNDATION_QUESTBOOK_QUEST_IDS = ("AOA-PB-Q-0001", "AOA-PB-Q-0002")
 QUESTBOOK_QUEST_IDS = FOUNDATION_QUESTBOOK_QUEST_IDS
 QUESTBOOK_REQUIRED_DOC_SECTIONS = (
@@ -702,10 +728,36 @@ ALLOWED_MEMO_READ_PATHS = {"inspect_only", "inspect_then_expand", "inspect_capsu
 ALLOWED_MEMO_CHECKPOINT_POSTURES = {"not_needed", "preferred", "required"}
 ALLOWED_MEMO_SOURCE_ROUTE_POLICIES = {"not_needed", "preferred", "required"}
 SEMANTIC_LINEAGE_MEMO_CONTRACT_REFS = {
-    "examples/recall_contract.router.semantic.json",
-    "examples/recall_contract.router.lineage.json",
-    "examples/recall_contract.object.semantic.json",
-    "examples/recall_contract.object.lineage.json",
+    "examples/recall/recall_contract.router.semantic.json",
+    "examples/recall/recall_contract.router.lineage.json",
+    "examples/recall/recall_contract.object.semantic.json",
+    "examples/recall/recall_contract.object.lineage.json",
+}
+MEMO_CONTRACT_REF_COMPATIBILITY_ALIASES = {
+    "examples/recall/recall_contract.router.semantic.json": (
+        "examples/recall_contract.router.semantic.json",
+    ),
+    "examples/recall/recall_contract.router.lineage.json": (
+        "examples/recall_contract.router.lineage.json",
+    ),
+    "examples/recall/recall_contract.object.semantic.json": (
+        "examples/recall_contract.object.semantic.json",
+    ),
+    "examples/recall/recall_contract.object.lineage.json": (
+        "examples/recall_contract.object.lineage.json",
+    ),
+    "examples/recall/recall_contract.object.working.return.json": (
+        "examples/recall_contract.object.working.return.json",
+    ),
+    "examples/recall/recall_contract.object.working.phase-alpha.json": (
+        "examples/recall_contract.object.working.phase-alpha.json",
+    ),
+    "examples/support-objects/provenance_thread.example.json": (
+        "examples/provenance_thread.example.json",
+    ),
+    "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json": (
+        "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
+    ),
 }
 RUNTIME_MEMO_SPEC_EXPECTATIONS = {
     "AOA-P-0008": {
@@ -715,7 +767,7 @@ RUNTIME_MEMO_SPEC_EXPECTATIONS = {
         "memo_read_path": "inspect_capsule_then_expand",
         "memo_checkpoint_posture": "not_needed",
         "memo_source_route_policy": "required",
-        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+        "required_memo_contract_ref": "examples/recall/recall_contract.router.semantic.json",
     },
     "AOA-P-0009": {
         "memo_recall_modes": ("working",),
@@ -724,7 +776,7 @@ RUNTIME_MEMO_SPEC_EXPECTATIONS = {
         "memo_read_path": "inspect_then_expand",
         "memo_checkpoint_posture": "required",
         "memo_source_route_policy": "preferred",
-        "required_memo_contract_ref": "examples/recall_contract.object.working.return.json",
+        "required_memo_contract_ref": "examples/recall/recall_contract.object.working.return.json",
     },
     "AOA-P-0010": {
         "memo_recall_modes": ("episodic", "semantic"),
@@ -733,7 +785,7 @@ RUNTIME_MEMO_SPEC_EXPECTATIONS = {
         "memo_read_path": "inspect_capsule_then_expand",
         "memo_checkpoint_posture": "not_needed",
         "memo_source_route_policy": "required",
-        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+        "required_memo_contract_ref": "examples/recall/recall_contract.router.semantic.json",
     },
     "AOA-P-0017": {
         "memo_recall_modes": ("episodic", "semantic"),
@@ -742,7 +794,7 @@ RUNTIME_MEMO_SPEC_EXPECTATIONS = {
         "memo_read_path": "inspect_capsule_then_expand",
         "memo_checkpoint_posture": "not_needed",
         "memo_source_route_policy": "required",
-        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+        "required_memo_contract_ref": "examples/recall/recall_contract.router.semantic.json",
     },
     "AOA-P-0018": {
         "memo_recall_modes": ("episodic", "semantic"),
@@ -751,7 +803,7 @@ RUNTIME_MEMO_SPEC_EXPECTATIONS = {
         "memo_read_path": "inspect_capsule_then_expand",
         "memo_checkpoint_posture": "not_needed",
         "memo_source_route_policy": "required",
-        "required_memo_contract_ref": "examples/recall_contract.router.semantic.json",
+        "required_memo_contract_ref": "examples/recall/recall_contract.router.semantic.json",
     },
     "AOA-P-0019": {
         "memo_recall_modes": ("working", "episodic"),
@@ -760,7 +812,7 @@ RUNTIME_MEMO_SPEC_EXPECTATIONS = {
         "memo_read_path": "inspect_then_expand",
         "memo_checkpoint_posture": "preferred",
         "memo_source_route_policy": "preferred",
-        "required_memo_contract_ref": "examples/recall_contract.object.working.return.json",
+        "required_memo_contract_ref": "examples/recall/recall_contract.object.working.return.json",
     },
     "AOA-P-0020": {
         "memo_recall_modes": ("working", "episodic"),
@@ -769,7 +821,7 @@ RUNTIME_MEMO_SPEC_EXPECTATIONS = {
         "memo_read_path": "inspect_then_expand",
         "memo_checkpoint_posture": "preferred",
         "memo_source_route_policy": "preferred",
-        "required_memo_contract_ref": "examples/recall_contract.object.working.return.json",
+        "required_memo_contract_ref": "examples/recall/recall_contract.object.working.return.json",
     },
 }
 TIER_ARTIFACT_PLAYBOOKS = {"AOA-P-0008"}
@@ -840,8 +892,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-change-protocol",
             ),
             "memo_contract_refs": (
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -876,9 +928,9 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-change-protocol",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.router.semantic.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "examples/recall/recall_contract.router.semantic.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "episode",
@@ -911,8 +963,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-bounded-context-map",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.router.semantic.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
+                "examples/recall/recall_contract.router.semantic.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -942,8 +994,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-bounded-context-map",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.object.working.return.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
+                "examples/recall/recall_contract.object.working.return.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
             ),
             "memo_writeback_targets": (
                 "state_capsule",
@@ -973,9 +1025,9 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-change-protocol",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.router.semantic.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "examples/recall/recall_contract.router.semantic.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1020,8 +1072,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1060,8 +1112,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1104,8 +1156,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-adr-write",
             ),
             "memo_contract_refs": (
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1144,8 +1196,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1182,8 +1234,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1218,8 +1270,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1259,9 +1311,9 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-adr-write",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.router.semantic.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "examples/recall/recall_contract.router.semantic.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1307,9 +1359,9 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-adr-write",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.router.semantic.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "examples/recall/recall_contract.router.semantic.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1356,9 +1408,9 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.object.working.return.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "examples/recall/recall_contract.object.working.return.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -1415,9 +1467,9 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-sanitized-share",
             ),
             "memo_contract_refs": (
-                "examples/recall_contract.object.working.return.json",
-                "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
-                "examples/provenance_thread.example.json",
+                "examples/recall/recall_contract.object.working.return.json",
+                "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
+                "examples/support-objects/provenance_thread.example.json",
             ),
             "memo_writeback_targets": (
                 "decision",
@@ -2550,7 +2602,7 @@ def collect_string_field_values(payload: object, field_name: str) -> set[str]:
     return values
 
 
-def memo_contract_path(contract_ref: str) -> Path:
+def memo_contract_path_for_ref(contract_ref: str) -> Path:
     path = (AOA_MEMO_ROOT / contract_ref).resolve()
     try:
         path.relative_to(AOA_MEMO_ROOT)
@@ -2559,6 +2611,17 @@ def memo_contract_path(contract_ref: str) -> Path:
             "memo_contract_refs must resolve within aoa-memo: "
             + contract_ref
         )
+    return path
+
+
+def memo_contract_path(contract_ref: str) -> Path:
+    path = memo_contract_path_for_ref(contract_ref)
+    if path.exists():
+        return path
+    for alias_ref in MEMO_CONTRACT_REF_COMPATIBILITY_ALIASES.get(contract_ref, ()):
+        alias_path = memo_contract_path_for_ref(alias_ref)
+        if alias_path.exists():
+            return alias_path
     return path
 
 
@@ -3883,7 +3946,7 @@ def validate_playbook_review_packet_contracts_surface(
         "activation": "generated/playbook_activation_surfaces.min.json",
         "federation": "generated/playbook_federation_surfaces.min.json",
         "review_status": "generated/playbook_review_status.min.json",
-        "runtime_template_index": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
+        "runtime_template_index": "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json",
     }
     if payload.get("source_of_truth") != expected_source_of_truth:
         fail("generated/playbook_review_packet_contracts.min.json must keep source_of_truth stable")

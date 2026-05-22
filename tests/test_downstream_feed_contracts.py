@@ -465,7 +465,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
                 "activation": "generated/playbook_activation_surfaces.min.json",
                 "federation": "generated/playbook_federation_surfaces.min.json",
                 "review_status": "generated/playbook_review_status.min.json",
-                "runtime_template_index": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
+                "runtime_template_index": "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json",
             },
         )
 
@@ -494,7 +494,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
     def test_review_packet_contract_builder_rejects_missing_runtime_template_index(self) -> None:
         with self.assertRaisesRegex(
             SystemExit,
-            "missing required file: generated/runtime_candidate_template_index.min.json",
+            "missing required file: mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json",
         ):
             with patch.object(review_packet_contract_builder, "AOA_EVALS_ROOT", REPO_ROOT / ".missing-aoa-evals"):
                 review_packet_contract_builder.build_review_packet_contracts_payload()
@@ -502,7 +502,15 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
     def test_review_packet_contract_builder_rejects_missing_runtime_template_sources(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             evals_root = Path(tmpdir) / "aoa-evals"
-            template_index_path = evals_root / "generated" / "runtime_candidate_template_index.min.json"
+            template_index_path = (
+                evals_root
+                / "mechanics"
+                / "audit"
+                / "parts"
+                / "candidate-readers"
+                / "generated"
+                / "runtime_candidate_template_index.min.json"
+            )
             template_index_path.parent.mkdir(parents=True, exist_ok=True)
             template_index_path.write_text(
                 json.dumps(

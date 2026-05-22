@@ -55,7 +55,21 @@ def describe_path(path: Path, *, root: Path = REPO_ROOT) -> str:
 
 
 def runtime_template_index_path() -> Path:
-    return AOA_EVALS_ROOT / "generated" / "runtime_candidate_template_index.min.json"
+    current = (
+        AOA_EVALS_ROOT
+        / "mechanics"
+        / "audit"
+        / "parts"
+        / "candidate-readers"
+        / "generated"
+        / "runtime_candidate_template_index.min.json"
+    )
+    if current.exists():
+        return current
+    legacy = AOA_EVALS_ROOT / "generated" / "runtime_candidate_template_index.min.json"
+    if legacy.exists():
+        return legacy
+    return current
 
 
 def read_text(path: Path, *, root: Path = REPO_ROOT) -> str:
@@ -124,12 +138,12 @@ def _available_runtime_eval_anchors() -> set[str]:
     payload = read_json(runtime_template_index_path(), root=AOA_EVALS_ROOT)
     if not isinstance(payload, dict) or not isinstance(payload.get("templates"), list):
         raise SystemExit(
-            "[error] aoa-evals generated/runtime_candidate_template_index.min.json must contain a templates list"
+            "[error] aoa-evals mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json must contain a templates list"
         )
     for item in payload["templates"]:
         if not isinstance(item, dict):
             raise SystemExit(
-                "[error] aoa-evals generated/runtime_candidate_template_index.min.json templates entries must be objects"
+                "[error] aoa-evals mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json templates entries must be objects"
             )
         source_example_ref = item.get("source_example_ref")
         if not isinstance(source_example_ref, str) or not source_example_ref:
@@ -247,7 +261,7 @@ def build_review_packet_contracts_payload() -> dict[str, object]:
             "activation": "generated/playbook_activation_surfaces.min.json",
             "federation": "generated/playbook_federation_surfaces.min.json",
             "review_status": "generated/playbook_review_status.min.json",
-            "runtime_template_index": "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
+            "runtime_template_index": "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json",
         },
         "playbooks": entries,
     }

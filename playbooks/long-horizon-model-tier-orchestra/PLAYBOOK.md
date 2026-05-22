@@ -55,8 +55,8 @@ memo_read_path: inspect_capsule_then_expand
 memo_checkpoint_posture: not_needed
 memo_source_route_policy: required
 memo_contract_refs:
-  - examples/recall_contract.router.semantic.json
-  - mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json
+  - examples/recall/recall_contract.router.semantic.json
+  - mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json
 memo_writeback_targets:
   - decision
   - claim
