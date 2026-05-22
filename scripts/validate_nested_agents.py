@@ -17,6 +17,7 @@ REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "schemas/AGENTS.md": ("Schema changes are contract changes", "playbook-owned adjuncts"),
     "scripts/AGENTS.md": ("generate_* --check", "repo-relative"),
     "tests/AGENTS.md": ("scenario boundaries", "generated alignment"),
+    "memo/AGENTS.md": ("local memory port", "reviewed landing"),
 }
 ADVISORY_AGENT_DIRS: tuple[str, ...] = (".agents/skills", "Spark", "docs", "manifests/recurrence", "quests")
 HEADING_PREFIXES = ("# AGENTS.md", "# AGENTS")
