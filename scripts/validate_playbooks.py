@@ -759,6 +759,21 @@ MEMO_CONTRACT_REF_COMPATIBILITY_ALIASES = {
         "mechanics/checkpoint/examples/checkpoint_to_memory_contract.example.json",
     ),
 }
+PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS = (
+    "Memory fields in a playbook bundle are consumer posture, not memory truth.",
+    "Reviewed memory must be consumed through `aoa-memo` object ids",
+    "provenance, lifecycle, and generated read models",
+    "`memo/` port: candidates, receipts, exports, and local records",
+    "`memo_source_route_policy: required` means source refs or reviewed object ids",
+    "`aoa_memo` MCP brief, search, validation, and landing-plan output is",
+    "access-plane evidence, not durable memory authority.",
+)
+PLAYBOOK_LIFECYCLE_MEMORY_CONSUMER_SNIPPETS = (
+    "`memo_contract_refs` and `memo_writeback_targets` are consumer/writeback contracts.",
+    "A federation-checked playbook consumes reviewed memory; it does not land it.",
+    "repo or `.aoa` session evidence -> `memo/candidates/` -> validation receipt ->",
+    "`memo/exports/` reviewed-intake packet -> reviewed `aoa-memo` landing.",
+)
 RUNTIME_MEMO_SPEC_EXPECTATIONS = {
     "AOA-P-0008": {
         "memo_recall_modes": ("semantic", "procedural"),
@@ -2380,6 +2395,25 @@ def validate_memo_recall_spec(
     memo_source_route_policy = payload["memo_source_route_policy"]
     if memo_source_route_policy not in ALLOWED_MEMO_SOURCE_ROUTE_POLICIES:
         fail(f"{location}.memo_source_route_policy '{memo_source_route_policy}' is not allowed")
+
+
+def validate_memory_consumer_contract_docs(repo_root: Path = REPO_ROOT) -> None:
+    docs = (
+        (
+            repo_root / "docs" / "PLAYBOOK_BUNDLE_CONTRACT.md",
+            PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS,
+        ),
+        (
+            repo_root / "docs" / "PLAYBOOK_LIFECYCLE.md",
+            PLAYBOOK_LIFECYCLE_MEMORY_CONSUMER_SNIPPETS,
+        ),
+    )
+    for path, snippets in docs:
+        text = read_text(path)
+        location = path.relative_to(repo_root).as_posix()
+        for snippet in snippets:
+            if snippet not in text:
+                fail(f"{location} is missing required memory-consumer contract guidance: {snippet}")
 
 
 def validate_runtime_memo_spec_expectation(payload: dict[str, object], *, playbook_id: str, location: str) -> None:
@@ -4550,6 +4584,7 @@ def main() -> int:
         validate_review_packet_contracts_schema_surface()
         validate_antifragility_stress_surfaces()
         validate_codex_plane_rollout_cycle_companion()
+        validate_memory_consumer_contract_docs()
         playbooks_by_id = validate_registry()
         agent_names = load_agent_names()
         model_tier_artifacts = load_model_tier_artifacts()
@@ -4601,6 +4636,7 @@ def main() -> int:
     print("[ok] validated playbook review-packet contracts schema surface")
     print("[ok] validated antifragility stress-lane adjunct surfaces")
     print("[ok] validated codex-plane rollout cycle companion surfaces")
+    print("[ok] validated playbook memory-consumer contract docs")
     print("[ok] validated generated/playbook_registry.min.json")
     print("[ok] validated generated/playbook_activation_surfaces.min.json")
     print("[ok] validated authored playbook bundles")

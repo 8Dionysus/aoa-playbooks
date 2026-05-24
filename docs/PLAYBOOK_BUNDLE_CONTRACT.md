@@ -65,6 +65,36 @@ For the runtime-facing activation cohort, these flat memo-read defaults may also
 These fields describe bounded memo-reading defaults only.
 They do not authorize free-text recall, hidden ranking, or runtime-local memory invention.
 
+## Scenario memory route
+
+Memory fields in a playbook bundle are consumer posture, not memory truth.
+`memory_posture` states whether the scenario uses recall at all.
+`memo_recall_modes`, `memo_scope_default`, `memo_scope_ceiling`,
+`memo_read_path`, `memo_checkpoint_posture`, and
+`memo_source_route_policy` describe how the scenario may inspect memory.
+They do not create memory objects, select hidden recall, or turn a playbook into
+a memory authority.
+
+Reviewed memory must be consumed through `aoa-memo` object ids, source refs,
+provenance, lifecycle, and generated read models such as
+`generated/memory-objects/memory_object_catalog.min.json`.
+`memo_contract_refs` and `memo_writeback_targets` keep the federation seam
+machine-checkable by naming the `aoa-memo` contracts and writeback kinds the
+scenario is allowed to use.
+
+When a scenario produces memory-shaped residue, write it through this
+repository's `memo/` port: candidates, receipts, exports, and local records.
+Session evidence starts as repo evidence or `.aoa` session evidence; it becomes
+reviewed memory only after candidate validation, receipt/export handoff, and
+reviewed landing in `aoa-memo`.
+
+`memo_source_route_policy: required` means source refs or reviewed object ids
+must be named before reuse.
+It does not authorize hidden recall, free-form memory invention, or unstated
+source promotion.
+`aoa_memo` MCP brief, search, validation, and landing-plan output is
+access-plane evidence, not durable memory authority.
+
 Derived activation surfaces may project a small runtime-readable subset of bundle-aligned fields.
 They must remain schema-backed projections of canonical playbook surfaces rather than independent authored routes.
 Derived federation surfaces may project the machine-checkable closure fields used to validate skill lineage and memo writeback posture for a bounded cohort.
