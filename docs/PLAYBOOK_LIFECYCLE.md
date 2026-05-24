@@ -75,6 +75,16 @@ For the current wave, a federation-checked playbook should expose:
 - `memo_writeback_targets`
 
 Those fields keep the closure machine-checkable without moving skill canon or memo taxonomy into `aoa-playbooks`.
+`memo_contract_refs` and `memo_writeback_targets` are consumer/writeback contracts.
+A federation-checked playbook consumes reviewed memory; it does not land it.
+Reviewed memory remains in `aoa-memo`, where object ids, provenance, lifecycle,
+and generated read models carry recall authority.
+
+If a playbook run produces a memory candidate, the route is local first:
+repo or `.aoa` session evidence -> `memo/candidates/` -> validation receipt ->
+`memo/exports/` reviewed-intake packet -> reviewed `aoa-memo` landing.
+Until that landing happens, the playbook may reference the local candidate or
+receipt as scenario evidence, but not as central reviewed memory.
 
 ## Graduation heuristics
 

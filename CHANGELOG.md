@@ -7,6 +7,15 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+### Changed
+
+- tightened the playbook memory-consumer contract so memo-read fields consume
+  reviewed `aoa-memo` objects through ids, provenance, lifecycle, and generated
+  read models while local `memo/` output remains candidate, receipt, export, or
+  local evidence until reviewed landing.
+- added validator coverage to keep the playbook bundle and lifecycle docs from
+  drifting into memory authority or hidden recall posture.
+
 ## [0.3.3] - 2026-04-23
 
 ### Summary

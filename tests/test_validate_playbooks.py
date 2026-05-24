@@ -225,6 +225,48 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
                     {"semantic_recall"},
                 )
 
+    def test_memory_consumer_contract_docs_require_playbook_consumer_boundary(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo_root = Path(tmpdir) / "aoa-playbooks"
+            docs_root = repo_root / "docs"
+            docs_root.mkdir(parents=True)
+            write_text(
+                docs_root / "PLAYBOOK_BUNDLE_CONTRACT.md",
+                "\n".join(validate_playbooks.PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS) + "\n",
+            )
+            write_text(
+                docs_root / "PLAYBOOK_LIFECYCLE.md",
+                "\n".join(validate_playbooks.PLAYBOOK_LIFECYCLE_MEMORY_CONSUMER_SNIPPETS) + "\n",
+            )
+
+            validate_playbooks.validate_memory_consumer_contract_docs(repo_root)
+
+    def test_memory_consumer_contract_docs_reject_missing_source_route_boundary(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo_root = Path(tmpdir) / "aoa-playbooks"
+            docs_root = repo_root / "docs"
+            docs_root.mkdir(parents=True)
+            missing_snippet = validate_playbooks.PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS[-1]
+            write_text(
+                docs_root / "PLAYBOOK_BUNDLE_CONTRACT.md",
+                "\n".join(
+                    snippet
+                    for snippet in validate_playbooks.PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS
+                    if snippet != missing_snippet
+                )
+                + "\n",
+            )
+            write_text(
+                docs_root / "PLAYBOOK_LIFECYCLE.md",
+                "\n".join(validate_playbooks.PLAYBOOK_LIFECYCLE_MEMORY_CONSUMER_SNIPPETS) + "\n",
+            )
+
+            with self.assertRaisesRegex(
+                validate_playbooks.ValidationError,
+                "missing required memory-consumer contract guidance",
+            ):
+                validate_playbooks.validate_memory_consumer_contract_docs(repo_root)
+
 
 class ValidatePlaybooksFutureEvalOwnerRequestTests(unittest.TestCase):
     def test_projection_refs_allow_future_eval_owner_requests_when_explicitly_enabled(self) -> None:
