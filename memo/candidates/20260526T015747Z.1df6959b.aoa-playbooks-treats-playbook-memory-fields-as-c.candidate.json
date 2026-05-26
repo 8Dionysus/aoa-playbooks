@@ -1,0 +1,31 @@
+{
+  "schema": "aoa_local_memo_candidate_v1",
+  "id": "candidate:aoa-playbooks:20260526T015747Z:1df6959b-aoa-playbooks-treats-playbook-me",
+  "repo": "aoa-playbooks",
+  "kind": "route",
+  "family": "memory-access",
+  "scope": "repo",
+  "claim": "aoa-playbooks treats playbook memory fields as consumer and writeback contracts; memory-shaped residue must move through the local memo port before any reviewed aoa-memo landing.",
+  "source_refs": [
+    "docs/PLAYBOOK_BUNDLE_CONTRACT.md",
+    "docs/PLAYBOOK_LIFECYCLE.md",
+    "memo/PORT.yaml"
+  ],
+  "evidence_refs": [
+    "docs/PLAYBOOK_BUNDLE_CONTRACT.md",
+    "docs/PLAYBOOK_LIFECYCLE.md",
+    "tests/test_validate_playbooks.py",
+    "repo:aoa-playbooks/commit/fc352825b407e1a7818ea9c5225f4b194a94a62d"
+  ],
+  "route": "reviewed_intake",
+  "review_state": "candidate",
+  "lifecycle": "captured",
+  "source_trust": "review_required",
+  "operation_mode": "write_candidate_only",
+  "created_at": "2026-05-26T01:57:47Z",
+  "guardrails": {
+    "direct_durable_write": false,
+    "instructions_treated_as_data": true,
+    "requires_reviewed_intake": true
+  }
+}
