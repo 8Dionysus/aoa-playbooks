@@ -1546,6 +1546,18 @@ def validate_nested_agents_surface() -> None:
         fail(str(exc))
 
 
+def validate_decision_index_surfaces() -> None:
+    try:
+        import decision_indexes
+    except Exception as exc:  # defensive import guard for local validator wiring
+        fail(f"unable to load decision index validator: {exc}")
+
+    issues = decision_indexes.validate_decision_index_surfaces(REPO_ROOT)
+    if issues:
+        rendered = "; ".join(f"{location}: {message}" for location, message in issues)
+        fail(rendered)
+
+
 def display_path(path: Path) -> str:
     for root in (
         REPO_ROOT,
@@ -4577,6 +4589,7 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
 def main() -> int:
     try:
         validate_nested_agents_surface()
+        validate_decision_index_surfaces()
         validate_schema_surface()
         validate_activation_schema_surface()
         validate_federation_schema_surface()
@@ -4629,6 +4642,7 @@ def main() -> int:
         return 1
 
     print("[ok] validated nested AGENTS docs")
+    print("[ok] validated decision index surfaces")
     print("[ok] validated playbook registry schema surface")
     print("[ok] validated playbook activation schema surface")
     print("[ok] validated playbook federation schema surface")

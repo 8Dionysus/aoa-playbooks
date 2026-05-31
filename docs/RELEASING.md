@@ -27,6 +27,7 @@ A release should make it easy to answer:
 3. Run the repo-level validation loop:
    - `python scripts/release_check.py`
    - `python -m pip install -r requirements-dev.txt`
+   - `python scripts/generate_decision_indexes.py --check`
    - `python scripts/generate_playbook_activation_surfaces.py --check`
    - `python scripts/generate_playbook_federation_surfaces.py --check`
    - `python scripts/generate_playbook_review_status.py --check`

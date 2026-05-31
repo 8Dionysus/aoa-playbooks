@@ -44,7 +44,7 @@ Use the shortest route by need:
 - real-run and gate-review evidence: `docs/real-runs/`, `docs/gate-reviews/`, `examples/harvests/`, [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), and [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md)
 - owner-local live receipt publication for closeout/stats integration: `scripts/publish_live_receipts.py` and `.aoa/live_receipts/playbook-receipts.jsonl`
 - live authored bundles and activation examples: `playbooks/*/PLAYBOOK.md` and `examples/playbook_activation.*.example.json`
-- full non-mutating verify path: `python scripts/build_agon_trial_playbook_registry.py --check`, `python scripts/validate_agon_trial_playbooks.py`, the eight `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
+- full non-mutating verify path: `python scripts/generate_decision_indexes.py --check`, `python scripts/build_agon_trial_playbook_registry.py --check`, `python scripts/validate_agon_trial_playbooks.py`, the eight `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
 
 ## What `aoa-playbooks` owns
 
@@ -97,6 +97,7 @@ To validate the current playbook-layer surface locally, run:
 
 ```bash
 python -m pip install -r requirements-dev.txt
+python scripts/generate_decision_indexes.py --check
 python scripts/build_agon_trial_playbook_registry.py --check
 python scripts/validate_agon_trial_playbooks.py
 python scripts/generate_playbook_activation_surfaces.py --check

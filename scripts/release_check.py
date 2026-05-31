@@ -9,6 +9,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 COMMANDS = [
+    ("check decision indexes", [sys.executable, "scripts/generate_decision_indexes.py", "--check"]),
     ("check activation surfaces", [sys.executable, "scripts/generate_playbook_activation_surfaces.py", "--check"]),
     ("check federation surfaces", [sys.executable, "scripts/generate_playbook_federation_surfaces.py", "--check"]),
     ("check review status", [sys.executable, "scripts/generate_playbook_review_status.py", "--check"]),
