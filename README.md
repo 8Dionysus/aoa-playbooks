@@ -14,8 +14,6 @@ Use the shortest route by need:
 - role, boundaries, and conceptual model: [CHARTER](CHARTER.md), [playbook model](mechanics/portfolio-governance/parts/model-spine/docs/playbook-model.md), and [docs/BOUNDARIES](docs/BOUNDARIES.md)
 - root system and agent-route design: [DESIGN](DESIGN.md) and [DESIGN.AGENTS](DESIGN.AGENTS.md)
 - repeatable operation topology: [mechanics atlas](mechanics/README.md),
-  [placement audit](mechanics/PLACEMENT_AUDIT.md),
-  [legacy naming](mechanics/LEGACY_NAMING.md),
   [activation mechanic](mechanics/activation/README.md),
   [scenario composition mechanic](mechanics/scenario-composition/README.md),
   [federation closure mechanic](mechanics/federation-closure/README.md),
@@ -30,9 +28,7 @@ Use the shortest route by need:
   [questbook mechanic](mechanics/questbook/README.md),
   [RPG mechanic](mechanics/rpg/README.md),
   [Titan mechanic](mechanics/titan/README.md),
-  [portfolio governance mechanic](mechanics/portfolio-governance/README.md),
-  [head-fed mechanics](mechanics/HEAD_MECHANICS.md), and
-  [local mechanics](mechanics/LOCAL_MECHANICS.md)
+  and [portfolio governance mechanic](mechanics/portfolio-governance/README.md)
 - authored bundle and activation seam: [activation bundle contract](mechanics/activation/parts/activation-surface/docs/playbook-bundle-contract.md), [activation execution seam](mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md), [operational family](mechanics/portfolio-governance/parts/operational-family/docs/playbook-operational-family.md), [recurrence discipline](mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md), [playbook lifecycle](mechanics/portfolio-governance/parts/lifecycle-and-portfolio/docs/playbook-lifecycle.md), and [playbook portfolio](mechanics/portfolio-governance/parts/lifecycle-and-portfolio/docs/playbook-portfolio.md)
 - evidence, gates, and release posture: [real-run workflow](mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md), [real-run harvest](mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md), [composition gates](mechanics/scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md), [gap matrix](mechanics/portfolio-governance/parts/lifecycle-and-portfolio/docs/playbook-gap-matrix.md), and [docs/RELEASING](docs/RELEASING.md)
 - sovereign shared-root rollout route plus companion lane: [playbooks/trusted-rollout-operations/PLAYBOOK.md](playbooks/trusted-rollout-operations/PLAYBOOK.md), [codex-plane rollout cycle](mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md), [trusted rollout cadence](mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md), and [mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json](mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json)
@@ -52,7 +48,7 @@ Use the shortest route by need:
 
 - source-authored playbook truth: `playbooks/*/PLAYBOOK.md` for scenario routes and `generated/playbook_registry.min.json` for compact registry metadata
 - root system design and agent-facing route mesh: `DESIGN.md`, `DESIGN.AGENTS.md`, `AGENTS.md`, and the nearest nested `AGENTS.md`
-- mechanics atlas and package routes: `mechanics/README.md`, `mechanics/AGENTS.md`, `mechanics/PLACEMENT_AUDIT.md`, `mechanics/LEGACY_NAMING.md`, the active package READMEs under `mechanics/*/README.md`, `mechanics/HEAD_MECHANICS.md`, `mechanics/LOCAL_MECHANICS.md`, and `mechanics/PACKAGE_TEMPLATE.md`
+- mechanics atlas and package routes: `mechanics/README.md`, `mechanics/AGENTS.md`, and active package READMEs under `mechanics/*/README.md`
 - activation, federation, and review-governed landing surfaces: `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_landing_governance.min.json`
 - shared-root rollout operations route and companion lane: `playbooks/trusted-rollout-operations/PLAYBOOK.md`, `mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md`, `mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md`, and `mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json`
 - long-arc continuity and explicit reanchor route: `playbooks/self-agency-continuity-cycle/PLAYBOOK.md`

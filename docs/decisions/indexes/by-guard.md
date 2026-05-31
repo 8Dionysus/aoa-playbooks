@@ -16,6 +16,7 @@
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## scenario boundary
 
@@ -50,6 +51,7 @@
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## generated/read-model
 
@@ -74,6 +76,7 @@
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## legacy/provenance
 
@@ -84,11 +87,13 @@
 - [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## AGENTS/mesh
 
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
 - [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## release/tooling
 

@@ -19,7 +19,7 @@ Read:
 
 1. root `AGENTS.md`
 2. `mechanics/AGENTS.md`
-3. `mechanics/PLACEMENT_AUDIT.md`
+3. `mechanics/README.md`
 4. this package `README.md`
 5. `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md`
 6. `mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md`

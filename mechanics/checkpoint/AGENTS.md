@@ -14,7 +14,7 @@ It does not own memory objects. Checkpoint memory truth remains in `aoa-memo`.
 
 ## Read before editing
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/PLACEMENT_AUDIT.md`,
+Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
 this package `README.md`, and the source playbooks that mention checkpoint
 return.
 

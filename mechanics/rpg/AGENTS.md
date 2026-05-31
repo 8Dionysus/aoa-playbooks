@@ -13,7 +13,7 @@ It keeps RPG vocabulary bounded as reflection, not route authority.
 
 ## Read before editing
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/PLACEMENT_AUDIT.md`,
+Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
 this package `README.md`, `mechanics/rpg/parts/party-template-model/docs/party-template-model.md`, and
 `mechanics/rpg/parts/build-synergy-posture/docs/build-synergy-posture.md`.
 

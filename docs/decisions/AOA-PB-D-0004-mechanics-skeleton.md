@@ -89,11 +89,11 @@ As of 2026-05-31:
 
 - Still valid: this decision created the mechanics atlas and head/local roster
   split.
-- Changed: later decisions added placement/legacy gates and promoted
-  `mechanics/activation/`, `mechanics/scenario-composition/`, and
-  `mechanics/federation-closure/` as active local packages.
-- Superseded by: none; package landings extend this skeleton rather than
-  replacing it.
+- Changed: later decisions promoted package-local mechanics and collapsed root
+  mechanics control documents into `mechanics/README.md` and
+  `mechanics/AGENTS.md`.
+- Superseded by: AOA-PB-D-0014 for root mechanics file shape; still valid for
+  the head-fed/local distinction and package-validation posture.
 
 ## Review Log
 
@@ -123,11 +123,9 @@ As of 2026-05-31:
 
 - `mechanics/AGENTS.md`
 - `mechanics/README.md`
-- `mechanics/HEAD_MECHANICS.md`
-- `mechanics/LOCAL_MECHANICS.md`
-- `mechanics/PACKAGE_TEMPLATE.md`
 - `scripts/validate_mechanics_skeleton.py`
 - `scripts/release_check.py`
+- `docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`
 
 ## Follow-Up Route
 

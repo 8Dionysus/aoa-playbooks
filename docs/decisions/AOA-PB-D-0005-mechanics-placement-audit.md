@@ -85,10 +85,11 @@ As of 2026-05-31:
 - Still valid: the mechanics layer is not complete until every placement row is
   either moved with package validation or intentionally retained with a root,
   playbook, generated, source-store, public, decision, or compatibility reason.
-- Changed: the skeleton now has a checked placement/legacy gate before package
-  movement, and the activation, scenario-composition, and federation-closure
-  rows are now package-active.
-- Superseded by: none.
+- Changed: package landings moved active payloads into package parts, and
+  AOA-PB-D-0014 folded the placement and legacy rules into
+  `mechanics/README.md`.
+- Superseded by: AOA-PB-D-0014 for root mechanics file shape; still valid for
+  package-local provenance, legacy-name posture, and no root `legacy/`.
 
 ## Review Log
 
@@ -118,12 +119,11 @@ As of 2026-05-31:
 
 ## Source Surfaces
 
-- `mechanics/PLACEMENT_AUDIT.md`
-- `mechanics/LEGACY_NAMING.md`
 - `mechanics/README.md`
 - `mechanics/AGENTS.md`
 - `scripts/validate_mechanics_skeleton.py`
 - `tests/test_mechanics_skeleton.py`
+- `docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`
 
 ## Follow-Up Route
 

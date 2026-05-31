@@ -19,13 +19,12 @@ Read:
 
 1. root `AGENTS.md`
 2. `mechanics/AGENTS.md`
-3. `mechanics/HEAD_MECHANICS.md`
-4. `mechanics/PLACEMENT_AUDIT.md`
-5. this package `README.md`
-6. `PARTS.md`
-7. target part README/doc/schema/config/example/script
-8. affected `playbooks/agon-*/PLAYBOOK.md` when source playbook meaning changes
-9. affected recurrence manifest or quest only when root source stores change
+3. `mechanics/README.md`
+4. this package `README.md`
+5. `PARTS.md`
+6. target part README/doc/schema/config/example/script
+7. affected `playbooks/agon-*/PLAYBOOK.md` when source playbook meaning changes
+8. affected recurrence manifest or quest only when root source stores change
 
 ## Boundaries
 

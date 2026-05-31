@@ -78,11 +78,10 @@ it fails, and where should I leave for a stronger owner?
 - decision records under `docs/decisions/`;
 - local memory-port surfaces under `memo/`;
 - agent-facing route cards and companion lanes;
-- mechanics route surfaces under `mechanics/README.md`,
-  `mechanics/HEAD_MECHANICS.md`, `mechanics/LOCAL_MECHANICS.md`,
-  `mechanics/PLACEMENT_AUDIT.md`, and `mechanics/LEGACY_NAMING.md`, with
-  package-local routes that move repeatable operation pressure without
-  absorbing playbook source truth.
+- mechanics route surfaces under `mechanics/README.md`, `mechanics/AGENTS.md`,
+  and package-local `mechanics/*/README.md`, `PARTS.md`, and `PROVENANCE.md`
+  cards that move repeatable operation pressure without absorbing playbook
+  source truth.
 
 Each class supports the others. No class should silently steal another class's
 authority.
@@ -167,11 +166,12 @@ should not absorb their truth.
 ### 6. Mechanics before root sprawl
 
 Repeatable operation topology around the playbook canon belongs in
-`mechanics/`. The atlas separates head-fed mechanics from `Agents-of-Abyss`,
-local playbook-native mechanics, placement audit, and legacy-name posture
-before package landings claim operational status. Root docs should name the
-system form and route pressure; package details should move into package cards,
-parts, provenance, and focused validators.
+`mechanics/`. The root stays a route entrypoint: `README.md` names head-fed
+mechanics from `Agents-of-Abyss`, local playbook-native mechanics, placement
+rules, legacy-name posture, and package shape; `AGENTS.md` names route law.
+Package details belong in package cards, parts, provenance, and focused
+validators. Root mechanics rosters, audits, templates, scratch notes, and
+archive lanes are sprawl.
 
 ### 7. Agent guidance is route law
 
@@ -221,12 +221,10 @@ playbook model.
 [`mechanics/portfolio-governance/parts/operational-family/docs/playbook-operational-family.md`](mechanics/portfolio-governance/parts/operational-family/docs/playbook-operational-family.md)
 routes chooser pressure across overlapping operational playbooks.
 [`mechanics/README.md`](mechanics/README.md) routes repeatable operation
-topology, with [`HEAD_MECHANICS.md`](mechanics/HEAD_MECHANICS.md) for
-center-fed mechanics, [`LOCAL_MECHANICS.md`](mechanics/LOCAL_MECHANICS.md) for
-playbook-native mechanics, [`PLACEMENT_AUDIT.md`](mechanics/PLACEMENT_AUDIT.md)
-for payload placement, [`LEGACY_NAMING.md`](mechanics/LEGACY_NAMING.md) for
-old-name posture, [`mechanics/activation/README.md`](mechanics/activation/README.md)
-for activation,
+topology, including head-fed and local mechanics, placement rules, legacy-name
+posture, package shape, and the root-file rule. [`mechanics/AGENTS.md`](mechanics/AGENTS.md)
+keeps that lane as route law. [`mechanics/activation/README.md`](mechanics/activation/README.md)
+routes activation,
 [`mechanics/scenario-composition/README.md`](mechanics/scenario-composition/README.md)
 for scenario-composition,
 [`mechanics/federation-closure/README.md`](mechanics/federation-closure/README.md)

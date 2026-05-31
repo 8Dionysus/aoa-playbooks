@@ -10,60 +10,34 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 MECHANICS_ROOT = Path("mechanics")
+ALLOWED_ROOT_MARKDOWN = {"README.md", "AGENTS.md"}
+FORBIDDEN_ROOT_DIR_NAMES = {"_meta", "legacy", "notes", "scratch", "migration", "migrations"}
 
 REQUIRED_ROOT_FILES: dict[str, tuple[str, ...]] = {
     "mechanics/AGENTS.md": (
         "head-fed",
         "local",
-        "PACKAGE_TEMPLATE.md",
+        "Do not add root-level",
         "python scripts/validate_mechanics_skeleton.py",
     ),
     "mechanics/README.md": (
-        "Playbook Mechanics Atlas",
-        "Head-fed mechanics",
-        "Local mechanics",
-        "PLACEMENT_AUDIT.md",
-        "LEGACY_NAMING.md",
+        "Playbook Mechanics",
+        "Root Files Rule",
+        "Package Directory",
+        "Head-Fed Mechanics",
+        "Local Mechanics",
+        "Placement Rules",
+        "Legacy Rules",
+        "Package Shape",
         "No source playbook has moved",
-    ),
-    "mechanics/PLACEMENT_AUDIT.md": (
-        "Mechanics Placement Audit",
-        "Status: `active-audit`",
-        "Placement Matrix",
-        "No repository-root `legacy/`",
-    ),
-    "mechanics/LEGACY_NAMING.md": (
-        "Mechanics Legacy Naming",
-        "Active-First Rule",
-        "Name Postures",
-        "Do not create a root `legacy/`",
-    ),
-    "mechanics/HEAD_MECHANICS.md": (
-        "Head-Fed Mechanics Roster",
-        "Agents-of-Abyss/mechanics/",
-        "Candidate Roster",
-        "candidate-only",
-    ),
-    "mechanics/LOCAL_MECHANICS.md": (
-        "Local Mechanics Roster",
-        "playbook-native mechanics",
-        "Candidate Roster",
-        "skeleton-active",
-    ),
-    "mechanics/PACKAGE_TEMPLATE.md": (
-        "Mechanic Package Template",
-        "mechanics/<slug>/AGENTS.md",
-        "mechanics/<slug>/README.md",
-        "mechanics/<slug>/PARTS.md",
-        "mechanics/<slug>/PROVENANCE.md",
     ),
 }
 
 ROOT_ENTRYPOINT_REQUIRED_TOKENS: dict[str, tuple[str, ...]] = {
     "AGENTS.md": ("mechanics/README.md", "mechanics/AGENTS.md"),
-    "README.md": ("mechanics/README.md", "mechanics/HEAD_MECHANICS.md", "mechanics/LOCAL_MECHANICS.md"),
-    "docs/README.md": ("../mechanics/README.md", "../mechanics/HEAD_MECHANICS.md", "../mechanics/LOCAL_MECHANICS.md"),
-    "DESIGN.md": ("mechanics/README.md", "HEAD_MECHANICS.md", "LOCAL_MECHANICS.md"),
+    "README.md": ("mechanics/README.md", "mechanics/AGENTS.md", "mechanics/*/README.md"),
+    "docs/README.md": ("../mechanics/README.md", "../mechanics/activation/README.md", "../mechanics/agon/README.md"),
+    "DESIGN.md": ("mechanics/README.md", "mechanics/AGENTS.md", "head-fed", "local"),
     "DESIGN.AGENTS.md": ("mechanics/AGENTS.md", "mechanics/README.md"),
 }
 
@@ -130,8 +104,18 @@ def validate(repo_root: Path = REPO_ROOT) -> ValidationResult:
     repo_root = repo_root.resolve()
     issues: list[str] = []
 
-    if not (repo_root / MECHANICS_ROOT).is_dir():
+    mechanics_root = repo_root / MECHANICS_ROOT
+    if not mechanics_root.is_dir():
         issues.append("mechanics/: directory is missing")
+    else:
+        for path in sorted(mechanics_root.glob("*.md")):
+            if path.name not in ALLOWED_ROOT_MARKDOWN:
+                rel = path.relative_to(repo_root).as_posix()
+                issues.append(f"{rel}: root mechanics markdown is forbidden")
+        for path in sorted(mechanics_root.iterdir()):
+            if path.is_dir() and path.name in FORBIDDEN_ROOT_DIR_NAMES:
+                rel = path.relative_to(repo_root).as_posix()
+                issues.append(f"{rel}/: root mechanics holding directory is forbidden")
 
     for relative_path, tokens in REQUIRED_ROOT_FILES.items():
         require_tokens(repo_root, relative_path, tokens, issues)

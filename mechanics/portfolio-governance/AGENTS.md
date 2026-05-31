@@ -14,7 +14,7 @@ entrypoints into a package.
 
 ## Read before editing
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/PLACEMENT_AUDIT.md`,
+Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
 this package `README.md`, and the root portfolio docs being touched.
 
 ## Boundaries

@@ -55,6 +55,7 @@
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
 - [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
 - [AOA-PB-D-0005 Add Mechanics Placement Audit And Legacy Naming Gate](../AOA-PB-D-0005-mechanics-placement-audit.md) (`docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## federation-closure
 

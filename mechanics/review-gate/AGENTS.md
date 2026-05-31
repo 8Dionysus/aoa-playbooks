@@ -22,12 +22,11 @@ Read:
 1. root `AGENTS.md`
 2. `DESIGN.md`
 3. `mechanics/AGENTS.md`
-4. `mechanics/LOCAL_MECHANICS.md`
-5. `mechanics/PLACEMENT_AUDIT.md`
-6. this package `README.md`
-7. `PARTS.md`
-8. the part-local builder being changed
-9. root evidence/source surfaces referenced by that builder
+4. `mechanics/README.md`
+5. this package `README.md`
+6. `PARTS.md`
+7. the part-local builder being changed
+8. root evidence/source surfaces referenced by that builder
 
 ## Boundaries
 
