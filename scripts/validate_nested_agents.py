@@ -11,7 +11,7 @@ REPOSITORY_NAME = "aoa-playbooks"
 
 REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "playbooks/AGENTS.md": ("playbooks/*/PLAYBOOK.md", "A playbook is not a skill"),
-    "generated/AGENTS.md": ("playbook_registry.min.json", "scripts/generate_playbook_composition_surfaces.py"),
+    "generated/AGENTS.md": ("playbook_registry.min.json", "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py"),
     "config/AGENTS.md": ("playbook_composition_overrides.json", "source-owned composition overrides"),
     "examples/AGENTS.md": ("Examples must demonstrate contracts without becoming canon", "activation posture"),
     "schemas/AGENTS.md": ("Schema changes are contract changes", "playbook-owned adjuncts"),
@@ -19,6 +19,7 @@ REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "tests/AGENTS.md": ("scenario boundaries", "generated alignment"),
     "memo/AGENTS.md": ("local memory port", "reviewed landing"),
     "docs/decisions/AGENTS.md": ("Decision ID: AOA-PB-D-####", "generated lookup read models"),
+    "mechanics/AGENTS.md": ("head-fed", "local", "PACKAGE_TEMPLATE.md"),
 }
 ADVISORY_AGENT_DIRS: tuple[str, ...] = (".agents/skills", "Spark", "docs", "manifests/recurrence", "quests")
 HEADING_PREFIXES = ("# AGENTS.md", "# AGENTS")
@@ -70,6 +71,18 @@ def discover_nested_agents(repo_root: Path) -> set[str]:
     return found
 
 
+def discover_mechanics_agents(repo_root: Path) -> set[str]:
+    mechanics_root = repo_root / "mechanics"
+    if not mechanics_root.is_dir():
+        return set()
+    found: set[str] = set()
+    for path in mechanics_root.glob("*/AGENTS.md"):
+        found.add(_relative(path, repo_root))
+    for path in mechanics_root.glob("*/parts/AGENTS.md"):
+        found.add(_relative(path, repo_root))
+    return found
+
+
 def validate(
     repo_root: Path = REPO_ROOT,
     *,
@@ -101,7 +114,17 @@ def validate(
             if _normalize(snippet) not in normalized:
                 issues.append(f"{rel_path}: missing required snippet {snippet!r}")
 
+    dynamic_mechanics_agents = discover_mechanics_agents(repo_root)
+    for rel_path in sorted(dynamic_mechanics_agents):
+        path = repo_root / rel_path
+        text = path.read_text(encoding="utf-8")
+        if not _has_agents_heading(text):
+            issues.append(f"{rel_path}: missing AGENTS heading")
+        if "Validation" not in text:
+            issues.append(f"{rel_path}: missing Validation section")
+
     required = set(REQUIRED_AGENTS_DOCS)
+    required.update(dynamic_mechanics_agents)
     actual = discover_nested_agents(repo_root)
     untracked = sorted(actual - required)
     if untracked:

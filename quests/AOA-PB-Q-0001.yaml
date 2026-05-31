@@ -3,7 +3,7 @@ id: AOA-PB-Q-0001
 title: Publish the playbook recurrence and reanchor doctrine
 summary: ''
 repo: aoa-playbooks
-owner_surface: docs/QUEST_HARVEST_AND_REANCHOR.md
+owner_surface: mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md
 theme_ref: ''
 milestone_ref: ''
 kind: doctrine
@@ -28,7 +28,7 @@ activation:
   mode: immediate
 anchor_ref:
   artifact: recurrence_discipline
-  ref: docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md
+  ref: mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md
 handoff_role: playbook-maintainer
 evidence:
   - recurrence and return stay scenario-owned

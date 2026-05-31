@@ -18,12 +18,24 @@ WAVE4_CONTRACTS = (
     ('veto_playbook_run', 'veto_playbook_run_v1.json'),
     ('constitution_runtime_run_v1', 'constitution_runtime_run_v1.json'),
 )
+CONTRACT_PACKAGE_ROOTS = {
+    'appeal_playbook_run': ROOT / "mechanics/release-support/parts/promotion-and-retention",
+    'governance_playbook_run': ROOT / "mechanics/experience/parts/certification-and-governance",
+    'retirement_playbook_run': ROOT / "mechanics/release-support/parts/promotion-and-retention",
+    'veto_playbook_run': ROOT / "mechanics/release-support/parts/rollback-and-regression",
+    'constitution_runtime_run_v1': ROOT / "mechanics/experience/parts/service-and-office",
+}
 
 
+def contract_paths(stem: str, schema_file: str) -> tuple[Path, Path]:
+    package_root = CONTRACT_PACKAGE_ROOTS[stem]
+    return (
+        package_root / "schemas" / schema_file,
+        package_root / "examples" / f"{stem}.example.json",
+    )
 
 def load_contract(stem: str, schema_file: str) -> tuple[dict[str, object], dict[str, object]]:
-    schema_path = ROOT / "schemas" / schema_file
-    example_path = ROOT / "examples" / f"{stem}.example.json"
+    schema_path, example_path = contract_paths(stem, schema_file)
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
     example = json.loads(example_path.read_text(encoding="utf-8"))
     return schema, example
@@ -202,8 +214,7 @@ class ExperienceWave4SeedContractTests(unittest.TestCase):
         self.assertTrue(WAVE4_CONTRACTS)
         missing_pairs: list[str] = []
         for stem, schema_file in WAVE4_CONTRACTS:
-            schema_path = ROOT / "schemas" / schema_file
-            example_path = ROOT / "examples" / f"{stem}.example.json"
+            schema_path, example_path = contract_paths(stem, schema_file)
             if not schema_path.exists():
                 missing_pairs.append(f"{example_path.relative_to(ROOT)} -> {schema_path.relative_to(ROOT)}")
             if not example_path.exists():

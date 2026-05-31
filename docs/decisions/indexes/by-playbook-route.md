@@ -14,6 +14,62 @@
 
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
 
+## runtime-chaos-recovery
+
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+
+## self-agency-continuity-cycle
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## component-refresh-cycle
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## a2a-summon-return-checkpoint
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## titan-closeout-audit
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## composition gates
+
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+
 ## real-run review
 
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
+
+## agon-assistant-escalation-trial
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## agon-broken-trace-trial
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## agon-contradiction-endurance-trial
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## agon-costly-closure-trial
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## agon-expensive-summon-intent-trial
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## agon-fallback-honor-trial
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## agon-prediction-trial
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## checkpoint-distillation-closed-loop-pilot
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)

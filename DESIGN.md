@@ -46,8 +46,17 @@ door:
   composition posture;
 - decision records for topology and route-law rationale;
 - local agent cards for nearest-route safety;
-- future mechanics districts for repeatable operation topology around the
-  playbook canon.
+- a mechanics atlas for repeatable operation topology around the playbook
+  canon, split between head-fed mechanics, local playbook-native mechanics,
+  placement audit, legacy-name posture, and package-local implementation moves
+  such as `mechanics/activation/`, `mechanics/scenario-composition/`,
+  `mechanics/federation-closure/`, `mechanics/review-gate/`, and
+  `mechanics/real-run-harvest/`, plus head-fed/local landings such as
+  `mechanics/antifragility/`, `mechanics/agon/`,
+  `mechanics/recurrence/`, `mechanics/checkpoint/`,
+  `mechanics/experience/`, `mechanics/release-support/`,
+  `mechanics/questbook/`, `mechanics/rpg/`, `mechanics/titan/`, and
+  `mechanics/portfolio-governance/`.
 
 A reader should be able to ask: what recurring situation is this for, what owns
 the route, what evidence is expected, where does it hand off, what happens when
@@ -61,7 +70,7 @@ it fails, and where should I leave for a stronger owner?
 - source-authored playbook bundles under `playbooks/*/PLAYBOOK.md`;
 - playbook-layer model, boundary, lifecycle, portfolio, and chooser docs under
   `docs/`;
-- review evidence under `docs/real-runs/` and `docs/gate-reviews/`;
+- review evidence under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/` and `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`;
 - source-owned configuration and overrides under `config/`;
 - schema, example, script, and test surfaces that make playbook claims
   checkable;
@@ -69,7 +78,10 @@ it fails, and where should I leave for a stronger owner?
 - decision records under `docs/decisions/`;
 - local memory-port surfaces under `memo/`;
 - agent-facing route cards and companion lanes;
-- future mechanics packages that route repeatable operation pressure without
+- mechanics route surfaces under `mechanics/README.md`,
+  `mechanics/HEAD_MECHANICS.md`, `mechanics/LOCAL_MECHANICS.md`,
+  `mechanics/PLACEMENT_AUDIT.md`, and `mechanics/LEGACY_NAMING.md`, with
+  package-local routes that move repeatable operation pressure without
   absorbing playbook source truth.
 
 Each class supports the others. No class should silently steal another class's
@@ -112,7 +124,8 @@ The repository should support:
 - operational family choosers that reduce semantic overlap;
 - generated readers for low-context activation and review;
 - evidence-led graduation from candidate route to authored playbook;
-- future mechanics packages for repeatable movement around canon;
+- checked mechanics atlas and package-local mechanics for repeatable movement
+  around canon;
 - safe handoff into skills, techniques, evals, memo, agents, routing, stats,
   KAG, and runtime owners without transferring authority by accident.
 
@@ -154,9 +167,11 @@ should not absorb their truth.
 ### 6. Mechanics before root sprawl
 
 Repeatable operation topology around the playbook canon belongs in
-`mechanics/` once the mechanics layer exists. Root docs should name the system
-form and route pressure; they should not become a permanent home for package
-details.
+`mechanics/`. The atlas separates head-fed mechanics from `Agents-of-Abyss`,
+local playbook-native mechanics, placement audit, and legacy-name posture
+before package landings claim operational status. Root docs should name the
+system form and route pressure; package details should move into package cards,
+parts, provenance, and focused validators.
 
 ### 7. Agent guidance is route law
 
@@ -201,10 +216,39 @@ agent-facing route mesh.
 [`ROADMAP.md`](ROADMAP.md) names current direction.
 [`docs/README.md`](docs/README.md) maps the documentation surface.
 [`docs/BOUNDARIES.md`](docs/BOUNDARIES.md) names owner boundaries.
-[`docs/PLAYBOOK_MODEL.md`](docs/PLAYBOOK_MODEL.md) defines the conceptual
+[`mechanics/portfolio-governance/parts/model-spine/docs/playbook-model.md`](mechanics/portfolio-governance/parts/model-spine/docs/playbook-model.md) defines the conceptual
 playbook model.
-[`docs/PLAYBOOK_OPERATIONAL_FAMILY.md`](docs/PLAYBOOK_OPERATIONAL_FAMILY.md)
+[`mechanics/portfolio-governance/parts/operational-family/docs/playbook-operational-family.md`](mechanics/portfolio-governance/parts/operational-family/docs/playbook-operational-family.md)
 routes chooser pressure across overlapping operational playbooks.
+[`mechanics/README.md`](mechanics/README.md) routes repeatable operation
+topology, with [`HEAD_MECHANICS.md`](mechanics/HEAD_MECHANICS.md) for
+center-fed mechanics, [`LOCAL_MECHANICS.md`](mechanics/LOCAL_MECHANICS.md) for
+playbook-native mechanics, [`PLACEMENT_AUDIT.md`](mechanics/PLACEMENT_AUDIT.md)
+for payload placement, [`LEGACY_NAMING.md`](mechanics/LEGACY_NAMING.md) for
+old-name posture, [`mechanics/activation/README.md`](mechanics/activation/README.md)
+for activation,
+[`mechanics/scenario-composition/README.md`](mechanics/scenario-composition/README.md)
+for scenario-composition,
+[`mechanics/federation-closure/README.md`](mechanics/federation-closure/README.md)
+for federation closure,
+[`mechanics/review-gate/README.md`](mechanics/review-gate/README.md) for
+review readouts, and
+[`mechanics/real-run-harvest/README.md`](mechanics/real-run-harvest/README.md)
+for package-local evidence posture, and
+[`mechanics/antifragility/README.md`](mechanics/antifragility/README.md) for
+stress-lane, re-entry gate, harvest, runtime-chaos, and via negativa payloads,
+and [`mechanics/agon/README.md`](mechanics/agon/README.md) for trial,
+kernel-binding, campaign, adoption, and recurrence-adapter choreography
+payloads. Package-active route packages such as
+[`mechanics/recurrence/README.md`](mechanics/recurrence/README.md),
+[`mechanics/checkpoint/README.md`](mechanics/checkpoint/README.md),
+[`mechanics/experience/README.md`](mechanics/experience/README.md),
+[`mechanics/release-support/README.md`](mechanics/release-support/README.md),
+[`mechanics/questbook/README.md`](mechanics/questbook/README.md),
+[`mechanics/rpg/README.md`](mechanics/rpg/README.md),
+[`mechanics/titan/README.md`](mechanics/titan/README.md), and
+[`mechanics/portfolio-governance/README.md`](mechanics/portfolio-governance/README.md)
+validate public root/source routes without moving them by directory name.
 [`docs/decisions/`](docs/decisions/README.md) preserves topology and route-law
 rationale.
 

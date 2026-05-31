@@ -3,7 +3,7 @@ id: AOA-PB-Q-0002
 title: Define harvest thresholds and named promotion destinations
 summary: ''
 repo: aoa-playbooks
-owner_surface: docs/QUEST_HARVEST_AND_REANCHOR.md
+owner_surface: mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md
 theme_ref: ''
 milestone_ref: ''
 kind: seam
@@ -30,7 +30,7 @@ activation:
   ref: AOA-PB-Q-0001
 anchor_ref:
   artifact: harvest_reanchor_note
-  ref: docs/QUEST_HARVEST_AND_REANCHOR.md
+  ref: mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md
 handoff_role: playbook-maintainer
 evidence:
   - harvest thresholds are named

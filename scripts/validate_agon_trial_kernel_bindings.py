@@ -1,77 +1,58 @@
 #!/usr/bin/env python3
+"""Compatibility command for the Agon trial-kernel binding validator."""
 from __future__ import annotations
-import hashlib, json, pathlib, sys
-ROOT = pathlib.Path(__file__).resolve().parents[1]
-SRC = ROOT / 'config/agon_trial_kernel_bindings.seed.json'
-OUT = ROOT / 'generated/agon_trial_kernel_binding_registry.min.json'
-ITEM_KEY = 'bindings'
-REGISTRY_ID = 'agon.trial_kernel_binding.registry.v0'
-WAVE = 'XIII'
-RUNTIME_POSTURE = 'pre_protocol_candidate_only'
-REQUIRED_FIELDS = ['binding_id', 'trial_id', 'playbook_id', 'kernel_model_id', 'runtime_kernel_id', 'allowed_lawful_moves', 'required_packets', 'live_protocol', 'runtime_effect', 'assistant_contestant_allowed']
-FORBIDDEN_TRUE_FIELDS = ['assistant_contestant_allowed']
-EXPECTED_COUNT = 7
 
-def fail(msg):
-    print(msg, file=sys.stderr)
-    return 1
+import importlib.util
+from pathlib import Path
 
-def digest_obj(obj):
-    return hashlib.sha256(json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
-def expected_registry(data, items):
-    return {
-        'registry_id': REGISTRY_ID,
-        'wave': WAVE,
-        'runtime_posture': RUNTIME_POSTURE,
-        'count': len(items),
-        ITEM_KEY: items,
-        'digest': digest_obj(items),
-    }
+REPO_ROOT = Path(__file__).resolve().parents[1]
+IMPL_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "agon"
+    / "parts"
+    / "trial-kernel-bindings"
+    / "scripts"
+    / "validate_agon_trial_kernel_bindings.py"
+)
 
-def validate_item(item):
-    for field in REQUIRED_FIELDS:
-        if field not in item:
-            return f'missing required field {field} in {item}'
-    if item.get('live_protocol') is not False:
-        return f'live_protocol must be false for {item.get("id") or item.get("trial_id") or item.get("binding_id")}'
-    if item.get('runtime_effect') not in ('none', 'local_dry_run_candidate_only', 'candidate_only'):
-        return f'invalid runtime_effect for {item.get("id") or item.get("trial_id") or item.get("binding_id")}'
-    for field in FORBIDDEN_TRUE_FIELDS:
-        if item.get(field) is not False:
-            return f'{field} must be false in {item.get("id") or item.get("trial_id") or item.get("binding_id")}'
-    return None
+SPEC = importlib.util.spec_from_file_location("agon_trial_kernel_binding_validator", IMPL_PATH)
+if SPEC is None or SPEC.loader is None:
+    raise RuntimeError(f"unable to load Agon trial-kernel binding validator from {IMPL_PATH}")
+_impl = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(_impl)
 
-def main():
-    if not SRC.exists():
-        return fail(f'missing source {SRC}')
-    data = json.loads(SRC.read_text(encoding='utf-8'))
-    if data.get('registry_id') != REGISTRY_ID:
-        return fail(f'source registry_id must be {REGISTRY_ID}')
-    if data.get('wave') != WAVE:
-        return fail(f'source wave must be {WAVE}')
-    if data.get('runtime_posture') != RUNTIME_POSTURE:
-        return fail(f'source runtime_posture must be {RUNTIME_POSTURE}')
-    items = data.get(ITEM_KEY, [])
-    if len(items) != EXPECTED_COUNT:
-        return fail(f'expected {EXPECTED_COUNT} items in {ITEM_KEY}, got {len(items)}')
-    seen = set()
-    for item in items:
-        key = item.get('id') or item.get('trial_id') or item.get('binding_id') or item.get('suite_id') or item.get('run_id')
-        if not key:
-            return fail(f'missing item key in {item}')
-        if key in seen:
-            return fail(f'duplicate item key {key}')
-        seen.add(key)
-        err = validate_item(item)
-        if err:
-            return fail(err)
-    if not OUT.exists():
-        return fail(f'missing generated registry {OUT}')
-    reg = json.loads(OUT.read_text(encoding='utf-8'))
-    if reg != expected_registry(data, items):
-        return fail('generated registry does not match source rebuild')
-    print(json.dumps({'ok': True, 'item_key': ITEM_KEY, 'count': len(items)}, sort_keys=True))
-    return 0
-if __name__ == '__main__':
+
+def _sync_impl_globals() -> None:
+    for _name, _value in list(globals().items()):
+        if _name in {"_impl", "_sync_impl_globals", "_wrap_impl_function"}:
+            continue
+        if _name.startswith("__") and _name.endswith("__"):
+            continue
+        if hasattr(_impl, _name) and not callable(_value):
+            setattr(_impl, _name, _value)
+
+
+def _wrap_impl_function(_function_name: str):
+    def _wrapped(*args, **kwargs):
+        _sync_impl_globals()
+        return getattr(_impl, _function_name)(*args, **kwargs)
+
+    _wrapped.__name__ = _function_name
+    _wrapped.__doc__ = getattr(_impl, _function_name).__doc__
+    return _wrapped
+
+
+for _name in dir(_impl):
+    if _name.startswith("__") and _name.endswith("__"):
+        continue
+    _value = getattr(_impl, _name)
+    if callable(_value) and getattr(_value, "__module__", None) == _impl.__name__:
+        globals()[_name] = _wrap_impl_function(_name)
+    else:
+        globals()[_name] = _value
+
+
+if __name__ == "__main__":
     raise SystemExit(main())

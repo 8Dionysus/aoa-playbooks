@@ -8,9 +8,9 @@ This file applies to authored playbook bundles under `playbooks/*/PLAYBOOK.md`.
 Each `PLAYBOOK.md` is a source-owned scenario object that should stay aligned with:
 
 - `generated/playbook_registry.min.json` for compact machine-readable metadata
-- `docs/PLAYBOOK_BUNDLE_CONTRACT.md` for the authored bundle contract
-- `docs/PLAYBOOK_EXECUTION_SEAM.md` for the bounded derived activation and federation posture
-- `config/playbook_composition_overrides.json` for bounded composition adjuncts that should not leak into frontmatter
+- `mechanics/activation/parts/activation-surface/docs/playbook-bundle-contract.md` for the authored bundle contract
+- `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md` for the bounded derived activation and federation posture
+- `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json` for bounded composition adjuncts that should not leak into frontmatter
 - `scripts/validate_playbooks.py` for machine-checked shape, sections, and cross-repo closure
 
 ## Canonical shape
@@ -49,7 +49,7 @@ Use exact neighboring references instead:
 - federation-ready `required_skills` should resolve in `aoa-skills`
 - `memo_contract_refs` and `memo_writeback_targets` should stay inside `aoa-memo` contracts
 
-Composition-owned adjuncts such as failure codes, subagent recipe refs, automation seed refs, and bounded playbook-to-playbook followups belong in `config/playbook_composition_overrides.json` and the derived `generated/playbook_*` composition surfaces, not in ad hoc prose or runtime-only notes.
+Composition-owned adjuncts such as failure codes, subagent recipe refs, automation seed refs, and bounded playbook-to-playbook followups belong in `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json` and the derived `generated/playbook_*` composition surfaces, not in ad hoc prose or runtime-only notes.
 
 For `agon_pre_protocol: true` playbooks, future eval-owner requests may stay experimental and unresolved in `aoa-evals`, but the `Eval anchors` section must say they are future owner requests and not verdicts.
 
@@ -74,15 +74,15 @@ Run the normal playbook-layer checks:
 
 ```bash
 python -m pip install -r requirements-dev.txt
-python scripts/build_agon_trial_playbook_registry.py --check
-python scripts/validate_agon_trial_playbooks.py
-python scripts/generate_playbook_activation_surfaces.py --check
-python scripts/generate_playbook_federation_surfaces.py --check
-python scripts/generate_playbook_review_status.py --check
-python scripts/generate_playbook_review_packet_contracts.py --check
-python scripts/generate_playbook_review_intake.py --check
-python scripts/generate_playbook_composition_surfaces.py --check
-python scripts/generate_phase_alpha_surfaces.py --check
+python mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py --check
+python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py
+python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check
+python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
+python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
+python mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py --check
+python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py --check
+python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
+python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
 python scripts/validate_playbooks.py
 python -m pytest -q tests
 ```

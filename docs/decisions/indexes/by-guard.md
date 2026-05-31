@@ -5,10 +5,17 @@
 ## decision index/read-model
 
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
+- [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
 
 ## source topology
 
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
+- [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
+- [AOA-PB-D-0005 Add Mechanics Placement Audit And Legacy Naming Gate](../AOA-PB-D-0005-mechanics-placement-audit.md) (`docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md`)
+- [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 
 ## scenario boundary
 
@@ -31,10 +38,93 @@
 
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
 
+## package route
+
+- [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
+- [AOA-PB-D-0005 Add Mechanics Placement Audit And Legacy Naming Gate](../AOA-PB-D-0005-mechanics-placement-audit.md) (`docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md`)
+- [AOA-PB-D-0006 Move Activation Builder Into Mechanics Package](../AOA-PB-D-0006-activation-package-implementation.md) (`docs/decisions/AOA-PB-D-0006-activation-package-implementation.md`)
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+- [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+- [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## generated/read-model
+
+- [AOA-PB-D-0006 Move Activation Builder Into Mechanics Package](../AOA-PB-D-0006-activation-package-implementation.md) (`docs/decisions/AOA-PB-D-0006-activation-package-implementation.md`)
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+- [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+- [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
 ## validation guard
 
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
+- [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
+- [AOA-PB-D-0005 Add Mechanics Placement Audit And Legacy Naming Gate](../AOA-PB-D-0005-mechanics-placement-audit.md) (`docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md`)
+- [AOA-PB-D-0006 Move Activation Builder Into Mechanics Package](../AOA-PB-D-0006-activation-package-implementation.md) (`docs/decisions/AOA-PB-D-0006-activation-package-implementation.md`)
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+- [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+- [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## legacy/provenance
+
+- [AOA-PB-D-0005 Add Mechanics Placement Audit And Legacy Naming Gate](../AOA-PB-D-0005-mechanics-placement-audit.md) (`docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md`)
+- [AOA-PB-D-0006 Move Activation Builder Into Mechanics Package](../AOA-PB-D-0006-activation-package-implementation.md) (`docs/decisions/AOA-PB-D-0006-activation-package-implementation.md`)
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+- [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 
 ## AGENTS/mesh
 
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
+- [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
+
+## release/tooling
+
+- [AOA-PB-D-0006 Move Activation Builder Into Mechanics Package](../AOA-PB-D-0006-activation-package-implementation.md) (`docs/decisions/AOA-PB-D-0006-activation-package-implementation.md`)
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+- [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+
+## sibling-owner boundary
+
+- [AOA-PB-D-0005 Add Mechanics Placement Audit And Legacy Naming Gate](../AOA-PB-D-0005-mechanics-placement-audit.md) (`docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md`)
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+- [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## evidence boundary
+
+- [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+- [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+
+## package-local payload
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## playbook source boundary
+
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## recurrence boundary
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## stronger-owner boundary
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)

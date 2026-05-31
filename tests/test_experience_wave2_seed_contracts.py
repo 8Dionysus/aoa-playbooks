@@ -16,22 +16,30 @@ WAVE2_PREFIXES = (
     "rollback_",
     "watchtower_",
 )
+WAVE2_EXAMPLE_ROOTS = (
+    ROOT / "mechanics/experience/parts/service-and-office/examples",
+    ROOT / "mechanics/real-run-harvest/parts/harvest-template-source-store/examples",
+    ROOT / "mechanics/release-support/parts/deployment-and-installation/examples",
+    ROOT / "mechanics/release-support/parts/promotion-and-retention/examples",
+    ROOT / "mechanics/release-support/parts/rollback-and-regression/examples",
+)
 
 
 def wave2_pairs() -> list[tuple[Path, Path]]:
     pairs: list[tuple[Path, Path]] = []
     missing_pairs: list[str] = []
-    for example_path in sorted((ROOT / "examples").glob("*.example.json")):
-        stem = example_path.name.removesuffix(".example.json")
-        if stem.endswith("_v1"):
-            continue
-        if not stem.startswith(WAVE2_PREFIXES):
-            continue
-        schema_path = ROOT / "schemas" / f"{stem}_v1.json"
-        if not schema_path.exists():
-            missing_pairs.append(f"{example_path.relative_to(ROOT)} -> {schema_path.relative_to(ROOT)}")
-            continue
-        pairs.append((schema_path, example_path))
+    for example_root in WAVE2_EXAMPLE_ROOTS:
+        for example_path in sorted(example_root.glob("*.example.json")):
+            stem = example_path.name.removesuffix(".example.json")
+            if stem.endswith("_v1"):
+                continue
+            if not stem.startswith(WAVE2_PREFIXES):
+                continue
+            schema_path = example_path.parent.parent / "schemas" / f"{stem}_v1.json"
+            if not schema_path.exists():
+                missing_pairs.append(f"{example_path.relative_to(ROOT)} -> {schema_path.relative_to(ROOT)}")
+                continue
+            pairs.append((schema_path, example_path))
     assert not missing_pairs, "missing wave2 schema pair(s): " + ", ".join(missing_pairs)
     return pairs
 

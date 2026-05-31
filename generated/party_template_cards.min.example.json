@@ -96,7 +96,7 @@
         "max_reanchors": 1,
         "anchor_refs": [
           "playbooks/bounded-change-safe/PLAYBOOK.md",
-          "docs/PLAYBOOK_REAL_RUN_HARVEST.md"
+          "mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md"
         ],
         "notes": "If axis is lost, return through review before another mutating attempt."
       },
@@ -105,7 +105,7 @@
       ],
       "evidence_refs": [
         "playbooks/bounded-change-safe/PLAYBOOK.md",
-        "docs/PLAYBOOK_COMPOSITION_GATES.md"
+        "mechanics/scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md"
       ],
       "notes": "Example only. The template describes a recurring route, not a live run.",
       "public_safe": true
@@ -220,7 +220,7 @@
         },
         {
           "failure_code": "reanchor_required",
-          "next_ref": "docs/PLAYBOOK_REAL_RUN_HARVEST.md",
+          "next_ref": "mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md",
           "note": "Use governed return rather than ad hoc retries."
         }
       ],
@@ -229,7 +229,7 @@
         "max_reanchors": 2,
         "anchor_refs": [
           "playbooks/validation-driven-remediation/PLAYBOOK.md",
-          "docs/PLAYBOOK_REAL_RUN_WORKFLOW.md"
+          "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md"
         ],
         "notes": "Re-entry should happen only after comparison and reanchor notes are explicit."
       },
@@ -238,7 +238,7 @@
       ],
       "evidence_refs": [
         "playbooks/validation-driven-remediation/PLAYBOOK.md",
-        "docs/PLAYBOOK_COMPOSITION_GATES.md"
+        "mechanics/scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md"
       ],
       "notes": "Example only. This triad is scenario-shaped and should not become a universal default.",
       "public_safe": true

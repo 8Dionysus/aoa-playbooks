@@ -3,7 +3,7 @@ id: AOA-PB-Q-0005
 title: Align review orchestrator quests to reviewed-run, readiness, and closure playbook surfaces
 summary: Define which reviewed-run and readiness surfaces the review orchestrator may consume without replacing proof bundles.
 repo: aoa-playbooks
-owner_surface: docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md
+owner_surface: mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md
 theme_ref: ''
 milestone_ref: ''
 kind: seam
@@ -30,14 +30,14 @@ activation:
   note: open when review-facing closure seams need a public playbook-side map
 anchor_ref:
   artifact: orchestrator_alignment
-  ref: docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md
+  ref: mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md
 handoff_role: playbook-maintainer
 orchestrator_class_ref: aoa-agents:review
 capability_target: evidence_closure
 playbook_family_refs:
   - generated/playbook_review_packet_contracts.min.json
   - generated/playbook_review_status.min.json
-  - docs/real-runs/README.md
+  - mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/README.md
 proof_surface_refs:
   - repo:aoa-evals/generated/eval_catalog.min.json
   - repo:aoa-evals/docs/ORCHESTRATOR_PROOF_ALIGNMENT.md

@@ -12,7 +12,15 @@ class RoadmapParityTestCase(unittest.TestCase):
     def test_roadmap_matches_current_portfolio_and_generated_surfaces(self) -> None:
         readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
         roadmap = (REPO_ROOT / "ROADMAP.md").read_text(encoding="utf-8")
-        portfolio = (REPO_ROOT / "docs" / "PLAYBOOK_PORTFOLIO.md").read_text(
+        portfolio = (
+            REPO_ROOT
+            / "mechanics"
+            / "portfolio-governance"
+            / "parts"
+            / "lifecycle-and-portfolio"
+            / "docs"
+            / "playbook-portfolio.md"
+        ).read_text(
             encoding="utf-8"
         )
         registry = json.loads(
@@ -101,10 +109,10 @@ class RoadmapParityTestCase(unittest.TestCase):
         self.assertIn("AOA-P-0037", portfolio)
         self.assertIn("AOA-P-0038", portfolio)
         self.assertIn("AOA-P-0039", portfolio)
-        self.assertIn("docs/CODEX_PLANE_ROLLOUT_CYCLE.md", readme)
-        self.assertIn("docs/CODEX_PLANE_ROLLOUT_CYCLE.md", roadmap)
-        self.assertIn("docs/AGON_TRIAL_PLAYBOOKS.md", readme)
-        self.assertIn("docs/AGON_TRIAL_PLAYBOOKS.md", roadmap)
+        self.assertIn("mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md", readme)
+        self.assertIn("mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md", roadmap)
+        self.assertIn("mechanics/agon/parts/trial-playbooks/docs/agon-trial-playbooks.md", readme)
+        self.assertIn("mechanics/agon/parts/trial-playbooks/docs/agon-trial-playbooks.md", roadmap)
         self.assertIn("QUESTBOOK.md", readme)
         self.assertIn("QUESTBOOK.md", roadmap)
 

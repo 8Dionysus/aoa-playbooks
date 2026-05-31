@@ -32,7 +32,7 @@ State what was deliberately left to neighboring repositories instead of being ab
 Describe how you checked the change.
 Examples:
 - read for consistency with `CHARTER.md`
-- checked `docs/PLAYBOOK_MODEL.md` and `docs/BOUNDARIES.md` for alignment
+- checked `mechanics/portfolio-governance/parts/model-spine/docs/playbook-model.md` and `docs/BOUNDARIES.md` for alignment
 - ran `python scripts/validate_playbooks.py`
 
 ## Notes

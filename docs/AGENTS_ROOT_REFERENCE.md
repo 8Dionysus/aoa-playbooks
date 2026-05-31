@@ -80,8 +80,8 @@ Before making changes, read in this order:
 
 Then branch by task:
 
-- questline / campaign / raid / reanchor changes: `docs/QUESTLINE_AND_CAMPAIGN_MODEL.md`, `docs/QUEST_HARVEST_AND_REANCHOR.md`, and `QUESTBOOK.md`
-- orchestrator-facing alignment surfaces: `docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md`
+- questline / campaign / raid / reanchor changes: `mechanics/questbook/parts/questline-outline/docs/questline-and-campaign-model.md`, `mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md`, and `QUESTBOOK.md`
+- orchestrator-facing alignment surfaces: `mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md`
 - playbook recurrence or reviewed-run posture: the recurrence and reviewed-run docs referenced from `README.md`
 
 If you are editing inside `playbooks/` or `generated/`, also follow the nested
@@ -92,7 +92,7 @@ If you are editing inside `playbooks/` or `generated/`, also follow the nested
 The most important objects in this repository are:
 
 - playbook definitions under `playbooks/*/PLAYBOOK.md`
-- `config/playbook_composition_overrides.json`
+- `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
 - scenario-composition, fallback, evidence-posture, and recurrence docs
 - `QUESTBOOK.md` and its backing files when the task touches quest reflection
 - generated playbook registry, activation, federation, review-status, and composition surfaces

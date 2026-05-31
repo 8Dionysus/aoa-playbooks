@@ -25,6 +25,28 @@ WAVE3_STEMS = (
     "shared_pattern_review_run",
     "tos_dossier_review_run",
 )
+ADOPTION_AND_RETENTION = ROOT / "mechanics/experience/parts/adoption-and-retention"
+CERTIFICATION_AND_GOVERNANCE = ROOT / "mechanics/experience/parts/certification-and-governance"
+AGONIC_ADOPTION = ROOT / "mechanics/agon/parts/adoption"
+CONTRACT_PATH_OVERRIDES = {
+    "adoption_playbook_run": ADOPTION_AND_RETENTION,
+    "adoption_retention_playbook_run": ADOPTION_AND_RETENTION,
+    "adoption_rollback_playbook_run": ADOPTION_AND_RETENTION,
+    "assistant_adoption_certification_run": CERTIFICATION_AND_GOVERNANCE,
+    "federation_harvest_run": CERTIFICATION_AND_GOVERNANCE,
+    "kag_dossier_run": CERTIFICATION_AND_GOVERNANCE,
+    "owner_adoption_quest_run": CERTIFICATION_AND_GOVERNANCE,
+    "owner_adoption_quest_template": CERTIFICATION_AND_GOVERNANCE,
+    "pattern_merge_split_run": CERTIFICATION_AND_GOVERNANCE,
+    "playbook_pattern_adoption_patch": ADOPTION_AND_RETENTION,
+    "shadow_adoption_playbook_run": ADOPTION_AND_RETENTION,
+    "shared_pattern_review_run": ADOPTION_AND_RETENTION,
+    "tos_dossier_review_run": CERTIFICATION_AND_GOVERNANCE,
+    "agonic_trial_adoption_run": (
+        AGONIC_ADOPTION / "schemas" / "agonic_trial_adoption_run_v1.json",
+        AGONIC_ADOPTION / "examples" / "agonic_trial_adoption_run.example.json",
+    ),
+}
 GUARDRAIL_BOOLEAN_FIELDS = {
     "authority_required",
     "derived_only",
@@ -51,9 +73,18 @@ RATIO_FIELD_HINTS = ("rate", "threshold")
 ENUM_ESCAPE_VALUE = "__wave3_not_allowed__"
 
 
+def contract_paths(stem: str) -> tuple[Path, Path]:
+    override = CONTRACT_PATH_OVERRIDES[stem]
+    if isinstance(override, tuple):
+        return override
+    return (
+        override / "schemas" / f"{stem}_v1.json",
+        override / "examples" / f"{stem}.example.json",
+    )
+
+
 def load_contract(stem: str) -> tuple[dict[str, object], dict[str, object]]:
-    schema_path = ROOT / "schemas" / f"{stem}_v1.json"
-    example_path = ROOT / "examples" / f"{stem}.example.json"
+    schema_path, example_path = contract_paths(stem)
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
     example = json.loads(example_path.read_text(encoding="utf-8"))
     return schema, example
@@ -128,8 +159,7 @@ class ExperienceWave3SeedContractTests(unittest.TestCase):
     def test_experience_wave3_examples_match_schemas(self) -> None:
         missing_pairs: list[str] = []
         for stem in WAVE3_STEMS:
-            schema_path = ROOT / "schemas" / f"{stem}_v1.json"
-            example_path = ROOT / "examples" / f"{stem}.example.json"
+            schema_path, example_path = contract_paths(stem)
             if not schema_path.exists():
                 missing_pairs.append(f"{example_path.relative_to(ROOT)} -> {schema_path.relative_to(ROOT)}")
             if not example_path.exists():

@@ -5,16 +5,69 @@
 ## activation
 
 - [AOA-PB-D-0001 Extract Trusted Rollout Operations As AOA-P-0028](../AOA-PB-D-0001-trusted-rollout-operations-extraction.md) (`docs/decisions/AOA-PB-D-0001-trusted-rollout-operations-extraction.md`)
+- [AOA-PB-D-0006 Move Activation Builder Into Mechanics Package](../AOA-PB-D-0006-activation-package-implementation.md) (`docs/decisions/AOA-PB-D-0006-activation-package-implementation.md`)
+
+## agon
+
+- [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+
+## antifragility
+
+- [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+
+## checkpoint
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## experience
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## questbook
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 
 ## recurrence
 
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 
 ## review-gate
 
 - [AOA-PB-D-0001 Extract Trusted Rollout Operations As AOA-P-0028](../AOA-PB-D-0001-trusted-rollout-operations-extraction.md) (`docs/decisions/AOA-PB-D-0001-trusted-rollout-operations-extraction.md`)
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
+- [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+
+## release-support
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## rpg
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## titan
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 
 ## cross-mechanic
 
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
+- [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
+- [AOA-PB-D-0005 Add Mechanics Placement Audit And Legacy Naming Gate](../AOA-PB-D-0005-mechanics-placement-audit.md) (`docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md`)
+
+## federation-closure
+
+- [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+
+## portfolio-governance
+
+- [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## real-run-harvest
+
+- [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+
+## scenario-composition
+
+- [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)

@@ -228,14 +228,12 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
     def test_memory_consumer_contract_docs_require_playbook_consumer_boundary(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             repo_root = Path(tmpdir) / "aoa-playbooks"
-            docs_root = repo_root / "docs"
-            docs_root.mkdir(parents=True)
             write_text(
-                docs_root / "PLAYBOOK_BUNDLE_CONTRACT.md",
+                repo_root / validate_playbooks.PLAYBOOK_BUNDLE_CONTRACT_PATH.relative_to(validate_playbooks.REPO_ROOT),
                 "\n".join(validate_playbooks.PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS) + "\n",
             )
             write_text(
-                docs_root / "PLAYBOOK_LIFECYCLE.md",
+                repo_root / validate_playbooks.PLAYBOOK_LIFECYCLE_DOC_PATH.relative_to(validate_playbooks.REPO_ROOT),
                 "\n".join(validate_playbooks.PLAYBOOK_LIFECYCLE_MEMORY_CONSUMER_SNIPPETS) + "\n",
             )
 
@@ -244,11 +242,9 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
     def test_memory_consumer_contract_docs_reject_missing_source_route_boundary(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             repo_root = Path(tmpdir) / "aoa-playbooks"
-            docs_root = repo_root / "docs"
-            docs_root.mkdir(parents=True)
             missing_snippet = validate_playbooks.PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS[-1]
             write_text(
-                docs_root / "PLAYBOOK_BUNDLE_CONTRACT.md",
+                repo_root / validate_playbooks.PLAYBOOK_BUNDLE_CONTRACT_PATH.relative_to(validate_playbooks.REPO_ROOT),
                 "\n".join(
                     snippet
                     for snippet in validate_playbooks.PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS
@@ -257,7 +253,7 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
                 + "\n",
             )
             write_text(
-                docs_root / "PLAYBOOK_LIFECYCLE.md",
+                repo_root / validate_playbooks.PLAYBOOK_LIFECYCLE_DOC_PATH.relative_to(validate_playbooks.REPO_ROOT),
                 "\n".join(validate_playbooks.PLAYBOOK_LIFECYCLE_MEMORY_CONSUMER_SNIPPETS) + "\n",
             )
 
@@ -318,7 +314,7 @@ class PhaseAlphaSurfaceContractTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             repo_root = Path(tmpdir) / "aoa-playbooks"
             config_path = repo_root / "config" / "phase_alpha_curated_core.json"
-            config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+            config = json.loads(validate_playbooks.PHASE_ALPHA_CONFIG_PATH.read_text(encoding="utf-8"))
             config["playbooks"][0]["runtime_path_key"] = "missing-runtime"
             write_text(config_path, json.dumps(config, indent=2) + "\n")
 
@@ -328,7 +324,7 @@ class PhaseAlphaSurfaceContractTests(unittest.TestCase):
                         generate_phase_alpha_surfaces.build_phase_alpha_run_matrix_payload()
 
     def test_validator_rejects_unknown_final_rerun_runtime_path_key(self) -> None:
-        config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+        config = json.loads(validate_playbooks.PHASE_ALPHA_CONFIG_PATH.read_text(encoding="utf-8"))
         config["final_rerun"]["runtime_path_key"] = "missing-runtime"
         original_read_json = validate_playbooks.read_json
 
@@ -350,7 +346,7 @@ class PhaseAlphaSurfaceContractTests(unittest.TestCase):
                 )
 
     def test_validator_rejects_non_string_runtime_path_key_before_lookup(self) -> None:
-        config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+        config = json.loads(validate_playbooks.PHASE_ALPHA_CONFIG_PATH.read_text(encoding="utf-8"))
         config["playbooks"][0]["runtime_path_key"] = []
         original_read_json = validate_playbooks.read_json
 
@@ -372,7 +368,7 @@ class PhaseAlphaSurfaceContractTests(unittest.TestCase):
                 )
 
     def test_validator_rejects_non_string_final_rerun_runtime_path_key_before_lookup(self) -> None:
-        config = json.loads((REPO_ROOT / "config" / "phase_alpha_curated_core.json").read_text(encoding="utf-8"))
+        config = json.loads(validate_playbooks.PHASE_ALPHA_CONFIG_PATH.read_text(encoding="utf-8"))
         config["final_rerun"]["runtime_path_key"] = {}
         original_read_json = validate_playbooks.read_json
 
@@ -434,18 +430,18 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                     "## Harvest candidates",
                     "- none yet",
                     "",
-                    "Read `docs/QUEST_HARVEST_AND_REANCHOR.md` for the bounded note.",
+                    "Read `mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md` for the bounded note.",
                     "",
                 )
             ),
         )
         write_text(
-            repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md",
+            repo_root / validate_playbooks.QUESTBOOK_HARVEST_DOC_PATH.relative_to(validate_playbooks.REPO_ROOT),
             "\n".join(
                 (
                     "# Playbook Harvest and Reanchor",
                     "",
-                    "This note lands the recurrence posture from `docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md`.",
+                    "This note lands the recurrence posture from `mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md`.",
                     "",
                     "## Core rule",
                     "",
@@ -481,8 +477,8 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                     "",
                     "## Named promotion destinations",
                     "",
-                    "- `docs/real-runs/` for reviewed summaries",
-                    "- `docs/gate-reviews/` for gate-review notes",
+                    "- `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/` for reviewed summaries",
+                    "- `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/` for gate-review notes",
                     "",
                     "## Anti-patterns",
                     "",
@@ -502,7 +498,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "title: Questbook foundation rollout",
                         "summary: ''",
                         "repo: aoa-playbooks",
-                        "owner_surface: docs/QUEST_HARVEST_AND_REANCHOR.md",
+                        "owner_surface: mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md",
                         "theme_ref: ''",
                         "milestone_ref: ''",
                         "kind: doctrine" if quest_id == "AOA-PB-Q-0001" else "kind: seam",
@@ -528,7 +524,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "" if quest_id == "AOA-PB-Q-0001" else "  ref: AOA-PB-Q-0001",
                         "anchor_ref:",
                         "  artifact: recurrence_discipline" if quest_id == "AOA-PB-Q-0001" else "  artifact: harvest_reanchor_note",
-                        "  ref: docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md" if quest_id == "AOA-PB-Q-0001" else "  ref: docs/QUEST_HARVEST_AND_REANCHOR.md",
+                        "  ref: mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md" if quest_id == "AOA-PB-Q-0001" else "  ref: mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md",
                         "handoff_role: playbook-maintainer",
                         "evidence:",
                         "  - recurrence and return stay scenario-owned" if quest_id == "AOA-PB-Q-0001" else "  - harvest thresholds are named",
@@ -571,7 +567,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "title: Adjunct campaign outline",
                         "summary: ''",
                         "repo: aoa-playbooks",
-                        "owner_surface: docs/QUESTLINE_AND_CAMPAIGN_MODEL.md",
+                        "owner_surface: mechanics/questbook/parts/questline-outline/docs/questline-and-campaign-model.md",
                         "theme_ref: ''",
                         "milestone_ref: ''",
                         "kind: seam",
@@ -596,7 +592,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "  mode: manual",
                         "anchor_ref:",
                         "  artifact: questline_campaign_model",
-                        "  ref: docs/QUESTLINE_AND_CAMPAIGN_MODEL.md",
+                        "  ref: mechanics/questbook/parts/questline-outline/docs/questline-and-campaign-model.md",
                         "handoff_role: playbook-maintainer",
                         "evidence:",
                         "  - outline stays bounded",
@@ -632,9 +628,9 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
             repo_root = Path(tmp) / "aoa-playbooks"
             self.write_valid_surface(repo_root)
             for relative_path in [
-                "docs/PARTY_TEMPLATE_MODEL.md",
-                "docs/BUILD_SYNERGY_POSTURE.md",
-                "schemas/party_template_catalog.schema.json",
+                "mechanics/rpg/parts/party-template-model/docs/party-template-model.md",
+                "mechanics/rpg/parts/build-synergy-posture/docs/build-synergy-posture.md",
+                "mechanics/rpg/parts/party-template-readout/schemas/party_template_catalog.schema.json",
                 "generated/playbook_registry.min.json",
                 "generated/party_template_cards.min.example.json",
                 "quests/AOA-PB-Q-0007.yaml",
@@ -656,9 +652,9 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
             repo_root = Path(tmp) / "aoa-playbooks"
             self.write_valid_surface(repo_root)
             for relative_path in [
-                "docs/PARTY_TEMPLATE_MODEL.md",
-                "docs/BUILD_SYNERGY_POSTURE.md",
-                "schemas/party_template_catalog.schema.json",
+                "mechanics/rpg/parts/party-template-model/docs/party-template-model.md",
+                "mechanics/rpg/parts/build-synergy-posture/docs/build-synergy-posture.md",
+                "mechanics/rpg/parts/party-template-readout/schemas/party_template_catalog.schema.json",
                 "generated/playbook_registry.min.json",
                 "generated/party_template_cards.min.example.json",
                 "quests/AOA-PB-Q-0007.yaml",
@@ -719,7 +715,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "title: Questbook foundation rollout",
                         "summary: ''",
                         "repo: aoa-playbooks",
-                        "owner_surface: docs/QUEST_HARVEST_AND_REANCHOR.md",
+                        "owner_surface: mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md",
                         "theme_ref: ''",
                         "milestone_ref: ''",
                         "kind: seam",
@@ -746,7 +742,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
                         "  ref: AOA-PB-Q-0001",
                         "anchor_ref:",
                         "  artifact: harvest_reanchor_note",
-                        "  ref: docs/QUEST_HARVEST_AND_REANCHOR.md",
+                        "  ref: mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md",
                         "handoff_role: playbook-maintainer",
                         "evidence:",
                         "  - harvest thresholds are named",
@@ -774,7 +770,7 @@ class ValidatePlaybooksQuestbookSurfaceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp) / "aoa-playbooks"
             self.write_valid_surface(repo_root)
-            doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
+            doc_path = repo_root / validate_playbooks.QUESTBOOK_HARVEST_DOC_PATH.relative_to(validate_playbooks.REPO_ROOT)
             write_text(
                 doc_path,
                 doc_path.read_text(encoding="utf-8").replace("reanchor is not retry.\n", ""),
@@ -815,8 +811,24 @@ class ValidatePlaybookReviewStatusSurfaceTests(unittest.TestCase):
                 try:
                     validate_playbooks.REPO_ROOT = REPO_ROOT
                     validate_playbooks.PLAYBOOK_REVIEW_STATUS_PATH = generated_dir / "playbook_review_status.min.json"
-                    validate_playbooks.REAL_RUN_SUMMARY_DIR = REPO_ROOT / "docs" / "real-runs"
-                    validate_playbooks.GATE_REVIEW_DIR = REPO_ROOT / "docs" / "gate-reviews"
+                    validate_playbooks.REAL_RUN_SUMMARY_DIR = (
+                        REPO_ROOT
+                        / "mechanics"
+                        / "real-run-harvest"
+                        / "parts"
+                        / "reviewed-run-source-store"
+                        / "docs"
+                        / "real-runs"
+                    )
+                    validate_playbooks.GATE_REVIEW_DIR = (
+                        REPO_ROOT
+                        / "mechanics"
+                        / "real-run-harvest"
+                        / "parts"
+                        / "reviewed-run-source-store"
+                        / "docs"
+                        / "gate-reviews"
+                    )
                     playbooks_by_id = validate_playbooks.validate_registry()
                     validate_playbooks.validate_playbook_review_status_surface(playbooks_by_id)
                 finally:
@@ -923,7 +935,7 @@ class ValidatePlaybookReviewIntakeSurfaceTests(unittest.TestCase):
             )
             for entry in payload["playbooks"]:
                 if entry["playbook_id"] == "AOA-P-0017":
-                    entry["gate_review_ref"] = "docs/gate-reviews/drifted.md"
+                    entry["gate_review_ref"] = "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/drifted.md"
                     break
             write_text(
                 generated_dir / "playbook_review_intake.min.json",
