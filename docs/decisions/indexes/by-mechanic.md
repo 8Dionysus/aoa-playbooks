@@ -14,3 +14,7 @@
 
 - [AOA-PB-D-0001 Extract Trusted Rollout Operations As AOA-P-0028](../AOA-PB-D-0001-trusted-rollout-operations-extraction.md) (`docs/decisions/AOA-PB-D-0001-trusted-rollout-operations-extraction.md`)
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
+
+## cross-mechanic
+
+- [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)

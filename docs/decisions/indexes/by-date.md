@@ -9,3 +9,7 @@
 ## 2026-04-13
 
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
+
+## 2026-05-31
+
+- [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
