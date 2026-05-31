@@ -25,11 +25,13 @@ It does not own:
 
 1. `README.md`
 2. `ROADMAP.md`
-3. the relevant model, bundle, gate, or evidence docs referenced there
-4. the target `playbooks/*/PLAYBOOK.md` or outline surface
-5. affected generated registry or composition surfaces
-6. neighboring repo docs when the playbook touches their meaning
-7. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
+3. `DESIGN.md` when repository shape, source authority, or owner boundaries move
+4. `DESIGN.AGENTS.md` when agent-facing route cards or guidance shape move
+5. the relevant model, bundle, gate, or evidence docs referenced there
+6. the target `playbooks/*/PLAYBOOK.md` or outline surface
+7. affected generated registry or composition surfaces
+8. neighboring repo docs when the playbook touches their meaning
+9. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
 
 
 ## AGENTS stack law
@@ -83,3 +85,10 @@ State which playbook or outline changed, whether semantics or metadata changed, 
 ## Full reference
 
 `docs/AGENTS_ROOT_REFERENCE.md` preserves the former detailed root guidance, including hard boundaries and verification questions.
+
+## Design spine
+
+`DESIGN.md` names the system form of the playbook layer.
+`DESIGN.AGENTS.md` names the desired form of the agent-facing route mesh.
+Use them before adding new root topology, moving repeatable operation pressure,
+or changing durable `AGENTS.md` card shape.

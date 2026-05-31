@@ -12,6 +12,7 @@ Use the shortest route by need:
 
 - docs map: [docs/README](docs/README.md)
 - role, boundaries, and conceptual model: [CHARTER](CHARTER.md), [docs/PLAYBOOK_MODEL](docs/PLAYBOOK_MODEL.md), and [docs/BOUNDARIES](docs/BOUNDARIES.md)
+- root system and agent-route design: [DESIGN](DESIGN.md) and [DESIGN.AGENTS](DESIGN.AGENTS.md)
 - authored bundle and activation seam: [docs/PLAYBOOK_BUNDLE_CONTRACT](docs/PLAYBOOK_BUNDLE_CONTRACT.md), [docs/PLAYBOOK_EXECUTION_SEAM](docs/PLAYBOOK_EXECUTION_SEAM.md), [docs/PLAYBOOK_OPERATIONAL_FAMILY](docs/PLAYBOOK_OPERATIONAL_FAMILY.md), [docs/PLAYBOOK_RECURRENCE_DISCIPLINE](docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md), [docs/PLAYBOOK_LIFECYCLE](docs/PLAYBOOK_LIFECYCLE.md), and [docs/PLAYBOOK_PORTFOLIO](docs/PLAYBOOK_PORTFOLIO.md)
 - evidence, gates, and release posture: [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), [docs/PLAYBOOK_REAL_RUN_HARVEST](docs/PLAYBOOK_REAL_RUN_HARVEST.md), [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md), [docs/PLAYBOOK_GAP_MATRIX](docs/PLAYBOOK_GAP_MATRIX.md), and [docs/RELEASING](docs/RELEASING.md)
 - sovereign shared-root rollout route plus companion lane: [playbooks/trusted-rollout-operations/PLAYBOOK.md](playbooks/trusted-rollout-operations/PLAYBOOK.md), [docs/CODEX_PLANE_ROLLOUT_CYCLE](docs/CODEX_PLANE_ROLLOUT_CYCLE.md), [docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE](docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md), and [examples/codex_plane_rollout_lane.example.json](examples/codex_plane_rollout_lane.example.json)
@@ -30,6 +31,7 @@ Use the shortest route by need:
 ## Route by need
 
 - source-authored playbook truth: `playbooks/*/PLAYBOOK.md` for scenario routes and `generated/playbook_registry.min.json` for compact registry metadata
+- root system design and agent-facing route mesh: `DESIGN.md`, `DESIGN.AGENTS.md`, `AGENTS.md`, and the nearest nested `AGENTS.md`
 - activation, federation, and review-governed landing surfaces: `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_landing_governance.min.json`
 - shared-root rollout operations route and companion lane: `playbooks/trusted-rollout-operations/PLAYBOOK.md`, `docs/CODEX_PLANE_ROLLOUT_CYCLE.md`, `docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md`, and `examples/codex_plane_rollout_lane.example.json`
 - long-arc continuity and explicit reanchor route: `playbooks/self-agency-continuity-cycle/PLAYBOOK.md`
@@ -44,7 +46,7 @@ Use the shortest route by need:
 - real-run and gate-review evidence: `docs/real-runs/`, `docs/gate-reviews/`, `examples/harvests/`, [docs/PLAYBOOK_REAL_RUN_WORKFLOW](docs/PLAYBOOK_REAL_RUN_WORKFLOW.md), and [docs/PLAYBOOK_COMPOSITION_GATES](docs/PLAYBOOK_COMPOSITION_GATES.md)
 - owner-local live receipt publication for closeout/stats integration: `scripts/publish_live_receipts.py` and `.aoa/live_receipts/playbook-receipts.jsonl`
 - live authored bundles and activation examples: `playbooks/*/PLAYBOOK.md` and `examples/playbook_activation.*.example.json`
-- full non-mutating verify path: `python scripts/generate_decision_indexes.py --check`, `python scripts/build_agon_trial_playbook_registry.py --check`, `python scripts/validate_agon_trial_playbooks.py`, the eight `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
+- full non-mutating verify path: `python scripts/validate_root_design.py`, `python scripts/generate_decision_indexes.py --check`, `python scripts/build_agon_trial_playbook_registry.py --check`, `python scripts/validate_agon_trial_playbooks.py`, the eight `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
 
 ## What `aoa-playbooks` owns
 
@@ -97,6 +99,7 @@ To validate the current playbook-layer surface locally, run:
 
 ```bash
 python -m pip install -r requirements-dev.txt
+python scripts/validate_root_design.py
 python scripts/generate_decision_indexes.py --check
 python scripts/build_agon_trial_playbook_registry.py --check
 python scripts/validate_agon_trial_playbooks.py
@@ -116,7 +119,7 @@ The validator auto-discovers authored bundles under `playbooks/*/PLAYBOOK.md`, c
 
 ## Current contour
 
-`aoa-playbooks` is currently at `v0.3.3` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation across reviewed continuity, Titan drills, Experience follow-through, and Agon trial/campaign surfaces while keeping mechanical trials experimental, pre-protocol, and choreography-only.
+`aoa-playbooks` is currently at `v0.3.3` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation across reviewed continuity, Titan drills, Experience follow-through, and Agon trial/campaign surfaces while keeping mechanical trials experimental, pre-protocol, and choreography-only. Root design is now split between `DESIGN.md` for the playbook-layer system form and `DESIGN.AGENTS.md` for the agent-facing route mesh.
 
 The runtime-facing extension stays intentionally bounded: selected playbooks may publish explicit memo-read defaults and activation-readable surfaces, but memo truth, routing ownership, and source skill meaning remain in their owning repositories.
 

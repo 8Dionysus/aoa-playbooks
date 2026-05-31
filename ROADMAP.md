@@ -10,6 +10,8 @@ beyond the bootstrap question.
 The immediate goal is no longer to prove that the repository can exist.
 The next goal is to keep the current portfolio honest through boundary repair,
 reviewed evidence, and maintenance discipline:
+- keep `DESIGN.md` and `DESIGN.AGENTS.md` as the root design spine before the
+  later mechanics and playbook-canon topology split
 - preserve the current authored, activation, federation, review-status, landing-governance, and composition seams without widening them casually
 - keep `AOA-P-0025 session-growth-cycle`, `AOA-P-0026 owner-followthrough-campaign`, `AOA-P-0027 reviewed-automation-followthrough`, `AOA-P-0028 trusted-rollout-operations`, `AOA-P-0029 self-agency-continuity-cycle`, `AOA-P-0030 component-refresh-cycle`, `AOA-P-0031 a2a-summon-return-checkpoint`, `AOA-P-0032 runtime-chaos-recovery`, and the Wave VI Agon trial cohort `AOA-P-0033` through `AOA-P-0039` aligned with their authored docs, generated surfaces, and owner-boundary language
 - keep `docs/AGON_TRIAL_PLAYBOOKS.md` and `generated/agon_trial_playbook_registry.min.json` as the compact doctrine and registry for the bounded Agon trial family rather than second sovereign playbook truth

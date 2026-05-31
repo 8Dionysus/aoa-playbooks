@@ -9,6 +9,9 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Changed
 
+- added root design spine surfaces, `DESIGN.md` and `DESIGN.AGENTS.md`, plus
+  validation coverage so future mechanics and playbook-canon topology work has
+  a checked system and agent-route map.
 - tightened the playbook memory-consumer contract so memo-read fields consume
   reviewed `aoa-memo` objects through ids, provenance, lifecycle, and generated
   read models while local `memo/` output remains candidate, receipt, export, or

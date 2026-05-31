@@ -7,6 +7,8 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 ## Start here
 
 - Read [CHARTER](../CHARTER.md) for the role and boundaries of the playbook layer.
+- Read [DESIGN](../DESIGN.md) for the system form of the playbook layer.
+- Read [DESIGN.AGENTS](../DESIGN.AGENTS.md) for the agent-facing route mesh form.
 - Read [PLAYBOOK_MODEL](PLAYBOOK_MODEL.md) for the conceptual model.
 - Read [BOUNDARIES](BOUNDARIES.md) for ownership discipline relative to neighboring AoA layers.
 - Read [PLAYBOOK_BUNDLE_CONTRACT](PLAYBOOK_BUNDLE_CONTRACT.md) for the authored bundle contract.
@@ -38,6 +40,8 @@ Use it when you want to understand the AoA playbook layer rather than the broade
 ## Docs in this repository
 
 - [PLAYBOOK_MODEL](PLAYBOOK_MODEL.md) - what the playbook layer is for
+- [../DESIGN](../DESIGN.md) - the system form of the playbook layer
+- [../DESIGN.AGENTS](../DESIGN.AGENTS.md) - the design form of the agent-facing route mesh
 - [BOUNDARIES](BOUNDARIES.md) - what the playbook layer owns and must not absorb
 - [PLAYBOOK_BUNDLE_CONTRACT](PLAYBOOK_BUNDLE_CONTRACT.md) - how authored `PLAYBOOK.md` bundles stay compact, registry-aligned, and federation-checkable where needed
 - [PLAYBOOK_EXECUTION_SEAM](PLAYBOOK_EXECUTION_SEAM.md) - how derived activation, federation, and composition surfaces stay readable without becoming second authored sources

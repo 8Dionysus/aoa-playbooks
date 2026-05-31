@@ -1546,6 +1546,18 @@ def validate_nested_agents_surface() -> None:
         fail(str(exc))
 
 
+def validate_root_design_surface() -> None:
+    try:
+        from validate_root_design import validate_root_design_surfaces
+    except Exception as exc:  # defensive import guard for local validator wiring
+        fail(f"unable to load root design validator: {exc}")
+
+    try:
+        validate_root_design_surfaces()
+    except RuntimeError as exc:
+        fail(str(exc))
+
+
 def validate_decision_index_surfaces() -> None:
     try:
         import decision_indexes
@@ -4588,6 +4600,7 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
 
 def main() -> int:
     try:
+        validate_root_design_surface()
         validate_nested_agents_surface()
         validate_decision_index_surfaces()
         validate_schema_surface()
@@ -4641,6 +4654,7 @@ def main() -> int:
         print(f"[error] {exc}", file=sys.stderr)
         return 1
 
+    print("[ok] validated root design surfaces")
     print("[ok] validated nested AGENTS docs")
     print("[ok] validated decision index surfaces")
     print("[ok] validated playbook registry schema surface")
