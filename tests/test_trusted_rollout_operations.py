@@ -32,7 +32,7 @@ def test_trusted_rollout_operations_docs_and_routes_stay_discoverable() -> None:
         encoding="utf-8"
     )
     decision_note = (
-        DOCS_ROOT / "decisions" / "2026-04-11-trusted-rollout-operations-extraction.md"
+        DOCS_ROOT / "decisions" / "AOA-PB-D-0001-trusted-rollout-operations-extraction.md"
     ).read_text(encoding="utf-8")
 
     for text in (

@@ -1,4 +1,18 @@
-# Decision: Extract Trusted Rollout Operations As AOA-P-0028
+# Extract Trusted Rollout Operations As AOA-P-0028
+
+## Status
+
+Accepted.
+
+## Index Metadata
+
+- Decision ID: AOA-PB-D-0001
+- Original date: 2026-04-11
+- Surface classes: playbook source, scenario composition, activation/federation, docs route
+- Playbook routes: trusted-rollout-operations, session-growth-cycle
+- Mechanic parents: activation, review-gate
+- Guard families: scenario boundary, playbook extraction gate, activation/read-model
+- Posture: accepted
 
 ## Context
 
@@ -48,3 +62,24 @@ points to `AOA-P-0028` rather than hiding inside `AOA-P-0025`.
   activation surface.
 - Real-run evidence and one reviewed proving run are still required before any
   broader gate or composition claim becomes honest.
+
+## Source Surfaces
+
+- `playbooks/trusted-rollout-operations/PLAYBOOK.md`
+- `playbooks/session-growth-cycle/PLAYBOOK.md`
+- `docs/CODEX_PLANE_ROLLOUT_CYCLE.md`
+- `docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md`
+- `generated/playbook_activation_surfaces.min.json`
+- `generated/playbook_federation_surfaces.min.json`
+
+## Follow-Up Route
+
+Future changes to the rollout route should update the authored playbook first,
+then any derived activation, federation, review, or composition surfaces.
+
+## Verification
+
+```bash
+python scripts/generate_decision_indexes.py --check
+python scripts/validate_playbooks.py
+```

@@ -1,4 +1,18 @@
-# Decision: Keep The Reviewed Closeout Route Candidate In Incubation
+# Keep The Reviewed Closeout Route Candidate In Incubation
+
+## Status
+
+Accepted.
+
+## Index Metadata
+
+- Decision ID: AOA-PB-D-0002
+- Original date: 2026-04-13
+- Surface classes: decision record, playbook route, review/evidence
+- Playbook routes: reviewed-closeout-route-incubation, real-run review
+- Mechanic parents: review-gate, recurrence
+- Guard families: recurrence evidence, playbook extraction gate, review gate
+- Posture: accepted incubation boundary
 
 ## Context
 
@@ -56,3 +70,23 @@ Do not extract a new playbook yet.
   - be dropped as false recurrence
 - the next honest trigger for reopening this decision is a second materially
   different reviewed route that pressures the same route shape
+
+## Source Surfaces
+
+- `docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`
+- `QUESTBOOK.md`
+- `docs/real-runs/`
+- `docs/gate-reviews/`
+
+## Follow-Up Route
+
+Reopen through a new canonical decision if later reviewed evidence promotes the
+incubated route into a playbook, merges it into an existing route family, or
+drops it as false recurrence.
+
+## Verification
+
+```bash
+python scripts/generate_decision_indexes.py --check
+python scripts/validate_playbooks.py
+```
