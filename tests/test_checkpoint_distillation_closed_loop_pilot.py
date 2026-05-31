@@ -23,9 +23,9 @@ def _load_playbook_frontmatter(relative_path: str) -> dict[str, object]:
 
 
 def test_checkpoint_distillation_pilot_activation_surface_validates() -> None:
-    schema = _load_json("schemas/playbook-activation-surface.schema.json")
+    schema = _load_json("mechanics/activation/parts/activation-surface/schemas/playbook-activation-surface.schema.json")
     example = _load_json(
-        "examples/playbook_activation.checkpoint-distillation-closed-loop-pilot.example.json"
+        "mechanics/activation/parts/activation-surface/examples/playbook_activation.checkpoint-distillation-closed-loop-pilot.example.json"
     )
     Draft202012Validator.check_schema(schema)
     Draft202012Validator(schema).validate(example)
@@ -36,7 +36,7 @@ def test_checkpoint_distillation_pilot_frontmatter_matches_example() -> None:
         "playbooks/checkpoint-distillation-closed-loop-pilot/PLAYBOOK.md"
     )
     example = _load_json(
-        "examples/playbook_activation.checkpoint-distillation-closed-loop-pilot.example.json"
+        "mechanics/activation/parts/activation-surface/examples/playbook_activation.checkpoint-distillation-closed-loop-pilot.example.json"
     )
 
     assert frontmatter["id"] == "AOA-P-0046"
@@ -47,7 +47,8 @@ def test_checkpoint_distillation_pilot_frontmatter_matches_example() -> None:
 
 
 def test_checkpoint_distillation_runbook_doc_mentions_playbook() -> None:
-    docs = (ROOT / "docs" / "CHECKPOINT_DISTILLATION_CLOSED_LOOP_PILOT.md").read_text(
-        encoding="utf-8"
-    )
+    docs = (
+        ROOT
+        / "mechanics/checkpoint/parts/distillation-closed-loop/docs/checkpoint-distillation-closed-loop-pilot.md"
+    ).read_text(encoding="utf-8")
     assert "checkpoint-distillation-closed-loop-pilot" in docs

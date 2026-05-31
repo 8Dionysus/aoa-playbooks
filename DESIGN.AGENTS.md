@@ -27,8 +27,8 @@ It should give them a navigable route mesh:
   `memo/`, and `docs/decisions/`;
 - playbook source surfaces that keep scenario meaning stronger than generated
   summaries;
-- future mechanic cards that route repeatable operation topology without
-  becoming playbook canon;
+- mechanics atlas cards, placement/legacy gates, and mechanic package cards
+  that route repeatable operation topology without becoming playbook canon;
 - generated cards that protect derived readers from hand edits;
 - review, gate, and decision cards that preserve why a route moved;
 - closeout contracts that let the next agent resume without archaeology.
@@ -92,11 +92,42 @@ They narrow the root card. They do not overturn it.
 It should keep the split between scenario route, neighboring owner references,
 generated registry metadata, and review evidence visible.
 
-### Future mechanic cards
+### Mechanics skeleton and future mechanic cards
 
-Mechanic cards should describe repeatable movement around the playbook canon:
-activation, review gates, recurrence, release support, Agon trial posture,
-runtime-seam rehearsal, questbook support, and cross-owner handoff pressure.
+The mechanics skeleton starts at `mechanics/AGENTS.md` and
+`mechanics/README.md`.
+
+`mechanics/HEAD_MECHANICS.md` routes center-fed mechanics that begin in
+`Agents-of-Abyss`. `mechanics/LOCAL_MECHANICS.md` routes playbook-native
+mechanics born inside this repository.
+
+`mechanics/PLACEMENT_AUDIT.md` records whether each mechanics-related payload
+family moves, stays root-public, stays playbook-owned, or routes to a stronger
+owner. `mechanics/LEGACY_NAMING.md` classifies old names before package-local
+provenance is opened.
+
+`mechanics/activation/`, `mechanics/scenario-composition/`,
+`mechanics/federation-closure/`, `mechanics/review-gate/`, and
+`mechanics/real-run-harvest/` are the first active local packages. They own
+dedicated builder implementations and package-local evidence posture while
+keeping root generated outputs and root command compatibility intact.
+
+`mechanics/antifragility/` and `mechanics/agon/` are package-active head-fed
+mechanics in this repo. They own playbook-local stress, re-entry, trial,
+kernel-binding, campaign, adoption, and recurrence-adapter payloads while
+keeping source playbook canon in `playbooks/`.
+
+`mechanics/recurrence/`, `mechanics/checkpoint/`,
+`mechanics/experience/`, `mechanics/release-support/`,
+`mechanics/questbook/`, `mechanics/rpg/`, `mechanics/titan/`, and
+`mechanics/portfolio-governance/` are package-active route packages. They make
+owner, input, output, next route, and validation explicit while leaving only
+true root contracts at the repository root.
+
+Future mechanic cards should describe repeatable movement around the playbook
+canon: activation, review gates, recurrence, release support, runtime-seam
+rehearsal, questbook support, and cross-owner handoff
+pressure.
 
 They should name local source surfaces, part-local validation, generated
 mirrors, and stronger-owner stop lines.
@@ -231,6 +262,9 @@ Nested `AGENTS.md` cards narrow local work.
 `docs/README.md` maps documentation.
 `docs/BOUNDARIES.md` names owner boundaries.
 `docs/decisions/` preserves topology and route-law rationale.
+`mechanics/AGENTS.md`, `mechanics/README.md`, `mechanics/PLACEMENT_AUDIT.md`,
+and `mechanics/LEGACY_NAMING.md` route repeatable operation topology before
+and during child package growth.
 `generated/` remains a derived companion.
 `Spark/` and `.agents/skills/` remain companion lanes; they are not authored
 playbook meaning.

@@ -7,7 +7,7 @@ This file applies to artifacts under `generated/`.
 `generated/` contains two different kinds of surfaces in this repository:
 
 - `playbook_registry.min.json` is a source-authored machine-readable registry surface for the playbook layer
-- `agon_trial_playbook_registry.min.json` is a derived Wave VI trial-registry projection for the pre-protocol Agon choreography family
+- `agon_trial_playbook_registry.min.json`, `agon_trial_kernel_binding_registry.min.json`, and `agon_campaign_playbook_registry.min.json` are derived Agon projections for pre-protocol choreography families
 - `playbook_activation_surfaces.min.json` is a derived activation projection
 - `playbook_federation_surfaces.min.json` is a derived federation-closure projection
 - `playbook_review_status.min.json` is a derived evidence-status projection over reviewed summaries and gate-review notes
@@ -23,15 +23,17 @@ The activation and federation files are generated projections of canonical input
 Keep this mapping legible:
 
 - `generated/playbook_registry.min.json` stays aligned with authored scenario metadata and is validated by `scripts/validate_playbooks.py`
-- `generated/agon_trial_playbook_registry.min.json` is produced from `config/agon_trial_playbooks.seed.json` by `scripts/build_agon_trial_playbook_registry.py`
-- `generated/playbook_activation_surfaces.min.json` is produced from the registry by `scripts/generate_playbook_activation_surfaces.py`
-- `generated/playbook_federation_surfaces.min.json` is produced from `playbooks/*/PLAYBOOK.md` by `scripts/generate_playbook_federation_surfaces.py`
-- `generated/playbook_review_status.min.json` is produced from `docs/real-runs/*.md` plus `docs/gate-reviews/*.md` by `scripts/generate_playbook_review_status.py`
-- `generated/playbook_review_packet_contracts.min.json` is produced by `scripts/generate_playbook_review_packet_contracts.py`
-- `generated/playbook_review_intake.min.json` is produced by `scripts/generate_playbook_review_intake.py`
-- `generated/playbook_landing_governance.min.json` is produced by `scripts/generate_playbook_landing_governance.py`
-- `generated/phase_alpha_review_packets.min.json` and `generated/phase_alpha_run_matrix.min.json` are produced by `scripts/generate_phase_alpha_surfaces.py`
-- `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json` are produced by `scripts/generate_playbook_composition_surfaces.py`
+- `generated/agon_trial_playbook_registry.min.json` is produced from `mechanics/agon/parts/trial-playbooks/config/agon_trial_playbooks.seed.json` by `mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py`
+- `generated/agon_trial_kernel_binding_registry.min.json` is produced from `mechanics/agon/parts/trial-kernel-bindings/config/agon_trial_kernel_bindings.seed.json` by `mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py`
+- `generated/agon_campaign_playbook_registry.min.json` is produced from `mechanics/agon/parts/campaign-playbooks/config/agon_campaign_playbooks.seed.json` by `mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py`
+- `generated/playbook_activation_surfaces.min.json` is produced from the registry by `mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py`
+- `generated/playbook_federation_surfaces.min.json` is produced from `playbooks/*/PLAYBOOK.md` by `mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py`
+- `generated/playbook_review_status.min.json` is produced from `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/*.md` plus `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/*.md` by `mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py`
+- `generated/playbook_review_packet_contracts.min.json` is produced by `mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py`
+- `generated/playbook_review_intake.min.json` is produced by `mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py`
+- `generated/playbook_landing_governance.min.json` is produced by `mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py`
+- `generated/phase_alpha_review_packets.min.json` and `generated/phase_alpha_run_matrix.min.json` are produced by `mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py`
+- `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json` are produced by `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py`
 
 The derived surfaces should stay compact, reviewable, and playbook-owned.
 They must not become a second authored playbook layer.
@@ -44,7 +46,7 @@ For `playbook_registry.min.json`:
 - preserve stable ids, names, and ordering unless a real semantic change requires otherwise
 - keep it aligned with the corresponding authored `PLAYBOOK.md` bundles
 
-For `agon_trial_playbook_registry.min.json`, `playbook_activation_surfaces.min.json`, `playbook_federation_surfaces.min.json`, `playbook_review_status.min.json`, `playbook_landing_governance.min.json`, and the composition outputs:
+For `agon_*_registry.min.json`, `playbook_activation_surfaces.min.json`, `playbook_federation_surfaces.min.json`, `playbook_review_status.min.json`, `playbook_landing_governance.min.json`, and the composition outputs:
 
 - Do not hand-edit derived payloads
 - regenerate them from canonical inputs
@@ -59,16 +61,21 @@ Whenever canonical inputs change, run:
 
 ```bash
 python -m pip install -r requirements-dev.txt
-python scripts/build_agon_trial_playbook_registry.py --check
-python scripts/validate_agon_trial_playbooks.py
-python scripts/generate_playbook_activation_surfaces.py --check
-python scripts/generate_playbook_federation_surfaces.py --check
-python scripts/generate_playbook_review_status.py --check
-python scripts/generate_playbook_review_packet_contracts.py --check
-python scripts/generate_playbook_review_intake.py --check
-python scripts/generate_playbook_landing_governance.py --check
-python scripts/generate_playbook_composition_surfaces.py --check
-python scripts/generate_phase_alpha_surfaces.py --check
+python mechanics/agon/scripts/validate_agon_package.py
+python mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py --check
+python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py
+python mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py --check
+python mechanics/agon/parts/trial-kernel-bindings/scripts/validate_agon_trial_kernel_bindings.py
+python mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py --check
+python mechanics/agon/parts/campaign-playbooks/scripts/validate_agon_campaign_playbook_registry.py
+python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check
+python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
+python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
+python mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py --check
+python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py --check
+python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check
+python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
+python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
 python scripts/validate_playbooks.py
 python -m pytest -q tests
 ```

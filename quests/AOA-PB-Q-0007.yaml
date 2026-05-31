@@ -3,7 +3,7 @@ id: AOA-PB-Q-0007
 title: Add party-template and build-synergy doctrine for the RPG bridge wave
 summary: Publish scenario-owned party and build posture so recurring routes can name composition lanes without becoming runtime state or proof authority.
 repo: aoa-playbooks
-owner_surface: docs/PARTY_TEMPLATE_MODEL.md
+owner_surface: mechanics/rpg/parts/party-template-model/docs/party-template-model.md
 theme_ref: ''
 milestone_ref: ''
 kind: seam
@@ -31,7 +31,7 @@ activation:
   note: open when bridge-wave routes need explicit scenario-owned party and build posture
 anchor_ref:
   artifact: party_template_model
-  ref: docs/PARTY_TEMPLATE_MODEL.md
+  ref: mechanics/rpg/parts/party-template-model/docs/party-template-model.md
   note: party templates must remain scenario-owned and non-runtime
 handoff_role: playbook-maintainer
 evidence:

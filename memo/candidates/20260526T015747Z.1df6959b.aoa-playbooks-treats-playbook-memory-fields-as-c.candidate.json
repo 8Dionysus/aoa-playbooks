@@ -7,13 +7,13 @@
   "scope": "repo",
   "claim": "aoa-playbooks treats playbook memory fields as consumer and writeback contracts; memory-shaped residue must move through the local memo port before any reviewed aoa-memo landing.",
   "source_refs": [
-    "docs/PLAYBOOK_BUNDLE_CONTRACT.md",
-    "docs/PLAYBOOK_LIFECYCLE.md",
+    "mechanics/activation/parts/activation-surface/docs/playbook-bundle-contract.md",
+    "mechanics/portfolio-governance/parts/lifecycle-and-portfolio/docs/playbook-lifecycle.md",
     "memo/PORT.yaml"
   ],
   "evidence_refs": [
-    "docs/PLAYBOOK_BUNDLE_CONTRACT.md",
-    "docs/PLAYBOOK_LIFECYCLE.md",
+    "mechanics/activation/parts/activation-surface/docs/playbook-bundle-contract.md",
+    "mechanics/portfolio-governance/parts/lifecycle-and-portfolio/docs/playbook-lifecycle.md",
     "tests/test_validate_playbooks.py",
     "repo:aoa-playbooks/commit/fc352825b407e1a7818ea9c5225f4b194a94a62d"
   ],

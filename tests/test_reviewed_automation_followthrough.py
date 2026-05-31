@@ -7,6 +7,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 GENERATED_ROOT = REPO_ROOT / "generated"
 DOCS_ROOT = REPO_ROOT / "docs"
+MECHANICS_ROOT = REPO_ROOT / "mechanics"
 
 
 def load_generated(name: str):
@@ -16,13 +17,23 @@ def load_generated(name: str):
 def test_reviewed_automation_followthrough_docs_and_examples_stay_discoverable() -> None:
     readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
     docs_map = (DOCS_ROOT / "README.md").read_text(encoding="utf-8")
-    operational_family = (DOCS_ROOT / "PLAYBOOK_OPERATIONAL_FAMILY.md").read_text(encoding="utf-8")
-    portfolio = (DOCS_ROOT / "PLAYBOOK_PORTFOLIO.md").read_text(encoding="utf-8")
-    gap_matrix = (DOCS_ROOT / "PLAYBOOK_GAP_MATRIX.md").read_text(encoding="utf-8")
-    execution_seam = (DOCS_ROOT / "PLAYBOOK_EXECUTION_SEAM.md").read_text(encoding="utf-8")
-    automation_doc = (DOCS_ROOT / "AUTOMATION_SEEDS.md").read_text(encoding="utf-8")
+    portfolio_docs = MECHANICS_ROOT / "portfolio-governance" / "parts"
+    composition_docs = MECHANICS_ROOT / "scenario-composition" / "parts" / "composition-surfaces"
+    operational_family = (
+        portfolio_docs / "operational-family" / "docs" / "playbook-operational-family.md"
+    ).read_text(encoding="utf-8")
+    portfolio = (
+        portfolio_docs / "lifecycle-and-portfolio" / "docs" / "playbook-portfolio.md"
+    ).read_text(encoding="utf-8")
+    gap_matrix = (
+        portfolio_docs / "lifecycle-and-portfolio" / "docs" / "playbook-gap-matrix.md"
+    ).read_text(encoding="utf-8")
+    execution_seam = (
+        MECHANICS_ROOT / "activation" / "parts" / "activation-surface" / "docs" / "playbook-execution-seam.md"
+    ).read_text(encoding="utf-8")
+    automation_doc = (composition_docs / "docs" / "automation-seeds.md").read_text(encoding="utf-8")
     example = (
-        REPO_ROOT / "examples" / "automations" / "reviewed-automation-followthrough.md"
+        composition_docs / "examples" / "automations" / "reviewed-automation-followthrough.md"
     ).read_text(encoding="utf-8")
 
     for text in (readme, docs_map, operational_family, portfolio, gap_matrix, execution_seam):
@@ -30,8 +41,8 @@ def test_reviewed_automation_followthrough_docs_and_examples_stay_discoverable()
 
     assert "playbooks/reviewed-automation-followthrough/PLAYBOOK.md" in readme
     assert "playbooks/reviewed-automation-followthrough/PLAYBOOK.md" in docs_map
-    assert "examples/automations/reviewed-automation-followthrough.md" in automation_doc
-    assert "outside `config/playbook_composition_overrides.json`" in automation_doc
+    assert "mechanics/scenario-composition/parts/composition-surfaces/examples/automations/reviewed-automation-followthrough.md" in automation_doc
+    assert "outside `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`" in automation_doc
     assert "not yet a composition-owned automation" in example
 
 

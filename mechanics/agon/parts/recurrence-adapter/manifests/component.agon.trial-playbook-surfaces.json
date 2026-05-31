@@ -1,0 +1,197 @@
+{
+  "beacon_rules": [
+    {
+      "beacon_ref": "agon.playbooks.trial_repeat_pattern",
+      "decision_surface": "mechanics/agon/parts/trial-playbooks/docs/agon-trial-playbooks.md",
+      "kind": "playbook_candidate",
+      "match_categories": [
+        "repeat_pattern",
+        "review_signal"
+      ],
+      "match_signals": [
+        "agon_stop_line_repeated",
+        "agon_recurrence_surface_seen"
+      ],
+      "notes": "Repeated trial shapes may become stronger playbooks, not live arena sessions.",
+      "observation_inputs": [
+        "agon-trial-playbook-registry",
+        "agon-trial-harvest-notes"
+      ],
+      "recommended_actions": [
+        "refresh trial registry",
+        "open playbook owner review"
+      ],
+      "status_ladder": [
+        "hint",
+        "watch",
+        "candidate",
+        "review_ready"
+      ],
+      "suppress_when": [
+        "live_protocol_claim_present",
+        "hidden_authority_detected"
+      ],
+      "target_repo": "aoa-playbooks",
+      "thresholds": {
+        "candidate_observations": 2,
+        "min_unique_evidence_refs": 2,
+        "min_unique_sources": 2,
+        "review_ready_observations": 3,
+        "watch_observations": 1
+      }
+    },
+    {
+      "beacon_ref": "agon.playbooks.hidden_verdict_overclaim",
+      "decision_surface": "mechanics/agon/parts/trial-playbooks/docs/agon-trial-choreography-boundary.md",
+      "kind": "overclaim_alarm",
+      "match_categories": [
+        "overclaim_risk"
+      ],
+      "match_signals": [
+        "live_protocol_claim_present"
+      ],
+      "notes": "Trial playbooks choreograph pressure; they do not judge it.",
+      "observation_inputs": [
+        "agon-trial-playbook-registry"
+      ],
+      "recommended_actions": [
+        "block hidden protocol authority",
+        "return to center stop-lines"
+      ],
+      "status_ladder": [
+        "hint",
+        "watch",
+        "candidate",
+        "review_ready"
+      ],
+      "suppress_when": [
+        "hidden_authority_detected"
+      ],
+      "target_repo": "aoa-playbooks",
+      "thresholds": {
+        "candidate_observations": 2,
+        "min_unique_evidence_refs": 2,
+        "min_unique_sources": 2,
+        "review_ready_observations": 3,
+        "watch_observations": 1
+      }
+    }
+  ],
+  "candidate_targets": [
+    "generated/agon_trial_playbook_registry.min.json"
+  ],
+  "component_ref": "component:agon:trial-playbook-surfaces",
+  "consumer_edges": [
+    {
+      "kind": "handoff_home",
+      "notes": "Owner remains the review home for its own Agon recurrence signals.",
+      "required": true,
+      "suggested_action": "observe",
+      "suggested_commands": [],
+      "target": "mechanics/agon/parts/recurrence-adapter/docs/agon-recurrence-adapter.md",
+      "target_repo": "aoa-playbooks"
+    }
+  ],
+  "contract_surfaces": [
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-playbooks.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-mechanical-trial-model.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-choreography-boundary.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-assistant-service-boundary.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-owner-handoffs.md",
+    "mechanics/agon/parts/recurrence-adapter/docs/agon-recurrence-adapter.md"
+  ],
+  "decision_surfaces": [
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-playbooks.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-mechanical-trial-model.md"
+  ],
+  "description": "Pre-protocol mechanical trial playbooks that rehearse Agon pressure without creating arena sessions.",
+  "documentation_surfaces": [
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-playbooks.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-mechanical-trial-model.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-choreography-boundary.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-assistant-service-boundary.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-owner-handoffs.md",
+    "mechanics/agon/parts/recurrence-adapter/docs/agon-recurrence-adapter.md"
+  ],
+  "drift_signals": [
+    {
+      "recommended_action": "revalidate",
+      "severity": "medium",
+      "signal": "agon_surface_changed_without_recurrence_review"
+    },
+    {
+      "recommended_action": "defer",
+      "severity": "high",
+      "signal": "agon_stop_line_blur_detected"
+    }
+  ],
+  "freshness": {
+    "open_window_days": 7,
+    "repeat_trigger_threshold": 2,
+    "stale_after_days": 14
+  },
+  "generated_surfaces": [
+    "generated/agon_trial_playbook_registry.min.json"
+  ],
+  "observation_inputs": [
+    {
+      "input_ref": "agon-trial-playbook-registry",
+      "kind": "harvest",
+      "notes": "Trial registry and authored playbook bundles.",
+      "path_globs": [
+        "generated/agon_trial_playbook_registry.min.json",
+        "playbooks/agon-*/PLAYBOOK.md"
+      ]
+    },
+    {
+      "input_ref": "agon-trial-harvest-notes",
+      "kind": "review_note",
+      "notes": "Future run notes and harvest surfaces when trials start producing evidence.",
+      "path_globs": [
+        "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/*",
+        "mechanics/real-run-harvest/parts/harvest-template-source-store/examples/harvests/*",
+        "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/*"
+      ]
+    }
+  ],
+  "owner_repo": "aoa-playbooks",
+  "proof_surfaces": [
+    "python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py"
+  ],
+  "refresh_routes": [
+    {
+      "action": "revalidate",
+      "commands": [
+        "python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py"
+      ],
+      "notes": "Owner-local validation path. Recurrence may suggest this route; it must not run it as hidden authority."
+    }
+  ],
+  "rollback_anchors": [
+    "mechanics/agon/parts/trial-playbooks/docs/agon-trial-playbooks.md",
+    "mechanics/agon/parts/trial-playbooks/docs/agon-mechanical-trial-model.md"
+  ],
+  "schema_version": "aoa_recurrence_component_v2",
+  "signal_edges": [
+    {
+      "kind": "proved_by_eval",
+      "notes": "Future evals may judge trial outcomes; playbooks do not.",
+      "target": "component:evals:portable-proof-beacons",
+      "target_repo": "aoa-evals"
+    },
+    {
+      "kind": "summarized_by",
+      "notes": "Center may read trial recurrence pressure without owning playbook meaning.",
+      "target": "component:agon:center-surfaces",
+      "target_repo": "Agents-of-Abyss"
+    }
+  ],
+  "source_inputs": [],
+  "tags": [
+    "agon",
+    "playbooks",
+    "trials",
+    "mechanical",
+    "recurrence"
+  ]
+}

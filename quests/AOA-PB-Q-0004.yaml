@@ -3,7 +3,7 @@ id: AOA-PB-Q-0004
 title: Align router orchestrator quests to activation, federation, and advisory playbook surfaces
 summary: Define which activation and federation playbook families the router orchestrator may consume without turning playbooks into class identity.
 repo: aoa-playbooks
-owner_surface: docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md
+owner_surface: mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md
 theme_ref: ''
 milestone_ref: ''
 kind: seam
@@ -30,14 +30,14 @@ activation:
   note: open when router-facing capsule alignment needs a public playbook-side seam
 anchor_ref:
   artifact: orchestrator_alignment
-  ref: docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md
+  ref: mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md
 handoff_role: playbook-maintainer
 orchestrator_class_ref: aoa-agents:router
 capability_target: repo_layer_selection
 playbook_family_refs:
   - generated/playbook_activation_surfaces.min.json
   - generated/playbook_federation_surfaces.min.json
-  - docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md#router
+  - mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md#router
 proof_surface_refs:
   - repo:aoa-evals/generated/eval_catalog.min.json
   - repo:aoa-evals/docs/ORCHESTRATOR_PROOF_ALIGNMENT.md

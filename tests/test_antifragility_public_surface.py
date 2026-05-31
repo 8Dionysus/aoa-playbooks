@@ -8,6 +8,14 @@ from jsonschema import Draft202012Validator
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+ANTIFRAGILITY_ROOT = REPO_ROOT / "mechanics" / "antifragility"
+STRESS_LANE_SCHEMA = "mechanics/antifragility/parts/stress-lanes/schemas/playbook_stress_lane_v1.json"
+REENTRY_GATE_SCHEMA = "mechanics/antifragility/parts/reentry-gates/schemas/playbook_reentry_gate_v1.json"
+STRESS_LANE_DOC = ANTIFRAGILITY_ROOT / "parts" / "stress-lanes" / "docs" / "playbook-stress-lanes.md"
+STRESS_HARVEST_DOC = ANTIFRAGILITY_ROOT / "parts" / "stress-harvest" / "docs" / "playbook-stress-harvest.md"
+RUNTIME_CHAOS_DOC = (
+    ANTIFRAGILITY_ROOT / "parts" / "runtime-chaos-wave1" / "docs" / "playbook-stress-chaos-wave1.md"
+)
 
 
 def load_json(relative_path: str) -> object:
@@ -18,28 +26,28 @@ class AntifragilityPublicSurfaceTests(unittest.TestCase):
     def test_stress_lane_examples_validate(self) -> None:
         surfaces = (
             (
-                "schemas/playbook_stress_lane_v1.json",
-                "examples/playbook_stress_lane.example.json",
+                STRESS_LANE_SCHEMA,
+                "mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.example.json",
             ),
             (
-                "schemas/playbook_reentry_gate_v1.json",
-                "examples/playbook_reentry_gate.example.json",
+                REENTRY_GATE_SCHEMA,
+                "mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.example.json",
             ),
             (
-                "schemas/playbook_stress_lane_v1.json",
-                "examples/playbook_stress_lane.runtime-timeout-chaos.example.json",
+                STRESS_LANE_SCHEMA,
+                "mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.runtime-timeout-chaos.example.json",
             ),
             (
-                "schemas/playbook_reentry_gate_v1.json",
-                "examples/playbook_reentry_gate.runtime-timeout-chaos.example.json",
+                REENTRY_GATE_SCHEMA,
+                "mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.runtime-timeout-chaos.example.json",
             ),
             (
-                "schemas/playbook_stress_lane_v1.json",
-                "examples/playbook_stress_lane.retrieval-outage-honesty.example.json",
+                STRESS_LANE_SCHEMA,
+                "mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.retrieval-outage-honesty.example.json",
             ),
             (
-                "schemas/playbook_reentry_gate_v1.json",
-                "examples/playbook_reentry_gate.retrieval-outage-honesty.example.json",
+                REENTRY_GATE_SCHEMA,
+                "mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.retrieval-outage-honesty.example.json",
             ),
         )
 
@@ -54,16 +62,16 @@ class AntifragilityPublicSurfaceTests(unittest.TestCase):
     def test_stress_lane_surfaces_are_discoverable_and_bounded(self) -> None:
         readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
         docs_readme = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
-        lanes = (REPO_ROOT / "docs" / "PLAYBOOK_STRESS_LANES.md").read_text(encoding="utf-8")
-        harvest = (REPO_ROOT / "docs" / "PLAYBOOK_STRESS_HARVEST.md").read_text(encoding="utf-8")
-        chaos = (REPO_ROOT / "docs" / "PLAYBOOK_STRESS_CHAOS_WAVE1.md").read_text(encoding="utf-8")
+        lanes = STRESS_LANE_DOC.read_text(encoding="utf-8")
+        harvest = STRESS_HARVEST_DOC.read_text(encoding="utf-8")
+        chaos = RUNTIME_CHAOS_DOC.read_text(encoding="utf-8")
 
-        self.assertIn("docs/PLAYBOOK_STRESS_LANES.md", readme)
-        self.assertIn("docs/PLAYBOOK_STRESS_HARVEST.md", readme)
-        self.assertIn("docs/PLAYBOOK_STRESS_CHAOS_WAVE1.md", readme)
-        self.assertIn("PLAYBOOK_STRESS_LANES", docs_readme)
-        self.assertIn("PLAYBOOK_STRESS_HARVEST", docs_readme)
-        self.assertIn("PLAYBOOK_STRESS_CHAOS_WAVE1", docs_readme)
+        self.assertIn("mechanics/antifragility/parts/stress-lanes/docs/playbook-stress-lanes.md", readme)
+        self.assertIn("mechanics/antifragility/parts/stress-harvest/docs/playbook-stress-harvest.md", readme)
+        self.assertIn("mechanics/antifragility/parts/runtime-chaos-wave1/docs/playbook-stress-chaos-wave1.md", readme)
+        self.assertIn("antifragility/parts/stress-lanes", docs_readme)
+        self.assertIn("antifragility/parts/stress-harvest", docs_readme)
+        self.assertIn("antifragility/parts/runtime-chaos-wave1", docs_readme)
 
         for token in (
             "do not let playbooks replace source-owned receipts",
@@ -88,12 +96,12 @@ class AntifragilityPublicSurfaceTests(unittest.TestCase):
 
     def test_examples_target_existing_playbook(self) -> None:
         for example_path in (
-            "examples/playbook_stress_lane.example.json",
-            "examples/playbook_reentry_gate.example.json",
-            "examples/playbook_stress_lane.runtime-timeout-chaos.example.json",
-            "examples/playbook_reentry_gate.runtime-timeout-chaos.example.json",
-            "examples/playbook_stress_lane.retrieval-outage-honesty.example.json",
-            "examples/playbook_reentry_gate.retrieval-outage-honesty.example.json",
+            "mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.example.json",
+            "mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.example.json",
+            "mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.runtime-timeout-chaos.example.json",
+            "mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.runtime-timeout-chaos.example.json",
+            "mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.retrieval-outage-honesty.example.json",
+            "mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.retrieval-outage-honesty.example.json",
         ):
             with self.subTest(example=example_path):
                 payload = load_json(example_path)

@@ -12,6 +12,25 @@ Tracking starts with the community-docs baseline for this repository.
 - added root design spine surfaces, `DESIGN.md` and `DESIGN.AGENTS.md`, plus
   validation coverage so future mechanics and playbook-canon topology work has
   a checked system and agent-route map.
+- added the first checked `mechanics/` skeleton, separating head-fed mechanics
+  from `Agents-of-Abyss` and local playbook-native mechanics before package
+  payload movement.
+- moved review-gate builder implementations under
+  `mechanics/review-gate/parts/`, retained root compatibility commands, and
+  added `mechanics/real-run-harvest/` for validated retained-root evidence
+  posture.
+- moved antifragility stress-lane, re-entry-gate, stress-harvest,
+  runtime-chaos, and via negativa payloads into
+  `mechanics/antifragility/parts/` while keeping the runtime-chaos source
+  playbook under `playbooks/`.
+- moved Agon trial, trial-kernel-binding, campaign, adoption, and
+  recurrence-adapter payloads into `mechanics/agon/parts/`, retained root
+  generated registries and command wrappers, and kept source Agon playbooks,
+  quests, and recurrence manifests in their owner routes.
+- added retained-root mechanics packages for recurrence, checkpoint,
+  Experience, release support, questbook, RPG reflection, Titan, and portfolio
+  governance so public root/source/read-model routes have explicit owner,
+  next-route, provenance, and validation contracts.
 - tightened the playbook memory-consumer contract so memo-read fields consume
   reviewed `aoa-memo` objects through ids, provenance, lifecycle, and generated
   read models while local `memo/` output remains candidate, receipt, export, or
@@ -202,10 +221,10 @@ This changelog entry uses the release-prep merge date.
 
 ### Validation
 
-- `python scripts/generate_playbook_activation_surfaces.py --check`
-- `python scripts/generate_playbook_federation_surfaces.py --check`
-- `python scripts/generate_playbook_review_status.py --check`
-- `python scripts/generate_playbook_composition_surfaces.py --check`
+- `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check`
+- `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check`
+- `python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check`
+- `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check`
 - `python scripts/validate_playbooks.py`
 - `python -m unittest tests.test_validate_playbooks`
 
@@ -237,7 +256,7 @@ This changelog entry uses the release-prep merge date.
 
 - first public baseline release of `aoa-playbooks` as the canonical scenario and composition layer within AoA
 - public bundle-contract, lifecycle, execution-seam, recurrence, portfolio, and gap-matrix doctrine under `docs/`
-- repo-first real-run workflow and harvest doctrine under `docs/PLAYBOOK_REAL_RUN_WORKFLOW.md`, `docs/PLAYBOOK_REAL_RUN_HARVEST.md`, `docs/real-runs/`, and `docs/gate-reviews/`
+- repo-first real-run workflow and harvest doctrine under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md`, `mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md`, `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`, and `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`
 - authored playbook corpus across checkpoint, witness/compost, long-horizon inquiry, cross-repo rollout, bounded change, infra guard, local diagnosis, remediation, cutover, incident-recovery, and ATM10 overlay scenarios
 - generated activation, federation, and composition surfaces under `generated/`
 - local validator and GitHub Actions repo validation path for authored bundles and derived surfaces
@@ -257,13 +276,13 @@ This changelog entry uses the release-prep merge date.
 - `13` activation example-backed runtime-readable entries in `generated/playbook_activation_surfaces.min.json`
 - `15` federation-checked entries in `generated/playbook_federation_surfaces.min.json`
 - `7` composition-managed playbooks in `generated/playbook_composition_manifest.json`
-- the first reviewed real-run summaries under `docs/real-runs/` plus gate-review verdict surfaces for `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020`
+- the first reviewed real-run summaries under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/` plus gate-review verdict surfaces for `AOA-P-0017`, `AOA-P-0019`, and `AOA-P-0020`
 
 ### Validation
 
-- `python scripts/generate_playbook_activation_surfaces.py --check`
-- `python scripts/generate_playbook_federation_surfaces.py --check`
-- `python scripts/generate_playbook_composition_surfaces.py --check`
+- `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check`
+- `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check`
+- `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check`
 - `python scripts/validate_playbooks.py`
 
 ### Notes

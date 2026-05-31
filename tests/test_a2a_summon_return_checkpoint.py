@@ -7,6 +7,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 GENERATED_ROOT = REPO_ROOT / "generated"
 DOCS_ROOT = REPO_ROOT / "docs"
+MECHANICS_ROOT = REPO_ROOT / "mechanics"
 
 
 def load_generated(name: str):
@@ -16,12 +17,20 @@ def load_generated(name: str):
 def test_a2a_summon_return_checkpoint_docs_stay_discoverable() -> None:
     readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
     docs_map = (DOCS_ROOT / "README.md").read_text(encoding="utf-8")
-    operational_family = (DOCS_ROOT / "PLAYBOOK_OPERATIONAL_FAMILY.md").read_text(
+    operational_family = (
+        MECHANICS_ROOT / "portfolio-governance" / "parts" / "operational-family" / "docs" / "playbook-operational-family.md"
+    ).read_text(
         encoding="utf-8"
     )
-    portfolio = (DOCS_ROOT / "PLAYBOOK_PORTFOLIO.md").read_text(encoding="utf-8")
-    gap_matrix = (DOCS_ROOT / "PLAYBOOK_GAP_MATRIX.md").read_text(encoding="utf-8")
-    execution_seam = (DOCS_ROOT / "PLAYBOOK_EXECUTION_SEAM.md").read_text(encoding="utf-8")
+    portfolio = (
+        MECHANICS_ROOT / "portfolio-governance" / "parts" / "lifecycle-and-portfolio" / "docs" / "playbook-portfolio.md"
+    ).read_text(encoding="utf-8")
+    gap_matrix = (
+        MECHANICS_ROOT / "portfolio-governance" / "parts" / "lifecycle-and-portfolio" / "docs" / "playbook-gap-matrix.md"
+    ).read_text(encoding="utf-8")
+    execution_seam = (
+        MECHANICS_ROOT / "activation" / "parts" / "activation-surface" / "docs" / "playbook-execution-seam.md"
+    ).read_text(encoding="utf-8")
     roadmap = (REPO_ROOT / "ROADMAP.md").read_text(encoding="utf-8")
 
     for text in (

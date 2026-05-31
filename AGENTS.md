@@ -27,11 +27,12 @@ It does not own:
 2. `ROADMAP.md`
 3. `DESIGN.md` when repository shape, source authority, or owner boundaries move
 4. `DESIGN.AGENTS.md` when agent-facing route cards or guidance shape move
-5. the relevant model, bundle, gate, or evidence docs referenced there
-6. the target `playbooks/*/PLAYBOOK.md` or outline surface
-7. affected generated registry or composition surfaces
-8. neighboring repo docs when the playbook touches their meaning
-9. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
+5. `mechanics/README.md` and `mechanics/AGENTS.md` when repeatable operation topology moves
+6. the relevant model, bundle, gate, or evidence docs referenced there
+7. the target `playbooks/*/PLAYBOOK.md` or outline surface
+8. affected generated registry or composition surfaces
+9. neighboring repo docs when the playbook touches their meaning
+10. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
 
 
 ## AGENTS stack law
@@ -92,3 +93,13 @@ State which playbook or outline changed, whether semantics or metadata changed, 
 `DESIGN.AGENTS.md` names the desired form of the agent-facing route mesh.
 Use them before adding new root topology, moving repeatable operation pressure,
 or changing durable `AGENTS.md` card shape.
+`mechanics/README.md` names the checked mechanics atlas, including head-fed
+mechanics from `Agents-of-Abyss`, local playbook-native mechanics, placement
+audit, legacy-name posture, and the first active package routes under
+`mechanics/activation/`, `mechanics/scenario-composition/`,
+`mechanics/federation-closure/`, `mechanics/review-gate/`, and
+`mechanics/real-run-harvest/`, plus the head-fed/local package landings under
+`mechanics/antifragility/`, `mechanics/agon/`, `mechanics/recurrence/`,
+`mechanics/checkpoint/`, `mechanics/experience/`, `mechanics/release-support/`,
+`mechanics/questbook/`, `mechanics/rpg/`, `mechanics/titan/`, and
+`mechanics/portfolio-governance/`.

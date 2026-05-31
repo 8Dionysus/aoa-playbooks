@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "does_not_emit": [
+        "verdict",
+        "scar",
+        "rank_mutation",
+        "tos_promotion"
+      ],
+      "emits": [
+        "recurrence_observation",
+        "owner_review_candidate"
+      ],
+      "hook_id": "component.agon.wave16.aoa_playbooks.drift_watch",
+      "surface_globs": [
+        "generated/agon_campaign_playbook_registry.min.json",
+        "mechanics/agon/parts/campaign-playbooks/config/agon_campaign_playbooks.seed.json",
+        "mechanics/agon/parts/campaign-playbooks/docs/agon-campaign-playbooks.md",
+        "mechanics/agon/parts/campaign-playbooks/docs/agon-campaign-choreography-boundary.md",
+        "mechanics/agon/parts/campaign-playbooks/docs/agon-wave16-playbooks-landing.md"
+      ]
+    }
+  ],
+  "component_id": "component.agon.wave16.aoa_playbooks",
+  "hook_binding_set_id": "component.agon.wave16.aoa_playbooks.hooks",
+  "wave": "XVI"
+}

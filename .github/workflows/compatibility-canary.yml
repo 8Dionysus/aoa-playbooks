@@ -57,15 +57,15 @@ jobs:
         env:
           AOA_AGENTS_ROOT: ${{ github.workspace }}/.deps/aoa-agents
           AOA_EVALS_ROOT: ${{ github.workspace }}/.deps/aoa-evals
-        run: python scripts/generate_playbook_activation_surfaces.py --check
+        run: python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check
 
       - name: Check derived federation surfaces
-        run: python scripts/generate_playbook_federation_surfaces.py --check
+        run: python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
 
       - name: Check derived composition surfaces
         env:
           AOA_SKILLS_ROOT: ${{ github.workspace }}/.deps/aoa-skills
-        run: python scripts/generate_playbook_composition_surfaces.py --check
+        run: python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
 
       - name: Run playbook validator
         env:

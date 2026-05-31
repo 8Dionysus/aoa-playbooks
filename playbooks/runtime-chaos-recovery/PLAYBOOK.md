@@ -102,11 +102,13 @@ support. It stays narrower than owner-local runtime receipts,
 `aoa-stress-recovery-window`, and reviewer judgment.
 
 The seeded example degraded lanes live in
-`examples/playbook_stress_lane.runtime-timeout-chaos.example.json` and
-`examples/playbook_stress_lane.retrieval-outage-honesty.example.json`.
+`mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.runtime-timeout-chaos.example.json`
+and
+`mechanics/antifragility/parts/stress-lanes/examples/playbook_stress_lane.retrieval-outage-honesty.example.json`.
 The matching re-entry gates live in
-`examples/playbook_reentry_gate.runtime-timeout-chaos.example.json` and
-`examples/playbook_reentry_gate.retrieval-outage-honesty.example.json`.
+`mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.runtime-timeout-chaos.example.json`
+and
+`mechanics/antifragility/parts/reentry-gates/examples/playbook_reentry_gate.retrieval-outage-honesty.example.json`.
 The retrieval-outage lane keeps its source-first recovery anchored to
 `aoa-kag:regrounding_ticket_v1` rather than inventing repair authority inside
 the playbook layer.

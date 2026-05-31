@@ -1,7 +1,7 @@
 # QUESTBOOK
 
 This surface tracks the bounded foundation rollout for playbook recurrence in `aoa-playbooks`.
-It stays repo-local and scenario-facing. It does not replace `docs/PLAYBOOK_RECURRENCE_DISCIPLINE.md`.
+It stays repo-local and scenario-facing. It does not replace `mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md`.
 
 ## Frontier
 
@@ -57,8 +57,8 @@ Allowed verdicts:
 
 ## Notes
 
-- Read [`docs/QUEST_HARVEST_AND_REANCHOR.md`](docs/QUEST_HARVEST_AND_REANCHOR.md) for the bounded note.
-- Read [`docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md`](docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md) for orchestrator-facing alignment.
+- Read [`mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md`](mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md) for the bounded note.
+- Read [`mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md`](mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md) for orchestrator-facing alignment.
 - `reanchor` is governed return, not retry.
 - This questbook stays evidence-first and does not become a runtime ledger.
 

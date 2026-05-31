@@ -8,7 +8,7 @@
 ## Читать перед стартом
 - `README.md`
 - `CHARTER.md`
-- `docs/PLAYBOOK_MODEL.md`
+- `mechanics/portfolio-governance/parts/model-spine/docs/playbook-model.md`
 - `docs/BOUNDARIES.md`
 - `ROADMAP.md`
 

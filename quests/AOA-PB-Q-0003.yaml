@@ -29,7 +29,7 @@ activation:
   note: open when the first bounded campaign reflection slice is ready to land
 anchor_ref:
   artifact: questline_campaign_model
-  ref: docs/QUESTLINE_AND_CAMPAIGN_MODEL.md
+  ref: mechanics/questbook/parts/questline-outline/docs/questline-and-campaign-model.md
   note: campaign language must stay outline-shaped and anchor-aware
 handoff_role: playbook-maintainer
 evidence:

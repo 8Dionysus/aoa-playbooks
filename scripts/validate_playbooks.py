@@ -55,7 +55,15 @@ AOA_STATS_ROOT = repo_root_from_env(
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
 ACTIVATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.json"
 FEDERATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
-COMPOSITION_CONFIG_PATH = REPO_ROOT / "config" / "playbook_composition_overrides.json"
+COMPOSITION_CONFIG_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "scenario-composition"
+    / "parts"
+    / "composition-surfaces"
+    / "config"
+    / "playbook_composition_overrides.json"
+)
 PLAYBOOK_HANDOFF_CONTRACTS_PATH = REPO_ROOT / "generated" / "playbook_handoff_contracts.json"
 PLAYBOOK_FAILURE_CATALOG_PATH = REPO_ROOT / "generated" / "playbook_failure_catalog.json"
 PLAYBOOK_SUBAGENT_RECIPES_PATH = REPO_ROOT / "generated" / "playbook_subagent_recipes.json"
@@ -67,33 +75,134 @@ PLAYBOOK_REVIEW_PACKET_CONTRACTS_PATH = (
 )
 PLAYBOOK_REVIEW_INTAKE_PATH = REPO_ROOT / "generated" / "playbook_review_intake.min.json"
 PLAYBOOK_LANDING_GOVERNANCE_PATH = REPO_ROOT / "generated" / "playbook_landing_governance.min.json"
-PHASE_ALPHA_CONFIG_PATH = REPO_ROOT / "config" / "phase_alpha_curated_core.json"
+PHASE_ALPHA_CONFIG_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "phase-alpha-evidence-store"
+    / "config"
+    / "phase_alpha_curated_core.json"
+)
 PHASE_ALPHA_REVIEW_PACKETS_PATH = REPO_ROOT / "generated" / "phase_alpha_review_packets.min.json"
 PHASE_ALPHA_RUN_MATRIX_PATH = REPO_ROOT / "generated" / "phase_alpha_run_matrix.min.json"
 SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-registry.schema.json"
-REVIEW_STATUS_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-review-status.schema.json"
-REVIEW_PACKET_CONTRACTS_SCHEMA_PATH = (
-    REPO_ROOT / "schemas" / "playbook-review-packet-contracts.schema.json"
+REVIEW_STATUS_SCHEMA_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "review-gate"
+    / "parts"
+    / "review-status"
+    / "schemas"
+    / "playbook-review-status.schema.json"
 )
-PLAYBOOK_STRESS_LANES_DOC_PATH = REPO_ROOT / "docs" / "PLAYBOOK_STRESS_LANES.md"
-PLAYBOOK_STRESS_HARVEST_DOC_PATH = REPO_ROOT / "docs" / "PLAYBOOK_STRESS_HARVEST.md"
-PLAYBOOK_STRESS_LANE_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook_stress_lane_v1.json"
-PLAYBOOK_REENTRY_GATE_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook_reentry_gate_v1.json"
-PLAYBOOK_STRESS_LANE_EXAMPLE_PATH = REPO_ROOT / "examples" / "playbook_stress_lane.example.json"
-PLAYBOOK_REENTRY_GATE_EXAMPLE_PATH = REPO_ROOT / "examples" / "playbook_reentry_gate.example.json"
-CODEX_PLANE_ROLLOUT_CYCLE_DOC_PATH = REPO_ROOT / "docs" / "CODEX_PLANE_ROLLOUT_CYCLE.md"
-CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH = REPO_ROOT / "examples" / "codex_plane_rollout_lane.example.json"
+REVIEW_PACKET_CONTRACTS_SCHEMA_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "review-gate"
+    / "parts"
+    / "review-packet-contracts"
+    / "schemas"
+    / "playbook-review-packet-contracts.schema.json"
+)
+ANTIFRAGILITY_ROOT = REPO_ROOT / "mechanics" / "antifragility"
+PLAYBOOK_STRESS_LANES_DOC_PATH = (
+    ANTIFRAGILITY_ROOT / "parts" / "stress-lanes" / "docs" / "playbook-stress-lanes.md"
+)
+PLAYBOOK_STRESS_HARVEST_DOC_PATH = (
+    ANTIFRAGILITY_ROOT / "parts" / "stress-harvest" / "docs" / "playbook-stress-harvest.md"
+)
+PLAYBOOK_STRESS_LANE_SCHEMA_PATH = (
+    ANTIFRAGILITY_ROOT / "parts" / "stress-lanes" / "schemas" / "playbook_stress_lane_v1.json"
+)
+PLAYBOOK_REENTRY_GATE_SCHEMA_PATH = (
+    ANTIFRAGILITY_ROOT / "parts" / "reentry-gates" / "schemas" / "playbook_reentry_gate_v1.json"
+)
+PLAYBOOK_STRESS_LANE_EXAMPLE_PATH = (
+    ANTIFRAGILITY_ROOT / "parts" / "stress-lanes" / "examples" / "playbook_stress_lane.example.json"
+)
+PLAYBOOK_REENTRY_GATE_EXAMPLE_PATH = (
+    ANTIFRAGILITY_ROOT / "parts" / "reentry-gates" / "examples" / "playbook_reentry_gate.example.json"
+)
+CODEX_PLANE_ROLLOUT_CYCLE_DOC_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "release-support"
+    / "parts"
+    / "promotion-and-retention"
+    / "docs"
+    / "codex-plane-rollout-cycle.md"
+)
+CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "release-support"
+    / "parts"
+    / "promotion-and-retention"
+    / "examples"
+    / "codex_plane_rollout_lane.example.json"
+)
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
 EVAL_CATALOG_PATH = AOA_EVALS_ROOT / "generated" / "eval_catalog.min.json"
 SKILL_GOVERNANCE_PATH = AOA_SKILLS_ROOT / "generated" / "governance_backlog.json"
 SKILL_HANDOFF_CONTRACTS_PATH = AOA_SKILLS_ROOT / "generated" / "skill_handoff_contracts.json"
-ACTIVATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-activation-surface.schema.json"
-FEDERATION_SCHEMA_PATH = REPO_ROOT / "schemas" / "playbook-federation-surface.schema.json"
+ACTIVATION_SCHEMA_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "activation"
+    / "parts"
+    / "activation-surface"
+    / "schemas"
+    / "playbook-activation-surface.schema.json"
+)
+FEDERATION_SCHEMA_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "federation-closure"
+    / "parts"
+    / "federation-surfaces"
+    / "schemas"
+    / "playbook-federation-surface.schema.json"
+)
+PLAYBOOK_BUNDLE_CONTRACT_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "activation"
+    / "parts"
+    / "activation-surface"
+    / "docs"
+    / "playbook-bundle-contract.md"
+)
+PLAYBOOK_LIFECYCLE_DOC_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "portfolio-governance"
+    / "parts"
+    / "lifecycle-and-portfolio"
+    / "docs"
+    / "playbook-lifecycle.md"
+)
 QUESTBOOK_PATH = REPO_ROOT / "QUESTBOOK.md"
-QUESTBOOK_HARVEST_DOC_PATH = REPO_ROOT / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
-ORCHESTRATOR_ALIGNMENT_DOC_PATH = REPO_ROOT / "docs" / "ORCHESTRATOR_ALIGNMENT_SURFACES.md"
+QUESTBOOK_HARVEST_DOC_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "questbook"
+    / "parts"
+    / "harvest-reanchor"
+    / "docs"
+    / "quest-harvest-and-reanchor.md"
+)
+ORCHESTRATOR_ALIGNMENT_DOC_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "boundary-bridge"
+    / "parts"
+    / "orchestrator-alignment"
+    / "docs"
+    / "orchestrator-alignment-surfaces.md"
+)
 QUEST_CATALOG_PATH = REPO_ROOT / "generated" / "quest_catalog.min.json"
 QUEST_CATALOG_EXAMPLE_PATH = REPO_ROOT / "generated" / "quest_catalog.min.example.json"
 QUEST_DISPATCH_PATH = REPO_ROOT / "generated" / "quest_dispatch.min.json"
@@ -140,10 +249,10 @@ QUESTBOOK_REQUIRED_DOC_SECTIONS = (
     "Anti-patterns",
 )
 QUESTBOOK_REQUIRED_DOC_TOKENS = (
-    "PLAYBOOK_RECURRENCE_DISCIPLINE",
+    "mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md",
     "reanchor is not retry",
-    "docs/real-runs/",
-    "docs/gate-reviews/",
+    "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/",
+    "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/",
     "artifact anchors",
     "checkpoint anchors",
     "review anchors",
@@ -153,7 +262,7 @@ QUESTBOOK_REQUIRED_INDEX_TOKENS = (
     "Near",
     "Blocked / reanchor",
     "Harvest candidates",
-    "docs/QUEST_HARVEST_AND_REANCHOR.md",
+    "mechanics/questbook/parts/harvest-reanchor/docs/quest-harvest-and-reanchor.md",
 )
 ALLOWED_ORCHESTRATOR_CAPABILITY_TARGETS = {
     "repo_layer_selection",
@@ -172,9 +281,9 @@ ORCHESTRATOR_ALIGNMENT_REQUIRED_TOKENS = (
     "## Boundary rule",
     "Orchestrator class identity lives in `aoa-agents`.",
 )
-PARTY_TEMPLATE_MODEL_NAME = "docs/PARTY_TEMPLATE_MODEL.md"
-BUILD_SYNERGY_POSTURE_NAME = "docs/BUILD_SYNERGY_POSTURE.md"
-PARTY_TEMPLATE_SCHEMA_NAME = "schemas/party_template_catalog.schema.json"
+PARTY_TEMPLATE_MODEL_NAME = "mechanics/rpg/parts/party-template-model/docs/party-template-model.md"
+BUILD_SYNERGY_POSTURE_NAME = "mechanics/rpg/parts/build-synergy-posture/docs/build-synergy-posture.md"
+PARTY_TEMPLATE_SCHEMA_NAME = "mechanics/rpg/parts/party-template-readout/schemas/party_template_catalog.schema.json"
 PARTY_TEMPLATE_EXAMPLE_NAME = "generated/party_template_cards.min.example.json"
 PARTY_TEMPLATE_MODEL_REQUIRED_TOKENS = (
     "## Core rule",
@@ -189,23 +298,35 @@ BUILD_SYNERGY_REQUIRED_TOKENS = (
     "per-run item drops or economy loops",
 )
 CLOSED_QUEST_STATES = {"done", "dropped"}
+ACTIVATION_EXAMPLES_DIR = (
+    REPO_ROOT / "mechanics" / "activation" / "parts" / "activation-surface" / "examples"
+)
+HARVEST_TEMPLATES_DIR = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "harvest-template-source-store"
+    / "examples"
+    / "harvests"
+)
 ACTIVATION_EXAMPLE_PATHS = {
-    "AOA-P-0008": REPO_ROOT / "examples" / "playbook_activation.long-horizon-model-tier-orchestra.example.json",
-    "AOA-P-0009": REPO_ROOT / "examples" / "playbook_activation.restartable-inquiry-loop.example.json",
-    "AOA-P-0010": REPO_ROOT / "examples" / "playbook_activation.cross-repo-boundary-rollout.example.json",
-    "AOA-P-0017": REPO_ROOT / "examples" / "playbook_activation.split-wave-cross-repo-rollout.example.json",
-    "AOA-P-0018": REPO_ROOT / "examples" / "playbook_activation.validation-driven-remediation.example.json",
-    "AOA-P-0019": REPO_ROOT / "examples" / "playbook_activation.release-migration-cutover.example.json",
-    "AOA-P-0020": REPO_ROOT / "examples" / "playbook_activation.incident-recovery-routing.example.json",
+    "AOA-P-0008": ACTIVATION_EXAMPLES_DIR / "playbook_activation.long-horizon-model-tier-orchestra.example.json",
+    "AOA-P-0009": ACTIVATION_EXAMPLES_DIR / "playbook_activation.restartable-inquiry-loop.example.json",
+    "AOA-P-0010": ACTIVATION_EXAMPLES_DIR / "playbook_activation.cross-repo-boundary-rollout.example.json",
+    "AOA-P-0017": ACTIVATION_EXAMPLES_DIR / "playbook_activation.split-wave-cross-repo-rollout.example.json",
+    "AOA-P-0018": ACTIVATION_EXAMPLES_DIR / "playbook_activation.validation-driven-remediation.example.json",
+    "AOA-P-0019": ACTIVATION_EXAMPLES_DIR / "playbook_activation.release-migration-cutover.example.json",
+    "AOA-P-0020": ACTIVATION_EXAMPLES_DIR / "playbook_activation.incident-recovery-routing.example.json",
 }
 HARVEST_TEMPLATE_REQUIREMENTS = {
-    REPO_ROOT / "examples" / "harvests" / "split-wave-cross-repo-rollout.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "split-wave-cross-repo-rollout.harvest-template.md": (
         "wave_plan",
         "bridge_surface_pack",
         "downstream_revalidation_pack",
         "handoff_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "validation-driven-remediation.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "validation-driven-remediation.harvest-template.md": (
         "failure_map",
         "boundary_map",
         "remediation_change_set",
@@ -213,20 +334,20 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "remediation_decision",
         "handoff_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "release-migration-cutover.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "release-migration-cutover.harvest-template.md": (
         "cutover_plan",
         "cutover_decision",
         "post_cutover_verification_pack",
         "handoff_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "incident-recovery-routing.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "incident-recovery-routing.harvest-template.md": (
         "incident_map",
         "stabilization_plan",
         "recovery_decision",
         "recovery_verification_pack",
         "handoff_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "owner-first-capability-landing.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "owner-first-capability-landing.harvest-template.md": (
         "candidate_lineage_pack",
         "owner_landing_bundle",
         "landing_decision",
@@ -235,7 +356,7 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "hardening_record",
         "handoff_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "closeout-owner-follow-through-continuity.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "closeout-owner-follow-through-continuity.harvest-template.md": (
         "reviewed_closeout_pack",
         "owner_handoff_bundle",
         "owner_authorship_bundle",
@@ -243,7 +364,7 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "merge_record",
         "residual_handoff_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "session-growth-cycle.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "session-growth-cycle.harvest-template.md": (
         "checkpoint_carry_bundle",
         "reviewed_closeout_context",
         "candidate_harvest_packet",
@@ -254,7 +375,7 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "writeback_record",
         "stats_refresh_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "federated-live-publisher-activation.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "federated-live-publisher-activation.harvest-template.md": (
         "readiness_audit_pack",
         "owner_activation_plan",
         "owner_change_set",
@@ -262,7 +383,7 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "stats_visibility_pack",
         "residual_handoff_record",
     ),
-    REPO_ROOT / "examples" / "harvests" / "trusted-rollout-operations.harvest-template.md": (
+    HARVEST_TEMPLATES_DIR / "trusted-rollout-operations.harvest-template.md": (
         "rollout_decision",
         "doctor_report_ref",
         "smoke_report_ref",
@@ -273,13 +394,61 @@ HARVEST_TEMPLATE_REQUIREMENTS = {
         "memo_writeback_ref",
     ),
 }
-REAL_RUN_WORKFLOW_PATH = REPO_ROOT / "docs" / "PLAYBOOK_REAL_RUN_WORKFLOW.md"
-REAL_RUN_SUMMARY_HOME_PATH = REPO_ROOT / "docs" / "real-runs" / "README.md"
-REAL_RUN_SUMMARY_DIR = REPO_ROOT / "docs" / "real-runs"
-GATE_REVIEW_DIR = REPO_ROOT / "docs" / "gate-reviews"
-PHASE_ALPHA_HARVESTS_DIR = REPO_ROOT / "examples" / "alpha_harvests"
-PHASE_ALPHA_REVIEWED_RUNS_DIR = REPO_ROOT / "docs" / "alpha-reviewed-runs"
-PHASE_ALPHA_READINESS_DIR = REPO_ROOT / "docs" / "alpha-readiness"
+REAL_RUN_WORKFLOW_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "reviewed-run-source-store"
+    / "docs"
+    / "playbook-real-run-workflow.md"
+)
+REAL_RUN_SUMMARY_DIR = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "reviewed-run-source-store"
+    / "docs"
+    / "real-runs"
+)
+REAL_RUN_SUMMARY_HOME_PATH = REAL_RUN_SUMMARY_DIR / "README.md"
+GATE_REVIEW_DIR = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "reviewed-run-source-store"
+    / "docs"
+    / "gate-reviews"
+)
+PHASE_ALPHA_HARVESTS_DIR = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "harvest-template-source-store"
+    / "examples"
+    / "alpha_harvests"
+)
+PHASE_ALPHA_REVIEWED_RUNS_DIR = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "phase-alpha-evidence-store"
+    / "docs"
+    / "alpha-reviewed-runs"
+)
+PHASE_ALPHA_READINESS_DIR = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "phase-alpha-evidence-store"
+    / "docs"
+    / "alpha-readiness"
+)
 PHASE_ALPHA_PLAYBOOK_ORDER = (
     "AOA-P-0014",
     "AOA-P-0006",
@@ -489,8 +658,8 @@ GATE_REVIEW_REQUIREMENTS = {
     },
 }
 REVIEWED_SUMMARY_GATE_SENTENCE = (
-    "Reviewed summaries may enter this repository under `docs/real-runs/`, but composition changes still "
-    "require explicit gate review under `docs/gate-reviews/`."
+    "Reviewed summaries may enter this repository under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`, but composition changes still "
+    "require explicit gate review under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`."
 )
 REQUIRED_PLAYBOOK_STRESS_LANE_SNIPPETS = (
     "Teach recurring playbooks to expose what happens when the normal route becomes unsafe, under-evidenced, or derived-surface dependent.",
@@ -880,7 +1049,7 @@ REAL_RUN_SUMMARY_FILENAME_RE = re.compile(
 )
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\([^)]+\)")
 REVIEWED_RUN_REF_RE = re.compile(
-    r"docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+(?:\.[a-z0-9-]+)?\.md)"
+    r"mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/(\d{4}-\d{2}-\d{2}\.[a-z0-9-]+(?:\.[a-z0-9-]+)?\.md)"
 )
 
 
@@ -888,7 +1057,7 @@ def extract_reviewed_run_refs(section_text: str) -> list[str]:
     refs: list[str] = []
     seen: set[str] = set()
     for match in REVIEWED_RUN_REF_RE.finditer(section_text):
-        ref = f"docs/real-runs/{match.group(1)}"
+        ref = f"mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/{match.group(1)}"
         if ref not in seen:
             refs.append(ref)
             seen.add(ref)
@@ -1558,6 +1727,18 @@ def validate_root_design_surface() -> None:
         fail(str(exc))
 
 
+def validate_mechanics_skeleton_surface() -> None:
+    try:
+        from validate_mechanics_skeleton import validate_mechanics_skeleton
+    except Exception as exc:  # defensive import guard for local validator wiring
+        fail(f"unable to load mechanics skeleton validator: {exc}")
+
+    try:
+        validate_mechanics_skeleton()
+    except RuntimeError as exc:
+        fail(str(exc))
+
+
 def validate_decision_index_surfaces() -> None:
     try:
         import decision_indexes
@@ -2036,18 +2217,21 @@ def validate_antifragility_stress_surfaces() -> None:
     lanes_doc = read_text(PLAYBOOK_STRESS_LANES_DOC_PATH)
     harvest_doc = read_text(PLAYBOOK_STRESS_HARVEST_DOC_PATH)
 
-    for token in ("docs/PLAYBOOK_STRESS_LANES.md", "docs/PLAYBOOK_STRESS_HARVEST.md"):
+    for token in (
+        "mechanics/antifragility/parts/stress-lanes/docs/playbook-stress-lanes.md",
+        "mechanics/antifragility/parts/stress-harvest/docs/playbook-stress-harvest.md",
+    ):
         if token not in readme:
             fail(f"README.md must link {token}")
-    for token in ("PLAYBOOK_STRESS_LANES", "PLAYBOOK_STRESS_HARVEST"):
+    for token in ("antifragility/parts/stress-lanes", "antifragility/parts/stress-harvest"):
         if token not in docs_readme:
             fail(f"docs/README.md must mention {token}")
     for snippet in REQUIRED_PLAYBOOK_STRESS_LANE_SNIPPETS:
         if snippet not in lanes_doc:
-            fail(f"docs/PLAYBOOK_STRESS_LANES.md is missing required stress-lane guidance: {snippet}")
+            fail(f"{display_path(PLAYBOOK_STRESS_LANES_DOC_PATH)} is missing required stress-lane guidance: {snippet}")
     for snippet in REQUIRED_PLAYBOOK_STRESS_HARVEST_SNIPPETS:
         if snippet not in harvest_doc:
-            fail(f"docs/PLAYBOOK_STRESS_HARVEST.md is missing required harvest guidance: {snippet}")
+            fail(f"{display_path(PLAYBOOK_STRESS_HARVEST_DOC_PATH)} is missing required harvest guidance: {snippet}")
 
     for schema_path, example_path in (
         (PLAYBOOK_STRESS_LANE_SCHEMA_PATH, PLAYBOOK_STRESS_LANE_EXAMPLE_PATH),
@@ -2078,29 +2262,45 @@ def validate_antifragility_stress_surfaces() -> None:
 def validate_codex_plane_rollout_cycle_companion() -> None:
     readme = read_text(REPO_ROOT / "README.md")
     docs_readme = read_text(REPO_ROOT / "docs" / "README.md")
-    execution_seam = read_text(REPO_ROOT / "docs" / "PLAYBOOK_EXECUTION_SEAM.md")
+    execution_seam = read_text(
+        REPO_ROOT
+        / "mechanics"
+        / "activation"
+        / "parts"
+        / "activation-surface"
+        / "docs"
+        / "playbook-execution-seam.md"
+    )
     workflow = read_text(REAL_RUN_WORKFLOW_PATH)
     session_growth_cycle = read_text(REPO_ROOT / "playbooks" / "session-growth-cycle" / "PLAYBOOK.md")
     cycle_doc = read_text(CODEX_PLANE_ROLLOUT_CYCLE_DOC_PATH)
-    cadence_doc = read_text(REPO_ROOT / "docs" / "TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md")
+    cadence_doc = read_text(
+        REPO_ROOT
+        / "mechanics"
+        / "release-support"
+        / "parts"
+        / "promotion-and-retention"
+        / "docs"
+        / "trusted-rollout-campaign-cadence.md"
+    )
 
     for text, location in (
         (readme, "README.md"),
         (docs_readme, "docs/README.md"),
     ):
-        if "CODEX_PLANE_ROLLOUT_CYCLE.md" not in text:
-            fail(f"{location} must mention docs/CODEX_PLANE_ROLLOUT_CYCLE.md")
-        if "TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md" not in text:
-            fail(f"{location} must mention docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md")
-    if "examples/codex_plane_rollout_lane.example.json" not in readme:
-        fail("README.md must mention examples/codex_plane_rollout_lane.example.json")
-    if "docs/CODEX_PLANE_ROLLOUT_CYCLE.md" not in execution_seam:
-        fail("docs/PLAYBOOK_EXECUTION_SEAM.md must mention docs/CODEX_PLANE_ROLLOUT_CYCLE.md")
-    if "docs/CODEX_PLANE_ROLLOUT_CYCLE.md" not in workflow:
-        fail("docs/PLAYBOOK_REAL_RUN_WORKFLOW.md must mention docs/CODEX_PLANE_ROLLOUT_CYCLE.md")
+        if "mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md" not in text:
+            fail(f"{location} must mention mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md")
+        if "mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md" not in text:
+            fail(f"{location} must mention mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md")
+    if "mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json" not in readme:
+        fail("README.md must mention mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json")
+    if "mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md" not in execution_seam:
+        fail("mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md must mention mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md")
+    if "mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md" not in workflow:
+        fail("mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md must mention mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md")
     for token in (
-        "docs/CODEX_PLANE_ROLLOUT_CYCLE.md",
-        "examples/codex_plane_rollout_lane.example.json",
+        "mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md",
+        "mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json",
         "hidden rollout runner",
     ):
         if token not in session_growth_cycle:
@@ -2108,7 +2308,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
 
     for snippet in CODEX_PLANE_ROLLOUT_DOC_SNIPPETS:
         if snippet not in cycle_doc:
-            fail(f"docs/CODEX_PLANE_ROLLOUT_CYCLE.md is missing required guidance: {snippet}")
+            fail(f"mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md is missing required guidance: {snippet}")
     for snippet in (
         "AOA-P-0028",
         "rollout_campaign_window",
@@ -2118,53 +2318,53 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
         "not a hidden runner",
     ):
         if snippet not in cadence_doc:
-            fail(f"docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md is missing required guidance: {snippet}")
+            fail(f"mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md is missing required guidance: {snippet}")
 
     payload = read_json(CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH)
     if not isinstance(payload, dict):
-        fail("examples/codex_plane_rollout_lane.example.json must contain a JSON object")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must contain a JSON object")
     if payload.get("playbook_id") != "AOA-P-0028":
-        fail("examples/codex_plane_rollout_lane.example.json must keep playbook_id AOA-P-0028")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep playbook_id AOA-P-0028")
     if payload.get("playbook") != "trusted-rollout-operations":
-        fail("examples/codex_plane_rollout_lane.example.json must keep playbook trusted-rollout-operations")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep playbook trusted-rollout-operations")
     if payload.get("lane") != "codex-plane-rollout":
-        fail("examples/codex_plane_rollout_lane.example.json must keep lane codex-plane-rollout")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep lane codex-plane-rollout")
     if payload.get("workspace_scope") != "shared-root":
-        fail("examples/codex_plane_rollout_lane.example.json must keep workspace_scope shared-root")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep workspace_scope shared-root")
     if payload.get("success_condition") != "latest_state=stabilized":
-        fail("examples/codex_plane_rollout_lane.example.json must keep success_condition latest_state=stabilized")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep success_condition latest_state=stabilized")
 
     phases = payload.get("phases")
     if not isinstance(phases, list):
-        fail("examples/codex_plane_rollout_lane.example.json phases must be a list")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json phases must be a list")
     actual_phases: list[tuple[str, str]] = []
     for index, phase in enumerate(phases):
         if not isinstance(phase, dict):
-            fail(f"examples/codex_plane_rollout_lane.example.json phases[{index}] must be an object")
+            fail(f"mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json phases[{index}] must be an object")
         name = phase.get("name")
         artifact = phase.get("required_artifact")
         if not isinstance(name, str) or not isinstance(artifact, str):
             fail(
-                "examples/codex_plane_rollout_lane.example.json phases entries must keep "
+                "mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json phases entries must keep "
                 "string name and required_artifact"
             )
         actual_phases.append((name, artifact))
     if tuple(actual_phases) != CODEX_PLANE_ROLLOUT_PHASES:
-        fail("examples/codex_plane_rollout_lane.example.json phases drifted from the rollout lane order")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json phases drifted from the rollout lane order")
 
     required_artifacts = payload.get("required_artifacts")
     if tuple(required_artifacts or ()) != CODEX_PLANE_REQUIRED_ARTIFACTS:
-        fail("examples/codex_plane_rollout_lane.example.json required_artifacts drifted")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json required_artifacts drifted")
     stop_before_apply = payload.get("stop_before_apply")
     if tuple(stop_before_apply or ()) != CODEX_PLANE_STOP_BEFORE_APPLY:
-        fail("examples/codex_plane_rollout_lane.example.json stop_before_apply drifted")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json stop_before_apply drifted")
     rollback_triggers = payload.get("rollback_triggers")
     if tuple(rollback_triggers or ()) != CODEX_PLANE_ROLLBACK_TRIGGERS:
-        fail("examples/codex_plane_rollout_lane.example.json rollback_triggers drifted")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json rollback_triggers drifted")
 
     stable_mcp_names = payload.get("stable_mcp_names")
     if not isinstance(stable_mcp_names, list) or set(stable_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
-        fail("examples/codex_plane_rollout_lane.example.json must keep the stable MCP name set")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep the stable MCP name set")
 
     trust_payload = read_json(AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_trust_state.example.json")
     regeneration_payload = read_json(
@@ -2196,7 +2396,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
 
     evidence_refs = payload.get("evidence_refs")
     if not isinstance(evidence_refs, list) or len(evidence_refs) != 4 or len(evidence_refs) != len(set(evidence_refs)):
-        fail("examples/codex_plane_rollout_lane.example.json must keep four unique evidence_refs")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep four unique evidence_refs")
     rollback_windows = rollback_payload.get("rollback_windows")
     if not isinstance(rollback_windows, list) or not rollback_windows:
         fail("8Dionysus rollback-windows generated surface must expose at least one rollback window")
@@ -2210,7 +2410,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
         first_rollback_window.get("rollback_window_ref"),
     ]
     if evidence_refs != expected_evidence_refs:
-        fail("examples/codex_plane_rollout_lane.example.json evidence_refs must match sibling rollout examples")
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json evidence_refs must match sibling rollout examples")
 
     if status_payload.get("latest_trust_state_ref") != trust_payload.get("trust_state_id"):
         fail("aoa-sdk deploy-status example must point at the 8Dionysus trust-state example")
@@ -2424,11 +2624,11 @@ def validate_memo_recall_spec(
 def validate_memory_consumer_contract_docs(repo_root: Path = REPO_ROOT) -> None:
     docs = (
         (
-            repo_root / "docs" / "PLAYBOOK_BUNDLE_CONTRACT.md",
+            repo_root / PLAYBOOK_BUNDLE_CONTRACT_PATH.relative_to(REPO_ROOT),
             PLAYBOOK_BUNDLE_MEMORY_CONSUMER_SNIPPETS,
         ),
         (
-            repo_root / "docs" / "PLAYBOOK_LIFECYCLE.md",
+            repo_root / PLAYBOOK_LIFECYCLE_DOC_PATH.relative_to(REPO_ROOT),
             PLAYBOOK_LIFECYCLE_MEMORY_CONSUMER_SNIPPETS,
         ),
     )
@@ -2853,7 +3053,7 @@ def validate_activation_collection(
     if payload != expected:
         fail(
             "generated/playbook_activation_surfaces.min.json is out of date; "
-            "run scripts/generate_playbook_activation_surfaces.py"
+            "run mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py"
         )
 
     for index, surface in enumerate(payload):
@@ -3046,7 +3246,7 @@ def validate_federation_collection(
     if payload != expected:
         fail(
             "generated/playbook_federation_surfaces.min.json is out of date; "
-            "run scripts/generate_playbook_federation_surfaces.py"
+            "run mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py"
         )
 
     for index, surface in enumerate(payload):
@@ -3199,7 +3399,7 @@ def validate_composition_surfaces(
         payload = read_json(path)
         if payload != expected:
             fail(
-                f"{display_path(path)} is out of date; run scripts/generate_playbook_composition_surfaces.py"
+                f"{display_path(path)} is out of date; run mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py"
             )
 
     handoff_payload = read_json(PLAYBOOK_HANDOFF_CONTRACTS_PATH)
@@ -3493,9 +3693,9 @@ def validate_real_run_workflow_surfaces() -> None:
     workflow_location = REAL_RUN_WORKFLOW_PATH.relative_to(REPO_ROOT).as_posix()
     for token in (
         REVIEWED_SUMMARY_GATE_SENTENCE,
-        "examples/harvests/",
-        "docs/real-runs/",
-        "docs/gate-reviews/",
+        "mechanics/real-run-harvest/parts/harvest-template-source-store/examples/harvests/",
+        "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/",
+        "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/",
         "AOA-P-0017",
         "AOA-P-0021",
         "AOA-P-0023",
@@ -3565,7 +3765,7 @@ def validate_real_run_workflow_surfaces() -> None:
         latest_review_section = sections.get("Latest Reviewed Run", "")
         slug = requirement["slug"]
         summary_reference_re = re.compile(
-            rf"docs/real-runs/(?:YYYY-MM-DD|\d{{4}}-\d{{2}}-\d{{2}})\.{re.escape(slug)}(?:\.[a-z0-9-]+)?\.md"
+            rf"mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/(?:YYYY-MM-DD|\d{{4}}-\d{{2}}-\d{{2}})\.{re.escape(slug)}(?:\.[a-z0-9-]+)?\.md"
         )
         if not summary_reference_re.search(latest_review_section):
             fail(
@@ -3680,30 +3880,30 @@ def validate_phase_alpha_surfaces(
 ) -> None:
     config = read_json(PHASE_ALPHA_CONFIG_PATH)
     if not isinstance(config, dict):
-        fail("config/phase_alpha_curated_core.json must stay a JSON object")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json must stay a JSON object")
 
     runtime_paths = config.get("runtime_paths")
     if not isinstance(runtime_paths, dict):
-        fail("config/phase_alpha_curated_core.json must expose runtime_paths")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json must expose runtime_paths")
     primary_runtime = runtime_paths.get("primary")
     control_runtime = runtime_paths.get("control")
     if not isinstance(primary_runtime, str) or "5403" not in primary_runtime or "LangGraph" not in primary_runtime:
-        fail("config/phase_alpha_curated_core.json runtime_paths.primary must keep the llama.cpp + LangGraph worker path")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json runtime_paths.primary must keep the llama.cpp + LangGraph worker path")
     if (
         not isinstance(control_runtime, str)
         or "5403" not in control_runtime
         or "llama.cpp" not in control_runtime
         or "recurrence" not in control_runtime
     ):
-        fail("config/phase_alpha_curated_core.json runtime_paths.control must keep the canonical llama.cpp second-pass recurrence path")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json runtime_paths.control must keep the canonical llama.cpp second-pass recurrence path")
 
     playbooks = config.get("playbooks")
     if not isinstance(playbooks, list) or len(playbooks) != len(PHASE_ALPHA_PLAYBOOK_ORDER):
-        fail("config/phase_alpha_curated_core.json must expose the five Alpha core playbooks in order")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json must expose the five Alpha core playbooks in order")
 
     seen_ids: list[str] = []
     for index, entry in enumerate(playbooks):
-        location = f"config/phase_alpha_curated_core.json.playbooks[{index}]"
+        location = f"mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json.playbooks[{index}]"
         if not isinstance(entry, dict):
             fail(f"{location} must be an object")
         playbook_id = entry.get("playbook_id")
@@ -3721,7 +3921,7 @@ def validate_phase_alpha_surfaces(
             fail(f"{location}.runtime_path_key must stay a non-empty string")
         runtime_path = runtime_paths.get(runtime_path_key)
         if not isinstance(runtime_path, str) or not runtime_path:
-            fail(f"{location}.runtime_path_key must resolve in config/phase_alpha_curated_core.json.runtime_paths")
+            fail(f"{location}.runtime_path_key must resolve in mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json.runtime_paths")
 
         for field_name in (
             "required_artifacts",
@@ -3814,32 +4014,32 @@ def validate_phase_alpha_surfaces(
             fail(f"{entry['readiness_review_ref']} Current Verdict must expose curated-ready")
 
     if tuple(seen_ids) != PHASE_ALPHA_PLAYBOOK_ORDER:
-        fail("config/phase_alpha_curated_core.json playbooks drifted from the fixed Phase Alpha order")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json playbooks drifted from the fixed Phase Alpha order")
 
     final_rerun = config.get("final_rerun")
     if not isinstance(final_rerun, dict):
-        fail("config/phase_alpha_curated_core.json must expose final_rerun")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json must expose final_rerun")
     if final_rerun.get("run_id") != PHASE_ALPHA_FINAL_RERUN_ID:
-        fail("config/phase_alpha_curated_core.json final_rerun.run_id must stay fixed")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json final_rerun.run_id must stay fixed")
     if final_rerun.get("playbook_id") != "AOA-P-0018":
-        fail("config/phase_alpha_curated_core.json final_rerun.playbook_id must stay AOA-P-0018")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json final_rerun.playbook_id must stay AOA-P-0018")
     if final_rerun.get("recall_mode") != "memo_only":
-        fail("config/phase_alpha_curated_core.json final_rerun.recall_mode must stay memo_only")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json final_rerun.recall_mode must stay memo_only")
     final_runtime_path_key = final_rerun.get("runtime_path_key")
     if not isinstance(final_runtime_path_key, str) or not final_runtime_path_key:
-        fail("config/phase_alpha_curated_core.json final_rerun.runtime_path_key must stay a non-empty string")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json final_rerun.runtime_path_key must stay a non-empty string")
     final_runtime_path = runtime_paths.get(final_runtime_path_key)
     if not isinstance(final_runtime_path, str) or not final_runtime_path:
-        fail("config/phase_alpha_curated_core.json final_rerun.runtime_path_key must resolve in runtime_paths")
+        fail("mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json final_rerun.runtime_path_key must resolve in runtime_paths")
     for field_name in ("required_artifacts", "eval_anchors", "memo_outputs", "stop_conditions"):
         value = final_rerun.get(field_name)
         if not isinstance(value, list) or not value:
-            fail(f"config/phase_alpha_curated_core.json final_rerun.{field_name} must stay a non-empty list")
+            fail(f"mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json final_rerun.{field_name} must stay a non-empty list")
     for anchor in final_rerun["eval_anchors"]:
         if anchor not in evals_by_name:
-            fail(f"config/phase_alpha_curated_core.json final_rerun.eval_anchors contains unknown eval '{anchor}'")
+            fail(f"mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json final_rerun.eval_anchors contains unknown eval '{anchor}'")
     for ref_field in ("run_ref", "recall_contract_ref"):
-        error = local_ref_error(final_rerun.get(ref_field), f"config/phase_alpha_curated_core.json.final_rerun.{ref_field}")
+        error = local_ref_error(final_rerun.get(ref_field), f"mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json.final_rerun.{ref_field}")
         if error:
             fail(error)
 
@@ -3864,14 +4064,14 @@ def validate_phase_alpha_surfaces(
     if actual_review_packets != expected_review_packets:
         fail(
             "generated/phase_alpha_review_packets.min.json drifted from "
-            "config/phase_alpha_curated_core.json"
+            "mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json"
         )
     expected_run_matrix = builder.build_phase_alpha_run_matrix_payload()
     actual_run_matrix = read_json(PHASE_ALPHA_RUN_MATRIX_PATH)
     if actual_run_matrix != expected_run_matrix:
         fail(
             "generated/phase_alpha_run_matrix.min.json drifted from "
-            "config/phase_alpha_curated_core.json"
+            "mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json"
         )
 
 
@@ -3886,7 +4086,7 @@ def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str,
     if payload != expected:
         fail(
             "generated/playbook_review_status.min.json is out of date; "
-            "run scripts/generate_playbook_review_status.py"
+            "run mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py"
         )
     if not isinstance(payload, dict):
         fail("generated/playbook_review_status.min.json must contain a JSON object")
@@ -3897,9 +4097,9 @@ def validate_playbook_review_status_surface(playbooks_by_id: dict[str, dict[str,
     source_of_truth = payload.get("source_of_truth")
     if not isinstance(source_of_truth, dict):
         fail("generated/playbook_review_status.min.json must expose source_of_truth")
-    if source_of_truth.get("reviewed_runs_dir") != "docs/real-runs":
+    if source_of_truth.get("reviewed_runs_dir") != "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs":
         fail("generated/playbook_review_status.min.json must keep source_of_truth.reviewed_runs_dir")
-    if source_of_truth.get("gate_reviews_dir") != "docs/gate-reviews":
+    if source_of_truth.get("gate_reviews_dir") != "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews":
         fail("generated/playbook_review_status.min.json must keep source_of_truth.gate_reviews_dir")
 
     entries = payload.get("playbooks")
@@ -3991,7 +4191,7 @@ def validate_playbook_review_packet_contracts_surface(
     if payload != expected:
         fail(
             "generated/playbook_review_packet_contracts.min.json is out of date; "
-            "run scripts/generate_playbook_review_packet_contracts.py"
+            "run mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py"
         )
     if not isinstance(payload, dict):
         fail("generated/playbook_review_packet_contracts.min.json must contain a JSON object")
@@ -4155,7 +4355,7 @@ def validate_playbook_review_intake_surface() -> None:
     if payload != expected:
         fail(
             "generated/playbook_review_intake.min.json is out of date; "
-            "run scripts/generate_playbook_review_intake.py"
+            "run mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py"
         )
     if not isinstance(payload, dict):
         fail("generated/playbook_review_intake.min.json must contain a JSON object")
@@ -4166,9 +4366,9 @@ def validate_playbook_review_intake_surface() -> None:
     expected_source_of_truth = {
         "review_packet_contracts": "generated/playbook_review_packet_contracts.min.json",
         "review_status": "generated/playbook_review_status.min.json",
-        "activation_examples": "examples/playbook_activation.*.example.json",
-        "gate_reviews_dir": "docs/gate-reviews",
-        "reviewed_runs_dir": "docs/real-runs",
+        "activation_examples": "mechanics/activation/parts/activation-surface/examples/playbook_activation.*.example.json",
+        "gate_reviews_dir": "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews",
+        "reviewed_runs_dir": "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs",
     }
     if payload.get("source_of_truth") != expected_source_of_truth:
         fail("generated/playbook_review_intake.min.json must keep source_of_truth stable")
@@ -4237,7 +4437,10 @@ def validate_playbook_review_intake_surface() -> None:
         if entry.get("gate_review_ref") != expected_gate_review_ref:
             fail(f"{location}.gate_review_ref must match generated/playbook_review_status.min.json when present")
 
-        expected_template_ref = f"examples/playbook_activation.{contract['playbook_name']}.example.json"
+        expected_template_ref = (
+            "mechanics/activation/parts/activation-surface/examples/"
+            f"playbook_activation.{contract['playbook_name']}.example.json"
+        )
         if (REPO_ROOT / expected_template_ref).is_file():
             if entry.get("real_run_template_ref") != expected_template_ref:
                 fail(f"{location}.real_run_template_ref must match the current activation example")
@@ -4281,7 +4484,7 @@ def validate_playbook_landing_governance_surface(playbooks_by_id: dict[str, dict
     if payload != expected:
         fail(
             "generated/playbook_landing_governance.min.json is out of date; "
-            "run scripts/generate_playbook_landing_governance.py"
+            "run mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py"
         )
     if not isinstance(payload, dict):
         fail("generated/playbook_landing_governance.min.json must contain a JSON object")
@@ -4410,8 +4613,8 @@ def validate_playbook_landing_governance_surface(playbooks_by_id: dict[str, dict
 
 def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
     questbook_path = repo_root / "QUESTBOOK.md"
-    harvest_doc_path = repo_root / "docs" / "QUEST_HARVEST_AND_REANCHOR.md"
-    alignment_doc_path = repo_root / "docs" / "ORCHESTRATOR_ALIGNMENT_SURFACES.md"
+    harvest_doc_path = repo_root / QUESTBOOK_HARVEST_DOC_PATH.relative_to(REPO_ROOT)
+    alignment_doc_path = repo_root / ORCHESTRATOR_ALIGNMENT_DOC_PATH.relative_to(REPO_ROOT)
     quest_ids = discover_questbook_quest_ids(repo_root)
     missing_foundation = [
         quest_id for quest_id in FOUNDATION_QUESTBOOK_QUEST_IDS if quest_id not in quest_ids
@@ -4465,8 +4668,8 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
             expected_ref, expected_target = expected_orchestrator_pair
             if payload.get("kind") != "seam":
                 fail(f"{location} must keep kind 'seam' for orchestrator alignment quests")
-            if payload.get("owner_surface") != "docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md":
-                fail(f"{location} must keep owner_surface docs/ORCHESTRATOR_ALIGNMENT_SURFACES.md")
+            if payload.get("owner_surface") != "mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md":
+                fail(f"{location} must keep owner_surface mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md")
             if payload.get("orchestrator_class_ref") != expected_ref:
                 fail(f"{location} must keep orchestrator_class_ref '{expected_ref}'")
             if payload.get("capability_target") != expected_target:
@@ -4474,8 +4677,8 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
         if quest_id == "AOA-PB-Q-0007":
             if payload.get("kind") != "seam":
                 fail(f"{location} must keep kind 'seam' for the bridge-wave party template quest")
-            if payload.get("owner_surface") != "docs/PARTY_TEMPLATE_MODEL.md":
-                fail(f"{location} must keep owner_surface docs/PARTY_TEMPLATE_MODEL.md")
+            if payload.get("owner_surface") != "mechanics/rpg/parts/party-template-model/docs/party-template-model.md":
+                fail(f"{location} must keep owner_surface mechanics/rpg/parts/party-template-model/docs/party-template-model.md")
         source_path = quest_path.relative_to(repo_root).as_posix()
         state = payload.get("state")
         if not isinstance(state, str) or not state:
@@ -4556,9 +4759,9 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
 
         schema_payload = read_json(party_template_schema_path)
         if not isinstance(schema_payload, dict):
-            fail("schemas/party_template_catalog.schema.json must be a JSON object")
+            fail("mechanics/rpg/parts/party-template-readout/schemas/party_template_catalog.schema.json must be a JSON object")
         if schema_payload.get("title") != "party_template_catalog_v1":
-            fail("schemas/party_template_catalog.schema.json must keep title 'party_template_catalog_v1'")
+            fail("mechanics/rpg/parts/party-template-readout/schemas/party_template_catalog.schema.json must keep title 'party_template_catalog_v1'")
         Draft202012Validator.check_schema(schema_payload)
 
         example_payload = read_json(party_template_example_path)
@@ -4601,6 +4804,7 @@ def validate_questbook_surface(repo_root: Path = REPO_ROOT) -> None:
 def main() -> int:
     try:
         validate_root_design_surface()
+        validate_mechanics_skeleton_surface()
         validate_nested_agents_surface()
         validate_decision_index_surfaces()
         validate_schema_surface()
@@ -4655,6 +4859,7 @@ def main() -> int:
         return 1
 
     print("[ok] validated root design surfaces")
+    print("[ok] validated mechanics skeleton surfaces")
     print("[ok] validated nested AGENTS docs")
     print("[ok] validated decision index surfaces")
     print("[ok] validated playbook registry schema surface")
