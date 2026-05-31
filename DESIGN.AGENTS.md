@@ -92,19 +92,19 @@ They narrow the root card. They do not overturn it.
 It should keep the split between scenario route, neighboring owner references,
 generated registry metadata, and review evidence visible.
 
-### Mechanics skeleton and future mechanic cards
+### Mechanics Root and Package Cards
 
-The mechanics skeleton starts at `mechanics/AGENTS.md` and
-`mechanics/README.md`.
+The mechanics route starts at `mechanics/AGENTS.md` and `mechanics/README.md`.
 
-`mechanics/HEAD_MECHANICS.md` routes center-fed mechanics that begin in
-`Agents-of-Abyss`. `mechanics/LOCAL_MECHANICS.md` routes playbook-native
-mechanics born inside this repository.
+The root has only two mechanics docs: `README.md` and `AGENTS.md`. It routes
+head-fed mechanics that begin in `Agents-of-Abyss`, local mechanics born inside
+this repository, placement rules, legacy-name posture, and package shape.
 
-`mechanics/PLACEMENT_AUDIT.md` records whether each mechanics-related payload
-family moves, stays root-public, stays playbook-owned, or routes to a stronger
-owner. `mechanics/LEGACY_NAMING.md` classifies old names before package-local
-provenance is opened.
+Do not add root-level mechanics rosters, audits, templates, backlog files,
+scratch notes, migration notes, or `_meta/` lanes. Active detail belongs in the
+owning package. Historical rationale belongs in `docs/decisions/`. Former-path
+accounting belongs in package `PROVENANCE.md` and package-local `legacy/` only
+after the active route exists.
 
 `mechanics/activation/`, `mechanics/scenario-composition/`,
 `mechanics/federation-closure/`, `mechanics/review-gate/`, and
@@ -262,9 +262,9 @@ Nested `AGENTS.md` cards narrow local work.
 `docs/README.md` maps documentation.
 `docs/BOUNDARIES.md` names owner boundaries.
 `docs/decisions/` preserves topology and route-law rationale.
-`mechanics/AGENTS.md`, `mechanics/README.md`, `mechanics/PLACEMENT_AUDIT.md`,
-and `mechanics/LEGACY_NAMING.md` route repeatable operation topology before
-and during child package growth.
+`mechanics/AGENTS.md`, `mechanics/README.md`, and package-local
+`mechanics/*/AGENTS.md` cards route repeatable operation topology during
+package growth.
 `generated/` remains a derived companion.
 `Spark/` and `.agents/skills/` remain companion lanes; they are not authored
 playbook meaning.

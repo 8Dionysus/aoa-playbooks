@@ -20,13 +20,11 @@ Read:
 
 1. root `AGENTS.md`
 2. `mechanics/AGENTS.md`
-3. `mechanics/HEAD_MECHANICS.md`
-4. `mechanics/LOCAL_MECHANICS.md`
-5. `mechanics/PLACEMENT_AUDIT.md`
-6. this package `README.md`
-7. `PARTS.md`
-8. target part README/doc/schema/example
-9. `playbooks/runtime-chaos-recovery/PLAYBOOK.md` when the runtime-chaos route
+3. `mechanics/README.md`
+4. this package `README.md`
+5. `PARTS.md`
+6. target part README/doc/schema/example
+7. `playbooks/runtime-chaos-recovery/PLAYBOOK.md` when the runtime-chaos route
    is involved
 
 ## Boundaries

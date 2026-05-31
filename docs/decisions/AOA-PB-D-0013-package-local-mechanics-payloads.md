@@ -82,7 +82,8 @@ As of 2026-05-31:
   Titan, and portfolio-governance are active package-local mechanics packages.
 - Valid: generated outputs stay root-published read models.
 - Valid: source playbooks stay in `playbooks/`.
-- Superseded by: none.
+- Superseded by: AOA-PB-D-0014 for root mechanics file shape; still valid for
+  package-local payload placement.
 
 ## Review Log
 
@@ -125,7 +126,8 @@ As of 2026-05-31:
 - `scripts/mechanic_package_validator.py`
 - `tests/test_package_local_mechanics_packages.py`
 - `scripts/release_check.py`
-- `mechanics/PLACEMENT_AUDIT.md`
+- `mechanics/README.md`
+- `docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`
 
 ## Verification
 

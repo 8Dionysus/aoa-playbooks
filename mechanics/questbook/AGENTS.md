@@ -15,7 +15,7 @@ root-public source/read-model routes.
 
 ## Read before editing
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/PLACEMENT_AUDIT.md`,
+Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
 this package `README.md`, `QUESTBOOK.md`, and `mechanics/questbook/parts/questline-outline/docs/questline-and-campaign-model.md`.
 
 ## Boundaries

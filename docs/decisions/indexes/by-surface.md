@@ -41,6 +41,7 @@
 - [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## decision record
 
@@ -56,6 +57,7 @@
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## mechanic package
 
@@ -69,6 +71,7 @@
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## mechanic part
 
@@ -104,6 +107,7 @@
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## legacy/provenance
 
@@ -136,6 +140,7 @@
 ## source topology
 
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 
 ## stronger-owner handoff
 

@@ -39,13 +39,13 @@ class MechanicsSkeletonValidationTests(unittest.TestCase):
             result = validator.validate(repo_root)
             self.assertEqual((), result.issues)
 
-    def test_missing_head_roster_fails(self) -> None:
+    def test_extra_root_mechanics_markdown_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
             _write_minimal_required_tree(repo_root)
-            (repo_root / "mechanics" / "HEAD_MECHANICS.md").unlink()
+            _write(repo_root / "mechanics" / "NOTES.md", "old root note\n")
             result = validator.validate(repo_root)
-            self.assertIn("mechanics/HEAD_MECHANICS.md: file is missing", result.issues)
+            self.assertIn("mechanics/NOTES.md: root mechanics markdown is forbidden", result.issues)
 
     def test_entrypoints_must_route_to_mechanics(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -54,9 +54,17 @@ class MechanicsSkeletonValidationTests(unittest.TestCase):
             _write(repo_root / "README.md", "mechanics/README.md\n")
             result = validator.validate(repo_root)
             self.assertIn(
-                "README.md: missing required token 'mechanics/HEAD_MECHANICS.md'",
+                "README.md: missing required token 'mechanics/AGENTS.md'",
                 result.issues,
             )
+
+    def test_root_holding_directory_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            (repo_root / "mechanics" / "_meta").mkdir()
+            result = validator.validate(repo_root)
+            self.assertIn("mechanics/_meta/: root mechanics holding directory is forbidden", result.issues)
 
     def test_future_child_package_requires_package_shape(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

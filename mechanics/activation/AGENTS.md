@@ -18,13 +18,12 @@ Read:
 1. root `AGENTS.md`
 2. `DESIGN.md`
 3. `DESIGN.AGENTS.md`
-4. `mechanics/README.md`
-5. `mechanics/PLACEMENT_AUDIT.md`
-6. `mechanics/LEGACY_NAMING.md`
-7. `mechanics/activation/README.md`
-8. `mechanics/activation/PARTS.md`
-9. `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`
-10. `playbooks/AGENTS.md` before changing authored playbook inputs
+4. `mechanics/AGENTS.md`
+5. `mechanics/README.md`
+6. `mechanics/activation/README.md`
+7. `mechanics/activation/PARTS.md`
+8. `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`
+9. `playbooks/AGENTS.md` before changing authored playbook inputs
 
 ## Boundaries
 

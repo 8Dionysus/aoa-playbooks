@@ -15,7 +15,7 @@ under `playbooks/`.
 
 ## Read before editing
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/PLACEMENT_AUDIT.md`,
+Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
 this package `README.md`, and `mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md`.
 
 ## Boundaries

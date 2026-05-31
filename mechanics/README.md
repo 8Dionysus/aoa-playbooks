@@ -1,120 +1,119 @@
-# Playbook Mechanics Atlas
+# Playbook Mechanics
 
-`mechanics/` is the operation atlas for repeatable playbook-layer mechanics in
-`aoa-playbooks`.
+`mechanics/` is the package directory for repeatable playbook-layer mechanics.
 
-It does not replace source playbooks under `playbooks/`, public explanation
-under `docs/`, source config under `config/`, schemas under `schemas/`,
-examples under `examples/`, generated readers under `generated/`, or decisions
-under `docs/decisions/`.
-
-It names the operations that repeatedly move pressure across those surfaces and
-keeps owner boundaries visible.
-
-This first skeleton creates the route. The placement audit and legacy naming
-gate now define how payloads can move without creating a root archive lane or
-blurring source playbooks with mechanic packages.
+The first screen should show the active packages. It should not become a shelf
+of transition notes. Root-level mechanics docs are limited to this atlas and
+`AGENTS.md`; durable detail belongs in package `README.md`, `PARTS.md`,
+`PROVENANCE.md`, package-local `legacy/`, or `docs/decisions/`.
 
 ## Operating Card
 
 | Field | Route |
 | --- | --- |
-| role | atlas for repeatable playbook-layer operations |
-| entry | choose `head-fed` when pressure starts from `Agents-of-Abyss`; choose `local` when pressure starts from playbook-owned scenario machinery |
-| input | recurring scenario-operation pressure, owner-request pressure, generated-reader drift, review-gate drift, package-boundary pressure, or topology movement |
-| output | lane route, package-growth candidate, validator route, source-owner route, or stronger-owner handoff |
-| owner | `mechanics/AGENTS.md`, this atlas, `HEAD_MECHANICS.md`, `LOCAL_MECHANICS.md`, and future package cards |
-| next route | target source playbook, generated builder, review/gate source, decision record, or stronger owner repo |
-| validation | `python scripts/validate_mechanics_skeleton.py` and the nearest future package card |
+| role | package directory for repeatable playbook-layer mechanics |
+| input | recurring operation pressure, generated-reader drift, review-gate drift, package-boundary movement, or head-fed owner pressure from `Agents-of-Abyss` |
+| output | package route, source-owner route, generated/read-model route, validator route, or stronger-owner handoff |
+| owner | this atlas plus the target package card |
+| next route | target package, source playbook, generated builder, decision record, or stronger owner repo |
+| validation | `python scripts/validate_mechanics_skeleton.py`, package validator, `python scripts/validate_playbooks.py`, or `python scripts/release_check.py` |
 
-## Mechanics Classes
+## Root Files Rule
 
-### Head-fed mechanics
+Allowed root files in `mechanics/`:
 
-Head-fed mechanics start at `Agents-of-Abyss` as center mechanics and land in
-owner repos only through a local owner split.
+- `README.md`
+- `AGENTS.md`
 
-They answer:
+Do not add root-level roster, audit, template, backlog, legacy, notes, scratch,
+migration, or `_meta/` holding surfaces. If the content is active, put it in the
+package that owns the operation. If it is historical rationale, put it in
+`docs/decisions/`. If it is old-path accounting, put it in package
+`PROVENANCE.md`.
 
-- what center mechanic is pressing on the playbook layer;
-- what the center owns;
-- what `aoa-playbooks` may own locally;
-- what remains with another owner repo;
-- what must be validated before the local landing can claim more than a route.
+## Package Directory
 
-The current roster lives in [HEAD_MECHANICS](HEAD_MECHANICS.md).
+| Package | Class | Role |
+| --- | --- | --- |
+| `activation/` | local | runtime-readable activation surfaces without owning runtime state |
+| `agon/` | head-fed | trial, kernel-binding, campaign, adoption, and recurrence-adapter choreography |
+| `antifragility/` | head-fed/local | stress lanes, re-entry gates, harvest, runtime-chaos, and via negativa posture |
+| `boundary-bridge/` | head-fed | handoff and orchestrator bridge posture without ownership transfer |
+| `checkpoint/` | head-fed | checkpoint return and distillation routes without memory truth |
+| `experience/` | head-fed | adoption, certification, service, office, and governance playbook posture |
+| `federation-closure/` | local | sibling refs and federation readouts without sibling ownership |
+| `portfolio-governance/` | local | model, lifecycle, gap, portfolio, and chooser discipline |
+| `questbook/` | head-fed | questline/campaign adjunct posture without quest authority |
+| `real-run-harvest/` | local | run evidence and review posture without proof or memory truth |
+| `recurrence/` | head-fed/local | recurrence, return, relaunch, and reanchor posture |
+| `release-support/` | head-fed/local | release, rollout, rollback, retention, and operator support posture |
+| `review-gate/` | local | review status, packet, intake, landing governance, and Phase Alpha readouts |
+| `rpg/` | head-fed | RPG vocabulary as bounded reflection only |
+| `scenario-composition/` | local | handoffs, failure catalog, automation seeds, subagent recipes, and composition manifests |
+| `titan/` | head-fed/local | Titan route ecology and drill posture without role authority |
 
-### Local mechanics
+## Head-Fed Mechanics
 
-Local mechanics start inside `aoa-playbooks`.
+Head-fed mechanics begin as center pressure in `Agents-of-Abyss` and become
+playbook-local only when this repo has a repeatable operation, source surface,
+owner split, stop-line, and validator.
 
-They answer:
+Current head-fed package routes: `agon`, `antifragility`, `boundary-bridge`,
+`checkpoint`, `experience`, `questbook`, `recurrence`, `release-support`,
+`rpg`, and `titan`.
 
-- what repeatable playbook-layer operation keeps recurring;
-- which playbook source, generated reader, review gate, or config surface owns
-  the active claim;
-- what may become package-local later;
-- what must remain in playbook source, generated readers, docs, or sibling
-  owners.
+Head-fed never means `aoa-playbooks` owns center law, runtime execution, proof
+verdicts, memory truth, role authority, route dispatch, stats truth, or KAG
+promotion.
 
-The current roster lives in [LOCAL_MECHANICS](LOCAL_MECHANICS.md).
+## Local Mechanics
 
-## Skeleton Route
+Local mechanics begin inside `aoa-playbooks` from scenario composition,
+generated readers, review gates, evidence posture, or playbook portfolio
+discipline.
 
-Use this skeleton before creating child packages:
+Current local package routes: `activation`, `federation-closure`,
+`portfolio-governance`, `real-run-harvest`, `review-gate`, and
+`scenario-composition`.
 
-1. Name the pressure.
-2. Decide whether it is `head-fed` or `local`.
-3. Check the matching roster.
-4. Identify the source surface and stronger owner split.
-5. Decide whether the operation already needs a child package or only a route
-   note.
-6. Check [PLACEMENT_AUDIT](PLACEMENT_AUDIT.md) and
-   [LEGACY_NAMING](LEGACY_NAMING.md) for current placement and old-name
-   posture.
-7. If a package is needed, start from [PACKAGE_TEMPLATE](PACKAGE_TEMPLATE.md)
-   and add validation in the same slice.
+Local never means the package replaces source playbooks, generated read models,
+root decisions, public release entrypoints, or sibling-owner truth.
 
-## Package Route Standard
+## Placement Rules
 
-Future `mechanics/<slug>/` packages should use this minimum surface set:
+- Source-authored scenario canon stays in `playbooks/*/PLAYBOOK.md`.
+- Quest sources stay in `QUESTBOOK.md` and `quests/`.
+- Root generated read models stay in `generated/`.
+- Durable rationale stays in `docs/decisions/`.
+- Root command wrappers may stay in `scripts/` only when they are public
+  compatibility entrypoints.
+- Mechanics-owned docs, schemas, examples, config, manifests, builders, and
+  evidence templates live under `mechanics/<package>/parts/...`.
+- No source playbook has moved.
 
-| Surface | Use for |
-| --- | --- |
-| `AGENTS.md` | package-local route law, validation, and closeout |
-| `README.md` | mechanic card and entry route |
-| `PARTS.md` | active functioning parts and deferred payload map |
-| `PROVENANCE.md` | active-first bridge to center source, prior path, or sibling evidence |
-| `docs/` | mechanic-owned doctrine only after package validation exists |
-| `parts/` | part-local contracts and payload homes after part validation exists |
+## Legacy Rules
 
-Do not create these files as empty ceremony. A child package must have at least
-one source surface, owner split, stop-line, and validation route.
+Legacy names are former paths, accepted input names, generated projections,
+historical wave names, candidate names, or stronger-owner vocabulary. They are
+not alternate active routes.
 
-## Head And Local Split
+Concrete former-path accounting belongs in the owning package `PROVENANCE.md`
+and, only when useful, package-local `legacy/`. A repository-root `legacy/`
+directory is forbidden for mechanics accounting.
 
-| Class | Source of pressure | Local acceptance requirement | Must not claim |
-| --- | --- | --- | --- |
-| `head-fed` | center mechanics in `Agents-of-Abyss` | playbook-local operation, source surface, stop-line, and validator route | center authority, owner acceptance, or sibling truth |
-| `local` | recurring playbook-layer operation | source playbook, generated builder, review surface, config, schema, or decision route | center law, runtime execution, proof verdict, memory truth, role authority, or routing policy |
+## Package Shape
 
-## Current Status
+A package needs real function before it exists. Minimum shape:
 
-Status: `package-growth`.
+- `mechanics/<slug>/AGENTS.md`
+- `mechanics/<slug>/README.md`
+- `mechanics/<slug>/PARTS.md`
+- `mechanics/<slug>/PROVENANCE.md`
+- package validator when payloads move
 
-`mechanics/activation/`, `mechanics/scenario-composition/`,
-`mechanics/federation-closure/`, `mechanics/review-gate/`, and
-`mechanics/real-run-harvest/` are operational local packages.
-`mechanics/antifragility/`, `mechanics/agon/`, `mechanics/recurrence/`,
-`mechanics/checkpoint/`, `mechanics/experience/`,
-`mechanics/release-support/`, `mechanics/questbook/`, `mechanics/rpg/`, and
-`mechanics/titan/` are package-active head-fed/local routes.
-`mechanics/portfolio-governance/` is a package-active package-local local
-route.
-No source playbook has moved.
-The active result is a checked route map, placement audit, legacy-name gate,
-package-local implementation moves that keep root command wrappers, and a
-package-local evidence posture for real-run harvest paths.
+Add `parts/`, `docs/`, `schemas/`, `examples/`, `config/`, `manifests/`,
+`scripts/`, or `legacy/` only when the package has an active payload and local
+validation.
 
 ## Validation
 
@@ -122,22 +121,11 @@ Run:
 
 ```bash
 python scripts/validate_mechanics_skeleton.py
-python mechanics/review-gate/scripts/validate_review_gate_package.py
-python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py
-python mechanics/antifragility/scripts/validate_antifragility_package.py
-python mechanics/agon/scripts/validate_agon_package.py
-python mechanics/recurrence/scripts/validate_recurrence_package.py
-python mechanics/checkpoint/scripts/validate_checkpoint_package.py
-python mechanics/experience/scripts/validate_experience_package.py
-python mechanics/release-support/scripts/validate_release_support_package.py
-python mechanics/questbook/scripts/validate_questbook_package.py
-python mechanics/rpg/scripts/validate_rpg_package.py
-python mechanics/titan/scripts/validate_titan_package.py
-python mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py
 python scripts/validate_playbooks.py
 ```
 
-For release-bound changes, run:
+For package-local work, run the target package validator. For release-bound
+changes, run:
 
 ```bash
 python scripts/release_check.py

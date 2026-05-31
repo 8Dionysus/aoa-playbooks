@@ -19,7 +19,7 @@ REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "tests/AGENTS.md": ("scenario boundaries", "generated alignment"),
     "memo/AGENTS.md": ("local memory port", "reviewed landing"),
     "docs/decisions/AGENTS.md": ("Decision ID: AOA-PB-D-####", "generated lookup read models"),
-    "mechanics/AGENTS.md": ("head-fed", "local", "PACKAGE_TEMPLATE.md"),
+    "mechanics/AGENTS.md": ("head-fed", "local", "Do not add root-level"),
 }
 ADVISORY_AGENT_DIRS: tuple[str, ...] = (".agents/skills", "Spark", "docs", "manifests/recurrence", "quests")
 HEADING_PREFIXES = ("# AGENTS.md", "# AGENTS")
