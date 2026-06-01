@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | local, not head-fed |
+| class | local |
 | role | derive scenario-level handoff, failure, subagent, automation, and manifest read models |
 | trigger | a managed playbook, composition override, upstream skill handoff contract, or generated composition output changes |
 | playbooks owns | scenario-level composition projection shape and source config alignment |

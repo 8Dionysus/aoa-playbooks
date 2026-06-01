@@ -6,7 +6,7 @@ This card applies to `mechanics/experience/`.
 
 ## Role
 
-`experience/` is the head-fed and local mechanic for adoption, certification,
+`experience/` is the `head-fed/local` mechanic for adoption, certification,
 retention, rollback, governance, office, service, and watch playbook posture.
 
 It validates why the current Experience Wave 3 docs, schemas, and examples

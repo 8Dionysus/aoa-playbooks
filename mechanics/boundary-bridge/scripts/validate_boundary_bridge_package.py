@@ -45,7 +45,7 @@ def validate(repo_root: Path = REPO_ROOT) -> list[str]:
     readme = package_root / "README.md"
     if readme.is_file():
         text = readme.read_text(encoding="utf-8")
-        for token in ("## Mechanic card", "head-fed", "local", "validation"):
+        for token in ("## Mechanic card", "class | head-fed/local", "| validation |", "| next route |"):
             if token not in text:
                 issues.append(f"mechanics/boundary-bridge/README.md: missing token {token!r}")
     for relative_path in OLD_ROOT_PAYLOADS:

@@ -27,6 +27,26 @@ def _write_minimal_required_tree(repo_root: Path) -> None:
         _write(repo_root / relative_path, "\n".join(tokens))
 
 
+def _write_minimal_package(repo_root: Path, package_name: str = "activation", package_class: str = "local") -> Path:
+    package = repo_root / "mechanics" / package_name
+    _write(package / "AGENTS.md", "# AGENTS.md\n")
+    _write(
+        package / "README.md",
+        "\n".join(
+            (
+                "## Mechanic card",
+                f"| class | {package_class} |",
+                "| role | test package |",
+                "| validation | test validator |",
+                "| next route | test route |",
+            )
+        ),
+    )
+    _write(package / "PARTS.md", "# Parts\n")
+    _write(package / "PROVENANCE.md", "# Provenance\n")
+    return package
+
+
 class MechanicsSkeletonValidationTests(unittest.TestCase):
     def test_current_mechanics_skeleton_passes(self) -> None:
         result = validator.validate(validator.REPO_ROOT)
@@ -71,11 +91,58 @@ class MechanicsSkeletonValidationTests(unittest.TestCase):
             repo_root = Path(tmp)
             _write_minimal_required_tree(repo_root)
             package = repo_root / "mechanics" / "activation"
-            _write(package / "README.md", "## Mechanic card\nhead-fed\nlocal\nvalidation\n")
+            _write(
+                package / "README.md",
+                "## Mechanic card\n| class | local |\n| role | test package |\n| validation | test validator |\n| next route | test route |\n",
+            )
             result = validator.validate(repo_root)
             self.assertIn("mechanics/activation: child package missing AGENTS.md", result.issues)
             self.assertIn("mechanics/activation: child package missing PARTS.md", result.issues)
             self.assertIn("mechanics/activation: child package missing PROVENANCE.md", result.issues)
+
+    def test_package_class_must_match_root_table(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            _write(
+                repo_root / "mechanics" / "README.md",
+                "\n".join(validator.REQUIRED_ROOT_FILES["mechanics/README.md"])
+                + "\n| Package | Class | Role |\n| --- | --- | --- |\n| `activation/` | head-fed/local | test |\n",
+            )
+            _write_minimal_package(repo_root, "activation", "local")
+            result = validator.validate(repo_root)
+            self.assertIn(
+                "mechanics/activation/README.md: package class 'local' does not match mechanics/README.md class 'head-fed/local'",
+                result.issues,
+            )
+
+    def test_mechanics_markdown_links_must_resolve(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            package = _write_minimal_package(repo_root, "activation", "local")
+            _write(
+                package / "README.md",
+                (package / "README.md").read_text(encoding="utf-8") + "\n[missing](missing.md)\n",
+            )
+            result = validator.validate(repo_root)
+            self.assertIn(
+                "mechanics/activation/README.md: markdown link target is missing: 'missing.md'",
+                result.issues,
+            )
+
+    def test_release_check_must_cover_package_validators(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            package = _write_minimal_package(repo_root, "activation", "local")
+            _write(package / "scripts" / "validate_activation_package.py", "print('ok')\n")
+            _write(repo_root / "scripts" / "release_check.py", "COMMANDS = []\n")
+            result = validator.validate(repo_root)
+            self.assertIn(
+                "scripts/release_check.py: missing package validator mechanics/activation/scripts/validate_activation_package.py",
+                result.issues,
+            )
 
     def test_desgin_typo_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

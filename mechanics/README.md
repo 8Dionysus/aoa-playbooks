@@ -36,19 +36,19 @@ package that owns the operation. If it is historical rationale, put it in
 | Package | Class | Role |
 | --- | --- | --- |
 | `activation/` | local | runtime-readable activation surfaces without owning runtime state |
-| `agon/` | head-fed | trial, kernel-binding, campaign, adoption, and recurrence-adapter choreography |
+| `agon/` | head-fed/local | trial, kernel-binding, campaign, adoption, and recurrence-adapter choreography |
 | `antifragility/` | head-fed/local | stress lanes, re-entry gates, harvest, runtime-chaos, and via negativa posture |
-| `boundary-bridge/` | head-fed | handoff and orchestrator bridge posture without ownership transfer |
-| `checkpoint/` | head-fed | checkpoint return and distillation routes without memory truth |
-| `experience/` | head-fed | adoption, certification, service, office, and governance playbook posture |
+| `boundary-bridge/` | head-fed/local | handoff and orchestrator bridge posture without ownership transfer |
+| `checkpoint/` | head-fed/local | checkpoint return and distillation routes without memory truth |
+| `experience/` | head-fed/local | adoption, certification, service, office, and governance playbook posture |
 | `federation-closure/` | local | sibling refs and federation readouts without sibling ownership |
 | `portfolio-governance/` | local | model, lifecycle, gap, portfolio, and chooser discipline |
-| `questbook/` | head-fed | questline/campaign adjunct posture without quest authority |
+| `questbook/` | head-fed/local | questline/campaign adjunct posture without quest authority |
 | `real-run-harvest/` | local | run evidence and review posture without proof or memory truth |
 | `recurrence/` | head-fed/local | recurrence, return, relaunch, and reanchor posture |
 | `release-support/` | head-fed/local | release, rollout, rollback, retention, and operator support posture |
 | `review-gate/` | local | review status, packet, intake, landing governance, and Phase Alpha readouts |
-| `rpg/` | head-fed | RPG vocabulary as bounded reflection only |
+| `rpg/` | head-fed/local | RPG vocabulary as bounded reflection only |
 | `scenario-composition/` | local | handoffs, failure catalog, automation seeds, subagent recipes, and composition manifests |
 | `titan/` | head-fed/local | Titan route ecology and drill posture without role authority |
 
@@ -58,9 +58,9 @@ Head-fed mechanics begin as center pressure in `Agents-of-Abyss` and become
 playbook-local only when this repo has a repeatable operation, source surface,
 owner split, stop-line, and validator.
 
-Current head-fed package routes: `agon`, `antifragility`, `boundary-bridge`,
-`checkpoint`, `experience`, `questbook`, `recurrence`, `release-support`,
-`rpg`, and `titan`.
+Current packages with head-fed pressure: `agon`, `antifragility`,
+`boundary-bridge`, `checkpoint`, `experience`, `questbook`, `recurrence`,
+`release-support`, `rpg`, and `titan`.
 
 Head-fed never means `aoa-playbooks` owns center law, runtime execution, proof
 verdicts, memory truth, role authority, route dispatch, stats truth, or KAG
@@ -72,9 +72,11 @@ Local mechanics begin inside `aoa-playbooks` from scenario composition,
 generated readers, review gates, evidence posture, or playbook portfolio
 discipline.
 
-Current local package routes: `activation`, `federation-closure`,
-`portfolio-governance`, `real-run-harvest`, `review-gate`, and
-`scenario-composition`.
+Current packages with local playbook pressure: `activation`, `agon`,
+`antifragility`, `boundary-bridge`, `checkpoint`, `experience`,
+`federation-closure`, `portfolio-governance`, `questbook`, `real-run-harvest`,
+`recurrence`, `release-support`, `review-gate`, `rpg`,
+`scenario-composition`, and `titan`.
 
 Local never means the package replaces source playbooks, generated read models,
 root decisions, public release entrypoints, or sibling-owner truth.

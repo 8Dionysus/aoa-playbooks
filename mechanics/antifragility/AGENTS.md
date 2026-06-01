@@ -7,7 +7,7 @@ nearer `AGENTS.md` narrows the lane.
 
 ## Role
 
-`antifragility/` is the head-fed plus local playbook mechanic for bounded
+`antifragility/` is the `head-fed/local` playbook mechanic for bounded
 stress lanes, re-entry gates, stress harvest, runtime-chaos rehearsal, and via
 negativa pruning at the playbook layer.
 

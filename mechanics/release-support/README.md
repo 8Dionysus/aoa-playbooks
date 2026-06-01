@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep release, deployment, installation, rollback, promotion, retention, and publication support explicit |
 | trigger | release-check change, releasing-doc change, rollback/deployment/install contract change, or promotion/retention route change |
 | playbooks owns | repo release-support posture and public operator docs |

@@ -40,7 +40,7 @@ REQUIRED_FILES = (
 REQUIRED_TEXT = {
     "README.md": (
         "## Mechanic card",
-        "class | local, not head-fed",
+        "class | local",
         "generated/playbook_handoff_contracts.json",
     ),
     "PARTS.md": (

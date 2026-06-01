@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep checkpoint return and distillation routes explicit without absorbing memo truth |
 | trigger | A2A summon return changes, checkpoint distillation changes, memo checkpoint posture changes, or activation examples for checkpoint routes |
 | playbooks owns | checkpoint choreography and source playbook return posture |

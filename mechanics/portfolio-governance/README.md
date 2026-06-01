@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | local, not head-fed |
+| class | local |
 | role | keep playbook model, operational family, lifecycle, portfolio, and gap matrix coherent as public model docs |
 | trigger | portfolio model, lifecycle, gap matrix, or operational family changes |
 | playbooks owns | public model docs and portfolio posture |

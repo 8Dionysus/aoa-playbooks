@@ -6,7 +6,7 @@ This card applies to `mechanics/rpg/`.
 
 ## Role
 
-`rpg/` is the head-fed and local mechanic for party-template and build-synergy
+`rpg/` is the `head-fed/local` mechanic for party-template and build-synergy
 reflection inside playbooks.
 
 It keeps RPG vocabulary bounded as reflection, not route authority.

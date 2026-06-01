@@ -11,7 +11,7 @@ nearer `AGENTS.md` narrows the lane.
 evidence into root-published review, intake, packet-contract, landing, and
 Phase Alpha readiness read models.
 
-It is local, not head-fed. It protects the review operation inside
+It is class `local`. It protects the review operation inside
 `aoa-playbooks` without owning runtime proof, memory truth, eval verdicts, or
 source playbook canon.
 

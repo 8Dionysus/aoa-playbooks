@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep Titan drill, route ecology, closeout, appserver, runtime, memory loom, operator console, service cohort, and swarm-audit playbook posture explicit |
 | trigger | Titan route doc change, Titan source playbook change, or stronger-owner Titan handoff pressure |
 | playbooks owns | Titan scenario choreography and package-local route docs |

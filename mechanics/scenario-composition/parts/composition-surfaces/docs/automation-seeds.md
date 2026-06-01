@@ -47,7 +47,7 @@ that repeated evidence really supports composition-owned automation.
 
 If a seed needs to become a real automation, it should be instantiated by the runtime or user workflow that owns scheduling rather than by this repository.
 Reviewed summaries may enter this repository under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`, but composition changes still require explicit gate review under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`.
-If a real-run harvest suggests a new automation seed, it remains a candidate only until [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) approves promotion into composition-owned surfaces.
+If a real-run harvest suggests a new automation seed, it remains a candidate only until [playbook composition gates](playbook-composition-gates.md) approves promotion into composition-owned surfaces.
 `AOA-P-0027 reviewed-automation-followthrough` currently stays at that
 candidate stage: its authored example may help a reviewer or runtime inspect
 the route, but it does not become a composition-owned automation seed yet.

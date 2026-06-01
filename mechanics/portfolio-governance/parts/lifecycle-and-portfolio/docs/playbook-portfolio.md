@@ -87,10 +87,10 @@ remains semantic overlap, premature authority drift, and maintenance claims
 that outrun owner law and validation.
 The next portfolio move after this landing is therefore boundary repair plus
 reviewed evidence, not another catalog burst:
-- use [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, `AOA-P-0028`, `AOA-P-0029`, `AOA-P-0030`, `AOA-P-0031`, and `AOA-P-0032`
-- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, `AOA-P-0028`, `AOA-P-0029`, `AOA-P-0030`, and `AOA-P-0032` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
-- use [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) to capture the first reviewed `AOA-P-0027` route before any automation seed or handoff adjunct reaches composition
-- use [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
+- use [operational family](../../operational-family/docs/playbook-operational-family.md) to choose between `AOA-P-0010`, `AOA-P-0012`, `AOA-P-0014`, `AOA-P-0017`, `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0021`, `AOA-P-0023`, `AOA-P-0024`, `AOA-P-0025`, `AOA-P-0026`, `AOA-P-0027`, `AOA-P-0028`, `AOA-P-0029`, `AOA-P-0030`, `AOA-P-0031`, and `AOA-P-0032`
+- use [real-run harvest](../../../../real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md) to capture reviewable evidence from fresh `AOA-P-0018`, `AOA-P-0019`, `AOA-P-0020`, `AOA-P-0025`, `AOA-P-0028`, `AOA-P-0029`, `AOA-P-0030`, and `AOA-P-0032` follow-on runs while keeping already-landed `AOA-P-0017`, `AOA-P-0021`, and `AOA-P-0023` bounded and keeping `AOA-P-0026` authored until a distinct proving route appears
+- use [real-run harvest](../../../../real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md) to capture the first reviewed `AOA-P-0027` route before any automation seed or handoff adjunct reaches composition
+- use [playbook composition gates](../../../../scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md) before any new handoff bridge, subagent split, automation seed, or failure/follow-up mapping reaches composition
 
 The operational family now covers:
 - `AOA-P-0010` = generic cross-repo rollout baseline

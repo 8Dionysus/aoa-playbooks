@@ -7,7 +7,7 @@ This card applies to `mechanics/agon/` and every nested path until a nearer
 
 ## Role
 
-`agon/` is the head-fed playbook mechanic for pre-protocol Agon trial,
+`agon/` is the `head-fed/local` playbook mechanic for pre-protocol Agon trial,
 trial-kernel, campaign, adoption, and recurrence-adapter surfaces.
 
 It receives center pressure from `Agents-of-Abyss/mechanics/agon/`, but this

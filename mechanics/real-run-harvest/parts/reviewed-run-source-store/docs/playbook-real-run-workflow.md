@@ -11,7 +11,7 @@ It is not a place to store raw logs, runtime traces, or execution-state packets.
 
 ## Route
 
-1. Choose the scenario route through [PLAYBOOK_OPERATIONAL_FAMILY](PLAYBOOK_OPERATIONAL_FAMILY.md).
+1. Choose the scenario route through [operational family](../../../../portfolio-governance/parts/operational-family/docs/playbook-operational-family.md).
 2. Execute the real run in the owning repository or repositories that actually carry the operational work.
 3. Select only a closed case that clearly satisfies the playbook boundary, the required anchor artifacts, and reviewable `Evidence Links`.
 4. If selection finds no qualifying case, do not create a placeholder summary; leave `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/` unchanged and keep the matching gate at `hold`.

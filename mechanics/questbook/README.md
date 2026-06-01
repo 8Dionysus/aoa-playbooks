@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep public playbook obligations, questline outlines, and reanchor notes visible without becoming a second roadmap |
 | trigger | quest item, questbook index, generated quest readout, questline outline, campaign reflection, or harvest reanchor change |
 | playbooks owns | repo-local public obligation posture and questline/campaign reflection |

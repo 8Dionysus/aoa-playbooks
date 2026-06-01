@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | local, not head-fed |
+| class | local |
 | role | derive compact cross-repo closure surfaces from authored playbooks |
 | trigger | playbook participant, skill, eval, memo, or writeback refs change |
 | playbooks owns | federation projection shape and playbook source alignment |
