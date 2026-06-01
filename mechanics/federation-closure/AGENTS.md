@@ -27,7 +27,7 @@ Read:
 
 ## Boundaries
 
-- Federation closure is local, not head-fed.
+- Federation closure is class `local`.
 - It validates cross-repo refs; it does not own sibling truth.
 - Root `generated/playbook_federation_surfaces.min.json` stays a
   root-published closure read model.

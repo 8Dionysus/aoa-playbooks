@@ -98,7 +98,7 @@ REQUIRED_FILES = (
 REQUIRED_TEXT = {
     "README.md": (
         "## Mechanic card",
-        "class | local, not head-fed",
+        "class | local",
         "generated/playbook_review_status.min.json",
         "generated/phase_alpha_review_packets.min.json",
     ),

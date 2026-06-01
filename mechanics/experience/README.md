@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep adoption, certification, service, office, retention, rollback, and governance playbook posture explicit |
 | trigger | Experience Wave 3 contract changes, adoption/certification route changes, service/watch route changes, or office/governance posture changes |
 | playbooks owns | playbook-layer adoption and service choreography plus package-local contract pairs |

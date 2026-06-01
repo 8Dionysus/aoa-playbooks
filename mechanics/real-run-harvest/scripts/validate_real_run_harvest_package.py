@@ -21,7 +21,7 @@ REQUIRED_PACKAGE_FILES = (
 REQUIRED_PACKAGE_TEXT = {
     "README.md": (
         "## Mechanic card",
-        "class | local, not head-fed",
+        "class | local",
         "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/",
         "mechanics/real-run-harvest/parts/harvest-template-source-store/examples/alpha_harvests/",
     ),

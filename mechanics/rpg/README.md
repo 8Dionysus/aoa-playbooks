@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep RPG/party-template vocabulary useful as bounded playbook reflection |
 | trigger | party template, build synergy, campaign reflection, or RPG vocabulary changes |
 | playbooks owns | bounded reflection docs and public party-template readout posture |

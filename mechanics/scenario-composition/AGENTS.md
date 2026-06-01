@@ -30,7 +30,7 @@ Read:
 
 ## Boundaries
 
-- Scenario composition is local, not head-fed.
+- Scenario composition is class `local`.
 - Source playbook truth stays in `playbooks/*/PLAYBOOK.md`.
 - Source composition overrides stay in root `config/` until compatibility and
   validators support a move.

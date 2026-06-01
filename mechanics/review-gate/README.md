@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | local, not head-fed |
+| class | local |
 | role | turn bounded review evidence and review contracts into root-published playbook review read models |
 | trigger | reviewed-run notes, gate-review verdicts, activation/federation outputs, Phase Alpha readiness config, or composition manifest posture changes |
 | playbooks owns | review-status parsing, review packet contract projection, review intake projection, landing-governance readout, and Phase Alpha readiness readouts |

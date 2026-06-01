@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | local, not head-fed |
+| class | local |
 | role | keep real-run and alpha-run evidence reviewable without turning this repo into runtime storage or proof authority |
 | trigger | new reviewed-run summaries, harvest templates, alpha reviewed-run notes, readiness notes, or Phase Alpha config refs |
 | playbooks owns | source-store posture, section/route expectations, and package-local evidence boundary |

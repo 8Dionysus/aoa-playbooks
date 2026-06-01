@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep scenario recurrence, return, and re-entry choreography explicit without becoming memory, routing, or runtime authority |
 | trigger | route reanchor pressure, component refresh pressure, recurring observation producer changes, or review-decision closure changes |
 | playbooks owns | recurring return choreography and package-local recurrence docs |

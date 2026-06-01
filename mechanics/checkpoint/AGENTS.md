@@ -6,7 +6,7 @@ This card applies to `mechanics/checkpoint/`.
 
 ## Role
 
-`checkpoint/` is the head-fed and local mechanic for checkpoint return
+`checkpoint/` is the `head-fed/local` mechanic for checkpoint return
 choreography in playbooks: A2A summon return, checkpoint distillation, and
 memo-checkpoint handoff posture.
 

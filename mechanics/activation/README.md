@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | local, not head-fed |
+| class | local |
 | role | make authored playbook scenarios activation-readable through a derived projection |
 | trigger | a playbook joins, leaves, or changes the activation-readable cohort |
 | playbooks owns | activation projection shape, source registry alignment, fallback and return posture projection |

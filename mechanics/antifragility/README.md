@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | route recurring playbook stress into bounded degraded lanes, explicit re-entry gates, harvest posture, and via negativa pruning |
 | trigger | runtime stress receipt, derived-surface gap, retrieval outage, unsafe continuation, or pruning pressure around a recurring scenario |
 | playbooks owns | playbook-layer stress lane shape, re-entry gate shape, harvest expectations, and runtime-chaos choreography posture |

@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | route cross-owner handoff, orchestrator alignment, and bridge drill pressure without ownership transfer |
 | trigger | handoff drill, orchestrator alignment, source-owner bridge, or cross-repo contract changes |
 | playbooks owns | scenario-level bridge choreography and evidence expectations |

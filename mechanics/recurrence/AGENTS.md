@@ -6,7 +6,7 @@ This card applies to `mechanics/recurrence/`.
 
 ## Role
 
-`recurrence/` is the head-fed and local mechanic for playbook-layer return
+`recurrence/` is the `head-fed/local` mechanic for playbook-layer return
 choreography: recurrence discipline, component refresh, observation producers,
 and review-decision closure.
 

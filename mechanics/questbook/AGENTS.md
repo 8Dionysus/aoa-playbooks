@@ -6,7 +6,7 @@ This card applies to `mechanics/questbook/`.
 
 ## Role
 
-`questbook/` is the head-fed and local mechanic for public follow-through
+`questbook/` is the `head-fed/local` mechanic for public follow-through
 obligations, questline/campaign outlines, harvest reanchor notes, and quest
 read models.
 

@@ -16,7 +16,7 @@ It must not absorb skill meaning from `aoa-skills`.
 - `../aoa-skills/generated/skill_handoff_contracts.json`
 
 Reviewable evidence templates for future handoff candidates also live under `mechanics/real-run-harvest/parts/harvest-template-source-store/examples/harvests/`.
-They are governed by [PLAYBOOK_REAL_RUN_HARVEST](PLAYBOOK_REAL_RUN_HARVEST.md) and do not create new composition entries by themselves.
+They are governed by [real-run harvest](../../../../real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md) and do not create new composition entries by themselves.
 Reviewed summaries may enter this repository under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`, but composition changes still require explicit gate review under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`.
 `AOA-P-0017 split-wave-cross-repo-rollout` is the first operational playbook whose post-gate promotion lands here as a minimal playbook-owned handoff bridge.
 That bridge is derived from the playbook artifact contract plus upstream skill handoff contracts; it is not copied from source-repo PR prose or from reviewed-summary evidence.
@@ -43,7 +43,7 @@ The playbook bundle still owns the scenario route.
 ## Boundary to preserve
 
 If a handoff packet starts encoding runtime-local recovery or execution state, it has crossed out of the playbook layer.
-If a new handoff bridge candidate appears in a real-run harvest, it must still clear [PLAYBOOK_COMPOSITION_GATES](PLAYBOOK_COMPOSITION_GATES.md) before it can enter `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`.
+If a new handoff bridge candidate appears in a real-run harvest, it must still clear [playbook composition gates](playbook-composition-gates.md) before it can enter `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`.
 If a bounded review lands a handoff bridge, keep that landing scenario-level and skill-derived; do not widen it into routing-specific implementation doctrine.
 `AOA-P-0025 session-growth-cycle` currently keeps checkpoint carry, reviewed harvest, seed-stage follow-through, and owner-layer handoff in the authored playbook itself.
 That recurring route may later justify a smaller playbook-owned handoff bridge, but not before reviewed evidence proves that the bridge adds scenario value without becoming a hidden runner.

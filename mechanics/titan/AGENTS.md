@@ -6,7 +6,7 @@ This card applies to `mechanics/titan/`.
 
 ## Role
 
-`titan/` is the head-fed and local mechanic for Titan drill and route ecology
+`titan/` is the `head-fed/local` mechanic for Titan drill and route ecology
 playbooks inside `aoa-playbooks`.
 
 It validates package-local Titan docs while keeping role authority and runtime

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from pathlib import Path
+import re
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -42,9 +43,13 @@ ROOT_ENTRYPOINT_REQUIRED_TOKENS: dict[str, tuple[str, ...]] = {
 }
 
 PACKAGE_REQUIRED_FILES = ("AGENTS.md", "README.md", "PARTS.md", "PROVENANCE.md")
-PACKAGE_README_TOKENS = ("## Mechanic card", "head-fed", "local", "validation")
+PACKAGE_README_TOKENS = ("## Mechanic card", "| class |", "| role |", "| validation |", "| next route |")
+ALLOWED_PACKAGE_CLASSES = {"head-fed", "local", "head-fed/local"}
 FORBIDDEN_TOKENS = ("DESGIN.md", "DESGIN.AGENTS.md")
 IGNORED_DIR_NAMES = {"__pycache__"}
+MARKDOWN_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+PACKAGE_CLASS_RE = re.compile(r"^\|\s*class\s*\|\s*([^|]+?)\s*\|", re.MULTILINE)
+ROOT_PACKAGE_ROW_RE = re.compile(r"^\|\s*`([^`/]+)/`\s*\|\s*([^|]+?)\s*\|", re.MULTILINE)
 
 
 @dataclass(frozen=True)
@@ -98,6 +103,102 @@ def validate_child_packages(repo_root: Path, issues: list[str]) -> None:
             for token in PACKAGE_README_TOKENS:
                 if token not in text:
                     issues.append(f"{rel_dir}/README.md: missing package card token {token!r}")
+            package_class = parse_package_class(text)
+            if package_class is None:
+                issues.append(f"{rel_dir}/README.md: missing package class")
+            elif package_class not in ALLOWED_PACKAGE_CLASSES:
+                issues.append(
+                    f"{rel_dir}/README.md: invalid package class {package_class!r}; "
+                    f"expected one of {sorted(ALLOWED_PACKAGE_CLASSES)!r}"
+                )
+
+
+def parse_package_class(text: str) -> str | None:
+    match = PACKAGE_CLASS_RE.search(text)
+    if match is None:
+        return None
+    return normalize_package_class(match.group(1))
+
+
+def normalize_package_class(value: str) -> str:
+    return " ".join(value.strip().lower().split())
+
+
+def parse_root_package_classes(readme_text: str) -> dict[str, str]:
+    classes: dict[str, str] = {}
+    for package_name, package_class in ROOT_PACKAGE_ROW_RE.findall(readme_text):
+        classes[package_name] = normalize_package_class(package_class)
+    return classes
+
+
+def validate_package_class_alignment(repo_root: Path, issues: list[str]) -> None:
+    root_readme_path = repo_root / MECHANICS_ROOT / "README.md"
+    if not root_readme_path.is_file():
+        return
+    root_classes = parse_root_package_classes(root_readme_path.read_text(encoding="utf-8"))
+    if not root_classes:
+        return
+
+    package_dirs = iter_child_package_dirs(repo_root)
+    package_names = {path.name for path in package_dirs}
+    for package_dir in package_dirs:
+        rel_dir = package_dir.relative_to(repo_root).as_posix()
+        root_class = root_classes.get(package_dir.name)
+        if root_class is None:
+            issues.append(f"{rel_dir}: missing package row in mechanics/README.md")
+            continue
+        readme = package_dir / "README.md"
+        if not readme.is_file():
+            continue
+        package_class = parse_package_class(readme.read_text(encoding="utf-8"))
+        if package_class is not None and root_class != package_class:
+            issues.append(
+                f"{rel_dir}/README.md: package class {package_class!r} does not match "
+                f"mechanics/README.md class {root_class!r}"
+            )
+
+    for package_name in sorted(root_classes):
+        if package_name not in package_names:
+            issues.append(f"mechanics/README.md: package row {package_name!r} has no child package")
+
+
+def validate_mechanics_markdown_links(repo_root: Path, issues: list[str]) -> None:
+    mechanics_root = repo_root / MECHANICS_ROOT
+    if not mechanics_root.is_dir():
+        return
+
+    for markdown_path in sorted(mechanics_root.rglob("*.md")):
+        text = markdown_path.read_text(encoding="utf-8")
+        for raw_target in MARKDOWN_LINK_RE.findall(text):
+            target = raw_target.strip()
+            if not target:
+                continue
+            if target.startswith(("#", "repo:", "mailto:")) or "://" in target:
+                continue
+            target_path = target.split("#", 1)[0].strip()
+            if not target_path:
+                continue
+            resolved = (markdown_path.parent / target_path).resolve()
+            try:
+                resolved.relative_to(repo_root)
+            except ValueError:
+                continue
+            if not resolved.exists():
+                rel = markdown_path.relative_to(repo_root).as_posix()
+                issues.append(f"{rel}: markdown link target is missing: {target!r}")
+
+
+def validate_release_check_covers_package_validators(repo_root: Path, issues: list[str]) -> None:
+    release_check = repo_root / "scripts" / "release_check.py"
+    if not release_check.is_file():
+        return
+    release_text = release_check.read_text(encoding="utf-8")
+
+    for package_dir in iter_child_package_dirs(repo_root):
+        for validator_path in sorted((package_dir / "scripts").glob("validate_*_package.py")):
+            rel = validator_path.relative_to(repo_root).as_posix()
+            if rel not in release_text:
+                issues.append(f"scripts/release_check.py: missing package validator {rel}")
 
 
 def validate(repo_root: Path = REPO_ROOT) -> ValidationResult:
@@ -127,6 +228,9 @@ def validate(repo_root: Path = REPO_ROOT) -> ValidationResult:
         issues.append("legacy/: root legacy directory is forbidden for mechanics accounting")
 
     validate_child_packages(repo_root, issues)
+    validate_package_class_alignment(repo_root, issues)
+    validate_mechanics_markdown_links(repo_root, issues)
+    validate_release_check_covers_package_validators(repo_root, issues)
 
     return ValidationResult(tuple(issues))
 

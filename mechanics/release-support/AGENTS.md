@@ -6,7 +6,7 @@ This card applies to `mechanics/release-support/`.
 
 ## Role
 
-`release-support/` is the head-fed and local mechanic for release, deployment,
+`release-support/` is the `head-fed/local` mechanic for release, deployment,
 installation, rollback, promotion, retention, and publication-support posture.
 
 The root release command and release docs stay operator-facing public routes.

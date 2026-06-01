@@ -60,7 +60,7 @@ REQUIRED_FILES = (
 REQUIRED_TEXT = {
     "README.md": (
         "## Mechanic card",
-        "class | head-fed and local",
+        "class | head-fed/local",
         "stress-lane",
         "re-entry",
     ),

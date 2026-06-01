@@ -4,7 +4,7 @@
 
 | Field | Route |
 | --- | --- |
-| class | head-fed and local |
+| class | head-fed/local |
 | role | keep pre-protocol Agon trial, kernel-binding, campaign, adoption, and recurrence-adapter playbook payloads bounded and reviewable |
 | trigger | Agon trial/campaign seed change, registry drift, kernel-binding change, adoption-run contract change, or recurrence adapter update |
 | playbooks owns | pre-protocol choreography, playbook-local registry seeds, schemas/examples, builder implementations, and stop-line docs |

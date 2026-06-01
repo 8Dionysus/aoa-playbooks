@@ -14,9 +14,10 @@ PACKAGE_FILES = (
 
 PACKAGE_README_TOKENS = (
     "## Mechanic card",
-    "head-fed",
-    "local",
-    "validation",
+    "| class |",
+    "| role |",
+    "| validation |",
+    "| next route |",
 )
 
 

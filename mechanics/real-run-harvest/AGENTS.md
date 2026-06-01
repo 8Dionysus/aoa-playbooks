@@ -10,7 +10,7 @@ This card applies to `mechanics/real-run-harvest/`.
 harvest templates, and Phase Alpha reviewed-run/readiness packets bounded as
 source evidence surfaces.
 
-It is local, not head-fed. It validates the posture of package-local evidence
+It is class `local`. It validates the posture of package-local evidence
 paths and hands readout generation to `mechanics/review-gate/`.
 
 ## Read before editing

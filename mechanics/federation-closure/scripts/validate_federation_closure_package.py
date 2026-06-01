@@ -41,7 +41,7 @@ REQUIRED_FILES = (
 REQUIRED_TEXT = {
     "README.md": (
         "## Mechanic card",
-        "class | local, not head-fed",
+        "class | local",
         "generated/playbook_federation_surfaces.min.json",
     ),
     "PARTS.md": (

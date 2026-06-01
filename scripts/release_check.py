@@ -29,6 +29,10 @@ COMMANDS = [
         "validate antifragility mechanic",
         [sys.executable, "mechanics/antifragility/scripts/validate_antifragility_package.py"],
     ),
+    (
+        "validate boundary-bridge mechanic",
+        [sys.executable, "mechanics/boundary-bridge/scripts/validate_boundary_bridge_package.py"],
+    ),
     ("validate agon mechanic", [sys.executable, "mechanics/agon/scripts/validate_agon_package.py"]),
     ("validate recurrence mechanic", [sys.executable, "mechanics/recurrence/scripts/validate_recurrence_package.py"]),
     ("validate checkpoint mechanic", [sys.executable, "mechanics/checkpoint/scripts/validate_checkpoint_package.py"]),
