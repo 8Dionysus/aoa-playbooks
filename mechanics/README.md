@@ -1,49 +1,32 @@
 # Playbook Mechanics
 
-`mechanics/` is the package directory for repeatable playbook-layer mechanics.
+`mechanics/` is the dispatcher for repeatable playbook-layer operations.
 
-The first screen should show the active packages. It should not become a shelf
-of transition notes. Root-level mechanics docs are limited to this atlas and
-`AGENTS.md`; durable detail belongs in package `README.md`, `PARTS.md`,
-`PROVENANCE.md`, package-local `legacy/`, or `docs/decisions/`.
+Use this atlas when the work is about the operation around a playbook: handoff,
+gate, recurrence, release, evidence posture, generated reader, or boundary
+choreography. Use `playbooks/` when authored scenario canon changes.
 
-## Operating Card
+## Route
 
-| Field | Route |
-| --- | --- |
-| role | package directory for repeatable playbook-layer mechanics |
-| input | recurring operation pressure, generated-reader drift, review-gate drift, package-boundary movement, or head-fed owner pressure from `Agents-of-Abyss` |
-| output | package route, source-owner route, generated/read-model route, validator route, or stronger-owner handoff |
-| owner | this atlas plus the target package card |
-| next route | target package, source playbook, generated builder, decision record, or stronger owner repo |
-| validation | `python scripts/validate_mechanics_skeleton.py`, package validator, `python scripts/validate_playbooks.py`, or `python scripts/release_check.py` |
+1. Choose the package from the map below.
+2. Read package `AGENTS.md`, `README.md`, `PARTS.md`, and `PROVENANCE.md`.
+3. Follow the owning source surface: package part, source playbook, generated
+   builder, decision record, or stronger owner repo.
+4. Run the package validator and the repo-level mechanics checks.
 
-## Root Files Rule
+## Package Map
 
-Allowed root files in `mechanics/`:
-
-- `README.md`
-- `AGENTS.md`
-
-Do not add root-level roster, audit, template, backlog, legacy, notes, scratch,
-migration, or `_meta/` holding surfaces. If the content is active, put it in the
-package that owns the operation. If it is historical rationale, put it in
-`docs/decisions/`. If it is old-path accounting, put it in package
-`PROVENANCE.md`.
-
-## Package Directory
-
-| Package | Class | Role |
+| Package | Class | Use for |
 | --- | --- | --- |
-| `activation/` | local | runtime-readable activation surfaces without owning runtime state |
+| `activation/` | local | activation-readable projections without runtime ownership |
 | `agon/` | head-fed/local | trial, kernel-binding, campaign, adoption, and recurrence-adapter choreography |
 | `antifragility/` | head-fed/local | stress lanes, re-entry gates, harvest, runtime-chaos, and via negativa posture |
-| `boundary-bridge/` | head-fed/local | handoff and orchestrator bridge posture without ownership transfer |
-| `checkpoint/` | head-fed/local | checkpoint return and distillation routes without memory truth |
-| `experience/` | head-fed/local | adoption, certification, service, office, and governance playbook posture |
+| `boundary-bridge/` | head-fed/local | cross-owner handoff and orchestrator alignment without ownership transfer |
+| `checkpoint/` | head-fed/local | checkpoint return and distillation without memory truth |
+| `experience/` | head-fed/local | adoption, certification, service, office, and governance posture |
 | `federation-closure/` | local | sibling refs and federation readouts without sibling ownership |
 | `portfolio-governance/` | local | model, lifecycle, gap, portfolio, and chooser discipline |
-| `questbook/` | head-fed/local | questline/campaign adjunct posture without quest authority |
+| `questbook/` | head-fed/local | questline and campaign adjuncts without quest authority |
 | `real-run-harvest/` | local | run evidence and review posture without proof or memory truth |
 | `recurrence/` | head-fed/local | recurrence, return, relaunch, and reanchor posture |
 | `release-support/` | head-fed/local | release, rollout, rollback, retention, and operator support posture |
@@ -52,74 +35,43 @@ package that owns the operation. If it is historical rationale, put it in
 | `scenario-composition/` | local | handoffs, failure catalog, automation seeds, subagent recipes, and composition manifests |
 | `titan/` | head-fed/local | Titan route ecology and drill posture without role authority |
 
-## Head-Fed Mechanics
+## Root Contract
 
-Head-fed mechanics begin as center pressure in `Agents-of-Abyss` and become
-playbook-local only when this repo has a repeatable operation, source surface,
-owner split, stop-line, and validator.
+Root `mechanics/` has only:
 
-Current packages with head-fed pressure: `agon`, `antifragility`,
-`boundary-bridge`, `checkpoint`, `experience`, `questbook`, `recurrence`,
-`release-support`, `rpg`, and `titan`.
+- `README.md`
+- `AGENTS.md`
 
-Head-fed never means `aoa-playbooks` owns center law, runtime execution, proof
-verdicts, memory truth, role authority, route dispatch, stats truth, or KAG
-promotion.
+Do not add root rosters, audits, templates, backlogs, notes, `_meta/`, or
+`legacy/` holding areas. Active operation detail belongs in the owning package.
+Durable rationale belongs in `docs/decisions/`. Former-path accounting belongs
+in package `PROVENANCE.md` and package-local `legacy/` when needed.
 
-## Local Mechanics
+## Class Contract
 
-Local mechanics begin inside `aoa-playbooks` from scenario composition,
-generated readers, review gates, evidence posture, or playbook portfolio
-discipline.
+- `head-fed`: pressure starts in `Agents-of-Abyss`.
+- `local`: pressure starts in `aoa-playbooks`.
+- `head-fed/local`: both are true for this repository.
 
-Current packages with local playbook pressure: `activation`, `agon`,
-`antifragility`, `boundary-bridge`, `checkpoint`, `experience`,
-`federation-closure`, `portfolio-governance`, `questbook`, `real-run-harvest`,
-`recurrence`, `release-support`, `review-gate`, `rpg`,
-`scenario-composition`, and `titan`.
+The class names route origin and owner split. They do not transfer center law,
+runtime execution, proof verdicts, memory truth, role authority, route dispatch,
+stats truth, KAG promotion, generated-reader source truth, or source playbook
+canon.
 
-Local never means the package replaces source playbooks, generated read models,
-root decisions, public release entrypoints, or sibling-owner truth.
-
-## Placement Rules
+## Placement
 
 - Source-authored scenario canon stays in `playbooks/*/PLAYBOOK.md`.
-- Quest sources stay in `QUESTBOOK.md` and `quests/`.
-- Root generated read models stay in `generated/`.
-- Durable rationale stays in `docs/decisions/`.
-- Root command wrappers may stay in `scripts/` only when they are public
-  compatibility entrypoints.
 - Mechanics-owned docs, schemas, examples, config, manifests, builders, and
   evidence templates live under `mechanics/<package>/parts/...`.
-- No source playbook has moved.
+- Root generated read models stay root-published under `generated/`.
+- Root command wrappers may stay in `scripts/` only as public compatibility
+  entrypoints.
+- A package starts with `AGENTS.md`, `README.md`, `PARTS.md`, `PROVENANCE.md`,
+  and a package validator when payloads move.
 
-## Legacy Rules
-
-Legacy names are former paths, accepted input names, generated projections,
-historical wave names, candidate names, or stronger-owner vocabulary. They are
-not alternate active routes.
-
-Concrete former-path accounting belongs in the owning package `PROVENANCE.md`
-and, only when useful, package-local `legacy/`. A repository-root `legacy/`
-directory is forbidden for mechanics accounting.
-
-## Package Shape
-
-A package needs real function before it exists. Minimum shape:
-
-- `mechanics/<slug>/AGENTS.md`
-- `mechanics/<slug>/README.md`
-- `mechanics/<slug>/PARTS.md`
-- `mechanics/<slug>/PROVENANCE.md`
-- package validator when payloads move
-
-Add `parts/`, `docs/`, `schemas/`, `examples/`, `config/`, `manifests/`,
-`scripts/`, or `legacy/` only when the package has an active payload and local
-validation.
+No source playbook has moved.
 
 ## Validation
-
-Run:
 
 ```bash
 python scripts/validate_mechanics_skeleton.py
