@@ -28,7 +28,7 @@ Read:
 ## Boundaries
 
 - Activation is a local mechanic, not a head-fed center mechanic.
-- Source playbook truth stays in `playbooks/*/PLAYBOOK.md` and
+- Source playbook truth stays in `playbooks/*/*/*/PLAYBOOK.md` and
   `generated/playbook_registry.min.json`.
 - `generated/playbook_activation_surfaces.min.json` stays a root-published
   derived read model.

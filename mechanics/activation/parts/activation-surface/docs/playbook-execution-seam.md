@@ -25,7 +25,7 @@ Those neighboring layers stay authoritative for their own objects.
 The canonical authored surfaces remain:
 
 - `generated/playbook_registry.min.json`
-- `playbooks/*/PLAYBOOK.md`
+- `playbooks/*/*/*/PLAYBOOK.md`
 
 The activation surface is derived from those source-owned objects.
 It exists to make recurring scenarios runtime-readable without adding a second authored playbook object.

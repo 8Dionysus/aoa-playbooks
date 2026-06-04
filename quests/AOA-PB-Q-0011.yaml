@@ -5,7 +5,7 @@ summary: Carry the reviewed chaos-wave1 runtime closeout survivors into owner-lo
   follow-through without promoting one re-entry route into skill, proof,
   technique, memo, or agent canon.
 repo: aoa-playbooks
-owner_surface: playbooks/runtime-chaos-recovery/PLAYBOOK.md
+owner_surface: playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -34,7 +34,7 @@ activation:
     owner-routed instead of minting new layer canon
 anchor_ref:
   artifact: runtime_chaos_recovery
-  ref: playbooks/runtime-chaos-recovery/PLAYBOOK.md
+  ref: playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md
   note: keep the route on the runtime-chaos-recovery boundary while owner-local
     proof, technique, and skill holds stay subordinate
 handoff_role: playbook-maintainer

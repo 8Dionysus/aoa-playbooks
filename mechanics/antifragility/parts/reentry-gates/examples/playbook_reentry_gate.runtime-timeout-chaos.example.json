@@ -2,7 +2,7 @@
   "schema_version": "playbook_reentry_gate_v1",
   "gate_id": "gate:runtime-chaos-recovery:timeout-chaos",
   "generated_at_utc": "2026-04-13T12:45:00Z",
-  "playbook_id": "playbooks/runtime-chaos-recovery/PLAYBOOK.md",
+  "playbook_id": "playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md",
   "scope": {
     "repo": "abyss-stack",
     "surface": "route-api",

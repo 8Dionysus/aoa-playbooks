@@ -7,7 +7,7 @@ This part owns the implementation that builds
 
 ## Source surfaces
 
-- `playbooks/*/PLAYBOOK.md`
+- `playbooks/*/*/*/PLAYBOOK.md`
 - `generated/playbook_federation_surfaces.min.json`
 - root command wrapper `mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py`
 

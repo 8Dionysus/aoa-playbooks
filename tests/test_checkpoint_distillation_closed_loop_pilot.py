@@ -33,7 +33,7 @@ def test_checkpoint_distillation_pilot_activation_surface_validates() -> None:
 
 def test_checkpoint_distillation_pilot_frontmatter_matches_example() -> None:
     frontmatter = _load_playbook_frontmatter(
-        "playbooks/checkpoint-distillation-closed-loop-pilot/PLAYBOOK.md"
+        "playbooks/continuity/checkpoint/checkpoint-distillation-closed-loop-pilot/PLAYBOOK.md"
     )
     example = _load_json(
         "mechanics/activation/parts/activation-surface/examples/playbook_activation.checkpoint-distillation-closed-loop-pilot.example.json"

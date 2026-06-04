@@ -5,7 +5,7 @@ summary: Carry the reviewed workspace checkpoint-growth closeout survivor into
   repo-local playbook continuity without promoting one owner handoff into fresh
   playbook, skill, eval, or technique canon.
 repo: aoa-playbooks
-owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+owner_surface: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -35,7 +35,7 @@ activation:
     canon
 anchor_ref:
   artifact: closeout_owner_follow_through_continuity
-  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  ref: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
   note: keep the route on the closeout-owner-follow-through continuity boundary
     while owner-local skill, eval, and playbook follow-through stays subordinate
 handoff_role: playbook-maintainer

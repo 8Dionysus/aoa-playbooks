@@ -91,7 +91,7 @@ If you are editing inside `playbooks/` or `generated/`, also follow the nested
 
 The most important objects in this repository are:
 
-- playbook definitions under `playbooks/*/PLAYBOOK.md`
+- playbook definitions under `playbooks/*/*/*/PLAYBOOK.md`
 - `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
 - scenario-composition, fallback, evidence-posture, and recurrence docs
 - `QUESTBOOK.md` and its backing files when the task touches quest reflection

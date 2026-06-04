@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
+from scripts.playbook_source_home import playbook_path_for_name
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = (
@@ -19,5 +21,5 @@ def test_antifragility_package_validates() -> None:
 
 
 def test_runtime_chaos_playbook_stays_in_playbooks() -> None:
-    assert (REPO_ROOT / "playbooks" / "runtime-chaos-recovery" / "PLAYBOOK.md").is_file()
+    assert playbook_path_for_name("runtime-chaos-recovery", REPO_ROOT).is_file()
     assert not (REPO_ROOT / "mechanics" / "antifragility" / "playbooks").exists()

@@ -140,7 +140,7 @@
       "notes": "Trial registry and authored playbook bundles.",
       "path_globs": [
         "generated/agon_trial_playbook_registry.min.json",
-        "playbooks/agon-*/PLAYBOOK.md"
+        "playbooks/agon/*/agon-*/PLAYBOOK.md"
       ]
     },
     {

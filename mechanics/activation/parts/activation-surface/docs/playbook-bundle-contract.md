@@ -101,7 +101,7 @@ Derived federation surfaces may project the machine-checkable closure fields use
 
 Authored bundles should live at:
 
-- `playbooks/<name>/PLAYBOOK.md`
+- `playbooks/<branch>/<family>/<name>/PLAYBOOK.md`
 
 That path keeps the bundle slug aligned with the registry `name` and lets validation discover bundles without a hand-maintained path list.
 
@@ -143,7 +143,7 @@ If a derived federation surface exists, it should preserve the exact neighboring
 
 The current first authored bundle is:
 
-- `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`
+- `playbooks/continuity/checkpoint/self-agent-checkpoint-rollout/PLAYBOOK.md`
 
 It is the first method-home example for the second-wave rule:
 

@@ -60,7 +60,7 @@ canon.
 
 ## Placement
 
-- Source-authored scenario canon stays in `playbooks/*/PLAYBOOK.md`.
+- Source-authored scenario canon stays in `playbooks/*/*/*/PLAYBOOK.md`.
 - Mechanics-owned docs, schemas, examples, config, manifests, builders, and
   evidence templates live under `mechanics/<package>/parts/...`.
 - Root generated read models stay root-published under `generated/`.

@@ -6,7 +6,7 @@ summary: Carry the reviewed recurrence seed archive closeout survivor into
   new playbook family, skill, proof surface, memo canon, stats truth, or runtime
   route.
 repo: aoa-playbooks
-owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+owner_surface: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -36,7 +36,7 @@ activation:
     playbook, skill, proof, memo, stats, or runtime promotion
 anchor_ref:
   artifact: closeout_owner_follow_through_continuity
-  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  ref: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
   note: keep the recurrence seed archive route on the owner-follow-through
     continuity boundary while any later recurrence archive or owner-landing
     playbook remains a candidate, not current canon

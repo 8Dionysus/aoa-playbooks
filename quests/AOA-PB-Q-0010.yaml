@@ -3,7 +3,7 @@ id: AOA-PB-Q-0010
 title: Keep Wave5 A2A summon return closeout survivors owner-routed
 summary: Carry the Wave5 A2A summon return checkpoint closeout survivors into owner-local follow-through without promoting one reviewed route into skill, proof, memo, or agent canon.
 repo: aoa-playbooks
-owner_surface: playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md
+owner_surface: playbooks/continuity/checkpoint/a2a-summon-return-checkpoint/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -31,7 +31,7 @@ activation:
   note: open after reviewed closeout kept the Wave5 A2A summon return survivors as owner-routed follow-through rather than immediate promotion
 anchor_ref:
   artifact: a2a_summon_return_checkpoint
-  ref: playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md
+  ref: playbooks/continuity/checkpoint/a2a-summon-return-checkpoint/PLAYBOOK.md
   note: keep the route on the A2A summon return checkpoint boundary while owner-local proof, memo, skill, and agent holds stay subordinate
 handoff_role: playbook-maintainer
 evidence:

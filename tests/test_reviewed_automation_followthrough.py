@@ -39,8 +39,8 @@ def test_reviewed_automation_followthrough_docs_and_examples_stay_discoverable()
     for text in (readme, docs_map, operational_family, portfolio, gap_matrix, execution_seam):
         assert "AOA-P-0027" in text
 
-    assert "playbooks/reviewed-automation-followthrough/PLAYBOOK.md" in readme
-    assert "playbooks/reviewed-automation-followthrough/PLAYBOOK.md" in docs_map
+    assert "playbooks/operations/release/reviewed-automation-followthrough/PLAYBOOK.md" in readme
+    assert "playbooks/operations/release/reviewed-automation-followthrough/PLAYBOOK.md" in docs_map
     assert "mechanics/scenario-composition/parts/composition-surfaces/examples/automations/reviewed-automation-followthrough.md" in automation_doc
     assert "outside `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`" in automation_doc
     assert "not yet a composition-owned automation" in example
@@ -62,7 +62,7 @@ def test_reviewed_automation_followthrough_stays_out_of_composition_until_gate_r
     assert "AOA-P-0027" in activation_by_id
     assert "AOA-P-0027" in federation_by_id
     assert review_packets_by_id["AOA-P-0027"]["source_review_refs"] == [
-        "playbooks/reviewed-automation-followthrough/PLAYBOOK.md"
+        "playbooks/operations/release/reviewed-automation-followthrough/PLAYBOOK.md"
     ]
     assert review_packets_by_id["AOA-P-0027"]["gate_verdict"] is None
     assert landing_by_id["AOA-P-0027"]["in_review_status"] is False

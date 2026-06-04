@@ -28,8 +28,8 @@ that consume them.
 - `mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md`
 - `mechanics/recurrence/parts/observation-producers/docs/recurrence-live-observation-producers.md`
 - `mechanics/recurrence/parts/review-decision-closure/docs/recurrence-review-decision-closure.md`
-- `playbooks/self-agency-continuity-cycle/PLAYBOOK.md`
-- `playbooks/component-refresh-cycle/PLAYBOOK.md`
+- `playbooks/continuity/session-growth/self-agency-continuity-cycle/PLAYBOOK.md`
+- `playbooks/continuity/session-growth/component-refresh-cycle/PLAYBOOK.md`
 - `mechanics/agon/parts/recurrence-adapter/manifests/`
 - `mechanics/scenario-composition/parts/composition-surfaces/manifests/`
 

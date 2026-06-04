@@ -5,7 +5,7 @@
       "schema_version": "party_template_v1",
       "template_id": "party.AOA-P-0011.safe-change-pair",
       "playbook_id": "AOA-P-0011",
-      "source_playbook_ref": "playbooks/bounded-change-safe/PLAYBOOK.md",
+      "source_playbook_ref": "playbooks/operations/change/bounded-change-safe/PLAYBOOK.md",
       "title": "Bounded change safe pair",
       "scenario_kind": "bounded_change",
       "cohort_pattern": "pair",
@@ -95,7 +95,7 @@
         "mode": "pair-review-first",
         "max_reanchors": 1,
         "anchor_refs": [
-          "playbooks/bounded-change-safe/PLAYBOOK.md",
+          "playbooks/operations/change/bounded-change-safe/PLAYBOOK.md",
           "mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md"
         ],
         "notes": "If axis is lost, return through review before another mutating attempt."
@@ -104,7 +104,7 @@
         "campaign.bounded-change-foundation"
       ],
       "evidence_refs": [
-        "playbooks/bounded-change-safe/PLAYBOOK.md",
+        "playbooks/operations/change/bounded-change-safe/PLAYBOOK.md",
         "mechanics/scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md"
       ],
       "notes": "Example only. The template describes a recurring route, not a live run.",
@@ -114,7 +114,7 @@
       "schema_version": "party_template_v1",
       "template_id": "party.AOA-P-0018.validation-remediation-triad",
       "playbook_id": "AOA-P-0018",
-      "source_playbook_ref": "playbooks/validation-driven-remediation/PLAYBOOK.md",
+      "source_playbook_ref": "playbooks/operations/recovery/validation-driven-remediation/PLAYBOOK.md",
       "title": "Validation and remediation triad",
       "scenario_kind": "validation_remediation",
       "cohort_pattern": "triad",
@@ -228,7 +228,7 @@
         "mode": "anchor-eval-then-return",
         "max_reanchors": 2,
         "anchor_refs": [
-          "playbooks/validation-driven-remediation/PLAYBOOK.md",
+          "playbooks/operations/recovery/validation-driven-remediation/PLAYBOOK.md",
           "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md"
         ],
         "notes": "Re-entry should happen only after comparison and reanchor notes are explicit."
@@ -237,7 +237,7 @@
         "campaign.validation-remediation"
       ],
       "evidence_refs": [
-        "playbooks/validation-driven-remediation/PLAYBOOK.md",
+        "playbooks/operations/recovery/validation-driven-remediation/PLAYBOOK.md",
         "mechanics/scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md"
       ],
       "notes": "Example only. This triad is scenario-shaped and should not become a universal default.",

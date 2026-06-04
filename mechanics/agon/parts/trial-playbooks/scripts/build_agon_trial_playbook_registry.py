@@ -4,6 +4,10 @@ import argparse, json, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[5]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from scripts.playbook_source_home import playbook_ref_for_name
+
 PART_ROOT = Path(__file__).resolve().parents[1]
 SRC = PART_ROOT / "config" / "agon_trial_playbooks.seed.json"
 OUT = ROOT / "generated" / "agon_trial_playbook_registry.min.json"
@@ -23,7 +27,7 @@ def build():
             "status": t["status"],
             "live_protocol": t["live_protocol"],
             "runtime_effect": t["runtime_effect"],
-            "playbook_path": f"playbooks/{t['slug']}/PLAYBOOK.md",
+            "playbook_path": playbook_ref_for_name(t["slug"], ROOT),
             "gate_triggers": t["gate_triggers"],
             "lawful_moves": t["lawful_moves"],
             "participating_agents": t["participating_agents"],

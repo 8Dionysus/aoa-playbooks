@@ -33,8 +33,8 @@ def test_self_agency_continuity_cycle_docs_stay_discoverable() -> None:
     for text in (readme, docs_map, operational_family, portfolio, gap_matrix, execution_seam):
         assert "AOA-P-0029" in text
 
-    assert "playbooks/self-agency-continuity-cycle/PLAYBOOK.md" in readme
-    assert "playbooks/self-agency-continuity-cycle/PLAYBOOK.md" in docs_map
+    assert "playbooks/continuity/session-growth/self-agency-continuity-cycle/PLAYBOOK.md" in readme
+    assert "playbooks/continuity/session-growth/self-agency-continuity-cycle/PLAYBOOK.md" in docs_map
     assert "long-arc continuity" in portfolio
 
 
@@ -53,7 +53,7 @@ def test_self_agency_continuity_cycle_stays_out_of_composition_until_gate_review
     assert "AOA-P-0029" in activation_by_id
     assert "AOA-P-0029" in federation_by_id
     assert review_packets_by_id["AOA-P-0029"]["source_review_refs"] == [
-        "playbooks/self-agency-continuity-cycle/PLAYBOOK.md"
+        "playbooks/continuity/session-growth/self-agency-continuity-cycle/PLAYBOOK.md"
     ]
     assert review_packets_by_id["AOA-P-0029"]["gate_verdict"] is None
     assert landing_by_id["AOA-P-0029"]["in_review_status"] is False

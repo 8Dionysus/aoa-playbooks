@@ -12,7 +12,7 @@
 
 ## Deferred payloads
 
-- `playbooks/runtime-chaos-recovery/PLAYBOOK.md` stays in `playbooks/` as
+- `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md` stays in `playbooks/` as
   source playbook canon.
 - Generated registry, activation, federation, review, and landing outputs stay
   in root `generated/`.

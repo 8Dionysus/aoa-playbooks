@@ -5,7 +5,7 @@ summary: Carry the reviewed Agon seed-wave and seed-garden closeout survivor
   into owner-local follow-through without promoting one broad wave session into
   a new playbook family, skill, proof surface, memo canon, or runtime route.
 repo: aoa-playbooks
-owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+owner_surface: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -35,7 +35,7 @@ activation:
     playbook, skill, proof, memo, or runtime promotion
 anchor_ref:
   artifact: closeout_owner_follow_through_continuity
-  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  ref: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
   note: keep the seed-wave route on the owner-follow-through continuity
     boundary while any later Agon seed-wave playbook remains a candidate, not
     current canon

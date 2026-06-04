@@ -97,7 +97,7 @@ At the current baseline, an authored playbook bundle should use:
 - fixed sections for route meaning, handoffs, fallback posture, and evidence posture
 - links to neighboring skill, agent, eval, and memory surfaces without absorbing their meaning
 
-The first authored bundle is `playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md`.
+The first authored bundle is `playbooks/continuity/checkpoint/self-agent-checkpoint-rollout/PLAYBOOK.md`.
 
 ## Relationship to neighboring layers
 

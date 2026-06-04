@@ -28,7 +28,7 @@ policy, or runtime implementation.
 - `mechanics/` root has only two docs: `README.md` and `AGENTS.md`.
 - Do not add root-level roster, audit, template, backlog, legacy, notes,
   scratch, migration, or `_meta/` holding surfaces.
-- Source-authored scenario meaning stays in `playbooks/*/PLAYBOOK.md`.
+- Source-authored scenario meaning stays in `playbooks/*/*/*/PLAYBOOK.md`.
 - Generated readers stay weaker than source and builders.
 - Real-run and gate-review evidence stay evidence surfaces, not proof verdicts.
 - Head-fed mechanics from `Agents-of-Abyss` become playbook-local only when the

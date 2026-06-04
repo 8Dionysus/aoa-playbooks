@@ -9,7 +9,7 @@
 | trigger | a managed playbook, composition override, upstream skill handoff contract, or generated composition output changes |
 | playbooks owns | scenario-level composition projection shape and source config alignment |
 | stronger owner split | `aoa-skills` owns skill execution and skill handoff meaning; routing/runtime owners own dispatch and execution |
-| inputs | `playbooks/*/PLAYBOOK.md`, `generated/playbook_registry.min.json`, `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`, `../aoa-skills/generated/skill_handoff_contracts.json` |
+| inputs | `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_registry.min.json`, `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`, `../aoa-skills/generated/skill_handoff_contracts.json` |
 | outputs | root-published `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json` |
 | must not claim | runtime state, scheduler authority, route dispatch, skill semantics, proof verdicts, or memory truth |
 | validation | `python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py` and `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check` |
@@ -32,7 +32,7 @@ tests already use that command path.
 
 ## Source surfaces
 
-- `playbooks/*/PLAYBOOK.md`
+- `playbooks/*/*/*/PLAYBOOK.md`
 - `generated/playbook_registry.min.json`
 - `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
 - `../aoa-skills/generated/skill_handoff_contracts.json`

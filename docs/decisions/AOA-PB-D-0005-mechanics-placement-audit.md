@@ -24,7 +24,7 @@ examples, generated, scripts, tests, manifests, playbooks, questbook, and
 decision surfaces all contain mechanics-related names. Moving by filename would
 break owner boundaries because some root paths are public compatibility routes,
 some generated outputs are repo-wide read models, some source stores must stay
-root-owned, and authored `playbooks/*/PLAYBOOK.md` must remain the playbook
+root-owned, and authored `playbooks/*/*/*/PLAYBOOK.md` must remain the playbook
 canon.
 
 Sibling repositories show the safer pattern: active package first, package

@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.playbook_source_home import playbook_path_for_name
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 GENERATED_ROOT = REPO_ROOT / "generated"
@@ -44,13 +46,13 @@ def test_a2a_summon_return_checkpoint_docs_stay_discoverable() -> None:
     ):
         assert "AOA-P-0031" in text
 
-    assert "playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md" in readme
+    assert "playbooks/continuity/checkpoint/a2a-summon-return-checkpoint/PLAYBOOK.md" in readme
     assert "a2a-summon-return-checkpoint" in docs_map
     assert "hidden child automation" in readme
     assert "runtime dry-run receipt" in execution_seam
-    playbook = (
-        REPO_ROOT / "playbooks" / "a2a-summon-return-checkpoint" / "PLAYBOOK.md"
-    ).read_text(encoding="utf-8")
+    playbook = playbook_path_for_name("a2a-summon-return-checkpoint", REPO_ROOT).read_text(
+        encoding="utf-8"
+    )
     assert "repo:aoa-sdk/examples/a2a/summon_return_checkpoint_e2e.fixture.json" in playbook
     assert "routing_reentry.primary_action" in playbook
 
@@ -70,7 +72,7 @@ def test_a2a_summon_return_checkpoint_stays_out_of_composition_until_reviewed_ru
     assert activation_by_id["AOA-P-0031"]["return_posture"] == "checkpoint_anchor"
     assert federation_by_id["AOA-P-0031"]["memo_checkpoint_posture"] == "required"
     assert review_packets_by_id["AOA-P-0031"]["source_review_refs"] == [
-        "playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md"
+        "playbooks/continuity/checkpoint/a2a-summon-return-checkpoint/PLAYBOOK.md"
     ]
     assert review_packets_by_id["AOA-P-0031"]["gate_verdict"] is None
     assert landing_by_id["AOA-P-0031"]["in_review_status"] is False

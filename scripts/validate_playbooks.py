@@ -25,8 +25,18 @@ except ImportError as exc:
 
 try:
     from scripts.dependency_roots import default_dependency_root, repo_root_from_env
+    from scripts.playbook_source_home import (
+        authored_bundle_paths as source_home_bundle_paths,
+        playbook_ref_for_name,
+        validate_source_home_manifest,
+    )
 except ModuleNotFoundError:
     from dependency_roots import default_dependency_root, repo_root_from_env
+    from playbook_source_home import (
+        authored_bundle_paths as source_home_bundle_paths,
+        playbook_ref_for_name,
+        validate_source_home_manifest,
+    )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -2080,9 +2090,13 @@ def markdown_sections(body: str) -> dict[str, str]:
 
 
 def authored_bundle_paths() -> list[Path]:
-    if not PLAYBOOK_ROOT.exists():
-        return []
-    return sorted(path for path in PLAYBOOK_ROOT.rglob("PLAYBOOK.md") if path.is_file())
+    return source_home_bundle_paths(REPO_ROOT)
+
+
+def validate_playbook_source_home() -> None:
+    issues = validate_source_home_manifest(REPO_ROOT)
+    if issues:
+        fail("; ".join(issues))
 
 
 def validate_schema_surface() -> None:
@@ -2272,7 +2286,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
         / "playbook-execution-seam.md"
     )
     workflow = read_text(REAL_RUN_WORKFLOW_PATH)
-    session_growth_cycle = read_text(REPO_ROOT / "playbooks" / "session-growth-cycle" / "PLAYBOOK.md")
+    session_growth_cycle = read_text(REPO_ROOT / playbook_ref_for_name("session-growth-cycle", REPO_ROOT))
     cycle_doc = read_text(CODEX_PLANE_ROLLOUT_CYCLE_DOC_PATH)
     cadence_doc = read_text(
         REPO_ROOT
@@ -2304,7 +2318,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
         "hidden rollout runner",
     ):
         if token not in session_growth_cycle:
-            fail(f"playbooks/session-growth-cycle/PLAYBOOK.md must mention '{token}'")
+            fail(f"playbooks/continuity/session-growth/session-growth-cycle/PLAYBOOK.md must mention '{token}'")
 
     for snippet in CODEX_PLANE_ROLLOUT_DOC_SNIPPETS:
         if snippet not in cycle_doc:
@@ -3520,7 +3534,7 @@ def validate_authored_bundles(
             fail(f"duplicate authored bundle name discovered: '{bundle_name}'")
         seen_bundle_names.add(bundle_name)
 
-        expected_path = PLAYBOOK_ROOT / bundle_name / "PLAYBOOK.md"
+        expected_path = REPO_ROOT / playbook_ref_for_name(bundle_name, REPO_ROOT)
         if bundle_path != expected_path:
             fail(
                 f"{bundle_path.relative_to(REPO_ROOT).as_posix()} must live at "
@@ -4315,7 +4329,7 @@ def validate_playbook_review_packet_contracts_surface(
         source_review_refs = entry.get("source_review_refs")
         if not isinstance(source_review_refs, list):
             fail(f"{location}.source_review_refs must be a list")
-        expected_playbook_ref = f"playbooks/{entry['playbook_name']}/PLAYBOOK.md"
+        expected_playbook_ref = playbook_ref_for_name(str(entry["playbook_name"]), REPO_ROOT)
         review_entry = review_entries.get(playbook_id)
         if not source_review_refs or source_review_refs[0] != expected_playbook_ref:
             fail(f"{location}.source_review_refs must start with the owning PLAYBOOK.md")
@@ -4815,6 +4829,7 @@ def main() -> int:
         validate_antifragility_stress_surfaces()
         validate_codex_plane_rollout_cycle_companion()
         validate_memory_consumer_contract_docs()
+        validate_playbook_source_home()
         playbooks_by_id = validate_registry()
         agent_names = load_agent_names()
         model_tier_artifacts = load_model_tier_artifacts()
@@ -4870,6 +4885,7 @@ def main() -> int:
     print("[ok] validated antifragility stress-lane adjunct surfaces")
     print("[ok] validated codex-plane rollout cycle companion surfaces")
     print("[ok] validated playbook memory-consumer contract docs")
+    print("[ok] validated playbook source-home topology")
     print("[ok] validated generated/playbook_registry.min.json")
     print("[ok] validated generated/playbook_activation_surfaces.min.json")
     print("[ok] validated authored playbook bundles")

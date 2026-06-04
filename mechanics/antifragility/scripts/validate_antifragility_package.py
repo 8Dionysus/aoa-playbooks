@@ -4,12 +4,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+from scripts.playbook_source_home import playbook_path_for_name
+
 PACKAGE_ROOT = REPO_ROOT / "mechanics" / "antifragility"
 
 STRESS_LANE_SCHEMA_REL = Path("parts/stress-lanes/schemas/playbook_stress_lane_v1.json")
@@ -186,8 +191,8 @@ def validate(repo_root: Path = REPO_ROOT) -> list[str]:
         if (repo_root / relative_path).exists():
             issues.append(f"{relative_path}: old root antifragility payload should be package-local")
 
-    if not (repo_root / "playbooks" / "runtime-chaos-recovery" / "PLAYBOOK.md").is_file():
-        issues.append("playbooks/runtime-chaos-recovery/PLAYBOOK.md: source playbook canon is missing")
+    if not playbook_path_for_name("runtime-chaos-recovery", repo_root).is_file():
+        issues.append("runtime-chaos-recovery: source playbook canon is missing")
 
     validate_examples(
         repo_root,

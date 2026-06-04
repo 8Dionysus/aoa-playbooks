@@ -3,7 +3,7 @@ id: AOA-PB-Q-0008
 title: Keep the workspace checkpoint-growth route open as bounded owner follow-through
 summary: Carry the reviewed workspace checkpoint-growth route into a repo-local playbook quest without promoting one reviewed session into fake recurrence or a premature reusable playbook.
 repo: aoa-playbooks
-owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+owner_surface: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -27,11 +27,11 @@ depends_on:
   - AOA-PB-Q-0002
 activation:
   mode: on_review_of
-  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  ref: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
   note: open when a reviewed closeout keeps a route alive as owner follow-through without enough recurrence to claim reusable playbook canon
 anchor_ref:
   artifact: closeout_owner_follow_through_continuity
-  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  ref: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
   note: keep the route on the continuity playbook boundary until recurrence or a clearer promotion target is actually proven
 handoff_role: playbook-maintainer
 evidence:

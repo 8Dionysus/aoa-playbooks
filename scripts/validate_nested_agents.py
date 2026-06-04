@@ -10,7 +10,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY_NAME = "aoa-playbooks"
 
 REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
-    "playbooks/AGENTS.md": ("playbooks/*/PLAYBOOK.md", "A playbook is not a skill"),
+    "playbooks/AGENTS.md": ("playbooks/<branch>/<family>/<slug>/PLAYBOOK.md", "A playbook is not a skill"),
     "generated/AGENTS.md": ("playbook_registry.min.json", "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py"),
     "config/AGENTS.md": ("playbook_composition_overrides.json", "source-owned composition overrides"),
     "examples/AGENTS.md": ("Examples must demonstrate contracts without becoming canon", "activation posture"),

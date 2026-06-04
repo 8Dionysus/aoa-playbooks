@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "layer": "aoa-playbooks",
+  "home": "playbooks",
+  "source_object": "PLAYBOOK.md",
+  "path_template": "playbooks/<branch>/<family>/<slug>/PLAYBOOK.md",
+  "branches": [
+    {
+      "id": "operations",
+      "families": [
+        {
+          "id": "change",
+          "playbooks": [
+            "atm10-bounded-change",
+            "bounded-change-safe",
+            "infra-change-guarded",
+            "invariants-first-refactor",
+            "source-truth-then-share"
+          ]
+        },
+        {
+          "id": "orchestration",
+          "playbooks": [
+            "long-horizon-model-tier-orchestra"
+          ]
+        },
+        {
+          "id": "recovery",
+          "playbooks": [
+            "incident-recovery-routing",
+            "local-stack-diagnosis",
+            "runtime-chaos-recovery",
+            "validation-driven-remediation"
+          ]
+        },
+        {
+          "id": "release",
+          "playbooks": [
+            "release-migration-cutover",
+            "reviewed-automation-followthrough",
+            "trusted-rollout-operations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "continuity",
+      "families": [
+        {
+          "id": "checkpoint",
+          "playbooks": [
+            "a2a-summon-return-checkpoint",
+            "checkpoint-closeout-owner-route",
+            "checkpoint-distillation-closed-loop-pilot",
+            "self-agent-checkpoint-rollout"
+          ]
+        },
+        {
+          "id": "session-growth",
+          "playbooks": [
+            "closeout-owner-follow-through-continuity",
+            "component-refresh-cycle",
+            "owner-followthrough-campaign",
+            "restartable-inquiry-loop",
+            "self-agency-continuity-cycle",
+            "session-growth-cycle",
+            "witness-to-compost-pilot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "federation",
+      "families": [
+        {
+          "id": "cross-repo",
+          "playbooks": [
+            "cross-repo-boundary-rollout",
+            "project-foundation-workspace-landing",
+            "split-wave-cross-repo-rollout"
+          ]
+        },
+        {
+          "id": "owner-landing",
+          "playbooks": [
+            "federated-live-publisher-activation",
+            "owner-first-capability-landing",
+            "seed-pack-publication-route"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agon",
+      "families": [
+        {
+          "id": "campaigns",
+          "playbooks": [
+            "agon-campaign-bifurcation-survival",
+            "agon-campaign-closure-discipline-lineage",
+            "agon-campaign-doctrine-revision-review",
+            "agon-campaign-epistemic-rupture-followthrough",
+            "agon-campaign-false-consensus-resistance",
+            "agon-campaign-prediction-rivalry"
+          ]
+        },
+        {
+          "id": "trials",
+          "playbooks": [
+            "agon-assistant-escalation-trial",
+            "agon-broken-trace-trial",
+            "agon-contradiction-endurance-trial",
+            "agon-costly-closure-trial",
+            "agon-expensive-summon-intent-trial",
+            "agon-fallback-honor-trial",
+            "agon-prediction-trial"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "experience",
+      "families": [
+        {
+          "id": "certification",
+          "playbooks": [
+            "experience-certification-forge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "titan",
+      "families": [
+        {
+          "id": "closeout",
+          "playbooks": [
+            "titan-closeout-audit"
+          ]
+        }
+      ]
+    }
+  ]
+}

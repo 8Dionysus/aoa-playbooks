@@ -4,7 +4,7 @@
   "profile": "aoa-playbook-composition-v1",
   "source_of_truth": {
     "registry": "generated/playbook_registry.min.json",
-    "bundles": "playbooks/*/PLAYBOOK.md",
+    "bundles": "playbooks/*/*/*/PLAYBOOK.md",
     "composition_overrides": "mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json",
     "skill_handoff_contracts": "../aoa-skills/generated/skill_handoff_contracts.json"
   },
@@ -28,5 +28,5 @@
     "split-wave-cross-repo-rollout"
   ],
   "composition_playbook_count": 10,
-  "total_playbook_count": 49
+  "total_playbook_count": 50
 }

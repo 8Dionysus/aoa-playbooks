@@ -9,7 +9,7 @@
 | trigger | playbook participant, skill, eval, memo, or writeback refs change |
 | playbooks owns | federation projection shape and playbook source alignment |
 | stronger owner split | `aoa-skills`, `aoa-evals`, `aoa-memo`, `aoa-agents`, routing, and runtime owners keep their truth |
-| inputs | `playbooks/*/PLAYBOOK.md` and sibling owner refs named by those playbooks |
+| inputs | `playbooks/*/*/*/PLAYBOOK.md` and sibling owner refs named by those playbooks |
 | outputs | root-published `generated/playbook_federation_surfaces.min.json` |
 | must not claim | sibling source truth, runtime state, route dispatch, proof verdicts, memo truth, or skill semantics |
 | validation | `python mechanics/federation-closure/scripts/validate_federation_closure_package.py` and `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check` |
@@ -30,7 +30,7 @@ an operator-facing compatibility wrapper.
 
 ## Source surfaces
 
-- `playbooks/*/PLAYBOOK.md`
+- `playbooks/*/*/*/PLAYBOOK.md`
 - `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`
 - `generated/playbook_federation_surfaces.min.json`
 - sibling owner refs resolved by `scripts/validate_playbooks.py`

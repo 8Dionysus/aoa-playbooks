@@ -31,7 +31,7 @@ They are weaker than the source surface they describe:
 - repository authority stays in `CHARTER.md`;
 - playbook-layer identity stays in `README.md`, `CHARTER.md`, and
   `docs/BOUNDARIES.md`;
-- source-authored scenario meaning stays in `playbooks/*/PLAYBOOK.md`;
+- source-authored scenario meaning stays in `playbooks/*/*/*/PLAYBOOK.md`;
 - generated readers stay derived from their builders and source surfaces;
 - real-run and gate-review evidence stays in `docs/real-runs/` and
   `docs/gate-reviews/`;

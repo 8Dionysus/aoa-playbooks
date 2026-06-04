@@ -23,11 +23,16 @@ This package is active as package-local checkpoint posture.
 is package-local and still public as a playbook-layer route through README,
 docs-map, and focused tests.
 
+`playbooks/continuity/checkpoint/checkpoint-closeout-owner-route/PLAYBOOK.md`
+keeps reviewed checkpoint closeout owner-routing in the playbook layer without
+absorbing skill, memo, eval, technique, stats, routing, or runtime truth.
+
 ## Source surfaces
 
 - `mechanics/checkpoint/parts/distillation-closed-loop/docs/checkpoint-distillation-closed-loop-pilot.md`
-- `playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md`
-- `playbooks/checkpoint-distillation-closed-loop-pilot/PLAYBOOK.md`
+- `playbooks/continuity/checkpoint/a2a-summon-return-checkpoint/PLAYBOOK.md`
+- `playbooks/continuity/checkpoint/checkpoint-closeout-owner-route/PLAYBOOK.md`
+- `playbooks/continuity/checkpoint/checkpoint-distillation-closed-loop-pilot/PLAYBOOK.md`
 - `mechanics/activation/parts/activation-surface/examples/playbook_activation.checkpoint-distillation-closed-loop-pilot.example.json`
 
 ## Stronger owner route

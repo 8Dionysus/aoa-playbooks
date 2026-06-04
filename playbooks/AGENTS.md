@@ -1,12 +1,14 @@
 # AGENTS.md
 
-This file applies to authored playbook bundles under `playbooks/*/PLAYBOOK.md`.
+This file applies to authored playbook bundles under
+`playbooks/<branch>/<family>/<slug>/PLAYBOOK.md`.
 
 ## What lives here
 
-`playbooks/` is the authored scenario layer of `aoa-playbooks`.
+`playbooks/` is the authored scenario source home of `aoa-playbooks`.
 Each `PLAYBOOK.md` is a source-owned scenario object that should stay aligned with:
 
+- `playbooks/README.md` and `playbooks/source_home.manifest.json` for checked source-home topology
 - `generated/playbook_registry.min.json` for compact machine-readable metadata
 - `mechanics/activation/parts/activation-surface/docs/playbook-bundle-contract.md` for the authored bundle contract
 - `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md` for the bounded derived activation and federation posture
@@ -17,8 +19,9 @@ Each `PLAYBOOK.md` is a source-owned scenario object that should stay aligned wi
 
 Keep each authored bundle compact and predictable:
 
-- store it at `playbooks/<slug>/PLAYBOOK.md`
+- store it at `playbooks/<branch>/<family>/<slug>/PLAYBOOK.md`
 - keep `<slug>` aligned with frontmatter `name`
+- keep the route listed in `playbooks/source_home.manifest.json`
 - keep YAML frontmatter registry-aligned
 - keep the fixed section set expected by the validator
 

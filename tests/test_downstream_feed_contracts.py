@@ -386,7 +386,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(by_id["AOA-P-0011"]["memo_runtime_surfaces"], ["approval_record"])
         self.assertEqual(
             by_id["AOA-P-0011"]["source_review_refs"],
-            ["playbooks/bounded-change-safe/PLAYBOOK.md"],
+            ["playbooks/operations/change/bounded-change-safe/PLAYBOOK.md"],
         )
         self.assertIsNone(by_id["AOA-P-0011"]["gate_verdict"])
 
@@ -394,7 +394,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(
             by_id["AOA-P-0018"]["source_review_refs"],
             [
-                "playbooks/validation-driven-remediation/PLAYBOOK.md",
+                "playbooks/operations/recovery/validation-driven-remediation/PLAYBOOK.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/validation-driven-remediation.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-05.validation-driven-remediation.md",
             ],
@@ -403,7 +403,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(
             by_id["AOA-P-0017"]["source_review_refs"],
             [
-                "playbooks/split-wave-cross-repo-rollout/PLAYBOOK.md",
+                "playbooks/federation/cross-repo/split-wave-cross-repo-rollout/PLAYBOOK.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/split-wave-cross-repo-rollout.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-03-21.split-wave-cross-repo-rollout.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-03-28.split-wave-cross-repo-rollout.md",
@@ -414,7 +414,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(
             by_id["AOA-P-0019"]["source_review_refs"],
             [
-                "playbooks/release-migration-cutover/PLAYBOOK.md",
+                "playbooks/operations/release/release-migration-cutover/PLAYBOOK.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/release-migration-cutover.md",
             ],
         )
@@ -422,7 +422,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(
             by_id["AOA-P-0020"]["source_review_refs"],
             [
-                "playbooks/incident-recovery-routing/PLAYBOOK.md",
+                "playbooks/operations/recovery/incident-recovery-routing/PLAYBOOK.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/incident-recovery-routing.md",
             ],
         )
@@ -430,7 +430,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(
             by_id["AOA-P-0021"]["source_review_refs"],
             [
-                "playbooks/owner-first-capability-landing/PLAYBOOK.md",
+                "playbooks/federation/owner-landing/owner-first-capability-landing/PLAYBOOK.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/owner-first-capability-landing.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-07.owner-first-capability-landing.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-08.owner-first-capability-landing.md",
@@ -441,7 +441,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(
             by_id["AOA-P-0023"]["source_review_refs"],
             [
-                "playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md",
+                "playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/closeout-owner-follow-through-continuity.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-08.closeout-owner-follow-through-continuity.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-09.closeout-owner-follow-through-continuity.workspace-checkpoint-growth.md",
@@ -458,7 +458,7 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         self.assertEqual(
             by_id["AOA-P-0024"]["source_review_refs"],
             [
-                "playbooks/federated-live-publisher-activation/PLAYBOOK.md",
+                "playbooks/federation/owner-landing/federated-live-publisher-activation/PLAYBOOK.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/federated-live-publisher-activation.md",
                 "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-07.federated-live-publisher-activation.md",
             ],

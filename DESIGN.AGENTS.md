@@ -87,7 +87,7 @@ They narrow the root card. They do not overturn it.
 ### Playbook source cards
 
 `playbooks/AGENTS.md` protects the authored scenario canon under
-`playbooks/*/PLAYBOOK.md`.
+`playbooks/*/*/*/PLAYBOOK.md`.
 
 It should keep the split between scenario route, neighboring owner references,
 generated registry metadata, and review evidence visible.

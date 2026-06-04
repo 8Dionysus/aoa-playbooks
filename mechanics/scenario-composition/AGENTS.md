@@ -31,7 +31,7 @@ Read:
 ## Boundaries
 
 - Scenario composition is class `local`.
-- Source playbook truth stays in `playbooks/*/PLAYBOOK.md`.
+- Source playbook truth stays in `playbooks/*/*/*/PLAYBOOK.md`.
 - Source composition overrides stay in root `config/` until compatibility and
   validators support a move.
 - Generated composition outputs stay root-published read models.

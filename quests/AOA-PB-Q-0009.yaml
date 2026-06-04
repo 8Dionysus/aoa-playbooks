@@ -3,7 +3,7 @@ id: AOA-PB-Q-0009
 title: Reanchor checkpoint automation closeout as early route recurrence evidence
 summary: Close the checkpoint automation closeout recurrence reanchor after another reviewed run confirms the same route with stable owner boundaries and no need for new playbook canon.
 repo: aoa-playbooks
-owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+owner_surface: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -31,7 +31,7 @@ activation:
   note: open when checkpoint closeout produces route recurrence evidence that should survive as early tracked playbook status
 anchor_ref:
   artifact: closeout_owner_follow_through_continuity
-  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  ref: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
   note: keep recurrence evidence under owner-follow-through continuity until another reviewed run proves a stronger route shape
 handoff_role: playbook-maintainer
 evidence:

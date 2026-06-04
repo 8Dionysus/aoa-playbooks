@@ -12,7 +12,7 @@ This part owns the implementation that builds the root composition read models:
 
 ## Source surfaces
 
-- `playbooks/*/PLAYBOOK.md`
+- `playbooks/*/*/*/PLAYBOOK.md`
 - `generated/playbook_registry.min.json`
 - `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
 - `../aoa-skills/generated/skill_handoff_contracts.json`

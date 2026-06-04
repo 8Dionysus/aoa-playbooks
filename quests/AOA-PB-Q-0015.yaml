@@ -5,7 +5,7 @@ summary: Carry the reviewed experience v1.2-v2.0 campaign closeout survivor
   into repo-local playbook continuity without promoting one full landing cycle
   into fresh playbook, skill, eval, memo, agent, or technique canon.
 repo: aoa-playbooks
-owner_surface: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+owner_surface: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
 theme_ref: ''
 milestone_ref: ''
 kind: harvest
@@ -36,7 +36,7 @@ activation:
     into fresh layer canon
 anchor_ref:
   artifact: closeout_owner_follow_through_continuity
-  ref: playbooks/closeout-owner-follow-through-continuity/PLAYBOOK.md
+  ref: playbooks/continuity/session-growth/closeout-owner-follow-through-continuity/PLAYBOOK.md
   note: keep the experience closeout route on the closeout-owner-follow-through
     continuity boundary while any later recurring route, proof surface, memo
     writeback, role posture, skill uplift, or technique promotion remains a

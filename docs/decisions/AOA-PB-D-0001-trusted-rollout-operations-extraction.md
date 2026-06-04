@@ -65,8 +65,8 @@ points to `AOA-P-0028` rather than hiding inside `AOA-P-0025`.
 
 ## Source Surfaces
 
-- `playbooks/trusted-rollout-operations/PLAYBOOK.md`
-- `playbooks/session-growth-cycle/PLAYBOOK.md`
+- `playbooks/operations/release/trusted-rollout-operations/PLAYBOOK.md`
+- `playbooks/continuity/session-growth/session-growth-cycle/PLAYBOOK.md`
 - `docs/CODEX_PLANE_ROLLOUT_CYCLE.md`
 - `docs/TRUSTED_ROLLOUT_CAMPAIGN_CADENCE.md`
 - `generated/playbook_activation_surfaces.min.json`
