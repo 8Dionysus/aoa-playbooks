@@ -2391,7 +2391,15 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     rollback_payload = read_json(
         AOA_8DIONYSUS_ROOT / "generated" / "codex" / "rollout" / "rollback_windows.min.json"
     )
-    status_payload = read_json(AOA_SDK_ROOT / "examples" / "codex_plane_deploy_status_snapshot.example.json")
+    status_payload = read_json(
+        AOA_SDK_ROOT
+        / "mechanics"
+        / "codex-projection"
+        / "parts"
+        / "live-rollout-status-readout"
+        / "examples"
+        / "live-rollout-status-snapshot.example.json"
+    )
     stats_payload = read_json(AOA_STATS_ROOT / "examples" / "codex_plane_deployment_summary.example.json")
     drift_summary_payload = read_json(AOA_STATS_ROOT / "generated" / "codex_rollout_drift_summary.min.json")
 
