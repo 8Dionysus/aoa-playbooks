@@ -9,6 +9,10 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[5]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from scripts.playbook_source_home import playbook_path_for_name
+
 PART_ROOT = Path(__file__).resolve().parents[1]
 CFG = PART_ROOT / "config" / "agon_trial_playbooks.seed.json"
 REG = ROOT / "generated" / "agon_trial_playbook_registry.min.json"
@@ -111,7 +115,7 @@ def main() -> int:
             return fail(f"unknown gate trigger in {t.get('id')}: {sorted(set(t.get('gate_triggers', [])) - KNOWN_GATE_TRIGGERS)}")
         if not t.get("terminal_pre_protocol_outcomes"):
             return fail(f"missing terminal_pre_protocol_outcomes for {t.get('id')}")
-        pb = ROOT / "playbooks" / t["slug"] / "PLAYBOOK.md"
+        pb = playbook_path_for_name(t["slug"], ROOT)
         if not pb.exists():
             return fail(f"missing authored playbook bundle: {pb}")
         try:

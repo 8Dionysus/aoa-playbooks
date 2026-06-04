@@ -8,5 +8,5 @@
   antifragility package parts.
 - Moved stress-lane and re-entry gate examples from root `examples/` into
   antifragility package parts.
-- Left `playbooks/runtime-chaos-recovery/PLAYBOOK.md` in `playbooks/` as source
+- Left `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md` in `playbooks/` as source
   canon.

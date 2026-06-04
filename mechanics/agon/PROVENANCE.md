@@ -36,7 +36,7 @@ and recurrence-adapter docs.
 
 ## Retained root stores
 
-- `playbooks/agon-*/PLAYBOOK.md`: source playbook canon.
+- `playbooks/agon/*/agon-*/PLAYBOOK.md`: source playbook canon.
 - `quests/AOP-Q-AGON-*`: quest source notes.
 - `generated/agon_*_registry.min.json`: generated read models.
 - root `scripts/*agon*.py`: compatibility command/import paths.

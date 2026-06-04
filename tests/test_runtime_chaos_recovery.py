@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.playbook_source_home import playbook_path_for_name
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 GENERATED_ROOT = REPO_ROOT / "generated"
@@ -54,12 +56,10 @@ def test_runtime_chaos_recovery_docs_stay_discoverable() -> None:
     ):
         assert "AOA-P-0032" in text
 
-    assert "playbooks/runtime-chaos-recovery/PLAYBOOK.md" in readme
+    assert "playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md" in readme
     assert "antifragility/parts/runtime-chaos-wave1" in docs_map
     assert "runtime-chaos-recovery" in execution_seam
-    playbook = (
-        REPO_ROOT / "playbooks" / "runtime-chaos-recovery" / "PLAYBOOK.md"
-    ).read_text(encoding="utf-8")
+    playbook = playbook_path_for_name("runtime-chaos-recovery", REPO_ROOT).read_text(encoding="utf-8")
     assert "aoa-kag:regrounding_ticket_v1" in playbook
     assert "resume_degraded" in playbook
     assert "proof-facing handoff" in playbook
@@ -86,7 +86,7 @@ def test_runtime_chaos_recovery_stays_out_of_composition_until_reviewed_run() ->
     ]
     assert federation_by_id["AOA-P-0032"]["memo_checkpoint_posture"] == "not_needed"
     assert review_packets_by_id["AOA-P-0032"]["source_review_refs"] == [
-        "playbooks/runtime-chaos-recovery/PLAYBOOK.md"
+        "playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md"
     ]
     assert review_packets_by_id["AOA-P-0032"]["gate_verdict"] is None
     assert landing_by_id["AOA-P-0032"]["in_review_status"] is False

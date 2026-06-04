@@ -13,7 +13,7 @@
 | outputs | root generated Agon registries, validated pre-protocol playbook surfaces, and explicit stronger-owner stop lines |
 | must not claim | live arena authority, verdicts, scars, rank/trust mutation, retention execution, hidden scheduling, KAG/ToS promotion, or assistant contestant authority |
 | validation | `python mechanics/agon/scripts/validate_agon_package.py` plus the Agon root compatibility builder/validator commands |
-| next route | target part, `playbooks/agon-*/PLAYBOOK.md`, `quests/`, package recurrence manifest, generated registry, or stronger owner repo |
+| next route | target part, `playbooks/agon/*/agon-*/PLAYBOOK.md`, `quests/`, package recurrence manifest, generated registry, or stronger owner repo |
 
 ## Active route
 
@@ -43,7 +43,7 @@ wrappers. Root generated registries remain public read models.
 ## Source surfaces
 
 - `mechanics/agon/parts/**`
-- root `playbooks/agon-*/PLAYBOOK.md`
+- root `playbooks/agon/*/agon-*/PLAYBOOK.md`
 - root `quests/AOP-Q-AGON-*`
 - package `parts/*/manifests/component.agon*.json`
 - root `generated/agon_*_registry.min.json`

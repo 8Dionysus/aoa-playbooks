@@ -298,7 +298,7 @@ class ValidatePlaybooksFutureEvalOwnerRequestTests(unittest.TestCase):
             "must expose non-empty 'eval_anchors'",
         ):
             validate_playbooks.validate_strict_pre_protocol_eval_posture(
-                bundle_location="playbooks/agon-broken-trace-trial/PLAYBOOK.md",
+                bundle_location="playbooks/agon/trials/agon-broken-trace-trial/PLAYBOOK.md",
                 frontmatter={
                     "status": "experimental",
                     "evaluation_posture": "strict_pre_protocol_review",

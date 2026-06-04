@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
+from scripts.playbook_source_home import playbook_path_for_name
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = REPO_ROOT / "mechanics" / "agon" / "scripts" / "validate_agon_package.py"
@@ -17,6 +19,6 @@ def test_agon_package_validates() -> None:
 
 
 def test_agon_source_playbooks_stay_in_playbooks() -> None:
-    assert (REPO_ROOT / "playbooks" / "agon-broken-trace-trial" / "PLAYBOOK.md").is_file()
-    assert (REPO_ROOT / "playbooks" / "agon-expensive-summon-intent-trial" / "PLAYBOOK.md").is_file()
+    assert playbook_path_for_name("agon-broken-trace-trial", REPO_ROOT).is_file()
+    assert playbook_path_for_name("agon-expensive-summon-intent-trial", REPO_ROOT).is_file()
     assert not (REPO_ROOT / "mechanics" / "agon" / "playbooks").exists()

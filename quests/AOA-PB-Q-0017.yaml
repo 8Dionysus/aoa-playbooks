@@ -1,0 +1,60 @@
+schema_version: work_quest_v1
+id: AOA-PB-Q-0017
+title: Keep aoa-sdk checkpoint closeout owner-route candidates open
+summary: Carry the reviewed aoa-sdk checkpoint closeout survivor set as a playbook-owned route quest while stronger-owner skill, memo, and proof candidates remain bounded handoffs rather than SDK or playbook truth.
+repo: aoa-playbooks
+owner_surface: playbooks/continuity/checkpoint/checkpoint-closeout-owner-route/PLAYBOOK.md
+theme_ref: ''
+milestone_ref: ''
+kind: harvest
+state: reanchor
+band: near
+difficulty: d3_seam
+risk: r1_repo_local
+control_mode: human_codex_copilot
+delegate_tier: planner
+fallback_tier: verifier
+wrapper_class: codex_primary
+write_scope: repo_local
+split_required: true
+complexity_basis:
+  scope: 2
+  ambiguity: 2
+  boundary: 2
+  verification: 1
+parent: null
+depends_on:
+  - AOA-PB-Q-0016
+activation:
+  mode: on_review_of
+  ref: session:2026-06-03T19-38-31-734437Z-aoa-sdk-checkpoint-growth-2e1e18fd-963
+  note: open after the aoa-sdk checkpoint closeout produced a mechanical bridge with four accepted candidates and a keep-open quest verdict
+anchor_ref:
+  artifact: checkpoint_closeout_owner_route
+  ref: playbooks/continuity/checkpoint/checkpoint-closeout-owner-route/PLAYBOOK.md
+  note: keep the survivor set under checkpoint closeout owner routing until another reviewed pass proves a stronger owner landing, defer, drop, or promotion
+handoff_role: playbook-maintainer
+evidence:
+  - aoa-sdk checkpoint backlog reached zero after closeout execution and archive
+  - closeout accepted checkpoint growth, recurring route, memo-layer, and memo-writeback risk candidates as a set
+  - quest promotion stayed keep_open_quest and named promote_to_skill as the nearest wrong target for the route-shaped lead
+  - the honest next move is owner-routing and proof/defer, not SDK expansion or immediate skill promotion
+harvest:
+  target: playbook
+  trigger_count: 4
+  note: keep the route open as AOA-P-0050 evidence until another reviewed checkpoint closeout confirms owner fit or closes the survivor set through stronger owners
+opened_at: '2026-06-04'
+touched_at: '2026-06-04'
+tags:
+  - checkpoint
+  - aoa-sdk
+  - owner-route
+  - keep-open-quest
+  - reanchor
+notes: >
+  Anchored by the archived aoa-sdk closeout for
+  session:2026-06-03T19-38-31-734437Z-aoa-sdk-checkpoint-growth-2e1e18fd-963.
+  The route is now playbook-owned as owner-routing posture only. Skill-shaped
+  and memo-shaped candidates still leave through their stronger owner repos,
+  and the mechanical bridge output does not become final owner truth.
+public_safe: true

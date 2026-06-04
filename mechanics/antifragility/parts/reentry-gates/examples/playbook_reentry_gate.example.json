@@ -2,7 +2,7 @@
   "schema_version": "playbook_reentry_gate_v1",
   "gate_id": "gate:self-agent-checkpoint-rollout:derived-gap",
   "generated_at_utc": "2026-04-07T16:00:00Z",
-  "playbook_id": "playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md",
+  "playbook_id": "playbooks/continuity/checkpoint/self-agent-checkpoint-rollout/PLAYBOOK.md",
   "scope": {
     "repo": "ATM10-Agent",
     "surface": "hybrid-query",

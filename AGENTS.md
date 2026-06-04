@@ -29,7 +29,7 @@ It does not own:
 4. `DESIGN.AGENTS.md` when agent-facing route cards or guidance shape move
 5. `mechanics/README.md` and `mechanics/AGENTS.md` when repeatable operation topology moves
 6. the relevant model, bundle, gate, or evidence docs referenced there
-7. the target `playbooks/*/PLAYBOOK.md` or outline surface
+7. the target `playbooks/<branch>/<family>/<slug>/PLAYBOOK.md` or outline surface
 8. affected generated registry or composition surfaces
 9. neighboring repo docs when the playbook touches their meaning
 10. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches

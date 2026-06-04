@@ -9,7 +9,7 @@
 | trigger | a playbook joins, leaves, or changes the activation-readable cohort |
 | playbooks owns | activation projection shape, source registry alignment, fallback and return posture projection |
 | stronger owner split | runtime owns execution; routing owns dispatch; memo owns recall truth; evals own proof; skills own bounded execution |
-| inputs | `generated/playbook_registry.min.json`, authored `playbooks/*/PLAYBOOK.md`, activation cohort constants |
+| inputs | `generated/playbook_registry.min.json`, authored `playbooks/*/*/*/PLAYBOOK.md`, activation cohort constants |
 | outputs | root-published `generated/playbook_activation_surfaces.min.json` |
 | must not claim | runtime state, tool binding, route dispatch, memo search/ranking, eval verdicts, or hidden autonomous execution |
 | validation | `python mechanics/activation/scripts/validate_activation_package.py` and `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check` |
@@ -32,7 +32,7 @@ downstream agents already use that command path.
 ## Source surfaces
 
 - `generated/playbook_registry.min.json`
-- `playbooks/*/PLAYBOOK.md`
+- `playbooks/*/*/*/PLAYBOOK.md`
 - `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`
 - `generated/playbook_activation_surfaces.min.json`
 - `mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py`

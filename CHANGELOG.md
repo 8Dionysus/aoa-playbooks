@@ -215,7 +215,7 @@ This changelog entry uses the release-prep merge date.
 
 ### Included in this release
 
-- the authored playbook corpus under `playbooks/*/PLAYBOOK.md`
+- the authored playbook corpus under `playbooks/*/*/*/PLAYBOOK.md`
 - generated review surfaces under `generated/playbook_review_status.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_review_intake.min.json`
 - existing activation, federation, composition, handoff, failure-catalog, subagent-recipe, and automation-seed surfaces under `generated/`
 
@@ -272,7 +272,7 @@ This changelog entry uses the release-prep merge date.
 ### Included in this release
 
 - `20` total registry rows in `generated/playbook_registry.min.json`
-- `15` authored playbook bundles under `playbooks/*/PLAYBOOK.md`
+- `15` authored playbook bundles under `playbooks/*/*/*/PLAYBOOK.md`
 - `13` activation example-backed runtime-readable entries in `generated/playbook_activation_surfaces.min.json`
 - `15` federation-checked entries in `generated/playbook_federation_surfaces.min.json`
 - `7` composition-managed playbooks in `generated/playbook_composition_manifest.json`

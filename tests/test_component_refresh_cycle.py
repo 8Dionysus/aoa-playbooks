@@ -35,8 +35,8 @@ def test_component_refresh_cycle_docs_stay_discoverable() -> None:
     for text in (readme, docs_map, operational_family, portfolio, gap_matrix, execution_seam):
         assert "AOA-P-0030" in text
 
-    assert "playbooks/component-refresh-cycle/PLAYBOOK.md" in readme
-    assert "playbooks/component-refresh-cycle/PLAYBOOK.md" in docs_map
+    assert "playbooks/continuity/session-growth/component-refresh-cycle/PLAYBOOK.md" in readme
+    assert "playbooks/continuity/session-growth/component-refresh-cycle/PLAYBOOK.md" in docs_map
     assert "owner-law component refresh" in readme
     assert "scheduler authority" in execution_seam
 
@@ -56,7 +56,7 @@ def test_component_refresh_cycle_stays_out_of_composition_until_reviewed_run() -
     assert "AOA-P-0030" in activation_by_id
     assert "AOA-P-0030" in federation_by_id
     assert review_packets_by_id["AOA-P-0030"]["source_review_refs"] == [
-        "playbooks/component-refresh-cycle/PLAYBOOK.md"
+        "playbooks/continuity/session-growth/component-refresh-cycle/PLAYBOOK.md"
     ]
     assert review_packets_by_id["AOA-P-0030"]["gate_verdict"] is None
     assert landing_by_id["AOA-P-0030"]["in_review_status"] is False

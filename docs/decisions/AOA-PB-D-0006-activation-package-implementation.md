@@ -21,7 +21,7 @@ landing. It is local, has one dedicated builder, has a root-published generated
 output, and already has clear source surfaces:
 
 - `generated/playbook_registry.min.json`;
-- authored `playbooks/*/PLAYBOOK.md`;
+- authored `playbooks/*/*/*/PLAYBOOK.md`;
 - root generated output `generated/playbook_activation_surfaces.min.json`;
 - root command path `scripts/generate_playbook_activation_surfaces.py`.
 

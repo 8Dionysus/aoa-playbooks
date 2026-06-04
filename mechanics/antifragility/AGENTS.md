@@ -24,12 +24,12 @@ Read:
 4. this package `README.md`
 5. `PARTS.md`
 6. target part README/doc/schema/example
-7. `playbooks/runtime-chaos-recovery/PLAYBOOK.md` when the runtime-chaos route
+7. `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md` when the runtime-chaos route
    is involved
 
 ## Boundaries
 
-- Source playbook canon stays in `playbooks/runtime-chaos-recovery/PLAYBOOK.md`.
+- Source playbook canon stays in `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md`.
 - Runtime owners own live faults and repair execution.
 - `aoa-evals` owns proof, verdicts, and resilience evidence.
 - `aoa-memo` owns durable lessons.

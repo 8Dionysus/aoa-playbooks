@@ -67,7 +67,7 @@ it fails, and where should I leave for a stronger owner?
 `aoa-playbooks` is composed of different source classes:
 
 - root public entry and authority surfaces;
-- source-authored playbook bundles under `playbooks/*/PLAYBOOK.md`;
+- source-authored playbook bundles under `playbooks/*/*/*/PLAYBOOK.md`;
 - playbook-layer model, boundary, lifecycle, portfolio, and chooser docs under
   `docs/`;
 - review evidence under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/` and `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`;
@@ -140,7 +140,7 @@ not become a hidden runner, scheduler, workflow engine, or tool script archive.
 
 ### 2. Source before generated
 
-`playbooks/*/PLAYBOOK.md`, source config, and reviewed docs own meaning.
+`playbooks/*/*/*/PLAYBOOK.md`, source config, and reviewed docs own meaning.
 Generated registries, activation surfaces, federation surfaces, review status,
 landing governance, and composition manifests summarize or project that
 meaning.

@@ -30,7 +30,7 @@ Read:
 
 ## Boundaries
 
-- Source-authored playbooks stay in `playbooks/*/PLAYBOOK.md`.
+- Source-authored playbooks stay in `playbooks/*/*/*/PLAYBOOK.md`.
 - Reviewed run notes stay under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`.
 - Gate verdict notes stay under `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`.
 - Phase Alpha evidence stays under `mechanics/real-run-harvest/parts/phase-alpha-evidence-store/docs/alpha-readiness/`,

@@ -15,8 +15,9 @@ from scripts.mechanic_package_validator import validate_mechanic_package
 
 REQUIRED_ROOT_PATHS = (
     "mechanics/checkpoint/parts/distillation-closed-loop/docs/checkpoint-distillation-closed-loop-pilot.md",
-    "playbooks/a2a-summon-return-checkpoint/PLAYBOOK.md",
-    "playbooks/checkpoint-distillation-closed-loop-pilot/PLAYBOOK.md",
+    "playbooks/continuity/checkpoint/a2a-summon-return-checkpoint/PLAYBOOK.md",
+    "playbooks/continuity/checkpoint/checkpoint-closeout-owner-route/PLAYBOOK.md",
+    "playbooks/continuity/checkpoint/checkpoint-distillation-closed-loop-pilot/PLAYBOOK.md",
     "mechanics/activation/parts/activation-surface/examples/playbook_activation.checkpoint-distillation-closed-loop-pilot.example.json",
 )
 

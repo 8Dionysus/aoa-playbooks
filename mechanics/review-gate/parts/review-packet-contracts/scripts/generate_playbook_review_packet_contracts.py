@@ -14,8 +14,10 @@ if str(REPO_ROOT) not in sys.path:
 
 try:
     from scripts.dependency_roots import default_dependency_root
+    from scripts.playbook_source_home import playbook_ref_for_name
 except ModuleNotFoundError:
     from dependency_roots import default_dependency_root
+    from playbook_source_home import playbook_ref_for_name
 
 
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
@@ -191,7 +193,7 @@ def _candidate_packet_kinds(*, memo_runtime_surfaces: list[str], eval_anchors: l
 
 
 def _playbook_source_review_ref(playbook_name: str) -> str:
-    return f"playbooks/{playbook_name}/PLAYBOOK.md"
+    return playbook_ref_for_name(playbook_name, REPO_ROOT)
 
 
 def build_review_packet_contracts_payload() -> dict[str, object]:

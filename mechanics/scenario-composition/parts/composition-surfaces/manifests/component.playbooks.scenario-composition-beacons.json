@@ -4,7 +4,7 @@
   "owner_repo": "aoa-playbooks",
   "description": "Recurring scenario composition, composition gates, subagent recipes, and automation-seed surfaces.",
   "source_inputs": [
-    "playbooks/*/PLAYBOOK.md",
+    "playbooks/*/*/*/PLAYBOOK.md",
     "mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md",
     "mechanics/scenario-composition/parts/composition-surfaces/docs/subagent-patterns.md",
     "mechanics/scenario-composition/parts/composition-surfaces/docs/automation-seeds.md",
@@ -72,7 +72,7 @@
   "rollback_anchors": [
     "mechanics/scenario-composition/parts/composition-surfaces/docs/subagent-patterns.md",
     "mechanics/scenario-composition/parts/composition-surfaces/docs/automation-seeds.md",
-    "playbooks/component-refresh-cycle/PLAYBOOK.md"
+    "playbooks/continuity/session-growth/component-refresh-cycle/PLAYBOOK.md"
   ],
   "tags": [
     "playbooks",
@@ -250,7 +250,7 @@
     "mechanics/scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md",
     "mechanics/scenario-composition/parts/composition-surfaces/docs/subagent-patterns.md",
     "mechanics/scenario-composition/parts/composition-surfaces/docs/automation-seeds.md",
-    "playbooks/component-refresh-cycle/PLAYBOOK.md"
+    "playbooks/continuity/session-growth/component-refresh-cycle/PLAYBOOK.md"
   ],
   "candidate_targets": [
     "generated/playbook_subagent_recipes.json",

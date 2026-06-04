@@ -23,12 +23,12 @@ Read:
 4. this package `README.md`
 5. `PARTS.md`
 6. target part README/doc/schema/config/example/script
-7. affected `playbooks/agon-*/PLAYBOOK.md` when source playbook meaning changes
+7. affected `playbooks/agon/*/agon-*/PLAYBOOK.md` when source playbook meaning changes
 8. affected recurrence manifest or quest only when root source stores change
 
 ## Boundaries
 
-- Source Agon playbooks stay in `playbooks/agon-*/PLAYBOOK.md`.
+- Source Agon playbooks stay in `playbooks/agon/*/agon-*/PLAYBOOK.md`.
 - Agon quest notes stay in root `quests/`.
 - Recurrence manifests stay in root `manifests/recurrence/`.
 - Generated Agon registries stay in root `generated/`.

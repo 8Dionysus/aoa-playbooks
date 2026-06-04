@@ -450,7 +450,7 @@ def build_playbook_handoff_contracts(
         "profile": overrides["profile"],
         "source_of_truth": {
             "registry": "generated/playbook_registry.min.json",
-            "bundles": "playbooks/*/PLAYBOOK.md",
+            "bundles": "playbooks/*/*/*/PLAYBOOK.md",
             "composition_overrides": "mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json",
             "skill_handoff_contracts": "../aoa-skills/generated/skill_handoff_contracts.json",
         },
@@ -518,7 +518,7 @@ def build_composition_manifest(
         "profile": overrides["profile"],
         "source_of_truth": {
             "registry": "generated/playbook_registry.min.json",
-            "bundles": "playbooks/*/PLAYBOOK.md",
+            "bundles": "playbooks/*/*/*/PLAYBOOK.md",
             "composition_overrides": "mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json",
             "skill_handoff_contracts": "../aoa-skills/generated/skill_handoff_contracts.json",
         },

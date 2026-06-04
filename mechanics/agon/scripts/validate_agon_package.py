@@ -13,6 +13,10 @@ from jsonschema import Draft202012Validator
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PACKAGE_ROOT = REPO_ROOT / "mechanics" / "agon"
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from scripts.playbook_source_home import playbook_path_for_name
 
 REQUIRED_FILES = (
     "AGENTS.md",
@@ -232,8 +236,17 @@ def validate(repo_root: Path = REPO_ROOT) -> list[str]:
         if (repo_root / relative_path).exists():
             issues.append(f"{relative_path}: old root Agon payload should be package-local")
 
-    if not any((repo_root / "playbooks").glob("agon-*/PLAYBOOK.md")):
-        issues.append("playbooks/agon-*/PLAYBOOK.md: expected retained source playbooks")
+    for playbook_name in (
+        "agon-broken-trace-trial",
+        "agon-expensive-summon-intent-trial",
+    ):
+        try:
+            playbook_path = playbook_path_for_name(playbook_name, repo_root)
+        except KeyError:
+            issues.append(f"{playbook_name}: missing source-home manifest entry")
+            continue
+        if not playbook_path.is_file():
+            issues.append(f"{display(playbook_path, repo_root)}: expected retained source playbook")
     if not any((repo_root / "quests").glob("AOP-Q-AGON-*.md")):
         issues.append("quests/AOP-Q-AGON-*.md: expected retained quest source notes")
     if not any((package_root / "parts").glob("*/manifests/component.agon*.json")):

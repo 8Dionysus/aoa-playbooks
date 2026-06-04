@@ -1,7 +1,7 @@
 {
   "schema_version": "playbook_stress_lane_v1",
   "lane_id": "playbook:stress-lane:self-agent-checkpoint-rollout:derived-gap",
-  "playbook_id": "playbooks/self-agent-checkpoint-rollout/PLAYBOOK.md",
+  "playbook_id": "playbooks/continuity/checkpoint/self-agent-checkpoint-rollout/PLAYBOOK.md",
   "scenario_family": "self_agent_checkpoint_rollout",
   "stress_family": "derived_surface_gap",
   "activation_triggers": [

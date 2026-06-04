@@ -1,7 +1,7 @@
 {
   "schema_version": "playbook_stress_lane_v1",
   "lane_id": "playbook:stress-lane:runtime-chaos-recovery:timeout-chaos",
-  "playbook_id": "playbooks/runtime-chaos-recovery/PLAYBOOK.md",
+  "playbook_id": "playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md",
   "scenario_family": "runtime_chaos_recovery",
   "stress_family": "timeout_chaos",
   "activation_triggers": [

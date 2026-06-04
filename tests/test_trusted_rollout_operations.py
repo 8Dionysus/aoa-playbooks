@@ -91,8 +91,8 @@ def test_trusted_rollout_operations_docs_and_routes_stay_discoverable() -> None:
     ):
         assert "AOA-P-0028" in text
 
-    assert "playbooks/trusted-rollout-operations/PLAYBOOK.md" in readme
-    assert "playbooks/trusted-rollout-operations/PLAYBOOK.md" in docs_map
+    assert "playbooks/operations/release/trusted-rollout-operations/PLAYBOOK.md" in readme
+    assert "playbooks/operations/release/trusted-rollout-operations/PLAYBOOK.md" in docs_map
     assert "mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md" in readme
     assert "mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md" in docs_map
     assert "mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json" in readme
@@ -134,7 +134,7 @@ def test_trusted_rollout_operations_stays_out_of_composition_after_two_reviewed_
     assert review_status_by_id["AOA-P-0028"]["gate_review_ref"] == "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/trusted-rollout-operations.md"
     assert review_status_by_id["AOA-P-0028"]["gate_verdict"] == "hold"
     assert review_packets_by_id["AOA-P-0028"]["source_review_refs"] == [
-        "playbooks/trusted-rollout-operations/PLAYBOOK.md",
+        "playbooks/operations/release/trusted-rollout-operations/PLAYBOOK.md",
         "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/trusted-rollout-operations.md",
         "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-11.trusted-rollout-operations.initial-stable-regen.md",
         "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/2026-04-11.trusted-rollout-operations.md",

@@ -26,7 +26,7 @@ It had:
 - stress-lane and re-entry gate schemas;
 - stress-lane and re-entry gate examples;
 - focused tests and validator hooks;
-- the source playbook `playbooks/runtime-chaos-recovery/PLAYBOOK.md`.
+- the source playbook `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md`.
 
 Sibling repositories already treat `antifragility` as a center-fed mechanic
 with owner-local packages. The playbook-local form should own degraded-lane and
@@ -130,7 +130,7 @@ As of 2026-05-31:
 - `mechanics/antifragility/parts/runtime-chaos-wave1/docs/playbook-stress-chaos-wave1.md`
 - `mechanics/antifragility/parts/via-negativa/docs/via-negativa-checklist.md`
 - `mechanics/antifragility/scripts/validate_antifragility_package.py`
-- `playbooks/runtime-chaos-recovery/PLAYBOOK.md`
+- `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md`
 - `tests/test_antifragility_mechanics_package.py`
 - `tests/test_antifragility_public_surface.py`
 - `tests/test_runtime_chaos_recovery.py`

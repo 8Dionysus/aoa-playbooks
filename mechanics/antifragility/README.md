@@ -46,7 +46,7 @@ Former root docs, schemas, and examples are historical paths. Use
 - `mechanics/antifragility/parts/stress-harvest/docs/playbook-stress-harvest.md`
 - `mechanics/antifragility/parts/runtime-chaos-wave1/docs/playbook-stress-chaos-wave1.md`
 - `mechanics/antifragility/parts/via-negativa/docs/via-negativa-checklist.md`
-- `playbooks/runtime-chaos-recovery/PLAYBOOK.md`
+- `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md`
 
 ## Owner boundary
 

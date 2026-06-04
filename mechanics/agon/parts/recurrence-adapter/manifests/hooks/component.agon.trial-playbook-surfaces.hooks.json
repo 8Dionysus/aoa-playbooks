@@ -54,7 +54,7 @@
       "owner_repo": "aoa-playbooks",
       "path_globs": [
         "generated/agon_trial_playbook_registry.min.json",
-        "playbooks/agon-*/PLAYBOOK.md"
+        "playbooks/agon/*/agon-*/PLAYBOOK.md"
       ],
       "producer": "runtime_candidate_watch",
       "signal_rules": [

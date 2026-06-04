@@ -30,7 +30,7 @@ source homes even though the repeatable operation was one head-fed mechanic.
 
 1. Leave Agon payloads scattered across root `docs/`, `config/`, `schemas/`,
    `examples/`, and `scripts/`.
-2. Move the source `playbooks/agon-*/PLAYBOOK.md` bundles into mechanics.
+2. Move the source `playbooks/agon/*/agon-*/PLAYBOOK.md` bundles into mechanics.
 3. Move Agon mechanics-owned docs, seed config, schemas, examples, and builder
    implementations into `mechanics/agon/parts/`, keep source playbooks, quests,
    generated registries, recurrence manifests, and root commands in their
@@ -136,7 +136,7 @@ As of 2026-05-31:
 - `generated/agon_trial_kernel_binding_registry.min.json`
 - `generated/agon_campaign_playbook_registry.min.json`
 - `mechanics/agon/parts/*/manifests/component.agon*.json`
-- `playbooks/agon-*/PLAYBOOK.md`
+- `playbooks/agon/*/agon-*/PLAYBOOK.md`
 - `quests/AOP-Q-AGON-*.md`
 - `tests/test_agon_mechanics_package.py`
 - `tests/test_agon_trial_playbooks.py`

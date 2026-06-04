@@ -40,7 +40,7 @@ negativa checklist surfaces that are specific to `aoa-playbooks`.
 
 Former root paths are historical. The active routes are package-local.
 
-`playbooks/runtime-chaos-recovery/PLAYBOOK.md` did not move because source
+`playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md` did not move because source
 playbook canon belongs in `playbooks/`.
 
 Generated registry and review outputs did not move because they are root read

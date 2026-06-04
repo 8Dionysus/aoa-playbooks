@@ -25,6 +25,7 @@ It stays repo-local and scenario-facing. It does not replace `mechanics/recurren
 - `AOA-PB-Q-0014` Keep recurrence seed archive closeout survivors owner-routed.
 - `AOA-PB-Q-0015` Keep experience v1.2-v2.0 closeout survivors owner-routed.
 - `AOA-PB-Q-0016` Keep Agents-of-Abyss v0.4.0 closeout survivors owner-routed.
+- `AOA-PB-Q-0017` Keep aoa-sdk checkpoint closeout owner-route candidates open.
 
 ## Harvest candidates
 
@@ -35,6 +36,7 @@ It stays repo-local and scenario-facing. It does not replace `mechanics/recurren
 - `AOA-PB-Q-0014` Keep recurrence seed archive closeout survivors owner-routed.
 - `AOA-PB-Q-0015` Keep experience v1.2-v2.0 closeout survivors owner-routed.
 - `AOA-PB-Q-0016` Keep Agents-of-Abyss v0.4.0 closeout survivors owner-routed.
+- `AOA-PB-Q-0017` Keep aoa-sdk checkpoint closeout owner-route candidates open.
 
 ## Quest-harvest posture
 

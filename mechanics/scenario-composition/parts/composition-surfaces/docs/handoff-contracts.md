@@ -11,7 +11,7 @@ It must not absorb skill meaning from `aoa-skills`.
 
 `generated/playbook_handoff_contracts.json` is derived from:
 
-- `playbooks/*/PLAYBOOK.md`
+- `playbooks/*/*/*/PLAYBOOK.md`
 - `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
 - `../aoa-skills/generated/skill_handoff_contracts.json`
 

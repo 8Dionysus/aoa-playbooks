@@ -2,7 +2,7 @@
 
 This is a supporting Titan route note, not an authored playbook bundle. The
 validated scenario surface for Titan-backed closeout lives at
-`playbooks/titan-closeout-audit/PLAYBOOK.md`.
+`playbooks/titan/closeout/titan-closeout-audit/PLAYBOOK.md`.
 
 ## Opening
 
