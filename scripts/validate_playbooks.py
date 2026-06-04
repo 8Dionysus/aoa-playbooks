@@ -152,6 +152,30 @@ CODEX_PLANE_ROLLOUT_LANE_EXAMPLE_PATH = (
     / "examples"
     / "codex_plane_rollout_lane.example.json"
 )
+CODEX_PROJECTION_LIVE_ROLLOUT_STATUS_EXAMPLE_RELATIVE_PATH = (
+    Path("mechanics")
+    / "codex-projection"
+    / "parts"
+    / "live-rollout-status-readout"
+    / "examples"
+    / "live-rollout-status-snapshot.example.json"
+)
+CODEX_PROJECTION_LIVE_ROLLOUT_STATUS_EVIDENCE_REF = (
+    "aoa-sdk/" + CODEX_PROJECTION_LIVE_ROLLOUT_STATUS_EXAMPLE_RELATIVE_PATH.as_posix()
+)
+LEGACY_CODEX_PLANE_DEPLOY_STATUS_EVIDENCE_REF = (
+    "aoa-sdk/examples/codex_plane_deploy_status_snapshot.example.json"
+)
+INITIAL_STABLE_ROLLOUT_SUMMARY_PATH = (
+    REPO_ROOT
+    / "mechanics"
+    / "real-run-harvest"
+    / "parts"
+    / "reviewed-run-source-store"
+    / "docs"
+    / "real-runs"
+    / "2026-04-11.trusted-rollout-operations.initial-stable-regen.md"
+)
 PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
@@ -2391,7 +2415,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     rollback_payload = read_json(
         AOA_8DIONYSUS_ROOT / "generated" / "codex" / "rollout" / "rollback_windows.min.json"
     )
-    status_payload = read_json(AOA_SDK_ROOT / "examples" / "codex_plane_deploy_status_snapshot.example.json")
+    status_payload = read_json(AOA_SDK_ROOT / CODEX_PROJECTION_LIVE_ROLLOUT_STATUS_EXAMPLE_RELATIVE_PATH)
     stats_payload = read_json(AOA_STATS_ROOT / "examples" / "codex_plane_deployment_summary.example.json")
     drift_summary_payload = read_json(AOA_STATS_ROOT / "generated" / "codex_rollout_drift_summary.min.json")
 
@@ -2446,6 +2470,18 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     stats_mcp_names = stats_payload.get("stable_mcp_name_set")
     if not isinstance(stats_mcp_names, list) or set(stats_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
         fail("aoa-stats deployment summary example must keep the stable MCP name set")
+
+    initial_stable_summary = read_text(INITIAL_STABLE_ROLLOUT_SUMMARY_PATH)
+    if CODEX_PROJECTION_LIVE_ROLLOUT_STATUS_EVIDENCE_REF not in initial_stable_summary:
+        fail(
+            "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/"
+            "2026-04-11.trusted-rollout-operations.initial-stable-regen.md must cite the current aoa-sdk live rollout status evidence path"
+        )
+    if LEGACY_CODEX_PLANE_DEPLOY_STATUS_EVIDENCE_REF in initial_stable_summary:
+        fail(
+            "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/"
+            "2026-04-11.trusted-rollout-operations.initial-stable-regen.md must not cite the legacy aoa-sdk deploy status evidence path"
+        )
 
 
 def validate_return_contract_schema(schema: dict[str, object], *, location: str) -> None:
