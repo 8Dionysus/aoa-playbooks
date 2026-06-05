@@ -34,6 +34,9 @@ Read:
 - Give every decision an `## Index Metadata` block so lookup indexes can be
   regenerated from source notes instead of hand-maintained crosswalks.
 - Treat `indexes/` as generated lookup read models, not rationale authority.
+- Keep `modeled_surfaces` in `indexes/index_contract.yaml` as a top-level list
+  of normalized repo-relative paths under `docs/decisions/`; do not use it for
+  root non-record Markdown.
 - Old date-prefixed decision paths stay in git history only. Do not recreate
   date-named stubs or compatibility maps for retired paths.
 - Route sibling-owner truth to the owning AoA repository.
