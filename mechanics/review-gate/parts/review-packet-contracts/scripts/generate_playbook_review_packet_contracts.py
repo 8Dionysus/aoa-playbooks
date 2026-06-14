@@ -79,6 +79,18 @@ def runtime_template_index_path() -> Path:
     return current
 
 
+def runtime_template_index_ref(index_path: Path | None = None) -> str:
+    path = index_path or runtime_template_index_path()
+    try:
+        relative = path.relative_to(AOA_EVALS_ROOT).as_posix()
+    except ValueError:
+        raise SystemExit(
+            "[error] aoa-evals runtime candidate template index must stay under AOA_EVALS_ROOT: "
+            f"{path.as_posix()}"
+        )
+    return f"repo:aoa-evals/{relative}"
+
+
 def read_text(path: Path, *, root: Path = REPO_ROOT) -> str:
     try:
         return path.read_text(encoding="utf-8")
@@ -140,9 +152,9 @@ def _ordered_unique(items: list[str]) -> list[str]:
     return ordered
 
 
-def _available_runtime_eval_anchors() -> set[str]:
+def _available_runtime_eval_anchors(index_path: Path | None = None) -> set[str]:
     anchors: set[str] = set()
-    payload = read_json(runtime_template_index_path(), root=AOA_EVALS_ROOT)
+    payload = read_json(index_path or runtime_template_index_path(), root=AOA_EVALS_ROOT)
     if not isinstance(payload, dict) or not isinstance(payload.get("templates"), list):
         raise SystemExit(
             "[error] aoa-evals mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json must contain a templates list"
@@ -201,7 +213,8 @@ def build_review_packet_contracts_payload() -> dict[str, object]:
     activation_by_id = _load_surface_map(ACTIVATION_PATH, key_name="playbook_id")
     federation_by_id = _load_surface_map(FEDERATION_PATH, key_name="playbook_id")
     review_status_by_id = _load_review_status_by_id()
-    available_eval_anchors = _available_runtime_eval_anchors()
+    template_index_path = runtime_template_index_path()
+    available_eval_anchors = _available_runtime_eval_anchors(template_index_path)
 
     entries: list[dict[str, object]] = []
     for playbook_id, registry_entry in sorted(registry_by_id.items()):
@@ -268,7 +281,7 @@ def build_review_packet_contracts_payload() -> dict[str, object]:
             "activation": "generated/playbook_activation_surfaces.min.json",
             "federation": "generated/playbook_federation_surfaces.min.json",
             "review_status": "generated/playbook_review_status.min.json",
-            "runtime_template_index": "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json",
+            "runtime_template_index": runtime_template_index_ref(template_index_path),
         },
         "playbooks": entries,
     }

@@ -4254,7 +4254,7 @@ def validate_playbook_review_packet_contracts_surface(
         "activation": "generated/playbook_activation_surfaces.min.json",
         "federation": "generated/playbook_federation_surfaces.min.json",
         "review_status": "generated/playbook_review_status.min.json",
-        "runtime_template_index": "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json",
+        "runtime_template_index": builder.runtime_template_index_ref(),
     }
     if payload.get("source_of_truth") != expected_source_of_truth:
         fail("generated/playbook_review_packet_contracts.min.json must keep source_of_truth stable")
