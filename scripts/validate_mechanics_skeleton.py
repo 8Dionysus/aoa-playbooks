@@ -11,7 +11,7 @@ import re
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 MECHANICS_ROOT = Path("mechanics")
-ALLOWED_ROOT_MARKDOWN = {"README.md", "AGENTS.md"}
+ALLOWED_ROOT_FILES = {"README.md", "AGENTS.md"}
 FORBIDDEN_ROOT_DIR_NAMES = {"_meta", "legacy", "notes", "scratch", "migration", "migrations"}
 
 REQUIRED_ROOT_FILES: dict[str, tuple[str, ...]] = {
@@ -208,11 +208,13 @@ def validate(repo_root: Path = REPO_ROOT) -> ValidationResult:
     if not mechanics_root.is_dir():
         issues.append("mechanics/: directory is missing")
     else:
-        for path in sorted(mechanics_root.glob("*.md")):
-            if path.name not in ALLOWED_ROOT_MARKDOWN:
-                rel = path.relative_to(repo_root).as_posix()
-                issues.append(f"{rel}: root mechanics markdown is forbidden")
         for path in sorted(mechanics_root.iterdir()):
+            if path.is_file() and path.name not in ALLOWED_ROOT_FILES:
+                rel = path.relative_to(repo_root).as_posix()
+                if path.suffix == ".md":
+                    issues.append(f"{rel}: root mechanics markdown is forbidden")
+                else:
+                    issues.append(f"{rel}: root mechanics file is forbidden")
             if path.is_dir() and path.name in FORBIDDEN_ROOT_DIR_NAMES:
                 rel = path.relative_to(repo_root).as_posix()
                 issues.append(f"{rel}/: root mechanics holding directory is forbidden")
