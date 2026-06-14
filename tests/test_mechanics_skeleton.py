@@ -67,6 +67,14 @@ class MechanicsSkeletonValidationTests(unittest.TestCase):
             result = validator.validate(repo_root)
             self.assertIn("mechanics/NOTES.md: root mechanics markdown is forbidden", result.issues)
 
+    def test_extra_root_mechanics_non_markdown_file_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            _write(repo_root / "mechanics" / "NOTES.txt", "old root note\n")
+            result = validator.validate(repo_root)
+            self.assertIn("mechanics/NOTES.txt: root mechanics file is forbidden", result.issues)
+
     def test_entrypoints_must_route_to_mechanics(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
