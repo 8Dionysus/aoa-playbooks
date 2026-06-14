@@ -510,6 +510,37 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
             with patch.object(review_packet_contract_builder, "AOA_EVALS_ROOT", REPO_ROOT / ".missing-aoa-evals"):
                 review_packet_contract_builder.build_review_packet_contracts_payload()
 
+    def test_review_packet_contract_builder_reports_legacy_runtime_template_index_source(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            evals_root = Path(tmpdir) / "aoa-evals"
+            template_index_path = evals_root / "generated" / "runtime_candidate_template_index.min.json"
+            source_example_path = evals_root / "examples" / "runtime_evidence_selection.demo.example.json"
+            template_index_path.parent.mkdir(parents=True, exist_ok=True)
+            source_example_path.parent.mkdir(parents=True, exist_ok=True)
+            template_index_path.write_text(
+                json.dumps(
+                    {
+                        "templates": [
+                            {
+                                "eval_anchor": "aoa-approval-boundary-adherence",
+                                "source_example_ref": "examples/runtime_evidence_selection.demo.example.json",
+                            }
+                        ]
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            source_example_path.write_text("{}\n", encoding="utf-8")
+
+            with patch.object(review_packet_contract_builder, "AOA_EVALS_ROOT", evals_root):
+                payload = review_packet_contract_builder.build_review_packet_contracts_payload()
+
+        self.assertEqual(
+            payload["source_of_truth"]["runtime_template_index"],
+            "repo:aoa-evals/generated/runtime_candidate_template_index.min.json",
+        )
+
     def test_review_packet_contract_builder_rejects_missing_runtime_template_sources(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             evals_root = Path(tmpdir) / "aoa-evals"
