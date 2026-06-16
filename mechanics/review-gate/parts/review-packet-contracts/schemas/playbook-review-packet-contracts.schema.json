@@ -48,10 +48,7 @@
         },
         "runtime_template_index": {
           "type": "string",
-          "enum": [
-            "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json",
-            "repo:aoa-evals/generated/runtime_candidate_template_index.min.json"
-          ]
+          "const": "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/runtime_candidate_template_index.min.json"
         }
       }
     },
