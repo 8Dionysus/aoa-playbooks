@@ -9,6 +9,9 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Changed
 
+- review-packet contract generation now keeps the canonical `aoa-evals`
+  runtime-template source ref even when reading the legacy sibling fallback
+  layout.
 - added root design spine surfaces, `DESIGN.md` and `DESIGN.AGENTS.md`, plus
   validation coverage so future mechanics and playbook-canon topology work has
   a checked system and agent-route map.

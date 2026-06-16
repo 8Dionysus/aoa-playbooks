@@ -25,6 +25,11 @@ ACTIVATION_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.js
 FEDERATION_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
 REVIEW_STATUS_PATH = REPO_ROOT / "generated" / "playbook_review_status.min.json"
 OUTPUT_PATH = REPO_ROOT / "generated" / "playbook_review_packet_contracts.min.json"
+CANONICAL_RUNTIME_TEMPLATE_INDEX_REF = (
+    "repo:aoa-evals/mechanics/audit/parts/candidate-readers/generated/"
+    "runtime_candidate_template_index.min.json"
+)
+LEGACY_RUNTIME_TEMPLATE_INDEX_RELATIVE = "generated/runtime_candidate_template_index.min.json"
 
 KNOWN_MEMO_RUNTIME_SURFACES = (
     "checkpoint_export",
@@ -88,6 +93,8 @@ def runtime_template_index_ref(index_path: Path | None = None) -> str:
             "[error] aoa-evals runtime candidate template index must stay under AOA_EVALS_ROOT: "
             f"{path.as_posix()}"
         )
+    if relative == LEGACY_RUNTIME_TEMPLATE_INDEX_RELATIVE:
+        return CANONICAL_RUNTIME_TEMPLATE_INDEX_REF
     return f"repo:aoa-evals/{relative}"
 
 
