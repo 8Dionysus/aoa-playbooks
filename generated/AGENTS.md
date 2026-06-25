@@ -13,6 +13,7 @@ This file applies to artifacts under `generated/`.
 - `playbook_review_status.min.json` is a derived evidence-status projection over reviewed summaries and gate-review notes
 - `playbook_landing_governance.min.json` is a derived review-track landing gate over the experimental review-governed cohort
 - `playbook_handoff_contracts.json`, `playbook_failure_catalog.json`, `playbook_subagent_recipes.json`, `playbook_automation_seeds.json`, and `playbook_composition_manifest.json` are derived composition projections for the canonical playbook cohort
+- `playbook_registry.min.json` carries the ABI identity for `docs/artifact-bundles/playbook_registry.bundle.json`; the bundle requires ABI and SLSA/in-toto controls before registry/latest consumers trust it
 
 Do not treat all files in this directory the same way.
 The registry is canonical playbook metadata.
@@ -76,6 +77,7 @@ python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_revie
 python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check
 python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
 python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
+python scripts/validate_abyss_machine_playbook_bundle.py
 python scripts/validate_playbooks.py
 python -m pytest -q tests
 ```

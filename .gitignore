@@ -1,6 +1,8 @@
 __pycache__/
 .pytest_cache/
 *.pyc
+.deps/
+dist/
 
 # Owner-local live receipt logs stay out of git.
 .aoa/live_receipts/

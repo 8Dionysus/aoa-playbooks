@@ -4,7 +4,7 @@
   "title": "AoA playbook registry",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "layer", "playbooks"],
+  "required": ["version", "layer", "artifact_identity", "playbooks"],
   "properties": {
     "version": {
       "type": "integer",
@@ -13,6 +13,82 @@
     "layer": {
       "type": "string",
       "const": "aoa-playbooks"
+    },
+    "artifact_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_class",
+        "surface_state",
+        "owner_repo",
+        "authority_ref",
+        "producer",
+        "consumer_expectation",
+        "privacy_boundary",
+        "content_identity",
+        "abi_epoch",
+        "contract_version",
+        "trust_layer",
+        "verification"
+      ],
+      "properties": {
+        "artifact_class": {
+          "const": "playbook_registry_bundle"
+        },
+        "surface_state": {
+          "const": "public_source_authored_playbook_registry"
+        },
+        "owner_repo": {
+          "const": "aoa-playbooks"
+        },
+        "authority_ref": {
+          "const": "README.md#current-public-surfaces"
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consumer_expectation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "privacy_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content_identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "abi_epoch": {
+          "const": "aoa_playbooks_registry_bundle_v1"
+        },
+        "contract_version": {
+          "const": "schemas/playbook-registry.schema.json@aoa_playbooks_registry_bundle_v1#artifact_identity"
+        },
+        "trust_layer": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": "abi_contract_signature"
+            },
+            {
+              "const": "slsa_in_toto"
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "verification": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 3
+        }
+      }
     },
     "playbooks": {
       "type": "array",
