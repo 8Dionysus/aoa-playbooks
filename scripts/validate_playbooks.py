@@ -63,6 +63,15 @@ AOA_STATS_ROOT = repo_root_from_env(
     "AOA_STATS_ROOT", default_dependency_root(REPO_ROOT, "aoa-stats")
 )
 REGISTRY_PATH = REPO_ROOT / "generated" / "playbook_registry.min.json"
+PLAYBOOK_REGISTRY_ARTIFACT_IDENTITY = {
+    "artifact_class": "playbook_registry_bundle",
+    "surface_state": "public_source_authored_playbook_registry",
+    "owner_repo": "aoa-playbooks",
+    "authority_ref": "README.md#current-public-surfaces",
+    "abi_epoch": "aoa_playbooks_registry_bundle_v1",
+    "contract_version": "schemas/playbook-registry.schema.json@aoa_playbooks_registry_bundle_v1#artifact_identity",
+    "trust_layer": ["abi_contract_signature", "slsa_in_toto"],
+}
 ACTIVATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_activation_surfaces.min.json"
 FEDERATION_COLLECTION_PATH = REPO_ROOT / "generated" / "playbook_federation_surfaces.min.json"
 COMPOSITION_CONFIG_PATH = (
@@ -2721,7 +2730,7 @@ def validate_registry() -> dict[str, dict[str, object]]:
     if not isinstance(payload, dict):
         fail("playbook registry must be a JSON object")
 
-    for key in ("version", "layer", "playbooks"):
+    for key in ("version", "layer", "artifact_identity", "playbooks"):
         if key not in payload:
             fail(f"playbook registry is missing required key '{key}'")
 
@@ -2729,6 +2738,19 @@ def validate_registry() -> dict[str, dict[str, object]]:
         fail("registry 'version' must be an integer >= 1")
     if payload["layer"] != "aoa-playbooks":
         fail("registry 'layer' must equal 'aoa-playbooks'")
+    artifact_identity = payload["artifact_identity"]
+    if not isinstance(artifact_identity, dict):
+        fail("registry 'artifact_identity' must be an object")
+    for key, expected in PLAYBOOK_REGISTRY_ARTIFACT_IDENTITY.items():
+        if artifact_identity.get(key) != expected:
+            fail(f"registry artifact_identity.{key} must equal {expected!r}")
+    for key in ("producer", "consumer_expectation", "privacy_boundary", "content_identity", "verification"):
+        value = artifact_identity.get(key)
+        if isinstance(value, str) and value:
+            continue
+        if isinstance(value, list) and value and all(isinstance(item, str) and item for item in value):
+            continue
+        fail(f"registry artifact_identity.{key} must be populated")
 
     playbooks = payload["playbooks"]
     if not isinstance(playbooks, list) or not playbooks:

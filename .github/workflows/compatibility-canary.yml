@@ -39,6 +39,24 @@ jobs:
           repository: 8Dionysus/aoa-memo
           path: .deps/aoa-memo
 
+      - name: Checkout 8Dionysus
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: 8Dionysus/8Dionysus
+          path: .deps/8Dionysus
+
+      - name: Checkout aoa-sdk
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: 8Dionysus/aoa-sdk
+          path: .deps/aoa-sdk
+
+      - name: Checkout aoa-stats
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: 8Dionysus/aoa-stats
+          path: .deps/aoa-stats
+
       - name: Setup Python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
         with:
@@ -73,4 +91,7 @@ jobs:
           AOA_EVALS_ROOT: ${{ github.workspace }}/.deps/aoa-evals
           AOA_SKILLS_ROOT: ${{ github.workspace }}/.deps/aoa-skills
           AOA_MEMO_ROOT: ${{ github.workspace }}/.deps/aoa-memo
+          AOA_8DIONYSUS_ROOT: ${{ github.workspace }}/.deps/8Dionysus
+          AOA_SDK_ROOT: ${{ github.workspace }}/.deps/aoa-sdk
+          AOA_STATS_ROOT: ${{ github.workspace }}/.deps/aoa-stats
         run: python scripts/validate_playbooks.py

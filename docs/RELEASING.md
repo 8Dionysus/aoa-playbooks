@@ -55,6 +55,7 @@ A release should make it easy to answer:
    - `python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check`
    - `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check`
    - `python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check`
+   - `python scripts/validate_abyss_machine_playbook_bundle.py`
    - `python scripts/validate_playbooks.py`
    - `python -m pytest -q tests`
 4. If the release touches validator behavior directly, also run:
@@ -106,5 +107,6 @@ Right now, `aoa-playbooks` is best released as:
 
 - a curated public playbook and scenario-composition corpus
 - a repository with bounded authored, activation, federation, and composition seams
+- an OS Abyss artifact-bundle producer for the playbook registry/readout family with ABI and SLSA/in-toto controls
 - a validator-backed repo whose strongest next moves are still evidence-led rather than catalog-led
 - a release identity anchored in `CHANGELOG.md`, the Git tag, and the GitHub release body rather than any package registry

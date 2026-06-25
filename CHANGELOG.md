@@ -9,6 +9,9 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Changed
 
+- Compatibility Canary now checks out the `8Dionysus`, `aoa-sdk`, and
+  `aoa-stats` sibling inputs required by `validate_playbooks.py` so scheduled
+  compatibility checks exercise the full codex-plane rollout companion guard.
 - review-packet contract generation now keeps the canonical `aoa-evals`
   runtime-template source ref even when reading the legacy sibling fallback
   layout.

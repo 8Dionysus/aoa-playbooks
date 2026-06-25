@@ -19,4 +19,5 @@ surfaces.
 
 ## Validation
 Run the touched builder or validator, then the full path from `README.md` when
-shape changes.
+shape changes. If playbook registry, generated readout, or artifact-bundle
+identity changes, also run `python scripts/validate_abyss_machine_playbook_bundle.py`.

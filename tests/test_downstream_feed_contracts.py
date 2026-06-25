@@ -45,9 +45,12 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
     def test_registry_surface_keeps_expected_contract(self) -> None:
         payload = load_generated("playbook_registry.min.json")
 
-        self.assertEqual(set(payload.keys()), {"version", "layer", "playbooks"})
+        self.assertEqual(set(payload.keys()), {"version", "layer", "artifact_identity", "playbooks"})
         self.assertEqual(payload["version"], 1)
         self.assertEqual(payload["layer"], "aoa-playbooks")
+        self.assertEqual(payload["artifact_identity"]["artifact_class"], "playbook_registry_bundle")
+        self.assertEqual(payload["artifact_identity"]["abi_epoch"], "aoa_playbooks_registry_bundle_v1")
+        self.assertEqual(payload["artifact_identity"]["trust_layer"], ["abi_contract_signature", "slsa_in_toto"])
         self.assertIsInstance(payload["playbooks"], list)
         self.assertTrue(payload["playbooks"])
 

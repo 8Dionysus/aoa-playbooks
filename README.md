@@ -95,6 +95,7 @@ When a route is really one bounded workflow, keep it in `aoa-skills` instead of 
 The committed public surfaces group into four families:
 
 - source-authored playbook canon: `playbooks/*/*/*/PLAYBOOK.md` for route meaning and `generated/playbook_registry.min.json` for compact registry metadata
+- OS Abyss registry artifact identity: `generated/playbook_registry.min.json#/artifact_identity` and `docs/artifact-bundles/playbook_registry.bundle.json` define the ABI+SLSA bundle consumed by registry/latest readers
 - Wave VI Agon trial registry and doctrine: `generated/agon_trial_playbook_registry.min.json`, `generated/agon_trial_kernel_binding_registry.min.json`, `generated/agon_campaign_playbook_registry.min.json`, and the package-local docs under `mechanics/agon/parts/`
 - derived activation, federation, review-status, review-packet, review-intake, and landing-governance surfaces such as `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_packet_contracts.min.json`, `generated/playbook_review_intake.min.json`, and `generated/playbook_landing_governance.min.json`
 - playbook-owned composition adjuncts such as `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json`
@@ -149,6 +150,7 @@ python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_revie
 python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check
 python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
 python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
+python scripts/validate_abyss_machine_playbook_bundle.py
 python scripts/validate_playbooks.py
 python -m pytest -q tests
 ```

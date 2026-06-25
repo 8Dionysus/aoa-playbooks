@@ -68,6 +68,7 @@ COMMANDS = [
     ("check review intake", [sys.executable, "mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py", "--check"]),
     ("check composition surfaces", [sys.executable, "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py", "--check"]),
     ("check phase alpha surfaces", [sys.executable, "mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py", "--check"]),
+    ("validate OS Abyss playbook artifact bundle", [sys.executable, "scripts/validate_abyss_machine_playbook_bundle.py"]),
     ("validate playbooks", [sys.executable, "scripts/validate_playbooks.py"]),
     ("run tests", [sys.executable, "-m", "pytest", "-q", "tests"]),
 ]
