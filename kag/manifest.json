@@ -41,6 +41,10 @@
     {
       "route": "scripts/validate_playbooks.py",
       "lane": "owner-local"
+    },
+    {
+      "route": "aoa-kag:scripts/validate_kag.py",
+      "lane": "local-kag"
     }
   ],
   "consumer_routes": [
