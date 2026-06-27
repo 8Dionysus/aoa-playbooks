@@ -1,0 +1,66 @@
+{
+  "schema_version": "aoa-local-kag-record-v1",
+  "repo": "aoa-playbooks",
+  "local_id": "projection:mcp:playbooks-source-return",
+  "record_class": "projection",
+  "source_refs": [
+    {
+      "repo": "aoa-playbooks",
+      "path": "playbooks/source_home.manifest.json",
+      "source_class": "playbook_source",
+      "role": "primary",
+      "authority": "authored_source"
+    },
+    {
+      "repo": "aoa-playbooks",
+      "path": "playbooks/README.md",
+      "source_class": "playbook_source",
+      "role": "owner_route",
+      "authority": "authored_source"
+    },
+    {
+      "repo": "aoa-playbooks",
+      "path": "generated/playbook_registry.min.json",
+      "source_class": "playbook_source",
+      "role": "supporting",
+      "authority": "derived_readmodel"
+    }
+  ],
+  "source_owner": "aoa-playbooks",
+  "provenance_mode": "strict_source_linked",
+  "derived_method": "source-linked local KAG projection over playbook source home and scenario registry",
+  "generated_or_authored": "generated_from_source",
+  "status": "active",
+  "owner_return_route": {
+    "repo": "aoa-playbooks",
+    "surface": "playbooks/README.md",
+    "route_kind": "authored_meaning"
+  },
+  "freshness": {
+    "mode": "source_snapshot",
+    "state": "current",
+    "checked_ref": "playbooks/source_home.manifest.json"
+  },
+  "builder": {
+    "route": "playbook source-home validator",
+    "surface": "scripts/playbook_source_home.py"
+  },
+  "validator": {
+    "route": "scripts/validate_playbooks.py",
+    "lane": "owner-local"
+  },
+  "storage_posture": {
+    "git_surface": "compact_readmodel",
+    "payload_class": "projection",
+    "runtime_route": "source-repo"
+  },
+  "consumer_route": "aoa-kag-mcp resource",
+  "projection_kind": "source_return_view",
+  "source_record_ids": [
+    "node:playbooks:playbook-source-home",
+    "node:playbooks:playbook-source-route",
+    "edge:playbooks:source-returns-to-owner",
+    "index:playbooks:source-surfaces"
+  ],
+  "consumer_shape": "resources expose playbook registry handles, scenario family branches, source-return routes, and composition-ready handles without carrying scenario authority"
+}
