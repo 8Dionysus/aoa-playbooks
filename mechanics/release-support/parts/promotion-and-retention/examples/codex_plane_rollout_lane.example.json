@@ -62,8 +62,13 @@
     "memo_writeback_record"
   ],
   "stable_mcp_names": [
-    "aoa_workspace",
+    "abyss_machine",
+    "aoa_decisions",
+    "aoa_evals",
+    "aoa_memo",
+    "aoa_session_memory",
     "aoa_stats",
+    "aoa_workspace",
     "dionysus"
   ],
   "stop_before_apply": [

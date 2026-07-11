@@ -761,7 +761,6 @@ CODEX_PLANE_ROLLBACK_TRIGGERS = (
     "drift_detected=true",
     "drift_state=material",
 )
-CODEX_PLANE_STABLE_MCP_NAMES = {"aoa_workspace", "aoa_stats", "dionysus"}
 ACTIVATION_COLLECTION_PLAYBOOK_IDS = (
     "AOA-P-0008",
     "AOA-P-0009",
@@ -2409,10 +2408,6 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     if tuple(rollback_triggers or ()) != CODEX_PLANE_ROLLBACK_TRIGGERS:
         fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json rollback_triggers drifted")
 
-    stable_mcp_names = payload.get("stable_mcp_names")
-    if not isinstance(stable_mcp_names, list) or set(stable_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
-        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep the stable MCP name set")
-
     trust_payload = read_json(AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_trust_state.example.json")
     regeneration_payload = read_json(
         AOA_8DIONYSUS_ROOT / "examples" / "codex_plane_regeneration_report.example.json"
@@ -2441,6 +2436,27 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
         if not isinstance(sibling_payload, dict):
             fail(f"{label} must remain a JSON object")
 
+    owner_mcp_names = trust_payload.get("mcp_server_names_expected")
+    owner_stable_names = regeneration_payload.get("stable_names")
+    if (
+        not isinstance(owner_mcp_names, list)
+        or not owner_mcp_names
+        or not all(isinstance(name, str) and name for name in owner_mcp_names)
+        or len(owner_mcp_names) != len(set(owner_mcp_names))
+    ):
+        fail("8Dionysus trust-state example must publish a unique stable MCP name set")
+    stable_mcp_name_set = set(owner_mcp_names)
+    if (
+        not isinstance(owner_stable_names, dict)
+        or set(owner_stable_names) != stable_mcp_name_set
+        or not all(value is True for value in owner_stable_names.values())
+    ):
+        fail("8Dionysus regeneration-report example must confirm the stable MCP name set")
+
+    stable_mcp_names = payload.get("stable_mcp_names")
+    if not isinstance(stable_mcp_names, list) or set(stable_mcp_names) != stable_mcp_name_set:
+        fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep the stable MCP name set")
+
     evidence_refs = payload.get("evidence_refs")
     if not isinstance(evidence_refs, list) or len(evidence_refs) != 4 or len(evidence_refs) != len(set(evidence_refs)):
         fail("mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json must keep four unique evidence_refs")
@@ -2466,7 +2482,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     if status_payload.get("rollout_state") != "verified":
         fail("aoa-sdk deploy-status example must keep rollout_state verified")
     status_mcp_names = status_payload.get("active_mcp_servers")
-    if not isinstance(status_mcp_names, list) or set(status_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
+    if not isinstance(status_mcp_names, list) or set(status_mcp_names) != stable_mcp_name_set:
         fail("aoa-sdk deploy-status example must keep the stable MCP name set")
 
     if receipt_payload.get("regeneration_report_id") != regeneration_payload.get("regeneration_report_id"):
@@ -2477,7 +2493,7 @@ def validate_codex_plane_rollout_cycle_companion() -> None:
     if stats_payload.get("latest_rollout_state") != "verified":
         fail("aoa-stats deployment summary example must keep latest_rollout_state verified")
     stats_mcp_names = stats_payload.get("stable_mcp_name_set")
-    if not isinstance(stats_mcp_names, list) or set(stats_mcp_names) != CODEX_PLANE_STABLE_MCP_NAMES:
+    if not isinstance(stats_mcp_names, list) or set(stats_mcp_names) != stable_mcp_name_set:
         fail("aoa-stats deployment summary example must keep the stable MCP name set")
 
     initial_stable_summary = read_text(INITIAL_STABLE_ROLLOUT_SUMMARY_PATH)
