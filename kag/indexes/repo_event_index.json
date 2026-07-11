@@ -1,0 +1,1235 @@
+{
+  "entries": [
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:38c5d664acb7d5bec4b9",
+      "observation_state": "declared",
+      "path": ".agents/skills/aoa-dry-run-first/scripts/dry_run_contract.py",
+      "source_record_id": "file:.agents/skills/aoa-dry-run-first/scripts/dry_run_contract.py:e1480fe2d2"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:b9b74c27a5575533cc2f",
+      "observation_state": "declared",
+      "path": ".agents/skills/aoa-dry-run-first/scripts/preview_gap_check.py",
+      "source_record_id": "file:.agents/skills/aoa-dry-run-first/scripts/preview_gap_check.py:0ea89b83a2"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:64a4154d1a6ac7488243",
+      "observation_state": "declared",
+      "path": ".agents/skills/aoa-local-stack-bringup/scripts/bringup_contract.py",
+      "source_record_id": "file:.agents/skills/aoa-local-stack-bringup/scripts/bringup_contract.py:65fb7d4d41"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:88260a581f31e3ae8ad2",
+      "observation_state": "declared",
+      "path": ".agents/skills/aoa-local-stack-bringup/scripts/readiness_summary.py",
+      "source_record_id": "file:.agents/skills/aoa-local-stack-bringup/scripts/readiness_summary.py:b9778391e0"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:e4c12fce3749737e591e",
+      "observation_state": "declared",
+      "path": ".agents/skills/aoa-safe-infra-change/scripts/infra_change_contract.py",
+      "source_record_id": "file:.agents/skills/aoa-safe-infra-change/scripts/infra_change_contract.py:f074327882"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:60f1004de323855ced30",
+      "observation_state": "declared",
+      "path": ".agents/skills/aoa-safe-infra-change/scripts/risk_surface_scan.py",
+      "source_record_id": "file:.agents/skills/aoa-safe-infra-change/scripts/risk_surface_scan.py:4783038b81"
+    },
+    {
+      "event_kind": "workflow_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:3b3698362ed92a9859a6",
+      "observation_state": "declared",
+      "path": ".github/workflows/compatibility-canary.yml",
+      "source_record_id": "file:.github/workflows/compatibility-canary.yml:44d66b4366"
+    },
+    {
+      "event_kind": "workflow_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:d3ff418b9a0460a33a13",
+      "observation_state": "declared",
+      "path": ".github/workflows/repo-validation.yml",
+      "source_record_id": "file:.github/workflows/repo-validation.yml:3affb923d0"
+    },
+    {
+      "event_kind": "release_declaration",
+      "event_role": "declaration",
+      "heading_ref": {
+        "anchor": "032-2026-04-19",
+        "level": 2,
+        "line": 92,
+        "ref": "CHANGELOG.md#032-2026-04-19",
+        "title": "[0.3.2] - 2026-04-19"
+      },
+      "id": "event:repo:1ead344fbcd874c2c351",
+      "observation_state": "declared",
+      "path": "CHANGELOG.md",
+      "source_record_id": "file:changelog.md:06572a96a5"
+    },
+    {
+      "event_kind": "release_declaration",
+      "event_role": "declaration",
+      "heading_ref": {
+        "anchor": "031-2026-04-12",
+        "level": 2,
+        "line": 124,
+        "ref": "CHANGELOG.md#031-2026-04-12",
+        "title": "[0.3.1] - 2026-04-12"
+      },
+      "id": "event:repo:412b10d3dafef51bc85b",
+      "observation_state": "declared",
+      "path": "CHANGELOG.md",
+      "source_record_id": "file:changelog.md:06572a96a5"
+    },
+    {
+      "event_kind": "release_declaration",
+      "event_role": "declaration",
+      "heading_ref": {
+        "anchor": "033-2026-04-23",
+        "level": 2,
+        "line": 47,
+        "ref": "CHANGELOG.md#033-2026-04-23",
+        "title": "[0.3.3] - 2026-04-23"
+      },
+      "id": "event:repo:6b206c6fff325d291a0a",
+      "observation_state": "declared",
+      "path": "CHANGELOG.md",
+      "source_record_id": "file:changelog.md:06572a96a5"
+    },
+    {
+      "event_kind": "release_declaration",
+      "event_role": "declaration",
+      "heading_ref": {
+        "anchor": "030-2026-04-10",
+        "level": 2,
+        "line": 152,
+        "ref": "CHANGELOG.md#030-2026-04-10",
+        "title": "[0.3.0] - 2026-04-10"
+      },
+      "id": "event:repo:879e776065b198f9efe3",
+      "observation_state": "declared",
+      "path": "CHANGELOG.md",
+      "source_record_id": "file:changelog.md:06572a96a5"
+    },
+    {
+      "event_kind": "release_declaration",
+      "event_role": "declaration",
+      "heading_ref": {
+        "anchor": "010-2026-03-28",
+        "level": 2,
+        "line": 241,
+        "ref": "CHANGELOG.md#010-2026-03-28",
+        "title": "[0.1.0] - 2026-03-28"
+      },
+      "id": "event:repo:a96762c51b92a262d30b",
+      "observation_state": "declared",
+      "path": "CHANGELOG.md",
+      "source_record_id": "file:changelog.md:06572a96a5"
+    },
+    {
+      "event_kind": "release_declaration",
+      "event_role": "declaration",
+      "heading_ref": {
+        "anchor": "020-2026-04-01",
+        "level": 2,
+        "line": 195,
+        "ref": "CHANGELOG.md#020-2026-04-01",
+        "title": "[0.2.0] - 2026-04-01"
+      },
+      "id": "event:repo:c467d840f2cdd71ff896",
+      "observation_state": "declared",
+      "path": "CHANGELOG.md",
+      "source_record_id": "file:changelog.md:06572a96a5"
+    },
+    {
+      "event_kind": "release_lane",
+      "event_role": "declaration",
+      "heading_ref": {
+        "anchor": "unreleased",
+        "level": 2,
+        "line": 8,
+        "ref": "CHANGELOG.md#unreleased",
+        "title": "[Unreleased]"
+      },
+      "id": "event:repo:b658aa7393774fb13e4f",
+      "observation_state": "declared",
+      "path": "CHANGELOG.md",
+      "source_record_id": "file:changelog.md:06572a96a5"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:5e135f87d5bbde8439c1",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0001-trusted-rollout-operations-extraction.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0001-trusted-rollout-operations-extraction.md:5306e49c4e"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:a5c58ab3c9ad86c4f80a",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0002-reviewed-closeout-route-incubation.md:39c095c24c"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:7b6411e495949d37981c",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0003-root-design-spine.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0003-root-design-spine.md:08fe17add2"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:dfbcd2df60dabc033e66",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0004-mechanics-skeleton.md:26330dbfd4"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:ea130e2ea16b761d2ff6",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0005-mechanics-placement-audit.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0005-mechanics-placement-audit.md:98e49cf038"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:7cbd23a91ac77cc32a79",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0006-activation-package-implementation.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0006-activation-package-implementation.md:9974901759"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:6389eb21d00636034ca7",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0007-scenario-composition-package-implementation.md:644ff204ab"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:f577bef16e1185d4cae6",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0008-federation-closure-package-implementation.md:97b3befdbd"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:38fce90c17951536f399",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0009-review-gate-package-implementation.md:4536c0fd83"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:858f17c789c65acb810c",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0010-real-run-harvest-package-local-evidence.md:f4b14c5959"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:71ada4ea3d19f98d3692",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0011-antifragility-package-implementation.md:b7d01ba031"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:cfe69cd1f76eeb15099a",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0012-agon-package-implementation.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0012-agon-package-implementation.md:7e0af59e57"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:822f2ac7625426ff9989",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0013-package-local-mechanics-payloads.md:fedf09b839"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:7420fa910aa83eb8fec5",
+      "observation_state": "declared",
+      "path": "docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md",
+      "source_record_id": "file:docs/decisions/aoa-pb-d-0014-collapse-mechanics-root-entrypoints.md:e3df9bdf41"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:3ed996c2583e52d0fd8e",
+      "observation_state": "declared",
+      "path": "docs/decisions/TEMPLATE.md",
+      "source_record_id": "file:docs/decisions/template.md:874770b824"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:9584274940361ae30f9b",
+      "observation_state": "declared",
+      "path": "docs/decisions/indexes/by-date.md",
+      "source_record_id": "file:docs/decisions/indexes/by-date.md:7f76a83a93"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:85669f179658dd0f9c7e",
+      "observation_state": "declared",
+      "path": "docs/decisions/indexes/by-guard.md",
+      "source_record_id": "file:docs/decisions/indexes/by-guard.md:8ae406686a"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:6c672ea1baa9e547828f",
+      "observation_state": "declared",
+      "path": "docs/decisions/indexes/by-mechanic.md",
+      "source_record_id": "file:docs/decisions/indexes/by-mechanic.md:ebd094489b"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:33b2c5f1e318472dc909",
+      "observation_state": "declared",
+      "path": "docs/decisions/indexes/by-number.md",
+      "source_record_id": "file:docs/decisions/indexes/by-number.md:02e6940a39"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:59179c4d2f2b02e7a71a",
+      "observation_state": "declared",
+      "path": "docs/decisions/indexes/by-playbook-route.md",
+      "source_record_id": "file:docs/decisions/indexes/by-playbook-route.md:20b61591ef"
+    },
+    {
+      "event_kind": "decision_record",
+      "event_role": "declaration",
+      "heading_ref": null,
+      "id": "event:repo:335fe4b8c242dfebf94b",
+      "observation_state": "declared",
+      "path": "docs/decisions/indexes/by-surface.md",
+      "source_record_id": "file:docs/decisions/indexes/by-surface.md:acd156903f"
+    },
+    {
+      "event_kind": "validation_receipt",
+      "event_role": "receipt",
+      "heading_ref": null,
+      "id": "event:repo:4b657aa5ded0e13ecfab",
+      "observation_state": "observed",
+      "path": "kag/receipts/validation_receipt.json",
+      "source_record_id": "file:kag/receipts/validation_receipt.json:8e616be0cd"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:72dab4957a5d349ff142",
+      "observation_state": "declared",
+      "path": "mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py",
+      "source_record_id": "file:mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py:55d2ad8b76"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:d92af5530bf8aca5a332",
+      "observation_state": "declared",
+      "path": "mechanics/activation/scripts/validate_activation_package.py",
+      "source_record_id": "file:mechanics/activation/scripts/validate_activation_package.py:df8882936f"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:6f39438a12d2a0d17d15",
+      "observation_state": "declared",
+      "path": "mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py",
+      "source_record_id": "file:mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py:d8d9c46f60"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:1865888ca8810f989e2e",
+      "observation_state": "declared",
+      "path": "mechanics/agon/parts/campaign-playbooks/scripts/validate_agon_campaign_playbook_registry.py",
+      "source_record_id": "file:mechanics/agon/parts/campaign-playbooks/scripts/validate_agon_campaign_playbook_registry.py:a1d02bbf40"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:8fdf76300be14ec8ec0d",
+      "observation_state": "declared",
+      "path": "mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py",
+      "source_record_id": "file:mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py:43ab0bff6f"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:eab5d3a66cfb8715431d",
+      "observation_state": "declared",
+      "path": "mechanics/agon/parts/trial-kernel-bindings/scripts/validate_agon_trial_kernel_bindings.py",
+      "source_record_id": "file:mechanics/agon/parts/trial-kernel-bindings/scripts/validate_agon_trial_kernel_bindings.py:613097d3d0"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:f2cc8e6f7b413021f1a2",
+      "observation_state": "declared",
+      "path": "mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py",
+      "source_record_id": "file:mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py:f0e80b1ea7"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:43614f8a74f5d3ea5419",
+      "observation_state": "declared",
+      "path": "mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py",
+      "source_record_id": "file:mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py:86890676b3"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:d7b24ca3cbb24193e038",
+      "observation_state": "declared",
+      "path": "mechanics/agon/scripts/validate_agon_package.py",
+      "source_record_id": "file:mechanics/agon/scripts/validate_agon_package.py:803bccf1e3"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:bca70ce57a42b8824f92",
+      "observation_state": "declared",
+      "path": "mechanics/antifragility/scripts/validate_antifragility_package.py",
+      "source_record_id": "file:mechanics/antifragility/scripts/validate_antifragility_package.py:a604d955c9"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:80a78518f850dfdd6065",
+      "observation_state": "declared",
+      "path": "mechanics/boundary-bridge/scripts/validate_boundary_bridge_package.py",
+      "source_record_id": "file:mechanics/boundary-bridge/scripts/validate_boundary_bridge_package.py:2cbcbb1649"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:cb81200ed7f152b4ec8f",
+      "observation_state": "declared",
+      "path": "mechanics/checkpoint/scripts/validate_checkpoint_package.py",
+      "source_record_id": "file:mechanics/checkpoint/scripts/validate_checkpoint_package.py:4694afa27b"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:39b4f0d5f2f512c56973",
+      "observation_state": "declared",
+      "path": "mechanics/experience/scripts/validate_experience_package.py",
+      "source_record_id": "file:mechanics/experience/scripts/validate_experience_package.py:eac21e0813"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:674ebcec8c8196488b7b",
+      "observation_state": "declared",
+      "path": "mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py",
+      "source_record_id": "file:mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py:7eeaeeac3d"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:81bdc922d267220dfbba",
+      "observation_state": "declared",
+      "path": "mechanics/federation-closure/scripts/validate_federation_closure_package.py",
+      "source_record_id": "file:mechanics/federation-closure/scripts/validate_federation_closure_package.py:bba7714c81"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:a856a1834b27d52ee30a",
+      "observation_state": "declared",
+      "path": "mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py",
+      "source_record_id": "file:mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py:74b85708ef"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:bf867092314196c7f505",
+      "observation_state": "declared",
+      "path": "mechanics/questbook/scripts/validate_questbook_package.py",
+      "source_record_id": "file:mechanics/questbook/scripts/validate_questbook_package.py:84f341a2b6"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:f6521cff64c454295454",
+      "observation_state": "declared",
+      "path": "mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py",
+      "source_record_id": "file:mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py:63db281560"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:0a2ae4357c3ba3d17675",
+      "observation_state": "declared",
+      "path": "mechanics/recurrence/scripts/validate_recurrence_package.py",
+      "source_record_id": "file:mechanics/recurrence/scripts/validate_recurrence_package.py:70963329e1"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:57f3acc04a7aa5f4a0ac",
+      "observation_state": "declared",
+      "path": "mechanics/release-support/scripts/validate_release_support_package.py",
+      "source_record_id": "file:mechanics/release-support/scripts/validate_release_support_package.py:6105834551"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:5868ed35f4aedaf2d3aa",
+      "observation_state": "declared",
+      "path": "mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py",
+      "source_record_id": "file:mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py:91d34670e0"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:0a8f9807a2b0dfc7446a",
+      "observation_state": "declared",
+      "path": "mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py",
+      "source_record_id": "file:mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py:5871c0282d"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:6ca4e6702cd10a3c2e3d",
+      "observation_state": "declared",
+      "path": "mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py",
+      "source_record_id": "file:mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py:22225cad7b"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:ac54ee7d2e215d44b338",
+      "observation_state": "declared",
+      "path": "mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py",
+      "source_record_id": "file:mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py:f15bf1472d"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:01a107c4948c09746fa6",
+      "observation_state": "declared",
+      "path": "mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py",
+      "source_record_id": "file:mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py:598c04341b"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:fc90fb9c7294f2bf25bf",
+      "observation_state": "declared",
+      "path": "mechanics/review-gate/scripts/validate_review_gate_package.py",
+      "source_record_id": "file:mechanics/review-gate/scripts/validate_review_gate_package.py:b66c964689"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:9ffff493b6a2a10944fa",
+      "observation_state": "declared",
+      "path": "mechanics/rpg/scripts/validate_rpg_package.py",
+      "source_record_id": "file:mechanics/rpg/scripts/validate_rpg_package.py:f70fc99626"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:f1986e5ab5a073351810",
+      "observation_state": "declared",
+      "path": "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py",
+      "source_record_id": "file:mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py:22dd8737b3"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:9fbd748bf384d41f20d2",
+      "observation_state": "declared",
+      "path": "mechanics/scenario-composition/scripts/validate_scenario_composition_package.py",
+      "source_record_id": "file:mechanics/scenario-composition/scripts/validate_scenario_composition_package.py:7f543a4143"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:4eacd310dc9b245a1b49",
+      "observation_state": "declared",
+      "path": "mechanics/titan/scripts/validate_titan_package.py",
+      "source_record_id": "file:mechanics/titan/scripts/validate_titan_package.py:883474350f"
+    },
+    {
+      "event_kind": "validation_receipt",
+      "event_role": "receipt",
+      "heading_ref": null,
+      "id": "event:repo:5ced20d8c8cd52fecb41",
+      "observation_state": "observed",
+      "path": "memo/receipts/.gitkeep",
+      "source_record_id": "file:memo/receipts/.gitkeep:eb3b036b02"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:5db4b330594a12eb957c",
+      "observation_state": "declared",
+      "path": "scripts/build_agon_campaign_playbook_registry.py",
+      "source_record_id": "file:scripts/build_agon_campaign_playbook_registry.py:f1179f46ad"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:e5535304c2946901351f",
+      "observation_state": "declared",
+      "path": "scripts/build_agon_trial_kernel_binding_registry.py",
+      "source_record_id": "file:scripts/build_agon_trial_kernel_binding_registry.py:910f801443"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:ee32dda7a93089e126e5",
+      "observation_state": "declared",
+      "path": "scripts/build_agon_trial_playbook_registry.py",
+      "source_record_id": "file:scripts/build_agon_trial_playbook_registry.py:8547780f57"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:7edc4a135dd8c0b19acd",
+      "observation_state": "declared",
+      "path": "scripts/generate_decision_indexes.py",
+      "source_record_id": "file:scripts/generate_decision_indexes.py:9ee2698c6e"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:d42381e75c0dbadedcd8",
+      "observation_state": "declared",
+      "path": "scripts/generate_phase_alpha_surfaces.py",
+      "source_record_id": "file:scripts/generate_phase_alpha_surfaces.py:b51e9f5769"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:8f48d7c74e82fb100842",
+      "observation_state": "declared",
+      "path": "scripts/generate_playbook_activation_surfaces.py",
+      "source_record_id": "file:scripts/generate_playbook_activation_surfaces.py:b439490905"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:25f96da258002f6519c4",
+      "observation_state": "declared",
+      "path": "scripts/generate_playbook_composition_surfaces.py",
+      "source_record_id": "file:scripts/generate_playbook_composition_surfaces.py:bfcda57913"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:496672d0268b3e442416",
+      "observation_state": "declared",
+      "path": "scripts/generate_playbook_federation_surfaces.py",
+      "source_record_id": "file:scripts/generate_playbook_federation_surfaces.py:143bece260"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:9ef8f50a4306f9f12a2d",
+      "observation_state": "declared",
+      "path": "scripts/generate_playbook_landing_governance.py",
+      "source_record_id": "file:scripts/generate_playbook_landing_governance.py:ddb6f91b14"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:0b485b6f99bc8f211765",
+      "observation_state": "declared",
+      "path": "scripts/generate_playbook_review_intake.py",
+      "source_record_id": "file:scripts/generate_playbook_review_intake.py:bdde0a8357"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:09d99e71fbd075328afd",
+      "observation_state": "declared",
+      "path": "scripts/generate_playbook_review_packet_contracts.py",
+      "source_record_id": "file:scripts/generate_playbook_review_packet_contracts.py:0c358b3e59"
+    },
+    {
+      "event_kind": "generation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:fc0d2a4ce4294e239828",
+      "observation_state": "declared",
+      "path": "scripts/generate_playbook_review_status.py",
+      "source_record_id": "file:scripts/generate_playbook_review_status.py:d164a94c22"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:e04365968d42461440c5",
+      "observation_state": "declared",
+      "path": "scripts/mechanic_package_validator.py",
+      "source_record_id": "file:scripts/mechanic_package_validator.py:a8d023fc63"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:9c3a57ebfd3bf7cc67f4",
+      "observation_state": "declared",
+      "path": "scripts/playbook_source_home.py",
+      "source_record_id": "file:scripts/playbook_source_home.py:bbb30590b6"
+    },
+    {
+      "event_kind": "command_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:4951475ed4d4efc990ef",
+      "observation_state": "declared",
+      "path": "scripts/publish_live_receipts.py",
+      "source_record_id": "file:scripts/publish_live_receipts.py:1e52a0e919"
+    },
+    {
+      "event_kind": "validation_lane_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:2cab035dc45219ca98a7",
+      "observation_state": "declared",
+      "path": "scripts/release_check.py",
+      "source_record_id": "file:scripts/release_check.py:070046d3ac"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:c6a866a94518349256c3",
+      "observation_state": "declared",
+      "path": "scripts/validate_abyss_machine_playbook_bundle.py",
+      "source_record_id": "file:scripts/validate_abyss_machine_playbook_bundle.py:594e2b342c"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:1359b9c0ffdc27a30cc0",
+      "observation_state": "declared",
+      "path": "scripts/validate_agon_campaign_playbook_registry.py",
+      "source_record_id": "file:scripts/validate_agon_campaign_playbook_registry.py:cdb4e0bed0"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:c02f5908644ac773f1a8",
+      "observation_state": "declared",
+      "path": "scripts/validate_agon_trial_kernel_bindings.py",
+      "source_record_id": "file:scripts/validate_agon_trial_kernel_bindings.py:be71c7f47a"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:7c4b3d9d305cfebf14ae",
+      "observation_state": "declared",
+      "path": "scripts/validate_agon_trial_playbooks.py",
+      "source_record_id": "file:scripts/validate_agon_trial_playbooks.py:98a586dd5f"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:691167a9d5832891fc5f",
+      "observation_state": "declared",
+      "path": "scripts/validate_mechanics_skeleton.py",
+      "source_record_id": "file:scripts/validate_mechanics_skeleton.py:2d7492a3ba"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:49ecedfd5a57798604a2",
+      "observation_state": "declared",
+      "path": "scripts/validate_nested_agents.py",
+      "source_record_id": "file:scripts/validate_nested_agents.py:5befe5bd63"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:3e5c88bf00d6914f908a",
+      "observation_state": "declared",
+      "path": "scripts/validate_playbooks.py",
+      "source_record_id": "file:scripts/validate_playbooks.py:5bd8a0964d"
+    },
+    {
+      "event_kind": "validation_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:93f5abe2574979ac99dd",
+      "observation_state": "declared",
+      "path": "scripts/validate_root_design.py",
+      "source_record_id": "file:scripts/validate_root_design.py:018e2807d6"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:7ae34723871d54b917b5",
+      "observation_state": "declared",
+      "path": "tests/test_a2a_summon_return_checkpoint.py",
+      "source_record_id": "file:tests/test_a2a_summon_return_checkpoint.py:373cbaa106"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:5f42ce13933908ef94d4",
+      "observation_state": "declared",
+      "path": "tests/test_activation_mechanics_package.py",
+      "source_record_id": "file:tests/test_activation_mechanics_package.py:23ec2bc58e"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:b023caa66ade936fe3a3",
+      "observation_state": "declared",
+      "path": "tests/test_agon_campaign_playbook_registry.py",
+      "source_record_id": "file:tests/test_agon_campaign_playbook_registry.py:c409eb9a4e"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:b22e2e71dbe3081b0b97",
+      "observation_state": "declared",
+      "path": "tests/test_agon_mechanics_package.py",
+      "source_record_id": "file:tests/test_agon_mechanics_package.py:6a2ab45646"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:00014573b02e8d357559",
+      "observation_state": "declared",
+      "path": "tests/test_agon_trial_kernel_bindings.py",
+      "source_record_id": "file:tests/test_agon_trial_kernel_bindings.py:d1d690eed4"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:f1cac043c44e8f3fd60e",
+      "observation_state": "declared",
+      "path": "tests/test_agon_trial_playbooks.py",
+      "source_record_id": "file:tests/test_agon_trial_playbooks.py:bac1a8724f"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:4ba5dafabc06bd346e10",
+      "observation_state": "declared",
+      "path": "tests/test_antifragility_mechanics_package.py",
+      "source_record_id": "file:tests/test_antifragility_mechanics_package.py:eda44f8861"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:b5b012ab0b4bfe61f144",
+      "observation_state": "declared",
+      "path": "tests/test_antifragility_public_surface.py",
+      "source_record_id": "file:tests/test_antifragility_public_surface.py:5c53b98670"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:c2f82e7b900fc847a3ab",
+      "observation_state": "declared",
+      "path": "tests/test_checkpoint_distillation_closed_loop_pilot.py",
+      "source_record_id": "file:tests/test_checkpoint_distillation_closed_loop_pilot.py:e43e6a347f"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:1659b02a80dbc75abc4e",
+      "observation_state": "declared",
+      "path": "tests/test_codex_plane_rollout_cycle.py",
+      "source_record_id": "file:tests/test_codex_plane_rollout_cycle.py:f843db73fa"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:7c6a8b8562f8a78052d1",
+      "observation_state": "declared",
+      "path": "tests/test_component_refresh_cycle.py",
+      "source_record_id": "file:tests/test_component_refresh_cycle.py:f78c037502"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:8b19cfacbbaad15eaecb",
+      "observation_state": "declared",
+      "path": "tests/test_current_direction_routes.py",
+      "source_record_id": "file:tests/test_current_direction_routes.py:098f12afb4"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:5ed00a94c06f7a8c1683",
+      "observation_state": "declared",
+      "path": "tests/test_decision_indexes.py",
+      "source_record_id": "file:tests/test_decision_indexes.py:b90af86566"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:5aceaa025a19fc52ab18",
+      "observation_state": "declared",
+      "path": "tests/test_downstream_feed_contracts.py",
+      "source_record_id": "file:tests/test_downstream_feed_contracts.py:abc4f4e39f"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:888ed1d0ca6d3ba705f9",
+      "observation_state": "declared",
+      "path": "tests/test_experience_certification_forge.py",
+      "source_record_id": "file:tests/test_experience_certification_forge.py:3ed8b8faf2"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:a94c879c33fd8e17b31f",
+      "observation_state": "declared",
+      "path": "tests/test_experience_wave2_seed_contracts.py",
+      "source_record_id": "file:tests/test_experience_wave2_seed_contracts.py:0b430514e5"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:fbdfef4fc0665d280186",
+      "observation_state": "declared",
+      "path": "tests/test_experience_wave3_seed_contracts.py",
+      "source_record_id": "file:tests/test_experience_wave3_seed_contracts.py:d03af9d597"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:1f3690162e02128152bb",
+      "observation_state": "declared",
+      "path": "tests/test_experience_wave4_seed_contracts.py",
+      "source_record_id": "file:tests/test_experience_wave4_seed_contracts.py:1ffbe48a40"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:54723c08391cfbb6714d",
+      "observation_state": "declared",
+      "path": "tests/test_experience_wave5_seed_contracts.py",
+      "source_record_id": "file:tests/test_experience_wave5_seed_contracts.py:9a2daa8b86"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:4ceaf8cdc1e1dd5ed71c",
+      "observation_state": "declared",
+      "path": "tests/test_federation_closure_mechanics_package.py",
+      "source_record_id": "file:tests/test_federation_closure_mechanics_package.py:f17a8bb143"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:fe1dcd5f4b70e68830f0",
+      "observation_state": "declared",
+      "path": "tests/test_generate_playbook_composition_surfaces.py",
+      "source_record_id": "file:tests/test_generate_playbook_composition_surfaces.py:f499ca6b1c"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:1776bc19c01e037ce35a",
+      "observation_state": "declared",
+      "path": "tests/test_mechanics_skeleton.py",
+      "source_record_id": "file:tests/test_mechanics_skeleton.py:4663d1e677"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:3045d87e7fe24832bf8d",
+      "observation_state": "declared",
+      "path": "tests/test_package_local_mechanics_packages.py",
+      "source_record_id": "file:tests/test_package_local_mechanics_packages.py:d602716613"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:5ba8ade18af9f4e5dd8f",
+      "observation_state": "declared",
+      "path": "tests/test_publish_live_receipts.py",
+      "source_record_id": "file:tests/test_publish_live_receipts.py:10b851fc91"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:423daaa3d9d9513c8065",
+      "observation_state": "declared",
+      "path": "tests/test_real_run_harvest_mechanics_package.py",
+      "source_record_id": "file:tests/test_real_run_harvest_mechanics_package.py:a7f2f77b9d"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:630f4dea9956adf51e97",
+      "observation_state": "declared",
+      "path": "tests/test_review_gate_mechanics_package.py",
+      "source_record_id": "file:tests/test_review_gate_mechanics_package.py:9ccfa8fcf6"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:c0dbc57fffaab24cd0e0",
+      "observation_state": "declared",
+      "path": "tests/test_reviewed_automation_followthrough.py",
+      "source_record_id": "file:tests/test_reviewed_automation_followthrough.py:9c91ffe237"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:54e131b9d1ab46d2be18",
+      "observation_state": "declared",
+      "path": "tests/test_roadmap_parity.py",
+      "source_record_id": "file:tests/test_roadmap_parity.py:574915dc67"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:b6108ed4186c320d1085",
+      "observation_state": "declared",
+      "path": "tests/test_root_design.py",
+      "source_record_id": "file:tests/test_root_design.py:2578b414e6"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:e053a33f2d78d10a6d8f",
+      "observation_state": "declared",
+      "path": "tests/test_runtime_chaos_recovery.py",
+      "source_record_id": "file:tests/test_runtime_chaos_recovery.py:a7fa925374"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:52d258d458b772c215ff",
+      "observation_state": "declared",
+      "path": "tests/test_scenario_composition_mechanics_package.py",
+      "source_record_id": "file:tests/test_scenario_composition_mechanics_package.py:e1b2e0bd3f"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:24aff08e9621d6ce7555",
+      "observation_state": "declared",
+      "path": "tests/test_self_agency_continuity_cycle.py",
+      "source_record_id": "file:tests/test_self_agency_continuity_cycle.py:2134fca0ff"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:8d90af9c2c42fe685048",
+      "observation_state": "declared",
+      "path": "tests/test_trusted_rollout_operations.py",
+      "source_record_id": "file:tests/test_trusted_rollout_operations.py:da51191f2d"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:ce21a311761e4562b72b",
+      "observation_state": "declared",
+      "path": "tests/test_validate_nested_agents.py",
+      "source_record_id": "file:tests/test_validate_nested_agents.py:46cd12457c"
+    },
+    {
+      "event_kind": "test_run",
+      "event_role": "producer",
+      "heading_ref": null,
+      "id": "event:repo:921b09e0beb0985d5494",
+      "observation_state": "declared",
+      "path": "tests/test_validate_playbooks.py",
+      "source_record_id": "file:tests/test_validate_playbooks.py:f353cbf346"
+    }
+  ],
+  "index_identity": {
+    "artifact_kind": "repository_event_index",
+    "content_digest": "5f596cd19e36fde78a264c2bd61afae30d4095525dc81ec66dc863931fbbea08",
+    "index_kind": "event",
+    "local_id": "index:repo-local:events",
+    "schema_ref": "aoa-kag:schemas/repo-local-kag-repository-index.schema.json"
+  },
+  "registry_output": {
+    "consumer": "aoa-kag-mcp",
+    "resource_shape": "repo-local-event-index",
+    "stable_fields": [
+      "id",
+      "event_kind",
+      "event_role",
+      "source_record_id",
+      "path",
+      "heading_ref"
+    ]
+  },
+  "repo": {
+    "git_ref": "git-index-source-tree",
+    "name": "aoa-playbooks",
+    "owner_type": "organ",
+    "root": "."
+  },
+  "schema_version": "aoa-repo-local-kag-repository-index-v1",
+  "source_index": {
+    "content_digest": "e23230add7addac08e8e52e29998cff193d40edde1e5b9f048e577ddf1617c6f",
+    "local_id": "index:repo-local:source-surfaces",
+    "path": "kag/indexes/source_surface_index.json"
+  },
+  "summary": {
+    "entry_count": 127,
+    "kind_counts": {
+      "command_run": 9,
+      "decision_record": 21,
+      "generation_run": 23,
+      "release_declaration": 6,
+      "release_lane": 1,
+      "test_run": 35,
+      "validation_lane_run": 1,
+      "validation_receipt": 2,
+      "validation_run": 27,
+      "workflow_run": 2
+    }
+  }
+}
