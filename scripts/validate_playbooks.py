@@ -720,7 +720,7 @@ CODEX_PLANE_ROLLOUT_DOC_SNIPPETS = (
     "This note is the shared-root deployment continuity companion for",
     "It does not authorize rollout by itself.",
     "It does not introduce a new playbook, activation surface, or hidden runner.",
-    "stable MCP names drift from `aoa_workspace`, `aoa_stats`, and `dionysus`",
+    "stable MCP names drift from the source-owned `stable_mcp_names` set in the rollout lane packet",
     "The deployment summary may shape continuity review, but it does not overrule",
 )
 CODEX_PLANE_ROLLOUT_PHASES = (
