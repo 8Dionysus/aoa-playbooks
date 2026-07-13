@@ -44,7 +44,7 @@ This companion only names the recurring lane around them.
 
 - trust posture is `root_mismatch`
 - trust posture is `config_inactive`
-- stable MCP names drift from `aoa_workspace`, `aoa_stats`, and `dionysus`
+- stable MCP names drift from the source-owned `stable_mcp_names` set in the rollout lane packet
 - dry-run validation fails
 
 ## Rollback recommendation after apply
