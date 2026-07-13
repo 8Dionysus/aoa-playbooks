@@ -50,7 +50,6 @@
             "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
             "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -653,7 +652,6 @@
             "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
             "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -847,7 +845,6 @@
             "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
             "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -1062,7 +1059,6 @@
             "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
             "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
@@ -1437,7 +1433,6 @@
             "owner-repository-or-route-surface",
             "touched-files-or-surfaces",
             "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
             "main-risk",
             "intended-validation-path",
             "rollback-idea"
