@@ -12,7 +12,7 @@
 | inputs | handoff drill docs/schemas/examples and orchestrator alignment docs |
 | outputs | checked bridge package and stronger-owner refs |
 | must not claim | sibling truth, route dispatch, proof verdict, memory truth, or execution authority |
-| validation | `python mechanics/boundary-bridge/scripts/validate_boundary_bridge_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | source playbook, scenario-composition, stronger owner repo, or decision record |
 
 ## Active route

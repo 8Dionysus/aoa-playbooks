@@ -4,7 +4,7 @@
 
 | Part | Role | Source surfaces | Validation | Status |
 | --- | --- | --- | --- | --- |
-| `federation-surfaces` | derive root federation closure read model from authored playbooks | `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_federation_surfaces.min.json` | `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check` | active |
+| `federation-surfaces` | derive root federation closure read model from authored playbooks | `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_federation_surfaces.min.json` | `mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py` | active |
 
 ## Boundary payloads
 

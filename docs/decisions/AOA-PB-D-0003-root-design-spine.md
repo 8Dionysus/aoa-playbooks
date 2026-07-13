@@ -98,8 +98,7 @@ As of 2026-05-31:
   copying sibling repo shapes literally.
 - Source surfaces updated: `DESIGN.md`, `DESIGN.AGENTS.md`, root entrypoints,
   and root design validation.
-- Validation: `python scripts/validate_root_design.py` and
-  `python scripts/generate_decision_indexes.py --check`.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -129,8 +128,4 @@ mechanic packages.
 
 ## Verification
 
-```bash
-python scripts/validate_root_design.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

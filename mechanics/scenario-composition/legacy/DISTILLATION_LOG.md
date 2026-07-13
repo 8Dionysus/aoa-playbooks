@@ -9,6 +9,4 @@
   `scripts/generate_playbook_composition_surfaces.py`
 - Reason: scenario composition is a local playbook-native mechanic, while the
   root command path remains public operator tooling.
-- Validation:
-  `python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py`
-  and `python scripts/generate_playbook_composition_surfaces.py --check`
+- Validation was completed by the package executable validator and generated-freshness owner.

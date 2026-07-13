@@ -12,7 +12,7 @@
 | inputs | package configs, schemas, examples, docs, source playbooks, quest notes, package recurrence manifests, and generated Agon registries |
 | outputs | root generated Agon registries, validated pre-protocol playbook surfaces, and explicit stronger-owner stop lines |
 | must not claim | live arena authority, verdicts, scars, rank/trust mutation, retention execution, hidden scheduling, KAG/ToS promotion, or assistant contestant authority |
-| validation | `python mechanics/agon/scripts/validate_agon_package.py` plus the Agon root compatibility builder/validator commands |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | target part, `playbooks/agon/*/agon-*/PLAYBOOK.md`, `quests/`, package recurrence manifest, generated registry, or stronger owner repo |
 
 ## Active route

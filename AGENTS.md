@@ -19,7 +19,12 @@ This repository owns:
 
 It does not own:
 
-- technique, skill, eval, routing, role, memory, KAG, stats, runtime, or live quest-state truth
+- technique, skill, eval, routing, role, memory, KAG, shared statistical
+  grammar, runtime, or live quest-state truth
+
+It does own the meaning of playbook-local statistical questions and evidence
+references exposed through `stats/`. Cross-owner composition and the shared
+measurement protocol remain owned by `aoa-stats`.
 
 ## Start here
 
@@ -29,10 +34,12 @@ It does not own:
 4. `DESIGN.AGENTS.md` when agent-facing route cards or guidance shape move
 5. `mechanics/README.md` and `mechanics/AGENTS.md` when repeatable operation topology moves
 6. the relevant model, bundle, gate, or evidence docs referenced there
-7. the target `playbooks/<branch>/<family>/<slug>/PLAYBOOK.md` or outline surface
-8. affected generated registry or composition surfaces
-9. neighboring repo docs when the playbook touches their meaning
-10. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
+7. `stats/README.md` and `stats/AGENTS.md` when a playbook-local statistical
+   question or reference packet moves
+8. the target `playbooks/<branch>/<family>/<slug>/PLAYBOOK.md` or outline surface
+9. affected generated registry or composition surfaces
+10. neighboring repo docs when the playbook touches their meaning
+11. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
 
 
 ## AGENTS stack law
@@ -75,7 +82,8 @@ If GitHub status or merge permissions cannot be observed, stop the landing route
 
 ## Verify
 
-Run the validation commands documented in `README.md` for the touched surface.
+Use the nearest `AGENTS.md` for focused checks and `scripts/release_check.py`
+for the repository-wide validation route.
 If generated playbook surfaces change, regenerate and validate them before finishing.
 Use `docs/AGENTS_ROOT_REFERENCE.md` for preserved branch guidance around questline, campaign, raid, reanchor, and evidence posture.
 

@@ -99,10 +99,7 @@ As of 2026-05-31:
   `scripts/generate_playbook_landing_governance.py`,
   `scripts/generate_phase_alpha_surfaces.py`, `scripts/release_check.py`,
   root design/readme surfaces, and package tests.
-- Validation:
-  `python mechanics/review-gate/scripts/validate_review_gate_package.py`,
-  review builder `--check` commands, Phase Alpha builder `--check`,
-  `python scripts/validate_mechanics_skeleton.py`, and focused pytest.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -138,14 +135,4 @@ next bounded package candidate only after owner split and validator evidence.
 
 ## Verification
 
-```bash
-python mechanics/review-gate/scripts/validate_review_gate_package.py
-python scripts/generate_playbook_review_status.py --check
-python scripts/generate_playbook_review_packet_contracts.py --check
-python scripts/generate_playbook_review_intake.py --check
-python scripts/generate_playbook_landing_governance.py --check
-python scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_mechanics_skeleton.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

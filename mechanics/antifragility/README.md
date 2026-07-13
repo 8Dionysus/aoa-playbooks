@@ -12,7 +12,7 @@
 | inputs | source playbook route, stress-lane docs, re-entry gate docs, schemas, examples, via negativa checklist, and reviewed evidence refs |
 | outputs | package-local stress-lane and re-entry contracts, bounded harvest doctrine, runtime-chaos wave posture, and stronger-owner handoff routes |
 | must not claim | runtime repair, proof verdict, durable memory truth, KAG health truth, hidden workflow execution, or deletion authority |
-| validation | `python mechanics/antifragility/scripts/validate_antifragility_package.py`, `python scripts/validate_playbooks.py`, and focused antifragility/runtime-chaos tests |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | target part, source playbook, review-gate evidence path, `aoa-evals`, runtime owner, or `Agents-of-Abyss/mechanics/antifragility/` |
 
 ## Active route

@@ -33,7 +33,8 @@ Describe how you checked the change.
 Examples:
 - read for consistency with `CHARTER.md`
 - checked `mechanics/portfolio-governance/parts/model-spine/docs/playbook-model.md` and `docs/BOUNDARIES.md` for alignment
-- ran `python scripts/validate_playbooks.py`
+- ran the executable repository gate or the focused owner check named by the
+  nearest `AGENTS.md`
 
 ## Notes
 

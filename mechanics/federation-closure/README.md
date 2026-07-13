@@ -12,7 +12,7 @@
 | inputs | `playbooks/*/*/*/PLAYBOOK.md` and sibling owner refs named by those playbooks |
 | outputs | root-published `generated/playbook_federation_surfaces.min.json` |
 | must not claim | sibling source truth, runtime state, route dispatch, proof verdicts, memo truth, or skill semantics |
-| validation | `python mechanics/federation-closure/scripts/validate_federation_closure_package.py` and `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | `parts/federation-surfaces/`, `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`, root generated read model, or stronger owner repo |
 
 ## Active route

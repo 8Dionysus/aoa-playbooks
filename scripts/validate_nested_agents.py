@@ -18,6 +18,7 @@ REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "scripts/AGENTS.md": ("generate_* --check", "repo-relative"),
     "tests/AGENTS.md": ("scenario boundaries", "generated alignment"),
     "memo/AGENTS.md": ("local memory port", "reviewed landing"),
+    "stats/AGENTS.md": ("playbook-local statistical questions", "aoa-stats"),
     "docs/decisions/AGENTS.md": ("Decision ID: AOA-PB-D-####", "generated lookup read models"),
     "mechanics/AGENTS.md": ("head-fed", "local", "Do not add root-level"),
 }

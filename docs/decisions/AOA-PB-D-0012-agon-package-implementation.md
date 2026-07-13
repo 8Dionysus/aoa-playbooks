@@ -101,10 +101,7 @@ As of 2026-05-31:
   recurrence manifests, generated readout guidance, `README.md`,
   `docs/README.md`, `ROADMAP.md`, `scripts/release_check.py`, and focused
   tests.
-- Validation:
-  `python mechanics/agon/scripts/validate_agon_package.py`, Agon
-  builder/validator commands, `python scripts/validate_mechanics_skeleton.py`,
-  `python scripts/validate_playbooks.py`, and focused pytest.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -151,16 +148,4 @@ or root exception is explicit.
 
 ## Verification
 
-```bash
-python mechanics/agon/scripts/validate_agon_package.py
-python scripts/build_agon_trial_playbook_registry.py --check
-python scripts/validate_agon_trial_playbooks.py
-python scripts/build_agon_trial_kernel_binding_registry.py --check
-python scripts/validate_agon_trial_kernel_bindings.py
-python scripts/build_agon_campaign_playbook_registry.py --check
-python scripts/validate_agon_campaign_playbook_registry.py
-python scripts/validate_mechanics_skeleton.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-python -m pytest -q tests/test_agon_mechanics_package.py tests/test_agon_trial_playbooks.py tests/test_agon_trial_kernel_bindings.py tests/test_agon_campaign_playbook_registry.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

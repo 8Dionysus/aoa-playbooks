@@ -19,9 +19,5 @@ implementation, not the public output path.
 
 ## Validation
 
-Run:
-
-```bash
-python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check
-python mechanics/activation/scripts/validate_activation_package.py
-```
+The part-local builder and package validator are the executable owners. Their
+focused order lives in the nearest `AGENTS.md`.

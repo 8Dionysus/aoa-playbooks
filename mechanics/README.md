@@ -73,14 +73,6 @@ No source playbook has moved.
 
 ## Validation
 
-```bash
-python scripts/validate_mechanics_skeleton.py
-python scripts/validate_playbooks.py
-```
-
-For package-local work, run the target package validator. For release-bound
-changes, run:
-
-```bash
-python scripts/release_check.py
-```
+The root mechanics checks and package-local order are owned by
+`mechanics/AGENTS.md`. Each package `AGENTS.md` owns its focused validator
+route; the executable repository release gate owns the release-bound loop.

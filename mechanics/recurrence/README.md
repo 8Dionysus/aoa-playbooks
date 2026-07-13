@@ -12,7 +12,7 @@
 | inputs | recurrence docs, source playbooks, recurrence manifests |
 | outputs | checked package-local recurrence posture and stronger-owner handoff |
 | must not claim | hidden scheduler action, memory truth, runtime self-healing, route dispatch, or proof verdict |
-| validation | `python mechanics/recurrence/scripts/validate_recurrence_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | recurrence part doc, source playbook, package-local recurrence manifest, checkpoint package, or stronger owner repo |
 
 ## Active route

@@ -106,8 +106,7 @@ As of 2026-05-31:
   different acceptance rules.
 - Source surfaces updated: `mechanics/`, root entrypoints, validators, and
   release checks.
-- Validation: `python scripts/validate_mechanics_skeleton.py` and
-  `python scripts/generate_decision_indexes.py --check`.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -135,8 +134,4 @@ split, not as an empty directory.
 
 ## Verification
 
-```bash
-python scripts/validate_mechanics_skeleton.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

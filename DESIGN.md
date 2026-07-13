@@ -77,6 +77,8 @@ it fails, and where should I leave for a stronger owner?
 - generated reader surfaces under `generated/`;
 - decision records under `docs/decisions/`;
 - local memory-port surfaces under `memo/`;
+- playbook-local statistical questions and evidence-linked reference packets
+  under `stats/`, using the shared `aoa-stats` protocol without absorbing it;
 - agent-facing route cards and companion lanes;
 - mechanics route surfaces under `mechanics/README.md`, `mechanics/AGENTS.md`,
   and package-local `mechanics/*/README.md`, `PARTS.md`, and `PROVENANCE.md`
@@ -109,6 +111,9 @@ When it becomes role meaning, route it to `aoa-agents`.
 When it becomes reusable practice, route it to `aoa-techniques`.
 When it becomes dispatch or live execution, route it to the stronger routing or
 runtime owner.
+When a statistical question describes playbook-owned scenario or review
+posture, keep its meaning and evidence references in this repository's
+`stats/` port; route shared grammar and cross-owner composition to `aoa-stats`.
 
 ## Design as Aim
 
@@ -159,9 +164,10 @@ single-run polish.
 
 ### 5. Owner split before absorption
 
-Skills, techniques, evals, memo, agents, routing, stats, KAG, runtime, and
-center doctrine have stronger owners. This repository may coordinate them but
-should not absorb their truth.
+Skills, techniques, evals, memo, agents, routing, shared stats grammar and
+cross-owner composition, KAG, runtime, and center doctrine have stronger
+owners. This repository may coordinate them and own playbook-local statistical
+meaning, but it should not absorb neighboring truth.
 
 ### 6. Mechanics before root sprawl
 

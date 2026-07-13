@@ -12,7 +12,7 @@
 | inputs | Experience docs, schemas, examples, tests, and source playbooks |
 | outputs | checked package-local Experience posture and stronger-owner handoff |
 | must not claim | role authority, service runtime, proof verdict, memory truth, or Tree of Sophia promotion |
-| validation | `python mechanics/experience/scripts/validate_experience_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | Experience part doc/schema/example, Agon adoption part, source playbook, or stronger owner repo |
 
 ## Active route

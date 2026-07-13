@@ -12,7 +12,7 @@
 | inputs | source playbooks, checkpoint distillation doc, activation example, memo contract refs |
 | outputs | checked package-local checkpoint posture and stronger-owner handoff |
 | must not claim | memory write, recall truth, child automation authority, or hidden scheduler action |
-| validation | `python mechanics/checkpoint/scripts/validate_checkpoint_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | source playbook, activation example, `aoa-memo`, or recurrence mechanic |
 
 ## Active route

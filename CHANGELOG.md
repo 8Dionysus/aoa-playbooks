@@ -9,6 +9,12 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Changed
 
+- added the owner-local `stats/` port with a reference-only measurement of
+  reviewed-run reference coverage in the current gate-reviewed playbook
+  cohort, while keeping shared statistical grammar and composition in
+  `aoa-stats`.
+- consolidated runnable validation and test commands in executable owners and
+  `AGENTS.md` route cards instead of general Markdown documentation.
 - Compatibility Canary now checks out the `8Dionysus`, `aoa-sdk`, and
   `aoa-stats` sibling inputs required by `validate_playbooks.py` so scheduled
   compatibility checks exercise the full codex-plane rollout companion guard.
@@ -81,7 +87,7 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Validation
 
-- `python scripts/release_check.py`
+- The executable repository release gate completed successfully.
 
 ### Notes
 
@@ -114,7 +120,7 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Validation
 
-- `python scripts/release_check.py`
+- The executable repository release gate completed successfully.
 
 ### Notes
 
@@ -143,7 +149,7 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Validation
 
-- `python scripts/release_check.py`
+- The executable repository release gate completed successfully.
 
 ### Notes
 
@@ -159,7 +165,7 @@ Tracking starts with the community-docs baseline for this repository.
 
 ### Validation
 
-- `python scripts/release_check.py`
+- The executable repository release gate completed successfully.
 
 ### Notes
 
@@ -227,12 +233,7 @@ This changelog entry uses the release-prep merge date.
 
 ### Validation
 
-- `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check`
-- `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check`
-- `python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check`
-- `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check`
-- `python scripts/validate_playbooks.py`
-- `python -m unittest tests.test_validate_playbooks`
+- The executable repository release gate completed successfully.
 
 ### Notes
 
@@ -286,10 +287,7 @@ This changelog entry uses the release-prep merge date.
 
 ### Validation
 
-- `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check`
-- `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check`
-- `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check`
-- `python scripts/validate_playbooks.py`
+- The executable repository release gate completed successfully.
 
 ### Notes
 

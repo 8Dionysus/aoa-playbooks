@@ -4,7 +4,7 @@
 
 | Part | Role | Source surfaces | Validation | Status |
 | --- | --- | --- | --- | --- |
-| `activation-surface` | derive root activation read model from source registry entries | `generated/playbook_registry.min.json`, `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_activation_surfaces.min.json` | `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check` | active |
+| `activation-surface` | derive root activation read model from source registry entries | `generated/playbook_registry.min.json`, `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_activation_surfaces.min.json` | `mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py` | active |
 
 ## Boundary payloads
 

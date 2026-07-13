@@ -97,10 +97,7 @@ As of 2026-05-31:
 - Source surfaces updated: `mechanics/*/`, `scripts/release_check.py`,
   `docs/RELEASING.md`, root design/readme surfaces, placement audit, rosters,
   generated refs, validators, and focused tests.
-- Validation:
-  package validators, `python scripts/validate_mechanics_skeleton.py`,
-  `python scripts/validate_playbooks.py`, focused pytest, decision index check,
-  and release check.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -131,17 +128,4 @@ As of 2026-05-31:
 
 ## Verification
 
-```bash
-python mechanics/recurrence/scripts/validate_recurrence_package.py
-python mechanics/checkpoint/scripts/validate_checkpoint_package.py
-python mechanics/experience/scripts/validate_experience_package.py
-python mechanics/release-support/scripts/validate_release_support_package.py
-python mechanics/questbook/scripts/validate_questbook_package.py
-python mechanics/rpg/scripts/validate_rpg_package.py
-python mechanics/titan/scripts/validate_titan_package.py
-python mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py
-python scripts/validate_mechanics_skeleton.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-python -m pytest -q tests/test_package_local_mechanics_packages.py tests/test_experience_wave3_seed_contracts.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

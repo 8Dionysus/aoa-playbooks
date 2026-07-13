@@ -12,7 +12,7 @@
 | inputs | `generated/playbook_registry.min.json`, authored `playbooks/*/*/*/PLAYBOOK.md`, activation cohort constants |
 | outputs | root-published `generated/playbook_activation_surfaces.min.json` |
 | must not claim | runtime state, tool binding, route dispatch, memo search/ranking, eval verdicts, or hidden autonomous execution |
-| validation | `python mechanics/activation/scripts/validate_activation_package.py` and `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | `parts/activation-surface/`, `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`, root generated read model, or stronger owner repo |
 
 ## Active route

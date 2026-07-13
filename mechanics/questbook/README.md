@@ -12,7 +12,7 @@
 | inputs | `QUESTBOOK.md`, `quests/`, generated quest readouts, questline docs, quest schemas/examples |
 | outputs | checked package-local questbook posture |
 | must not claim | private scratchpad, roadmap authority, proof closure, memory truth, or runtime dispatch |
-| validation | `python mechanics/questbook/scripts/validate_questbook_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | root quest source, generated quest readout, rpg package, source playbook, or stronger owner repo |
 
 ## Active route

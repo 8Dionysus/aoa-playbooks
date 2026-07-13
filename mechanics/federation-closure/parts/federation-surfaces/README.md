@@ -18,9 +18,5 @@ implementation, not the public output path.
 
 ## Validation
 
-Run:
-
-```bash
-python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
-python mechanics/federation-closure/scripts/validate_federation_closure_package.py
-```
+The part-local builder and package validator are the executable owners. Their
+focused order lives in the nearest `AGENTS.md`.
