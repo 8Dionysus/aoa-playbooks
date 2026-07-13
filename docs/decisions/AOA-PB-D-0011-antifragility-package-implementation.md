@@ -103,9 +103,7 @@ As of 2026-05-31:
   `docs/README.md`, `DESIGN.md`, `DESIGN.AGENTS.md`, `ROADMAP.md`,
   `scripts/validate_playbooks.py`, `scripts/release_check.py`, source playbook
   refs, and focused tests.
-- Validation:
-  `python mechanics/antifragility/scripts/validate_antifragility_package.py`,
-  `python scripts/validate_playbooks.py`, and focused pytest.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -143,10 +141,4 @@ ownership separately.
 
 ## Verification
 
-```bash
-python mechanics/antifragility/scripts/validate_antifragility_package.py
-python scripts/validate_mechanics_skeleton.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-python -m pytest -q tests/test_antifragility_mechanics_package.py tests/test_antifragility_public_surface.py tests/test_runtime_chaos_recovery.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

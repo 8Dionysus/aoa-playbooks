@@ -12,7 +12,7 @@
 | inputs | `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`, `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`, `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_composition_manifest.json`, `mechanics/real-run-harvest/parts/phase-alpha-evidence-store/config/phase_alpha_curated_core.json`, and root playbook registry |
 | outputs | root-published `generated/playbook_review_status.min.json`, `generated/playbook_review_packet_contracts.min.json`, `generated/playbook_review_intake.min.json`, `generated/playbook_landing_governance.min.json`, `generated/phase_alpha_review_packets.min.json`, and `generated/phase_alpha_run_matrix.min.json` |
 | must not claim | proof, runtime execution, eval acceptance, memory recall truth, source playbook authorship, or evidence-store relocation |
-| validation | `python mechanics/review-gate/scripts/validate_review_gate_package.py` plus the five root compatibility builder `--check` commands |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | part-local builder, root evidence/source store, `mechanics/real-run-harvest/`, generated read model, or stronger owner repo |
 
 ## Active route

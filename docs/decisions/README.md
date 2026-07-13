@@ -20,7 +20,7 @@ instead.
 | output | canonical decision note, metadata-backed lookup index, and route back to the source surface |
 | owner | `docs/decisions/AGENTS.md` for lane law; canonical decision notes for rationale; generated indexes for lookup only |
 | next route | source surface first, then root `AGENTS.md`, `README.md`, `CHARTER.md`, `docs/BOUNDARIES.md`, generated lookup indexes, or the affected playbook/mechanic owner |
-| validation | `python scripts/generate_decision_indexes.py --check`, `git diff --check`, and the owning validator for the changed surface |
+| validation | the decision-index executable, whitespace check, and the owning validator; invocation belongs to `docs/decisions/AGENTS.md` |
 
 ## Authority
 
@@ -68,17 +68,8 @@ Use them in both directions:
 - bottom up: changed source surface -> local route card or generated read model
   -> validator guard -> decision rationale -> stronger owner surface.
 
-Regenerate the read models after decision metadata changes:
-
-```bash
-python scripts/generate_decision_indexes.py
-```
-
-Check generated parity before closeout:
-
-```bash
-python scripts/generate_decision_indexes.py --check
-```
+The decision-index executable owns regeneration and parity checking. Exact
+invocation and closeout order live in `docs/decisions/AGENTS.md`.
 
 ## Addressing
 

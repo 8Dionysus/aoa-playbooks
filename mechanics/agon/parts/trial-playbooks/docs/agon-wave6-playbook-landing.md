@@ -8,8 +8,5 @@ The trial routes are experimental because the live arena protocol does not exist
 
 ## Validation
 
-```bash
-python mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py --check
-python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py
-python -m pytest -q tests/test_agon_trial_playbooks.py
-```
+The trial registry builder, trial validator, and focused tests own the checks;
+their invocation and order live in the nearest `AGENTS.md`.

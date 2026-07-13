@@ -72,6 +72,5 @@ Name the next owner surface or validator that should carry future work.
 
 ## Verification
 
-```bash
-python scripts/generate_decision_indexes.py --check
-```
+Name the executable owner checks that were completed; keep exact invocation in
+the owning `AGENTS.md` rather than copying commands into the decision.

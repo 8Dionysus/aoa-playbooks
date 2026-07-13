@@ -79,7 +79,4 @@ then any derived activation, federation, review, or composition surfaces.
 
 ## Verification
 
-```bash
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

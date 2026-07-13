@@ -9,6 +9,4 @@
   `scripts/generate_playbook_activation_surfaces.py`
 - Reason: activation is a local playbook-native mechanic, while the root
   command path remains public operator tooling.
-- Validation:
-  `python mechanics/activation/scripts/validate_activation_package.py` and
-  `python scripts/generate_playbook_activation_surfaces.py --check`
+- Validation was completed by the package executable validator and generated-freshness owner.

@@ -12,7 +12,7 @@
 | inputs | `docs/RELEASING.md`, release docs, root release check, schemas/examples, source playbooks |
 | outputs | checked package-local release-support posture |
 | must not claim | CI authority, runtime deployment authority, package publication promise, or support desk ownership |
-| validation | `python mechanics/release-support/scripts/validate_release_support_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | root release doc, release check, source playbook, runtime owner, or GitHub/CI |
 
 ## Active route

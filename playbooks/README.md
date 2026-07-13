@@ -56,13 +56,6 @@ manifest.
 
 ## Validation
 
-```bash
-python scripts/validate_playbooks.py
-python scripts/validate_nested_agents.py
-```
-
-For release-bound changes, run:
-
-```bash
-python scripts/release_check.py
-```
+Focused source-home and nested-guidance checks are owned by
+`playbooks/AGENTS.md`. The executable repository release gate owns the
+release-bound loop.

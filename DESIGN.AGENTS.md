@@ -24,7 +24,7 @@ It should give them a navigable route mesh:
   validation posture, and landing workflow;
 - district cards for durable editable surfaces such as `playbooks/`,
   `generated/`, `config/`, `examples/`, `schemas/`, `scripts/`, `tests/`,
-  `memo/`, and `docs/decisions/`;
+  `memo/`, `stats/`, and `docs/decisions/`;
 - playbook source surfaces that keep scenario meaning stronger than generated
   summaries;
 - mechanics atlas cards, placement/legacy gates, and mechanic package cards
@@ -80,7 +80,7 @@ mechanic, script, or generated-surface rule.
 
 District cards own local risks and source surfaces for durable editable
 districts such as `playbooks/`, `generated/`, `config/`, `examples/`,
-`schemas/`, `scripts/`, `tests/`, `memo/`, and `docs/decisions/`.
+`schemas/`, `scripts/`, `tests/`, `memo/`, `stats/`, and `docs/decisions/`.
 
 They narrow the root card. They do not overturn it.
 
@@ -192,8 +192,8 @@ It must not:
 - override source docs, schemas, configs, builders, validators, or owner repos;
 - claim hidden autonomy;
 - claim live runtime state unless the runtime owner proves it;
-- claim skill, technique, eval, memo, routing, role, stats, KAG, or center
-  doctrine authority;
+- claim skill, technique, eval, memo, routing, role, shared stats grammar or
+  cross-owner composition, KAG, or center doctrine authority;
 - turn generated surfaces into authority;
 - convert AoA vocabulary into permission;
 - bury semantic changes under docs-only wording.

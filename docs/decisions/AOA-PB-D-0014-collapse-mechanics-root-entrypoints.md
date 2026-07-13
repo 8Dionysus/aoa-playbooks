@@ -88,8 +88,7 @@ As of 2026-05-31:
   right first screen.
 - Source surfaces updated: root docs, mechanics root cards, validators, tests,
   and generated decision indexes.
-- Validation: mechanics skeleton, nested AGENTS, decision indexes, playbook
-  validation, focused pytest, release check, and diff whitespace check.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -118,12 +117,4 @@ create the package route and validator in the same slice.
 
 ## Verification
 
-```bash
-python scripts/validate_mechanics_skeleton.py
-python scripts/validate_nested_agents.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-python scripts/release_check.py
-python -m pytest -q tests/test_mechanics_skeleton.py tests/test_validate_nested_agents.py
-git diff --check
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

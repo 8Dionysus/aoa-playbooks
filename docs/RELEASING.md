@@ -24,42 +24,10 @@ A release should make it easy to answer:
 
 1. Confirm the release scope stays bounded.
 2. Update `CHANGELOG.md` with the section that will anchor the human release narrative.
-3. Run the repo-level validation loop:
-   - `python scripts/release_check.py`
-   - `python -m pip install -r requirements-dev.txt`
-   - `python scripts/validate_mechanics_skeleton.py`
-   - `python mechanics/review-gate/scripts/validate_review_gate_package.py`
-   - `python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py`
-   - `python mechanics/antifragility/scripts/validate_antifragility_package.py`
-   - `python mechanics/agon/scripts/validate_agon_package.py`
-   - `python mechanics/recurrence/scripts/validate_recurrence_package.py`
-   - `python mechanics/checkpoint/scripts/validate_checkpoint_package.py`
-   - `python mechanics/experience/scripts/validate_experience_package.py`
-   - `python mechanics/release-support/scripts/validate_release_support_package.py`
-   - `python mechanics/questbook/scripts/validate_questbook_package.py`
-   - `python mechanics/rpg/scripts/validate_rpg_package.py`
-   - `python mechanics/titan/scripts/validate_titan_package.py`
-   - `python mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py`
-   - `python scripts/generate_decision_indexes.py --check`
-   - `python mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py --check`
-   - `python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py`
-   - `python mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py --check`
-   - `python mechanics/agon/parts/trial-kernel-bindings/scripts/validate_agon_trial_kernel_bindings.py`
-   - `python mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py --check`
-   - `python mechanics/agon/parts/campaign-playbooks/scripts/validate_agon_campaign_playbook_registry.py`
-   - `python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check`
-   - `python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check`
-   - `python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check`
-   - `python mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py --check`
-   - `python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py --check`
-   - `python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check`
-   - `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check`
-   - `python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check`
-   - `python scripts/validate_abyss_machine_playbook_bundle.py`
-   - `python scripts/validate_playbooks.py`
-   - `python -m pytest -q tests`
-4. If the release touches validator behavior directly, also run:
-   - `python -m unittest tests.test_validate_playbooks`
+3. Run the executable repository release gate named by root `AGENTS.md`; it
+   owns the complete ordered validator, freshness, artifact, and test loop.
+4. If the release touches one validator directly, follow the focused route in
+   the owning `AGENTS.md` before the repository gate.
 5. Confirm generated surfaces are current when the release touches authored bundles, schemas, cohort membership, or composition overrides.
 6. Confirm reviewed-summary and gate-review wording still match the current evidence posture.
 7. Review public-safety hygiene:

@@ -16,7 +16,8 @@
 - **Coordinator**: выбирает один scenario-shaped seam
 - **Scout**: картографирует involved skills/agents/evals/memo surfaces
 - **Builder**: делает минимальный playbook-level diff
-- **Verifier**: запускает `python scripts/validate_playbooks.py`
+- **Verifier**: запускает проверочный маршрут из корневого или ближайшего
+  `AGENTS.md`
 - **Boundary Keeper**: держит грань между playbook и соседними слоями
 
 ## Параллельные дорожки
@@ -72,11 +73,9 @@ Rules:
 
 ## Промпт для Verifier
 ```text
-Run:
-- python -m pip install -r requirements-dev.txt
-- python scripts/validate_playbooks.py
-Then report:
-- commands run
+Follow the validation route owned by the nearest AGENTS.md and the executable
+repository gate. Then report:
+- checks run
 - registry changes if any
 - any unresolved scenario ambiguity
 ```
@@ -93,10 +92,9 @@ Check:
 ```
 
 ## Verify
-```bash
-python -m pip install -r requirements-dev.txt
-python scripts/validate_playbooks.py
-```
+
+Исполняемый маршрут проверки принадлежит корневому release gate; порядок
+фокусных проверок принадлежит ближайшему `AGENTS.md`.
 
 ## Done when
 - один scenario seam стал explicit and reviewable

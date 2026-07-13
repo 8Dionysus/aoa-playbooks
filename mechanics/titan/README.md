@@ -12,7 +12,7 @@
 | inputs | Titan docs and Titan source playbook routes |
 | outputs | checked package-local Titan posture and stronger-owner handoff |
 | must not claim | role authority, runtime implementation, memory truth, proof verdict, or service ownership |
-| validation | `python mechanics/titan/scripts/validate_titan_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | Titan doc, source playbook, `aoa-agents`, runtime owner, memo, or evals |
 
 ## Active route

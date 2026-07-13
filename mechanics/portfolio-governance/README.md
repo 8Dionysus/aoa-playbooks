@@ -12,7 +12,7 @@
 | inputs | package-local model and portfolio docs |
 | outputs | checked package-local portfolio-governance posture |
 | must not claim | source playbook truth, proof verdict, memory truth, route dispatch, or roadmap authority |
-| validation | `python mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | model part, decision record, source playbook, or roadmap |
 
 ## Active route

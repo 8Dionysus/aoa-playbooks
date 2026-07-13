@@ -12,7 +12,7 @@
 | inputs | `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_registry.min.json`, `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`, `../aoa-skills/generated/skill_handoff_contracts.json` |
 | outputs | root-published `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json` |
 | must not claim | runtime state, scheduler authority, route dispatch, skill semantics, proof verdicts, or memory truth |
-| validation | `python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py` and `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | `parts/composition-surfaces/`, composition source docs, root generated read models, or `aoa-skills` for skill-owned meaning |
 
 ## Active route

@@ -19,6 +19,7 @@ EXPECTED_PACK3_DOCS = {
     "schemas/AGENTS.md",
     "scripts/AGENTS.md",
     "tests/AGENTS.md",
+    "stats/AGENTS.md",
     "mechanics/AGENTS.md",
 }
 

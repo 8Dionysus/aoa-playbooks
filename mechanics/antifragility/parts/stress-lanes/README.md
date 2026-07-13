@@ -2,8 +2,5 @@
 
 Owns playbook stress-lane doctrine, schema, and examples.
 
-Validation route:
-
-```bash
-python mechanics/antifragility/scripts/validate_antifragility_package.py
-```
+The executable package validator owns validation; focused invocation lives in
+the nearest `AGENTS.md`.

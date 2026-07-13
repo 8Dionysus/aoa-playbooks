@@ -13,6 +13,7 @@ Use the shortest route by need:
 - docs map: [docs/README](docs/README.md)
 - role, boundaries, and conceptual model: [CHARTER](CHARTER.md), [playbook model](mechanics/portfolio-governance/parts/model-spine/docs/playbook-model.md), and [docs/BOUNDARIES](docs/BOUNDARIES.md)
 - root system and agent-route design: [DESIGN](DESIGN.md) and [DESIGN.AGENTS](DESIGN.AGENTS.md)
+- playbook-local statistical questions and reference packets: [stats port](stats/README.md)
 - repeatable operation topology: [mechanics atlas](mechanics/README.md),
   [activation mechanic](mechanics/activation/README.md),
   [scenario composition mechanic](mechanics/scenario-composition/README.md),
@@ -49,6 +50,7 @@ Use the shortest route by need:
 
 - source-authored playbook truth: `playbooks/*/*/*/PLAYBOOK.md` for scenario routes and `generated/playbook_registry.min.json` for compact registry metadata
 - root system design and agent-facing route mesh: `DESIGN.md`, `DESIGN.AGENTS.md`, `AGENTS.md`, and the nearest nested `AGENTS.md`
+- playbook-local statistical questions and evidence-linked reference packets: `stats/README.md` and `stats/port.manifest.json`; shared measurement grammar and cross-owner composition remain in `aoa-stats`
 - mechanics atlas and package routes: `mechanics/README.md`, `mechanics/AGENTS.md`, and active package READMEs under `mechanics/*/README.md`
 - activation, federation, and review-governed landing surfaces: `generated/playbook_activation_surfaces.min.json`, `generated/playbook_federation_surfaces.min.json`, `generated/playbook_review_status.min.json`, `generated/playbook_review_intake.min.json`, `generated/playbook_review_packet_contracts.min.json`, and `generated/playbook_landing_governance.min.json`
 - shared-root rollout operations route and companion lane: `playbooks/operations/release/trusted-rollout-operations/PLAYBOOK.md`, `mechanics/release-support/parts/promotion-and-retention/docs/codex-plane-rollout-cycle.md`, `mechanics/release-support/parts/promotion-and-retention/docs/trusted-rollout-campaign-cadence.md`, and `mechanics/release-support/parts/promotion-and-retention/examples/codex_plane_rollout_lane.example.json`
@@ -64,7 +66,8 @@ Use the shortest route by need:
 - real-run and gate-review evidence: `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`, `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`, `mechanics/real-run-harvest/parts/harvest-template-source-store/examples/harvests/`, [real-run workflow](mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md), and [composition gates](mechanics/scenario-composition/parts/composition-surfaces/docs/playbook-composition-gates.md)
 - owner-local live receipt publication for closeout/stats integration: `scripts/publish_live_receipts.py` and `.aoa/live_receipts/playbook-receipts.jsonl`
 - live authored bundles and activation examples: `playbooks/*/*/*/PLAYBOOK.md` and `mechanics/activation/parts/activation-surface/examples/playbook_activation.*.example.json`
-- full non-mutating verify path: `python scripts/validate_root_design.py`, `python scripts/validate_mechanics_skeleton.py`, the active mechanics package validators including `python mechanics/agon/scripts/validate_agon_package.py`, `python scripts/generate_decision_indexes.py --check`, the Agon root compatibility builders and validators, the eight `generate_* --check` builders, `python scripts/validate_playbooks.py`, and `python -m pytest -q tests`
+- full non-mutating verify path: the executable repository gate owned by
+  `scripts/release_check.py`; focused routes live in the nearest `AGENTS.md`
 
 ## What `aoa-playbooks` owns
 
@@ -114,46 +117,9 @@ Real-run harvest templates under `mechanics/real-run-harvest/parts/harvest-templ
 
 ## Build and validate
 
-To validate the current playbook-layer surface locally, run:
-
-```bash
-python -m pip install -r requirements-dev.txt
-python scripts/validate_root_design.py
-python scripts/validate_mechanics_skeleton.py
-python mechanics/activation/scripts/validate_activation_package.py
-python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py
-python mechanics/federation-closure/scripts/validate_federation_closure_package.py
-python mechanics/review-gate/scripts/validate_review_gate_package.py
-python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py
-python mechanics/antifragility/scripts/validate_antifragility_package.py
-python mechanics/agon/scripts/validate_agon_package.py
-python mechanics/recurrence/scripts/validate_recurrence_package.py
-python mechanics/checkpoint/scripts/validate_checkpoint_package.py
-python mechanics/experience/scripts/validate_experience_package.py
-python mechanics/release-support/scripts/validate_release_support_package.py
-python mechanics/questbook/scripts/validate_questbook_package.py
-python mechanics/rpg/scripts/validate_rpg_package.py
-python mechanics/titan/scripts/validate_titan_package.py
-python mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py
-python scripts/generate_decision_indexes.py --check
-python mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py --check
-python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py
-python mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py --check
-python mechanics/agon/parts/trial-kernel-bindings/scripts/validate_agon_trial_kernel_bindings.py
-python mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py --check
-python mechanics/agon/parts/campaign-playbooks/scripts/validate_agon_campaign_playbook_registry.py
-python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check
-python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
-python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
-python mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py --check
-python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py --check
-python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check
-python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
-python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_abyss_machine_playbook_bundle.py
-python scripts/validate_playbooks.py
-python -m pytest -q tests
-```
+The executable repository-wide route is `scripts/release_check.py`. Focused
+checks and their ordering live in the nearest `AGENTS.md`, so this public front
+door does not duplicate command authority.
 
 The validator auto-discovers authored bundles under `playbooks/*/*/*/PLAYBOOK.md`, checks registry alignment, resolves federation-facing references into neighboring repositories, and validates the review-governed experimental landing layer, the Wave VI Agon trial family, Phase Alpha, questbook, and local guidance surfaces including `playbooks/AGENTS.md` and `generated/AGENTS.md`.
 

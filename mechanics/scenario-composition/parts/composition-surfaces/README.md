@@ -25,9 +25,5 @@ implementation, not the public output paths.
 
 ## Validation
 
-Run:
-
-```bash
-python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
-python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py
-```
+The part-local builder and package validator are the executable owners. Their
+focused order lives in the nearest `AGENTS.md`.

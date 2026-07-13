@@ -106,11 +106,7 @@ As of 2026-05-31:
   `mechanics/review-gate/parts/*/scripts/`, `scripts/validate_playbooks.py`,
   generated review/Phase Alpha readouts, placement audit, release check, and
   focused tests.
-- Validation:
-  `python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py`,
-  review-status builder `--check`, Phase Alpha builder `--check`,
-  `python scripts/validate_mechanics_skeleton.py`, decision index check,
-  `python scripts/validate_playbooks.py`, and focused pytest.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -139,11 +135,4 @@ As of 2026-05-31:
 
 ## Verification
 
-```bash
-python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py
-python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
-python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_mechanics_skeleton.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

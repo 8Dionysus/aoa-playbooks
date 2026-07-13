@@ -12,7 +12,7 @@
 | inputs | party-template docs, schema, example, and generated readout |
 | outputs | checked package-local RPG reflection posture |
 | must not claim | role authority, rank/progression truth, campaign runtime, proof, or memory truth |
-| validation | `python mechanics/rpg/scripts/validate_rpg_package.py` |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | questbook package, source playbook, generated party-template readout, or stronger owner repo |
 
 ## Active route

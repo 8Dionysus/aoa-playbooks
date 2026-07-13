@@ -12,7 +12,7 @@
 | inputs | `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md`, `mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md`, `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/`, `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/`, `mechanics/real-run-harvest/parts/harvest-template-source-store/examples/harvests/`, alpha readiness and reviewed-run paths |
 | outputs | checked package-local evidence posture and handoff to review-gate readout builders |
 | must not claim | proof verdict, runtime trace storage, memo truth, eval acceptance, or ownership of raw runtime evidence |
-| validation | `python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py` plus review-status and Phase Alpha builder `--check` commands |
+| validation | package executable owners; focused order in `AGENTS.md` |
 | next route | package-local evidence note, harvest template, `mechanics/review-gate/`, or stronger owner repo |
 
 ## Active route

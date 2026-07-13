@@ -4,7 +4,7 @@
 
 | Part | Role | Source surfaces | Validation | Status |
 | --- | --- | --- | --- | --- |
-| `composition-surfaces` | derive root composition read models from playbooks, source overrides, and skill handoff contracts | `playbooks/*/*/*/PLAYBOOK.md`, `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`, `../aoa-skills/generated/skill_handoff_contracts.json`, root generated composition outputs | `python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check` | active |
+| `composition-surfaces` | derive root composition read models from playbooks, source overrides, and skill handoff contracts | `playbooks/*/*/*/PLAYBOOK.md`, `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`, `../aoa-skills/generated/skill_handoff_contracts.json`, root generated composition outputs | `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py` | active |
 
 ## Boundary payloads
 

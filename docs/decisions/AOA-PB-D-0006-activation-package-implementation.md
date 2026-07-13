@@ -97,9 +97,7 @@ As of 2026-05-31:
 - Source surfaces updated: `mechanics/activation/`,
   `scripts/generate_playbook_activation_surfaces.py`,
   `scripts/release_check.py`, root design/readme surfaces, and package tests.
-- Validation: `python mechanics/activation/scripts/validate_activation_package.py`,
-  `python scripts/generate_playbook_activation_surfaces.py --check`,
-  `python scripts/validate_mechanics_skeleton.py`, and focused pytest.
+- Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
 
 ## Boundaries
 
@@ -130,10 +128,4 @@ readout compatibility pattern.
 
 ## Verification
 
-```bash
-python mechanics/activation/scripts/validate_activation_package.py
-python scripts/generate_playbook_activation_surfaces.py --check
-python scripts/validate_mechanics_skeleton.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-```
+Verification is owned by the corresponding executable validators and the repository release gate; focused invocation lives in the nearest `AGENTS.md`.

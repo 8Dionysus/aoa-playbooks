@@ -1,0 +1,110 @@
+{
+  "schema_version": "aoa_stats_local_port_v1",
+  "contract_version": "1.0.0",
+  "owner_repo": "aoa-playbooks",
+  "status": "active",
+  "owner_boundary_ref": "AGENTS.md",
+  "central_contract_refs": [
+    "aoa-stats:stats/measurement-contract/measurement-contract.schema.json",
+    "aoa-stats:stats/measurement-contract/measurement-packet.schema.json"
+  ],
+  "evidence_posture": {
+    "live_state": "reference_only",
+    "privacy": "public",
+    "raw_content_allowed": false
+  },
+  "questions": [
+    {
+      "id": "question:reviewed-run-reference-coverage-ratio",
+      "question": "What fraction of the current gate-reviewed playbook cohort has at least one referenced reviewed run at this source revision?",
+      "consumer_refs": [
+        "stats/README.md",
+        "mechanics/boundary-bridge/parts/orchestrator-alignment/docs/orchestrator-alignment-surfaces.md"
+      ]
+    }
+  ],
+  "measurements": [
+    {
+      "schema_version": "aoa_stats_measurement_contract_v1",
+      "measurement_id": "aoa-playbooks/reviewed-run-reference-coverage-ratio",
+      "contract_version": "1.0.0",
+      "owner_repo": "aoa-playbooks",
+      "question_ref": "question:reviewed-run-reference-coverage-ratio",
+      "semantic_class": "statistic",
+      "statistic": "ratio",
+      "object_kind": "gate-reviewed-playbook",
+      "unit": {
+        "symbol": "1",
+        "quantity": "proportion"
+      },
+      "population": {
+        "subject": "current gate-reviewed playbook cohort",
+        "definition": "one playbooks entry in generated/playbook_review_status.min.json",
+        "inclusion_rule": "every current entry derived from a gate-review note by the review-status owner builder",
+        "exclusion_rule": "authored playbooks without a gate-review entry, raw reviewed-run content, review packet or intake projections, eval verdicts, and runtime executions",
+        "sampling": "census"
+      },
+      "window": {
+        "temporality": "instant",
+        "clock": "owner_defined"
+      },
+      "dimensions": {
+        "allowed": [],
+        "prohibited": [
+          "playbook_id",
+          "reviewed_run_ref",
+          "gate_verdict"
+        ]
+      },
+      "aggregation": {
+        "operator": "none",
+        "across": []
+      },
+      "missingness": {
+        "states": [
+          "missing",
+          "unknown",
+          "stale"
+        ],
+        "zero_is_observation": true
+      },
+      "uncertainty": {
+        "required": false,
+        "methods": [
+          "not_applicable"
+        ]
+      },
+      "provenance": {
+        "evidence_refs_required": true,
+        "source_revision_required": true
+      },
+      "lifecycle": {
+        "status": "active",
+        "compatible_with": []
+      },
+      "privacy": {
+        "classification": "public",
+        "raw_content_allowed": false,
+        "sensitive_dimensions_allowed": false
+      },
+      "live_state": {
+        "capability": "reference_only"
+      },
+      "authority_ceiling": "Reports only whether each entry in the current gate-reviewed playbook cohort references at least one reviewed run; it does not establish run quality, proof, an eval verdict, readiness, gate acceptance, execution success, runtime state, or a scenario decision."
+    }
+  ],
+  "exports": [
+    {
+      "measurement_id": "aoa-playbooks/reviewed-run-reference-coverage-ratio",
+      "posture": "reference",
+      "packet_refs": [
+        "stats/packets/reviewed-run-reference-coverage-ratio.reference.json"
+      ],
+      "evidence_refs": [
+        "generated/playbook_review_status.min.json",
+        "mechanics/review-gate/parts/review-status/schemas/playbook-review-status.schema.json",
+        "mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/"
+      ]
+    }
+  ]
+}
