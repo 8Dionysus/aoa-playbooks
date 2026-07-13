@@ -1859,7 +1859,7 @@
     {"anchor_ids":["aoa:aoa-playbooks:anchor:7664463f5be5971bbd79b558"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:30efdb8abe996fb0afda875b","label":"generated/quest_dispatch.min.example.json","provenance_ref":"deterministic","semantic_key":"generated/quest_dispatch.min.example.json","source_digest":"ae2927ad1e08d86f27978a938b7a88fba9b01c94639c63b30b3038ebb7314b25","source_record_ids":["aoa:aoa-playbooks:artifact:ff48f2b1eda51875912e7e4f"],"temporal_ref":"current","trust_ref":"deterministic"},
     {"anchor_ids":["aoa:aoa-playbooks:anchor:c1010d4bd19dcdc90ccdf94d"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:3696db0c29d79a918a6c4362","label":"generated/playbook_activation_surfaces.min.json","provenance_ref":"deterministic","semantic_key":"generated/playbook_activation_surfaces.min.json","source_digest":"89821de5ea02630bcc9d269bd18d3eb8659ff66e0b1853f093562edae6562f47","source_record_ids":["aoa:aoa-playbooks:artifact:cb92483ffdde897cd1ad9b34"],"temporal_ref":"current","trust_ref":"deterministic"},
     {"anchor_ids":["aoa:aoa-playbooks:anchor:a52f344a3b6823af58ad724e"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:3c5760083d0ecfddd2dd2afc","label":"generated/playbook_review_status.min.json","provenance_ref":"deterministic","semantic_key":"generated/playbook_review_status.min.json","source_digest":"e6a16a9e6a3f34e9aef5e5d4424c95e4de493b2e2a0f4e660f76d5e2c3487125","source_record_ids":["aoa:aoa-playbooks:artifact:116dae47ec483262a9cb2028"],"temporal_ref":"current","trust_ref":"deterministic"},
-    {"anchor_ids":["aoa:aoa-playbooks:anchor:06185a0ba60d85d0b226d1c9"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:5bab720a5828e36e8742c05b","label":"generated/playbook_handoff_contracts.json","provenance_ref":"deterministic","semantic_key":"generated/playbook_handoff_contracts.json","source_digest":"11879d91c80248ef8d84d90d65f3f41249a432ffcea9d70edd3d1fe599ffbf45","source_record_ids":["aoa:aoa-playbooks:artifact:6ccd77c27093991b8362bed8"],"temporal_ref":"current","trust_ref":"deterministic"},
+    {"anchor_ids":["aoa:aoa-playbooks:anchor:06185a0ba60d85d0b226d1c9"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:5bab720a5828e36e8742c05b","label":"generated/playbook_handoff_contracts.json","provenance_ref":"deterministic","semantic_key":"generated/playbook_handoff_contracts.json","source_digest":"92d84c35e8673c1e29de9ae1dd46a3de6a2d8ab1bede3fbdc0660be21a879854","source_record_ids":["aoa:aoa-playbooks:artifact:6ccd77c27093991b8362bed8"],"temporal_ref":"current","trust_ref":"deterministic"},
     {"anchor_ids":["aoa:aoa-playbooks:anchor:595dc70b45fb73fef429f6dc"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:684d3c5e7bd948b917dcd2ce","label":"generated/agon_campaign_playbook_registry.min.json","provenance_ref":"deterministic","semantic_key":"generated/agon_campaign_playbook_registry.min.json","source_digest":"76041a58cfa9d863b6e0d7470871df386813441b5080288498e481018c104be3","source_record_ids":["aoa:aoa-playbooks:artifact:67a1a784697754400ab46e89"],"temporal_ref":"current","trust_ref":"deterministic"},
     {"anchor_ids":["aoa:aoa-playbooks:anchor:ab388594b8e7c446791f1d24"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:71b9b3106317613b1dfa0c3d","label":"docs/decisions/indexes/README.md","provenance_ref":"deterministic","semantic_key":"docs/decisions/indexes/README.md","source_digest":"e8561e9ed1215513062116b1c4eeb1924dce0f1b032166d47c26775f71f065b7","source_record_ids":["aoa:aoa-playbooks:artifact:16f69bcd84ec7a895c63a279"],"temporal_ref":"current","trust_ref":"deterministic"},
     {"anchor_ids":["aoa:aoa-playbooks:anchor:fbd98c8091b3e58af2aaf128"],"entity_kind":"readmodel","id":"aoa:aoa-playbooks:entity:7e64c5e816ae557eb9015cd1","label":"kag/edges/source_returns_to_owner.json","provenance_ref":"deterministic","semantic_key":"kag/edges/source_returns_to_owner.json","source_digest":"26c755c93c4c68e651e2f64896d4ddcaf481f89097380e48294400dd04f0160f","source_record_ids":["aoa:aoa-playbooks:artifact:82a6ecfbf5cfe9fec96562ed"],"temporal_ref":"current","trust_ref":"deterministic"},
@@ -1889,7 +1889,7 @@
   ],
   "index_identity": {
     "artifact_kind": "repository_entity_index",
-    "content_digest": "82b7c3de88ce4cf330dcde57f4c73dde151e7792c2731d8a188a07a6983f640b",
+    "content_digest": "302b804ea96624712bfd6cafe2a52655ed14052449fbb523aa30ec032f5e98e6",
     "index_kind": "entity",
     "local_id": "index:repo-local:entities",
     "schema_ref": "aoa-kag:schemas/repo-local-kag-repository-index.schema.json"
@@ -1974,7 +1974,7 @@
   },
   "schema_version": "aoa-repo-local-kag-repository-index-v2",
   "source_index": {
-    "content_digest": "2b27219dae04f3b5ca0f26c39339f3b87edd0ab1a11bfc33a8ae6d41707bc771",
+    "content_digest": "b558ad00d985578ecd097fc38f0239738b83772bb6ef8608aa6fc03560a6d0e8",
     "local_id": "index:repo-local:source-surfaces",
     "path": "kag/indexes/source_surface_index.json"
   },
