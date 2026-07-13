@@ -8,6 +8,7 @@ import os
 import shutil
 import sys
 import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
@@ -135,6 +136,37 @@ def _default_tmp_root() -> Path | None:
         if path.is_dir():
             return path
     return None
+
+
+@contextmanager
+def _artifact_subject_store_roots(store_root: Path, artifact_bundles: Any | None = None):
+    env_root = "ABYSS_MACHINE_ARTIFACT_SUBJECT_STORE_ROOT"
+    env_roots = "ABYSS_MACHINE_ARTIFACT_SUBJECT_STORE_ROOTS"
+    old_root = os.environ.get(env_root)
+    old_roots = os.environ.get(env_roots)
+    missing = object()
+    old_default = (
+        getattr(artifact_bundles, "DEFAULT_ARTIFACT_SUBJECT_STORE_ROOT", missing)
+        if artifact_bundles is not None
+        else missing
+    )
+    os.environ[env_root] = str(store_root)
+    os.environ[env_roots] = str(store_root)
+    if old_default is not missing:
+        artifact_bundles.DEFAULT_ARTIFACT_SUBJECT_STORE_ROOT = store_root
+    try:
+        yield
+    finally:
+        if old_default is not missing:
+            artifact_bundles.DEFAULT_ARTIFACT_SUBJECT_STORE_ROOT = old_default
+        if old_root is None:
+            os.environ.pop(env_root, None)
+        else:
+            os.environ[env_root] = old_root
+        if old_roots is None:
+            os.environ.pop(env_roots, None)
+        else:
+            os.environ[env_roots] = old_roots
 
 
 def _manifest_subject_paths(manifest: dict[str, Any]) -> list[Path]:
@@ -304,6 +336,26 @@ def _registry_roundtrip_with_subject_store(
             os.environ[env_roots] = old_roots
 
 
+def _promoted_registry_record(
+    artifact_bundles: Any,
+    registry_dir: Path,
+    registry_roundtrip: dict[str, Any],
+) -> dict[str, Any]:
+    promoted = registry_roundtrip.get("promoted", {})
+    record = promoted.get("record") if isinstance(promoted, dict) else {}
+    if isinstance(record, dict) and record:
+        return record
+    promotion = promoted.get("promotion") if isinstance(promoted, dict) else {}
+    record_id = str(promotion.get("record_id") or "") if isinstance(promotion, dict) else ""
+    if not record_id:
+        return {}
+    registry = artifact_bundles.read_bundle_registry(registry_dir, artifact_class=ARTIFACT_CLASS)
+    for item in registry.get("records", []):
+        if isinstance(item, dict) and str(item.get("record_id") or "") == record_id:
+            return item
+    return {"record_id": record_id}
+
+
 def _trust_gate_allow_latest(
     artifact_bundles: Any,
     registry_dir: Path,
@@ -311,40 +363,59 @@ def _trust_gate_allow_latest(
     *,
     require_subject_store: bool = True,
 ) -> dict[str, Any]:
-    record = registry_roundtrip.get("promoted", {}).get("record", {})
+    record = _promoted_registry_record(artifact_bundles, registry_dir, registry_roundtrip)
     trust_gate = artifact_bundles.trust_gate(
         registry_dir,
         artifact_class=ARTIFACT_CLASS,
+        record_id=str(record.get("record_id") or ""),
         subject_digest=str(record.get("subject_digest") or ""),
         consumer_intent=CONSUMER_INTENT,
         expected_source_repo=SOURCE_REPO,
         expected_trust_root_mode=TRUST_ROOT_MODE,
     )
     inspected_claims = trust_gate.get("inspected_claims", {})
-    decision = trust_gate.get("decision", {})
-    materialization_pending = (
-        not require_subject_store
-        and trust_gate.get("verdict") == "deny"
-        and set(trust_gate.get("blockers") or ())
-        == {"required_artifact_subject_store_not_verified"}
-    )
-    gate_admitted = (
-        trust_gate.get("ok")
-        and trust_gate.get("verdict") in {"allow", "warn"}
-        and decision.get("allow") is True
-    ) or materialization_pending
+    decision = trust_gate.get("decision", {}) if isinstance(trust_gate.get("decision"), dict) else {}
+    subject_store = inspected_claims.get("artifact_subject_store", {})
+    if not require_subject_store:
+        # Before materialization the consumer gate should remain fail-closed.
+        # This proves the latest record is selected and rejected only because
+        # the required subject-store has not been promoted yet.
+        blockers = [str(item) for item in trust_gate.get("blockers", [])]
+        subject_store_blocker = str(
+            getattr(
+                artifact_bundles,
+                "REQUIRED_SUBJECT_STORE_BLOCKER",
+                "required_artifact_subject_store_not_verified",
+            )
+        )
+        return {
+            "ok": bool(
+                trust_gate.get("verdict") == "deny"
+                and decision.get("model") == "fail_closed_consumer_admission"
+                and decision.get("allow") is False
+                and blockers == [subject_store_blocker]
+                and inspected_claims.get("registry_latest", {}).get("selected_record_is_latest") is True
+                and inspected_claims.get("controls", {}).get("required_controls_missing") == []
+                and inspected_claims.get("source", {}).get("source_repo_matched") is True
+                and inspected_claims.get("trust_root", {}).get("trust_root_mode_matched") is True
+                and isinstance(subject_store, dict)
+                and subject_store.get("ok") is False
+                and subject_store.get("required") is True
+            ),
+            "trust_gate": trust_gate,
+        }
     return {
         "ok": bool(
-            gate_admitted
+            trust_gate.get("ok")
+            and trust_gate.get("verdict") in {"allow", "warn"}
             and decision.get("model") == "fail_closed_consumer_admission"
+            and decision.get("allow") is True
             and inspected_claims.get("registry_latest", {}).get("selected_record_is_latest") is True
             and inspected_claims.get("controls", {}).get("required_controls_missing") == []
             and inspected_claims.get("source", {}).get("source_repo_matched") is True
             and inspected_claims.get("trust_root", {}).get("trust_root_mode_matched") is True
-            and (
-                not require_subject_store
-                or inspected_claims.get("artifact_subject_store", {}).get("ok") is True
-            )
+            and isinstance(subject_store, dict)
+            and subject_store.get("ok") is True
         ),
         "trust_gate": trust_gate,
     }
@@ -454,7 +525,11 @@ def _verify_terminal_registry_state(
     revoked_gate = artifact_bundles.trust_gate(
         registry_dir,
         artifact_class=ARTIFACT_CLASS,
-        record_id=str(release_ready.get("promoted", {}).get("record", {}).get("record_id") or ""),
+        record_id=str(
+            revoked.get("record", {}).get("record_id")
+            or revoked.get("promotion", {}).get("record_id")
+            or ""
+        ),
         consumer_intent=CONSUMER_INTENT,
         expected_source_repo=SOURCE_REPO,
         expected_trust_root_mode=TRUST_ROOT_MODE,
@@ -630,21 +705,23 @@ def _validate_in_bundle_dir(
     release_check = artifact_bundles.release_check(bundle_dir, repo_root=abyss_repo_root)
     identity = _load_json(bundle_dir / artifact_bundles.IDENTITY_SIDECAR)
     _assert_expected_controls(artifact_bundles, bundle_dir, verify, identity)
-    registry = _registry_roundtrip(
-        artifact_bundles,
-        bundle_dir,
-        registry_dir,
-        lifecycle_state="release-ready",
-        evidence_ref=_portable_ref(bundle_dir) + "/artifact.verify.json",
-        manifest=manifest,
-        abyss_repo_root=abyss_repo_root,
-    )
-    pre_materialization_gate = _trust_gate_allow_latest(
-        artifact_bundles,
-        registry_dir,
-        registry,
-        require_subject_store=False,
-    )
+    with tempfile.TemporaryDirectory(prefix="aoa-playbooks-pre-subject-store-", dir=_default_tmp_root()) as pre_store:
+        with _artifact_subject_store_roots(Path(pre_store), artifact_bundles):
+            registry = _registry_roundtrip(
+                artifact_bundles,
+                bundle_dir,
+                registry_dir,
+                lifecycle_state="release-ready",
+                evidence_ref=_portable_ref(bundle_dir) + "/artifact.verify.json",
+                manifest=manifest,
+                abyss_repo_root=abyss_repo_root,
+            )
+            pre_materialization_gate = _trust_gate_allow_latest(
+                artifact_bundles,
+                registry_dir,
+                registry,
+                require_subject_store=False,
+            )
     materialized = artifact_bundles.materialize_artifact_subjects(
         bundle_dir,
         store_root=subject_store_root,
