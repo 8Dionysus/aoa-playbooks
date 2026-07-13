@@ -838,7 +838,7 @@
     {"anchor_id":"aoa:aoa-playbooks:anchor:2020eaeb8f0e6ddefb51a7d9","artifact_kind":"script","content_hash":"0de1b1c21b6a1480a1195d9af540bcc6704f2dffd80a2bbc7f02cb4ae57d3428","id":"aoa:aoa-playbooks:artifact:bbb30590b6c87c1c86c21703","lineage_path":"scripts/playbook_source_home.py","mime":"text/x-python","path":"scripts/playbook_source_home.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:7ecb2af5ddf9a47d90ca6fc0"},
     {"anchor_id":"aoa:aoa-playbooks:anchor:53eb6fc0b6784bcbe27582ac","artifact_kind":"script","content_hash":"e9404d0a4ef96127cb4f31e16be595c9d8c128f6a01b440ef57cdb79749c9bfa","id":"aoa:aoa-playbooks:artifact:1e52a0e919d049cd43732980","lineage_path":"scripts/publish_live_receipts.py","mime":"text/x-python","path":"scripts/publish_live_receipts.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:1e2d550ba4401c327e1e5b20"},
     {"anchor_id":"aoa:aoa-playbooks:anchor:f633afab6f9e78cc176dd8d1","artifact_kind":"script","content_hash":"7de661d85712bfb7f2cac7f6c3c6fdd2d2761c65b9f47ebead644cdf5865c5f6","id":"aoa:aoa-playbooks:artifact:070046d3ac1483cac58e8963","lineage_path":"scripts/release_check.py","mime":"text/x-python","path":"scripts/release_check.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:584571ac8bde409968c625f5"},
-    {"anchor_id":"aoa:aoa-playbooks:anchor:16bcd04c343b4ef9bbaa44c5","artifact_kind":"validator","content_hash":"3e7c910a8d59cfd270a0351140483dd62491067c26b7f607c695dba29de7068d","id":"aoa:aoa-playbooks:artifact:594e2b342c8787e9f11be883","lineage_path":"scripts/validate_abyss_machine_playbook_bundle.py","mime":"text/x-python","path":"scripts/validate_abyss_machine_playbook_bundle.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:abbf4224a3fcbc4a399bb833"},
+    {"anchor_id":"aoa:aoa-playbooks:anchor:16bcd04c343b4ef9bbaa44c5","artifact_kind":"validator","content_hash":"1557087a8463692e5075d4a9258761297fc007fc5a762115037c4f8671dbcd5d","id":"aoa:aoa-playbooks:artifact:594e2b342c8787e9f11be883","lineage_path":"scripts/validate_abyss_machine_playbook_bundle.py","mime":"text/x-python","path":"scripts/validate_abyss_machine_playbook_bundle.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:84e588e2039e2273202bdd97"},
     {"anchor_id":"aoa:aoa-playbooks:anchor:77cf047df6ff8622522724c0","artifact_kind":"validator","content_hash":"e2ecfc7c397c100630eb9ae5e2c224be37636eca2e834ccaa60845c85e5d91fc","id":"aoa:aoa-playbooks:artifact:cdb4e0bed075fc0011345169","lineage_path":"scripts/validate_agon_campaign_playbook_registry.py","mime":"text/x-python","path":"scripts/validate_agon_campaign_playbook_registry.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:f99b09ab02345cce0c8ed8ea"},
     {"anchor_id":"aoa:aoa-playbooks:anchor:8db154443be5ea1d62bc2a23","artifact_kind":"validator","content_hash":"fb6d6f414e107ac4e209782698ae5688227c36d17748f8c0f9c3b54d0caee390","id":"aoa:aoa-playbooks:artifact:be71c7f47a6ac09d7e671f4d","lineage_path":"scripts/validate_agon_trial_kernel_bindings.py","mime":"text/x-python","path":"scripts/validate_agon_trial_kernel_bindings.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:9cb0aa408849ffdbb6f0e752"},
     {"anchor_id":"aoa:aoa-playbooks:anchor:f0a472cedb07e9e2a7ee19d6","artifact_kind":"validator","content_hash":"392b96b5f3379dbf320c4254ac8831541e463e27b3f44b83935832f5636b2819","id":"aoa:aoa-playbooks:artifact:98a586dd5fcd67e51ecab868","lineage_path":"scripts/validate_agon_trial_playbooks.py","mime":"text/x-python","path":"scripts/validate_agon_trial_playbooks.py","provenance_ref":"deterministic","surface_state":"authored_source","temporal_ref":"current","trust_ref":"deterministic","version_id":"aoa:aoa-playbooks:artifact-version:7187c26a47af4c514decbbd3"},
@@ -892,7 +892,7 @@
   ],
   "index_identity": {
     "artifact_kind": "repository_artifact_index",
-    "content_digest": "31aa43e1022be38a0296a3f875e35f23e95326c1f455cae934e18d89155ea170",
+    "content_digest": "98567a6b09575c5f746413cb946c7bd220a3ea0a570115fca0e2861335299a98",
     "index_kind": "artifact",
     "local_id": "index:repo-local:artifacts",
     "schema_ref": "aoa-kag:schemas/repo-local-kag-repository-index.schema.json"
@@ -978,7 +978,7 @@
   },
   "schema_version": "aoa-repo-local-kag-repository-index-v2",
   "source_index": {
-    "content_digest": "68aa515d773ec164127aae85635d922465e2f922757975aa1c6312086516f1e1",
+    "content_digest": "765c72a3c4fcc1803ce3c257a0a40a2f014d574b36136df25c3d07ebd48463e6",
     "local_id": "index:repo-local:source-surfaces",
     "path": "kag/indexes/source_surface_index.json"
   },
