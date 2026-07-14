@@ -29,8 +29,8 @@ class RoadmapParityTestCase(unittest.TestCase):
             )
         )
 
-        self.assertIn("v0.3.3", readme)
-        self.assertIn("v0.3.3", roadmap)
+        self.assertIn("v0.4.0", readme)
+        self.assertIn("v0.4.0", roadmap)
 
         registry_ids = {playbook["id"] for playbook in registry["playbooks"]}
         for playbook_id in (

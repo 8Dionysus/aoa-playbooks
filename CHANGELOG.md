@@ -7,48 +7,161 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-07-13
+
+### Summary
+
+- This release makes the playbook layer structurally publishable: authored
+  scenarios now have a checked convex source home, repeatable operation
+  pressure lives in package-local mechanics, and root/design/route documents
+  remain compact dispatch surfaces rather than duplicate inventories.
+- Public handoffs now fail closed. The playbook registry carries an OS Abyss
+  artifact identity and trust-gated bundle, local eval/KAG/stats/memo ports
+  preserve stronger-owner boundaries, and the canonical seven-index KAG
+  family is deterministic and squash-stable.
+- The release was reconstructed from Git rather than from the prior
+  `[Unreleased]` prose: all 45 first-parent commits from `v0.3.3` through
+  `5d6551e` are accounted for below, spanning 901 changed paths and 48,368
+  additions / 4,424 deletions. Only 7 of those 45 commits had touched this
+  changelog before release preparation.
+
+### Added
+
+- Authored Titan closeout/audit and seed-pack publication-route playbooks,
+  together with their registry, composition, documentation, reviewed
+  closeout-follow-through evidence, and quest surfaces.
+- District-local `AGENTS.md` guardrails plus a slim root route card backed by a
+  preserved full reference surface.
+- A portable checked `.agents/skills/` foundation, including session-growth,
+  closeout, summon, diagnosis, repair, progression, route-fork, source-truth,
+  safe-change, and related reusable workflow exports with review examples and
+  GitHub landing support.
+- A local `memo/` candidate/receipt/export port and reviewed-intake contract;
+  playbook memory fields now consume reviewed `aoa-memo` objects through ids,
+  provenance, lifecycle, and generated read models without claiming durable
+  memory authority.
+- Canonical decision ids and lookup indexes, the `DESIGN.md` system spine, and
+  the `DESIGN.AGENTS.md` agent-route spine with parity tests.
+- A checked package-local mechanics atlas for activation, scenario
+  composition, federation closure, review gate, real-run harvest,
+  antifragility, boundary bridge, Agon, recurrence, checkpoint, Experience,
+  release support, Questbook, RPG, Titan, and portfolio governance.
+- A convex `playbooks/<branch>/<family>/<slug>/PLAYBOOK.md` source home with an
+  explicit manifest, branch/family route cards, generated compatibility
+  readers, and source-home validation.
+- A repo-local `evals/` intake/suite/report port that carries playbook eval
+  pressure without becoming central verdict authority.
+- An OS Abyss playbook-registry artifact bundle with ABI and SLSA/in-toto
+  controls, durable evidence promotion, a materialized subject store, consumer
+  trust-gate admission, and fail-closed compatibility checks.
+- A local KAG provider packet and canonical source/entity/artifact/anchor/event/
+  assertion/relation index family with owner-return and MCP source-return
+  routes.
+- An owner-local `stats/` port measuring reviewed-run reference coverage in the
+  current gate-reviewed cohort while shared grammar and composition remain in
+  `aoa-stats`.
+
 ### Changed
 
-- added the owner-local `stats/` port with a reference-only measurement of
-  reviewed-run reference coverage in the current gate-reviewed playbook
-  cohort, while keeping shared statistical grammar and composition in
-  `aoa-stats`.
-- consolidated runnable validation and test commands in executable owners and
-  `AGENTS.md` route cards instead of general Markdown documentation.
-- Compatibility Canary now checks out the `8Dionysus`, `aoa-sdk`, and
-  `aoa-stats` sibling inputs required by `validate_playbooks.py` so scheduled
-  compatibility checks exercise the full codex-plane rollout companion guard.
-- review-packet contract generation now keeps the canonical `aoa-evals`
-  runtime-template source ref even when reading the legacy sibling fallback
-  layout.
-- added root design spine surfaces, `DESIGN.md` and `DESIGN.AGENTS.md`, plus
-  validation coverage so future mechanics and playbook-canon topology work has
-  a checked system and agent-route map.
-- added the first checked `mechanics/` skeleton, separating head-fed mechanics
-  from `Agents-of-Abyss` and local playbook-native mechanics before package
-  payload movement.
-- moved review-gate builder implementations under
-  `mechanics/review-gate/parts/`, retained root compatibility commands, and
-  added `mechanics/real-run-harvest/` for validated retained-root evidence
-  posture.
-- moved antifragility stress-lane, re-entry-gate, stress-harvest,
-  runtime-chaos, and via negativa payloads into
-  `mechanics/antifragility/parts/` while keeping the runtime-chaos source
-  playbook under `playbooks/`.
-- moved Agon trial, trial-kernel-binding, campaign, adoption, and
-  recurrence-adapter payloads into `mechanics/agon/parts/`, retained root
-  generated registries and command wrappers, and kept source Agon playbooks,
-  quests, and recurrence manifests in their owner routes.
-- added retained-root mechanics packages for recurrence, checkpoint,
-  Experience, release support, questbook, RPG reflection, Titan, and portfolio
-  governance so public root/source/read-model routes have explicit owner,
-  next-route, provenance, and validation contracts.
-- tightened the playbook memory-consumer contract so memo-read fields consume
-  reviewed `aoa-memo` objects through ids, provenance, lifecycle, and generated
-  read models while local `memo/` output remains candidate, receipt, export, or
-  local evidence until reviewed landing.
-- added validator coverage to keep the playbook bundle and lifecycle docs from
-  drifting into memory authority or hidden recall posture.
+- Workspace paths and portable support surfaces now target the `/srv/AbyssOS`
+  workspace posture.
+- Audit, dependency-root, frontmatter, handoff, review-packet, landing-
+  governance, and live-receipt contracts were hardened; valid quoted YAML
+  punctuation is accepted without weakening malformed-quote checks.
+- Memo checkpoint references and every authored/generated consumer contract
+  were migrated to current reviewed `aoa-memo` routes.
+- Mechanics payloads, builders, schemas, examples, tests, and evidence stores
+  moved under their owning packages and parts. Root compatibility entrypoints
+  were retained only where they remain public contracts, then mechanically
+  slimmed and link/class validated.
+- Decision indexing now detects unmodeled lanes, requires explicit modeled
+  surface lists, and validates normalized contract paths.
+- Review-packet generation preserves the canonical `aoa-evals` runtime-template
+  source even when a legacy sibling layout supplies the compatible file.
+- Compatibility Canary and Repo Validation now materialize every pinned sibling
+  input needed by the full validator and trust path.
+- Runnable validation and test commands are consolidated in executable owners
+  and nearest `AGENTS.md` route cards rather than general documentation.
+
+### Fixed
+
+- Mechanics roots reject non-Markdown residue, route-card class drift, broken
+  links, missing package validators, and unmodeled package/source surfaces.
+- The playbook artifact consumer path now rejects missing identity, stale
+  registry evidence, absent subject-store materialization, or a missing
+  trust-gate verdict instead of accepting partial publication evidence.
+
+### First-Parent Reconciliation (45/45)
+
+The ordered pre-release history is recorded explicitly so the 38 commits that
+were absent from the old changelog remain discoverable:
+
+1. `d4c86ac` — Plant Titan sixteenth wave seed.
+2. `d1b983d` — Add seed pack publication route playbook.
+3. `53961ed` — Add playbook surface AGENTS guardrails (#147).
+4. `f05c99c` — Slim root AGENTS route card (#148).
+5. `1a2e848` — Retarget playbook workspace paths to AbyssOS.
+6. `8ef684e` — Land AoA v0.4.0 playbook closeout follow-through (#150).
+7. `ef4a4b2` — Install portable AoA skill foundation.
+8. `d7d7ac7` — Roll out session-growth skills and GitHub landing (#152).
+9. `78069a7` — Refresh shared AoA skill pack (#153).
+10. `a0fc623` — Refresh shared AoA skill pack (#154).
+11. `6096949` — Close playbook audit contract gaps (#155).
+12. `e215e6c` — Allow quoted punctuation in playbook frontmatter.
+13. `dad1107` — Refresh aoa-summon skill export (#157).
+14. `4264cd2` — Refresh self-diagnose skill export.
+15. `2e7b7ba` — Refresh memo checkpoint contract refs.
+16. `c586604` — Add memory route trigger law (#160).
+17. `f09955c` — Add local memo port (#161).
+18. `ed1a973` — Make memo validation route portable (#162).
+19. `d73839f` — Refresh memo contract routes (#163).
+20. `fc35282` — Route playbook memory through reviewed intake.
+21. `ed1b79d` — Add memo candidate for playbook reviewed intake.
+22. `485cc16` — Canonicalize playbook decision indexes (#166).
+23. `5ce2f68` — Add playbook root design spine (#167).
+24. `b5fd44e` — Refactor playbook mechanics into package routes (#168).
+25. `ef7e6b1` — Collapse mechanics root entrypoints (#169).
+26. `a319eb3` — Harden mechanics documentation routes.
+27. `b497263` — Slim mechanics README.
+28. `f650756` — Refactor playbook source home routes (#172).
+29. `a74e65f` — Add decision index tests (#173).
+30. `f2642b6` — Detect unmodeled decision lane surfaces (#174).
+31. `d56e78a` — Validate modeled decision surface contract entries (#175).
+32. `5667de3` — Add local eval port skeleton.
+33. `7c11165` — Reject non-markdown mechanics root files (#177).
+34. `69d9fa2` — Fix review packet runtime template provenance.
+35. `ebd584a` — Keep review packet template ref canonical.
+36. `5ab6af2` — Fix canary deps and add playbook registry trust gate.
+37. `71f55d6` — Add playbook KAG provider home (#181).
+38. `24c7628` — Align KAG provider validation route (#182).
+39. `5559ac6` — Add repo-local KAG indexes (#184).
+40. `c712612` — Enforce repo-local KAG index parity (#186).
+41. `2a51f77` — Pin deterministic repo-local KAG index gate (#187).
+42. `cb33caa` — Add repository KAG index family (#188).
+43. `1bfad25` — Publish canonical repository KAG indexes (#189).
+44. `04e31a6` — Add playbook-local stats port (#190).
+45. `5d6551e` — Enforce fail-closed playbook artifact admission (#191).
+
+### Validation
+
+- Release preparation reconciled the exact `v0.3.3..5d6551e` first-parent
+  history, changed-path inventory, authored playbook source home, mechanics
+  owners, decision records/indexes, generated readers, local ports, sibling
+  contracts, and published artifact boundary instead of trusting the previous
+  `[Unreleased]` section.
+- The repository release gate validates root design, every mechanics package,
+  decision/index parity, authored and generated playbook surfaces, review and
+  composition contracts, local stats, sibling compatibility, the OS Abyss
+  artifact/subject-store trust route, and the complete test suite.
+
+### Notes
+
+- Portable skill copies support playbook execution but do not make this
+  repository the skill owner. Likewise, local memo, eval, KAG, and stats ports
+  remain bounded consumers/providers and do not absorb durable memory, verdict,
+  global graph, or shared measurement authority.
+- Release-only marker, changelog, and regenerated-index commits follow the 45
+  reconciled product/maintenance commits and are not hidden inside that count.
 
 ## [0.3.3] - 2026-04-23
 
