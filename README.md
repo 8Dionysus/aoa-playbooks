@@ -4,7 +4,7 @@
 
 It exists to make recurring operational recipes explicit, reviewable, and reusable. A playbook is not a skill. A skill is a bounded workflow. A playbook coordinates multiple surfaces, handoffs, fallbacks, and evidence expectations across a recurring scenario.
 
-> Current release: `v0.3.3`. See [CHANGELOG](CHANGELOG.md) for release notes.
+> Current release: `v0.4.0`. See [CHANGELOG](CHANGELOG.md) for release notes.
 
 ## Start here
 
@@ -125,7 +125,7 @@ The validator auto-discovers authored bundles under `playbooks/*/*/*/PLAYBOOK.md
 
 ## Current contour
 
-`aoa-playbooks` is currently at `v0.3.3` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation across reviewed continuity, Titan drills, Experience follow-through, and Agon trial/campaign surfaces while keeping mechanical trials experimental, pre-protocol, and choreography-only. Root design is now split between `DESIGN.md` for the playbook-layer system form and `DESIGN.AGENTS.md` for the agent-facing route mesh. The first `mechanics/` skeleton now separates head-fed mechanics from `Agents-of-Abyss` and local playbook-native mechanics, with placement/legacy gates and active packages proving package-local builder moves, payload moves, stronger-owner handoffs, and public generated/readout boundaries while preserving the right root entrypoints.
+`aoa-playbooks` is currently at `v0.4.0` and has moved beyond its initial public baseline. The current honest move is evidence-led maturation across reviewed continuity, Titan drills, Experience follow-through, and Agon trial/campaign surfaces while keeping mechanical trials experimental, pre-protocol, and choreography-only. Root design is split between `DESIGN.md` for the playbook-layer system form and `DESIGN.AGENTS.md` for the agent-facing route mesh. The checked `mechanics/` atlas now separates head-fed mechanics from `Agents-of-Abyss` and local playbook-native mechanics, while the convex `playbooks/` source home, local evidence ports, and fail-closed publication gates preserve stronger-owner handoffs and public generated/readout boundaries.
 
 The runtime-facing extension stays intentionally bounded: selected playbooks may publish explicit memo-read defaults and activation-readable surfaces, but memo truth, routing ownership, and source skill meaning remain in their owning repositories.
 
