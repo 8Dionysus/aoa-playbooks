@@ -40,7 +40,10 @@ It stays repo-local and scenario-facing. It does not replace `mechanics/recurren
 
 ## Quest-harvest posture
 
-`aoa-quest-harvest` may be installed at `.agents/skills/aoa-quest-harvest` as a post-session aid for playbook-owned review and reanchor work.
+`aoa-quest-harvest` may be used from the shared user-profile skill catalog as a
+post-session aid for playbook-owned review and reanchor work. Do not install a
+repo-local copy: `aoa-playbooks` has no local skill projection before its
+separate MCP and owner admission route exist.
 
 - use it only after a reviewed run, closure, or pause
 - do not use it inside an active route

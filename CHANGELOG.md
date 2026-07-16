@@ -7,6 +7,17 @@ Tracking starts with the community-docs baseline for this repository.
 
 ## [Unreleased]
 
+### Changed
+
+- The repository now states an explicit MCP-first boundary for any future
+  `aoa-playbooks` owner skill; no empty skill home is scaffolded in advance.
+
+### Removed
+
+- Removed the copied shared `.agents/skills/` catalog and its obsolete
+  documentation/test exceptions. Shared workflows remain owned by
+  `aoa-skills` and are supplied outside this repository.
+
 ## [0.4.0] - 2026-07-13
 
 ### Summary

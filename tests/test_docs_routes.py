@@ -6,7 +6,6 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-EXECUTABLE_MARKDOWN_PREFIXES = (".agents/skills/",)
 SHELL_FENCE_PATTERN = re.compile(
     r"^ {0,3}```(?:bash|console|sh|shell|zsh)(?:\s+.*)?$",
     re.IGNORECASE | re.MULTILINE,
@@ -76,8 +75,6 @@ def test_non_owner_markdown_routes_runnable_commands_to_command_owners() -> None
     offenders: list[str] = []
     for relative_path in tracked_markdown_paths():
         route = relative_path.as_posix()
-        if route.startswith(EXECUTABLE_MARKDOWN_PREFIXES):
-            continue
         if relative_path.name in {"AGENTS.md", "VALIDATION.md"}:
             continue
         content = (REPO_ROOT / relative_path).read_text(encoding="utf-8")

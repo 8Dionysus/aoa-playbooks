@@ -22,7 +22,7 @@ REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "docs/decisions/AGENTS.md": ("Decision ID: AOA-PB-D-####", "generated lookup read models"),
     "mechanics/AGENTS.md": ("head-fed", "local", "Do not add root-level"),
 }
-ADVISORY_AGENT_DIRS: tuple[str, ...] = (".agents/skills", "Spark", "docs", "manifests/recurrence", "quests")
+ADVISORY_AGENT_DIRS: tuple[str, ...] = ("Spark", "docs", "manifests/recurrence", "quests")
 HEADING_PREFIXES = ("# AGENTS.md", "# AGENTS")
 IGNORED_DIRS = {".git", ".venv", "__pycache__", ".pytest_cache", ".mypy_cache"}
 
