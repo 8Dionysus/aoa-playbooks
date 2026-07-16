@@ -6,6 +6,15 @@ It exists to make recurring operational recipes explicit, reviewable, and reusab
 
 > Current release: `v0.4.0`. See [CHANGELOG](CHANGELOG.md) for release notes.
 
+## Skill and MCP boundary
+
+`aoa-playbooks` currently publishes no repository-local skills. The former
+`.agents/skills/` copies were shared `aoa-skills` exports, not playbook-owned
+capabilities, and have been removed. A future owner skill is gated on a
+separately designed `aoa-playbooks-mcp`, followed by fresh manual admission
+trials and an owner decision. This repository does not scaffold either a
+top-level `skills/` home or a repo projection in advance of that work.
+
 ## Start here
 
 Use the shortest route by need:
@@ -109,6 +118,9 @@ Real-run harvest templates under `mechanics/real-run-harvest/parts/harvest-templ
 ## Go here when...
 
 - you need a single bounded execution unit: [`aoa-skills`](https://github.com/8Dionysus/aoa-skills)
+- you need a future executable playbook access plane: design and land
+  `aoa-playbooks-mcp` as a separate owner project before proposing a local
+  `aoa-playbooks` skill
 - you need role and handoff contracts: [`aoa-agents`](https://github.com/8Dionysus/aoa-agents)
 - you need proof surfaces or evidence framing: [`aoa-evals`](https://github.com/8Dionysus/aoa-evals)
 - you need explicit memory objects or recall posture: [`aoa-memo`](https://github.com/8Dionysus/aoa-memo)

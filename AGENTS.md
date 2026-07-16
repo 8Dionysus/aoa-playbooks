@@ -26,6 +26,20 @@ It does own the meaning of playbook-local statistical questions and evidence
 references exposed through `stats/`. Cross-owner composition and the shared
 measurement protocol remain owned by `aoa-stats`.
 
+## Skill and MCP boundary
+
+This repository intentionally has no top-level `skills/` home and no
+repo-scoped `.agents/skills/` projection. Shared workflow skills remain owned
+by `aoa-skills` and may be supplied by the user profile; copying them here
+would create false local ownership and routing competition.
+
+An `aoa-playbooks` owner skill is deferred until a separately owned
+`aoa-playbooks-mcp` exposes the playbook capability through a live action/data
+interface. That MCP project is outside this repository audit. After it exists,
+the skill still requires fresh manual isolated, negative, held-out,
+coexistence, and effect trials plus an explicit owner admission decision before
+either local skill directory may appear.
+
 ## Start here
 
 1. `README.md`
@@ -62,6 +76,8 @@ through `aoa-memo`.
 ## Route away when
 
 - the change is really one skill, reusable technique, proof doctrine, memory object, role contract, routing logic, or runtime state
+- the request is to scaffold an `aoa-playbooks` skill before the owner MCP and
+  manual admission route exist
 - campaign or raid language hides unbounded sprawl or missing anchors
 
 ## GitHub landing workflow
