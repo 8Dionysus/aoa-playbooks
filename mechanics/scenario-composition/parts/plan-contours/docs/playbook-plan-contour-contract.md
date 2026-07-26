@@ -40,18 +40,25 @@ the contour, or an executable key appears at any depth.
 
 A consumer such as `aoa-sdk` must:
 
-1. pin the exact `aoa-playbooks` revision and contour/schema digests;
-2. validate the public JSON against the declared ABI before compiling;
-3. bind an eligible route decision and exact `ScenarioBinding`;
-4. resolve agent, capability, input, approval, eval, memo, and runtime
+1. select the admitted `playbook_registry_bundle` through the fail-closed
+   registry/latest trust gate and materialized subject store;
+2. pin the exact `aoa-playbooks` revision and contour/schema digests;
+3. validate the public JSON against the declared ABI before compiling;
+4. bind an eligible route decision and exact `ScenarioBinding`;
+5. resolve agent, capability, input, approval, eval, memo, and runtime
    provenance from their owning surfaces;
-5. produce a new consumer-owned immutable plan snapshot and `RunPlan`;
-6. reject blocked routes, provenance mismatch, unsupported effects, or owner
+6. produce a new consumer-owned immutable plan snapshot and `RunPlan`;
+7. reject blocked routes, provenance mismatch, unsupported effects, or owner
    drift instead of guessing.
 
 The generated contour is not itself a runnable plan, execution packet, or
 receipt. Its IDs and references remain abstract until the consumer performs
 the owner-qualified binding.
+
+`docs/artifact-bundles/playbook_registry.bundle.json` admits both
+`generated/playbook_plan_contours.min.json` and the contour schema as trusted
+subjects. Reading the working-tree files directly is not evidence that the
+registry/latest admission and subject-store materialization succeeded.
 
 For eval requirements, `artifact_ref` names the generated `aoa-evals` catalog
 and `eval_anchor` selects the catalog entry by its exact `name`. The contour

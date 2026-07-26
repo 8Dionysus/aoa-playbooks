@@ -76,6 +76,31 @@ class PlaybookDownstreamFeedContractsTests(unittest.TestCase):
         for item in payload["playbooks"]:
             self.assertTrue(expected_keys.issubset(item))
 
+    def test_trusted_bundle_admits_plan_contour_abi_and_schema(self) -> None:
+        payload = json.loads(
+            (
+                DOCS_ROOT
+                / "artifact-bundles"
+                / "playbook_registry.bundle.json"
+            ).read_text(encoding="utf-8")
+        )
+        subjects = {
+            item["path"]: item["role"]
+            for item in payload["artifact_subjects"]
+        }
+
+        self.assertEqual(
+            subjects["generated/playbook_plan_contours.min.json"],
+            "plan_contour_abi",
+        )
+        self.assertEqual(
+            subjects[
+                "mechanics/scenario-composition/parts/plan-contours/"
+                "schemas/playbook-plan-contours.schema.json"
+            ],
+            "plan_contour_schema",
+        )
+
     def test_activation_surface_is_deterministic_list_contract(self) -> None:
         registry = activation_builder.read_registry()
         expected = activation_builder.build_activation_surfaces(registry)

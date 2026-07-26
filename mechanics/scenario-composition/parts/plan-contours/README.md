@@ -16,6 +16,9 @@ meaning in a downstream repository.
   `scripts/generate_playbook_plan_contours.py`
 - public generated projection:
   `generated/playbook_plan_contours.min.json`
+- trusted artifact admission:
+  `docs/artifact-bundles/playbook_registry.bundle.json` includes both the
+  generated projection and its public schema as materialized subjects
 - contract explanation:
   `docs/playbook-plan-contour-contract.md`
 
@@ -36,6 +39,8 @@ schedulers, runtime state, or dispatch.
 The SDK remains responsible for binding a reviewed route decision, concrete
 scenario inputs, runtime profile, agent/capability provenance, approvals, and
 plan identity. A runtime remains responsible for execution and receipts.
+Registry/latest consumers must obtain the contour and schema through the
+trusted bundle subject store; the root files alone do not prove admission.
 
 ## Validation
 

@@ -61,6 +61,11 @@ scripts, shell, mutable runtime state, and verdict meaning at any depth.
 must not parse playbook prose or supply hardcoded replacement meaning when the
 projection is missing, stale, or incompatible.
 
+The generated projection and schema are subjects of
+`docs/artifact-bundles/playbook_registry.bundle.json`. Registry/latest
+consumers must pass the bundle trust gate and use the materialized subject
+store instead of treating working-tree presence as admission.
+
 ## Rationale
 
 The separate ABI keeps scenario meaning with the playbook owner while giving a
@@ -80,6 +85,8 @@ snapshots and runtime receipts can prove what was bound and executed.
 - Positive: playbook changes fail the owner generator when a contour becomes
   stale.
 - Positive: the ABI is small enough to pin, hash, review, and cache.
+- Positive: the contour and schema travel through the existing fail-closed
+  artifact admission and materialization path.
 - Positive: commands and runtime bindings remain downstream owner concerns.
 - Tradeoff: adding another compiled scenario requires an explicit owner config
   and validation change before SDK support.
@@ -129,6 +136,7 @@ As of 2026-07-26:
 - `mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py`
 - `mechanics/scenario-composition/parts/plan-contours/docs/playbook-plan-contour-contract.md`
 - `generated/playbook_plan_contours.min.json`
+- `docs/artifact-bundles/playbook_registry.bundle.json`
 - `tests/test_generate_playbook_plan_contours.py`
 
 ## Follow-Up Route
