@@ -98,6 +98,11 @@ def test_dry_run_a2a_contour_has_no_dispatchable_effect() -> None:
     assert target_step["step_id"] == "inspect-child-target"
     assert target_step["operation_kind"] == "inspect"
     assert target_step["effect_class"] == "read_only"
+    assert target_step["input_binding"] == "all_scenario_inputs"
+    assert target_step["input_artifact_kinds"] == [
+        "summon_request",
+        "summon_decision",
+    ]
 
 
 def test_bounded_change_preview_and_mutation_bind_requested_inputs() -> None:
@@ -145,6 +150,11 @@ def test_reviewed_runtime_receipt_is_an_input_not_a_step_output() -> None:
     assert inspect_step["input_artifact_kinds"] == ["owner_runtime_receipt"]
     assert inspect_step["expected_output_kinds"] == []
     assert evidence["artifact_binding"] == "scenario_input"
+    validate_step = next(
+        step for step in contour["steps"] if step["step_id"] == "validate-degraded-lane"
+    )
+    assert validate_step["input_binding"] == "all_scenario_inputs"
+    assert validate_step["input_artifact_kinds"] == ["owner_runtime_receipt"]
 
 
 def test_input_artifact_cannot_be_reproduced_by_a_step() -> None:
@@ -172,6 +182,29 @@ def test_every_input_artifact_must_be_bound_by_a_step() -> None:
     review_step["input_artifact_kinds"].remove("child_task_result")
 
     with pytest.raises(generator.BuilderError, match="must bind every input artifact"):
+        generator.validate_source_config(source)
+
+
+@pytest.mark.parametrize(
+    ("playbook_id", "step_id"),
+    [
+        ("AOA-P-0031", "inspect-child-target"),
+        ("AOA-P-0032", "validate-degraded-lane"),
+    ],
+)
+def test_output_step_requires_input_provenance(
+    playbook_id: str,
+    step_id: str,
+) -> None:
+    source = deepcopy(generator.load_source_config())
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == playbook_id
+    )
+    step = next(item for item in contour["steps"] if item["step_id"] == step_id)
+    step["input_binding"] = "none"
+    step["input_artifact_kinds"] = []
+
+    with pytest.raises(generator.BuilderError, match="without input provenance"):
         generator.validate_source_config(source)
 
 

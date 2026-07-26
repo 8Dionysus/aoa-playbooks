@@ -37,9 +37,10 @@ It then adds the smallest scenario-owned planning structure:
 
 The generator fails closed when frontmatter drifts, a dependency points
 forward, an artifact role overlaps, a required input is never bound, an output
-is absent or produced twice, a guarded requirement disagrees with its step, a
-requirement points outside the contour, or an executable key appears at any
-depth.
+is absent or produced twice, an output-producing step lacks direct scenario
+input provenance or an explicit dependency output, a guarded requirement
+disagrees with its step, a requirement points outside the contour, or an
+executable key appears at any depth.
 
 ## Consumer contract
 
@@ -70,7 +71,11 @@ the owner-qualified binding.
 `ScenarioBinding.input_refs` into that plan step. An effectful step that needs
 the requested operation must bind those inputs unless an earlier step produces
 an explicit artifact carrying the request; DAG order alone is not input
-provenance.
+provenance. The same rule applies to read-only derivations: a producing step in
+a contour with scenario inputs must bind the inputs it consumes directly or
+depend on a step that emits an explicit intermediate artifact. Merely depending
+on an input-inspection step with no output does not carry the inspected input
+forward.
 
 `input_artifact_kinds` names the reviewed artifacts already present in the
 scenario binding. They are never `expected_output_kinds`. Evidence for one of

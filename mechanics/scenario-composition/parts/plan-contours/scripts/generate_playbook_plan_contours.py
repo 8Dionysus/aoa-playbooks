@@ -304,6 +304,18 @@ def _validate_step_graph(
                 )
             output_owner[output] = step_id
         outputs_by_step[step_id] = outputs
+        if outputs and input_artifacts and not inputs:
+            dependency_outputs = {
+                artifact
+                for dependency in dependencies
+                for artifact in outputs_by_step[dependency]
+            }
+            if not dependency_outputs:
+                fail(
+                    f"{step_location} produces artifacts without input provenance; "
+                    "bind the consumed scenario inputs directly or depend on a step "
+                    "that emits an explicit intermediate artifact"
+                )
         seen.add(step_id)
 
     produced = set(output_owner)
