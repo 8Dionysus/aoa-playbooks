@@ -98,6 +98,17 @@ def test_dry_run_a2a_contour_has_no_dispatchable_effect() -> None:
     assert target_step["effect_class"] == "read_only"
 
 
+def test_bounded_change_preview_and_mutation_bind_requested_inputs() -> None:
+    source = generator.load_source_config()
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0011"
+    )
+    steps = {step["step_id"]: step for step in contour["steps"]}
+
+    assert steps["preview"]["input_binding"] == "all_scenario_inputs"
+    assert steps["mutate"]["input_binding"] == "all_scenario_inputs"
+
+
 def test_dry_run_a2a_review_binds_preexisting_child_result() -> None:
     source = generator.load_source_config()
     contour = next(

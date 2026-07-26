@@ -69,7 +69,7 @@
           "capability_ids": [
             "aoa-dry-run-first"
           ],
-          "input_binding": "none",
+          "input_binding": "all_scenario_inputs",
           "expected_output_kinds": [],
           "approval_binding": "none"
         },
@@ -86,7 +86,7 @@
           "capability_ids": [
             "aoa-change-protocol"
           ],
-          "input_binding": "none",
+          "input_binding": "all_scenario_inputs",
           "expected_output_kinds": [
             "scoped_change_set"
           ],

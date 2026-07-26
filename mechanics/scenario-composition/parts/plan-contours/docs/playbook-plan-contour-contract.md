@@ -55,6 +55,12 @@ The generated contour is not itself a runnable plan, execution packet, or
 receipt. Its IDs and references remain abstract until the consumer performs
 the owner-qualified binding.
 
+`all_scenario_inputs` means the compiler copies the exact
+`ScenarioBinding.input_refs` into that plan step. An effectful step that needs
+the requested operation must bind those inputs unless an earlier step produces
+an explicit artifact carrying the request; DAG order alone is not input
+provenance.
+
 `docs/artifact-bundles/playbook_registry.bundle.json` admits both
 `generated/playbook_plan_contours.min.json` and the contour schema as trusted
 subjects. Reading the working-tree files directly is not evidence that the
