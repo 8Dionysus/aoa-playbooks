@@ -41,6 +41,7 @@
 ## release-support
 
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+- [AOA-PB-D-0017 Allow a Checked Compact Mechanics Package Tier](../AOA-PB-D-0017-compact-mechanics-package-tier.md) (`docs/decisions/AOA-PB-D-0017-compact-mechanics-package-tier.md`)
 
 ## rpg
 

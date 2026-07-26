@@ -9,7 +9,8 @@ choreography. Use `playbooks/` when authored scenario canon changes.
 ## Route
 
 1. Choose the package from the map below.
-2. Read package `AGENTS.md`, `README.md`, `PARTS.md`, and `PROVENANCE.md`.
+2. Read package `AGENTS.md` and `README.md`; follow `PARTS.md` and
+   `PROVENANCE.md` when that companion pair exists.
 3. Follow the owning source surface: package part, source playbook, generated
    builder, decision record, or stronger owner repo.
 4. Run the package validator and the repo-level mechanics checks.
@@ -45,7 +46,8 @@ Root `mechanics/` has only:
 Do not add root rosters, audits, templates, backlogs, notes, `_meta/`, or
 `legacy/` holding areas. Active operation detail belongs in the owning package.
 Durable rationale belongs in `docs/decisions/`. Former-path accounting belongs
-in package `PROVENANCE.md` and package-local `legacy/` when needed.
+in the package README provenance section or its `PROVENANCE.md` companion and
+package-local `legacy/` when needed.
 
 ## Class Contract
 
@@ -66,8 +68,10 @@ canon.
 - Root generated read models stay root-published under `generated/`.
 - Root command wrappers may stay in `scripts/` only as public compatibility
   entrypoints.
-- A package starts with `AGENTS.md`, `README.md`, `PARTS.md`, `PROVENANCE.md`,
-  and a package validator when payloads move.
+- A package starts with `AGENTS.md`, `README.md`, and a package validator when
+  payloads move. Compact packages keep parts and provenance in `README.md`;
+  larger packages may split both into the `PARTS.md` and `PROVENANCE.md`
+  companion pair.
 
 No source playbook has moved.
 

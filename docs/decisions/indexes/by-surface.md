@@ -45,6 +45,7 @@
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 - [AOA-PB-D-0015 Defer Skill Home Until Owner MCP](../AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md) (`docs/decisions/AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md`)
+- [AOA-PB-D-0017 Allow a Checked Compact Mechanics Package Tier](../AOA-PB-D-0017-compact-mechanics-package-tier.md) (`docs/decisions/AOA-PB-D-0017-compact-mechanics-package-tier.md`)
 
 ## decision record
 
@@ -63,6 +64,7 @@
 - [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 - [AOA-PB-D-0015 Defer Skill Home Until Owner MCP](../AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md) (`docs/decisions/AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md`)
 - [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
+- [AOA-PB-D-0017 Allow a Checked Compact Mechanics Package Tier](../AOA-PB-D-0017-compact-mechanics-package-tier.md) (`docs/decisions/AOA-PB-D-0017-compact-mechanics-package-tier.md`)
 
 ## mechanic package
 
@@ -77,6 +79,7 @@
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 - [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
+- [AOA-PB-D-0017 Allow a Checked Compact Mechanics Package Tier](../AOA-PB-D-0017-compact-mechanics-package-tier.md) (`docs/decisions/AOA-PB-D-0017-compact-mechanics-package-tier.md`)
 
 ## mechanic part
 
@@ -118,6 +121,7 @@
 - [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 - [AOA-PB-D-0015 Defer Skill Home Until Owner MCP](../AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md) (`docs/decisions/AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md`)
 - [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
+- [AOA-PB-D-0017 Allow a Checked Compact Mechanics Package Tier](../AOA-PB-D-0017-compact-mechanics-package-tier.md) (`docs/decisions/AOA-PB-D-0017-compact-mechanics-package-tier.md`)
 
 ## codex projection
 
@@ -156,6 +160,7 @@
 
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 - [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
+- [AOA-PB-D-0017 Allow a Checked Compact Mechanics Package Tier](../AOA-PB-D-0017-compact-mechanics-package-tier.md) (`docs/decisions/AOA-PB-D-0017-compact-mechanics-package-tier.md`)
 
 ## stronger-owner handoff
 

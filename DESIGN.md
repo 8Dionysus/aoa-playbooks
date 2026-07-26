@@ -81,9 +81,9 @@ it fails, and where should I leave for a stronger owner?
   under `stats/`, using the shared `aoa-stats` protocol without absorbing it;
 - agent-facing route cards and companion lanes;
 - mechanics route surfaces under `mechanics/README.md`, `mechanics/AGENTS.md`,
-  and package-local `mechanics/*/README.md`, `PARTS.md`, and `PROVENANCE.md`
-  cards that move repeatable operation pressure without absorbing playbook
-  source truth.
+  and package-local `AGENTS.md` and `README.md` cards; compact packages embed
+  parts and provenance in README, while larger packages keep the complete
+  `PARTS.md` and `PROVENANCE.md` companion pair.
 
 Each class supports the others. No class should silently steal another class's
 authority.

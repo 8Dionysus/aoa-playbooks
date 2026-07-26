@@ -82,8 +82,9 @@ As of 2026-05-31:
   Titan, and portfolio-governance are active package-local mechanics packages.
 - Valid: generated outputs stay root-published read models.
 - Valid: source playbooks stay in `playbooks/`.
-- Superseded by: AOA-PB-D-0014 for root mechanics file shape; still valid for
-  package-local payload placement.
+- Superseded by: AOA-PB-D-0014 for root mechanics file shape and AOA-PB-D-0017
+  for package navigation file tiers; still valid for package-local payload
+  placement.
 
 ## Review Log
 
@@ -98,6 +99,19 @@ As of 2026-05-31:
   `docs/RELEASING.md`, root design/readme surfaces, placement audit, rosters,
   generated refs, validators, and focused tests.
 - Validation: the owning executable validator, generated-freshness checks, relevant tests, and repository release gate.
+
+### 2026-07-25 - Compact navigation tier
+
+- Previous assumption: every mechanics package needed separate `PARTS.md` and
+  `PROVENANCE.md` files.
+- New reality: package-local payload placement is unchanged, but a compact
+  package may keep checked parts and provenance sections in its README.
+- Reason: release-support proved the companion files were navigation-only once
+  their semantic sections and mutation guards moved into the package README.
+- Source surfaces updated: mechanics route law, release-support README,
+  package validators, focused tests, and AOA-PB-D-0017.
+- Validation: package, mechanics, decision-index, KAG, and repository release
+  gates.
 
 ## Boundaries
 

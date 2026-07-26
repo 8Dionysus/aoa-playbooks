@@ -41,8 +41,11 @@ ROOT_ENTRYPOINT_REQUIRED_TOKENS: dict[str, tuple[str, ...]] = {
     "DESIGN.AGENTS.md": ("mechanics/AGENTS.md", "mechanics/README.md"),
 }
 
-PACKAGE_REQUIRED_FILES = ("AGENTS.md", "README.md", "PARTS.md", "PROVENANCE.md")
+PACKAGE_REQUIRED_FILES = ("AGENTS.md", "README.md")
+PACKAGE_COMPANION_FILES = ("PARTS.md", "PROVENANCE.md")
 PACKAGE_README_TOKENS = ("## Mechanic card", "| class |", "| role |", "| validation |", "| next route |")
+PACKAGE_COMPACT_README_TOKENS = ("## Parts", "## Provenance")
+COMPACT_PACKAGE_SLUGS = {"release-support"}
 ALLOWED_PACKAGE_CLASSES = {"head-fed", "local", "head-fed/local"}
 FORBIDDEN_TOKENS = ("DESGIN.md", "DESGIN.AGENTS.md")
 IGNORED_DIR_NAMES = {"__pycache__"}
@@ -96,12 +99,28 @@ def validate_child_packages(repo_root: Path, issues: list[str]) -> None:
             path = package_dir / filename
             if not path.is_file():
                 issues.append(f"{rel_dir}: child package missing {filename}")
+        companion_presence = {
+            filename: (package_dir / filename).is_file()
+            for filename in PACKAGE_COMPANION_FILES
+        }
+        if any(companion_presence.values()) and not all(companion_presence.values()):
+            issues.append(
+                f"{rel_dir}: package companions must include both "
+                f"{PACKAGE_COMPANION_FILES[0]} and {PACKAGE_COMPANION_FILES[1]}"
+            )
         readme = package_dir / "README.md"
         if readme.is_file():
             text = readme.read_text(encoding="utf-8")
             for token in PACKAGE_README_TOKENS:
                 if token not in text:
                     issues.append(f"{rel_dir}/README.md: missing package card token {token!r}")
+            if not any(companion_presence.values()) and package_dir.name in COMPACT_PACKAGE_SLUGS:
+                for token in PACKAGE_COMPACT_README_TOKENS:
+                    if token not in text:
+                        issues.append(f"{rel_dir}/README.md: missing compact package token {token!r}")
+            elif not any(companion_presence.values()):
+                for filename in PACKAGE_COMPANION_FILES:
+                    issues.append(f"{rel_dir}: child package missing {filename}")
             package_class = parse_package_class(text)
             if package_class is None:
                 issues.append(f"{rel_dir}/README.md: missing package class")
