@@ -67,15 +67,24 @@ The generated contour is not itself a runnable plan, execution packet, or
 receipt. Its IDs and references remain abstract until the consumer performs
 the owner-qualified binding.
 
-`all_scenario_inputs` means the compiler copies the exact
-`ScenarioBinding.input_refs` into that plan step. An effectful step that needs
-the requested operation must bind those inputs unless an earlier step produces
-an explicit artifact carrying the request; DAG order alone is not input
-provenance. The same rule applies to read-only derivations: a producing step in
-a contour with scenario inputs must bind the inputs it consumes directly or
-depend on a step that emits an explicit intermediate artifact. Merely depending
-on an input-inspection step with no output does not carry the inspected input
-forward.
+`all_scenario_inputs` is reserved for a contour with no typed input artifact
+partition. It means the compiler copies every exact generic
+`ScenarioBinding.input_ref` into that plan step and rejects an empty binding
+when the active contour requires it.
+
+`selected_scenario_inputs` means the compiler selects exactly the
+`input_artifact_kinds` named by the step from a typed
+`artifact_kind -> ProvenanceRef` scenario-input binding. The SDK binding must
+map every contour-level input artifact kind exactly once, reject missing,
+duplicate, and extra kinds, and preserve each selected reference's owner
+provenance. A generic tuple of references or positional matching is not a
+substitute for this mapping.
+
+An effectful step that needs the requested operation must bind inputs unless an
+earlier guard-compatible step produces an explicit artifact carrying the
+request; DAG order alone is not input provenance. The same rule applies to
+read-only derivations. Merely depending on an input-inspection step with no
+output does not carry the inspected input forward.
 
 `input_artifact_kinds` names the reviewed artifacts already present in the
 scenario binding. They are never `expected_output_kinds`. Evidence for one of

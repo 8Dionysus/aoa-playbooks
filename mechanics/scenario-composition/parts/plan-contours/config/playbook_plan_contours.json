@@ -331,7 +331,7 @@
             "aoa-bounded-context-map",
             "aoa-approval-gate-check"
           ],
-          "input_binding": "all_scenario_inputs",
+          "input_binding": "selected_scenario_inputs",
           "input_artifact_kinds": [
             "summon_request",
             "summon_decision"
@@ -355,7 +355,7 @@
             "aoa-dry-run-first",
             "aoa-change-protocol"
           ],
-          "input_binding": "all_scenario_inputs",
+          "input_binding": "selected_scenario_inputs",
           "input_artifact_kinds": [
             "summon_request",
             "summon_decision"
@@ -379,7 +379,7 @@
           "capability_ids": [
             "aoa-contract-test"
           ],
-          "input_binding": "all_scenario_inputs",
+          "input_binding": "selected_scenario_inputs",
           "input_artifact_kinds": [
             "child_task_result"
           ],
@@ -684,7 +684,7 @@
             "aoa-bounded-context-map",
             "aoa-approval-gate-check"
           ],
-          "input_binding": "all_scenario_inputs",
+          "input_binding": "selected_scenario_inputs",
           "input_artifact_kinds": [
             "owner_runtime_receipt"
           ],
@@ -709,7 +709,7 @@
             "aoa-change-protocol",
             "aoa-contract-test"
           ],
-          "input_binding": "all_scenario_inputs",
+          "input_binding": "selected_scenario_inputs",
           "input_artifact_kinds": [
             "owner_runtime_receipt"
           ],

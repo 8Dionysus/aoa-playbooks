@@ -63,6 +63,13 @@ their requirements, and reject missing, extra, or unreviewed condition
 bindings. It must not infer a condition from artifact presence or fabricate an
 optional artifact to satisfy the unpruned contour.
 
+Typed scenario inputs use `selected_scenario_inputs`; the SDK must bind each
+declared artifact kind exactly once to an owner-qualified provenance reference
+and select the exact step subset by kind. `all_scenario_inputs` is reserved for
+generic request context in contours without typed input artifacts. Positional
+matching or copying an undifferentiated reference tuple cannot satisfy a typed
+input binding.
+
 The contour may expose abstract operation/effect classes and binding modes. It
 must reject commands, prompts, tools, arguments, MCP, transport, models,
 scripts, shell, mutable runtime state, and verdict meaning at any depth.
@@ -147,6 +154,22 @@ As of 2026-07-26:
   projection, contract docs, tests, and decision indexes.
 - Validation: focused role-partition and guard negative tests, generated
   parity, package validation, KAG rebuild, and repository release gate.
+
+### 2026-07-26 - Kind-selected input provenance
+
+- Previous assumption: `all_scenario_inputs` plus a list of artifact kinds was
+  enough for a compiler to identify reviewed input references.
+- New reality: a generic reference tuple cannot prove which reference carries
+  each artifact kind, while a contour with only generic request context still
+  needs direct provenance validation.
+- Reason: compilation must select typed inputs by kind without positional
+  guessing, and output-producing steps must not lose generic request context
+  merely because the contour has no typed input artifact partition.
+- Source surfaces updated: plan-contour config, schema, generator, generated
+  projection, contract docs, tests, and decision indexes.
+- Validation: focused kind-selection and generic-provenance negative tests,
+  generated parity, package validation, KAG rebuild, and repository release
+  gate.
 
 ## Boundaries
 

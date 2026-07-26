@@ -186,7 +186,8 @@
         "input_binding": {
           "enum": [
             "none",
-            "all_scenario_inputs"
+            "all_scenario_inputs",
+            "selected_scenario_inputs"
           ]
         },
         "input_artifact_kinds": {

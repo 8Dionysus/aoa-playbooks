@@ -270,16 +270,27 @@ def _validate_step_graph(
                 location=f"{step_location}.input_artifact_kinds",
             )
         )
+        input_binding = step.get("input_binding")
         unknown_inputs = sorted(inputs - input_artifacts)
         if unknown_inputs:
             fail(
                 f"{step_location}.input_artifact_kinds are outside "
                 f"input_artifact_kinds: {unknown_inputs}"
             )
-        if inputs and step.get("input_binding") != "all_scenario_inputs":
+        if inputs and input_binding != "selected_scenario_inputs":
             fail(
-                f"{step_location}.input_binding must be all_scenario_inputs "
-                "when input_artifact_kinds are bound"
+                f"{step_location}.input_binding must be selected_scenario_inputs "
+                "when typed input_artifact_kinds are bound"
+            )
+        if input_binding == "selected_scenario_inputs" and not inputs:
+            fail(
+                f"{step_location}.input_binding selected_scenario_inputs "
+                "requires at least one input_artifact_kind"
+            )
+        if input_binding == "all_scenario_inputs" and input_artifacts:
+            fail(
+                f"{step_location}.input_binding all_scenario_inputs is reserved "
+                "for contours without typed input_artifact_kinds"
             )
         inputs_by_step[step_id] = inputs
         consumed_inputs.update(inputs)
@@ -304,17 +315,19 @@ def _validate_step_graph(
                 )
             output_owner[output] = step_id
         outputs_by_step[step_id] = outputs
-        if outputs and input_artifacts and not inputs:
+        if outputs and input_binding == "none":
             dependency_outputs = {
                 artifact
                 for dependency in dependencies
+                if guards_by_step[dependency] in {None, guard_condition_id}
                 for artifact in outputs_by_step[dependency]
             }
             if not dependency_outputs:
                 fail(
                     f"{step_location} produces artifacts without input provenance; "
-                    "bind the consumed scenario inputs directly or depend on a step "
-                    "that emits an explicit intermediate artifact"
+                    "bind generic or selected scenario inputs directly, or depend "
+                    "on a guard-compatible step that emits an explicit intermediate "
+                    "artifact"
                 )
         seen.add(step_id)
 
