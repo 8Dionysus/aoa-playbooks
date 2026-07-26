@@ -334,8 +334,11 @@ def _validate_eval_requirements(
             input_ref.get("artifact_ref"),
             location=f"{item_location}.input_ref.artifact_ref",
         )
-        if artifact_ref != f"generated/eval_catalog.min.json#{eval_anchor}":
-            fail(f"{item_location}.input_ref.artifact_ref must bind its exact eval anchor")
+        if artifact_ref != "generated/eval_catalog.min.json":
+            fail(
+                f"{item_location}.input_ref.artifact_ref must bind the aoa-evals "
+                "generated catalog; eval_anchor selects the exact named entry"
+            )
         required_evidence_ids = set(
             _require_string_list(
                 requirement.get("required_evidence_ids"),

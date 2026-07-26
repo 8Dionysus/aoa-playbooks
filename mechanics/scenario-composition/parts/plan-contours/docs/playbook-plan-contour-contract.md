@@ -28,7 +28,8 @@ It then adds the smallest scenario-owned planning structure:
 - input and approval binding modes, but no concrete inputs or approvals
 - checkpoint, retry, and rollback policy contours
 - one evidence requirement per expected artifact
-- owner-qualified eval and memo input references already named by frontmatter
+- an owner-qualified eval catalog reference plus the exact frontmatter eval
+  anchor, and memo input references already named by frontmatter
 - terminal closeout reference requirements
 
 The generator fails closed when frontmatter drifts, a dependency points
@@ -51,6 +52,11 @@ A consumer such as `aoa-sdk` must:
 The generated contour is not itself a runnable plan, execution packet, or
 receipt. Its IDs and references remain abstract until the consumer performs
 the owner-qualified binding.
+
+For eval requirements, `artifact_ref` names the generated `aoa-evals` catalog
+and `eval_anchor` selects the catalog entry by its exact `name`. The contour
+does not invent a JSON fragment or replace the entry's owner-authored
+`eval_path`.
 
 ## Prohibited transfer
 

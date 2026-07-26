@@ -47,10 +47,11 @@ The initial source declares exactly three golden contours:
 - `AOA-P-0032 runtime-chaos-recovery`
 
 Each contour must match the source playbook's ID, name, scenario, agents,
-required skills, eval anchors, memo contract references, and expected
-artifacts. The generator validates an ordered DAG, exact artifact production,
-evidence coverage, owner-qualified eval/memo references, checkpoint/rollback
-bindings, and a closed public JSON schema.
+required skills, eval anchors, and expected artifacts. Every retention input
+must come from the source playbook's declared memo contract references. The
+generator validates an ordered DAG, exact artifact production, evidence
+coverage, owner-qualified eval/memo references, checkpoint/rollback bindings,
+and a closed public JSON schema.
 
 The contour may expose abstract operation/effect classes and binding modes. It
 must reject commands, prompts, tools, arguments, MCP, transport, models,

@@ -200,7 +200,7 @@
           "eval_anchor": "aoa-approval-boundary-adherence",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-approval-boundary-adherence"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:bounded-change:approval",
@@ -213,7 +213,7 @@
           "eval_anchor": "aoa-bounded-change-quality",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-bounded-change-quality"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:bounded-change:change-set",
@@ -331,7 +331,7 @@
           "capability_ids": [
             "aoa-contract-test"
           ],
-          "input_binding": "none",
+          "input_binding": "all_scenario_inputs",
           "expected_output_kinds": [
             "child_task_result",
             "return_plan"
@@ -508,7 +508,7 @@
           "eval_anchor": "aoa-a2a-summon-return-checkpoint",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-a2a-summon-return-checkpoint"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:a2a:summon-request",
@@ -524,7 +524,7 @@
           "eval_anchor": "aoa-return-anchor-integrity",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-return-anchor-integrity"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:a2a:return-plan",
@@ -759,7 +759,7 @@
           "eval_anchor": "aoa-diagnosis-cause-discipline",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-diagnosis-cause-discipline"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:runtime-chaos:owner-receipt"
@@ -771,7 +771,7 @@
           "eval_anchor": "aoa-repair-boundedness",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-repair-boundedness"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:runtime-chaos:stress-lane"
@@ -783,7 +783,7 @@
           "eval_anchor": "aoa-stress-recovery-window",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-stress-recovery-window"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:runtime-chaos:reentry-gate"
@@ -795,7 +795,7 @@
           "eval_anchor": "aoa-witness-trace-integrity",
           "input_ref": {
             "owner_repo": "aoa-evals",
-            "artifact_ref": "generated/eval_catalog.min.json#aoa-witness-trace-integrity"
+            "artifact_ref": "generated/eval_catalog.min.json"
           },
           "required_evidence_ids": [
             "evidence:runtime-chaos:proof-handoff"

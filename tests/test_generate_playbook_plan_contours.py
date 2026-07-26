@@ -96,3 +96,16 @@ def test_dry_run_a2a_contour_has_no_dispatchable_effect() -> None:
     assert target_step["step_id"] == "inspect-child-target"
     assert target_step["operation_kind"] == "inspect"
     assert target_step["effect_class"] == "read_only"
+
+
+def test_dry_run_a2a_review_binds_preexisting_child_result() -> None:
+    source = generator.load_source_config()
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0031"
+    )
+    review_step = next(
+        step for step in contour["steps"] if "child_task_result" in step["expected_output_kinds"]
+    )
+
+    assert review_step["step_id"] == "review-return"
+    assert review_step["input_binding"] == "all_scenario_inputs"
