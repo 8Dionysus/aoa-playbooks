@@ -156,6 +156,46 @@ def _reject_executable_keys(value: Any, *, location: str = "$") -> None:
             _reject_executable_keys(child, location=f"{location}[{index}]")
 
 
+def _validate_scenario_conditions(
+    contour: dict[str, Any],
+    *,
+    location: str,
+) -> set[str]:
+    conditions = _require_object_list(
+        contour.get("scenario_conditions"),
+        location=f"{location}.scenario_conditions",
+        nonempty=False,
+    )
+    condition_ids = set(
+        _require_unique(
+            conditions,
+            "condition_id",
+            location=f"{location}.scenario_conditions",
+        )
+    )
+    for index, condition in enumerate(conditions):
+        if condition.get("binding") != "reviewed_boolean":
+            fail(
+                f"{location}.scenario_conditions[{index}].binding "
+                "must be reviewed_boolean"
+            )
+    return condition_ids
+
+
+def _validate_guard_condition(
+    value: Any,
+    *,
+    location: str,
+    condition_ids: set[str],
+) -> str | None:
+    if value is None:
+        return None
+    condition_id = _require_string(value, location=location)
+    if condition_id not in condition_ids:
+        fail(f"{location} references unknown scenario condition {condition_id!r}")
+    return condition_id
+
+
 def _validate_step_graph(
     contour: dict[str, Any],
     *,
@@ -163,12 +203,24 @@ def _validate_step_graph(
     required_agents: set[str],
     required_capabilities: set[str],
     expected_artifacts: set[str],
-) -> tuple[set[str], dict[str, set[str]]]:
+    input_artifacts: set[str],
+    condition_ids: set[str],
+) -> tuple[
+    set[str],
+    dict[str, set[str]],
+    dict[str, set[str]],
+    dict[str, str | None],
+]:
     steps = _require_object_list(contour.get("steps"), location=f"{location}.steps")
     step_ids = _require_unique(steps, "step_id", location=f"{location}.steps")
     seen: set[str] = set()
     output_owner: dict[str, str] = {}
     outputs_by_step: dict[str, set[str]] = {}
+    inputs_by_step: dict[str, set[str]] = {}
+    guards_by_step: dict[str, str | None] = {}
+    consumed_inputs: set[str] = set()
+    used_conditions: set[str] = set()
+    output_artifacts = expected_artifacts - input_artifacts
 
     for index, (step, step_id) in enumerate(zip(steps, step_ids, strict=True)):
         step_location = f"{location}.steps[{index}]"
@@ -182,6 +234,15 @@ def _validate_step_graph(
                 f"{step_location}.depends_on must reference earlier steps only; "
                 f"invalid={unknown_or_forward}"
             )
+
+        guard_condition_id = _validate_guard_condition(
+            step.get("guard_condition_id"),
+            location=f"{step_location}.guard_condition_id",
+            condition_ids=condition_ids,
+        )
+        guards_by_step[step_id] = guard_condition_id
+        if guard_condition_id is not None:
+            used_conditions.add(guard_condition_id)
 
         agents = set(
             _require_string_list(step.get("agent_ids"), location=f"{step_location}.agent_ids")
@@ -203,16 +264,36 @@ def _validate_step_graph(
                 f"{unknown_capabilities}"
             )
 
+        inputs = set(
+            _require_string_list(
+                step.get("input_artifact_kinds"),
+                location=f"{step_location}.input_artifact_kinds",
+            )
+        )
+        unknown_inputs = sorted(inputs - input_artifacts)
+        if unknown_inputs:
+            fail(
+                f"{step_location}.input_artifact_kinds are outside "
+                f"input_artifact_kinds: {unknown_inputs}"
+            )
+        if inputs and step.get("input_binding") != "all_scenario_inputs":
+            fail(
+                f"{step_location}.input_binding must be all_scenario_inputs "
+                "when input_artifact_kinds are bound"
+            )
+        inputs_by_step[step_id] = inputs
+        consumed_inputs.update(inputs)
+
         outputs = set(
             _require_string_list(
                 step.get("expected_output_kinds"),
                 location=f"{step_location}.expected_output_kinds",
             )
         )
-        unknown_outputs = sorted(outputs - expected_artifacts)
+        unknown_outputs = sorted(outputs - output_artifacts)
         if unknown_outputs:
             fail(
-                f"{step_location}.expected_output_kinds are outside expected_artifact_kinds: "
+                f"{step_location}.expected_output_kinds are outside produced artifacts: "
                 f"{unknown_outputs}"
             )
         for output in outputs:
@@ -226,13 +307,23 @@ def _validate_step_graph(
         seen.add(step_id)
 
     produced = set(output_owner)
-    if produced != expected_artifacts:
+    if produced != output_artifacts:
         fail(
-            f"{location}.steps must produce every expected artifact exactly once; "
-            f"missing={sorted(expected_artifacts - produced)}, "
-            f"unexpected={sorted(produced - expected_artifacts)}"
+            f"{location}.steps must produce every non-input expected artifact exactly once; "
+            f"missing={sorted(output_artifacts - produced)}, "
+            f"unexpected={sorted(produced - output_artifacts)}"
         )
-    return set(step_ids), outputs_by_step
+    if consumed_inputs != input_artifacts:
+        fail(
+            f"{location}.steps must bind every input artifact at least once; "
+            f"missing={sorted(input_artifacts - consumed_inputs)}"
+        )
+    if used_conditions != condition_ids:
+        fail(
+            f"{location}.steps must use every declared scenario condition; "
+            f"unused={sorted(condition_ids - used_conditions)}"
+        )
+    return set(step_ids), outputs_by_step, inputs_by_step, guards_by_step
 
 
 def _validate_evidence(
@@ -241,8 +332,12 @@ def _validate_evidence(
     location: str,
     step_ids: set[str],
     outputs_by_step: dict[str, set[str]],
+    inputs_by_step: dict[str, set[str]],
+    guards_by_step: dict[str, str | None],
     expected_artifacts: set[str],
-) -> set[str]:
+    input_artifacts: set[str],
+    condition_ids: set[str],
+) -> tuple[set[str], dict[str, str | None]]:
     requirements = _require_object_list(
         contour.get("evidence_requirements"),
         location=f"{location}.evidence_requirements",
@@ -255,8 +350,13 @@ def _validate_evidence(
         )
     )
     artifact_kinds: list[str] = []
+    guards_by_requirement: dict[str, str | None] = {}
     for index, requirement in enumerate(requirements):
         item_location = f"{location}.evidence_requirements[{index}]"
+        requirement_id = _require_string(
+            requirement.get("requirement_id"),
+            location=f"{item_location}.requirement_id",
+        )
         artifact_kind = _require_string(
             requirement.get("artifact_kind"),
             location=f"{item_location}.artifact_kind",
@@ -265,11 +365,37 @@ def _validate_evidence(
         step_id = requirement.get("required_after_step_id")
         if not isinstance(step_id, str) or step_id not in step_ids:
             fail(f"{item_location}.required_after_step_id must reference a plan step")
-        if artifact_kind not in outputs_by_step[step_id]:
+        expected_binding = (
+            "scenario_input" if artifact_kind in input_artifacts else "step_output"
+        )
+        if requirement.get("artifact_binding") != expected_binding:
+            fail(
+                f"{item_location}.artifact_binding must be {expected_binding!r} "
+                f"for {artifact_kind!r}"
+            )
+        bound_artifacts = (
+            inputs_by_step[step_id]
+            if expected_binding == "scenario_input"
+            else outputs_by_step[step_id]
+        )
+        if artifact_kind not in bound_artifacts:
             fail(
                 f"{item_location} binds artifact {artifact_kind!r} to step {step_id!r}, "
-                "but that step does not produce it"
+                f"but that step does not bind it as {expected_binding}"
             )
+        guard_condition_id = _validate_guard_condition(
+            requirement.get("guard_condition_id"),
+            location=f"{item_location}.guard_condition_id",
+            condition_ids=condition_ids,
+        )
+        if guard_condition_id != guards_by_step[step_id]:
+            fail(
+                f"{item_location}.guard_condition_id must match step "
+                f"{step_id!r}"
+            )
+        if guard_condition_id is not None and requirement.get("terminal_required") is not False:
+            fail(f"{item_location}.terminal_required must be false for guarded evidence")
+        guards_by_requirement[requirement_id] = guard_condition_id
 
     if len(artifact_kinds) != len(set(artifact_kinds)):
         fail(f"{location}.evidence_requirements must bind each artifact kind once")
@@ -279,7 +405,7 @@ def _validate_evidence(
             f"missing={sorted(expected_artifacts - set(artifact_kinds))}, "
             f"unexpected={sorted(set(artifact_kinds) - expected_artifacts)}"
         )
-    return requirement_ids
+    return requirement_ids, guards_by_requirement
 
 
 def _validate_eval_requirements(
@@ -288,6 +414,8 @@ def _validate_eval_requirements(
     location: str,
     frontmatter: dict[str, Any],
     evidence_ids: set[str],
+    evidence_guards: dict[str, str | None],
+    condition_ids: set[str],
 ) -> None:
     requirements = _require_object_list(
         contour.get("eval_requirements"),
@@ -351,6 +479,28 @@ def _validate_eval_requirements(
                 f"{item_location}.required_evidence_ids reference unknown requirements: "
                 f"{unknown_evidence}"
             )
+        guard_condition_id = _validate_guard_condition(
+            requirement.get("guard_condition_id"),
+            location=f"{item_location}.guard_condition_id",
+            condition_ids=condition_ids,
+        )
+        incompatible_evidence = sorted(
+            evidence_id
+            for evidence_id in required_evidence_ids
+            if evidence_guards[evidence_id] not in {None, guard_condition_id}
+        )
+        if incompatible_evidence:
+            fail(
+                f"{item_location}.required_evidence_ids contain evidence unavailable "
+                f"under guard {guard_condition_id!r}: {incompatible_evidence}"
+            )
+        if guard_condition_id is not None and requirement.get(
+            "verdict_required_for_closeout"
+        ) is not False:
+            fail(
+                f"{item_location}.verdict_required_for_closeout must be false "
+                "for guarded eval requirements"
+            )
 
 
 def _validate_retention_requirements(
@@ -358,6 +508,7 @@ def _validate_retention_requirements(
     *,
     location: str,
     frontmatter: dict[str, Any],
+    condition_ids: set[str],
 ) -> None:
     requirements = _require_object_list(
         contour.get("retention_requirements"),
@@ -387,6 +538,18 @@ def _validate_retention_requirements(
         )
         if artifact_ref not in memo_contract_refs:
             fail(f"{item_location}.input_ref.artifact_ref is not declared by the source playbook")
+        guard_condition_id = _validate_guard_condition(
+            requirement.get("guard_condition_id"),
+            location=f"{item_location}.guard_condition_id",
+            condition_ids=condition_ids,
+        )
+        if guard_condition_id is not None and requirement.get(
+            "receipt_required_for_closeout"
+        ) is not True:
+            fail(
+                f"{item_location}.receipt_required_for_closeout must be true "
+                "inside its guarded branch"
+            )
 
 
 def _validate_closeout_requirements(
@@ -394,6 +557,7 @@ def _validate_closeout_requirements(
     *,
     location: str,
     expected_artifacts: set[str],
+    artifact_guards: dict[str, str | None],
 ) -> None:
     requirements = _require_object_list(
         contour.get("closeout_requirements"),
@@ -415,6 +579,16 @@ def _validate_closeout_requirements(
         unknown_refs = sorted(required_refs - expected_artifacts)
         if unknown_refs:
             fail(f"{item_location}.required_ref_kinds are not expected artifacts: {unknown_refs}")
+        guarded_refs = sorted(
+            artifact_kind
+            for artifact_kind in required_refs
+            if artifact_guards[artifact_kind] is not None
+        )
+        if guarded_refs:
+            fail(
+                f"{item_location}.required_ref_kinds cannot require guarded artifacts: "
+                f"{guarded_refs}"
+            )
 
 
 def _validate_contour(contour: dict[str, Any], *, index: int, repo_root: Path) -> None:
@@ -466,12 +640,32 @@ def _validate_contour(contour: dict[str, Any], *, index: int, repo_root: Path) -
             location=f"{location}.expected_artifact_kinds",
         )
     )
-    step_ids, outputs_by_step = _validate_step_graph(
+    input_artifacts = set(
+        _require_string_list(
+            contour.get("input_artifact_kinds"),
+            location=f"{location}.input_artifact_kinds",
+        )
+    )
+    unknown_input_artifacts = sorted(input_artifacts - expected_artifacts)
+    if unknown_input_artifacts:
+        fail(
+            f"{location}.input_artifact_kinds are outside expected_artifact_kinds: "
+            f"{unknown_input_artifacts}"
+        )
+    condition_ids = _validate_scenario_conditions(contour, location=location)
+    (
+        step_ids,
+        outputs_by_step,
+        inputs_by_step,
+        guards_by_step,
+    ) = _validate_step_graph(
         contour,
         location=location,
         required_agents=required_agents,
         required_capabilities=required_capabilities,
         expected_artifacts=expected_artifacts,
+        input_artifacts=input_artifacts,
+        condition_ids=condition_ids,
     )
 
     checkpoint = contour.get("checkpoint_policy")
@@ -500,28 +694,40 @@ def _validate_contour(contour: dict[str, Any], *, index: int, repo_root: Path) -
             "rollback_artifact_input_ref is present"
         )
 
-    evidence_ids = _validate_evidence(
+    evidence_ids, evidence_guards = _validate_evidence(
         contour,
         location=location,
         step_ids=step_ids,
         outputs_by_step=outputs_by_step,
+        inputs_by_step=inputs_by_step,
+        guards_by_step=guards_by_step,
         expected_artifacts=expected_artifacts,
+        input_artifacts=input_artifacts,
+        condition_ids=condition_ids,
     )
     _validate_eval_requirements(
         contour,
         location=location,
         frontmatter=frontmatter,
         evidence_ids=evidence_ids,
+        evidence_guards=evidence_guards,
+        condition_ids=condition_ids,
     )
     _validate_retention_requirements(
         contour,
         location=location,
         frontmatter=frontmatter,
+        condition_ids=condition_ids,
     )
+    artifact_guards = {artifact_kind: None for artifact_kind in input_artifacts}
+    for step_id, outputs in outputs_by_step.items():
+        for artifact_kind in outputs:
+            artifact_guards[artifact_kind] = guards_by_step[step_id]
     _validate_closeout_requirements(
         contour,
         location=location,
         expected_artifacts=expected_artifacts,
+        artifact_guards=artifact_guards,
     )
 
 

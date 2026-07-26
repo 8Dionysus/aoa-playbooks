@@ -56,7 +56,9 @@ def test_golden_contours_are_complete_and_runtime_neutral() -> None:
             for step in contour["steps"]
             for artifact in step["expected_output_kinds"]
         ]
-        assert sorted(produced) == sorted(contour["expected_artifact_kinds"])
+        inputs = contour["input_artifact_kinds"]
+        assert sorted((*inputs, *produced)) == sorted(contour["expected_artifact_kinds"])
+        assert set(inputs).isdisjoint(produced)
         assert len(produced) == len(set(produced))
 
 
@@ -115,8 +117,109 @@ def test_dry_run_a2a_review_binds_preexisting_child_result() -> None:
         item for item in source["contours"] if item["playbook_id"] == "AOA-P-0031"
     )
     review_step = next(
-        step for step in contour["steps"] if "child_task_result" in step["expected_output_kinds"]
+        step for step in contour["steps"] if step["step_id"] == "review-return"
     )
 
+    assert "child_task_result" in contour["input_artifact_kinds"]
+    assert "child_task_result" in review_step["input_artifact_kinds"]
+    assert "child_task_result" not in review_step["expected_output_kinds"]
     assert review_step["step_id"] == "review-return"
     assert review_step["input_binding"] == "all_scenario_inputs"
+
+
+def test_reviewed_runtime_receipt_is_an_input_not_a_step_output() -> None:
+    source = generator.load_source_config()
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0032"
+    )
+    inspect_step = next(
+        step for step in contour["steps"] if step["step_id"] == "inspect-runtime-receipt"
+    )
+    evidence = next(
+        requirement
+        for requirement in contour["evidence_requirements"]
+        if requirement["artifact_kind"] == "owner_runtime_receipt"
+    )
+
+    assert contour["input_artifact_kinds"] == ["owner_runtime_receipt"]
+    assert inspect_step["input_artifact_kinds"] == ["owner_runtime_receipt"]
+    assert inspect_step["expected_output_kinds"] == []
+    assert evidence["artifact_binding"] == "scenario_input"
+
+
+def test_input_artifact_cannot_be_reproduced_by_a_step() -> None:
+    source = deepcopy(generator.load_source_config())
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0031"
+    )
+    review_step = next(
+        step for step in contour["steps"] if step["step_id"] == "review-return"
+    )
+    review_step["expected_output_kinds"].append("child_task_result")
+
+    with pytest.raises(generator.BuilderError, match="outside produced artifacts"):
+        generator.validate_source_config(source)
+
+
+def test_every_input_artifact_must_be_bound_by_a_step() -> None:
+    source = deepcopy(generator.load_source_config())
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0031"
+    )
+    review_step = next(
+        step for step in contour["steps"] if step["step_id"] == "review-return"
+    )
+    review_step["input_artifact_kinds"].remove("child_task_result")
+
+    with pytest.raises(generator.BuilderError, match="must bind every input artifact"):
+        generator.validate_source_config(source)
+
+
+def test_runtime_optional_paths_have_reviewed_guards() -> None:
+    source = generator.load_source_config()
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0032"
+    )
+    conditions = {
+        condition["condition_id"]: condition["binding"]
+        for condition in contour["scenario_conditions"]
+    }
+    steps = {step["step_id"]: step for step in contour["steps"]}
+
+    assert conditions == {
+        "derived_surface_recovery_required": "reviewed_boolean",
+        "proof_handoff_earned": "reviewed_boolean",
+    }
+    assert (
+        steps["reground-source"]["guard_condition_id"]
+        == "derived_surface_recovery_required"
+    )
+    assert steps["evaluate-reentry"]["guard_condition_id"] == "proof_handoff_earned"
+    assert steps["closeout-recovery"]["guard_condition_id"] is None
+
+
+def test_unknown_guard_condition_is_rejected() -> None:
+    source = deepcopy(generator.load_source_config())
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0032"
+    )
+    contour["steps"][2]["guard_condition_id"] = "invented_condition"
+
+    with pytest.raises(generator.BuilderError, match="unknown scenario condition"):
+        generator.validate_source_config(source)
+
+
+def test_guarded_artifact_cannot_be_terminally_required() -> None:
+    source = deepcopy(generator.load_source_config())
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0032"
+    )
+    requirement = next(
+        item
+        for item in contour["evidence_requirements"]
+        if item["artifact_kind"] == "regrounding_ticket_ref"
+    )
+    requirement["terminal_required"] = True
+
+    with pytest.raises(generator.BuilderError, match="must be false for guarded evidence"):
+        generator.validate_source_config(source)

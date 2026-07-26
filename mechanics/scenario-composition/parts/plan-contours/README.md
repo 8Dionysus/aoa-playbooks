@@ -31,14 +31,17 @@ The initial ABI covers exactly three C2 golden scenarios:
 ## Boundary
 
 The contour owns abstract scenario order, dependencies, effect classes,
-expected artifacts, and evidence/eval/retention/closeout bindings. It does not
-own commands, prompts, tools, arguments, MCP calls, transports, models,
-schedulers, runtime state, or dispatch.
+reviewed-input versus step-output artifact roles, reviewed-boolean branch
+guards, and evidence/eval/retention/closeout bindings. It does not own concrete
+condition values, commands, prompts, tools, arguments, MCP calls, transports,
+models, schedulers, runtime state, or dispatch.
 
 `aoa-sdk` may pin and compile this projection into its own typed `RunPlan`.
 The SDK remains responsible for binding a reviewed route decision, concrete
 scenario inputs, runtime profile, agent/capability provenance, approvals, and
-plan identity. A runtime remains responsible for execution and receipts.
+plan identity. It must also bind every declared condition with reviewed
+provenance and prune false guarded steps without fabricating their outputs. A
+runtime remains responsible for execution and receipts.
 Registry/latest consumers must obtain the contour and schema through the
 trusted bundle subject store; the root files alone do not prove admission.
 

@@ -33,9 +33,10 @@ its closed ABI directly to `generated/playbook_plan_contours.min.json`.
 - `composition-surfaces`: builds and validates the compact composition read
   models from authored playbooks, root source config, and skill handoff
   contracts.
-- `plan-contours`: builds and validates abstract step/effect, evidence, eval,
-  retention, and closeout contours for the three C2 golden scenarios without
-  publishing commands or runtime bindings.
+- `plan-contours`: builds and validates abstract step/effect, reviewed-input
+  versus step-output, guarded-branch, evidence, eval, retention, and closeout
+  contours for the three C2 golden scenarios without publishing commands or
+  runtime bindings.
 
 ## Source surfaces
 
@@ -63,8 +64,9 @@ playbooks, root source config, and upstream skill contracts.
 This mechanic may project handoff, failure, subagent, and automation metadata
 that is already source-backed. It may also project an abstract plan contour
 whose agents, capabilities, artifacts, eval anchors, and memo references match
-authored frontmatter exactly. It must not invent runtime execution behavior,
-commands, transport, verdicts, or skill semantics.
+authored frontmatter exactly and whose optional paths stay behind reviewed
+boolean bindings. It must not invent runtime execution behavior, condition
+values, commands, transport, verdicts, or skill semantics.
 
 ## Growth posture
 

@@ -44,6 +44,32 @@
       },
       "uniqueItems": true
     },
+    "guardConditionId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "scenarioCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition_id",
+        "binding"
+      ],
+      "properties": {
+        "condition_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "binding": {
+          "const": "reviewed_boolean"
+        }
+      }
+    },
     "inputRef": {
       "type": "object",
       "additionalProperties": false,
@@ -112,9 +138,11 @@
         "operation_kind",
         "effect_class",
         "depends_on",
+        "guard_condition_id",
         "agent_ids",
         "capability_ids",
         "input_binding",
+        "input_artifact_kinds",
         "expected_output_kinds",
         "approval_binding"
       ],
@@ -146,6 +174,9 @@
         "depends_on": {
           "$ref": "#/$defs/stringList"
         },
+        "guard_condition_id": {
+          "$ref": "#/$defs/guardConditionId"
+        },
         "agent_ids": {
           "$ref": "#/$defs/stringList"
         },
@@ -157,6 +188,9 @@
             "none",
             "all_scenario_inputs"
           ]
+        },
+        "input_artifact_kinds": {
+          "$ref": "#/$defs/stringList"
         },
         "expected_output_kinds": {
           "$ref": "#/$defs/stringList"
@@ -250,8 +284,9 @@
       "required": [
         "requirement_id",
         "artifact_kind",
-        "producer_binding",
+        "artifact_binding",
         "required_after_step_id",
+        "guard_condition_id",
         "terminal_required"
       ],
       "properties": {
@@ -261,8 +296,11 @@
         "artifact_kind": {
           "$ref": "#/$defs/nonEmptyString"
         },
-        "producer_binding": {
-          "const": "runtime_owner"
+        "artifact_binding": {
+          "enum": [
+            "scenario_input",
+            "step_output"
+          ]
         },
         "required_after_step_id": {
           "anyOf": [
@@ -273,6 +311,9 @@
               "type": "null"
             }
           ]
+        },
+        "guard_condition_id": {
+          "$ref": "#/$defs/guardConditionId"
         },
         "terminal_required": {
           "type": "boolean"
@@ -287,6 +328,7 @@
         "eval_anchor",
         "input_ref",
         "required_evidence_ids",
+        "guard_condition_id",
         "verdict_required_for_closeout"
       ],
       "properties": {
@@ -302,6 +344,9 @@
         "required_evidence_ids": {
           "$ref": "#/$defs/stringList"
         },
+        "guard_condition_id": {
+          "$ref": "#/$defs/guardConditionId"
+        },
         "verdict_required_for_closeout": {
           "type": "boolean"
         }
@@ -313,6 +358,7 @@
       "required": [
         "requirement_id",
         "input_ref",
+        "guard_condition_id",
         "receipt_required_for_closeout"
       ],
       "properties": {
@@ -321,6 +367,9 @@
         },
         "input_ref": {
           "$ref": "#/$defs/inputRef"
+        },
+        "guard_condition_id": {
+          "$ref": "#/$defs/guardConditionId"
         },
         "receipt_required_for_closeout": {
           "type": "boolean"
@@ -361,6 +410,8 @@
         "required_agent_ids",
         "required_capability_ids",
         "expected_artifact_kinds",
+        "input_artifact_kinds",
+        "scenario_conditions",
         "steps",
         "checkpoint_policy",
         "retry_policy",
@@ -393,6 +444,15 @@
         },
         "expected_artifact_kinds": {
           "$ref": "#/$defs/stringList"
+        },
+        "input_artifact_kinds": {
+          "$ref": "#/$defs/stringList"
+        },
+        "scenario_conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scenarioCondition"
+          }
         },
         "steps": {
           "type": "array",

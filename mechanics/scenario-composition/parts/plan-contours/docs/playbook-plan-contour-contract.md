@@ -25,7 +25,10 @@ fields exactly:
 It then adds the smallest scenario-owned planning structure:
 
 - a topologically ordered DAG of abstract operation and effect classes
-- input and approval binding modes, but no concrete inputs or approvals
+- an exact partition between reviewed scenario-input artifacts and
+  step-produced artifacts
+- typed input, approval, and reviewed-boolean condition binding modes, but no
+  concrete inputs, approvals, or condition values
 - checkpoint, retry, and rollback policy contours
 - one evidence requirement per expected artifact
 - an owner-qualified eval catalog reference plus the exact frontmatter eval
@@ -33,8 +36,10 @@ It then adds the smallest scenario-owned planning structure:
 - terminal closeout reference requirements
 
 The generator fails closed when frontmatter drifts, a dependency points
-forward, an artifact is absent or produced twice, a requirement points outside
-the contour, or an executable key appears at any depth.
+forward, an artifact role overlaps, a required input is never bound, an output
+is absent or produced twice, a guarded requirement disagrees with its step, a
+requirement points outside the contour, or an executable key appears at any
+depth.
 
 ## Consumer contract
 
@@ -45,11 +50,17 @@ A consumer such as `aoa-sdk` must:
 2. pin the exact `aoa-playbooks` revision and contour/schema digests;
 3. validate the public JSON against the declared ABI before compiling;
 4. bind an eligible route decision and exact `ScenarioBinding`;
-5. resolve agent, capability, input, approval, eval, memo, and runtime
+5. bind every declared scenario condition to an exact reviewed boolean and
+   provenance reference;
+6. resolve agent, capability, input, approval, eval, memo, and runtime
    provenance from their owning surfaces;
-6. produce a new consumer-owned immutable plan snapshot and `RunPlan`;
-7. reject blocked routes, provenance mismatch, unsupported effects, or owner
-   drift instead of guessing.
+7. select the active contour by pruning false guarded steps and their guarded
+   evidence, eval, and retention requirements;
+8. remove dependency and checkpoint references to pruned steps while
+   preserving the relative order and dependencies of retained steps;
+9. produce a new consumer-owned immutable plan snapshot and `RunPlan`;
+10. reject blocked routes, missing or extra condition bindings, provenance
+    mismatch, unsupported effects, or owner drift instead of guessing.
 
 The generated contour is not itself a runnable plan, execution packet, or
 receipt. Its IDs and references remain abstract until the consumer performs
@@ -60,6 +71,22 @@ the owner-qualified binding.
 the requested operation must bind those inputs unless an earlier step produces
 an explicit artifact carrying the request; DAG order alone is not input
 provenance.
+
+`input_artifact_kinds` names the reviewed artifacts already present in the
+scenario binding. They are never `expected_output_kinds`. Evidence for one of
+these artifacts uses `artifact_binding=scenario_input`; evidence for a step
+result uses `artifact_binding=step_output`. The compiler must preserve the
+input artifact's owner provenance and must not accept a newly emitted artifact
+as a substitute.
+
+Each `scenario_conditions` entry declares an owner-named
+`reviewed_boolean`. `guard_condition_id=null` is unconditional; a named guard
+activates its step or requirement only when the exact reviewed binding is
+true. The compiler must not infer guard truth from artifact presence, prose,
+defaults, or runtime behavior. A dependency on a false guarded step is pruned
+with that step; a dependency between retained steps remains mandatory.
+Guarded evidence cannot be terminally required, and an unconditional closeout
+cannot require a guarded artifact.
 
 `docs/artifact-bundles/playbook_registry.bundle.json` admits both
 `generated/playbook_plan_contours.min.json` and the contour schema as trusted

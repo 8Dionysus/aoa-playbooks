@@ -17,13 +17,15 @@
 | composition tests | `tests/test_generate_playbook_composition_surfaces.py` | root tests protect repo release gate and root command compatibility |
 | plan-contour source and schema | `mechanics/scenario-composition/parts/plan-contours/config/playbook_plan_contours.json`, `mechanics/scenario-composition/parts/plan-contours/schemas/playbook-plan-contours.schema.json` | owner-authored abstract contour and closed public ABI |
 | plan-contour generated output | `generated/playbook_plan_contours.min.json` | root-published runtime-neutral read model for pinned downstream compilation |
-| plan-contour tests | `tests/test_generate_playbook_plan_contours.py` | exact playbook alignment, deterministic parity, artifact coverage, and executable-field rejection |
+| plan-contour tests | `tests/test_generate_playbook_plan_contours.py` | exact playbook alignment, deterministic parity, input/output role partition, guarded-branch integrity, and executable-field rejection |
 
 ## Part growth rule
 
 Move only public generated read models if source-of-truth fields, public links,
 and downstream generated path refs can remain explicit and validated.
 
-Plan contours must remain abstract. A part may add operation/effect classes and
-owner-qualified requirements, but never commands, prompts, tools, arguments,
-transport, model choice, scheduler logic, or mutable execution state.
+Plan contours must remain abstract. A part may add operation/effect classes,
+reviewed input/output roles, owner-named boolean guards, and owner-qualified
+requirements, but never concrete condition values, commands, prompts, tools,
+arguments, transport, model choice, scheduler logic, or mutable execution
+state.

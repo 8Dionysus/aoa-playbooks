@@ -49,9 +49,19 @@ The initial source declares exactly three golden contours:
 Each contour must match the source playbook's ID, name, scenario, agents,
 required skills, eval anchors, and expected artifacts. Every retention input
 must come from the source playbook's declared memo contract references. The
-generator validates an ordered DAG, exact artifact production, evidence
-coverage, owner-qualified eval/memo references, checkpoint/rollback bindings,
-and a closed public JSON schema.
+generator validates an ordered DAG, an exact partition between reviewed
+scenario-input artifacts and step-produced artifacts, evidence coverage,
+owner-qualified eval/memo references, checkpoint/rollback bindings, reviewed
+boolean branch guards, and a closed public JSON schema.
+
+An expected artifact that already exists before compilation remains a typed
+scenario input and must never be reclassified as a step output. A conditional
+step and its conditional requirements carry one owner-declared
+`guard_condition_id`. The downstream compiler must bind every declared
+condition to a reviewed boolean with provenance, prune false guarded steps and
+their requirements, and reject missing, extra, or unreviewed condition
+bindings. It must not infer a condition from artifact presence or fabricate an
+optional artifact to satisfy the unpruned contour.
 
 The contour may expose abstract operation/effect classes and binding modes. It
 must reject commands, prompts, tools, arguments, MCP, transport, models,
@@ -71,8 +81,8 @@ store instead of treating working-tree presence as admission.
 The separate ABI keeps scenario meaning with the playbook owner while giving a
 control plane deterministic structured input. Runtime neutrality prevents an
 owner projection from becoming a hidden runner or transport contract. Exact
-frontmatter and artifact alignment makes source drift fail visibly rather than
-silently changing downstream plans.
+frontmatter, artifact-role, and branch alignment makes source drift fail
+visibly rather than silently changing downstream plans.
 
 This boundary also creates a stable point for measuring compilation and
 execution costs later: the contour identifies intended structure, while SDK
@@ -85,6 +95,10 @@ snapshots and runtime receipts can prove what was bound and executed.
 - Positive: playbook changes fail the owner generator when a contour becomes
   stale.
 - Positive: the ABI is small enough to pin, hash, review, and cache.
+- Positive: reviewed input artifacts cannot be accepted as newly emitted
+  runtime outputs.
+- Positive: optional preview, eval, memo, regrounding, and proof-handoff paths
+  remain explicit without becoming mandatory runtime theater.
 - Positive: the contour and schema travel through the existing fail-closed
   artifact admission and materialization path.
 - Positive: commands and runtime bindings remain downstream owner concerns.
@@ -118,6 +132,21 @@ As of 2026-07-26:
   projection, execution seam, release validation, tests, and decision indexes.
 - Validation: focused generator parity, package validator, owner tests, nested
   agent validation, KAG rebuild, and repository release gate.
+
+### 2026-07-26 - Reviewed inputs and conditional paths
+
+- Previous assumption: exact coverage of frontmatter artifacts by step outputs
+  was sufficient, and optional scenario prose could remain a linear DAG.
+- New reality: reviewed `child_task_result` and `owner_runtime_receipt`
+  artifacts are compiler inputs, while optional preview, eval, memo,
+  regrounding, and proof-handoff paths need explicit reviewed guards.
+- Reason: otherwise a compiler could accept a newly emitted artifact in place
+  of reviewed source evidence or force a branch by fabricating an optional
+  output.
+- Source surfaces updated: plan-contour config, schema, generator, generated
+  projection, contract docs, tests, and decision indexes.
+- Validation: focused role-partition and guard negative tests, generated
+  parity, package validation, KAG rebuild, and repository release gate.
 
 ## Boundaries
 
