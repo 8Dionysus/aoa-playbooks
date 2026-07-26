@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 6444053,
+  "allowed_tracked_bytes": 8760845,
+  "approved_by": "repository-owner",
+  "base_ref": "a15866ec867209288533850cc34939ad81829947",
+  "changed_generated_bytes": 6444053,
+  "changed_generated_files": 240,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "610eb31a0000c038f4fc14353e588f5210b4723053b66391bc51692b115dbe6b",
+  "reason": "Refresh derived KAG records after closing review gaps in the runtime-neutral playbook plan-contour owner ABI; no rollout, invocation, cost-reduction, or completion claim.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8760845,
+  "tracked_bytes_max": 10485760
+}

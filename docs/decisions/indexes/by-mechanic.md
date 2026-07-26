@@ -72,3 +72,4 @@
 ## scenario-composition
 
 - [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)

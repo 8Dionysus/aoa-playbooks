@@ -13,6 +13,7 @@ This file applies to artifacts under `generated/`.
 - `playbook_review_status.min.json` is a derived evidence-status projection over reviewed summaries and gate-review notes
 - `playbook_landing_governance.min.json` is a derived review-track landing gate over the experimental review-governed cohort
 - `playbook_handoff_contracts.json`, `playbook_failure_catalog.json`, `playbook_subagent_recipes.json`, `playbook_automation_seeds.json`, and `playbook_composition_manifest.json` are derived composition projections for the canonical playbook cohort
+- `playbook_plan_contours.min.json` is the derived runtime-neutral plan-contour ABI for the selected compiler cohort
 - `playbook_registry.min.json` carries the ABI identity for `docs/artifact-bundles/playbook_registry.bundle.json`; the bundle requires ABI and SLSA/in-toto controls before registry/latest consumers trust it
 
 Do not treat all files in this directory the same way.
@@ -35,6 +36,7 @@ Keep this mapping legible:
 - `generated/playbook_landing_governance.min.json` is produced by `mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py`
 - `generated/phase_alpha_review_packets.min.json` and `generated/phase_alpha_run_matrix.min.json` are produced by `mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py`
 - `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json` are produced by `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py`
+- `generated/playbook_plan_contours.min.json` is produced from the part-local plan-contour config plus exact authored playbook frontmatter by `mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py`
 
 The derived surfaces should stay compact, reviewable, and playbook-owned.
 They must not become a second authored playbook layer.
@@ -47,12 +49,14 @@ For `playbook_registry.min.json`:
 - preserve stable ids, names, and ordering unless a real semantic change requires otherwise
 - keep it aligned with the corresponding authored `PLAYBOOK.md` bundles
 
-For `agon_*_registry.min.json`, `playbook_activation_surfaces.min.json`, `playbook_federation_surfaces.min.json`, `playbook_review_status.min.json`, `playbook_landing_governance.min.json`, and the composition outputs:
+For `agon_*_registry.min.json`, `playbook_activation_surfaces.min.json`, `playbook_federation_surfaces.min.json`, `playbook_review_status.min.json`, `playbook_landing_governance.min.json`, the composition outputs, and `playbook_plan_contours.min.json`:
 
 - Do not hand-edit derived payloads
 - regenerate them from canonical inputs
 - activation surfaces may include compact return hints when those hints are derived from canonical playbook inputs
 - composition surfaces may include bounded handoff, failure, subagent, and automation metadata when that metadata is derived from authored playbooks plus source-owned composition overrides
+- plan contours may include only abstract DAG, effect, artifact, evidence, eval,
+  retention, and closeout bindings derived from exact source alignment
 - keep runtime-local details, hidden wiring, and transport specifics out
 - do not invent new skill, agent, eval, or memo semantics here
 
@@ -76,6 +80,7 @@ python mechanics/review-gate/parts/review-packet-contracts/scripts/generate_play
 python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py --check
 python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check
 python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
+python mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py --check
 python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
 python scripts/validate_abyss_machine_playbook_bundle.py
 python scripts/validate_playbooks.py

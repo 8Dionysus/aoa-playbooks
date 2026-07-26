@@ -75,6 +75,14 @@
       "role": "composition_manifest"
     },
     {
+      "path": "generated/playbook_plan_contours.min.json",
+      "role": "plan_contour_abi"
+    },
+    {
+      "path": "mechanics/scenario-composition/parts/plan-contours/schemas/playbook-plan-contours.schema.json",
+      "role": "plan_contour_schema"
+    },
+    {
       "path": "scripts/validate_playbooks.py",
       "role": "validator"
     },

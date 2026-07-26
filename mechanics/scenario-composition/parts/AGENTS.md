@@ -15,8 +15,9 @@ Read `../AGENTS.md`, `../README.md`, and `../PARTS.md` before changing a part.
 
 ## Boundaries
 
-Parts may own package-local implementation details. They must not become
-authored playbook truth, skill meaning, or root generated-output authority.
+Parts may own package-local implementation details and explicit source config
+for their own projection. They must not become authored playbook truth, skill
+meaning, runtime execution authority, or root generated-output authority.
 
 ## Validation
 

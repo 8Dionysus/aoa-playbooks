@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 6609166,
+  "allowed_tracked_bytes": 8792305,
+  "approved_by": "repository-owner",
+  "base_ref": "a15866ec867209288533850cc34939ad81829947",
+  "changed_generated_bytes": 6609166,
+  "changed_generated_files": 246,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "1e0bf4549566397a7cba645c5c8c5f28f7fa9d546c60fbdd340119d993b564c0",
+  "reason": "Refresh derived KAG records after separating generic scenario context from kind-selected reviewed inputs; no runtime, invocation, cost-reduction, or completion claim.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8792305,
+  "tracked_bytes_max": 10485760
+}

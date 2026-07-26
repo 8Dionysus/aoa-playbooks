@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 6604522,
+  "allowed_tracked_bytes": 8787661,
+  "approved_by": "repository-owner",
+  "base_ref": "a15866ec867209288533850cc34939ad81829947",
+  "changed_generated_bytes": 6604522,
+  "changed_generated_files": 246,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "77e5f15dc82450b1eaef89ada50ae019382d86d976f2e2249f66ac8a19c0bcd4",
+  "reason": "Refresh derived KAG records after requiring producing steps to bind reviewed input provenance; no runtime, invocation, cost-reduction, or completion claim.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8787661,
+  "tracked_bytes_max": 10485760
+}

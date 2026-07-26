@@ -7,6 +7,7 @@ Start with current scenario-composition surfaces:
 - `README.md`
 - `PARTS.md`
 - `parts/composition-surfaces/`
+- `parts/plan-contours/`
 - root wrapper `scripts/generate_playbook_composition_surfaces.py`
 
 Use this file only when old root paths or compatibility paths matter.
@@ -16,6 +17,11 @@ Use this file only when old root paths or compatibility paths matter.
 Scenario composition is a local playbook-native mechanic. It starts from
 authored playbook routes, root source config, and upstream skill handoff
 contracts. It is not center mechanic law.
+
+The plan-contour part was added package-locally. Its config is the authored
+abstract contour source, each contour is checked against one exact
+`PLAYBOOK.md`, and its root generated output is a derived read model. It has no
+legacy root implementation or compatibility wrapper.
 
 ## Previous placement
 
@@ -33,6 +39,11 @@ source of truth.
 
 Root config, root docs, root generated outputs, and root tests are intentionally
 retained until a compatibility-backed package move lands.
+
+`generated/playbook_plan_contours.min.json` is root-published for downstream
+pinning, but its source and generator stay in
+`parts/plan-contours/`. Downstream SDK plans and runtime receipts are not
+provenance inputs to this owner projection.
 
 ## Archive route
 
