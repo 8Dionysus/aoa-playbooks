@@ -67,6 +67,7 @@ COMMANDS = [
     ("check review packet contracts", [sys.executable, "mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py", "--check"]),
     ("check review intake", [sys.executable, "mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py", "--check"]),
     ("check composition surfaces", [sys.executable, "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py", "--check"]),
+    ("check plan contours", [sys.executable, "mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py", "--check"]),
     ("check phase alpha surfaces", [sys.executable, "mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py", "--check"]),
     ("validate owner-local stats port", [sys.executable, "scripts/validate_local_stats_port.py"]),
     ("validate OS Abyss playbook artifact bundle", [sys.executable, "scripts/validate_abyss_machine_playbook_bundle.py"]),

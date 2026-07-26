@@ -18,6 +18,13 @@ IMPL_PATH = (
     / "scripts"
     / "generate_playbook_composition_surfaces.py"
 )
+PLAN_IMPL_PATH = (
+    PACKAGE_ROOT
+    / "parts"
+    / "plan-contours"
+    / "scripts"
+    / "generate_playbook_plan_contours.py"
+)
 ROOT_WRAPPER_PATH = REPO_ROOT / "scripts" / "generate_playbook_composition_surfaces.py"
 
 if str(REPO_ROOT) not in sys.path:
@@ -35,6 +42,11 @@ REQUIRED_FILES = (
     "parts/README.md",
     "parts/composition-surfaces/README.md",
     "parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py",
+    "parts/plan-contours/README.md",
+    "parts/plan-contours/config/playbook_plan_contours.json",
+    "parts/plan-contours/docs/playbook-plan-contour-contract.md",
+    "parts/plan-contours/schemas/playbook-plan-contours.schema.json",
+    "parts/plan-contours/scripts/generate_playbook_plan_contours.py",
 )
 
 REQUIRED_TEXT = {
@@ -42,16 +54,28 @@ REQUIRED_TEXT = {
         "## Mechanic card",
         "class | local",
         "generated/playbook_handoff_contracts.json",
+        "generated/playbook_plan_contours.min.json",
     ),
     "PARTS.md": (
         "composition-surfaces",
         "Boundary payloads",
         "mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json",
+        "plan-contours",
     ),
     "PROVENANCE.md": (
         "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py",
         "accepted-input",
         "implementation moved into scenario-composition package",
+        "generated/playbook_plan_contours.min.json",
+    ),
+    "parts/README.md": (
+        "composition-surfaces",
+        "plan-contours",
+    ),
+    "parts/plan-contours/README.md": (
+        "aoa_playbook_plan_contour_v1",
+        "generated/playbook_plan_contours.min.json",
+        "does not",
     ),
     "legacy/INDEX.md": (
         "Former root path",
@@ -64,6 +88,20 @@ def load_impl():
     spec = importlib.util.spec_from_file_location("scenario_composition_package_builder", IMPL_PATH)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"unable to load scenario-composition package builder from {IMPL_PATH}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_plan_impl():
+    spec = importlib.util.spec_from_file_location(
+        "scenario_composition_plan_contour_builder",
+        PLAN_IMPL_PATH,
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError(
+            f"unable to load scenario-composition plan-contour builder from {PLAN_IMPL_PATH}"
+        )
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -102,6 +140,15 @@ def validate(repo_root: Path = REPO_ROOT) -> list[str]:
                 issues.append(f"{builder.display_path(path)} is out of date")
     except Exception as exc:  # pragma: no cover - reported as validator issue
         issues.append(f"scenario-composition builder validation failed: {exc}")
+
+    try:
+        plan_builder = load_plan_impl()
+        expected = plan_builder.build_output()
+        current = json.loads(plan_builder.OUTPUT_PATH.read_text(encoding="utf-8"))
+        if current != expected:
+            issues.append(f"{plan_builder.display_path(plan_builder.OUTPUT_PATH)} is out of date")
+    except Exception as exc:  # pragma: no cover - reported as validator issue
+        issues.append(f"scenario-composition plan-contour validation failed: {exc}")
 
     return issues
 

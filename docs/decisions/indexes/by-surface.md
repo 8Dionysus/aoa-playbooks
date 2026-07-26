@@ -62,6 +62,7 @@
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 - [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 - [AOA-PB-D-0015 Defer Skill Home Until Owner MCP](../AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md) (`docs/decisions/AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md`)
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
 
 ## mechanic package
 
@@ -85,10 +86,12 @@
 - [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
 
 ## config/source
 
 - [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
 
 ## generated/readout
 
@@ -97,6 +100,7 @@
 - [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
 - [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
 
 ## validation guard
 
@@ -113,6 +117,7 @@
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
 - [AOA-PB-D-0014 Collapse Mechanics Root Entrypoints](../AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md) (`docs/decisions/AOA-PB-D-0014-collapse-mechanics-root-entrypoints.md`)
 - [AOA-PB-D-0015 Defer Skill Home Until Owner MCP](../AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md) (`docs/decisions/AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md`)
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
 
 ## codex projection
 
@@ -145,6 +150,7 @@
 
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
 
 ## source topology
 

@@ -85,6 +85,9 @@ jobs:
           AOA_SKILLS_ROOT: ${{ github.workspace }}/.deps/aoa-skills
         run: python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
 
+      - name: Check runtime-neutral plan contours
+        run: python mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py --check
+
       - name: Run playbook validator
         env:
           AOA_AGENTS_ROOT: ${{ github.workspace }}/.deps/aoa-agents

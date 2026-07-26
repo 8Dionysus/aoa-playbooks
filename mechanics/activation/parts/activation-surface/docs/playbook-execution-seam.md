@@ -39,6 +39,11 @@ The current review-track landing gate lives at `generated/playbook_landing_gover
 It is a release-facing governance surface for the review-governed experimental layer only, not a verdict engine for the whole playbook corpus.
 The current derived composition outputs live at `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json`, and are produced by `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py`.
 They are scenario-owned projections for downstream readers, not persisted execution state.
+The runtime-neutral plan-contour ABI lives at
+`generated/playbook_plan_contours.min.json` and is produced by
+`mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py`.
+It is a typed abstract scenario contour for pinned control-plane compilation,
+not an activation field, command packet, or persisted execution state.
 
 ## Activation surface
 
@@ -179,6 +184,29 @@ They should not expose:
 - router meaning
 - observability protocols
 - runtime recovery engines
+
+## Plan contours
+
+The separate plan-contour projection may expose:
+
+- abstract operation and effect classes
+- a topologically ordered dependency graph
+- expected artifact production
+- abstract input and approval binding modes
+- checkpoint, retry, rollback, evidence, eval, retention, and closeout
+  requirements
+
+It must not expose:
+
+- commands, prompts, scripts, shell, or tool arguments
+- MCP, transport, model, or scheduler bindings
+- mutable execution state or retry implementation
+- proof verdicts, memory truth, or concrete runtime receipts
+
+The contour lets `aoa-sdk` compile a pinned owner-qualified `RunPlan` without
+parsing playbook prose. The SDK owns concrete binding and plan identity; a
+runtime owner still owns execution and receipts. A valid contour alone proves
+neither invocation nor execution.
 
 ## Current federation-checked cohort
 

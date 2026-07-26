@@ -28,3 +28,7 @@
 ## 2026-07-16
 
 - [AOA-PB-D-0015 Defer Skill Home Until Owner MCP](../AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md) (`docs/decisions/AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md`)
+
+## 2026-07-26
+
+- [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
