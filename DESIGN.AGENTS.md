@@ -103,8 +103,9 @@ this repository, placement rules, legacy-name posture, and package shape.
 Do not add root-level mechanics rosters, audits, templates, backlog files,
 scratch notes, migration notes, or `_meta/` lanes. Active detail belongs in the
 owning package. Historical rationale belongs in `docs/decisions/`. Former-path
-accounting belongs in package `PROVENANCE.md` and package-local `legacy/` only
-after the active route exists.
+accounting belongs in the package README provenance section or its
+`PROVENANCE.md` companion and package-local `legacy/` only after the active
+route exists.
 
 `mechanics/activation/`, `mechanics/scenario-composition/`,
 `mechanics/federation-closure/`, `mechanics/review-gate/`, and

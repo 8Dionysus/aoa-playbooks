@@ -58,8 +58,21 @@ def validate(repo_root: Path = REPO_ROOT) -> list[str]:
         slug="release-support",
         required_paths=REQUIRED_ROOT_PATHS,
         required_text={
-            "PARTS.md": ("Payloads moved into package-local parts", "package-local", "repo-release-gate"),
-            "PROVENANCE.md": ("Mechanic payload moved into package-local parts", "package-local", "accepted-input"),
+            "AGENTS.md": (
+                "Do not move `scripts/release_check.py`",
+                "Do not claim GitHub/CI authority",
+                "Do not move release schemas/examples",
+            ),
+            "README.md": (
+                "Payloads moved into package-local parts",
+                "Mechanic payload moved into package-local parts",
+                "package-local",
+                "repo-release-gate",
+                "deployment-and-installation",
+                "rollback-and-regression",
+                "promotion-and-retention",
+                "accepted-input",
+            ),
         },
     )
 

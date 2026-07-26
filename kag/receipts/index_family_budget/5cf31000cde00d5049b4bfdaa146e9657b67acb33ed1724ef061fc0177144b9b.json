@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 5966515,
+  "allowed_tracked_bytes": 8825061,
+  "approved_by": "repository-owner",
+  "base_ref": "056cac249a353ae94abedbd4048e6730f70c064d",
+  "changed_generated_bytes": 5966515,
+  "changed_generated_files": 227,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "5cf31000cde00d5049b4bfdaa146e9657b67acb33ed1724ef061fc0177144b9b",
+  "reason": "Compact release-support navigation after integrating runtime-neutral plan contours on current main.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8825061,
+  "tracked_bytes_max": 10485760
+}

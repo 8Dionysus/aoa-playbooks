@@ -8,9 +8,9 @@ from pathlib import Path
 PACKAGE_FILES = (
     "AGENTS.md",
     "README.md",
-    "PARTS.md",
-    "PROVENANCE.md",
 )
+PACKAGE_COMPANION_FILES = ("PARTS.md", "PROVENANCE.md")
+PACKAGE_COMPACT_README_TOKENS = ("## Parts", "## Provenance")
 
 PACKAGE_README_TOKENS = (
     "## Mechanic card",
@@ -38,12 +38,26 @@ def validate_mechanic_package(
         if not (package_root / relative_path).is_file():
             issues.append(f"mechanics/{slug}/{relative_path}: missing required file")
 
+    companion_presence = {
+        filename: (package_root / filename).is_file()
+        for filename in PACKAGE_COMPANION_FILES
+    }
+    if any(companion_presence.values()) and not all(companion_presence.values()):
+        issues.append(
+            f"mechanics/{slug}: package companions must include both "
+            f"{PACKAGE_COMPANION_FILES[0]} and {PACKAGE_COMPANION_FILES[1]}"
+        )
+
     readme = package_root / "README.md"
     if readme.is_file():
         text = readme.read_text(encoding="utf-8")
         for token in PACKAGE_README_TOKENS:
             if token not in text:
                 issues.append(f"mechanics/{slug}/README.md: missing token {token!r}")
+        if not any(companion_presence.values()):
+            for token in PACKAGE_COMPACT_README_TOKENS:
+                if token not in text:
+                    issues.append(f"mechanics/{slug}/README.md: missing compact package token {token!r}")
 
     package_text = required_text or {}
     for relative_path, tokens in package_text.items():

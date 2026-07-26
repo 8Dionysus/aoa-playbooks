@@ -18,7 +18,8 @@ policy, or runtime implementation.
 2. `DESIGN.md`
 3. `DESIGN.AGENTS.md`
 4. `mechanics/README.md`
-5. target package `AGENTS.md`, `README.md`, `PARTS.md`, and `PROVENANCE.md`
+5. target package `AGENTS.md` and `README.md`, plus `PARTS.md` and
+   `PROVENANCE.md` when that companion pair exists
 6. target source playbook, generated builder, review note, config, schema, or
    decision record that owns the active claim
 
@@ -35,8 +36,9 @@ policy, or runtime implementation.
   playbook layer has its own operation, owner split, stop-lines, and validation.
 - Local mechanics do not become center-wide law merely because this repo names
   them.
-- Former-path accounting belongs in package `PROVENANCE.md` and package-local
-  `legacy/`; repository-root `legacy/` is forbidden.
+- Former-path accounting belongs in the package `README.md` provenance section
+  or its `PROVENANCE.md` companion and package-local `legacy/`;
+  repository-root `legacy/` is forbidden.
 
 ## Package Growth Rule
 
@@ -48,8 +50,11 @@ A new `mechanics/<slug>/` package should appear only when it has:
 - local validation;
 - class: `head-fed`, `local`, or both.
 
-Use the package shape in `mechanics/README.md`. Do not create a child package as
-a parking lot for unresolved docs.
+Every package starts with `AGENTS.md` and `README.md`. A compact package keeps
+its parts and provenance sections in `README.md`; a larger package may split
+both into the `PARTS.md` and `PROVENANCE.md` companion pair. Use the package
+shape in `mechanics/README.md`. Do not create a child package as a parking lot
+for unresolved docs.
 
 ## Validation
 
