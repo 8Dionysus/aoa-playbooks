@@ -298,12 +298,25 @@ def _validate_eval_requirements(
         "requirement_id",
         location=f"{location}.eval_requirements",
     )
+    configured_eval_anchors = set(
+        _require_unique(
+            requirements,
+            "eval_anchor",
+            location=f"{location}.eval_requirements",
+        )
+    )
     eval_anchors = set(
         _require_string_list(
             frontmatter.get("eval_anchors"),
             location=f"{location}.source_playbook.eval_anchors",
         )
     )
+    if configured_eval_anchors != eval_anchors:
+        fail(
+            f"{location}.eval_requirements must cover source playbook eval_anchors exactly; "
+            f"missing={sorted(eval_anchors - configured_eval_anchors)}, "
+            f"unexpected={sorted(configured_eval_anchors - eval_anchors)}"
+        )
     for index, requirement in enumerate(requirements):
         item_location = f"{location}.eval_requirements[{index}]"
         eval_anchor = _require_string(

@@ -74,3 +74,25 @@ def test_frontmatter_alignment_is_required() -> None:
 
     with pytest.raises(generator.BuilderError, match="must exactly match"):
         generator.validate_source_config(source)
+
+
+def test_eval_requirements_cover_source_anchors_exactly() -> None:
+    source = deepcopy(generator.load_source_config())
+    source["contours"][0]["eval_requirements"].pop()
+
+    with pytest.raises(generator.BuilderError, match="must cover source playbook eval_anchors exactly"):
+        generator.validate_source_config(source)
+
+
+def test_dry_run_a2a_contour_has_no_dispatchable_effect() -> None:
+    source = generator.load_source_config()
+    contour = next(
+        item for item in source["contours"] if item["playbook_id"] == "AOA-P-0031"
+    )
+    target_step = next(
+        step for step in contour["steps"] if "codex_local_target" in step["expected_output_kinds"]
+    )
+
+    assert target_step["step_id"] == "inspect-child-target"
+    assert target_step["operation_kind"] == "inspect"
+    assert target_step["effect_class"] == "read_only"
