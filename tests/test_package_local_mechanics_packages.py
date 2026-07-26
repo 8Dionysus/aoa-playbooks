@@ -39,7 +39,7 @@ def test_package_local_mechanics_packages_do_not_open_legacy_without_moved_paylo
         assert not (REPO_ROOT / "mechanics" / slug / "legacy").exists()
 
 
-def test_shared_validator_accepts_semantic_compact_package(tmp_path: Path) -> None:
+def test_shared_validator_accepts_explicit_semantic_compact_package(tmp_path: Path) -> None:
     package = tmp_path / "mechanics" / "sample"
     package.mkdir(parents=True)
     (package / "AGENTS.md").write_text("# AGENTS.md\n", encoding="utf-8")
@@ -59,7 +59,37 @@ def test_shared_validator_accepts_semantic_compact_package(tmp_path: Path) -> No
         ),
         encoding="utf-8",
     )
-    assert validate_mechanic_package(repo_root=tmp_path, slug="sample", required_paths=()) == []
+    assert validate_mechanic_package(
+        repo_root=tmp_path,
+        slug="sample",
+        required_paths=(),
+        allow_compact=True,
+    ) == []
+
+
+def test_shared_validator_rejects_unapproved_compact_package(tmp_path: Path) -> None:
+    package = tmp_path / "mechanics" / "sample"
+    package.mkdir(parents=True)
+    (package / "AGENTS.md").write_text("# AGENTS.md\n", encoding="utf-8")
+    (package / "README.md").write_text(
+        "\n".join(
+            (
+                "## Mechanic card",
+                "| class | local |",
+                "| role | sample |",
+                "| validation | sample check |",
+                "| next route | sample owner |",
+                "## Parts",
+                "sample part",
+                "## Provenance",
+                "sample source",
+            )
+        ),
+        encoding="utf-8",
+    )
+    issues = validate_mechanic_package(repo_root=tmp_path, slug="sample", required_paths=())
+    assert "mechanics/sample/PARTS.md: missing required file" in issues
+    assert "mechanics/sample/PROVENANCE.md: missing required file" in issues
 
 
 def test_shared_validator_rejects_incomplete_companion_pair(tmp_path: Path) -> None:

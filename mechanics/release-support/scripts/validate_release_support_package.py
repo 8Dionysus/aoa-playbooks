@@ -57,6 +57,7 @@ def validate(repo_root: Path = REPO_ROOT) -> list[str]:
         repo_root=repo_root,
         slug="release-support",
         required_paths=REQUIRED_ROOT_PATHS,
+        allow_compact=True,
         required_text={
             "AGENTS.md": (
                 "Do not move `scripts/release_check.py`",

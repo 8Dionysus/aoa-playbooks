@@ -26,6 +26,7 @@ def validate_mechanic_package(
     repo_root: Path,
     slug: str,
     required_paths: tuple[str, ...],
+    allow_compact: bool = False,
     required_globs: tuple[str, ...] = (),
     transferred_paths: tuple[str, ...] = (),
     required_text: dict[str, tuple[str, ...]] | None = None,
@@ -54,10 +55,13 @@ def validate_mechanic_package(
         for token in PACKAGE_README_TOKENS:
             if token not in text:
                 issues.append(f"mechanics/{slug}/README.md: missing token {token!r}")
-        if not any(companion_presence.values()):
+        if not any(companion_presence.values()) and allow_compact:
             for token in PACKAGE_COMPACT_README_TOKENS:
                 if token not in text:
                     issues.append(f"mechanics/{slug}/README.md: missing compact package token {token!r}")
+        elif not any(companion_presence.values()):
+            for filename in PACKAGE_COMPANION_FILES:
+                issues.append(f"mechanics/{slug}/{filename}: missing required file")
 
     package_text = required_text or {}
     for relative_path, tokens in package_text.items():

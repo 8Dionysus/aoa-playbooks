@@ -106,15 +106,30 @@ class MechanicsSkeletonValidationTests(unittest.TestCase):
             result = validator.validate(repo_root)
             self.assertIn("mechanics/activation: child package missing AGENTS.md", result.issues)
             self.assertIn(
-                "mechanics/activation/README.md: missing compact package token '## Parts'",
+                "mechanics/activation: child package missing PARTS.md",
                 result.issues,
             )
             self.assertIn(
-                "mechanics/activation/README.md: missing compact package token '## Provenance'",
+                "mechanics/activation: child package missing PROVENANCE.md",
                 result.issues,
             )
 
-    def test_compact_child_package_embeds_parts_and_provenance(self) -> None:
+    def test_release_support_compact_package_embeds_parts_and_provenance(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            package = _write_minimal_package(repo_root, "release-support", "head-fed/local")
+            (package / "PARTS.md").unlink()
+            (package / "PROVENANCE.md").unlink()
+            _write(
+                package / "README.md",
+                (package / "README.md").read_text(encoding="utf-8")
+                + "\n## Parts\n\npart route\n\n## Provenance\n\nsource route\n",
+            )
+            result = validator.validate(repo_root)
+            self.assertEqual((), result.issues)
+
+    def test_other_packages_cannot_adopt_compact_tier_without_owner_proof(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
             _write_minimal_required_tree(repo_root)
@@ -127,7 +142,8 @@ class MechanicsSkeletonValidationTests(unittest.TestCase):
                 + "\n## Parts\n\npart route\n\n## Provenance\n\nsource route\n",
             )
             result = validator.validate(repo_root)
-            self.assertEqual((), result.issues)
+            self.assertIn("mechanics/activation: child package missing PARTS.md", result.issues)
+            self.assertIn("mechanics/activation: child package missing PROVENANCE.md", result.issues)
 
     def test_package_companions_must_be_a_pair(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

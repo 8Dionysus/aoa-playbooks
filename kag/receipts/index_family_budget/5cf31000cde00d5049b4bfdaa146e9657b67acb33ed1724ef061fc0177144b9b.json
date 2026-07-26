@@ -8,7 +8,7 @@
   "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
   "default_limit_bytes": 1048576,
   "head_family_digest": "5cf31000cde00d5049b4bfdaa146e9657b67acb33ed1724ef061fc0177144b9b",
-  "reason": "Compact release-support navigation after integrating runtime-neutral plan contours on current main.",
+  "reason": "Compact release-support navigation with owner-gated compact package admission after integrating runtime-neutral plan contours on current main.",
   "repo": "aoa-playbooks",
   "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
   "scope": "generated_delta",

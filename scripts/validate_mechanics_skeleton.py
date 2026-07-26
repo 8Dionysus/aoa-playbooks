@@ -45,6 +45,7 @@ PACKAGE_REQUIRED_FILES = ("AGENTS.md", "README.md")
 PACKAGE_COMPANION_FILES = ("PARTS.md", "PROVENANCE.md")
 PACKAGE_README_TOKENS = ("## Mechanic card", "| class |", "| role |", "| validation |", "| next route |")
 PACKAGE_COMPACT_README_TOKENS = ("## Parts", "## Provenance")
+COMPACT_PACKAGE_SLUGS = {"release-support"}
 ALLOWED_PACKAGE_CLASSES = {"head-fed", "local", "head-fed/local"}
 FORBIDDEN_TOKENS = ("DESGIN.md", "DESGIN.AGENTS.md")
 IGNORED_DIR_NAMES = {"__pycache__"}
@@ -113,10 +114,13 @@ def validate_child_packages(repo_root: Path, issues: list[str]) -> None:
             for token in PACKAGE_README_TOKENS:
                 if token not in text:
                     issues.append(f"{rel_dir}/README.md: missing package card token {token!r}")
-            if not any(companion_presence.values()):
+            if not any(companion_presence.values()) and package_dir.name in COMPACT_PACKAGE_SLUGS:
                 for token in PACKAGE_COMPACT_README_TOKENS:
                     if token not in text:
                         issues.append(f"{rel_dir}/README.md: missing compact package token {token!r}")
+            elif not any(companion_presence.values()):
+                for filename in PACKAGE_COMPANION_FILES:
+                    issues.append(f"{rel_dir}: child package missing {filename}")
             package_class = parse_package_class(text)
             if package_class is None:
                 issues.append(f"{rel_dir}/README.md: missing package class")
