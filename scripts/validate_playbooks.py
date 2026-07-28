@@ -1846,9 +1846,13 @@ def capability_is_federation_eligible(
     if contract_level == "executable" and not isinstance(capability.get("abi"), dict):
         return False
     lifecycle = capability.get("lifecycle")
-    return not (
-        isinstance(lifecycle, dict)
-        and lifecycle.get("state") == "retired"
+    if not isinstance(lifecycle, dict):
+        return False
+    lifecycle_state = lifecycle.get("state")
+    return (
+        isinstance(lifecycle_state, str)
+        and bool(lifecycle_state)
+        and lifecycle_state != "retired"
     )
 
 

@@ -885,15 +885,25 @@ def validate_source_config(
             fail(
                 f"plan contour capability {capability_id!r} is not an actionable graph node"
             )
+        if capability.get("contract_level") not in {"executable", "navigation"}:
+            fail(
+                f"plan contour capability {capability_id!r} lacks an actionable contract level"
+            )
         if not all(
             isinstance(capability.get(field), dict)
-            for field in ("abi", "binding", "owner")
+            for field in ("abi", "binding", "owner", "lifecycle")
         ):
             fail(
-                f"plan contour capability {capability_id!r} lacks typed ABI, binding, or owner"
+                f"plan contour capability {capability_id!r} lacks typed ABI, binding, owner, or lifecycle"
             )
         lifecycle = capability.get("lifecycle")
-        if isinstance(lifecycle, dict) and lifecycle.get("state") == "retired":
+        assert isinstance(lifecycle, dict)
+        lifecycle_state = lifecycle.get("state")
+        if not isinstance(lifecycle_state, str) or not lifecycle_state:
+            fail(
+                f"plan contour capability {capability_id!r} lacks a lifecycle state"
+            )
+        if lifecycle_state == "retired":
             fail(f"plan contour capability {capability_id!r} is retired")
 
     for index, contour in enumerate(contours):

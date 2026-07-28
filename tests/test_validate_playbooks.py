@@ -231,6 +231,25 @@ class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
             )
         )
 
+    def test_capability_requires_typed_nonempty_lifecycle_state(self) -> None:
+        capability = {
+            "kind": "skill",
+            "contract_level": "navigation",
+            "binding": {},
+            "owner": {},
+            "lifecycle": {"state": "candidate"},
+        }
+
+        for lifecycle in (None, {}, {"state": ""}, {"state": 1}):
+            with self.subTest(lifecycle=lifecycle):
+                capability["lifecycle"] = lifecycle
+                self.assertFalse(
+                    validate_playbooks.capability_is_federation_eligible(
+                        capability,
+                        playbook_status="experimental",
+                    )
+                )
+
     def test_memo_contract_path_accepts_current_ref_via_legacy_dependency_alias(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             memo_root = Path(tmpdir) / "aoa-memo"

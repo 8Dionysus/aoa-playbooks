@@ -64,6 +64,44 @@ def test_plan_contours_reference_exact_capability_graph_node_ids() -> None:
     assert referenced.issubset(graph_ids)
 
 
+@pytest.mark.parametrize("contract_level", [None, "", "metadata"])
+def test_plan_contours_require_actionable_capability_contract_level(
+    monkeypatch: pytest.MonkeyPatch,
+    contract_level: object,
+) -> None:
+    source = generator.load_source_config()
+    capabilities = deepcopy(generator.load_capabilities_by_id())
+    capability_id = source["contours"][0]["required_capability_ids"][0]
+    capabilities[capability_id]["contract_level"] = contract_level
+    monkeypatch.setattr(
+        generator,
+        "load_capabilities_by_id",
+        lambda: capabilities,
+    )
+
+    with pytest.raises(generator.BuilderError, match="actionable contract level"):
+        generator.validate_source_config(source)
+
+
+@pytest.mark.parametrize("lifecycle", [None, {}, {"state": ""}])
+def test_plan_contours_require_typed_capability_lifecycle(
+    monkeypatch: pytest.MonkeyPatch,
+    lifecycle: object,
+) -> None:
+    source = generator.load_source_config()
+    capabilities = deepcopy(generator.load_capabilities_by_id())
+    capability_id = source["contours"][0]["required_capability_ids"][0]
+    capabilities[capability_id]["lifecycle"] = lifecycle
+    monkeypatch.setattr(
+        generator,
+        "load_capabilities_by_id",
+        lambda: capabilities,
+    )
+
+    with pytest.raises(generator.BuilderError, match="lifecycle"):
+        generator.validate_source_config(source)
+
+
 def test_golden_contours_are_complete_and_runtime_neutral() -> None:
     output = generator.build_output()
 
