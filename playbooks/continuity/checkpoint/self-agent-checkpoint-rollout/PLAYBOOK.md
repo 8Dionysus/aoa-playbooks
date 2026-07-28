@@ -21,10 +21,10 @@ required_skill_families:
   - change-protocol
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
+  - mode.knowledge.authority-map
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: rollback
@@ -86,10 +86,10 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
+- `mode.knowledge.authority-map`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
 
 ## Decision points
 
@@ -156,8 +156,8 @@ The route should finish with visible evidence for:
 1. Run a constitution or source-of-truth check on the target surface.
 2. Run the approval gate and classify proceed, defer, or stop.
 3. Define the rollback marker before any mutation.
-4. Use `aoa-dry-run-first` if the route still has unbounded risk.
-5. Execute the bounded change path with `aoa-change-protocol`.
+4. Use `guard.operations.preview` if the route still has unbounded risk.
+5. Execute the bounded change path with `workflow.operations.repository-change`.
 6. Record the post-change health check.
 7. If the route loses checkpoint clarity, return to the last valid approval or rollback anchor before any further mutation.
 8. Append the improvement log through a provenance-backed writeback.

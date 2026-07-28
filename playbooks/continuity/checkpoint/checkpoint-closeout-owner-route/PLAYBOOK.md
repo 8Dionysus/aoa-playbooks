@@ -25,17 +25,17 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-checkpoint-closeout-bridge
-  - aoa-session-donor-harvest
-  - aoa-session-progression-lift
-  - aoa-quest-harvest
-  - aoa-session-route-forks
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
+  - skill.aoa-checkpoint-closeout-bridge
+  - mode.session-harvest.extract
+  - skill.aoa-session-progression-lift
+  - mode.session-harvest.promote
+  - mode.session-harvest.branch
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -155,17 +155,17 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-checkpoint-closeout-bridge`
-- `aoa-session-donor-harvest`
-- `aoa-session-progression-lift`
-- `aoa-quest-harvest`
-- `aoa-session-route-forks`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
+- `skill.aoa-checkpoint-closeout-bridge`
+- `mode.session-harvest.extract`
+- `skill.aoa-session-progression-lift`
+- `mode.session-harvest.promote`
+- `mode.session-harvest.branch`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
 
 ## Decision points
 

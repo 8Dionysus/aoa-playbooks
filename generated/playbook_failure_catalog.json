@@ -8,7 +8,7 @@
       "summary": "The requested action crosses an approval boundary that should be resolved before mutation.",
       "severity": "high",
       "recommended_skills": [
-        "aoa-approval-gate-check"
+        "guard.operations.approval"
       ],
       "next_actions": [
         "State the exact mutation that needs approval.",
@@ -28,8 +28,8 @@
       "summary": "The canonical doc, runbook, or authority surface is unclear enough that composition would drift.",
       "severity": "medium",
       "recommended_skills": [
-        "aoa-source-of-truth-check",
-        "atm10-source-of-truth-check"
+        "mode.knowledge.authority-map",
+        "adapter.atm10.authority-map"
       ],
       "next_actions": [
         "Name the files in tension.",
@@ -52,8 +52,8 @@
       "summary": "The domain seam or core-vs-edge line is fuzzy enough that the route would widen during execution.",
       "severity": "medium",
       "recommended_skills": [
-        "aoa-bounded-context-map",
-        "aoa-core-logic-boundary"
+        "mode.engineering-shape.contexts",
+        "mode.engineering-shape.core"
       ],
       "next_actions": [
         "Map the boundary and its consumers.",
@@ -72,7 +72,7 @@
       "summary": "A meaningful preview or inspect-only seam exists and should be taken before mutation.",
       "severity": "medium",
       "recommended_skills": [
-        "aoa-dry-run-first"
+        "guard.operations.preview"
       ],
       "next_actions": [
         "Run or plan the smallest bounded preview.",
@@ -92,8 +92,8 @@
       "summary": "The local environment is not stable enough to trust the current verification result.",
       "severity": "medium",
       "recommended_skills": [
-        "aoa-local-stack-bringup",
-        "aoa-source-of-truth-check"
+        "workflow.operations.local-stack-bringup",
+        "mode.knowledge.authority-map"
       ],
       "next_actions": [
         "Return to the canonical startup surface.",
@@ -111,9 +111,9 @@
       "summary": "The route moved forward, but the verification surface is too weak to trust the result.",
       "severity": "high",
       "recommended_skills": [
-        "aoa-contract-test",
-        "aoa-tdd-slice",
-        "aoa-invariant-coverage-audit"
+        "mode.verification.contract",
+        "workflow.operations.tdd-slice",
+        "mode.verification.coverage-audit"
       ],
       "next_actions": [
         "Name the missing boundary or invariant check.",
@@ -135,8 +135,8 @@
       "summary": "Behavioral properties are not explicit enough to protect a structural refactor.",
       "severity": "medium",
       "recommended_skills": [
-        "aoa-property-invariants",
-        "aoa-invariant-coverage-audit"
+        "mode.verification.property",
+        "mode.verification.coverage-audit"
       ],
       "next_actions": [
         "Name the behavior that must survive the change.",
@@ -152,8 +152,8 @@
       "summary": "The route is drifting toward mutation without a credible rollback or recovery story.",
       "severity": "high",
       "recommended_skills": [
-        "aoa-safe-infra-change",
-        "aoa-change-protocol"
+        "workflow.operations.safe-infra-change",
+        "workflow.operations.repository-change"
       ],
       "next_actions": [
         "State the rollback or recovery path before apply.",
@@ -169,7 +169,7 @@
       "summary": "The result is useful, but it still contains detail that should be sanitized before it travels.",
       "severity": "low",
       "recommended_skills": [
-        "aoa-sanitized-share"
+        "mode.knowledge.sanitized-share"
       ],
       "next_actions": [
         "Strip secrets, internal hostnames, and unstable identifiers.",
@@ -185,8 +185,8 @@
       "summary": "The task is safer in an isolated worktree or equivalent sandbox than in the active workspace.",
       "severity": "medium",
       "recommended_skills": [
-        "aoa-safe-infra-change",
-        "aoa-change-protocol"
+        "workflow.operations.safe-infra-change",
+        "workflow.operations.repository-change"
       ],
       "next_actions": [
         "Move the task into a dedicated worktree when available.",
@@ -202,8 +202,8 @@
       "summary": "Compaction or context loss means the route should be rehydrated from explicit artifacts before continuing.",
       "severity": "medium",
       "recommended_skills": [
-        "aoa-change-protocol",
-        "aoa-safe-infra-change"
+        "workflow.operations.repository-change",
+        "workflow.operations.safe-infra-change"
       ],
       "next_actions": [
         "Use the compact handoff packet and return anchors.",

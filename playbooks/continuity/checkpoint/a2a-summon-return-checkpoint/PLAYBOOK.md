@@ -28,13 +28,13 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-checkpoint-closeout-bridge
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - skill.aoa-checkpoint-closeout-bridge
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -162,13 +162,13 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-checkpoint-closeout-bridge`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `skill.aoa-checkpoint-closeout-bridge`
 
 `aoa-summon` is the named child-route contract input for this playbook, but it
 is not yet declared as a federation-required skill here while that skill remains

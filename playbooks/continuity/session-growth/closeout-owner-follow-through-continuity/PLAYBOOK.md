@@ -25,14 +25,14 @@ required_skill_families:
   - review
   - memory-curation
 required_skills:
-  - aoa-session-donor-harvest
-  - aoa-quest-harvest
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-adr-write
+  - mode.session-harvest.extract
+  - mode.session-harvest.promote
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -113,8 +113,8 @@ Use this playbook when:
   artifact lives in only one owner repo
 
 Do not use this playbook when:
-- the source is still too raw for `aoa-session-donor-harvest` or
-  `aoa-quest-harvest` to close honestly
+- the source is still too raw for `mode.session-harvest.extract` or
+  `mode.session-harvest.promote` to close honestly
 - the task is already one obvious single-repo authoring move and there is no
   real cross-session continuity risk
 - the route is really capability landing, workspace landing, or remediation,
@@ -147,14 +147,14 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-session-donor-harvest`
-- `aoa-quest-harvest`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-adr-write`
+- `mode.session-harvest.extract`
+- `mode.session-harvest.promote`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -251,18 +251,18 @@ closeout control-plane semantics out of their owner repos.
 ## Canonical route
 
 1. Start from one reviewed source or reviewed closeout pack and confirm the
-   owner boundary plus next-surface truth with `aoa-source-of-truth-check` and
-   `aoa-bounded-context-map`.
-2. Use `aoa-session-donor-harvest` to keep only bounded reusable candidates from
+   owner boundary plus next-surface truth with `mode.knowledge.authority-map` and
+   `mode.engineering-shape.contexts`.
+2. Use `mode.session-harvest.extract` to keep only bounded reusable candidates from
    the reviewed source and defer weak or supporting seams.
-3. Use `aoa-quest-harvest` when the leading candidate already looks owner-shaped
+3. Use `mode.session-harvest.promote` when the leading candidate already looks owner-shaped
    enough for closed promotion.
 4. Run reviewed closeout so the owner follow-through bundle becomes a persistent
    handoff instead of a chat-memory reminder.
-5. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to bound the owner
+5. Use `guard.operations.approval` and `guard.operations.preview` to bound the owner
    authoring wave before mutation begins.
-6. Use `aoa-change-protocol` to author the owner-layer artifact at the named
-   `next_surface`, and use `aoa-adr-write` if the wave introduces a durable
+6. Use `workflow.operations.repository-change` to author the owner-layer artifact at the named
+   `next_surface`, and use `mode.decision.record` if the wave introduces a durable
    decision that should remain discoverable.
 7. Validate and merge the owner artifact, then either close with a `merge_record`
    or emit one honest `residual_handoff_record` if the next move still remains.

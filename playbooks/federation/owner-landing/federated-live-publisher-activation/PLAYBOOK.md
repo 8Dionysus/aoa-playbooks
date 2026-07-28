@@ -26,13 +26,13 @@ required_skill_families:
   - evaluation
   - review
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-adr-write
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -150,13 +150,13 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-adr-write`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -257,9 +257,9 @@ ledger semantics out of their owner repos.
 ## Canonical route
 
 1. Start from one reviewed readiness audit and confirm the required live source
-   set plus owner boundaries with `aoa-source-of-truth-check` and
-   `aoa-bounded-context-map`.
-2. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to make write scope,
+   set plus owner boundaries with `mode.knowledge.authority-map` and
+   `mode.engineering-shape.contexts`.
+2. Use `guard.operations.approval` and `guard.operations.preview` to make write scope,
    owner order, and stop conditions explicit before mutation begins.
 3. Activate the first owner-local publisher with the smallest honest change set
    and extend contract tests only as far as needed to prove the live surface.
@@ -269,7 +269,7 @@ ledger semantics out of their owner repos.
    to prove whether the federation now sees the required publication.
 6. If one owner remains silent, decide whether the route should stop, defer, or
    hand off rather than letting the next repo absorb its meaning.
-7. Use `aoa-adr-write` only if the route introduces a durable owner-order or
+7. Use `mode.decision.record` only if the route introduces a durable owner-order or
    publisher-governance decision that later contributors will need to remember.
 8. Close with the publication verification pack, stats-visibility pack, and
    residual handoff record; if owner truth or verification honesty is lost,

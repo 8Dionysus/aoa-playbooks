@@ -25,16 +25,16 @@ required_skill_families:
   - review
   - evaluation
 required_skills:
-  - aoa-automation-opportunity-scan
-  - aoa-session-route-forks
-  - aoa-session-self-diagnose
-  - aoa-session-self-repair
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
+  - mode.session-harvest.automation-opportunity
+  - mode.session-harvest.branch
+  - mode.session-recovery.diagnose
+  - mode.session-recovery.repair
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -157,16 +157,16 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-automation-opportunity-scan`
-- `aoa-session-route-forks`
-- `aoa-session-self-diagnose`
-- `aoa-session-self-repair`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
+- `mode.session-harvest.automation-opportunity`
+- `mode.session-harvest.branch`
+- `mode.session-recovery.diagnose`
+- `mode.session-recovery.repair`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
 
 ## Decision points
 
@@ -266,12 +266,12 @@ proof truth, or memo truth into the playbook layer.
 ## Canonical route
 
 1. Start from the reviewed route anchor and confirm the automation boundary,
-   owner target, and stop line with `aoa-source-of-truth-check` and
-   `aoa-bounded-context-map`.
-2. Use `aoa-automation-opportunity-scan` and `aoa-session-route-forks` to
+   owner target, and stop line with `mode.knowledge.authority-map` and
+   `mode.engineering-shape.contexts`.
+2. Use `mode.session-harvest.automation-opportunity` and `mode.session-harvest.branch` to
    decide whether a playbook-seed candidate is honest now or should defer.
-3. If blockers remain, use `aoa-session-self-diagnose` and
-   `aoa-session-self-repair` to keep the route bounded instead of narrating
+3. If blockers remain, use `mode.session-recovery.diagnose` and
+   `mode.session-recovery.repair` to keep the route bounded instead of narrating
    readiness.
 4. If the route stays bounded and recommendation-only, write one explicit
    `playbook_seed_candidate` and keep its real-run review gate visible.

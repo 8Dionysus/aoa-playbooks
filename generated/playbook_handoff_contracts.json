@@ -6,96 +6,64 @@
     "registry": "generated/playbook_registry.min.json",
     "bundles": "playbooks/*/*/*/PLAYBOOK.md",
     "composition_overrides": "mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json",
-    "skill_handoff_contracts": "../aoa-skills/generated/skill_handoff_contracts.json"
+    "capability_graph": "../aoa-skills/generated/capability_graph.json"
   },
   "playbooks": [
     {
       "playbook_id": "AOA-P-0011",
       "name": "bounded-change-safe",
       "required_skills": [
-        "aoa-approval-gate-check",
-        "aoa-source-of-truth-check",
-        "aoa-bounded-context-map",
-        "aoa-dry-run-first",
-        "aoa-change-protocol",
-        "aoa-contract-test",
-        "aoa-tdd-slice",
-        "aoa-adr-write",
-        "aoa-sanitized-share"
+        "guard.operations.approval",
+        "mode.knowledge.authority-map",
+        "mode.engineering-shape.contexts",
+        "guard.operations.preview",
+        "workflow.operations.repository-change",
+        "mode.verification.contract",
+        "workflow.operations.tdd-slice",
+        "mode.decision.record",
+        "mode.knowledge.sanitized-share"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-approval-gate-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "name": "guard.operations.approval",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.approval",
           "consumes_artifact_tags": [
-            "requested-action",
-            "touched-surfaces",
-            "known-approval-state",
-            "risk-signals",
-            "possible-fallback-or-inspect-only-path"
+            "proposed-effect"
           ],
           "provides_artifact_tags": [
-            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
-            "note-on-whether-explicit-approval-is-needed",
-            "bounded-next-step-recommendation",
-            "report-of-unresolved-authority-assumptions",
-            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+            "approval-decision"
           ]
         },
         {
-          "name": "aoa-change-protocol",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "name": "workflow.operations.repository-change",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.repository-change",
           "consumes_artifact_tags": [
-            "target-goal",
-            "owner-repository-or-route-surface",
-            "touched-files-or-surfaces",
-            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
-            "main-risk",
-            "intended-validation-path",
-            "rollback-idea"
+            "change-request"
           ],
           "provides_artifact_tags": [
-            "explicit-plan",
-            "scoped-change",
-            "named-verification-result",
-            "post-change-route-review-when-source-of-truth-generated-decision",
-            "concise-final-report"
+            "change-result"
           ]
         },
         {
-          "name": "aoa-contract-test",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
+          "name": "mode.verification.contract",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.verification.contract",
           "consumes_artifact_tags": [
-            "boundary-under-review",
-            "producer-and-named-consumer",
-            "expected-inputs-and-outputs",
-            "current-verification-surface",
-            "known-downstream-dependencies",
-            "contract-limits-and-out-of-contract-behavior"
+            "boundary-evidence",
+            "shaped-boundary",
+            "decision-context"
           ],
           "provides_artifact_tags": [
-            "explicit-contract-assumptions",
-            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
-            "verification-notes",
-            "downstream-impact-notes",
-            "contract-limits-that-say-what-the-check-does-not-prove"
+            "contract-package"
           ]
         },
         {
-          "name": "aoa-sanitized-share",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "name": "mode.knowledge.sanitized-share",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.sanitized-share",
           "consumes_artifact_tags": [
-            "material-to-be-shared",
-            "sharing-audience-or-context",
-            "known-sensitive-surfaces",
-            "acceptable-level-of-abstraction"
+            "private-material"
           ],
           "provides_artifact_tags": [
-            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
-            "note-on-what-was-generalized-or-removed",
-            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
-            "canonical-public-safe-output-location-or-reference"
+            "sanitized-derivative"
           ]
         }
       ],
@@ -135,10 +103,10 @@
           "shareable_summary"
         ],
         "required_skill_handoffs": [
-          "aoa-approval-gate-check",
-          "aoa-change-protocol",
-          "aoa-contract-test",
-          "aoa-sanitized-share"
+          "guard.operations.approval",
+          "workflow.operations.repository-change",
+          "mode.verification.contract",
+          "mode.knowledge.sanitized-share"
         ],
         "failure_codes": [
           "APPROVAL_REQUIRED",
@@ -157,82 +125,54 @@
       "playbook_id": "AOA-P-0012",
       "name": "infra-change-guarded",
       "required_skills": [
-        "aoa-approval-gate-check",
-        "aoa-source-of-truth-check",
-        "aoa-dry-run-first",
-        "aoa-safe-infra-change",
-        "aoa-local-stack-bringup",
-        "aoa-contract-test",
-        "aoa-adr-write",
-        "aoa-sanitized-share"
+        "guard.operations.approval",
+        "mode.knowledge.authority-map",
+        "guard.operations.preview",
+        "workflow.operations.safe-infra-change",
+        "workflow.operations.local-stack-bringup",
+        "mode.verification.contract",
+        "mode.decision.record",
+        "mode.knowledge.sanitized-share"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-approval-gate-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "name": "guard.operations.approval",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.approval",
           "consumes_artifact_tags": [
-            "requested-action",
-            "touched-surfaces",
-            "known-approval-state",
-            "risk-signals",
-            "possible-fallback-or-inspect-only-path"
+            "proposed-effect"
           ],
           "provides_artifact_tags": [
-            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
-            "note-on-whether-explicit-approval-is-needed",
-            "bounded-next-step-recommendation",
-            "report-of-unresolved-authority-assumptions",
-            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+            "approval-decision"
           ]
         },
         {
-          "name": "aoa-dry-run-first",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "name": "guard.operations.preview",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.preview",
           "consumes_artifact_tags": [
-            "requested-action",
-            "available-preview-or-dry-run-mechanisms",
-            "touched-surfaces",
-            "known-limits-of-the-preview-path"
+            "mutation-request"
           ],
           "provides_artifact_tags": [
-            "dry-run-or-preview-recommendation",
-            "bounded-preview-result-or-plan",
-            "note-on-what-the-preview-does-and-does-not-prove",
-            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
-            "recommendation-for-next-step"
+            "preview-decision"
           ]
         },
         {
-          "name": "aoa-safe-infra-change",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-safe-infra-change",
+          "name": "workflow.operations.safe-infra-change",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.safe-infra-change",
           "consumes_artifact_tags": [
-            "target-change",
-            "touched-operational-surfaces",
-            "stated-authority-or-approval-state",
-            "validation-path",
-            "rollback-idea"
+            "infrastructure-contract"
           ],
           "provides_artifact_tags": [
-            "explicit-risk-aware-plan",
-            "bounded-infrastructure-or-config-change-or-bounded-execution-rec",
-            "verification-result",
-            "report-with-remaining-risk-notes"
+            "infrastructure-result"
           ]
         },
         {
-          "name": "aoa-sanitized-share",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "name": "mode.knowledge.sanitized-share",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.sanitized-share",
           "consumes_artifact_tags": [
-            "material-to-be-shared",
-            "sharing-audience-or-context",
-            "known-sensitive-surfaces",
-            "acceptable-level-of-abstraction"
+            "private-material"
           ],
           "provides_artifact_tags": [
-            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
-            "note-on-what-was-generalized-or-removed",
-            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
-            "canonical-public-safe-output-location-or-reference"
+            "sanitized-derivative"
           ]
         }
       ],
@@ -274,10 +214,10 @@
           "verification_pack"
         ],
         "required_skill_handoffs": [
-          "aoa-approval-gate-check",
-          "aoa-dry-run-first",
-          "aoa-safe-infra-change",
-          "aoa-sanitized-share"
+          "guard.operations.approval",
+          "guard.operations.preview",
+          "workflow.operations.safe-infra-change",
+          "mode.knowledge.sanitized-share"
         ],
         "failure_codes": [
           "APPROVAL_REQUIRED",
@@ -296,91 +236,55 @@
       "playbook_id": "AOA-P-0013",
       "name": "invariants-first-refactor",
       "required_skills": [
-        "aoa-bounded-context-map",
-        "aoa-core-logic-boundary",
-        "aoa-property-invariants",
-        "aoa-tdd-slice",
-        "aoa-port-adapter-refactor",
-        "aoa-invariant-coverage-audit",
-        "aoa-contract-test",
-        "aoa-adr-write"
+        "mode.engineering-shape.contexts",
+        "mode.engineering-shape.core",
+        "mode.verification.property",
+        "workflow.operations.tdd-slice",
+        "mode.engineering-shape.port-adapter",
+        "mode.verification.coverage-audit",
+        "mode.verification.contract",
+        "mode.decision.record"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-bounded-context-map",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "name": "mode.engineering-shape.contexts",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.engineering-shape.contexts",
           "consumes_artifact_tags": [
-            "target-area-or-subsystem",
-            "current-naming-and-responsibilities",
-            "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms",
-            "owner-layers-stronger-source-surfaces-or-portability-constraints",
-            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
+            "context-pressure"
           ],
           "provides_artifact_tags": [
-            "named-contexts-or-subsystems",
-            "rough-boundary-map",
-            "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary",
-            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
-            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
+            "context-map"
           ]
         },
         {
-          "name": "aoa-property-invariants",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-property-invariants",
+          "name": "mode.verification.property",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.verification.property",
           "consumes_artifact_tags": [
-            "target-rule-or-domain-truth",
-            "current-examples-or-tests",
-            "input-space-or-generators",
-            "known-edge-cases",
-            "artifact-families-transformations-lifecycle-states-or-generated-",
-            "invalid-cases-exclusion-rules-and-claim-limits-for-the-property"
+            "property-evidence",
+            "core-boundary"
           ],
           "provides_artifact_tags": [
-            "explicit-invariants",
-            "property-oriented-tests-or-checks",
-            "notes-on-generator-assumptions",
-            "verification-summary",
-            "notes-on-what-the-property-proves-and-what-remains-outside-its-c"
+            "property-package"
           ]
         },
         {
-          "name": "aoa-port-adapter-refactor",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-port-adapter-refactor",
+          "name": "mode.engineering-shape.port-adapter",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.engineering-shape.port-adapter",
           "consumes_artifact_tags": [
-            "target-module-builder-tool-workflow-or-slice",
-            "concrete-dependency-or-runtime-concern-that-currently-leaks-into",
-            "desired-scope-of-refactor",
-            "validation-expectations",
-            "behavior-the-reusable-center-actually-needs-from-the-dependency",
-            "callers-consumers-or-generated-export-surfaces-affected-by-the-s"
+            "dependency-pressure"
           ],
           "provides_artifact_tags": [
-            "clearer-boundary-between-logic-and-infrastructure",
-            "proposed-or-implemented-port-shape",
-            "proposed-or-implemented-adapter-shape",
-            "notes-on-what-remains-inside-the-reusable-center-and-what-the-ad",
-            "verification-summary"
+            "port-adapter-boundary"
           ]
         },
         {
-          "name": "aoa-invariant-coverage-audit",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-invariant-coverage-audit",
+          "name": "mode.verification.coverage-audit",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.verification.coverage-audit",
           "consumes_artifact_tags": [
-            "target-rule-or-stable-truth",
-            "current-tests-checks-schemas-fixtures-reports-generated-parity-c",
-            "known-edge-cases-and-stress-cases",
-            "the-input-space-or-states-that-matter-most",
-            "known-claim-limits-or-downstream-surfaces-that-rely-on-the-invar"
+            "coverage-evidence"
           ],
           "provides_artifact_tags": [
-            "invariant-coverage-map",
-            "gap-list-for-weak-or-missing-checks",
-            "bounded-follow-up-checks-or-revisions",
-            "concise-verification-summary",
-            "audit-verdict-on-whether-coverage-is-strong-enough-for-the-curre",
-            "claim-limit-notes-that-say-what-the-current-validation-surface-d"
+            "coverage-audit"
           ]
         }
       ],
@@ -420,10 +324,10 @@
           "architecture_note"
         ],
         "required_skill_handoffs": [
-          "aoa-bounded-context-map",
-          "aoa-property-invariants",
-          "aoa-port-adapter-refactor",
-          "aoa-invariant-coverage-audit"
+          "mode.engineering-shape.contexts",
+          "mode.verification.property",
+          "mode.engineering-shape.port-adapter",
+          "mode.verification.coverage-audit"
         ],
         "failure_codes": [
           "BOUNDARY_UNCLEAR",
@@ -440,92 +344,60 @@
       "playbook_id": "AOA-P-0014",
       "name": "local-stack-diagnosis",
       "required_skills": [
-        "aoa-source-of-truth-check",
-        "aoa-dry-run-first",
-        "aoa-local-stack-bringup",
-        "aoa-change-protocol",
-        "aoa-contract-test",
-        "aoa-sanitized-share"
+        "mode.knowledge.authority-map",
+        "guard.operations.preview",
+        "workflow.operations.local-stack-bringup",
+        "workflow.operations.repository-change",
+        "mode.verification.contract",
+        "mode.knowledge.sanitized-share"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-source-of-truth-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "name": "mode.knowledge.authority-map",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.authority-map",
           "consumes_artifact_tags": [
-            "repository-guidance-source-configuration-schema-manifest-generat",
-            "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-or-source-owned-surfaces-if-any",
-            "active-legacy-provenance-generated-or-decision-surfaces-involved",
-            "owner-repositories-or-stronger-owner-layers-involved",
-            "current-contributor-confusion-points"
+            "authority-conflict"
           ],
           "provides_artifact_tags": [
-            "clearer-source-of-truth-map",
-            "active-current-versus-historical-provenance-generated-placement-",
-            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
-            "note-of-overlaps-or-conflicts",
-            "proposed-or-implemented-document-role-clarification",
-            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
-            "verification-summary"
+            "authority-map"
           ]
         },
         {
-          "name": "aoa-dry-run-first",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "name": "guard.operations.preview",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.preview",
           "consumes_artifact_tags": [
-            "requested-action",
-            "available-preview-or-dry-run-mechanisms",
-            "touched-surfaces",
-            "known-limits-of-the-preview-path"
+            "mutation-request"
           ],
           "provides_artifact_tags": [
-            "dry-run-or-preview-recommendation",
-            "bounded-preview-result-or-plan",
-            "note-on-what-the-preview-does-and-does-not-prove",
-            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
-            "recommendation-for-next-step"
+            "preview-decision"
           ]
         },
         {
-          "name": "aoa-local-stack-bringup",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-local-stack-bringup",
+          "name": "workflow.operations.local-stack-bringup",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.local-stack-bringup",
           "consumes_artifact_tags": [
-            "selected-local-runtime-profile-or-preset",
-            "available-render-truth-surface-for-the-chosen-runtime",
-            "available-readiness-or-doctor-surface-for-the-chosen-runtime",
-            "one-explicit-local-lifecycle-entrypoint",
-            "intended-stop-path-or-cleanup-path"
+            "stack-contract"
           ],
           "provides_artifact_tags": [
-            "rendered-runtime-truth-summary-for-what-would-actually-start",
-            "selector-aware-readiness-verdict-with-named-blockers-or-warnings",
-            "explicit-go-hold-or-confirm-before-launch-recommendation",
-            "started-bounded-local-stack-with-visible-stop-path-or-a-deferred",
-            "concise-runtime-report-with-unresolved-warnings-blockers-or-clea"
+            "stack-result"
           ]
         },
         {
-          "name": "aoa-sanitized-share",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "name": "mode.knowledge.sanitized-share",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.sanitized-share",
           "consumes_artifact_tags": [
-            "material-to-be-shared",
-            "sharing-audience-or-context",
-            "known-sensitive-surfaces",
-            "acceptable-level-of-abstraction"
+            "private-material"
           ],
           "provides_artifact_tags": [
-            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
-            "note-on-what-was-generalized-or-removed",
-            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
-            "canonical-public-safe-output-location-or-reference"
+            "sanitized-derivative"
           ]
         }
       ],
       "decision_points": [
         "Decide which startup surface is actually canonical before touching the environment.",
         "Decide whether a preview seam should happen before a real bring-up or reset.",
-        "Decide whether the current blocker is narrow enough for one bounded `aoa-change-protocol` fix.",
-        "Decide whether `aoa-contract-test` can strengthen trust around the failing path.",
+        "Decide whether the current blocker is narrow enough for one bounded `workflow.operations.repository-change` fix.",
+        "Decide whether `mode.verification.contract` can strengthen trust around the failing path.",
         "Decide whether the route closes with a verified stack, a blocker list, or a safe stop."
       ],
       "handoffs": [
@@ -556,10 +428,10 @@
           "shareable_summary"
         ],
         "required_skill_handoffs": [
-          "aoa-source-of-truth-check",
-          "aoa-dry-run-first",
-          "aoa-local-stack-bringup",
-          "aoa-sanitized-share"
+          "mode.knowledge.authority-map",
+          "guard.operations.preview",
+          "workflow.operations.local-stack-bringup",
+          "mode.knowledge.sanitized-share"
         ],
         "failure_codes": [
           "SOURCE_OF_TRUTH_AMBIGUOUS",
@@ -577,112 +449,65 @@
       "playbook_id": "AOA-P-0021",
       "name": "owner-first-capability-landing",
       "required_skills": [
-        "aoa-source-of-truth-check",
-        "aoa-bounded-context-map",
-        "aoa-approval-gate-check",
-        "aoa-dry-run-first",
-        "aoa-change-protocol",
-        "aoa-contract-test",
-        "aoa-adr-write"
+        "mode.knowledge.authority-map",
+        "mode.engineering-shape.contexts",
+        "guard.operations.approval",
+        "guard.operations.preview",
+        "workflow.operations.repository-change",
+        "mode.verification.contract",
+        "mode.decision.record"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-source-of-truth-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "name": "mode.knowledge.authority-map",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.authority-map",
           "consumes_artifact_tags": [
-            "repository-guidance-source-configuration-schema-manifest-generat",
-            "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-or-source-owned-surfaces-if-any",
-            "active-legacy-provenance-generated-or-decision-surfaces-involved",
-            "owner-repositories-or-stronger-owner-layers-involved",
-            "current-contributor-confusion-points"
+            "authority-conflict"
           ],
           "provides_artifact_tags": [
-            "clearer-source-of-truth-map",
-            "active-current-versus-historical-provenance-generated-placement-",
-            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
-            "note-of-overlaps-or-conflicts",
-            "proposed-or-implemented-document-role-clarification",
-            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
-            "verification-summary"
+            "authority-map"
           ]
         },
         {
-          "name": "aoa-bounded-context-map",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "name": "mode.engineering-shape.contexts",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.engineering-shape.contexts",
           "consumes_artifact_tags": [
-            "target-area-or-subsystem",
-            "current-naming-and-responsibilities",
-            "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms",
-            "owner-layers-stronger-source-surfaces-or-portability-constraints",
-            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
+            "context-pressure"
           ],
           "provides_artifact_tags": [
-            "named-contexts-or-subsystems",
-            "rough-boundary-map",
-            "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary",
-            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
-            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
+            "context-map"
           ]
         },
         {
-          "name": "aoa-approval-gate-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "name": "guard.operations.approval",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.approval",
           "consumes_artifact_tags": [
-            "requested-action",
-            "touched-surfaces",
-            "known-approval-state",
-            "risk-signals",
-            "possible-fallback-or-inspect-only-path"
+            "proposed-effect"
           ],
           "provides_artifact_tags": [
-            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
-            "note-on-whether-explicit-approval-is-needed",
-            "bounded-next-step-recommendation",
-            "report-of-unresolved-authority-assumptions",
-            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+            "approval-decision"
           ]
         },
         {
-          "name": "aoa-change-protocol",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "name": "workflow.operations.repository-change",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.repository-change",
           "consumes_artifact_tags": [
-            "target-goal",
-            "owner-repository-or-route-surface",
-            "touched-files-or-surfaces",
-            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
-            "main-risk",
-            "intended-validation-path",
-            "rollback-idea"
+            "change-request"
           ],
           "provides_artifact_tags": [
-            "explicit-plan",
-            "scoped-change",
-            "named-verification-result",
-            "post-change-route-review-when-source-of-truth-generated-decision",
-            "concise-final-report"
+            "change-result"
           ]
         },
         {
-          "name": "aoa-contract-test",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
+          "name": "mode.verification.contract",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.verification.contract",
           "consumes_artifact_tags": [
-            "boundary-under-review",
-            "producer-and-named-consumer",
-            "expected-inputs-and-outputs",
-            "current-verification-surface",
-            "known-downstream-dependencies",
-            "contract-limits-and-out-of-contract-behavior"
+            "boundary-evidence",
+            "shaped-boundary",
+            "decision-context"
           ],
           "provides_artifact_tags": [
-            "explicit-contract-assumptions",
-            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
-            "verification-notes",
-            "downstream-impact-notes",
-            "contract-limits-that-say-what-the-check-does-not-prove"
+            "contract-package"
           ]
         }
       ],
@@ -730,11 +555,11 @@
           "handoff_record"
         ],
         "required_skill_handoffs": [
-          "aoa-source-of-truth-check",
-          "aoa-bounded-context-map",
-          "aoa-approval-gate-check",
-          "aoa-change-protocol",
-          "aoa-contract-test"
+          "mode.knowledge.authority-map",
+          "mode.engineering-shape.contexts",
+          "guard.operations.approval",
+          "workflow.operations.repository-change",
+          "mode.verification.contract"
         ],
         "failure_codes": [
           "APPROVAL_REQUIRED",
@@ -754,149 +579,83 @@
       "playbook_id": "AOA-P-0022",
       "name": "project-foundation-workspace-landing",
       "required_skills": [
-        "aoa-source-of-truth-check",
-        "aoa-bounded-context-map",
-        "aoa-approval-gate-check",
-        "aoa-dry-run-first",
-        "aoa-change-protocol",
-        "aoa-local-stack-bringup",
-        "aoa-adr-write"
+        "mode.knowledge.authority-map",
+        "mode.engineering-shape.contexts",
+        "guard.operations.approval",
+        "guard.operations.preview",
+        "workflow.operations.repository-change",
+        "workflow.operations.local-stack-bringup",
+        "mode.decision.record"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-source-of-truth-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "name": "mode.knowledge.authority-map",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.authority-map",
           "consumes_artifact_tags": [
-            "repository-guidance-source-configuration-schema-manifest-generat",
-            "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-or-source-owned-surfaces-if-any",
-            "active-legacy-provenance-generated-or-decision-surfaces-involved",
-            "owner-repositories-or-stronger-owner-layers-involved",
-            "current-contributor-confusion-points"
+            "authority-conflict"
           ],
           "provides_artifact_tags": [
-            "clearer-source-of-truth-map",
-            "active-current-versus-historical-provenance-generated-placement-",
-            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
-            "note-of-overlaps-or-conflicts",
-            "proposed-or-implemented-document-role-clarification",
-            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
-            "verification-summary"
+            "authority-map"
           ]
         },
         {
-          "name": "aoa-bounded-context-map",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "name": "mode.engineering-shape.contexts",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.engineering-shape.contexts",
           "consumes_artifact_tags": [
-            "target-area-or-subsystem",
-            "current-naming-and-responsibilities",
-            "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms",
-            "owner-layers-stronger-source-surfaces-or-portability-constraints",
-            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
+            "context-pressure"
           ],
           "provides_artifact_tags": [
-            "named-contexts-or-subsystems",
-            "rough-boundary-map",
-            "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary",
-            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
-            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
+            "context-map"
           ]
         },
         {
-          "name": "aoa-approval-gate-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "name": "guard.operations.approval",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.approval",
           "consumes_artifact_tags": [
-            "requested-action",
-            "touched-surfaces",
-            "known-approval-state",
-            "risk-signals",
-            "possible-fallback-or-inspect-only-path"
+            "proposed-effect"
           ],
           "provides_artifact_tags": [
-            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
-            "note-on-whether-explicit-approval-is-needed",
-            "bounded-next-step-recommendation",
-            "report-of-unresolved-authority-assumptions",
-            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+            "approval-decision"
           ]
         },
         {
-          "name": "aoa-dry-run-first",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "name": "guard.operations.preview",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.preview",
           "consumes_artifact_tags": [
-            "requested-action",
-            "available-preview-or-dry-run-mechanisms",
-            "touched-surfaces",
-            "known-limits-of-the-preview-path"
+            "mutation-request"
           ],
           "provides_artifact_tags": [
-            "dry-run-or-preview-recommendation",
-            "bounded-preview-result-or-plan",
-            "note-on-what-the-preview-does-and-does-not-prove",
-            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
-            "recommendation-for-next-step"
+            "preview-decision"
           ]
         },
         {
-          "name": "aoa-change-protocol",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "name": "workflow.operations.repository-change",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.repository-change",
           "consumes_artifact_tags": [
-            "target-goal",
-            "owner-repository-or-route-surface",
-            "touched-files-or-surfaces",
-            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
-            "main-risk",
-            "intended-validation-path",
-            "rollback-idea"
+            "change-request"
           ],
           "provides_artifact_tags": [
-            "explicit-plan",
-            "scoped-change",
-            "named-verification-result",
-            "post-change-route-review-when-source-of-truth-generated-decision",
-            "concise-final-report"
+            "change-result"
           ]
         },
         {
-          "name": "aoa-local-stack-bringup",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-local-stack-bringup",
+          "name": "workflow.operations.local-stack-bringup",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.local-stack-bringup",
           "consumes_artifact_tags": [
-            "selected-local-runtime-profile-or-preset",
-            "available-render-truth-surface-for-the-chosen-runtime",
-            "available-readiness-or-doctor-surface-for-the-chosen-runtime",
-            "one-explicit-local-lifecycle-entrypoint",
-            "intended-stop-path-or-cleanup-path"
+            "stack-contract"
           ],
           "provides_artifact_tags": [
-            "rendered-runtime-truth-summary-for-what-would-actually-start",
-            "selector-aware-readiness-verdict-with-named-blockers-or-warnings",
-            "explicit-go-hold-or-confirm-before-launch-recommendation",
-            "started-bounded-local-stack-with-visible-stop-path-or-a-deferred",
-            "concise-runtime-report-with-unresolved-warnings-blockers-or-clea"
+            "stack-result"
           ]
         },
         {
-          "name": "aoa-adr-write",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-adr-write",
+          "name": "mode.decision.record",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.decision.record",
           "consumes_artifact_tags": [
-            "decision-to-record",
-            "context-and-problem-statement",
-            "relevant-options-or-alternatives",
-            "chosen-path-and-rationale",
-            "known-consequences-or-tradeoffs",
-            "owner-source-evidence-placement-or-lifecycle-boundaries-that-sha"
+            "accepted-decision"
           ],
           "provides_artifact_tags": [
-            "concise-decision-note-or-adr-draft",
-            "statement-of-rationale",
-            "consequence-notes",
-            "canonical-placement-or-reference-for-the-note",
-            "verification-that-the-note-landed-in-the-expected-decision-surfa",
-            "verification-that-the-note-matches-the-actual-change",
-            "decision-boundary-notes-that-say-what-the-adr-records-and-what-s"
+            "decision-record"
           ]
         }
       ],
@@ -941,13 +700,13 @@
           "handoff_record"
         ],
         "required_skill_handoffs": [
-          "aoa-source-of-truth-check",
-          "aoa-bounded-context-map",
-          "aoa-approval-gate-check",
-          "aoa-dry-run-first",
-          "aoa-change-protocol",
-          "aoa-local-stack-bringup",
-          "aoa-adr-write"
+          "mode.knowledge.authority-map",
+          "mode.engineering-shape.contexts",
+          "guard.operations.approval",
+          "guard.operations.preview",
+          "workflow.operations.repository-change",
+          "workflow.operations.local-stack-bringup",
+          "mode.decision.record"
         ],
         "failure_codes": [
           "APPROVAL_REQUIRED",
@@ -968,111 +727,64 @@
       "playbook_id": "AOA-P-0023",
       "name": "closeout-owner-follow-through-continuity",
       "required_skills": [
-        "aoa-session-donor-harvest",
-        "aoa-quest-harvest",
-        "aoa-source-of-truth-check",
-        "aoa-bounded-context-map",
-        "aoa-approval-gate-check",
-        "aoa-dry-run-first",
-        "aoa-change-protocol",
-        "aoa-adr-write"
+        "mode.session-harvest.extract",
+        "mode.session-harvest.promote",
+        "mode.knowledge.authority-map",
+        "mode.engineering-shape.contexts",
+        "guard.operations.approval",
+        "guard.operations.preview",
+        "workflow.operations.repository-change",
+        "mode.decision.record"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-source-of-truth-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "name": "mode.knowledge.authority-map",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.authority-map",
           "consumes_artifact_tags": [
-            "repository-guidance-source-configuration-schema-manifest-generat",
-            "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-or-source-owned-surfaces-if-any",
-            "active-legacy-provenance-generated-or-decision-surfaces-involved",
-            "owner-repositories-or-stronger-owner-layers-involved",
-            "current-contributor-confusion-points"
+            "authority-conflict"
           ],
           "provides_artifact_tags": [
-            "clearer-source-of-truth-map",
-            "active-current-versus-historical-provenance-generated-placement-",
-            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
-            "note-of-overlaps-or-conflicts",
-            "proposed-or-implemented-document-role-clarification",
-            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
-            "verification-summary"
+            "authority-map"
           ]
         },
         {
-          "name": "aoa-bounded-context-map",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "name": "mode.engineering-shape.contexts",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.engineering-shape.contexts",
           "consumes_artifact_tags": [
-            "target-area-or-subsystem",
-            "current-naming-and-responsibilities",
-            "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms",
-            "owner-layers-stronger-source-surfaces-or-portability-constraints",
-            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
+            "context-pressure"
           ],
           "provides_artifact_tags": [
-            "named-contexts-or-subsystems",
-            "rough-boundary-map",
-            "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary",
-            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
-            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
+            "context-map"
           ]
         },
         {
-          "name": "aoa-approval-gate-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-approval-gate-check",
+          "name": "guard.operations.approval",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.approval",
           "consumes_artifact_tags": [
-            "requested-action",
-            "touched-surfaces",
-            "known-approval-state",
-            "risk-signals",
-            "possible-fallback-or-inspect-only-path"
+            "proposed-effect"
           ],
           "provides_artifact_tags": [
-            "classification-of-the-action-safe-to-proceed-explicit-approval-r",
-            "note-on-whether-explicit-approval-is-needed",
-            "bounded-next-step-recommendation",
-            "report-of-unresolved-authority-assumptions",
-            "a-reviewable-gate-decision-that-can-be-passed-to-the-next-workfl"
+            "approval-decision"
           ]
         },
         {
-          "name": "aoa-dry-run-first",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-dry-run-first",
+          "name": "guard.operations.preview",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/guard.operations.preview",
           "consumes_artifact_tags": [
-            "requested-action",
-            "available-preview-or-dry-run-mechanisms",
-            "touched-surfaces",
-            "known-limits-of-the-preview-path"
+            "mutation-request"
           ],
           "provides_artifact_tags": [
-            "dry-run-or-preview-recommendation",
-            "bounded-preview-result-or-plan",
-            "note-on-what-the-preview-does-and-does-not-prove",
-            "explicit-confirmation-request-for-the-mutating-step-when-the-pre",
-            "recommendation-for-next-step"
+            "preview-decision"
           ]
         },
         {
-          "name": "aoa-change-protocol",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "name": "workflow.operations.repository-change",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.repository-change",
           "consumes_artifact_tags": [
-            "target-goal",
-            "owner-repository-or-route-surface",
-            "touched-files-or-surfaces",
-            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
-            "main-risk",
-            "intended-validation-path",
-            "rollback-idea"
+            "change-request"
           ],
           "provides_artifact_tags": [
-            "explicit-plan",
-            "scoped-change",
-            "named-verification-result",
-            "post-change-route-review-when-source-of-truth-generated-decision",
-            "concise-final-report"
+            "change-result"
           ]
         }
       ],
@@ -1117,11 +829,11 @@
           "residual_handoff_record"
         ],
         "required_skill_handoffs": [
-          "aoa-source-of-truth-check",
-          "aoa-bounded-context-map",
-          "aoa-approval-gate-check",
-          "aoa-dry-run-first",
-          "aoa-change-protocol"
+          "mode.knowledge.authority-map",
+          "mode.engineering-shape.contexts",
+          "guard.operations.approval",
+          "guard.operations.preview",
+          "workflow.operations.repository-change"
         ],
         "failure_codes": [
           "APPROVAL_REQUIRED",
@@ -1141,53 +853,36 @@
       "playbook_id": "AOA-P-0015",
       "name": "source-truth-then-share",
       "required_skills": [
-        "aoa-source-of-truth-check",
-        "aoa-adr-write",
-        "aoa-sanitized-share"
+        "mode.knowledge.authority-map",
+        "mode.decision.record",
+        "mode.knowledge.sanitized-share"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-source-of-truth-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "name": "mode.knowledge.authority-map",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.authority-map",
           "consumes_artifact_tags": [
-            "repository-guidance-source-configuration-schema-manifest-generat",
-            "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-or-source-owned-surfaces-if-any",
-            "active-legacy-provenance-generated-or-decision-surfaces-involved",
-            "owner-repositories-or-stronger-owner-layers-involved",
-            "current-contributor-confusion-points"
+            "authority-conflict"
           ],
           "provides_artifact_tags": [
-            "clearer-source-of-truth-map",
-            "active-current-versus-historical-provenance-generated-placement-",
-            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
-            "note-of-overlaps-or-conflicts",
-            "proposed-or-implemented-document-role-clarification",
-            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
-            "verification-summary"
+            "authority-map"
           ]
         },
         {
-          "name": "aoa-sanitized-share",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "name": "mode.knowledge.sanitized-share",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.sanitized-share",
           "consumes_artifact_tags": [
-            "material-to-be-shared",
-            "sharing-audience-or-context",
-            "known-sensitive-surfaces",
-            "acceptable-level-of-abstraction"
+            "private-material"
           ],
           "provides_artifact_tags": [
-            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
-            "note-on-what-was-generalized-or-removed",
-            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
-            "canonical-public-safe-output-location-or-reference"
+            "sanitized-derivative"
           ]
         }
       ],
       "decision_points": [
         "Decide which file is authoritative for the target concern.",
         "Decide which summaries should shrink into link-driven entrypoints rather than duplicate canon.",
-        "Decide whether the change needs a durable documentation decision through `aoa-adr-write`.",
+        "Decide whether the change needs a durable documentation decision through `mode.decision.record`.",
         "Decide what must be redacted before the result can travel.",
         "Decide whether the route closes with a publishable summary or should hand off for later review."
       ],
@@ -1217,8 +912,8 @@
           "shareable_summary"
         ],
         "required_skill_handoffs": [
-          "aoa-source-of-truth-check",
-          "aoa-sanitized-share"
+          "mode.knowledge.authority-map",
+          "mode.knowledge.sanitized-share"
         ],
         "failure_codes": [
           "SOURCE_OF_TRUTH_AMBIGUOUS",
@@ -1233,93 +928,55 @@
       "playbook_id": "AOA-P-0016",
       "name": "atm10-bounded-change",
       "required_skills": [
-        "aoa-approval-gate-check",
-        "atm10-source-of-truth-check",
-        "aoa-dry-run-first",
-        "atm10-change-protocol",
-        "aoa-contract-test",
-        "aoa-sanitized-share"
+        "guard.operations.approval",
+        "adapter.atm10.authority-map",
+        "guard.operations.preview",
+        "adapter.atm10.repository-change",
+        "mode.verification.contract",
+        "mode.knowledge.sanitized-share"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "atm10-source-of-truth-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#atm10-source-of-truth-check",
+          "name": "adapter.atm10.authority-map",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/adapter.atm10.authority-map",
           "consumes_artifact_tags": [
-            "repo-relative-docs-or-guidance-surfaces",
-            "local-canonical-file-candidates",
-            "local-review-rules-for-doc-changes",
-            "contributor-confusion-points",
-            "atm10-public-surface-roles-from-docs-source-of-truth-md",
-            "affected-active-archived-generated-export-local-only-internal-or",
-            "candidate-validation-path-such-as-public-doc-hardening-tests-nes",
-            "base-skill-reference"
+            "atm10-authority-question"
           ],
           "provides_artifact_tags": [
-            "local-source-of-truth-map",
-            "active-current-versus-archived-generated-export-local-only-inter",
-            "bounded-clarification-note",
-            "repo-relative-canonical-file-pattern",
-            "lightweight-entrypoint-guidance-when-a-summary-doc-should-route-",
-            "pointer-to-the-family-review-surface",
-            "verification-summary-for-the-local-docs-surface"
+            "atm10-authority-map"
           ]
         },
         {
-          "name": "atm10-change-protocol",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#atm10-change-protocol",
+          "name": "adapter.atm10.repository-change",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/adapter.atm10.repository-change",
           "consumes_artifact_tags": [
-            "target-goal-and-touched-local-surface",
-            "atm10-route-stack-such-as-agents-md-nearest-nested-agents-md-doc",
-            "repo-relative-source-of-truth-files-generated-export-companions-",
-            "repo-relative-commands-or-checks-including-whether-they-are-full",
-            "local-approval-or-review-rules",
-            "local-dry-run-report-only-rollback-or-recovery-posture",
-            "base-skill-reference"
+            "atm10-change-request",
+            "atm10-authority-map"
           ],
           "provides_artifact_tags": [
-            "bounded-local-change-plan",
-            "route-card-and-source-of-truth-evidence-inspected",
-            "repo-relative-command-or-path-sketch-with-the-smallest-honest-ve",
-            "explicit-stop-line-for-downstream-authority-operator-safety-serv",
-            "rollback-or-recovery-anchor-for-the-touched-atm10-surface",
-            "pointer-to-the-family-review-surface",
-            "verification-note-for-the-local-repo-surface",
-            "concise-handoff-on-what-stays-downstream-and-explicit"
+            "atm10-change-context"
           ]
         },
         {
-          "name": "aoa-contract-test",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
+          "name": "mode.verification.contract",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.verification.contract",
           "consumes_artifact_tags": [
-            "boundary-under-review",
-            "producer-and-named-consumer",
-            "expected-inputs-and-outputs",
-            "current-verification-surface",
-            "known-downstream-dependencies",
-            "contract-limits-and-out-of-contract-behavior"
+            "boundary-evidence",
+            "shaped-boundary",
+            "decision-context"
           ],
           "provides_artifact_tags": [
-            "explicit-contract-assumptions",
-            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
-            "verification-notes",
-            "downstream-impact-notes",
-            "contract-limits-that-say-what-the-check-does-not-prove"
+            "contract-package"
           ]
         },
         {
-          "name": "aoa-sanitized-share",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-sanitized-share",
+          "name": "mode.knowledge.sanitized-share",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.sanitized-share",
           "consumes_artifact_tags": [
-            "material-to-be-shared",
-            "sharing-audience-or-context",
-            "known-sensitive-surfaces",
-            "acceptable-level-of-abstraction"
+            "private-material"
           ],
           "provides_artifact_tags": [
-            "sanitized-shareable-artifact-abstract-summary-or-recommendation-",
-            "note-on-what-was-generalized-or-removed",
-            "warning-about-any-remaining-ambiguity-or-sensitive-edge",
-            "canonical-public-safe-output-location-or-reference"
+            "sanitized-derivative"
           ]
         }
       ],
@@ -1360,10 +1017,10 @@
           "shareable_summary"
         ],
         "required_skill_handoffs": [
-          "atm10-source-of-truth-check",
-          "atm10-change-protocol",
-          "aoa-contract-test",
-          "aoa-sanitized-share"
+          "adapter.atm10.authority-map",
+          "adapter.atm10.repository-change",
+          "mode.verification.contract",
+          "mode.knowledge.sanitized-share"
         ],
         "failure_codes": [
           "SOURCE_OF_TRUTH_AMBIGUOUS",
@@ -1379,94 +1036,55 @@
       "playbook_id": "AOA-P-0017",
       "name": "split-wave-cross-repo-rollout",
       "required_skills": [
-        "aoa-source-of-truth-check",
-        "aoa-bounded-context-map",
-        "aoa-approval-gate-check",
-        "aoa-dry-run-first",
-        "aoa-change-protocol",
-        "aoa-contract-test",
-        "aoa-adr-write"
+        "mode.knowledge.authority-map",
+        "mode.engineering-shape.contexts",
+        "guard.operations.approval",
+        "guard.operations.preview",
+        "workflow.operations.repository-change",
+        "mode.verification.contract",
+        "mode.decision.record"
       ],
       "upstream_skill_handoffs": [
         {
-          "name": "aoa-source-of-truth-check",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-source-of-truth-check",
+          "name": "mode.knowledge.authority-map",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.knowledge.authority-map",
           "consumes_artifact_tags": [
-            "repository-guidance-source-configuration-schema-manifest-generat",
-            "target-area-of-ambiguity-or-overlap",
-            "known-canonical-files-or-source-owned-surfaces-if-any",
-            "active-legacy-provenance-generated-or-decision-surfaces-involved",
-            "owner-repositories-or-stronger-owner-layers-involved",
-            "current-contributor-confusion-points"
+            "authority-conflict"
           ],
           "provides_artifact_tags": [
-            "clearer-source-of-truth-map",
-            "active-current-versus-historical-provenance-generated-placement-",
-            "fan-out-map-when-one-source-feeds-multiple-downstream-consumers",
-            "note-of-overlaps-or-conflicts",
-            "proposed-or-implemented-document-role-clarification",
-            "lightweight-snapshot-guidance-for-entrypoint-docs-when-canonical",
-            "verification-summary"
+            "authority-map"
           ]
         },
         {
-          "name": "aoa-bounded-context-map",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-bounded-context-map",
+          "name": "mode.engineering-shape.contexts",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.engineering-shape.contexts",
           "consumes_artifact_tags": [
-            "target-area-or-subsystem",
-            "current-naming-and-responsibilities",
-            "known-neighboring-contexts",
-            "ambiguous-or-overloaded-terms",
-            "owner-layers-stronger-source-surfaces-or-portability-constraints",
-            "active-boundary-lenses-when-the-ambiguity-spans-several-kinds-of"
+            "context-pressure"
           ],
           "provides_artifact_tags": [
-            "named-contexts-or-subsystems",
-            "rough-boundary-map",
-            "interface-notes-between-contexts",
-            "ambiguity-notes-and-recommended-vocabulary",
-            "owner-split-stop-line-and-portable-versus-integration-vocabulary",
-            "selected-lens-notes-that-explain-which-kinds-of-boundary-matter-"
+            "context-map"
           ]
         },
         {
-          "name": "aoa-change-protocol",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-change-protocol",
+          "name": "workflow.operations.repository-change",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/workflow.operations.repository-change",
           "consumes_artifact_tags": [
-            "target-goal",
-            "owner-repository-or-route-surface",
-            "touched-files-or-surfaces",
-            "source-of-truth-or-route-law-surfaces-that-constrain-the-change",
-            "optional-prior-session-evidence-when-the-request-asks-how-this-r",
-            "main-risk",
-            "intended-validation-path",
-            "rollback-idea"
+            "change-request"
           ],
           "provides_artifact_tags": [
-            "explicit-plan",
-            "scoped-change",
-            "named-verification-result",
-            "post-change-route-review-when-source-of-truth-generated-decision",
-            "concise-final-report"
+            "change-result"
           ]
         },
         {
-          "name": "aoa-contract-test",
-          "ref": "../aoa-skills/generated/skill_handoff_contracts.json#aoa-contract-test",
+          "name": "mode.verification.contract",
+          "ref": "../aoa-skills/generated/capability_graph.json#nodes/mode.verification.contract",
           "consumes_artifact_tags": [
-            "boundary-under-review",
-            "producer-and-named-consumer",
-            "expected-inputs-and-outputs",
-            "current-verification-surface",
-            "known-downstream-dependencies",
-            "contract-limits-and-out-of-contract-behavior"
+            "boundary-evidence",
+            "shaped-boundary",
+            "decision-context"
           ],
           "provides_artifact_tags": [
-            "explicit-contract-assumptions",
-            "tests-fixture-checks-schema-checks-smoke-summaries-or-structured",
-            "verification-notes",
-            "downstream-impact-notes",
-            "contract-limits-that-say-what-the-check-does-not-prove"
+            "contract-package"
           ]
         }
       ],
@@ -1511,10 +1129,10 @@
           "handoff_record"
         ],
         "required_skill_handoffs": [
-          "aoa-source-of-truth-check",
-          "aoa-bounded-context-map",
-          "aoa-change-protocol",
-          "aoa-contract-test"
+          "mode.knowledge.authority-map",
+          "mode.engineering-shape.contexts",
+          "workflow.operations.repository-change",
+          "mode.verification.contract"
         ],
         "failure_codes": [
           "SOURCE_OF_TRUTH_AMBIGUOUS",

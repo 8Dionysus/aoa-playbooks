@@ -101,12 +101,12 @@ well enough to separate useful source material from technical trash.
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-invariant-coverage-audit`
-- `aoa-checkpoint-closeout-bridge`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.verification.coverage-audit`
+- `skill.aoa-checkpoint-closeout-bridge`
 
 These skills support reviewable planting and closure. They do not create a
 hidden importer, merge authority, memory authority, or stats authority.

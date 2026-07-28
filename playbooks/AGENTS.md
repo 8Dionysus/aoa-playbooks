@@ -49,7 +49,8 @@ Use exact neighboring references instead:
 
 - agent names should resolve in `aoa-agents`
 - eval anchors should resolve in `aoa-evals`
-- federation-ready `required_skills` should resolve in `aoa-skills`
+- the compatibility-named `required_skills` list carries typed capability IDs
+  that must resolve in `aoa-skills/generated/capability_graph.json`
 - `memo_contract_refs` and `memo_writeback_targets` should stay inside `aoa-memo` contracts
 
 Composition-owned adjuncts such as failure codes, subagent recipe refs, automation seed refs, and bounded playbook-to-playbook followups belong in `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json` and the derived `generated/playbook_*` composition surfaces, not in ad hoc prose or runtime-only notes.

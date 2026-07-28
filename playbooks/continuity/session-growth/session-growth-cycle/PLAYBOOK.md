@@ -26,18 +26,18 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-checkpoint-closeout-bridge
-  - aoa-session-donor-harvest
-  - aoa-session-self-diagnose
-  - aoa-session-self-repair
-  - aoa-session-progression-lift
-  - aoa-quest-harvest
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
+  - skill.aoa-checkpoint-closeout-bridge
+  - mode.session-harvest.extract
+  - mode.session-recovery.diagnose
+  - mode.session-recovery.repair
+  - skill.aoa-session-progression-lift
+  - mode.session-harvest.promote
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -179,18 +179,18 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-checkpoint-closeout-bridge`
-- `aoa-session-donor-harvest`
-- `aoa-session-self-diagnose`
-- `aoa-session-self-repair`
-- `aoa-session-progression-lift`
-- `aoa-quest-harvest`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
+- `skill.aoa-checkpoint-closeout-bridge`
+- `mode.session-harvest.extract`
+- `mode.session-recovery.diagnose`
+- `mode.session-recovery.repair`
+- `skill.aoa-session-progression-lift`
+- `mode.session-harvest.promote`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
 
 ## Decision points
 
@@ -312,24 +312,24 @@ proof, or stats authority into the playbook layer.
 ## Canonical route
 
 1. Start from one reviewed session artifact, keep checkpoint carry explicit, and
-   use `aoa-checkpoint-closeout-bridge`, `aoa-source-of-truth-check`, and
-   `aoa-bounded-context-map` to name the current lineage boundary before
+   use `skill.aoa-checkpoint-closeout-bridge`, `mode.knowledge.authority-map`, and
+   `mode.engineering-shape.contexts` to name the current lineage boundary before
    mutation begins.
-2. Use `aoa-session-donor-harvest` to decide whether the route yields a bounded
+2. Use `mode.session-harvest.extract` to decide whether the route yields a bounded
    reviewed candidate, a dropped branch, or a superseded branch, and do not let
    `candidate_ref` appear before reviewed harvest exists.
 3. Decide whether the next honest move is diagnosis, repair, progression, or
-   quest follow-through, and use `aoa-session-self-diagnose`,
-   `aoa-session-self-repair`, `aoa-session-progression-lift`, or
-   `aoa-quest-harvest` only as far as the current reviewed route actually
+   quest follow-through, and use `mode.session-recovery.diagnose`,
+   `mode.session-recovery.repair`, `skill.aoa-session-progression-lift`, or
+   `mode.session-harvest.promote` only as far as the current reviewed route actually
    requires.
-4. Use `aoa-approval-gate-check` and `aoa-dry-run-first` before any seed-stage
+4. Use `guard.operations.approval` and `guard.operations.preview` before any seed-stage
    or owner-layer mutation so the route does not widen by convenience.
 5. Stage `seed_trace` in `Dionysus` only when the reviewed candidate survives
    and seed staging is the honest next owner move; otherwise keep the route
    smaller.
-6. Land the current owner artifact with `aoa-change-protocol` and
-   `aoa-contract-test` only in the owner repo that the reviewed route actually
+6. Land the current owner artifact with `workflow.operations.repository-change` and
+   `mode.verification.contract` only in the owner repo that the reviewed route actually
    supports.
 7. Run proof only where the route needs it, keep memory writeback subordinate to
    the strongest available lineage refs, and refresh stats only from reviewed

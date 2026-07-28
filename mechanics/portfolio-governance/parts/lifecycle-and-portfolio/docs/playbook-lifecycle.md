@@ -70,7 +70,7 @@ This state does not require every playbook to touch every neighbor.
 It requires the playbook to be honest about the neighbors it does touch.
 
 For the current wave, a federation-checked playbook should expose:
-- `required_skills`
+- `required_skills` (compatibility field carrying typed capability graph IDs)
 - `memo_contract_refs`
 - `memo_writeback_targets`
 

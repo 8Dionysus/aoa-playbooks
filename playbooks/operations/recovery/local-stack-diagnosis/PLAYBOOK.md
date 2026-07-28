@@ -22,12 +22,12 @@ required_skill_families:
   - verification
   - sharing
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-dry-run-first
-  - aoa-local-stack-bringup
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-sanitized-share
+  - mode.knowledge.authority-map
+  - guard.operations.preview
+  - workflow.operations.local-stack-bringup
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - mode.knowledge.sanitized-share
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: safe_stop
@@ -107,19 +107,19 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-dry-run-first`
-- `aoa-local-stack-bringup`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-sanitized-share`
+- `mode.knowledge.authority-map`
+- `guard.operations.preview`
+- `workflow.operations.local-stack-bringup`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.knowledge.sanitized-share`
 
 ## Decision points
 
 1. Decide which startup surface is actually canonical before touching the environment.
 2. Decide whether a preview seam should happen before a real bring-up or reset.
-3. Decide whether the current blocker is narrow enough for one bounded `aoa-change-protocol` fix.
-4. Decide whether `aoa-contract-test` can strengthen trust around the failing path.
+3. Decide whether the current blocker is narrow enough for one bounded `workflow.operations.repository-change` fix.
+4. Decide whether `mode.verification.contract` can strengthen trust around the failing path.
 5. Decide whether the route closes with a verified stack, a blocker list, or a safe stop.
 
 ## Handoffs
@@ -180,10 +180,10 @@ Use `aoa-tool-trajectory-discipline` to check that diagnosis steps stayed review
 
 ## Canonical route
 
-1. Use `aoa-source-of-truth-check` to locate the authoritative startup and dependency docs.
-2. Use `aoa-dry-run-first` when a bounded preview exists for reset, startup, or migration steps.
-3. Use `aoa-local-stack-bringup` to attempt the smallest viable bring-up.
-4. If the blocker is now isolated, use `aoa-change-protocol` for one bounded repair.
-5. Use `aoa-contract-test` when a boundary check will strengthen trust around the failing path.
-6. Use `aoa-sanitized-share` to prepare a concise blocker or recovery summary when the result must travel.
+1. Use `mode.knowledge.authority-map` to locate the authoritative startup and dependency docs.
+2. Use `guard.operations.preview` when a bounded preview exists for reset, startup, or migration steps.
+3. Use `workflow.operations.local-stack-bringup` to attempt the smallest viable bring-up.
+4. If the blocker is now isolated, use `workflow.operations.repository-change` for one bounded repair.
+5. Use `mode.verification.contract` when a boundary check will strengthen trust around the failing path.
+6. Use `mode.knowledge.sanitized-share` to prepare a concise blocker or recovery summary when the result must travel.
 7. If canon, blocker scope, or verification integrity is lost, return to the last artifact anchor and re-enter through `previous_phase` or `safe_stop`.

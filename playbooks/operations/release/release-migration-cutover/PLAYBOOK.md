@@ -26,14 +26,14 @@ required_skill_families:
   - review
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-adr-write
-  - aoa-sanitized-share
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - mode.decision.record
+  - mode.knowledge.sanitized-share
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -132,14 +132,14 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-adr-write`
-- `aoa-sanitized-share`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.decision.record`
+- `mode.knowledge.sanitized-share`
 
 ## Decision points
 
@@ -216,11 +216,11 @@ The playbook does not create a new memory-object kind and does not move memo tax
 
 ## Canonical route
 
-1. Map the current and target authority surfaces with `aoa-source-of-truth-check` and `aoa-bounded-context-map`.
+1. Map the current and target authority surfaces with `mode.knowledge.authority-map` and `mode.engineering-shape.contexts`.
 2. Define the freeze window, authority switch boundary, downstream handoff boundary, and bounded `cutover_plan` before mutation begins.
-3. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to make the go-no-go gate, inspect-first posture, and reversal path explicit.
-4. Apply the bounded `cutover_change_set` through `aoa-change-protocol` once the cutover window opens.
-5. Tighten cutover confidence with `aoa-contract-test` and record any durable authority or interface decision through `aoa-adr-write`.
+3. Use `guard.operations.approval` and `guard.operations.preview` to make the go-no-go gate, inspect-first posture, and reversal path explicit.
+4. Apply the bounded `cutover_change_set` through `workflow.operations.repository-change` once the cutover window opens.
+5. Tighten cutover confidence with `mode.verification.contract` and record any durable authority or interface decision through `mode.decision.record`.
 6. Run the named `post_cutover_verification_pack` against the target authority surface and decide whether the switch is confirmed or reversed.
 7. If authority clarity or verification closure is lost, return to the last valid `cutover_plan`, `cutover_decision`, or `post_cutover_verification_pack` anchor and re-enter through `previous_phase`, `review_gate`, `rollback_gate`, or `safe_stop`.
-8. Close with the final `cutover_decision` and provenance-safe `handoff_record`, and use `aoa-sanitized-share` when the downstream handoff must travel outside the immediate cutover owners.
+8. Close with the final `cutover_decision` and provenance-safe `handoff_record`, and use `mode.knowledge.sanitized-share` when the downstream handoff must travel outside the immediate cutover owners.

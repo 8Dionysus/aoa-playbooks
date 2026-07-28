@@ -175,34 +175,60 @@ class ValidatePlaybooksReturnContractTests(unittest.TestCase):
 
 
 class ValidatePlaybooksFederationEligibilityTests(unittest.TestCase):
-    def test_project_overlay_federation_ready_counts_as_full_federation_readiness(self) -> None:
-        skill = {
-            "lineage_state": "published",
-            "readiness_reconciliation": "project_overlay_federation_ready",
+    def test_executable_capability_requires_typed_abi_binding_and_owner(self) -> None:
+        capability = {
+            "kind": "workflow",
+            "contract_level": "executable",
+            "abi": {},
+            "binding": {},
+            "owner": {},
+            "lifecycle": {"state": "active"},
         }
 
         self.assertTrue(
-            validate_playbooks.skill_is_federation_eligible(skill, playbook_status="active")
+            validate_playbooks.capability_is_federation_eligible(
+                capability,
+                playbook_status="active",
+            )
+        )
+        capability.pop("abi")
+        self.assertFalse(
+            validate_playbooks.capability_is_federation_eligible(
+                capability,
+                playbook_status="active",
+            )
         )
 
-    def test_experimental_playbooks_may_use_published_governance_blocked_skills(self) -> None:
-        skill = {
-            "lineage_state": "published",
-            "readiness_reconciliation": "eval_ready_but_governance_blocked",
+    def test_navigation_skill_does_not_invent_an_executable_abi(self) -> None:
+        capability = {
+            "kind": "skill",
+            "contract_level": "navigation",
+            "binding": {},
+            "owner": {},
+            "lifecycle": {"state": "candidate"},
         }
 
         self.assertTrue(
-            validate_playbooks.skill_is_federation_eligible(skill, playbook_status="experimental")
+            validate_playbooks.capability_is_federation_eligible(
+                capability,
+                playbook_status="experimental",
+            )
         )
 
-    def test_nonexperimental_playbooks_require_full_federation_readiness(self) -> None:
-        skill = {
-            "lineage_state": "published",
-            "readiness_reconciliation": "eval_ready_but_governance_blocked",
+    def test_retired_capability_is_not_federation_eligible(self) -> None:
+        capability = {
+            "kind": "skill",
+            "contract_level": "navigation",
+            "binding": {},
+            "owner": {},
+            "lifecycle": {"state": "retired"},
         }
 
         self.assertFalse(
-            validate_playbooks.skill_is_federation_eligible(skill, playbook_status="active")
+            validate_playbooks.capability_is_federation_eligible(
+                capability,
+                playbook_status="experimental",
+            )
         )
 
     def test_memo_contract_path_accepts_current_ref_via_legacy_dependency_alias(self) -> None:

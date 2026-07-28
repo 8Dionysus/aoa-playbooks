@@ -24,11 +24,11 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -120,11 +120,11 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
 
 ## Decision points
 
@@ -198,10 +198,10 @@ The playbook does not create a new memory-object kind and does not move memo tax
 ## Canonical route
 
 1. Map the owning repositories and separate source-authored surfaces from generated dependents.
-2. Use `aoa-source-of-truth-check` and `aoa-bounded-context-map` to confirm that repository boundaries are explicit.
+2. Use `mode.knowledge.authority-map` and `mode.engineering-shape.contexts` to confirm that repository boundaries are explicit.
 3. Decide rollout order, stop conditions, and approval posture before mutation begins.
-4. Use `aoa-dry-run-first` when downstream impact or generated-surface sync is still ambiguous.
-5. Execute each bounded repo slice with `aoa-change-protocol` and keep the repo change set reviewable.
+4. Use `guard.operations.preview` when downstream impact or generated-surface sync is still ambiguous.
+5. Execute each bounded repo slice with `workflow.operations.repository-change` and keep the repo change set reviewable.
 6. Validate the current slice before continuing to the next repository and record the rollout decision.
 7. If boundary integrity is lost, return to the last valid boundary anchor and re-enter through `previous_phase`, `review_gate`, or `safe_stop`.
 8. Close the route with a validation pack and provenance-safe handoff record for the next wave or final review.

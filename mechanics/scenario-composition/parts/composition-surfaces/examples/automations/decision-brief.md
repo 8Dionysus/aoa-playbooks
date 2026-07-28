@@ -6,5 +6,5 @@ Use when notable merges should leave a durable decision note and a concise human
 
 Suggested seed:
 
-- capture the decision through `aoa-adr-write`
-- publish the bounded summary through `aoa-sanitized-share`
+- capture the decision through `mode.decision.record`
+- publish the bounded summary through `mode.knowledge.sanitized-share`

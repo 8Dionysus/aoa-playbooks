@@ -27,16 +27,16 @@ required_skill_families:
   - verification
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-safe-infra-change
-  - aoa-local-stack-bringup
-  - aoa-contract-test
-  - aoa-adr-write
-  - aoa-sanitized-share
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - workflow.operations.safe-infra-change
+  - workflow.operations.local-stack-bringup
+  - mode.verification.contract
+  - mode.decision.record
+  - mode.knowledge.sanitized-share
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -135,16 +135,16 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-safe-infra-change`
-- `aoa-local-stack-bringup`
-- `aoa-contract-test`
-- `aoa-adr-write`
-- `aoa-sanitized-share`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `workflow.operations.safe-infra-change`
+- `workflow.operations.local-stack-bringup`
+- `mode.verification.contract`
+- `mode.decision.record`
+- `mode.knowledge.sanitized-share`
 
 ## Decision points
 
@@ -222,11 +222,11 @@ The playbook does not create a new memory-object kind and does not move memo tax
 
 ## Canonical route
 
-1. Map the incident surface, affected authority surfaces, and bounded blast radius with `aoa-source-of-truth-check` and `aoa-bounded-context-map`.
+1. Map the incident surface, affected authority surfaces, and bounded blast radius with `mode.knowledge.authority-map` and `mode.engineering-shape.contexts`.
 2. Define the bounded `stabilization_plan`, the rollback-or-degraded path, and the restored-or-degraded stop condition before mutation begins.
-3. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to make authority, inspect-first posture, and recovery risk explicit.
-4. Apply the smallest stabilization or reversal step through `aoa-change-protocol` and `aoa-safe-infra-change`.
-5. Use `aoa-local-stack-bringup` or `aoa-contract-test` to build the `recovery_verification_pack` for the affected surface.
-6. Record any durable recovery decision through `aoa-adr-write` and classify closure as `restored`, `degraded-with-handoff`, `rollback-complete`, or `review-stop`.
+3. Use `guard.operations.approval` and `guard.operations.preview` to make authority, inspect-first posture, and recovery risk explicit.
+4. Apply the smallest stabilization or reversal step through `workflow.operations.repository-change` and `workflow.operations.safe-infra-change`.
+5. Use `workflow.operations.local-stack-bringup` or `mode.verification.contract` to build the `recovery_verification_pack` for the affected surface.
+6. Record any durable recovery decision through `mode.decision.record` and classify closure as `restored`, `degraded-with-handoff`, `rollback-complete`, or `review-stop`.
 7. If incident clarity or verification closure is lost, return to the last valid `incident_map`, `stabilization_plan`, `recovery_decision`, or `recovery_verification_pack` anchor and re-enter through `previous_phase`, `review_gate`, `rollback_gate`, or `safe_stop`.
-8. Close with the final `recovery_decision` and provenance-safe `handoff_record`, and use `aoa-sanitized-share` when the remaining consumer or remediation handoff must travel beyond the immediate recovery owners.
+8. Close with the final `recovery_decision` and provenance-safe `handoff_record`, and use `mode.knowledge.sanitized-share` when the remaining consumer or remediation handoff must travel beyond the immediate recovery owners.

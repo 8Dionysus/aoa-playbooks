@@ -25,13 +25,13 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-adr-write
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -105,7 +105,7 @@ Use this playbook when:
 - the route is larger than one bounded skill or one ordinary single-repo change
 
 Do not use this playbook when:
-- the candidate still needs owner-layer routing or final promotion verdict through `aoa-session-donor-harvest` or `aoa-quest-harvest`
+- the candidate still needs owner-layer routing or final promotion verdict through `mode.session-harvest.extract` or `mode.session-harvest.promote`
 - source-owned truth already lives in the owner repo and the remaining work is just `AOA-P-0010` or `AOA-P-0017`
 - the task is mainly documentation authority cleanup or sanitized outward sharing, which belongs in `AOA-P-0015`
 - a validator failure or live incident is already the route anchor, which belongs in `AOA-P-0018` or `AOA-P-0020`
@@ -129,13 +129,13 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-adr-write`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -215,11 +215,11 @@ The playbook does not create a new memory-object kind and does not move skill, t
 
 ## Canonical route
 
-1. Start from the reviewed candidate pack or staged seed and confirm the owner repo plus neighboring boundaries with `aoa-source-of-truth-check` and `aoa-bounded-context-map`.
+1. Start from the reviewed candidate pack or staged seed and confirm the owner repo plus neighboring boundaries with `mode.knowledge.authority-map` and `mode.engineering-shape.contexts`.
 2. Record whether the honest first landing is scaffold, pinned lineage, or direct canon, and keep unlanded variants staged rather than leaking them downstream.
-3. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to make write scope, install surfaces, and stop conditions explicit before mutation begins.
-4. Land the capability in the owner repo through `aoa-change-protocol` and capture any durable boundary or lineage decision through `aoa-adr-write`.
+3. Use `guard.operations.approval` and `guard.operations.preview` to make write scope, install surfaces, and stop conditions explicit before mutation begins.
+4. Land the capability in the owner repo through `workflow.operations.repository-change` and capture any durable boundary or lineage decision through `mode.decision.record`.
 5. If the owner landing introduces pending lineage debt, complete the smallest required decomposition or pinning step before wider rollout.
-6. Build the `validation_pack` for the owner repo and tighten interface or install parity with `aoa-contract-test` before the route widens.
+6. Build the `validation_pack` for the owner repo and tighten interface or install parity with `mode.verification.contract` before the route widens.
 7. Roll out to dependent repos and `/srv/AbyssOS` only after owner truth is explicit, and keep the `rollout_pack` reviewable enough to defer or stop without losing the route.
 8. Run one bounded live hardening pass; if seams appear, return to the last valid owner anchor and re-enter through `previous_phase`, `review_gate`, `rollback_gate`, or `safe_stop` before closing with the `landing_decision`, `hardening_record`, and `handoff_record`.

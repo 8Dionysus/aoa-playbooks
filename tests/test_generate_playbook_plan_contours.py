@@ -43,6 +43,27 @@ def test_generated_plan_contours_match_canonical_inputs() -> None:
     assert committed == generator.build_output()
 
 
+def test_plan_contours_reference_exact_capability_graph_node_ids() -> None:
+    source = generator.load_source_config()
+    graph_ids = set(generator.load_capabilities_by_id())
+
+    referenced = {
+        capability_id
+        for contour in source["contours"]
+        for capability_id in (
+            *contour["required_capability_ids"],
+            *(
+                capability_id
+                for step in contour["steps"]
+                for capability_id in step["capability_ids"]
+            ),
+        )
+    }
+
+    assert referenced
+    assert referenced.issubset(graph_ids)
+
+
 def test_golden_contours_are_complete_and_runtime_neutral() -> None:
     output = generator.build_output()
 

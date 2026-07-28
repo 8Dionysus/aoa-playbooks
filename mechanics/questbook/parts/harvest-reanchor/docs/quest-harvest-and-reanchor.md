@@ -49,7 +49,7 @@ Reanchor is not permission to widen scope until the route feels stable.
 
 ## Installed quest-harvest posture
 
-`aoa-quest-harvest` may assist this repo only after a reviewed run, closure, or pause.
+`mode.session-harvest.promote` may assist this repo only after a reviewed run, closure, or pause.
 
 - it is not used inside an active route
 - it does not define orchestrator identity

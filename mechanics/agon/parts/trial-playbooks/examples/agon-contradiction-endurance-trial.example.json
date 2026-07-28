@@ -98,12 +98,12 @@
     "memory-curation"
   ],
   "required_skills": [
-    "aoa-source-of-truth-check",
-    "aoa-bounded-context-map",
-    "aoa-approval-gate-check",
-    "aoa-dry-run-first",
-    "aoa-change-protocol",
-    "aoa-contract-test"
+    "mode.knowledge.authority-map",
+    "mode.engineering-shape.contexts",
+    "guard.operations.approval",
+    "guard.operations.preview",
+    "workflow.operations.repository-change",
+    "mode.verification.contract"
   ],
   "requires_center_lawful_moves": true,
   "requires_formation_trial": true,

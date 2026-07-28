@@ -4,7 +4,7 @@
 
 | Part | Role | Source surfaces | Validation | Status |
 | --- | --- | --- | --- | --- |
-| `composition-surfaces` | derive root composition read models from playbooks, source overrides, and skill handoff contracts | `playbooks/*/*/*/PLAYBOOK.md`, `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`, `../aoa-skills/generated/skill_handoff_contracts.json`, root generated composition outputs | `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py` | active |
+| `composition-surfaces` | derive root composition read models from playbooks, source overrides, and typed capability nodes | `playbooks/*/*/*/PLAYBOOK.md`, `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`, `../aoa-skills/generated/capability_graph.json`, root generated composition outputs | `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py` | active |
 | `plan-contours` | derive a closed runtime-neutral plan-contour ABI for selected playbook routes | three named `PLAYBOOK.md` bundles and `mechanics/scenario-composition/parts/plan-contours/config/playbook_plan_contours.json` | `mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py` | active |
 
 ## Boundary payloads

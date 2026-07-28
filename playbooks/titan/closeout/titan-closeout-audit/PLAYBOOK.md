@@ -84,11 +84,11 @@ When using named Titans directly, keep the live summon posture explicit: Atlas a
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-invariant-coverage-audit`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.verification.coverage-audit`
 
 These skills support reviewable closeout work. They do not create hidden runtime authority.
 

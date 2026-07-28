@@ -7,7 +7,7 @@ Use this example only when a reviewed release wave has already produced explicit
 Suggested seed:
 
 - start from `closeout_followthrough_decision` and the owner handoff bundle
-- run `aoa-automation-opportunity-scan`
+- run `mode.session-harvest.automation-opportunity`
 - preserve public-share guards, dry-run publish, strict preflight and postpublish audit, rollback and tag-restore posture, and explicit human review
 - reject `promote_to_skill` if the route pretends a fourteen-repo release publication wave is one leaf workflow
 - stop or defer if the due repo set, tag history, branch protection, or GitHub publication state cannot be verified cleanly

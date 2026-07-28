@@ -11,10 +11,10 @@ Suggested seed:
 
 - start from the reviewed quest-promotion owner handoff for
   `pipeline:reviewed-closeout-receipt-followthrough`
-- keep `aoa-source-of-truth-check` and `aoa-bounded-context-map` ahead of any
+- keep `mode.knowledge.authority-map` and `mode.engineering-shape.contexts` ahead of any
   playbook-layer writing so the route stays in `aoa-playbooks` only as a
   route-shaped owner artifact
-- preserve `aoa-approval-gate-check`, rollback notes, and one explicit
+- preserve `guard.operations.approval`, rollback notes, and one explicit
   real-run review requirement before any broader automation or schedule claim
 - reject `promote_to_skill` again if the route starts pretending the
   closeout-reread, diagnosis, repair, progression, and owner handoff chain is

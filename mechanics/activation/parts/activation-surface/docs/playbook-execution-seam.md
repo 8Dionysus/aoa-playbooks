@@ -235,10 +235,14 @@ The current federation-checked playbooks for this seam are:
 - `AOA-P-0031 a2a-summon-return-checkpoint`
 - `AOA-P-0032 runtime-chaos-recovery`
 
-Their derived federation entries are validated against `aoa-skills/generated/governance_backlog.json` and the referenced `aoa-memo/examples/*.json` contracts.
+Their derived federation entries are validated against exact nodes in
+`aoa-skills/generated/capability_graph.json` and the referenced
+`aoa-memo/examples/*.json` contracts.
 For the runtime-facing memo cohort, they also carry flat memo recall defaults so downstream runtimes can derive `inspect`, `capsule`, and `expand` posture without inventing new playbook semantics.
 `AOA-P-0006 self-agent-checkpoint-rollout` is intentionally federation-checked without joining the activation cohort because its route is still governed by approval and rollback checkpoints rather than a compact runtime-readable activation seam.
-`AOA-P-0016 atm10-bounded-change` remains activation-readable and composition-managed, and is now federation-checked because its ATM10 overlay skills reconcile as `project_overlay_federation_ready` in `aoa-skills` while still remaining thin project overlays without a governance lane there.
+`AOA-P-0016 atm10-bounded-change` remains activation-readable,
+composition-managed, and federation-checked through its exact ATM10 adapter
+nodes without moving ATM10 authority into the playbook layer.
 
 ## Boundary to preserve
 

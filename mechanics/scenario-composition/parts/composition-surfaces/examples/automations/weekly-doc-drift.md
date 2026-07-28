@@ -6,6 +6,6 @@ Use when you want a recurring docs-drift watch that stays canon-first and report
 
 Suggested seed:
 
-- use `aoa-source-of-truth-check` to locate authority drift
-- use `aoa-sanitized-share` to prepare a short reviewable summary
+- use `mode.knowledge.authority-map` to locate authority drift
+- use `mode.knowledge.sanitized-share` to prepare a short reviewable summary
 - keep the run non-mutating by default

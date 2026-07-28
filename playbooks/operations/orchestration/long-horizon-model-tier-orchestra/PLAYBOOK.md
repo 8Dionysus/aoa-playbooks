@@ -21,10 +21,10 @@ required_skill_families:
   - memory-curation
   - research
 required_skills:
-  - aoa-change-protocol
-  - aoa-source-of-truth-check
-  - aoa-dry-run-first
-  - aoa-bounded-context-map
+  - workflow.operations.repository-change
+  - mode.knowledge.authority-map
+  - guard.operations.preview
+  - mode.engineering-shape.contexts
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: handoff
@@ -106,10 +106,10 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-change-protocol`
-- `aoa-source-of-truth-check`
-- `aoa-dry-run-first`
-- `aoa-bounded-context-map`
+- `workflow.operations.repository-change`
+- `mode.knowledge.authority-map`
+- `guard.operations.preview`
+- `mode.engineering-shape.contexts`
 
 ## Decision points
 
