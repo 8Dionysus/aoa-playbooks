@@ -9,7 +9,7 @@
 | trigger | a managed playbook, composition or plan-contour config, upstream skill handoff contract, or generated composition output changes |
 | playbooks owns | scenario-level composition and abstract plan-contour shape plus source config alignment |
 | stronger owner split | `aoa-skills` owns skill execution and skill handoff meaning; routing/runtime owners own dispatch and execution |
-| inputs | `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_registry.min.json`, part-local composition and plan-contour configs, and `../aoa-skills/generated/skill_handoff_contracts.json` |
+| inputs | `playbooks/*/*/*/PLAYBOOK.md`, `generated/playbook_registry.min.json`, part-local composition and plan-contour configs, and `../aoa-skills/generated/capability_graph.json` |
 | outputs | root-published composition read models plus `generated/playbook_plan_contours.min.json` |
 | must not claim | runtime state, scheduler authority, route dispatch, skill semantics, proof verdicts, or memory truth |
 | validation | package executable owners; focused order in `AGENTS.md` |
@@ -43,7 +43,7 @@ its closed ABI directly to `generated/playbook_plan_contours.min.json`.
 - `playbooks/*/*/*/PLAYBOOK.md`
 - `generated/playbook_registry.min.json`
 - `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
-- `../aoa-skills/generated/skill_handoff_contracts.json`
+- `../aoa-skills/generated/capability_graph.json`
 - root generated composition outputs
 - `mechanics/scenario-composition/parts/composition-surfaces/docs/handoff-contracts.md`
 - `mechanics/scenario-composition/parts/composition-surfaces/docs/failure-recovery.md`

@@ -13,7 +13,7 @@ It must not absorb skill meaning from `aoa-skills`.
 
 - `playbooks/*/*/*/PLAYBOOK.md`
 - `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
-- `../aoa-skills/generated/skill_handoff_contracts.json`
+- `../aoa-skills/generated/capability_graph.json`
 
 Reviewable evidence templates for future handoff candidates also live under `mechanics/real-run-harvest/parts/harvest-template-source-store/examples/harvests/`.
 They are governed by [real-run harvest](../../../../real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md) and do not create new composition entries by themselves.
@@ -26,7 +26,8 @@ The playbook bundle still owns the scenario route.
 
 ## What the handoff bridge may contain
 
-- exact `required_skills`
+- exact typed capability IDs carried by the compatibility-named
+  `required_skills` frontmatter field
 - derived decision points and handoff bullets
 - expected artifacts and return anchors
 - refs back to the skill-derived handoff contracts

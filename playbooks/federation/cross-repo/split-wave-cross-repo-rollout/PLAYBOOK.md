@@ -25,13 +25,13 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-adr-write
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -127,13 +127,13 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-adr-write`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -210,9 +210,9 @@ The playbook does not create a new memory-object kind and does not move memo tax
 ## Canonical route
 
 1. Map the owning repositories and identify which upstream bridge surfaces must land before downstream work can resume honestly.
-2. Use `aoa-source-of-truth-check` and `aoa-bounded-context-map` to separate source-authored surfaces from downstream dependents and define the bounded `wave_plan`.
-3. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to confirm bridge-first sequencing, rerun policy, and stop conditions before mutation begins.
-4. Execute the upstream wave through `aoa-change-protocol`, tighten bridge confidence with `aoa-contract-test`, and capture any durable interface or rollout rationale through `aoa-adr-write`.
+2. Use `mode.knowledge.authority-map` and `mode.engineering-shape.contexts` to separate source-authored surfaces from downstream dependents and define the bounded `wave_plan`.
+3. Use `guard.operations.approval` and `guard.operations.preview` to confirm bridge-first sequencing, rerun policy, and stop conditions before mutation begins.
+4. Execute the upstream wave through `workflow.operations.repository-change`, tighten bridge confidence with `mode.verification.contract`, and capture any durable interface or rollout rationale through `mode.decision.record`.
 5. Publish or merge the upstream bridge surfaces and record the exact updated upstream `main` reference that downstream revalidation must use.
 6. Rebase or reorient the downstream repository against updated upstream `main` and rerun the bounded contract or validation checks required by the `wave_plan`.
 7. If downstream revalidation fails or the wave boundary drifts, return to the last valid `wave_plan` or `wave_decision` anchor and re-enter through `previous_phase`, `review_gate`, `rollback_gate`, or `safe_stop`.

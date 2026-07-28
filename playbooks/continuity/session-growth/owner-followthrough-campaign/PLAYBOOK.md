@@ -25,15 +25,15 @@ required_skill_families:
   - review
   - evaluation
 required_skills:
-  - aoa-session-route-forks
-  - aoa-session-self-diagnose
-  - aoa-session-self-repair
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
+  - mode.session-harvest.branch
+  - mode.session-recovery.diagnose
+  - mode.session-recovery.repair
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -155,15 +155,15 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-session-route-forks`
-- `aoa-session-self-diagnose`
-- `aoa-session-self-repair`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
+- `mode.session-harvest.branch`
+- `mode.session-recovery.diagnose`
+- `mode.session-recovery.repair`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
 
 ## Decision points
 
@@ -261,16 +261,16 @@ proof truth, or memo truth into the playbook layer.
 ## Canonical route
 
 1. Start from the reviewed candidate or staged seed and confirm the owner repo,
-   owner shape, and nearest-wrong target with `aoa-source-of-truth-check` and
-   `aoa-bounded-context-map`.
-2. Use `aoa-session-route-forks` to choose the next honest owner move instead
+   owner shape, and nearest-wrong target with `mode.knowledge.authority-map` and
+   `mode.engineering-shape.contexts`.
+2. Use `mode.session-harvest.branch` to choose the next honest owner move instead
    of letting follow-through drift by convenience.
-3. If owner fit or evidence fit is weak, use `aoa-session-self-diagnose` and
-   `aoa-session-self-repair` to reduce ambiguity before another owner move.
-4. Use `aoa-approval-gate-check` and `aoa-dry-run-first` before any seed or
+3. If owner fit or evidence fit is weak, use `mode.session-recovery.diagnose` and
+   `mode.session-recovery.repair` to reduce ambiguity before another owner move.
+4. Use `guard.operations.approval` and `guard.operations.preview` before any seed or
    owner-layer mutation so the campaign stays reviewable.
-5. Land direct owner-status surfaces through `aoa-change-protocol` and tighten
-   the touched interface with `aoa-contract-test` when the owner move is now honest.
+5. Land direct owner-status surfaces through `workflow.operations.repository-change` and tighten
+   the touched interface with `mode.verification.contract` when the owner move is now honest.
 6. Emit `seed_owner_landing_trace` only when seed staging really clarifies the
    route; otherwise keep the route smaller.
 7. If proof is required, keep it bounded and subordinate to the current owner

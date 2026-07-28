@@ -26,17 +26,17 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-checkpoint-closeout-bridge
-  - aoa-session-route-forks
-  - aoa-session-self-diagnose
-  - aoa-session-self-repair
-  - aoa-session-progression-lift
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
+  - skill.aoa-checkpoint-closeout-bridge
+  - mode.session-harvest.branch
+  - mode.session-recovery.diagnose
+  - mode.session-recovery.repair
+  - skill.aoa-session-progression-lift
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -163,17 +163,17 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-checkpoint-closeout-bridge`
-- `aoa-session-route-forks`
-- `aoa-session-self-diagnose`
-- `aoa-session-self-repair`
-- `aoa-session-progression-lift`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
+- `skill.aoa-checkpoint-closeout-bridge`
+- `mode.session-harvest.branch`
+- `mode.session-recovery.diagnose`
+- `mode.session-recovery.repair`
+- `skill.aoa-session-progression-lift`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
 
 ## Decision points
 
@@ -280,22 +280,22 @@ continuity truth, proof truth, or stats truth into the playbook layer.
 ## Canonical route
 
 1. Start from one reviewed anchor artifact and use
-   `aoa-checkpoint-closeout-bridge`, `aoa-source-of-truth-check`, and
-   `aoa-bounded-context-map` to name the current `continuity_ref`,
+   `skill.aoa-checkpoint-closeout-bridge`, `mode.knowledge.authority-map`, and
+   `mode.engineering-shape.contexts` to name the current `continuity_ref`,
    `revision_window_ref`, and `anchor_artifact_ref` before mutation begins.
-2. Use `aoa-session-route-forks` to choose whether the next honest move is
+2. Use `mode.session-harvest.branch` to choose whether the next honest move is
    bounded reflective revision, explicit reanchor, or safe stop instead of
    drifting by convenience.
 3. If boundedness, owner fit, or verification posture is weak, use
-   `aoa-session-self-diagnose`, `aoa-session-self-repair`, and
-   `aoa-session-progression-lift` only as far as the current continuity route
+   `mode.session-recovery.diagnose`, `mode.session-recovery.repair`, and
+   `skill.aoa-session-progression-lift` only as far as the current continuity route
    actually requires.
-4. Use `aoa-approval-gate-check` and `aoa-dry-run-first` before any mutation
+4. Use `guard.operations.approval` and `guard.operations.preview` before any mutation
    that would widen the continuity window, shift the anchor, or refresh a
    derived summary.
 5. Land the smallest honest continuity or reanchor artifact through
-   `aoa-change-protocol`, and tighten any touched boundary with
-   `aoa-contract-test` so the next anchor remains inspectable.
+   `workflow.operations.repository-change`, and tighten any touched boundary with
+   `mode.verification.contract` so the next anchor remains inspectable.
 6. Refresh memo-side relaunch aids and derived continuity summaries only after
    the current reviewed anchor and route artifacts are explicit, and keep both
    subordinate to those anchors.

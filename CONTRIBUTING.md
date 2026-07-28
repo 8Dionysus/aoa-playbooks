@@ -39,7 +39,7 @@ Examples:
 - `aoa-techniques` owns practice meaning
 - `aoa-skills` owns execution meaning
 - `aoa-evals` owns proof meaning
-- `aoa-routing` owns navigation surfaces
+- `aoa-sdk` owns canonical routing and navigation surfaces
 - `aoa-memo` owns memory meaning
 - `aoa-agents` owns role and persona meaning
 
@@ -60,7 +60,7 @@ Ask these questions in order:
 6. Is this change mainly about actor roles or posture?
    - If yes, it probably belongs in `aoa-agents`.
 7. Is this change mainly about dispatch across repos?
-   - If yes, it probably belongs in `aoa-routing`.
+   - If yes, it probably belongs in the `aoa-sdk` routing control plane.
 
 ## Pull request shape
 

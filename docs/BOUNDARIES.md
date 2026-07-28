@@ -41,7 +41,7 @@ Memory still belongs to `aoa-memo`.
 A playbook may rely on routing.
 That does not make the playbook layer the owner of cross-repo dispatch.
 
-Navigation still belongs to `aoa-routing`.
+Canonical navigation still belongs to the `aoa-sdk` routing control plane.
 
 ## Rule 6: fallback matters
 

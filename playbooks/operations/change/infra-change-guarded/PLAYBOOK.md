@@ -22,14 +22,14 @@ required_skill_families:
   - safe-infra
   - verification
 required_skills:
-  - aoa-approval-gate-check
-  - aoa-source-of-truth-check
-  - aoa-dry-run-first
-  - aoa-safe-infra-change
-  - aoa-local-stack-bringup
-  - aoa-contract-test
-  - aoa-adr-write
-  - aoa-sanitized-share
+  - guard.operations.approval
+  - mode.knowledge.authority-map
+  - guard.operations.preview
+  - workflow.operations.safe-infra-change
+  - workflow.operations.local-stack-bringup
+  - mode.verification.contract
+  - mode.decision.record
+  - mode.knowledge.sanitized-share
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -111,14 +111,14 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-approval-gate-check`
-- `aoa-source-of-truth-check`
-- `aoa-dry-run-first`
-- `aoa-safe-infra-change`
-- `aoa-local-stack-bringup`
-- `aoa-contract-test`
-- `aoa-adr-write`
-- `aoa-sanitized-share`
+- `guard.operations.approval`
+- `mode.knowledge.authority-map`
+- `guard.operations.preview`
+- `workflow.operations.safe-infra-change`
+- `workflow.operations.local-stack-bringup`
+- `mode.verification.contract`
+- `mode.decision.record`
+- `mode.knowledge.sanitized-share`
 
 ## Decision points
 
@@ -188,10 +188,10 @@ Use `aoa-verification-honesty` to check that preview and post-change verificatio
 
 ## Canonical route
 
-1. Use `aoa-approval-gate-check` to classify authority before mutation.
-2. Use `aoa-source-of-truth-check` to identify the canonical runbook or startup surface.
-3. Use `aoa-dry-run-first` to capture preview evidence before the real infra change.
-4. Use `aoa-safe-infra-change` to apply the smallest reversible operational change.
-5. Verify with `aoa-local-stack-bringup` or `aoa-contract-test`, depending on the bounded verification seam.
-6. Record any durable operational decision through `aoa-adr-write` and prepare a safe outbound summary through `aoa-sanitized-share`.
+1. Use `guard.operations.approval` to classify authority before mutation.
+2. Use `mode.knowledge.authority-map` to identify the canonical runbook or startup surface.
+3. Use `guard.operations.preview` to capture preview evidence before the real infra change.
+4. Use `workflow.operations.safe-infra-change` to apply the smallest reversible operational change.
+5. Verify with `workflow.operations.local-stack-bringup` or `mode.verification.contract`, depending on the bounded verification seam.
+6. Record any durable operational decision through `mode.decision.record` and prepare a safe outbound summary through `mode.knowledge.sanitized-share`.
 7. If preview, rollback, or verification integrity is lost, return to the last artifact anchor and re-enter through `previous_phase`, `rollback_gate`, or `safe_stop`.

@@ -20,9 +20,9 @@ required_skill_families:
   - sharing
   - review
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-adr-write
-  - aoa-sanitized-share
+  - mode.knowledge.authority-map
+  - mode.decision.record
+  - mode.knowledge.sanitized-share
 evaluation_posture: required
 memory_posture: light_recall
 fallback_mode: handoff
@@ -96,15 +96,15 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-adr-write`
-- `aoa-sanitized-share`
+- `mode.knowledge.authority-map`
+- `mode.decision.record`
+- `mode.knowledge.sanitized-share`
 
 ## Decision points
 
 1. Decide which file is authoritative for the target concern.
 2. Decide which summaries should shrink into link-driven entrypoints rather than duplicate canon.
-3. Decide whether the change needs a durable documentation decision through `aoa-adr-write`.
+3. Decide whether the change needs a durable documentation decision through `mode.decision.record`.
 4. Decide what must be redacted before the result can travel.
 5. Decide whether the route closes with a publishable summary or should hand off for later review.
 
@@ -164,8 +164,8 @@ Use `aoa-artifact-review-rubric` to check that the resulting shareable summary i
 
 ## Canonical route
 
-1. Use `aoa-source-of-truth-check` to identify the authoritative files and the summary surfaces that should point back to them.
+1. Use `mode.knowledge.authority-map` to identify the authoritative files and the summary surfaces that should point back to them.
 2. Apply the smallest bounded documentation change that makes the authority map legible.
-3. Use `aoa-adr-write` when the route introduces a durable documentation or workflow decision.
-4. Use `aoa-sanitized-share` to prepare a clean outward-facing summary that reflects the canon review.
+3. Use `mode.decision.record` when the route introduces a durable documentation or workflow decision.
+4. Use `mode.knowledge.sanitized-share` to prepare a clean outward-facing summary that reflects the canon review.
 5. If canon or redaction posture becomes unclear, return to the last artifact anchor and re-enter through `previous_phase`, `review_gate`, or `safe_stop`.

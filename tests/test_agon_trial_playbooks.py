@@ -1,5 +1,7 @@
 from pathlib import Path
 import json
+import os
+import runpy
 import subprocess
 import sys
 
@@ -15,7 +17,25 @@ def test_agon_trial_playbook_registry_build_check():
     assert result.returncode == 0, result.stderr + result.stdout
 
 def test_agon_trial_playbooks_are_pre_protocol():
+    source = json.loads(
+        (
+            ROOT
+            / "mechanics"
+            / "agon"
+            / "parts"
+            / "trial-playbooks"
+            / "config"
+            / "agon_trial_playbooks.seed.json"
+        ).read_text(encoding="utf-8")
+    )
     data = json.loads((ROOT / "generated" / "agon_trial_playbook_registry.min.json").read_text(encoding="utf-8"))
+    assert source["gate_trigger_source"].startswith(
+        "aoa-sdk/src/aoa_sdk/control_plane/routing/"
+    )
+    assert "aoa-routing" not in source["gate_trigger_source"]
+    assert source["lawful_move_source"].startswith(
+        "Agents-of-Abyss/mechanics/agon/parts/lawful-move-grammar/"
+    )
     assert data["wave"] == "VI"
     assert data["live_protocol"] is False
     assert data["runtime_effect"] == "none"
@@ -37,3 +57,107 @@ def test_agon_trial_playbook_validator_passes():
         text=True,
     )
     assert result.returncode == 0, result.stderr + result.stdout
+
+
+def test_agon_trial_playbook_validator_rejects_incomplete_explicit_sdk_root(
+    tmp_path,
+):
+    sdk_root = tmp_path / "aoa-sdk"
+    sdk_root.mkdir()
+    env = os.environ.copy()
+    env["AOA_SDK_ROOT"] = str(sdk_root)
+
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_agon_trial_playbooks.py")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+    assert result.returncode == 1
+    assert (
+        "explicit AOA_SDK_ROOT does not provide required Agon routing registry"
+        in result.stderr
+    )
+
+
+def test_agon_trial_playbook_validator_allows_additive_sdk_gate_trigger(
+    tmp_path,
+):
+    validator_path = (
+        ROOT
+        / "mechanics"
+        / "agon"
+        / "parts"
+        / "trial-playbooks"
+        / "scripts"
+        / "validate_agon_trial_playbooks.py"
+    )
+    validator_globals = runpy.run_path(str(validator_path))
+    sdk_root = tmp_path / "aoa-sdk"
+    registry_path = (
+        sdk_root
+        / "src"
+        / "aoa_sdk"
+        / "control_plane"
+        / "routing"
+        / "data"
+        / "agon_gate_routing_registry.min.json"
+    )
+    registry_path.parent.mkdir(parents=True)
+    trigger_ids = sorted(
+        {
+            *validator_globals["KNOWN_GATE_TRIGGERS"],
+            "future_sdk_owned_trigger",
+        }
+    )
+    registry_path.write_text(
+        json.dumps(
+            {
+                "owner_repo": "aoa-sdk",
+                "center_repo": "Agents-of-Abyss",
+                "triggers": [
+                    {"trigger_id": trigger_id}
+                    for trigger_id in trigger_ids
+                ],
+                "route_hints": [],
+            }
+        ),
+        encoding="utf-8",
+    )
+    env = os.environ.copy()
+    env["AOA_SDK_ROOT"] = str(sdk_root)
+
+    result = subprocess.run(
+        [sys.executable, str(validator_path)],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+    assert result.returncode == 0, result.stderr + result.stdout
+
+
+def test_agon_trial_playbook_validator_rejects_incomplete_explicit_center_root(
+    tmp_path,
+):
+    center_root = tmp_path / "Agents-of-Abyss"
+    center_root.mkdir()
+    env = os.environ.copy()
+    env["AOA_CENTER_ROOT"] = str(center_root)
+
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_agon_trial_playbooks.py")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+    assert result.returncode == 1
+    assert (
+        "explicit AOA_CENTER_ROOT does not provide required lawful-move registry"
+        in result.stderr
+    )

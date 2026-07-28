@@ -15,7 +15,7 @@ This part owns the implementation that builds the root composition read models:
 - `playbooks/*/*/*/PLAYBOOK.md`
 - `generated/playbook_registry.min.json`
 - `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
-- `../aoa-skills/generated/skill_handoff_contracts.json`
+- `../aoa-skills/generated/capability_graph.json`
 - root command wrapper `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py`
 
 ## Boundary

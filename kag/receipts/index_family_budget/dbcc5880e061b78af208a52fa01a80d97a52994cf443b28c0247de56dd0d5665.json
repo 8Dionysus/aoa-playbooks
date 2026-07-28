@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 6106048,
+  "allowed_tracked_bytes": 8896302,
+  "approved_by": "repository-owner",
+  "base_ref": "577b772c62b692b18a7f0945a470d00245c998c8",
+  "changed_generated_bytes": 6106048,
+  "changed_generated_files": 221,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "dbcc5880e061b78af208a52fa01a80d97a52994cf443b28c0247de56dd0d5665",
+  "reason": "routing succession final dependency pins",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8896302,
+  "tracked_bytes_max": 10485760
+}

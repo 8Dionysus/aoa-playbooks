@@ -104,7 +104,7 @@ The first authored bundle is `playbooks/continuity/checkpoint/self-agent-checkpo
 - `aoa-techniques` stores reusable practice
 - `aoa-skills` stores bounded execution
 - `aoa-evals` stores bounded proof
-- `aoa-routing` stores navigation and dispatch
+- the `aoa-sdk` routing control plane stores navigation and dispatch
 - `aoa-memo` stores memory and recall surfaces
 - `aoa-agents` stores reusable role-bearing actors
 - `aoa-playbooks` stores reusable scenario-level compositions

@@ -17,7 +17,8 @@ It keeps explicit splits reviewable for scenarios where a bounded parallel pass 
 - the owning playbook
 - when the split is helpful
 - bounded roles inside the split
-- exact skill refs
+- exact capability refs that resolve to actionable, non-retired typed nodes
+  with ABI, binding, owner, and lifecycle data
 - expected handoff artifacts
 - one caution about scope drift
 

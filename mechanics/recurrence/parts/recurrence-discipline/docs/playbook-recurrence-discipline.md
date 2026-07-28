@@ -55,7 +55,7 @@ Recurrence discipline in `aoa-playbooks` must not absorb neighboring ownership.
 
 Those stay elsewhere:
 - `aoa-agents` owns runtime-facing artifact contracts and tier bindings
-- `aoa-routing` owns navigation and dispatch posture
+- `aoa-sdk` owns canonical routing, navigation, and dispatch posture
 - `aoa-memo` owns memory-object meaning and writeback doctrine
 - `abyss-stack` owns runtime body, context budgeting, and wrapper implementation
 

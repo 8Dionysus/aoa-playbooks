@@ -22,14 +22,14 @@ required_skill_families:
   - refactor
   - verification
 required_skills:
-  - aoa-bounded-context-map
-  - aoa-core-logic-boundary
-  - aoa-property-invariants
-  - aoa-tdd-slice
-  - aoa-port-adapter-refactor
-  - aoa-invariant-coverage-audit
-  - aoa-contract-test
-  - aoa-adr-write
+  - mode.engineering-shape.contexts
+  - mode.engineering-shape.core
+  - mode.verification.property
+  - workflow.operations.tdd-slice
+  - mode.engineering-shape.port-adapter
+  - mode.verification.coverage-audit
+  - mode.verification.contract
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -105,14 +105,14 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-bounded-context-map`
-- `aoa-core-logic-boundary`
-- `aoa-property-invariants`
-- `aoa-tdd-slice`
-- `aoa-port-adapter-refactor`
-- `aoa-invariant-coverage-audit`
-- `aoa-contract-test`
-- `aoa-adr-write`
+- `mode.engineering-shape.contexts`
+- `mode.engineering-shape.core`
+- `mode.verification.property`
+- `workflow.operations.tdd-slice`
+- `mode.engineering-shape.port-adapter`
+- `mode.verification.coverage-audit`
+- `mode.verification.contract`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -181,10 +181,10 @@ Use `aoa-verification-honesty` to check that the route reports its post-change e
 
 ## Canonical route
 
-1. Use `aoa-bounded-context-map` and `aoa-core-logic-boundary` to make the active seam explicit.
-2. Use `aoa-property-invariants` to capture the behavior that must survive the change.
-3. Use `aoa-tdd-slice` when a bounded test-first slice will lower risk before the larger refactor.
-4. Move the system through `aoa-port-adapter-refactor`.
-5. Close the route with `aoa-invariant-coverage-audit` and `aoa-contract-test`.
-6. Record any durable structural decision through `aoa-adr-write`.
+1. Use `mode.engineering-shape.contexts` and `mode.engineering-shape.core` to make the active seam explicit.
+2. Use `mode.verification.property` to capture the behavior that must survive the change.
+3. Use `workflow.operations.tdd-slice` when a bounded test-first slice will lower risk before the larger refactor.
+4. Move the system through `mode.engineering-shape.port-adapter`.
+5. Close the route with `mode.verification.coverage-audit` and `mode.verification.contract`.
+6. Record any durable structural decision through `mode.decision.record`.
 7. If the route loses boundary or invariant integrity, return to the last artifact anchor and re-enter through `previous_phase`, `review_gate`, or `safe_stop`.

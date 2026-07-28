@@ -68,8 +68,7 @@
     "aoa_memo",
     "aoa_session_memory",
     "aoa_stats",
-    "aoa_workspace",
-    "dionysus"
+    "aoa_workspace"
   ],
   "stop_before_apply": [
     "trust_posture=root_mismatch",

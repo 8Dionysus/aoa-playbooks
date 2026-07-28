@@ -22,12 +22,12 @@ required_skill_families:
   - change-protocol
   - verification
 required_skills:
-  - aoa-approval-gate-check
-  - atm10-source-of-truth-check
-  - aoa-dry-run-first
-  - atm10-change-protocol
-  - aoa-contract-test
-  - aoa-sanitized-share
+  - guard.operations.approval
+  - adapter.atm10.authority-map
+  - guard.operations.preview
+  - adapter.atm10.repository-change
+  - mode.verification.contract
+  - mode.knowledge.sanitized-share
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -105,12 +105,12 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-approval-gate-check`
-- `atm10-source-of-truth-check`
-- `aoa-dry-run-first`
-- `atm10-change-protocol`
-- `aoa-contract-test`
-- `aoa-sanitized-share`
+- `guard.operations.approval`
+- `adapter.atm10.authority-map`
+- `guard.operations.preview`
+- `adapter.atm10.repository-change`
+- `mode.verification.contract`
+- `mode.knowledge.sanitized-share`
 
 ## Decision points
 
@@ -179,10 +179,10 @@ Use `aoa-bounded-change-quality` to check that the ATM10 route stayed scoped, ve
 
 ## Canonical route
 
-1. Use `aoa-approval-gate-check` to classify whether the requested ATM10 change may proceed.
-2. Use `atm10-source-of-truth-check` to identify the overlay-aware canonical docs and commands.
-3. Use `aoa-dry-run-first` when a meaningful preview seam exists before the real mutation.
-4. Use `atm10-change-protocol` to execute the bounded overlay change.
-5. Use `aoa-contract-test` when the change touches a boundary worth tightening.
-6. Use `aoa-sanitized-share` to prepare a clean closeout when the result must travel beyond the immediate repo context.
+1. Use `guard.operations.approval` to classify whether the requested ATM10 change may proceed.
+2. Use `adapter.atm10.authority-map` to identify the overlay-aware canonical docs and commands.
+3. Use `guard.operations.preview` when a meaningful preview seam exists before the real mutation.
+4. Use `adapter.atm10.repository-change` to execute the bounded overlay change.
+5. Use `mode.verification.contract` when the change touches a boundary worth tightening.
+6. Use `mode.knowledge.sanitized-share` to prepare a clean closeout when the result must travel beyond the immediate repo context.
 7. If approval, canon, or verification integrity is lost, return to the last artifact anchor and re-enter through `previous_phase`, `review_gate`, or `safe_stop`.

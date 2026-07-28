@@ -43,6 +43,65 @@ def test_generated_plan_contours_match_canonical_inputs() -> None:
     assert committed == generator.build_output()
 
 
+def test_plan_contours_reference_exact_capability_graph_node_ids() -> None:
+    source = generator.load_source_config()
+    graph_ids = set(generator.load_capabilities_by_id())
+
+    referenced = {
+        capability_id
+        for contour in source["contours"]
+        for capability_id in (
+            *contour["required_capability_ids"],
+            *(
+                capability_id
+                for step in contour["steps"]
+                for capability_id in step["capability_ids"]
+            ),
+        )
+    }
+
+    assert referenced
+    assert referenced.issubset(graph_ids)
+
+
+@pytest.mark.parametrize("contract_level", [None, "", "metadata"])
+def test_plan_contours_require_actionable_capability_contract_level(
+    monkeypatch: pytest.MonkeyPatch,
+    contract_level: object,
+) -> None:
+    source = generator.load_source_config()
+    capabilities = deepcopy(generator.load_capabilities_by_id())
+    capability_id = source["contours"][0]["required_capability_ids"][0]
+    capabilities[capability_id]["contract_level"] = contract_level
+    monkeypatch.setattr(
+        generator,
+        "load_capabilities_by_id",
+        lambda: capabilities,
+    )
+
+    with pytest.raises(generator.BuilderError, match="actionable contract level"):
+        generator.validate_source_config(source)
+
+
+@pytest.mark.parametrize("lifecycle", [None, {}, {"state": ""}])
+def test_plan_contours_require_typed_capability_lifecycle(
+    monkeypatch: pytest.MonkeyPatch,
+    lifecycle: object,
+) -> None:
+    source = generator.load_source_config()
+    capabilities = deepcopy(generator.load_capabilities_by_id())
+    capability_id = source["contours"][0]["required_capability_ids"][0]
+    capabilities[capability_id]["lifecycle"] = lifecycle
+    monkeypatch.setattr(
+        generator,
+        "load_capabilities_by_id",
+        lambda: capabilities,
+    )
+
+    with pytest.raises(generator.BuilderError, match="lifecycle"):
+        generator.validate_source_config(source)
+
+
 def test_golden_contours_are_complete_and_runtime_neutral() -> None:
     output = generator.build_output()
 

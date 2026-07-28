@@ -189,8 +189,7 @@ PLAYBOOK_ROOT = REPO_ROOT / "playbooks"
 AGENT_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "agent_registry.min.json"
 MODEL_TIER_REGISTRY_PATH = AOA_AGENTS_ROOT / "generated" / "model_tier_registry.json"
 EVAL_CATALOG_PATH = AOA_EVALS_ROOT / "generated" / "eval_catalog.min.json"
-SKILL_GOVERNANCE_PATH = AOA_SKILLS_ROOT / "generated" / "governance_backlog.json"
-SKILL_HANDOFF_CONTRACTS_PATH = AOA_SKILLS_ROOT / "generated" / "skill_handoff_contracts.json"
+CAPABILITY_GRAPH_PATH = AOA_SKILLS_ROOT / "generated" / "capability_graph.json"
 ACTIVATION_SCHEMA_PATH = (
     REPO_ROOT
     / "mechanics"
@@ -1112,10 +1111,10 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-bounded-change-quality",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-approval-gate-check",
-                "aoa-dry-run-first",
-                "aoa-change-protocol",
+                "mode.knowledge.authority-map",
+                "guard.operations.approval",
+                "guard.operations.preview",
+                "workflow.operations.repository-change",
             ),
             "memo_contract_refs": (
                 "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
@@ -1128,10 +1127,10 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-approval-gate-check",
-            "aoa-dry-run-first",
-            "aoa-change-protocol",
+            "mode.knowledge.authority-map",
+            "guard.operations.approval",
+            "guard.operations.preview",
+            "workflow.operations.repository-change",
             "aoa-approval-boundary-adherence",
             "aoa-bounded-change-quality",
             "decision",
@@ -1150,8 +1149,8 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-compost-provenance-preservation",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-change-protocol",
+                "mode.knowledge.authority-map",
+                "workflow.operations.repository-change",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.router.semantic.json",
@@ -1166,8 +1165,8 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-change-protocol",
+            "mode.knowledge.authority-map",
+            "workflow.operations.repository-change",
             "aoa-witness-trace-integrity",
             "aoa-compost-provenance-preservation",
             "architect",
@@ -1183,10 +1182,10 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-tool-trajectory-discipline",
             ),
             "required_skills": (
-                "aoa-change-protocol",
-                "aoa-source-of-truth-check",
-                "aoa-dry-run-first",
-                "aoa-bounded-context-map",
+                "workflow.operations.repository-change",
+                "mode.knowledge.authority-map",
+                "guard.operations.preview",
+                "mode.engineering-shape.contexts",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.router.semantic.json",
@@ -1199,10 +1198,10 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-change-protocol",
-            "aoa-source-of-truth-check",
-            "aoa-dry-run-first",
-            "aoa-bounded-context-map",
+            "workflow.operations.repository-change",
+            "mode.knowledge.authority-map",
+            "guard.operations.preview",
+            "mode.engineering-shape.contexts",
             "decision",
             "claim",
             "pattern",
@@ -1214,10 +1213,10 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-long-horizon-depth",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-change-protocol",
-                "aoa-dry-run-first",
-                "aoa-bounded-context-map",
+                "mode.knowledge.authority-map",
+                "workflow.operations.repository-change",
+                "guard.operations.preview",
+                "mode.engineering-shape.contexts",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.object.working.return.json",
@@ -1229,10 +1228,10 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-change-protocol",
-            "aoa-dry-run-first",
-            "aoa-bounded-context-map",
+            "mode.knowledge.authority-map",
+            "workflow.operations.repository-change",
+            "guard.operations.preview",
+            "mode.engineering-shape.contexts",
             "state_capsule",
             "decision",
         ),
@@ -1244,11 +1243,11 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-scope-drift-detection",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-bounded-context-map",
-                "aoa-approval-gate-check",
-                "aoa-dry-run-first",
-                "aoa-change-protocol",
+                "mode.knowledge.authority-map",
+                "mode.engineering-shape.contexts",
+                "guard.operations.approval",
+                "guard.operations.preview",
+                "workflow.operations.repository-change",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.router.semantic.json",
@@ -1262,11 +1261,11 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-bounded-context-map",
-            "aoa-approval-gate-check",
-            "aoa-dry-run-first",
-            "aoa-change-protocol",
+            "mode.knowledge.authority-map",
+            "mode.engineering-shape.contexts",
+            "guard.operations.approval",
+            "guard.operations.preview",
+            "workflow.operations.repository-change",
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "AOA-P-0017",
@@ -1287,15 +1286,15 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-bounded-change-quality",
             ),
             "required_skills": (
-                "aoa-approval-gate-check",
-                "aoa-source-of-truth-check",
-                "aoa-bounded-context-map",
-                "aoa-dry-run-first",
-                "aoa-change-protocol",
-                "aoa-contract-test",
-                "aoa-tdd-slice",
-                "aoa-adr-write",
-                "aoa-sanitized-share",
+                "guard.operations.approval",
+                "mode.knowledge.authority-map",
+                "mode.engineering-shape.contexts",
+                "guard.operations.preview",
+                "workflow.operations.repository-change",
+                "mode.verification.contract",
+                "workflow.operations.tdd-slice",
+                "mode.decision.record",
+                "mode.knowledge.sanitized-share",
             ),
             "memo_contract_refs": (
                 "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
@@ -1308,11 +1307,11 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-approval-gate-check",
-            "aoa-source-of-truth-check",
-            "aoa-change-protocol",
-            "aoa-contract-test",
-            "aoa-sanitized-share",
+            "guard.operations.approval",
+            "mode.knowledge.authority-map",
+            "workflow.operations.repository-change",
+            "mode.verification.contract",
+            "mode.knowledge.sanitized-share",
             "aoa-approval-boundary-adherence",
             "aoa-bounded-change-quality",
             "architect",
@@ -1328,14 +1327,14 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-verification-honesty",
             ),
             "required_skills": (
-                "aoa-approval-gate-check",
-                "aoa-source-of-truth-check",
-                "aoa-dry-run-first",
-                "aoa-safe-infra-change",
-                "aoa-local-stack-bringup",
-                "aoa-contract-test",
-                "aoa-adr-write",
-                "aoa-sanitized-share",
+                "guard.operations.approval",
+                "mode.knowledge.authority-map",
+                "guard.operations.preview",
+                "workflow.operations.safe-infra-change",
+                "workflow.operations.local-stack-bringup",
+                "mode.verification.contract",
+                "mode.decision.record",
+                "mode.knowledge.sanitized-share",
             ),
             "memo_contract_refs": (
                 "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
@@ -1348,13 +1347,13 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-approval-gate-check",
-            "aoa-source-of-truth-check",
-            "aoa-dry-run-first",
-            "aoa-safe-infra-change",
-            "aoa-local-stack-bringup",
-            "aoa-contract-test",
-            "aoa-sanitized-share",
+            "guard.operations.approval",
+            "mode.knowledge.authority-map",
+            "guard.operations.preview",
+            "workflow.operations.safe-infra-change",
+            "workflow.operations.local-stack-bringup",
+            "mode.verification.contract",
+            "mode.knowledge.sanitized-share",
             "aoa-approval-boundary-adherence",
             "aoa-verification-honesty",
             "AOA-P-0014",
@@ -1372,14 +1371,14 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-verification-honesty",
             ),
             "required_skills": (
-                "aoa-bounded-context-map",
-                "aoa-core-logic-boundary",
-                "aoa-property-invariants",
-                "aoa-tdd-slice",
-                "aoa-port-adapter-refactor",
-                "aoa-invariant-coverage-audit",
-                "aoa-contract-test",
-                "aoa-adr-write",
+                "mode.engineering-shape.contexts",
+                "mode.engineering-shape.core",
+                "mode.verification.property",
+                "workflow.operations.tdd-slice",
+                "mode.engineering-shape.port-adapter",
+                "mode.verification.coverage-audit",
+                "mode.verification.contract",
+                "mode.decision.record",
             ),
             "memo_contract_refs": (
                 "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
@@ -1392,13 +1391,13 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-bounded-context-map",
-            "aoa-core-logic-boundary",
-            "aoa-property-invariants",
-            "aoa-port-adapter-refactor",
-            "aoa-invariant-coverage-audit",
-            "aoa-contract-test",
-            "aoa-adr-write",
+            "mode.engineering-shape.contexts",
+            "mode.engineering-shape.core",
+            "mode.verification.property",
+            "mode.engineering-shape.port-adapter",
+            "mode.verification.coverage-audit",
+            "mode.verification.contract",
+            "mode.decision.record",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
             "architect",
@@ -1414,12 +1413,12 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-tool-trajectory-discipline",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-dry-run-first",
-                "aoa-local-stack-bringup",
-                "aoa-change-protocol",
-                "aoa-contract-test",
-                "aoa-sanitized-share",
+                "mode.knowledge.authority-map",
+                "guard.operations.preview",
+                "workflow.operations.local-stack-bringup",
+                "workflow.operations.repository-change",
+                "mode.verification.contract",
+                "mode.knowledge.sanitized-share",
             ),
             "memo_contract_refs": (
                 "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
@@ -1432,12 +1431,12 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-dry-run-first",
-            "aoa-local-stack-bringup",
-            "aoa-change-protocol",
-            "aoa-contract-test",
-            "aoa-sanitized-share",
+            "mode.knowledge.authority-map",
+            "guard.operations.preview",
+            "workflow.operations.local-stack-bringup",
+            "workflow.operations.repository-change",
+            "mode.verification.contract",
+            "mode.knowledge.sanitized-share",
             "aoa-verification-honesty",
             "aoa-tool-trajectory-discipline",
             "AOA-P-0012",
@@ -1455,9 +1454,9 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-artifact-review-rubric",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-adr-write",
-                "aoa-sanitized-share",
+                "mode.knowledge.authority-map",
+                "mode.decision.record",
+                "mode.knowledge.sanitized-share",
             ),
             "memo_contract_refs": (
                 "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
@@ -1470,9 +1469,9 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-adr-write",
-            "aoa-sanitized-share",
+            "mode.knowledge.authority-map",
+            "mode.decision.record",
+            "mode.knowledge.sanitized-share",
             "aoa-ambiguity-handling",
             "aoa-artifact-review-rubric",
             "architect",
@@ -1488,12 +1487,12 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-bounded-change-quality",
             ),
             "required_skills": (
-                "aoa-approval-gate-check",
-                "atm10-source-of-truth-check",
-                "aoa-dry-run-first",
-                "atm10-change-protocol",
-                "aoa-contract-test",
-                "aoa-sanitized-share",
+                "guard.operations.approval",
+                "adapter.atm10.authority-map",
+                "guard.operations.preview",
+                "adapter.atm10.repository-change",
+                "mode.verification.contract",
+                "mode.knowledge.sanitized-share",
             ),
             "memo_contract_refs": (
                 "mechanics/checkpoint/parts/checkpoint-to-memory-mapping/examples/checkpoint_to_memory_contract.example.json",
@@ -1506,12 +1505,12 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-approval-gate-check",
-            "atm10-source-of-truth-check",
-            "aoa-dry-run-first",
-            "atm10-change-protocol",
-            "aoa-contract-test",
-            "aoa-sanitized-share",
+            "guard.operations.approval",
+            "adapter.atm10.authority-map",
+            "guard.operations.preview",
+            "adapter.atm10.repository-change",
+            "mode.verification.contract",
+            "mode.knowledge.sanitized-share",
             "aoa-approval-boundary-adherence",
             "aoa-bounded-change-quality",
             "architect",
@@ -1528,13 +1527,13 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-verification-honesty",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-bounded-context-map",
-                "aoa-approval-gate-check",
-                "aoa-dry-run-first",
-                "aoa-change-protocol",
-                "aoa-contract-test",
-                "aoa-adr-write",
+                "mode.knowledge.authority-map",
+                "mode.engineering-shape.contexts",
+                "guard.operations.approval",
+                "guard.operations.preview",
+                "workflow.operations.repository-change",
+                "mode.verification.contract",
+                "mode.decision.record",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.router.semantic.json",
@@ -1548,13 +1547,13 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-bounded-context-map",
-            "aoa-approval-gate-check",
-            "aoa-dry-run-first",
-            "aoa-change-protocol",
-            "aoa-contract-test",
-            "aoa-adr-write",
+            "mode.knowledge.authority-map",
+            "mode.engineering-shape.contexts",
+            "guard.operations.approval",
+            "guard.operations.preview",
+            "workflow.operations.repository-change",
+            "mode.verification.contract",
+            "mode.decision.record",
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
@@ -1576,13 +1575,13 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-verification-honesty",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-bounded-context-map",
-                "aoa-approval-gate-check",
-                "aoa-dry-run-first",
-                "aoa-change-protocol",
-                "aoa-contract-test",
-                "aoa-adr-write",
+                "mode.knowledge.authority-map",
+                "mode.engineering-shape.contexts",
+                "guard.operations.approval",
+                "guard.operations.preview",
+                "workflow.operations.repository-change",
+                "mode.verification.contract",
+                "mode.decision.record",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.router.semantic.json",
@@ -1596,13 +1595,13 @@ BUNDLE_SEMANTIC_CHECKS = {
             ),
         },
         "text_tokens": (
-            "aoa-source-of-truth-check",
-            "aoa-bounded-context-map",
-            "aoa-approval-gate-check",
-            "aoa-dry-run-first",
-            "aoa-change-protocol",
-            "aoa-contract-test",
-            "aoa-adr-write",
+            "mode.knowledge.authority-map",
+            "mode.engineering-shape.contexts",
+            "guard.operations.approval",
+            "guard.operations.preview",
+            "workflow.operations.repository-change",
+            "mode.verification.contract",
+            "mode.decision.record",
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
@@ -1624,14 +1623,14 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-verification-honesty",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-bounded-context-map",
-                "aoa-approval-gate-check",
-                "aoa-dry-run-first",
-                "aoa-change-protocol",
-                "aoa-contract-test",
-                "aoa-adr-write",
-                "aoa-sanitized-share",
+                "mode.knowledge.authority-map",
+                "mode.engineering-shape.contexts",
+                "guard.operations.approval",
+                "guard.operations.preview",
+                "workflow.operations.repository-change",
+                "mode.verification.contract",
+                "mode.decision.record",
+                "mode.knowledge.sanitized-share",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.object.working.return.json",
@@ -1651,14 +1650,14 @@ BUNDLE_SEMANTIC_CHECKS = {
             "cutover_change_set",
             "post_cutover_verification_pack",
             "handoff_record",
-            "aoa-source-of-truth-check",
-            "aoa-bounded-context-map",
-            "aoa-approval-gate-check",
-            "aoa-dry-run-first",
-            "aoa-change-protocol",
-            "aoa-contract-test",
-            "aoa-adr-write",
-            "aoa-sanitized-share",
+            "mode.knowledge.authority-map",
+            "mode.engineering-shape.contexts",
+            "guard.operations.approval",
+            "guard.operations.preview",
+            "workflow.operations.repository-change",
+            "mode.verification.contract",
+            "mode.decision.record",
+            "mode.knowledge.sanitized-share",
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
@@ -1681,16 +1680,16 @@ BUNDLE_SEMANTIC_CHECKS = {
                 "aoa-verification-honesty",
             ),
             "required_skills": (
-                "aoa-source-of-truth-check",
-                "aoa-bounded-context-map",
-                "aoa-approval-gate-check",
-                "aoa-dry-run-first",
-                "aoa-change-protocol",
-                "aoa-safe-infra-change",
-                "aoa-local-stack-bringup",
-                "aoa-contract-test",
-                "aoa-adr-write",
-                "aoa-sanitized-share",
+                "mode.knowledge.authority-map",
+                "mode.engineering-shape.contexts",
+                "guard.operations.approval",
+                "guard.operations.preview",
+                "workflow.operations.repository-change",
+                "workflow.operations.safe-infra-change",
+                "workflow.operations.local-stack-bringup",
+                "mode.verification.contract",
+                "mode.decision.record",
+                "mode.knowledge.sanitized-share",
             ),
             "memo_contract_refs": (
                 "examples/recall/recall_contract.object.working.return.json",
@@ -1710,16 +1709,16 @@ BUNDLE_SEMANTIC_CHECKS = {
             "recovery_decision",
             "recovery_verification_pack",
             "handoff_record",
-            "aoa-source-of-truth-check",
-            "aoa-bounded-context-map",
-            "aoa-approval-gate-check",
-            "aoa-dry-run-first",
-            "aoa-change-protocol",
-            "aoa-safe-infra-change",
-            "aoa-local-stack-bringup",
-            "aoa-contract-test",
-            "aoa-adr-write",
-            "aoa-sanitized-share",
+            "mode.knowledge.authority-map",
+            "mode.engineering-shape.contexts",
+            "guard.operations.approval",
+            "guard.operations.preview",
+            "workflow.operations.repository-change",
+            "workflow.operations.safe-infra-change",
+            "workflow.operations.local-stack-bringup",
+            "mode.verification.contract",
+            "mode.decision.record",
+            "mode.knowledge.sanitized-share",
             "aoa-approval-boundary-adherence",
             "aoa-scope-drift-detection",
             "aoa-verification-honesty",
@@ -1824,15 +1823,37 @@ def load_composition_builder_module():
     return module
 
 
-def skill_is_federation_eligible(skill: dict[str, object], *, playbook_status: str) -> bool:
-    if skill.get("lineage_state") != "published":
+def capability_is_federation_eligible(
+    capability: dict[str, object],
+    *,
+    playbook_status: str,
+) -> bool:
+    del playbook_status
+    if capability.get("kind") not in {
+        "adapter",
+        "guard",
+        "mode",
+        "skill",
+        "tool",
+        "workflow",
+    }:
         return False
-    readiness = skill.get("readiness_reconciliation")
-    if readiness == "governance_and_eval_ready":
-        return True
-    if readiness == "project_overlay_federation_ready":
-        return True
-    return playbook_status == "experimental" and readiness == "eval_ready_but_governance_blocked"
+    if not all(isinstance(capability.get(field), dict) for field in ("binding", "owner")):
+        return False
+    contract_level = capability.get("contract_level")
+    if contract_level not in {"executable", "navigation"}:
+        return False
+    if contract_level == "executable" and not isinstance(capability.get("abi"), dict):
+        return False
+    lifecycle = capability.get("lifecycle")
+    if not isinstance(lifecycle, dict):
+        return False
+    lifecycle_state = lifecycle.get("state")
+    return (
+        isinstance(lifecycle_state, str)
+        and bool(lifecycle_state)
+        and lifecycle_state != "retired"
+    )
 
 
 def read_json(path: Path) -> object:
@@ -2919,20 +2940,20 @@ def load_eval_catalog() -> dict[str, dict[str, object]]:
     return evals_by_name
 
 
-def load_skill_catalog() -> dict[str, dict[str, object]]:
-    payload = read_json(SKILL_GOVERNANCE_PATH)
-    if not isinstance(payload, dict) or not isinstance(payload.get("skills"), list):
-        fail("aoa-skills/generated/governance_backlog.json must contain a 'skills' list")
-    skills_by_name: dict[str, dict[str, object]] = {}
-    for item in payload["skills"]:
+def load_capability_graph() -> dict[str, dict[str, object]]:
+    payload = read_json(CAPABILITY_GRAPH_PATH)
+    if not isinstance(payload, dict) or not isinstance(payload.get("nodes"), list):
+        fail("aoa-skills/generated/capability_graph.json must contain a 'nodes' list")
+    capabilities_by_id: dict[str, dict[str, object]] = {}
+    for item in payload["nodes"]:
         if not isinstance(item, dict):
             continue
-        name = item.get("name")
-        if isinstance(name, str):
-            skills_by_name[name] = item
-    if not skills_by_name:
-        fail("aoa-skills/generated/governance_backlog.json must list at least one skill")
-    return skills_by_name
+        capability_id = item.get("id")
+        if isinstance(capability_id, str):
+            capabilities_by_id[capability_id] = item
+    if not capabilities_by_id:
+        fail("aoa-skills/generated/capability_graph.json must list at least one capability node")
+    return capabilities_by_id
 
 
 def collect_string_field_values(payload: object, field_name: str) -> set[str]:
@@ -3199,7 +3220,7 @@ def validate_federation_bundle(
     bundle_path: Path,
     frontmatter: dict[str, object],
     sections: dict[str, str],
-    skills_by_name: dict[str, dict[str, object]],
+    capabilities_by_id: dict[str, dict[str, object]],
 ) -> None:
     bundle_location = bundle_path.relative_to(REPO_ROOT).as_posix()
 
@@ -3245,21 +3266,26 @@ def validate_federation_bundle(
 
     missing_skills: list[str] = []
     invalid_skill_readiness: list[str] = []
-    for skill_name in required_skills:
-        skill = skills_by_name.get(skill_name)
-        if skill is None:
-            missing_skills.append(skill_name)
+    for capability_id in required_skills:
+        capability = capabilities_by_id.get(capability_id)
+        if capability is None:
+            missing_skills.append(capability_id)
             continue
-        if not skill_is_federation_eligible(skill, playbook_status=playbook_status):
-            invalid_skill_readiness.append(skill_name)
+        if not capability_is_federation_eligible(
+            capability,
+            playbook_status=playbook_status,
+        ):
+            invalid_skill_readiness.append(capability_id)
     if missing_skills:
         fail(
-            f"{bundle_location} required_skills do not resolve in aoa-skills/generated/governance_backlog.json: "
+            f"{bundle_location} required_skills capability IDs do not resolve in "
+            "aoa-skills/generated/capability_graph.json: "
             + ", ".join(missing_skills)
         )
     if invalid_skill_readiness:
         fail(
-            f"{bundle_location} required_skills are not federation-ready in aoa-skills/generated/governance_backlog.json: "
+            f"{bundle_location} required_skills reference invalid or retired "
+            "aoa-skills capability graph nodes: "
             + ", ".join(invalid_skill_readiness)
         )
 
@@ -3324,7 +3350,7 @@ def validate_federation_collection(
     *,
     agent_names: set[str],
     evals_by_name: dict[str, dict[str, object]],
-    skills_by_name: dict[str, dict[str, object]],
+    capabilities_by_id: dict[str, dict[str, object]],
 ) -> None:
     payload = read_json(FEDERATION_COLLECTION_PATH)
     if not isinstance(payload, list):
@@ -3401,26 +3427,34 @@ def validate_federation_collection(
             fail(
                 f"generated/playbook_federation_surfaces.min.json[{index}] must expose a non-empty required_skills list"
             )
-        unresolved_skills = [skill for skill in required_skills if not isinstance(skill, str) or skill not in skills_by_name]
+        unresolved_skills = [
+            capability_id
+            for capability_id in required_skills
+            if not isinstance(capability_id, str)
+            or capability_id not in capabilities_by_id
+        ]
         if unresolved_skills:
             fail(
-                f"generated/playbook_federation_surfaces.min.json[{index}] references required_skills that do not "
-                f"resolve in aoa-skills: {', '.join(str(item) for item in unresolved_skills)}"
+                f"generated/playbook_federation_surfaces.min.json[{index}] references "
+                "required_skills capability IDs that do not resolve in "
+                "aoa-skills/generated/capability_graph.json: "
+                f"{', '.join(str(item) for item in unresolved_skills)}"
             )
         invalid_skill_readiness = [
-            skill
-            for skill in required_skills
-            if isinstance(skill, str)
-            and skill in skills_by_name
-            and not skill_is_federation_eligible(
-                skills_by_name[skill],
+            capability_id
+            for capability_id in required_skills
+            if isinstance(capability_id, str)
+            and capability_id in capabilities_by_id
+            and not capability_is_federation_eligible(
+                capabilities_by_id[capability_id],
                 playbook_status=str(frontmatter_by_id[playbook_id].get("status", "")),
             )
         ]
         if invalid_skill_readiness:
             fail(
-                f"generated/playbook_federation_surfaces.min.json[{index}] references required_skills that are "
-                f"not federation-ready in aoa-skills: {', '.join(invalid_skill_readiness)}"
+                f"generated/playbook_federation_surfaces.min.json[{index}] references "
+                "required_skills entries that are invalid or retired in "
+                f"aoa-skills: {', '.join(invalid_skill_readiness)}"
             )
 
         memo_contract_refs = surface.get("memo_contract_refs")
@@ -3578,7 +3612,7 @@ def validate_authored_bundles(
     agent_names: set[str],
     model_tier_artifacts: set[str],
     evals_by_name: dict[str, dict[str, object]],
-    skills_by_name: dict[str, dict[str, object]],
+    capabilities_by_id: dict[str, dict[str, object]],
 ) -> dict[str, dict[str, object]]:
     seen_bundle_ids: set[str] = set()
     seen_bundle_names: set[str] = set()
@@ -3708,7 +3742,7 @@ def validate_authored_bundles(
                 bundle_path=bundle_path,
                 frontmatter=frontmatter,
                 sections=sections,
-                skills_by_name=skills_by_name,
+                capabilities_by_id=capabilities_by_id,
             )
 
     missing_semantic_check_bundles = sorted(set(BUNDLE_SEMANTIC_CHECKS) - seen_bundle_ids)
@@ -4908,7 +4942,7 @@ def main() -> int:
         agent_names = load_agent_names()
         model_tier_artifacts = load_model_tier_artifacts()
         evals_by_name = load_eval_catalog()
-        skills_by_name = load_skill_catalog()
+        capabilities_by_id = load_capability_graph()
         validate_activation_collection(
             playbooks_by_id,
             agent_names=agent_names,
@@ -4920,13 +4954,13 @@ def main() -> int:
             agent_names=agent_names,
             model_tier_artifacts=model_tier_artifacts,
             evals_by_name=evals_by_name,
-            skills_by_name=skills_by_name,
+            capabilities_by_id=capabilities_by_id,
         )
         validate_federation_collection(
             frontmatter_by_id,
             agent_names=agent_names,
             evals_by_name=evals_by_name,
-            skills_by_name=skills_by_name,
+            capabilities_by_id=capabilities_by_id,
         )
         validate_composition_surfaces(frontmatter_by_id)
         validate_activation_examples(

@@ -126,7 +126,7 @@ Real-run harvest templates under `mechanics/real-run-harvest/parts/harvest-templ
 - you need role and handoff contracts: [`aoa-agents`](https://github.com/8Dionysus/aoa-agents)
 - you need proof surfaces or evidence framing: [`aoa-evals`](https://github.com/8Dionysus/aoa-evals)
 - you need explicit memory objects or recall posture: [`aoa-memo`](https://github.com/8Dionysus/aoa-memo)
-- you need the smallest next object or dispatch hint: [`aoa-routing`](https://github.com/8Dionysus/aoa-routing)
+- you need the smallest next object or dispatch hint: the routing control plane in [`aoa-sdk`](https://github.com/8Dionysus/aoa-sdk)
 - you need the ecosystem center and boundary doctrine: [`Agents-of-Abyss`](https://github.com/8Dionysus/Agents-of-Abyss)
 
 ## Build and validate

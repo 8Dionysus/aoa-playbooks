@@ -15,16 +15,16 @@
         {
           "role": "boundary-mapper",
           "skills": [
-            "aoa-bounded-context-map",
-            "aoa-core-logic-boundary"
+            "mode.engineering-shape.contexts",
+            "mode.engineering-shape.core"
           ],
           "deliverable": "context map, interfaces, and core-vs-edge calls"
         },
         {
           "role": "contract-verifier",
           "skills": [
-            "aoa-contract-test",
-            "aoa-property-invariants"
+            "mode.verification.contract",
+            "mode.verification.property"
           ],
           "deliverable": "boundary contract assumptions and invariant candidates"
         }
@@ -48,15 +48,15 @@
         {
           "role": "canon-scout",
           "skills": [
-            "aoa-source-of-truth-check"
+            "mode.knowledge.authority-map"
           ],
           "deliverable": "authoritative startup and dependency files"
         },
         {
           "role": "bringup-operator",
           "skills": [
-            "aoa-local-stack-bringup",
-            "aoa-dry-run-first"
+            "workflow.operations.local-stack-bringup",
+            "guard.operations.preview"
           ],
           "deliverable": "bounded startup attempt and blocker list"
         }
@@ -80,14 +80,14 @@
         {
           "role": "property-designer",
           "skills": [
-            "aoa-property-invariants"
+            "mode.verification.property"
           ],
           "deliverable": "proposed broad properties"
         },
         {
           "role": "coverage-auditor",
           "skills": [
-            "aoa-invariant-coverage-audit"
+            "mode.verification.coverage-audit"
           ],
           "deliverable": "which invariants are covered, missing, or weak"
         }
@@ -110,15 +110,15 @@
         {
           "role": "canon-reviewer",
           "skills": [
-            "aoa-source-of-truth-check"
+            "mode.knowledge.authority-map"
           ],
           "deliverable": "authority map and overlap notes"
         },
         {
           "role": "summary-drafter",
           "skills": [
-            "aoa-sanitized-share",
-            "aoa-adr-write"
+            "mode.knowledge.sanitized-share",
+            "mode.decision.record"
           ],
           "deliverable": "redacted shareable snapshot"
         }

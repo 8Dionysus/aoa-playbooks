@@ -26,13 +26,13 @@ required_skill_families:
   - local-bringup
   - review
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-local-stack-bringup
-  - aoa-adr-write
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - workflow.operations.local-stack-bringup
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -129,13 +129,13 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-local-stack-bringup`
-- `aoa-adr-write`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `workflow.operations.local-stack-bringup`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -211,11 +211,11 @@ The playbook does not move install canon, bootstrap authority, or skill semantic
 
 ## Canonical route
 
-1. Use `aoa-source-of-truth-check` and `aoa-bounded-context-map` to name the workspace root, sibling repo set, and the owner-repo canon that governs install and session posture.
-2. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to bound which root directories, symlinks, and guidance surfaces may change before mutation begins.
+1. Use `mode.knowledge.authority-map` and `mode.engineering-shape.contexts` to name the workspace root, sibling repo set, and the owner-repo canon that governs install and session posture.
+2. Use `guard.operations.approval` and `guard.operations.preview` to bound which root directories, symlinks, and guidance surfaces may change before mutation begins.
 3. Land or refresh the shared foundation install at the workspace root and keep overlays or repo-local extras out of the baseline unless the route explicitly widens later.
 4. Record or repair the root guidance surface so session-start posture points to canonical install docs and ingress or mutation-gate commands instead of duplicating owner canon.
-5. Use `aoa-change-protocol` for the bounded repo and workspace changes that make the landing real, and use `aoa-adr-write` when the route introduces a durable workspace install or guidance decision.
-6. Use `aoa-local-stack-bringup` only as far as needed to verify that the workspace can actually enter through ingress and guard surfaces after landing.
+5. Use `workflow.operations.repository-change` for the bounded repo and workspace changes that make the landing real, and use `mode.decision.record` when the route introduces a durable workspace install or guidance decision.
+6. Use `workflow.operations.local-stack-bringup` only as far as needed to verify that the workspace can actually enter through ingress and guard surfaces after landing.
 7. If the same project must land outside the current root, add the smallest bounded bootstrap route that preserves sibling-workspace layout without widening into generic ecosystem rollout.
 8. Close with the install report, verification pack, and handoff record; if authority, baseline integrity, or verification honesty is lost, return through `previous_phase`, `review_gate`, `rollback_gate`, or `safe_stop` before claiming the workspace landed.

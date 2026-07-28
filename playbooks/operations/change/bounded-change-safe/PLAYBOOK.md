@@ -22,15 +22,15 @@ required_skill_families:
   - verification
   - memory-curation
 required_skills:
-  - aoa-approval-gate-check
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-tdd-slice
-  - aoa-adr-write
-  - aoa-sanitized-share
+  - guard.operations.approval
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - workflow.operations.tdd-slice
+  - mode.decision.record
+  - mode.knowledge.sanitized-share
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -107,15 +107,15 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-approval-gate-check`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-tdd-slice`
-- `aoa-adr-write`
-- `aoa-sanitized-share`
+- `guard.operations.approval`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `workflow.operations.tdd-slice`
+- `mode.decision.record`
+- `mode.knowledge.sanitized-share`
 
 ## Decision points
 
@@ -184,10 +184,10 @@ Use `aoa-bounded-change-quality` to check that the change stayed scoped, verifie
 
 ## Canonical route
 
-1. Use `aoa-approval-gate-check` to classify whether the requested change can proceed now.
-2. Use `aoa-source-of-truth-check` and `aoa-bounded-context-map` to make the source map and boundaries explicit.
-3. Use `aoa-dry-run-first` when a meaningful preview seam exists.
-4. Execute the bounded mutation through `aoa-change-protocol`.
-5. Tighten confidence with `aoa-contract-test` or `aoa-tdd-slice` when the verification surface needs strengthening.
-6. Record any durable decision through `aoa-adr-write` and prepare any outbound summary through `aoa-sanitized-share`.
+1. Use `guard.operations.approval` to classify whether the requested change can proceed now.
+2. Use `mode.knowledge.authority-map` and `mode.engineering-shape.contexts` to make the source map and boundaries explicit.
+3. Use `guard.operations.preview` when a meaningful preview seam exists.
+4. Execute the bounded mutation through `workflow.operations.repository-change`.
+5. Tighten confidence with `mode.verification.contract` or `workflow.operations.tdd-slice` when the verification surface needs strengthening.
+6. Record any durable decision through `mode.decision.record` and prepare any outbound summary through `mode.knowledge.sanitized-share`.
 7. If the route loses approval, scope, or verification integrity, return to the last artifact anchor and re-enter through `previous_phase`, `review_gate`, or `safe_stop`.

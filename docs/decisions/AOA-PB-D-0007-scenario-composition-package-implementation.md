@@ -73,15 +73,38 @@ and operator docs should point at the package-local mechanic source.
 
 ## Current Applicability
 
-As of 2026-05-31:
+As of 2026-07-28:
 
 - Still valid: scenario-composition builder implementation and source payloads
   are package-local.
 - Changed: `mechanics/LOCAL_MECHANICS.md` marks `scenario-composition` as
   `package-active`.
+- Changed: the former sibling dependency on
+  `aoa-skills/generated/skill_handoff_contracts.json` is superseded by typed
+  node IDs and ABI data from `aoa-skills/generated/capability_graph.json`.
+  The `required_skills` field name remains only as a compatibility surface; its
+  entries are capability graph IDs, not promises that every node is a callable
+  skill.
 - Superseded by: none.
 
 ## Review Log
+
+### 2026-07-28 - Follow the semantic capability graph
+
+- Observed mismatch: `aoa-skills` retired the 57-object skill handoff catalog
+  when it adopted the semantic capability ecosystem, while this package still
+  required the deleted generated file and legacy skill names.
+- Correction: resolve composition and plan-contour requirements against exact
+  capability graph node IDs, derive input/output tags from each node's typed
+  ABI, and fail when a referenced node is absent, retired, non-actionable, or
+  lacks ABI, binding, or owner data.
+- Compatibility: retain the existing playbook `required_skills` and generated
+  handoff field names during this correction. They carry typed capability IDs;
+  a separately versioned playbook ABI decision is required before renaming
+  those public fields.
+- Boundary: `aoa-skills` continues to own capability meaning. `aoa-playbooks`
+  owns scenario composition only, while `aoa-sdk` resolves and compiles those
+  references without copying their semantics.
 
 ### 2026-05-31 - Scenario-composition implementation move
 

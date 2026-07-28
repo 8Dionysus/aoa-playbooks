@@ -47,7 +47,7 @@ For activation-eligible playbooks, these compact optional fields may appear when
 
 For federation-checked playbooks, these bundle-local fields become required:
 
-- `required_skills`
+- `required_skills` (compatibility field carrying typed capability graph IDs)
 - `memo_contract_refs`
 - `memo_writeback_targets`
 

@@ -23,11 +23,11 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-checkpoint-closeout-bridge
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-change-protocol
-  - aoa-contract-test
+  - skill.aoa-checkpoint-closeout-bridge
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - workflow.operations.repository-change
+  - mode.verification.contract
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: safe_stop
@@ -101,11 +101,11 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-checkpoint-closeout-bridge`
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-change-protocol`
-- `aoa-contract-test`
+- `skill.aoa-checkpoint-closeout-bridge`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
 
 ## Decision points
 

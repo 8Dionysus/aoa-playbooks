@@ -37,7 +37,7 @@ handoff_role: playbook-maintainer
 evidence:
   - reviewed closeout produced fourteen surviving units from the Wave5 A2A summon return checkpoint route
   - the quest promotion verdict was keep_open_quest, with multi-candidate follow-up required rather than final promotion
-  - owner handoff spans Dionysus, aoa-sdk, aoa-skills, aoa-evals, aoa-playbooks, aoa-memo, aoa-routing, aoa-agents, and abyss-stack without moving their source truth into aoa-playbooks
+  - owner handoff spans Dionysus, aoa-sdk, aoa-skills, aoa-evals, aoa-playbooks, aoa-memo, aoa-agents, and abyss-stack without moving their source truth into aoa-playbooks
 harvest:
   target: playbook
   trigger_count: 14

@@ -6,6 +6,7 @@ import argparse
 from copy import deepcopy
 import json
 from pathlib import Path
+import sys
 from typing import Any
 
 from jsonschema import Draft202012Validator
@@ -13,10 +14,24 @@ import yaml
 
 
 REPO_ROOT = Path(__file__).resolve().parents[5]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+try:
+    from scripts.dependency_roots import default_dependency_root, repo_root_from_env
+except ModuleNotFoundError:
+    from dependency_roots import default_dependency_root, repo_root_from_env
+
+
+AOA_SKILLS_ROOT = repo_root_from_env(
+    "AOA_SKILLS_ROOT",
+    default_dependency_root(REPO_ROOT, "aoa-skills"),
+)
 PART_ROOT = REPO_ROOT / "mechanics" / "scenario-composition" / "parts" / "plan-contours"
 CONFIG_PATH = PART_ROOT / "config" / "playbook_plan_contours.json"
 SCHEMA_PATH = PART_ROOT / "schemas" / "playbook-plan-contours.schema.json"
 OUTPUT_PATH = REPO_ROOT / "generated" / "playbook_plan_contours.min.json"
+CAPABILITY_GRAPH_PATH = AOA_SKILLS_ROOT / "generated" / "capability_graph.json"
 
 CONFIG_REF = CONFIG_PATH.relative_to(REPO_ROOT).as_posix()
 SCHEMA_REF = SCHEMA_PATH.relative_to(REPO_ROOT).as_posix()
@@ -55,10 +70,12 @@ def fail(message: str) -> None:
 
 
 def display_path(path: Path) -> str:
-    try:
-        return path.relative_to(REPO_ROOT).as_posix()
-    except ValueError:
-        return path.as_posix()
+    for root in (REPO_ROOT, AOA_SKILLS_ROOT):
+        try:
+            return path.relative_to(root).as_posix()
+        except ValueError:
+            continue
+    return path.as_posix()
 
 
 def read_json(path: Path) -> Any:
@@ -75,6 +92,20 @@ def load_source_config(path: Path = CONFIG_PATH) -> dict[str, Any]:
     if not isinstance(payload, dict):
         fail(f"{display_path(path)} must contain a JSON object")
     return payload
+
+
+def load_capabilities_by_id() -> dict[str, dict[str, Any]]:
+    payload = read_json(CAPABILITY_GRAPH_PATH)
+    if not isinstance(payload, dict) or not isinstance(payload.get("nodes"), list):
+        fail("aoa-skills/generated/capability_graph.json must contain a 'nodes' list")
+    capabilities = {
+        node["id"]: node
+        for node in payload["nodes"]
+        if isinstance(node, dict) and isinstance(node.get("id"), str)
+    }
+    if not capabilities:
+        fail("aoa-skills/generated/capability_graph.json must list at least one capability node")
+    return capabilities
 
 
 def _read_frontmatter(path: Path) -> dict[str, Any]:
@@ -816,6 +847,64 @@ def validate_source_config(
             f"missing={sorted(REQUIRED_CONTOUR_IDS - set(contour_ids))}, "
             f"unexpected={sorted(set(contour_ids) - REQUIRED_CONTOUR_IDS)}"
         )
+
+    capabilities_by_id = load_capabilities_by_id()
+    referenced_capability_ids = {
+        capability_id
+        for contour in contours
+        for capability_id in (
+            *contour.get("required_capability_ids", []),
+            *(
+                capability_id
+                for step in contour.get("steps", [])
+                if isinstance(step, dict)
+                for capability_id in step.get("capability_ids", [])
+            ),
+        )
+        if isinstance(capability_id, str)
+    }
+    missing_capability_ids = sorted(
+        referenced_capability_ids - set(capabilities_by_id)
+    )
+    if missing_capability_ids:
+        fail(
+            "plan contours reference capability IDs absent from "
+            "aoa-skills/generated/capability_graph.json: "
+            f"{missing_capability_ids}"
+        )
+    for capability_id in sorted(referenced_capability_ids):
+        capability = capabilities_by_id[capability_id]
+        if capability.get("kind") not in {
+            "adapter",
+            "guard",
+            "mode",
+            "skill",
+            "tool",
+            "workflow",
+        }:
+            fail(
+                f"plan contour capability {capability_id!r} is not an actionable graph node"
+            )
+        if capability.get("contract_level") not in {"executable", "navigation"}:
+            fail(
+                f"plan contour capability {capability_id!r} lacks an actionable contract level"
+            )
+        if not all(
+            isinstance(capability.get(field), dict)
+            for field in ("abi", "binding", "owner", "lifecycle")
+        ):
+            fail(
+                f"plan contour capability {capability_id!r} lacks typed ABI, binding, owner, or lifecycle"
+            )
+        lifecycle = capability.get("lifecycle")
+        assert isinstance(lifecycle, dict)
+        lifecycle_state = lifecycle.get("state")
+        if not isinstance(lifecycle_state, str) or not lifecycle_state:
+            fail(
+                f"plan contour capability {capability_id!r} lacks a lifecycle state"
+            )
+        if lifecycle_state == "retired":
+            fail(f"plan contour capability {capability_id!r} is retired")
 
     for index, contour in enumerate(contours):
         _validate_contour(contour, index=index, repo_root=repo_root)

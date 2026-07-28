@@ -21,8 +21,8 @@ required_skill_families:
   - memory-curation
   - review
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-change-protocol
+  - mode.knowledge.authority-map
+  - workflow.operations.repository-change
 evaluation_posture: strict
 memory_posture: deep_recall
 fallback_mode: handoff
@@ -87,8 +87,8 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-change-protocol`
+- `mode.knowledge.authority-map`
+- `workflow.operations.repository-change`
 
 The route may use narrower local memory or review helpers later, but this pilot keeps the public skill surface compact.
 

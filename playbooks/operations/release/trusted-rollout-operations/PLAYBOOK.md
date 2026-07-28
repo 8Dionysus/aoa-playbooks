@@ -26,15 +26,15 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-session-self-diagnose
-  - aoa-session-self-repair
-  - aoa-adr-write
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - mode.session-recovery.diagnose
+  - mode.session-recovery.repair
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -164,15 +164,15 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-session-self-diagnose`
-- `aoa-session-self-repair`
-- `aoa-adr-write`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.session-recovery.diagnose`
+- `mode.session-recovery.repair`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -276,15 +276,15 @@ does not let memo writeback overrule trust, receipt, or rollback evidence.
 ## Canonical route
 
 1. Start from the named shared-root rollout scope and confirm the active owner
-   truth surfaces with `aoa-source-of-truth-check` and `aoa-bounded-context-map`.
-2. Use `aoa-approval-gate-check` and `aoa-dry-run-first` to keep the route
+   truth surfaces with `mode.knowledge.authority-map` and `mode.engineering-shape.contexts`.
+2. Use `guard.operations.approval` and `guard.operations.preview` to keep the route
    bounded before any live rollout activation widens.
-3. Apply only the smallest honest rollout move through `aoa-change-protocol`,
+3. Apply only the smallest honest rollout move through `workflow.operations.repository-change`,
    keeping doctor and smoke posture explicit before calling the route healthy.
 4. If trust, startup, hooks, or runtime behavior drift, use
-   `aoa-session-self-diagnose` and `aoa-session-self-repair` to decide whether
+   `mode.session-recovery.diagnose` and `mode.session-recovery.repair` to decide whether
    one bounded repair is honest or whether rollback must open now.
-5. Tighten any touched operational seam with `aoa-contract-test` so the route
+5. Tighten any touched operational seam with `mode.verification.contract` so the route
    leaves behind a smaller verification gap than it found.
 6. Publish the durable rollout, drift, and rollback record in the owner repo
    before derived stats or memo writeback try to summarize the route.

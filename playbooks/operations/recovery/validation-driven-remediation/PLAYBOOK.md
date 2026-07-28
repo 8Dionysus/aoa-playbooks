@@ -24,13 +24,13 @@ required_skill_families:
   - evaluation
   - memory-curation
 required_skills:
-  - aoa-source-of-truth-check
-  - aoa-bounded-context-map
-  - aoa-approval-gate-check
-  - aoa-dry-run-first
-  - aoa-change-protocol
-  - aoa-contract-test
-  - aoa-adr-write
+  - mode.knowledge.authority-map
+  - mode.engineering-shape.contexts
+  - guard.operations.approval
+  - guard.operations.preview
+  - workflow.operations.repository-change
+  - mode.verification.contract
+  - mode.decision.record
 evaluation_posture: strict
 memory_posture: bounded_recall
 fallback_mode: review_required
@@ -125,13 +125,13 @@ Do not use this playbook when:
 
 ## Required skills
 
-- `aoa-source-of-truth-check`
-- `aoa-bounded-context-map`
-- `aoa-approval-gate-check`
-- `aoa-dry-run-first`
-- `aoa-change-protocol`
-- `aoa-contract-test`
-- `aoa-adr-write`
+- `mode.knowledge.authority-map`
+- `mode.engineering-shape.contexts`
+- `guard.operations.approval`
+- `guard.operations.preview`
+- `workflow.operations.repository-change`
+- `mode.verification.contract`
+- `mode.decision.record`
 
 ## Decision points
 
@@ -207,10 +207,10 @@ The playbook does not create a new memory-object kind and does not move memo tax
 ## Canonical route
 
 1. Name the failing validation surface that triggered remediation.
-2. Map the owning boundaries with `aoa-source-of-truth-check` and `aoa-bounded-context-map`.
+2. Map the owning boundaries with `mode.knowledge.authority-map` and `mode.engineering-shape.contexts`.
 3. Define the remediation boundary, stop conditions, and rollback or deferral posture before mutation begins.
-4. Use `aoa-approval-gate-check` and `aoa-dry-run-first` when authority or inspect-first posture must be made explicit.
-5. Apply the smallest corrective change through `aoa-change-protocol`.
-6. Rerun the failing validation surface and tighten closure with `aoa-contract-test` when the route needs an explicit contract-facing revalidation seam.
+4. Use `guard.operations.approval` and `guard.operations.preview` when authority or inspect-first posture must be made explicit.
+5. Apply the smallest corrective change through `workflow.operations.repository-change`.
+6. Rerun the failing validation surface and tighten closure with `mode.verification.contract` when the route needs an explicit contract-facing revalidation seam.
 7. If failure or boundary clarity is lost, return to the last valid `failure_map`, `remediation_decision`, or `revalidation_pack` anchor and re-enter through `previous_phase`, `review_gate`, `rollback_gate`, or `safe_stop`.
-8. Close with the `remediation_decision`, `revalidation_pack`, and provenance-safe `handoff_record`, and use `aoa-adr-write` when the remediation introduces a durable decision.
+8. Close with the `remediation_decision`, `revalidation_pack`, and provenance-safe `handoff_record`, and use `mode.decision.record` when the remediation introduces a durable decision.

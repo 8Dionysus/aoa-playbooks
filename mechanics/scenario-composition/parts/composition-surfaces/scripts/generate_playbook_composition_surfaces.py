@@ -33,7 +33,7 @@ COMPOSITION_OVERRIDES_PATH = (
     / "config"
     / "playbook_composition_overrides.json"
 )
-SKILL_HANDOFF_PATH = AOA_SKILLS_ROOT / "generated" / "skill_handoff_contracts.json"
+CAPABILITY_GRAPH_PATH = AOA_SKILLS_ROOT / "generated" / "capability_graph.json"
 
 PLAYBOOK_HANDOFF_CONTRACTS_PATH = REPO_ROOT / "generated" / "playbook_handoff_contracts.json"
 PLAYBOOK_FAILURE_CATALOG_PATH = REPO_ROOT / "generated" / "playbook_failure_catalog.json"
@@ -48,6 +48,15 @@ GENERATED_OUTPUTS = (
     PLAYBOOK_AUTOMATION_SEEDS_PATH,
     PLAYBOOK_COMPOSITION_MANIFEST_PATH,
 )
+
+ACTIONABLE_CAPABILITY_KINDS = {
+    "adapter",
+    "guard",
+    "mode",
+    "skill",
+    "tool",
+    "workflow",
+}
 
 
 class BuilderError(RuntimeError):
@@ -223,21 +232,21 @@ def load_authored_playbooks() -> tuple[dict[str, dict[str, object]], dict[str, d
     return frontmatter_by_name, sections_by_name
 
 
-def load_skill_handoff_by_name() -> dict[str, dict[str, object]]:
-    payload = read_json(SKILL_HANDOFF_PATH)
-    if not isinstance(payload, dict) or not isinstance(payload.get("skills"), list):
-        fail("aoa-skills/generated/skill_handoff_contracts.json must contain a 'skills' list")
+def load_capabilities_by_id() -> dict[str, dict[str, object]]:
+    payload = read_json(CAPABILITY_GRAPH_PATH)
+    if not isinstance(payload, dict) or not isinstance(payload.get("nodes"), list):
+        fail("aoa-skills/generated/capability_graph.json must contain a 'nodes' list")
 
-    skill_handoff_by_name: dict[str, dict[str, object]] = {}
-    for item in payload["skills"]:
+    capabilities_by_id: dict[str, dict[str, object]] = {}
+    for item in payload["nodes"]:
         if not isinstance(item, dict):
             continue
-        name = item.get("name")
-        if isinstance(name, str):
-            skill_handoff_by_name[name] = item
-    if not skill_handoff_by_name:
-        fail("aoa-skills/generated/skill_handoff_contracts.json must list at least one skill")
-    return skill_handoff_by_name
+        capability_id = item.get("id")
+        if isinstance(capability_id, str):
+            capabilities_by_id[capability_id] = item
+    if not capabilities_by_id:
+        fail("aoa-skills/generated/capability_graph.json must list at least one capability node")
+    return capabilities_by_id
 
 
 def load_composition_overrides() -> dict[str, object]:
@@ -253,8 +262,61 @@ def load_composition_overrides() -> dict[str, object]:
     return payload
 
 
-def skill_ref(skill_name: str) -> str:
-    return f"../aoa-skills/generated/skill_handoff_contracts.json#{skill_name}"
+def capability_ref(capability_id: str) -> str:
+    return f"../aoa-skills/generated/capability_graph.json#nodes/{capability_id}"
+
+
+def capability_artifact_tags(
+    capability: dict[str, object],
+    *,
+    direction: str,
+) -> list[str]:
+    abi = capability.get("abi")
+    if not isinstance(abi, dict):
+        return []
+    entries = abi.get(direction)
+    if not isinstance(entries, list):
+        return []
+    return [
+        str(entry["name"])
+        for entry in entries
+        if isinstance(entry, dict) and isinstance(entry.get("name"), str)
+    ]
+
+
+def capability_projection_error(capability: dict[str, object]) -> str | None:
+    if capability.get("kind") not in ACTIONABLE_CAPABILITY_KINDS:
+        return "node kind is not actionable"
+    if capability.get("contract_level") not in {"executable", "navigation"}:
+        return "node lacks an actionable contract level"
+    if not all(
+        isinstance(capability.get(field), dict)
+        for field in ("abi", "binding", "owner", "lifecycle")
+    ):
+        return "node lacks typed ABI, binding, owner, or lifecycle data"
+    lifecycle = capability["lifecycle"]
+    assert isinstance(lifecycle, dict)
+    lifecycle_state = lifecycle.get("state")
+    if not isinstance(lifecycle_state, str) or not lifecycle_state:
+        return "node lacks a lifecycle state"
+    if lifecycle_state == "retired":
+        return "node is retired"
+    return None
+
+
+def require_projectable_capability(
+    capabilities_by_id: dict[str, dict[str, object]],
+    capability_id: object,
+    *,
+    location: str,
+) -> dict[str, object]:
+    if not isinstance(capability_id, str) or capability_id not in capabilities_by_id:
+        fail(f"{location} references unknown capability '{capability_id}'")
+    capability = capabilities_by_id[capability_id]
+    error = capability_projection_error(capability)
+    if error is not None:
+        fail(f"{location} references unusable capability '{capability_id}': {error}")
+    return capability
 
 
 def normalize_handles(handles: list[object]) -> list[str]:
@@ -271,7 +333,7 @@ def validate_overrides(
     *,
     registry_by_name: dict[str, dict[str, object]],
     frontmatter_by_name: dict[str, dict[str, object]],
-    skill_handoff_by_name: dict[str, dict[str, object]],
+    capabilities_by_id: dict[str, dict[str, object]],
 ) -> None:
     playbook_overrides = overrides["playbooks"]
     assert isinstance(playbook_overrides, dict)
@@ -286,6 +348,17 @@ def validate_overrides(
     }
     if len(failure_codes) != len(failure_catalog):
         fail("mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json failure_catalog codes must be unique strings")
+    for item in failure_catalog:
+        assert isinstance(item, dict)
+        recommended_skills = item.get("recommended_skills")
+        if not isinstance(recommended_skills, list) or not recommended_skills:
+            fail(f"failure catalog entry '{item.get('code')}' must list recommended_skills")
+        for capability_id in recommended_skills:
+            require_projectable_capability(
+                capabilities_by_id,
+                capability_id,
+                location=f"failure catalog entry '{item.get('code')}'",
+            )
 
     subagent_recipes = overrides.get("subagent_recipes")
     if not isinstance(subagent_recipes, list):
@@ -337,9 +410,18 @@ def validate_overrides(
         required_skills = frontmatter_by_name[playbook_name].get("required_skills")
         if not isinstance(required_skills, list):
             fail(f"authored playbook {playbook_name} must expose required_skills")
+        for capability_id in required_skills:
+            require_projectable_capability(
+                capabilities_by_id,
+                capability_id,
+                location=f"authored playbook {playbook_name} required_skills",
+            )
         for skill_name in handoff_skill_refs:
-            if not isinstance(skill_name, str) or skill_name not in skill_handoff_by_name:
-                fail(f"playbook composition override for {playbook_name} references unknown skill handoff '{skill_name}'")
+            require_projectable_capability(
+                capabilities_by_id,
+                skill_name,
+                location=f"playbook composition override for {playbook_name} handoff_skill_refs",
+            )
             if skill_name not in required_skills:
                 fail(f"playbook composition override for {playbook_name} references handoff skill '{skill_name}' outside required_skills")
 
@@ -372,8 +454,11 @@ def validate_overrides(
             if not isinstance(skills, list) or not skills:
                 fail(f"subagent recipe '{recipe.get('name')}' roles must list skills")
             for skill_name in skills:
-                if not isinstance(skill_name, str) or skill_name not in skill_handoff_by_name:
-                    fail(f"subagent recipe '{recipe.get('name')}' references unknown skill '{skill_name}'")
+                require_projectable_capability(
+                    capabilities_by_id,
+                    skill_name,
+                    location=f"subagent recipe '{recipe.get('name')}'",
+                )
 
     for seed in automation_seeds:
         assert isinstance(seed, dict)
@@ -384,8 +469,11 @@ def validate_overrides(
         if not isinstance(skill_handles, list) or not skill_handles:
             fail(f"automation seed '{seed.get('name')}' must list skill_handles")
         for skill_name in normalize_handles(skill_handles):
-            if skill_name not in skill_handoff_by_name:
-                fail(f"automation seed '{seed.get('name')}' references unknown skill handle '${skill_name}'")
+            require_projectable_capability(
+                capabilities_by_id,
+                skill_name,
+                location=f"automation seed '{seed.get('name')}'",
+            )
 
 
 def build_playbook_handoff_contracts(
@@ -393,7 +481,7 @@ def build_playbook_handoff_contracts(
     overrides: dict[str, object],
     frontmatter_by_name: dict[str, dict[str, object]],
     sections_by_name: dict[str, dict[str, str]],
-    skill_handoff_by_name: dict[str, dict[str, object]],
+    capabilities_by_id: dict[str, dict[str, object]],
 ) -> dict[str, object]:
     playbook_entries: list[dict[str, object]] = []
     playbook_overrides = overrides["playbooks"]
@@ -414,13 +502,19 @@ def build_playbook_handoff_contracts(
         upstream_skill_handoffs = []
         for skill_name in handoff_skill_refs:
             assert isinstance(skill_name, str)
-            skill_handoff = skill_handoff_by_name[skill_name]
+            capability = capabilities_by_id[skill_name]
             upstream_skill_handoffs.append(
                 {
                     "name": skill_name,
-                    "ref": skill_ref(skill_name),
-                    "consumes_artifact_tags": skill_handoff.get("consumes_artifact_tags", []),
-                    "provides_artifact_tags": skill_handoff.get("provides_artifact_tags", []),
+                    "ref": capability_ref(skill_name),
+                    "consumes_artifact_tags": capability_artifact_tags(
+                        capability,
+                        direction="inputs",
+                    ),
+                    "provides_artifact_tags": capability_artifact_tags(
+                        capability,
+                        direction="outputs",
+                    ),
                 }
             )
 
@@ -452,7 +546,7 @@ def build_playbook_handoff_contracts(
             "registry": "generated/playbook_registry.min.json",
             "bundles": "playbooks/*/*/*/PLAYBOOK.md",
             "composition_overrides": "mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json",
-            "skill_handoff_contracts": "../aoa-skills/generated/skill_handoff_contracts.json",
+            "capability_graph": "../aoa-skills/generated/capability_graph.json",
         },
         "playbooks": playbook_entries,
     }
@@ -520,7 +614,7 @@ def build_composition_manifest(
             "registry": "generated/playbook_registry.min.json",
             "bundles": "playbooks/*/*/*/PLAYBOOK.md",
             "composition_overrides": "mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json",
-            "skill_handoff_contracts": "../aoa-skills/generated/skill_handoff_contracts.json",
+            "capability_graph": "../aoa-skills/generated/capability_graph.json",
         },
         "generated_files": [path.relative_to(REPO_ROOT).as_posix() for path in GENERATED_OUTPUTS],
         "managed_playbooks": managed_playbooks,
@@ -532,14 +626,14 @@ def build_composition_manifest(
 def build_outputs() -> dict[Path, object]:
     registry_by_name = load_registry_by_name()
     frontmatter_by_name, sections_by_name = load_authored_playbooks()
-    skill_handoff_by_name = load_skill_handoff_by_name()
+    capabilities_by_id = load_capabilities_by_id()
     overrides = load_composition_overrides()
 
     validate_overrides(
         overrides,
         registry_by_name=registry_by_name,
         frontmatter_by_name=frontmatter_by_name,
-        skill_handoff_by_name=skill_handoff_by_name,
+        capabilities_by_id=capabilities_by_id,
     )
 
     return {
@@ -547,7 +641,7 @@ def build_outputs() -> dict[Path, object]:
             overrides=overrides,
             frontmatter_by_name=frontmatter_by_name,
             sections_by_name=sections_by_name,
-            skill_handoff_by_name=skill_handoff_by_name,
+            capabilities_by_id=capabilities_by_id,
         ),
         PLAYBOOK_FAILURE_CATALOG_PATH: build_failure_catalog(overrides),
         PLAYBOOK_SUBAGENT_RECIPES_PATH: build_subagent_recipes(overrides),
