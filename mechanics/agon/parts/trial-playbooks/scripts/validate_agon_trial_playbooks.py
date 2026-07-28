@@ -125,11 +125,11 @@ def validate_optional_neighbor_vocabularies() -> str | None:
             for trigger in gate.get("triggers", [])
             if isinstance(trigger, dict)
         }
-        if gate_trigger_ids != KNOWN_GATE_TRIGGERS:
+        missing_gate_triggers = KNOWN_GATE_TRIGGERS - gate_trigger_ids
+        if missing_gate_triggers:
             return (
                 "embedded gate triggers drift from SDK routing owner: "
-                f"missing={sorted(KNOWN_GATE_TRIGGERS - gate_trigger_ids)}, "
-                f"extra={sorted(gate_trigger_ids - KNOWN_GATE_TRIGGERS)}"
+                f"missing={sorted(missing_gate_triggers)}"
             )
         if any(
             hint.get("live_protocol") is not False
