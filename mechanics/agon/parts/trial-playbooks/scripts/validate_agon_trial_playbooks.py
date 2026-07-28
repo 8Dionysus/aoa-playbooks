@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -56,26 +57,89 @@ def load_frontmatter(path: Path) -> tuple[dict[str, object], str]:
         raise ValueError(f"{path} frontmatter must decode to a mapping")
     return frontmatter, body
 
-def optional_neighbor_note() -> None:
+def validate_optional_neighbor_vocabularies() -> str | None:
     workspace = ROOT.parent
-    center_moves = workspace / "Agents-of-Abyss" / "generated" / "agon_lawful_move_registry.min.json"
-    routing_gate = workspace / "aoa-routing" / "generated" / "agon_gate_routing_registry.min.json"
+    center_root = Path(
+        os.environ.get("AOA_CENTER_ROOT", workspace / "Agents-of-Abyss")
+    )
+    sdk_root = Path(os.environ.get("AOA_SDK_ROOT", workspace / "aoa-sdk"))
+    center_moves = (
+        center_root
+        / "mechanics"
+        / "agon"
+        / "parts"
+        / "lawful-move-grammar"
+        / "generated"
+        / "agon_lawful_move_registry.min.json"
+    )
+    routing_gate = (
+        sdk_root
+        / "src"
+        / "aoa_sdk"
+        / "control_plane"
+        / "routing"
+        / "data"
+        / "agon_gate_routing_registry.min.json"
+    )
     missing = []
     if not center_moves.exists():
-        missing.append("Agents-of-Abyss/generated/agon_lawful_move_registry.min.json")
+        missing.append(
+            "Agents-of-Abyss/mechanics/agon/parts/lawful-move-grammar/"
+            "generated/agon_lawful_move_registry.min.json"
+        )
+    else:
+        center = load(center_moves)
+        center_move_names = {
+            move.get("name")
+            for move in center.get("moves", [])
+            if isinstance(move, dict)
+        }
+        drift = sorted(KNOWN_LAWFUL_MOVES - center_move_names)
+        if drift:
+            return f"embedded lawful moves drift from center owner: {drift}"
     if not routing_gate.exists():
-        missing.append("aoa-routing/generated/agon_gate_routing_registry.min.json")
+        missing.append(
+            "aoa-sdk/src/aoa_sdk/control_plane/routing/data/"
+            "agon_gate_routing_registry.min.json"
+        )
+    else:
+        gate = load(routing_gate)
+        if gate.get("owner_repo") != "aoa-sdk":
+            return "SDK Agon gate registry owner_repo must be aoa-sdk"
+        if gate.get("center_repo") != "Agents-of-Abyss":
+            return "SDK Agon gate registry center_repo must remain Agents-of-Abyss"
+        gate_trigger_ids = {
+            trigger.get("trigger_id")
+            for trigger in gate.get("triggers", [])
+            if isinstance(trigger, dict)
+        }
+        if gate_trigger_ids != KNOWN_GATE_TRIGGERS:
+            return (
+                "embedded gate triggers drift from SDK routing owner: "
+                f"missing={sorted(KNOWN_GATE_TRIGGERS - gate_trigger_ids)}, "
+                f"extra={sorted(gate_trigger_ids - KNOWN_GATE_TRIGGERS)}"
+            )
+        if any(
+            hint.get("live_protocol") is not False
+            or hint.get("runtime_effect") != "none"
+            for hint in gate.get("route_hints", [])
+            if isinstance(hint, dict)
+        ):
+            return "SDK Agon gate registry leaked live protocol or runtime effects"
     if missing:
         print("optional workspace neighbors not found; using embedded Wave III/V vocabularies:")
         for item in missing:
             print(f"  - {item}")
+    return None
 
 def main() -> int:
     builder = ROOT / "scripts" / "build_agon_trial_playbook_registry.py"
     result = subprocess.run([sys.executable, str(builder), "--check"], cwd=ROOT)
     if result.returncode != 0:
         return result.returncode
-    optional_neighbor_note()
+    neighbor_error = validate_optional_neighbor_vocabularies()
+    if neighbor_error is not None:
+        return fail(neighbor_error)
     cfg = load(CFG)
     reg = load(REG)
     if cfg.get("wave") != "VI" or reg.get("wave") != "VI":

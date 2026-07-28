@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 2451838,
+  "allowed_tracked_bytes": 8840074,
+  "approved_by": "repository-owner",
+  "base_ref": "577b772c62b692b18a7f0945a470d00245c998c8",
+  "changed_generated_bytes": 2451838,
+  "changed_generated_files": 70,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "7a761e0136ce797c547f82b103379331256fa8183d11b4d54b48d2cec139c0aa",
+  "reason": "Refresh derived KAG records after routing current Playbooks and Agon owner references to the SDK-canonical control plane; no runtime, invocation, cost-reduction, or completion claim.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8840074,
+  "tracked_bytes_max": 10485760
+}

@@ -26,8 +26,8 @@ neighboring layers can read without guessing.
 
 This wave lands `AOA-P-0032 runtime-chaos-recovery` as the smallest sovereign
 playbook that can honestly own these stress-lane and re-entry surfaces without
-absorbing owner meaning from `abyss-stack`, `aoa-kag`, `aoa-routing`, or
-`aoa-evals`.
+absorbing owner meaning from `abyss-stack`, `aoa-kag`, the `aoa-sdk` routing
+control plane, or `aoa-evals`.
 
 Use it when a reviewed runtime stress receipt already exists and the next
 honest move is:

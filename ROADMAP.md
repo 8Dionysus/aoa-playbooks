@@ -86,7 +86,7 @@ Goals:
 - connect participating role posture to `aoa-agents`
 - connect expected proof posture to `aoa-evals`
 - connect expected memory posture to `aoa-memo`
-- preserve clear boundaries relative to `aoa-routing`
+- preserve clear boundaries relative to the `aoa-sdk` routing control plane
 - let the runtime-facing cohort publish flat memo-read defaults without turning the playbook layer into recall search or routing ownership
 
 ## Phase 6: growth governance

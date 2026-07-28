@@ -15,7 +15,25 @@ def test_agon_trial_playbook_registry_build_check():
     assert result.returncode == 0, result.stderr + result.stdout
 
 def test_agon_trial_playbooks_are_pre_protocol():
+    source = json.loads(
+        (
+            ROOT
+            / "mechanics"
+            / "agon"
+            / "parts"
+            / "trial-playbooks"
+            / "config"
+            / "agon_trial_playbooks.seed.json"
+        ).read_text(encoding="utf-8")
+    )
     data = json.loads((ROOT / "generated" / "agon_trial_playbook_registry.min.json").read_text(encoding="utf-8"))
+    assert source["gate_trigger_source"].startswith(
+        "aoa-sdk/src/aoa_sdk/control_plane/routing/"
+    )
+    assert "aoa-routing" not in source["gate_trigger_source"]
+    assert source["lawful_move_source"].startswith(
+        "Agents-of-Abyss/mechanics/agon/parts/lawful-move-grammar/"
+    )
     assert data["wave"] == "VI"
     assert data["live_protocol"] is False
     assert data["runtime_effect"] == "none"

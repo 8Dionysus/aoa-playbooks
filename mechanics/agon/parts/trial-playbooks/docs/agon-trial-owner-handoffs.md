@@ -2,7 +2,8 @@
 
 Trial playbooks may name owner handoffs without absorbing neighboring authority.
 
-`aoa-routing` may receive gate hint candidates.
+The `aoa-sdk` routing control plane may receive and emit gate hint candidates.
+It does not activate an Agon protocol.
 
 `aoa-evals` may receive proof and breach review requests.
 

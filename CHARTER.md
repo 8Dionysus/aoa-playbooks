@@ -55,7 +55,7 @@ Examples:
 - `aoa-techniques` owns practice meaning
 - `aoa-skills` owns execution meaning
 - `aoa-evals` owns proof meaning
-- `aoa-routing` owns navigation and dispatch surfaces
+- `aoa-sdk` owns canonical routing, navigation, and dispatch surfaces
 - `aoa-memo` owns memory and recall meaning
 - `aoa-agents` owns role and persona meaning
 - `aoa-playbooks` owns scenario-level composition meaning

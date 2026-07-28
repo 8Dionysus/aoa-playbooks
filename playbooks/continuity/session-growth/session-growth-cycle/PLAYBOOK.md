@@ -235,8 +235,8 @@ Pause or stop when:
 - checkpoint carry is being treated as reviewed candidate truth
 - a `candidate_ref` is missing but the route is trying to stage a seed or land
   an owner object
-- owner fit is still ambiguous enough that `aoa-routing` or `aoa-kag` would
-  become the convenience first author
+- owner fit is still ambiguous enough that the `aoa-sdk` routing control plane
+  or `aoa-kag` would become the convenience first author
 - proof, memory, or stats are being asked to outrank reviewed owner evidence
 - a repair move widens scope instead of reducing ambiguity
 - the route starts acting like a hidden runner instead of a reviewable cycle

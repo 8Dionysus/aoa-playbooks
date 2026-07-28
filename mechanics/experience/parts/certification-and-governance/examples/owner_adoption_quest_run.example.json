@@ -9,7 +9,7 @@
     "receipt://v0.6/owner_adoption_quest_run/example"
   ],
   "payload": {
-    "owner_repo": "aoa-routing",
+    "owner_repo": "aoa-sdk",
     "adoption_status": "accepted"
   }
 }

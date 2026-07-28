@@ -11,6 +11,10 @@ Tracking starts with the community-docs baseline for this repository.
 
 - The repository now states an explicit MCP-first boundary for any future
   `aoa-playbooks` owner skill; no empty skill home is scaffolded in advance.
+- Current navigation, dispatch, recurrence, portfolio, and Agon handoffs now
+  route to the canonical `aoa-sdk` control plane. The Agon trial validator can
+  compare its embedded vocabularies with explicit SDK and center roots while
+  no active check requires an `aoa-routing` checkout.
 
 ### Removed
 

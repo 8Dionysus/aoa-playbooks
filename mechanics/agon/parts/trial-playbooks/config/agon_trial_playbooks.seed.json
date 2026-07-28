@@ -8,8 +8,8 @@
     "rank_mutator",
     "tos_promoter"
   ],
-  "gate_trigger_source": "aoa-routing/generated/agon_gate_routing_registry.min.json",
-  "lawful_move_source": "Agents-of-Abyss/generated/agon_lawful_move_registry.min.json",
+  "gate_trigger_source": "aoa-sdk/src/aoa_sdk/control_plane/routing/data/agon_gate_routing_registry.min.json",
+  "lawful_move_source": "Agents-of-Abyss/mechanics/agon/parts/lawful-move-grammar/generated/agon_lawful_move_registry.min.json",
   "live_protocol": false,
   "repo": "aoa-playbooks",
   "runtime_effect": "none",

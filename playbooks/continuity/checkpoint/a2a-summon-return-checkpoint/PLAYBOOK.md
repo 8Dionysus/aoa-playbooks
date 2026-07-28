@@ -251,8 +251,7 @@ The route should finish with visible evidence for:
 - `aoa-return-anchor-integrity` checks that return and re-entry preserve a real
   anchor instead of relying on hidden continuity.
 - These eval anchors are draft, review-only, and subordinate to source-owned
-  contracts in `aoa-skills`, `aoa-sdk`, `aoa-memo`, `aoa-routing`, and
-  `abyss-stack`.
+  contracts in `aoa-skills`, `aoa-sdk`, `aoa-memo`, and `abyss-stack`.
 
 ## Memory writeback
 
