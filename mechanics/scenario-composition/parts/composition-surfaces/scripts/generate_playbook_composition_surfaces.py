@@ -49,6 +49,15 @@ GENERATED_OUTPUTS = (
     PLAYBOOK_COMPOSITION_MANIFEST_PATH,
 )
 
+ACTIONABLE_CAPABILITY_KINDS = {
+    "adapter",
+    "guard",
+    "mode",
+    "skill",
+    "tool",
+    "workflow",
+}
+
 
 class BuilderError(RuntimeError):
     pass
@@ -275,6 +284,41 @@ def capability_artifact_tags(
     ]
 
 
+def capability_projection_error(capability: dict[str, object]) -> str | None:
+    if capability.get("kind") not in ACTIONABLE_CAPABILITY_KINDS:
+        return "node kind is not actionable"
+    if capability.get("contract_level") not in {"executable", "navigation"}:
+        return "node lacks an actionable contract level"
+    if not all(
+        isinstance(capability.get(field), dict)
+        for field in ("abi", "binding", "owner", "lifecycle")
+    ):
+        return "node lacks typed ABI, binding, owner, or lifecycle data"
+    lifecycle = capability["lifecycle"]
+    assert isinstance(lifecycle, dict)
+    lifecycle_state = lifecycle.get("state")
+    if not isinstance(lifecycle_state, str) or not lifecycle_state:
+        return "node lacks a lifecycle state"
+    if lifecycle_state == "retired":
+        return "node is retired"
+    return None
+
+
+def require_projectable_capability(
+    capabilities_by_id: dict[str, dict[str, object]],
+    capability_id: object,
+    *,
+    location: str,
+) -> dict[str, object]:
+    if not isinstance(capability_id, str) or capability_id not in capabilities_by_id:
+        fail(f"{location} references unknown capability '{capability_id}'")
+    capability = capabilities_by_id[capability_id]
+    error = capability_projection_error(capability)
+    if error is not None:
+        fail(f"{location} references unusable capability '{capability_id}': {error}")
+    return capability
+
+
 def normalize_handles(handles: list[object]) -> list[str]:
     normalized: list[str] = []
     for handle in handles:
@@ -304,6 +348,17 @@ def validate_overrides(
     }
     if len(failure_codes) != len(failure_catalog):
         fail("mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json failure_catalog codes must be unique strings")
+    for item in failure_catalog:
+        assert isinstance(item, dict)
+        recommended_skills = item.get("recommended_skills")
+        if not isinstance(recommended_skills, list) or not recommended_skills:
+            fail(f"failure catalog entry '{item.get('code')}' must list recommended_skills")
+        for capability_id in recommended_skills:
+            require_projectable_capability(
+                capabilities_by_id,
+                capability_id,
+                location=f"failure catalog entry '{item.get('code')}'",
+            )
 
     subagent_recipes = overrides.get("subagent_recipes")
     if not isinstance(subagent_recipes, list):
@@ -355,9 +410,18 @@ def validate_overrides(
         required_skills = frontmatter_by_name[playbook_name].get("required_skills")
         if not isinstance(required_skills, list):
             fail(f"authored playbook {playbook_name} must expose required_skills")
+        for capability_id in required_skills:
+            require_projectable_capability(
+                capabilities_by_id,
+                capability_id,
+                location=f"authored playbook {playbook_name} required_skills",
+            )
         for skill_name in handoff_skill_refs:
-            if not isinstance(skill_name, str) or skill_name not in capabilities_by_id:
-                fail(f"playbook composition override for {playbook_name} references unknown skill handoff '{skill_name}'")
+            require_projectable_capability(
+                capabilities_by_id,
+                skill_name,
+                location=f"playbook composition override for {playbook_name} handoff_skill_refs",
+            )
             if skill_name not in required_skills:
                 fail(f"playbook composition override for {playbook_name} references handoff skill '{skill_name}' outside required_skills")
 
@@ -390,8 +454,11 @@ def validate_overrides(
             if not isinstance(skills, list) or not skills:
                 fail(f"subagent recipe '{recipe.get('name')}' roles must list skills")
             for skill_name in skills:
-                if not isinstance(skill_name, str) or skill_name not in capabilities_by_id:
-                    fail(f"subagent recipe '{recipe.get('name')}' references unknown skill '{skill_name}'")
+                require_projectable_capability(
+                    capabilities_by_id,
+                    skill_name,
+                    location=f"subagent recipe '{recipe.get('name')}'",
+                )
 
     for seed in automation_seeds:
         assert isinstance(seed, dict)
@@ -402,8 +469,11 @@ def validate_overrides(
         if not isinstance(skill_handles, list) or not skill_handles:
             fail(f"automation seed '{seed.get('name')}' must list skill_handles")
         for skill_name in normalize_handles(skill_handles):
-            if skill_name not in capabilities_by_id:
-                fail(f"automation seed '{seed.get('name')}' references unknown skill handle '${skill_name}'")
+            require_projectable_capability(
+                capabilities_by_id,
+                skill_name,
+                location=f"automation seed '{seed.get('name')}'",
+            )
 
 
 def build_playbook_handoff_contracts(

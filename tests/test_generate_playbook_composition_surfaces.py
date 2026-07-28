@@ -108,6 +108,80 @@ class GeneratePlaybookCompositionSurfacesTests(unittest.TestCase):
                     f"#nodes/{capability_id}",
                 )
 
+    def test_projection_capability_requires_actionable_typed_node(self) -> None:
+        capability = {
+            "kind": "workflow",
+            "contract_level": "executable",
+            "abi": {},
+            "binding": {},
+            "owner": {},
+            "lifecycle": {"state": "active"},
+        }
+
+        self.assertIsNone(builder.capability_projection_error(capability))
+
+        for field in ("abi", "binding", "owner", "lifecycle"):
+            invalid = dict(capability)
+            invalid.pop(field)
+            self.assertIsNotNone(builder.capability_projection_error(invalid))
+
+        retired = dict(capability)
+        retired["lifecycle"] = {"state": "retired"}
+        self.assertEqual(
+            builder.capability_projection_error(retired),
+            "node is retired",
+        )
+
+        lifecycle_without_state = dict(capability)
+        lifecycle_without_state["lifecycle"] = {}
+        self.assertEqual(
+            builder.capability_projection_error(lifecycle_without_state),
+            "node lacks a lifecycle state",
+        )
+
+        non_actionable = dict(capability)
+        non_actionable["kind"] = "concept"
+        self.assertEqual(
+            builder.capability_projection_error(non_actionable),
+            "node kind is not actionable",
+        )
+
+    def test_recipe_only_capability_must_be_projectable(self) -> None:
+        overrides = builder.load_composition_overrides()
+        registry_by_name = builder.load_registry_by_name()
+        frontmatter_by_name, _ = builder.load_authored_playbooks()
+        capabilities = builder.load_capabilities_by_id()
+        capability_id = "test.recipe-only-retired"
+        retired = {
+            "id": capability_id,
+            "kind": "workflow",
+            "contract_level": "executable",
+            "abi": {},
+            "binding": {},
+            "owner": {},
+            "lifecycle": {"state": "retired"},
+        }
+        capabilities[capability_id] = retired
+        recipes = overrides["subagent_recipes"]
+        self.assertIsInstance(recipes, list)
+        recipe = next(
+            item
+            for item in recipes
+            if item["name"] == "boundary-contract-split"
+        )
+        recipe["roles"][0]["skills"].append(capability_id)
+
+        with self.assertRaisesRegex(
+            builder.BuilderError,
+            "subagent recipe 'boundary-contract-split'.*test.recipe-only-retired.*retired",
+        ):
+            builder.validate_overrides(
+                overrides,
+                registry_by_name=registry_by_name,
+                frontmatter_by_name=frontmatter_by_name,
+                capabilities_by_id=capabilities,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
