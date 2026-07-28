@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 6132469,
+  "allowed_tracked_bytes": 8905160,
+  "approved_by": "repository-owner",
+  "base_ref": "577b772c62b692b18a7f0945a470d00245c998c8",
+  "changed_generated_bytes": 6132469,
+  "changed_generated_files": 222,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "14cb6d8939c65dd2852a55c6db21390449a44f98552c43c4a4aeb24485931c82",
+  "reason": "Refresh portable KAG family after capability-node hardening and landed routing succession dependency pins.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8905160,
+  "tracked_bytes_max": 10485760
+}
