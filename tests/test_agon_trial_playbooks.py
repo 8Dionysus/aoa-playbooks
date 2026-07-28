@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import os
 import subprocess
 import sys
 
@@ -55,3 +56,49 @@ def test_agon_trial_playbook_validator_passes():
         text=True,
     )
     assert result.returncode == 0, result.stderr + result.stdout
+
+
+def test_agon_trial_playbook_validator_rejects_incomplete_explicit_sdk_root(
+    tmp_path,
+):
+    sdk_root = tmp_path / "aoa-sdk"
+    sdk_root.mkdir()
+    env = os.environ.copy()
+    env["AOA_SDK_ROOT"] = str(sdk_root)
+
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_agon_trial_playbooks.py")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+    assert result.returncode == 1
+    assert (
+        "explicit AOA_SDK_ROOT does not provide required Agon routing registry"
+        in result.stderr
+    )
+
+
+def test_agon_trial_playbook_validator_rejects_incomplete_explicit_center_root(
+    tmp_path,
+):
+    center_root = tmp_path / "Agents-of-Abyss"
+    center_root.mkdir()
+    env = os.environ.copy()
+    env["AOA_CENTER_ROOT"] = str(center_root)
+
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_agon_trial_playbooks.py")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+    assert result.returncode == 1
+    assert (
+        "explicit AOA_CENTER_ROOT does not provide required lawful-move registry"
+        in result.stderr
+    )

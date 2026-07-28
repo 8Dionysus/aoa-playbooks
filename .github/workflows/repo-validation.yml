@@ -68,7 +68,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           repository: 8Dionysus/aoa-sdk
-          ref: d8d7b21d7d81329c53995715f2fb35f5dd68a7bc
+          ref: 7fba39d38cf5902c41dfbb7ae91f405b849880b7
           path: .deps/aoa-sdk
 
       - name: Checkout aoa-stats

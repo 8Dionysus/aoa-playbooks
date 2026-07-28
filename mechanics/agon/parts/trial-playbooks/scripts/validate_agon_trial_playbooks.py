@@ -59,10 +59,10 @@ def load_frontmatter(path: Path) -> tuple[dict[str, object], str]:
 
 def validate_optional_neighbor_vocabularies() -> str | None:
     workspace = ROOT.parent
-    center_root = Path(
-        os.environ.get("AOA_CENTER_ROOT", workspace / "Agents-of-Abyss")
-    )
-    sdk_root = Path(os.environ.get("AOA_SDK_ROOT", workspace / "aoa-sdk"))
+    center_override = os.environ.get("AOA_CENTER_ROOT")
+    sdk_override = os.environ.get("AOA_SDK_ROOT")
+    center_root = Path(center_override) if center_override else workspace / "Agents-of-Abyss"
+    sdk_root = Path(sdk_override) if sdk_override else workspace / "aoa-sdk"
     center_moves = (
         center_root
         / "mechanics"
@@ -83,6 +83,12 @@ def validate_optional_neighbor_vocabularies() -> str | None:
     )
     missing = []
     if not center_moves.exists():
+        if center_override:
+            return (
+                "explicit AOA_CENTER_ROOT does not provide required lawful-move "
+                "registry: mechanics/agon/parts/lawful-move-grammar/generated/"
+                "agon_lawful_move_registry.min.json"
+            )
         missing.append(
             "Agents-of-Abyss/mechanics/agon/parts/lawful-move-grammar/"
             "generated/agon_lawful_move_registry.min.json"
@@ -98,6 +104,12 @@ def validate_optional_neighbor_vocabularies() -> str | None:
         if drift:
             return f"embedded lawful moves drift from center owner: {drift}"
     if not routing_gate.exists():
+        if sdk_override:
+            return (
+                "explicit AOA_SDK_ROOT does not provide required Agon routing "
+                "registry: src/aoa_sdk/control_plane/routing/data/"
+                "agon_gate_routing_registry.min.json"
+            )
         missing.append(
             "aoa-sdk/src/aoa_sdk/control_plane/routing/data/"
             "agon_gate_routing_registry.min.json"
