@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 5876140,
+  "allowed_tracked_bytes": 8885314,
+  "approved_by": "repository-owner",
+  "base_ref": "577b772c62b692b18a7f0945a470d00245c998c8",
+  "changed_generated_bytes": 5876140,
+  "changed_generated_files": 212,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "2c03cdee6d3605ad0c4b0333909730e1d6c87da9b5a12cdbc0f741f53c78f22d",
+  "reason": "Align the derived playbook KAG family with the owner portable-family rollout while preserving the reviewed capability-graph composition delta; no runtime invocation, rollback retirement, archive readiness, or archive authorization claim.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 8885314,
+  "tracked_bytes_max": 10485760
+}
