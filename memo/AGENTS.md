@@ -10,13 +10,13 @@ This card applies to `memo/`.
 candidates, receipts, exports, and local notes before reviewed landing in
 `aoa-memo`.
 
-## Read before editing
+## Route by task
 
-1. Root `AGENTS.md`
-2. `ROADMAP.md`
-3. This `README.md`
-4. `PORT.yaml`
-5. `aoa-memo` memory operation contracts when a candidate should move centrally
+- Local candidate or packet: start from `PORT.yaml` and the exact target
+  directory.
+- Human port orientation: use `memo/README.md`.
+- Direction or lifecycle change: use `ROADMAP.md`.
+- Central landing: use the current `aoa-memo` operation contract.
 
 ## Boundaries
 

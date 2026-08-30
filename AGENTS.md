@@ -40,20 +40,24 @@ the skill still requires fresh manual isolated, negative, held-out,
 coexistence, and effect trials plus an explicit owner admission decision before
 either local skill directory may appear.
 
-## Start here
+## Route by task
 
-1. `README.md`
-2. `ROADMAP.md`
-3. `DESIGN.md` when repository shape, source authority, or owner boundaries move
-4. `DESIGN.AGENTS.md` when agent-facing route cards or guidance shape move
-5. `mechanics/README.md` and `mechanics/AGENTS.md` when repeatable operation topology moves
-6. the relevant model, bundle, gate, or evidence docs referenced there
-7. `stats/README.md` and `stats/AGENTS.md` when a playbook-local statistical
-   question or reference packet moves
-8. the target `playbooks/<branch>/<family>/<slug>/PLAYBOOK.md` or outline surface
-9. affected generated registry or composition surfaces
-10. neighboring repo docs when the playbook touches their meaning
-11. `docs/AGENTS_ROOT_REFERENCE.md` for preserved full root branches
+The inherited card and the nearest nested `AGENTS.md` define the active
+instruction chain. Load only the owner sources needed by the task:
+
+- public orientation or contributor entrypoint: `README.md`
+- current direction: `ROADMAP.md`
+- repository shape, source authority, or owner boundaries: `DESIGN.md`
+- agent-card shape or guidance topology: `DESIGN.AGENTS.md`
+- repeatable operation topology: `mechanics/AGENTS.md`; use
+  `mechanics/README.md` for the public package atlas, placement, or provenance
+- a playbook-local statistical question: `stats/AGENTS.md` and
+  `stats/port.manifest.json`; use `stats/README.md` for human orientation
+- scenario meaning: the target
+  `playbooks/<branch>/<family>/<slug>/PLAYBOOK.md`
+- a derived reader: its source config or builder before the generated output
+- a neighboring-owner claim: that owner's source contract
+- legacy root-law archaeology: `docs/AGENTS_ROOT_REFERENCE.md`
 
 
 ## AGENTS stack law
@@ -117,13 +121,6 @@ State which playbook or outline changed, whether semantics or metadata changed, 
 `DESIGN.AGENTS.md` names the desired form of the agent-facing route mesh.
 Use them before adding new root topology, moving repeatable operation pressure,
 or changing durable `AGENTS.md` card shape.
-`mechanics/README.md` names the checked mechanics atlas, including head-fed
-mechanics from `Agents-of-Abyss`, local playbook-native mechanics, placement
-audit, legacy-name posture, and the first active package routes under
-`mechanics/activation/`, `mechanics/scenario-composition/`,
-`mechanics/federation-closure/`, `mechanics/review-gate/`, and
-`mechanics/real-run-harvest/`, plus the head-fed/local package landings under
-`mechanics/antifragility/`, `mechanics/agon/`, `mechanics/recurrence/`,
-`mechanics/checkpoint/`, `mechanics/experience/`, `mechanics/release-support/`,
-`mechanics/questbook/`, `mechanics/rpg/`, `mechanics/titan/`, and
-`mechanics/portfolio-governance/`.
+`mechanics/README.md` is the checked public atlas for active package routes,
+class, placement, and legacy-name posture. `mechanics/AGENTS.md` carries the
+agent-facing package law; nearest package cards carry the local delta.

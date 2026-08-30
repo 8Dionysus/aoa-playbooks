@@ -15,18 +15,13 @@ It is class `local`. It protects the review operation inside
 `aoa-playbooks` without owning runtime proof, memory truth, eval verdicts, or
 source playbook canon.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. root `AGENTS.md`
-2. `DESIGN.md`
-3. `mechanics/AGENTS.md`
-4. `mechanics/README.md`
-5. this package `README.md`
-6. `PARTS.md`
-7. the part-local builder being changed
-8. root evidence/source surfaces referenced by that builder
+- Readout change: use the exact part-local builder, its schema/config, and the
+  root evidence/source surfaces it consumes.
+- Package topology or provenance: use `README.md`, `PARTS.md`, and
+  `PROVENANCE.md`.
+- Repository topology or authority change: use `DESIGN.md`.
 
 ## Boundaries
 

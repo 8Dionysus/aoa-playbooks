@@ -13,18 +13,15 @@ trial-kernel, campaign, adoption, and recurrence-adapter surfaces.
 It receives center pressure from `Agents-of-Abyss/mechanics/agon/`, but this
 package owns only playbook-local rehearsal and registry payloads.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. root `AGENTS.md`
-2. `mechanics/AGENTS.md`
-3. `mechanics/README.md`
-4. this package `README.md`
-5. `PARTS.md`
-6. target part README/doc/schema/config/example/script
-7. affected `playbooks/agon/*/agon-*/PLAYBOOK.md` when source playbook meaning changes
-8. affected recurrence manifest or quest only when root source stores change
+- Part payload: use the target part README and exact doc, schema, config,
+  example, or script.
+- Package topology or provenance: use `README.md`, `PARTS.md`, and
+  `PROVENANCE.md`.
+- Scenario meaning: use the affected
+  `playbooks/agon/*/agon-*/PLAYBOOK.md`.
+- Root source-store change: inspect the affected recurrence manifest or quest.
 
 ## Boundaries
 

@@ -1,8 +1,9 @@
 # AGENTS.md
 Local guidance for `examples/` in `aoa-playbooks`.
 
-Read the root `AGENTS.md` first. Examples demonstrate playbook contracts,
-activation lanes, stress lanes, and re-entry gates without becoming canon.
+Examples demonstrate playbook contracts, activation lanes, stress lanes, and
+re-entry gates without becoming canon. The inherited root card supplies
+repository-wide boundaries.
 
 ## Local role
 Examples must demonstrate contracts without becoming canon. They should clarify

@@ -1,8 +1,8 @@
 # AGENTS.md
 Local guidance for `scripts/` in `aoa-playbooks`.
 
-Read the root `AGENTS.md` first. Scripts here validate authored playbooks and
-build generated playbook-owned surfaces.
+Scripts here validate authored playbooks and build generated playbook-owned
+surfaces. The inherited root card supplies repository-wide boundaries.
 
 ## Local role
 Scripts should be deterministic, repo-relative, and explicit about canonical

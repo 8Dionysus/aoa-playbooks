@@ -11,10 +11,12 @@ installation, rollback, promotion, retention, and publication-support posture.
 
 The root release command and release docs stay operator-facing public routes.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, `docs/RELEASING.md`, and `scripts/release_check.py`.
+- Repository release law or command: use `docs/RELEASING.md` and
+  `scripts/release_check.py`.
+- Package-local contract: use the exact doc, schema, example, and focused test.
+- Package topology or provenance: use `README.md`.
 
 ## Boundaries
 

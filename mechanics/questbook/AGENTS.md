@@ -13,10 +13,12 @@ read models.
 The root `QUESTBOOK.md`, `quests/`, and generated quest readouts remain
 root-public source/read-model routes.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, `QUESTBOOK.md`, and `mechanics/questbook/parts/questline-outline/docs/questline-and-campaign-model.md`.
+- Public obligation or quest state: use `QUESTBOOK.md` and the exact
+  `quests/` source.
+- Questline or campaign outline: use the questline-and-campaign model.
+- Package topology or stronger-owner orientation: use `README.md`.
 
 ## Boundaries
 

@@ -12,25 +12,16 @@ handoff, failure, subagent, automation, composition manifest, and
 runtime-neutral plan-contour read models from authored playbooks and
 source-owned configs.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. root `AGENTS.md`
-2. `DESIGN.md`
-3. `DESIGN.AGENTS.md`
-4. `mechanics/AGENTS.md`
-5. `mechanics/README.md`
-6. `mechanics/scenario-composition/README.md`
-7. `mechanics/scenario-composition/PARTS.md`
-8. `mechanics/scenario-composition/parts/composition-surfaces/docs/handoff-contracts.md`
-9. `mechanics/scenario-composition/parts/composition-surfaces/docs/failure-recovery.md`
-10. `mechanics/scenario-composition/parts/composition-surfaces/docs/subagent-patterns.md`
-11. `mechanics/scenario-composition/parts/composition-surfaces/docs/automation-seeds.md`
-12. `mechanics/scenario-composition/parts/composition-surfaces/config/playbook_composition_overrides.json`
-13. `mechanics/scenario-composition/parts/plan-contours/README.md`
-14. `mechanics/scenario-composition/parts/plan-contours/docs/playbook-plan-contour-contract.md`
-15. `mechanics/scenario-composition/parts/plan-contours/config/playbook_plan_contours.json`
+- Composition readout: use the exact handoff, failure, subagent, or automation
+  contract, `playbook_composition_overrides.json`, and its builder.
+- Plan contour: use the part README, contour contract, source config, schema,
+  and builder.
+- Package topology or provenance: use `README.md`, `PARTS.md`, and
+  `PROVENANCE.md`.
+- Repository or agent-route shape: use `DESIGN.md` or `DESIGN.AGENTS.md`
+  respectively.
 
 ## Boundaries
 

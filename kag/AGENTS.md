@@ -11,11 +11,12 @@ narrows the lane.
 source-linked records over `playbook source home and scenario registry` for `aoa-kag` registry,
 composition, and MCP consumers.
 
-## Read before editing
+## Route by task
 
-Read the root `AGENTS.md`, this card, `kag/README.md`, `kag/manifest.json`,
-`playbooks/source_home.manifest.json`, and `playbooks/README.md` before
-changing provider records.
+Provider-record changes start from `kag/manifest.json`,
+`playbooks/source_home.manifest.json`, and the exact source-linked record.
+Use `kag/README.md` or `playbooks/README.md` only when their public provider
+or owner-return navigation is part of the change.
 
 ## Boundaries
 

@@ -12,11 +12,11 @@ memo-checkpoint handoff posture.
 
 It does not own memory objects. Checkpoint memory truth remains in `aoa-memo`.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, and the source playbooks that mention checkpoint
-return.
+Use the exact checkpoint doc or source playbook that owns the return
+choreography. Use `README.md` for package topology or stronger-owner route
+orientation.
 
 ## Boundaries
 

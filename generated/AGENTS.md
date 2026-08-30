@@ -2,44 +2,26 @@
 
 This file applies to artifacts under `generated/`.
 
-## Important split
+## Authority and derivation map
 
-`generated/` contains two different kinds of surfaces in this repository:
+`playbook_registry.min.json` is source-authored registry metadata. Keep it
+aligned with authored `PLAYBOOK.md` frontmatter and the trusted bundle
+contract.
 
-- `playbook_registry.min.json` is a source-authored machine-readable registry surface for the playbook layer
-- `agon_trial_playbook_registry.min.json`, `agon_trial_kernel_binding_registry.min.json`, and `agon_campaign_playbook_registry.min.json` are derived Agon projections for pre-protocol choreography families
-- `playbook_activation_surfaces.min.json` is a derived activation projection
-- `playbook_federation_surfaces.min.json` is a derived federation-closure projection
-- `playbook_review_status.min.json` is a derived evidence-status projection over reviewed summaries and gate-review notes
-- `playbook_landing_governance.min.json` is a derived review-track landing gate over the experimental review-governed cohort
-- `playbook_handoff_contracts.json`, `playbook_failure_catalog.json`, `playbook_subagent_recipes.json`, `playbook_automation_seeds.json`, and `playbook_composition_manifest.json` are derived composition projections for the canonical playbook cohort
-- `playbook_plan_contours.min.json` is the derived runtime-neutral plan-contour ABI for the selected compiler cohort
-- `playbook_registry.min.json` carries the ABI identity for `docs/artifact-bundles/playbook_registry.bundle.json`; the bundle requires ABI and SLSA/in-toto controls before registry/latest consumers trust it
+Every other file in this directory is a derived read model. Route by family:
 
-Do not treat all files in this directory the same way.
-The registry is canonical playbook metadata.
-The activation and federation files are generated projections of canonical inputs.
+| Outputs | Owner source or builder |
+| --- | --- |
+| `agon_*_registry.min.json` | matching config and builder under `mechanics/agon/parts/*/` |
+| `playbook_activation_surfaces.min.json` | `mechanics/activation/parts/activation-surface/` |
+| `playbook_federation_surfaces.min.json` | `mechanics/federation-closure/parts/federation-surfaces/` |
+| review, intake, landing, and Phase Alpha readouts | matching part under `mechanics/review-gate/parts/` |
+| handoff, failure, subagent, automation, and composition readouts | `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py` |
+| `playbook_plan_contours.min.json` | `mechanics/scenario-composition/parts/plan-contours/` |
 
-## Source and derivation map
-
-Keep this mapping legible:
-
-- `generated/playbook_registry.min.json` stays aligned with authored scenario metadata and is validated by `scripts/validate_playbooks.py`
-- `generated/agon_trial_playbook_registry.min.json` is produced from `mechanics/agon/parts/trial-playbooks/config/agon_trial_playbooks.seed.json` by `mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py`
-- `generated/agon_trial_kernel_binding_registry.min.json` is produced from `mechanics/agon/parts/trial-kernel-bindings/config/agon_trial_kernel_bindings.seed.json` by `mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py`
-- `generated/agon_campaign_playbook_registry.min.json` is produced from `mechanics/agon/parts/campaign-playbooks/config/agon_campaign_playbooks.seed.json` by `mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py`
-- `generated/playbook_activation_surfaces.min.json` is produced from the registry by `mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py`
-- `generated/playbook_federation_surfaces.min.json` is produced from `playbooks/*/*/*/PLAYBOOK.md` by `mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py`
-- `generated/playbook_review_status.min.json` is produced from `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/real-runs/*.md` plus `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/gate-reviews/*.md` by `mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py`
-- `generated/playbook_review_packet_contracts.min.json` is produced by `mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py`
-- `generated/playbook_review_intake.min.json` is produced by `mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py`
-- `generated/playbook_landing_governance.min.json` is produced by `mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py`
-- `generated/phase_alpha_review_packets.min.json` and `generated/phase_alpha_run_matrix.min.json` are produced by `mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py`
-- `generated/playbook_handoff_contracts.json`, `generated/playbook_failure_catalog.json`, `generated/playbook_subagent_recipes.json`, `generated/playbook_automation_seeds.json`, and `generated/playbook_composition_manifest.json` are produced by `mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py`
-- `generated/playbook_plan_contours.min.json` is produced from the part-local plan-contour config plus exact authored playbook frontmatter by `mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py`
-
-The derived surfaces should stay compact, reviewable, and playbook-owned.
-They must not become a second authored playbook layer.
+Inspect the exact output's declared builder or schema before editing its
+source. Derived files stay compact, reviewable, and weaker than authored
+playbooks, configs, evidence notes, and sibling-owner contracts.
 
 ## Editing posture
 
@@ -62,29 +44,16 @@ For `agon_*_registry.min.json`, `playbook_activation_surfaces.min.json`, `playbo
 
 ## Validation
 
-Whenever canonical inputs change, run:
+Run the exact owner builder in `--check` mode and its package validator.
+Regenerate from source when parity fails; never patch the output to make the
+check green.
+
+Then run:
 
 ```bash
-python -m pip install -r requirements-dev.txt
-python mechanics/agon/scripts/validate_agon_package.py
-python mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py --check
-python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py
-python mechanics/agon/parts/trial-kernel-bindings/scripts/build_agon_trial_kernel_binding_registry.py --check
-python mechanics/agon/parts/trial-kernel-bindings/scripts/validate_agon_trial_kernel_bindings.py
-python mechanics/agon/parts/campaign-playbooks/scripts/build_agon_campaign_playbook_registry.py --check
-python mechanics/agon/parts/campaign-playbooks/scripts/validate_agon_campaign_playbook_registry.py
-python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check
-python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
-python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
-python mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py --check
-python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py --check
-python mechanics/review-gate/parts/landing-governance/scripts/generate_playbook_landing_governance.py --check
-python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
-python mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py --check
-python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_abyss_machine_playbook_bundle.py
 python scripts/validate_playbooks.py
-python -m pytest -q tests
 ```
 
-If a derived file is out of date, regenerate it with the matching generator script before finishing.
+For registry or artifact-bundle identity changes, also run
+`python scripts/validate_abyss_machine_playbook_bundle.py`. For release-bound
+or cross-family changes, use `python scripts/release_check.py`.

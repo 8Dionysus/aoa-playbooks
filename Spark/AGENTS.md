@@ -1,8 +1,10 @@
-# Spark lane for aoa-playbooks
+# AGENTS.md
 
 This file only governs work started from `Spark/`.
 
-The root `AGENTS.md` remains authoritative for repository identity, ownership boundaries, reading order, and validation commands. This local file only narrows how GPT-5.3-Codex-Spark should behave when used as the fast-loop lane.
+The inherited root card remains authoritative for repository identity,
+ownership boundaries, route choice, and validation. This card only narrows how
+GPT-5.3-Codex-Spark behaves when used as the fast-loop lane.
 
 If `SWARM.md` exists in this directory, treat it as queue / swarm context. This `AGENTS.md` is the operating policy for Spark work.
 

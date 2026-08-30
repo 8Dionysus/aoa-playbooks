@@ -12,16 +12,19 @@ It routes head-fed and local operation pressure without turning mechanics into
 source playbook truth, proof verdicts, memory truth, role authority, routing
 policy, or runtime implementation.
 
-## Read Before Editing
+## Route by task
 
-1. root `AGENTS.md`
-2. `DESIGN.md`
-3. `DESIGN.AGENTS.md`
-4. `mechanics/README.md`
-5. target package `AGENTS.md` and `README.md`, plus `PARTS.md` and
-   `PROVENANCE.md` when that companion pair exists
-6. target source playbook, generated builder, review note, config, schema, or
-   decision record that owns the active claim
+The inherited root and mechanics cards already supply the common law. Add only
+the sources needed by the change:
+
+- package-local work: the nearest package card and exact source, builder,
+  config, schema, evidence note, or playbook that owns the claim
+- public package topology, class, or placement: `mechanics/README.md` and the
+  target package README
+- part placement or former-path accounting: the target `PARTS.md` and
+  `PROVENANCE.md`
+- repository/source topology: `DESIGN.md`
+- agent-card shape: `DESIGN.AGENTS.md`
 
 ## Boundaries
 

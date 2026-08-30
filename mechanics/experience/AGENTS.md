@@ -12,10 +12,11 @@ retention, rollback, governance, office, service, and watch playbook posture.
 It validates why the current Experience Wave 3 docs, schemas, and examples
 remain package-local contract pairs in `aoa-playbooks`.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, and the focused Experience tests.
+Start from the exact Experience doc, schema/example pair, source playbook, and
+focused test that own the changed contract. Use `README.md` when package
+topology or transferred-path posture moves.
 
 ## Boundaries
 

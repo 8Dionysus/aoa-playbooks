@@ -14,6 +14,8 @@ sys.modules[SPEC.name] = validator
 SPEC.loader.exec_module(validator)
 
 EXPECTED_PACK3_DOCS = {
+    ".github/AGENTS.md",
+    "Spark/AGENTS.md",
     "config/AGENTS.md",
     "examples/AGENTS.md",
     "schemas/AGENTS.md",
@@ -21,6 +23,8 @@ EXPECTED_PACK3_DOCS = {
     "tests/AGENTS.md",
     "stats/AGENTS.md",
     "mechanics/AGENTS.md",
+    "evals/AGENTS.md",
+    "kag/AGENTS.md",
 }
 
 
@@ -76,6 +80,21 @@ class ValidateNestedAgentsTests(unittest.TestCase):
             _write(repo_root / "extra" / "AGENTS.md", "# AGENTS.md\nExtra.\n")
             result = validator.validate(repo_root, fail_on_untracked=True)
             self.assertTrue(any("untracked nested AGENTS.md" in issue for issue in result.issues))
+
+    def test_mandatory_readme_route_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            _write(
+                repo_root / "AGENTS.md",
+                "# AGENTS.md\n\n## Read before editing\n\n1. `README.md`\n",
+            )
+
+            result = validator.validate(repo_root)
+
+            self.assertTrue(
+                any("README.md must stay task-conditioned" in issue for issue in result.issues)
+            )
 
     def test_advisory_can_become_strict(self) -> None:
         if not validator.ADVISORY_AGENT_DIRS:

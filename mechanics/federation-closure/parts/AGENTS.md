@@ -9,9 +9,10 @@ This card applies to `mechanics/federation-closure/parts/`.
 Parts under federation closure own bounded sub-operations of the closure
 mechanic.
 
-## Read before editing
+## Route by task
 
-Read `../AGENTS.md`, `../README.md`, and `../PARTS.md` before changing a part.
+Start from the target part's source, builder, schema, and part README. Use the
+package `README.md` and `PARTS.md` only when package topology changes.
 
 ## Boundaries
 

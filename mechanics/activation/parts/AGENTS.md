@@ -8,9 +8,10 @@ This card applies to `mechanics/activation/parts/`.
 
 Parts under activation own bounded sub-operations of the activation mechanic.
 
-## Read before editing
+## Route by task
 
-Read `../AGENTS.md`, `../README.md`, and `../PARTS.md` before changing a part.
+Start from the target part's source, builder, schema, and part README. Use the
+package `README.md` and `PARTS.md` only when package topology changes.
 
 ## Boundaries
 

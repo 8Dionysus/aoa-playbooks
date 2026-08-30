@@ -11,19 +11,15 @@ narrows the lane.
 metadata into a compact activation-readable projection without making
 `aoa-playbooks` a runtime owner.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. root `AGENTS.md`
-2. `DESIGN.md`
-3. `DESIGN.AGENTS.md`
-4. `mechanics/AGENTS.md`
-5. `mechanics/README.md`
-6. `mechanics/activation/README.md`
-7. `mechanics/activation/PARTS.md`
-8. `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`
-9. `playbooks/AGENTS.md` before changing authored playbook inputs
+- Projection meaning or builder: use the execution-seam doc, source registry,
+  target builder, and generated output.
+- Package topology or provenance: use `README.md`, `PARTS.md`, and
+  `PROVENANCE.md`.
+- Authored playbook input: follow `playbooks/AGENTS.md` and the exact bundle.
+- Repository or agent-route shape: use `DESIGN.md` or `DESIGN.AGENTS.md`
+  respectively.
 
 ## Boundaries
 
