@@ -96,6 +96,44 @@ class ValidateNestedAgentsTests(unittest.TestCase):
                 any("README.md must stay task-conditioned" in issue for issue in result.issues)
             )
 
+    def test_unconditional_readme_directive_fails_without_legacy_heading(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            _write(repo_root / "AGENTS.md", "# AGENTS.md\n\nRead `README.md` before editing.\n")
+
+            result = validator.validate(repo_root)
+
+            self.assertTrue(
+                any("README.md must stay task-conditioned" in issue for issue in result.issues)
+            )
+
+    def test_task_conditioned_readme_route_passes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            _write(
+                repo_root / "AGENTS.md",
+                "# AGENTS.md\n\n## Read before editing\n\n"
+                "When public orientation changes, read `README.md`.\n",
+            )
+
+            result = validator.validate(repo_root)
+
+            self.assertEqual((), result.issues)
+
+    def test_universal_readme_scope_is_not_treated_as_task_conditioned(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            _write_minimal_required_tree(repo_root)
+            _write(repo_root / "AGENTS.md", "# AGENTS.md\n\nRead `README.md` for every task.\n")
+
+            result = validator.validate(repo_root)
+
+            self.assertTrue(
+                any("README.md must stay task-conditioned" in issue for issue in result.issues)
+            )
+
     def test_advisory_can_become_strict(self) -> None:
         if not validator.ADVISORY_AGENT_DIRS:
             self.skipTest("repository has no advisory AGENTS.md candidates")

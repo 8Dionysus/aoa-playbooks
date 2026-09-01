@@ -45,6 +45,14 @@ NEGATED_READ_RE = re.compile(
     r"\b(do\s+not|don't|not\s+required|optional)\b",
     re.IGNORECASE,
 )
+README_TASK_CONDITION_RE = re.compile(
+    r"(?:\b(?:when|if|where)\b|"
+    r"\bonly\s+(?:when|if|for)\b|"
+    r"\b(?:as|when|if)\s+needed\b|"
+    r"\bfor\s+(?!(?:all|any|every|each|editing|work|tasks?)\b)|"
+    r"\b(?:relevant|selected|target|named)\s+(?:[^\n]*\s)?README\.md\b)",
+    re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -78,6 +86,8 @@ def _mandatory_readme_lines(text: str) -> tuple[int, ...]:
             if MANDATORY_READ_SECTION_RE.search(heading.group("title")):
                 mandatory_section_level = level
         if "README.md" not in line or NEGATED_READ_RE.search(line):
+            continue
+        if README_TASK_CONDITION_RE.search(line):
             continue
         if mandatory_section_level is not None or MANDATORY_README_LINE_RE.search(line):
             lines.append(line_number)
