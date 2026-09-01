@@ -122,16 +122,22 @@ class ValidateNestedAgentsTests(unittest.TestCase):
 
             self.assertEqual((), result.issues)
 
-    def test_universal_readme_scope_is_not_treated_as_task_conditioned(self) -> None:
+    def test_bare_for_readme_scope_is_not_treated_as_task_conditioned(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)
             _write_minimal_required_tree(repo_root)
-            _write(repo_root / "AGENTS.md", "# AGENTS.md\n\nRead `README.md` for every task.\n")
+            _write(
+                repo_root / "AGENTS.md",
+                "# AGENTS.md\n\n"
+                "Read `README.md` for every task.\n"
+                "Read `README.md` for setup.\n",
+            )
 
             result = validator.validate(repo_root)
 
-            self.assertTrue(
-                any("README.md must stay task-conditioned" in issue for issue in result.issues)
+            self.assertIn(
+                "AGENTS.md: README.md must stay task-conditioned; mandatory line(s): 3, 4",
+                result.issues,
             )
 
     def test_advisory_can_become_strict(self) -> None:

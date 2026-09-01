@@ -49,7 +49,6 @@ README_TASK_CONDITION_RE = re.compile(
     r"(?:\b(?:when|if|where)\b|"
     r"\bonly\s+(?:when|if|for)\b|"
     r"\b(?:as|when|if)\s+needed\b|"
-    r"\bfor\s+(?!(?:all|any|every|each|editing|work|tasks?)\b)|"
     r"\b(?:relevant|selected|target|named)\s+(?:[^\n]*\s)?README\.md\b)",
     re.IGNORECASE,
 )
