@@ -14,15 +14,14 @@ Decision notes explain why a route was chosen. Current playbook, design,
 boundary, generated-reader, review-evidence, and sibling-owner authority stays
 with the owning source surface.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. repository root `AGENTS.md`
-2. `docs/decisions/README.md`
-3. `docs/decisions/TEMPLATE.md`
-4. the nearest existing decision for the same playbook route or surface
-5. the source surface whose route or authority the decision records
+- New record: use `docs/decisions/TEMPLATE.md`, the nearest decision for the
+  same route, and the source surface whose choice is being recorded.
+- Existing rationale or index navigation: use `docs/decisions/README.md` and
+  the generated lookup indexes, then verify the authored decision.
+- Amendment or supersession: inspect the exact current source surface before
+  changing the rationale record.
 
 ## Boundaries
 
@@ -49,15 +48,9 @@ add a new canonical decision with explicit supersession prose.
 
 ## Validation
 
-Run:
-
-```bash
-python scripts/generate_decision_indexes.py --check
-git diff --check
-```
-
-When decision metadata changes, run `python scripts/generate_decision_indexes.py`
-before the `--check` form.
+Use the root [`Decision lane`](../../VALIDATION.md#decision-lane) on demand.
+That lane separately names the intentional refresh and non-mutating check
+routes for generated indexes.
 
 If the decision changes a validated playbook, generated surface, schema,
 review-evidence lane, or mechanics surface, run that surface's validator too.

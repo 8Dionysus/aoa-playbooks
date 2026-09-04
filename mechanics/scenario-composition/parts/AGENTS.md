@@ -9,9 +9,10 @@ This card applies to `mechanics/scenario-composition/parts/`.
 Parts under scenario composition own bounded sub-operations of the composition
 mechanic.
 
-## Read before editing
+## Route by task
 
-Read `../AGENTS.md`, `../README.md`, and `../PARTS.md` before changing a part.
+Start from the target part's source, config, builder, schema, and part README.
+Use the package `README.md` and `PARTS.md` only when topology changes.
 
 ## Boundaries
 
@@ -23,9 +24,7 @@ meaning, runtime execution authority, or root generated-output authority.
 
 Run the validation named by the part README and then:
 
-```bash
-python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py
-```
+Run the parent package route in `../VALIDATION.md` on demand.
 
 ## Closeout
 

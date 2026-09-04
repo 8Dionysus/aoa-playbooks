@@ -13,17 +13,14 @@ source evidence surfaces.
 It is class `local`. It validates the posture of package-local evidence
 paths and hands readout generation to `mechanics/review-gate/`.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. root `AGENTS.md`
-2. `mechanics/AGENTS.md`
-3. `mechanics/README.md`
-4. this package `README.md`
-5. `mechanics/real-run-harvest/parts/reviewed-run-source-store/docs/playbook-real-run-workflow.md`
-6. `mechanics/real-run-harvest/parts/harvest-template-source-store/docs/playbook-real-run-harvest.md`
-7. `mechanics/review-gate/README.md` when readout builders are involved
+- Reviewed-run source or gate note: use the real-run workflow and exact
+  evidence path.
+- Harvest template: use the real-run harvest contract and exact example.
+- Readout builder: follow the matching `mechanics/review-gate/` part and its
+  source map.
+- Package topology or evidence-store placement: use `README.md`.
 
 ## Boundaries
 
@@ -38,12 +35,7 @@ Read:
 
 Run:
 
-```bash
-python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py
-python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
-python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

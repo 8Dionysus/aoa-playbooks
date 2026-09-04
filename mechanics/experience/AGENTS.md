@@ -12,10 +12,11 @@ retention, rollback, governance, office, service, and watch playbook posture.
 It validates why the current Experience Wave 3 docs, schemas, and examples
 remain package-local contract pairs in `aoa-playbooks`.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, and the focused Experience tests.
+Start from the exact Experience doc, schema/example pair, source playbook, and
+focused test that own the changed contract. Use `README.md` when package
+topology or transferred-path posture moves.
 
 ## Boundaries
 
@@ -27,11 +28,7 @@ this package `README.md`, and the focused Experience tests.
 
 ## Validation
 
-```bash
-python mechanics/experience/scripts/validate_experience_package.py
-python -m pytest -q tests/test_experience_wave3_seed_contracts.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

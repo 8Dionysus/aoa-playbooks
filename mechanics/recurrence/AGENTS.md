@@ -13,10 +13,11 @@ and review-decision closure.
 It validates package-local recurrence docs and manifests. Source playbooks stay
 under `playbooks/`.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, and `mechanics/recurrence/parts/recurrence-discipline/docs/playbook-recurrence-discipline.md`.
+Use the exact recurrence doc, manifest, or source playbook that owns the
+return route. Use `README.md` for package topology or stronger-owner
+orientation.
 
 ## Boundaries
 
@@ -28,10 +29,7 @@ this package `README.md`, and `mechanics/recurrence/parts/recurrence-discipline/
 
 ## Validation
 
-```bash
-python mechanics/recurrence/scripts/validate_recurrence_package.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

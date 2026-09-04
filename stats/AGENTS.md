@@ -10,13 +10,16 @@ This directory owns playbook-local statistical questions, their embedded
 measurement contracts, and evidence-linked reference packets. Shared
 statistical grammar and cross-owner composition remain owned by `aoa-stats`.
 
-## Read before editing
+## Route by task
 
-1. Root `AGENTS.md`, `README.md`, and `DESIGN.md`.
-2. `stats/README.md` and `stats/port.manifest.json`.
-3. `generated/playbook_review_status.min.json` and its owner builder and schema
-   under `mechanics/review-gate/parts/review-status/`.
-4. The central measurement and packet contracts under `aoa-stats/stats/`.
+- Question or measurement meaning: `stats/port.manifest.json`.
+- Human port orientation: `stats/README.md`.
+- Reference-packet refresh: `generated/playbook_review_status.min.json` and
+  its owner builder and schema under
+  `mechanics/review-gate/parts/review-status/`.
+- Shared grammar or packet compatibility: the central contracts under
+  `aoa-stats/stats/`.
+- Owner-boundary change: `DESIGN.md`.
 
 ## Boundaries
 
@@ -35,15 +38,11 @@ statistical grammar and cross-owner composition remain owned by `aoa-stats`.
 
 Inspect the owner read model first:
 
-```bash
-python -c 'import json, pathlib; p=json.loads(pathlib.Path("generated/playbook_review_status.min.json").read_text()); rows=p["playbooks"]; covered=sum(row["reviewed_run_count"] > 0 for row in rows); print({"population": len(rows), "covered": covered, "ratio": covered / len(rows)})'
-```
+Run the stats route in `VALIDATION.md` on demand.
 
 Then validate the port and its packet with the central contract owner:
 
-```bash
-python scripts/validate_local_stats_port.py
-```
+Run the stats route in `VALIDATION.md` on demand.
 
 ## Closeout
 

@@ -1,8 +1,8 @@
 # AGENTS.md
 Local guidance for `tests/` in `aoa-playbooks`.
 
-Read the root `AGENTS.md` first. Tests protect scenario boundaries, generated
-alignment, and composition safety.
+Tests protect scenario boundaries, generated alignment, and composition
+safety. The inherited root card supplies repository-wide boundaries.
 
 ## Local role
 Tests should catch when a playbook becomes too small to be a playbook, too vague
@@ -19,7 +19,4 @@ questline surfaces acting as runtime ledgers.
 ## Validation
 Run:
 
-```bash
-python -m pytest -q tests
-python scripts/validate_playbooks.py
-```
+Run the repository route in `../VALIDATION.md#repository-checks` on demand.

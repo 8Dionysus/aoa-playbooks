@@ -1,8 +1,8 @@
 # AGENTS.md
 Local guidance for `scripts/` in `aoa-playbooks`.
 
-Read the root `AGENTS.md` first. Scripts here validate authored playbooks and
-build generated playbook-owned surfaces.
+Scripts here validate authored playbooks and build generated playbook-owned
+surfaces. The inherited root card supplies repository-wide boundaries.
 
 ## Local role
 Scripts should be deterministic, repo-relative, and explicit about canonical
@@ -18,8 +18,7 @@ Do not let a generator invent playbook meaning that is absent from source
 surfaces.
 
 ## Validation
-Run the touched builder or validator, then `python scripts/release_check.py`
-when repository shape changes. If the owner-local stats port moves, run
-`python scripts/validate_local_stats_port.py`. If playbook registry, generated
-readout, or artifact-bundle identity changes, also run
-`python scripts/validate_abyss_machine_playbook_bundle.py`.
+Run the touched builder or validator, then use root
+[`VALIDATION.md`](../VALIDATION.md) for repository-shape and artifact-bundle
+routes. If the owner-local stats port moves, use
+[`stats/VALIDATION.md`](../stats/VALIDATION.md).

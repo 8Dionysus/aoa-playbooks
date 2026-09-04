@@ -1,0 +1,17 @@
+{
+  "allowed_bytes": 5170817,
+  "allowed_tracked_bytes": 9025891,
+  "approved_by": "repository-owner",
+  "base_ref": "41f10f29b61d9f697d3e2537e3dd89b0e2d19f4d",
+  "changed_generated_bytes": 5170817,
+  "changed_generated_files": 190,
+  "decision_ref": "aoa-kag:docs/decisions/AOA-KAG-D-0017-portable-content-addressed-repository-family.md",
+  "default_limit_bytes": 1048576,
+  "head_family_digest": "1899f8281686a4e97d37fd01b75fb95cfc598b1e4afca3fe7502a8b83a737331",
+  "reason": "already-reviewed README/AGENTS/VALIDATION migration generated source projections; capability meaning and budget contract do not change.",
+  "repo": "aoa-playbooks",
+  "schema_version": "aoa-repo-local-kag-budget-receipt-v1",
+  "scope": "generated_delta",
+  "tracked_bytes": 9025891,
+  "tracked_bytes_max": 10485760
+}

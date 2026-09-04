@@ -19,7 +19,7 @@ REQUIRED_ROOT_FILES: dict[str, tuple[str, ...]] = {
         "head-fed",
         "local",
         "Do not add root-level",
-        "python scripts/validate_mechanics_skeleton.py",
+        "../VALIDATION.md#mechanics",
     ),
     "mechanics/README.md": (
         "Playbook Mechanics",

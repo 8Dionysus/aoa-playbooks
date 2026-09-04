@@ -5,11 +5,14 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from pathlib import Path
+import re
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY_NAME = "aoa-playbooks"
 
 REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
+    ".github/AGENTS.md": ("GitHub platform surface", "Repo Validation"),
+    "Spark/AGENTS.md": ("fast-loop lane", "Local done signal"),
     "playbooks/AGENTS.md": ("playbooks/<branch>/<family>/<slug>/PLAYBOOK.md", "A playbook is not a skill"),
     "generated/AGENTS.md": ("playbook_registry.min.json", "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py"),
     "config/AGENTS.md": ("playbook_composition_overrides.json", "source-owned composition overrides"),
@@ -20,11 +23,35 @@ REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "memo/AGENTS.md": ("local memory port", "reviewed landing"),
     "stats/AGENTS.md": ("playbook-local statistical questions", "aoa-stats"),
     "docs/decisions/AGENTS.md": ("Decision ID: AOA-PB-D-####", "generated lookup read models"),
+    "evals/AGENTS.md": ("skeleton port", "aoa-evals"),
+    "kag/AGENTS.md": ("local KAG provider home", "kag/manifest.json"),
     "mechanics/AGENTS.md": ("head-fed", "local", "Do not add root-level"),
 }
 ADVISORY_AGENT_DIRS: tuple[str, ...] = ("Spark", "docs", "manifests/recurrence", "quests")
 HEADING_PREFIXES = ("# AGENTS.md", "# AGENTS")
 IGNORED_DIRS = {".git", ".venv", "__pycache__", ".pytest_cache", ".mypy_cache"}
+MARKDOWN_HEADING_RE = re.compile(r"^(?P<marks>#{1,6})\s+(?P<title>.+?)\s*$")
+MANDATORY_READ_SECTION_RE = re.compile(
+    r"\b(read\s+before(?:\s+editing|\s+changing)?|reading\s+order|"
+    r"read\s+first|required\s+reading|start\s+here)\b",
+    re.IGNORECASE,
+)
+MANDATORY_README_LINE_RE = re.compile(
+    r"(?:\b(?:read|must|required|before)\b.*\bREADME\.md\b|"
+    r"\bREADME\.md\b.*\b(?:before|required|must)\b)",
+    re.IGNORECASE,
+)
+NEGATED_READ_RE = re.compile(
+    r"\b(do\s+not|don't|not\s+required|optional)\b",
+    re.IGNORECASE,
+)
+README_TASK_CONDITION_RE = re.compile(
+    r"(?:\b(?:when|if|where)\b|"
+    r"\bonly\s+(?:when|if|for)\b|"
+    r"\b(?:as|when|if)\s+needed\b|"
+    r"\b(?:relevant|selected|target|named)\s+(?:[^\n]*\s)?README\.md\b)",
+    re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -44,6 +71,26 @@ def _normalize(text: str) -> str:
 def _has_agents_heading(text: str) -> bool:
     stripped = text.lstrip()
     return any(stripped.startswith(prefix) for prefix in HEADING_PREFIXES)
+
+
+def _mandatory_readme_lines(text: str) -> tuple[int, ...]:
+    lines: list[int] = []
+    mandatory_section_level: int | None = None
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        heading = MARKDOWN_HEADING_RE.match(line.strip())
+        if heading:
+            level = len(heading.group("marks"))
+            if mandatory_section_level is not None and level <= mandatory_section_level:
+                mandatory_section_level = None
+            if MANDATORY_READ_SECTION_RE.search(heading.group("title")):
+                mandatory_section_level = level
+        if "README.md" not in line or NEGATED_READ_RE.search(line):
+            continue
+        if README_TASK_CONDITION_RE.search(line):
+            continue
+        if mandatory_section_level is not None or MANDATORY_README_LINE_RE.search(line):
+            lines.append(line_number)
+    return tuple(lines)
 
 
 def _relative(path: Path, repo_root: Path) -> str:
@@ -101,6 +148,12 @@ def validate(
         root_text = root_agents.read_text(encoding="utf-8")
         if not _has_agents_heading(root_text):
             issues.append("AGENTS.md: missing AGENTS heading")
+        mandatory_lines = _mandatory_readme_lines(root_text)
+        if mandatory_lines:
+            issues.append(
+                "AGENTS.md: README.md must stay task-conditioned; "
+                f"mandatory line(s): {', '.join(map(str, mandatory_lines))}"
+            )
 
     for rel_path, snippets in REQUIRED_AGENTS_DOCS.items():
         path = repo_root / rel_path
@@ -110,6 +163,12 @@ def validate(
         text = path.read_text(encoding="utf-8")
         if not _has_agents_heading(text):
             issues.append(f"{rel_path}: missing AGENTS heading")
+        mandatory_lines = _mandatory_readme_lines(text)
+        if mandatory_lines:
+            issues.append(
+                f"{rel_path}: README.md must stay task-conditioned; "
+                f"mandatory line(s): {', '.join(map(str, mandatory_lines))}"
+            )
         normalized = _normalize(text)
         for snippet in snippets:
             if _normalize(snippet) not in normalized:
@@ -121,6 +180,12 @@ def validate(
         text = path.read_text(encoding="utf-8")
         if not _has_agents_heading(text):
             issues.append(f"{rel_path}: missing AGENTS heading")
+        mandatory_lines = _mandatory_readme_lines(text)
+        if mandatory_lines:
+            issues.append(
+                f"{rel_path}: README.md must stay task-conditioned; "
+                f"mandatory line(s): {', '.join(map(str, mandatory_lines))}"
+            )
         if "Validation" not in text:
             issues.append(f"{rel_path}: missing Validation section")
 

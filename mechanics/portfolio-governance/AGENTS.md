@@ -12,10 +12,11 @@ operational family, lifecycle, portfolio, and gap matrix coherent.
 It validates package-local model docs rather than moving public conceptual
 entrypoints into a package.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, and the root portfolio docs being touched.
+Start from the exact model, lifecycle, portfolio, gap, or chooser doc being
+changed. Use `README.md` for package topology and the root public model route
+when discoverability moves.
 
 ## Boundaries
 
@@ -26,11 +27,7 @@ this package `README.md`, and the root portfolio docs being touched.
 
 ## Validation
 
-```bash
-python mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py
-python scripts/validate_root_design.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

@@ -14,18 +14,13 @@ negativa pruning at the playbook layer.
 It receives center pressure from `Agents-of-Abyss/mechanics/antifragility/`,
 but this package owns only the playbook-local operation.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. root `AGENTS.md`
-2. `mechanics/AGENTS.md`
-3. `mechanics/README.md`
-4. this package `README.md`
-5. `PARTS.md`
-6. target part README/doc/schema/example
-7. `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md` when the runtime-chaos route
-   is involved
+- Part payload: use the target part README and exact doc, schema, or example.
+- Package topology or provenance: use `README.md`, `PARTS.md`, and
+  `PROVENANCE.md`.
+- Runtime-chaos scenario meaning: use
+  `playbooks/operations/recovery/runtime-chaos-recovery/PLAYBOOK.md`.
 
 ## Boundaries
 
@@ -41,11 +36,7 @@ Read:
 
 Run:
 
-```bash
-python mechanics/antifragility/scripts/validate_antifragility_package.py
-python scripts/validate_playbooks.py
-python -m pytest -q tests/test_antifragility_public_surface.py tests/test_runtime_chaos_recovery.py tests/test_antifragility_mechanics_package.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

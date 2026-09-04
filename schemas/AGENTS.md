@@ -1,9 +1,9 @@
 # AGENTS.md
 Local guidance for `schemas/` in `aoa-playbooks`.
 
-Read the root `AGENTS.md` first. Schema changes are contract changes for
-playbook-owned adjuncts such as stress lanes, re-entry gates, activation lanes,
-and review packets.
+Schema changes are contract changes for playbook-owned adjuncts such as stress
+lanes, re-entry gates, activation lanes, and review packets. The inherited
+root card supplies repository-wide boundaries.
 
 ## Local role
 Schemas define shape for playbook-layer composition surfaces. They do not define
@@ -20,7 +20,4 @@ single-skill workflow into a playbook contract.
 ## Validation
 Run:
 
-```bash
-python scripts/validate_playbooks.py
-python -m pytest -q tests
-```
+Run the repository route in `../VALIDATION.md#repository-checks` on demand.

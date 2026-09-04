@@ -1,8 +1,9 @@
 # AGENTS.md
 Local guidance for `config/` in `aoa-playbooks`.
 
-Read the root `AGENTS.md` first. This directory holds playbook-owned composition
-configuration such as `playbook_composition_overrides.json` and Agon seed inputs.
+This directory holds playbook-owned composition configuration such as
+`playbook_composition_overrides.json` and Agon seed inputs. The inherited
+root card supplies repository-wide boundaries.
 
 ## Local role
 Config may declare source-owned composition overrides, failure codes, handoff
@@ -21,7 +22,4 @@ routing, or runtime doctrine by side door.
 ## Validation
 Run the matching generator in `--check` mode and:
 
-```bash
-python scripts/validate_playbooks.py
-python -m pytest -q tests
-```
+Run `VALIDATION.md` in this directory on demand.

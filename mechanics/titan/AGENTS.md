@@ -12,10 +12,10 @@ playbooks inside `aoa-playbooks`.
 It validates package-local Titan docs while keeping role authority and runtime
 service truth with stronger owners.
 
-## Read before editing
+## Route by task
 
-Read root `AGENTS.md`, `mechanics/AGENTS.md`, `mechanics/README.md`,
-this package `README.md`, and the Titan docs being touched.
+Start from the exact Titan route doc or source playbook being changed. Use
+`README.md` for package topology or stronger-owner orientation.
 
 ## Boundaries
 
@@ -26,10 +26,7 @@ this package `README.md`, and the Titan docs being touched.
 
 ## Validation
 
-```bash
-python mechanics/titan/scripts/validate_titan_package.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

@@ -11,19 +11,14 @@ This card applies to `mechanics/federation-closure/` until a nearer
 cross-repo closure surfaces from authored playbooks without absorbing skill,
 eval, memo, agent, routing, or runtime truth.
 
-## Read before editing
+## Route by task
 
-Read:
-
-1. root `AGENTS.md`
-2. `DESIGN.md`
-3. `DESIGN.AGENTS.md`
-4. `mechanics/AGENTS.md`
-5. `mechanics/README.md`
-6. `mechanics/federation-closure/README.md`
-7. `mechanics/federation-closure/PARTS.md`
-8. `mechanics/activation/parts/activation-surface/docs/playbook-execution-seam.md`
-9. the sibling owner docs for refs being checked
+- Closure projection: use the execution-seam doc, authored playbooks, target
+  builder, and exact sibling-owner sources for refs being checked.
+- Package topology or provenance: use `README.md`, `PARTS.md`, and
+  `PROVENANCE.md`.
+- Repository or agent-route shape: use `DESIGN.md` or `DESIGN.AGENTS.md`
+  respectively.
 
 ## Boundaries
 
@@ -40,18 +35,11 @@ Read:
 
 Run:
 
-```bash
-python mechanics/federation-closure/scripts/validate_federation_closure_package.py
-python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
-python scripts/validate_mechanics_skeleton.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 For release-bound changes, run:
 
-```bash
-python scripts/release_check.py
-```
+Run the common mechanics release route in `../../VALIDATION.md` on demand.
 
 ## Closeout
 

@@ -74,22 +74,13 @@ The authored `PLAYBOOK.md` should remain the main object, not a forest of per-pl
 
 ## Validation
 
-Run the normal playbook-layer checks:
+For an authored bundle change, start with the owner validator:
 
-```bash
-python -m pip install -r requirements-dev.txt
-python mechanics/agon/parts/trial-playbooks/scripts/build_agon_trial_playbook_registry.py --check
-python mechanics/agon/parts/trial-playbooks/scripts/validate_agon_trial_playbooks.py
-python mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py --check
-python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
-python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
-python mechanics/review-gate/parts/review-packet-contracts/scripts/generate_playbook_review_packet_contracts.py --check
-python mechanics/review-gate/parts/review-intake/scripts/generate_playbook_review_intake.py --check
-python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
-python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_playbooks.py
-python -m pytest -q tests
-```
+Run the root route in `../VALIDATION.md#repository-checks` on demand.
 
-If a playbook edit changed scenario meaning, say so explicitly in the final report.
-If it only fixed metadata drift, say that too.
+If the bundle participates in a generated family, run that family's owner
+builder in `--check` mode. Use root [`VALIDATION.md`](../VALIDATION.md) for
+release-bound, registry-wide, structural, or cross-family changes.
+
+Report whether scenario meaning changed or only metadata drift was repaired,
+and name every broader check skipped.
