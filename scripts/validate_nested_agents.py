@@ -26,7 +26,7 @@ REQUIRED_AGENTS_DOCS: dict[str, tuple[str, ...]] = {
     "kag/AGENTS.md": ("local KAG provider home", "kag/manifest.json"),
     "mechanics/AGENTS.md": ("head-fed", "local", "Do not add root-level"),
 }
-ADVISORY_AGENT_DIRS: tuple[str, ...] = ("Spark", "docs", "manifests/recurrence", "quests")
+ADVISORY_AGENT_DIRS: tuple[str, ...] = ("docs", "manifests/recurrence", "quests")
 HEADING_PREFIXES = ("# AGENTS.md", "# AGENTS")
 IGNORED_DIRS = {".git", ".venv", "__pycache__", ".pytest_cache", ".mypy_cache"}
 MARKDOWN_HEADING_RE = re.compile(r"^(?P<marks>#{1,6})\s+(?P<title>.+?)\s*$")

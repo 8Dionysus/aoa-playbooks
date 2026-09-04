@@ -267,7 +267,6 @@ Nested `AGENTS.md` cards narrow local work.
 `mechanics/*/AGENTS.md` cards route repeatable operation topology during
 package growth.
 `generated/` remains a derived companion.
-`Spark/` remains a companion lane; it is not authored playbook meaning.
 There is no repository-local skill lane. A future `aoa-playbooks` skill must
 follow a separately owned `aoa-playbooks-mcp` and a new manual admission
 decision; shared profile skills must not be copied into this route mesh.
