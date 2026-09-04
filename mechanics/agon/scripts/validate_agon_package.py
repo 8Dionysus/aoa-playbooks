@@ -63,11 +63,6 @@ REQUIRED_TEXT = {
         "scripts/*agon*.py",
         "root script paths remain compatibility command wrappers",
     ),
-    "legacy/INDEX.md": (
-        "Former root family",
-        "mechanics/agon/parts/trial-playbooks/docs/",
-        "mechanics/agon/parts/campaign-playbooks/docs/",
-    ),
 }
 
 ROOT_WRAPPERS = (

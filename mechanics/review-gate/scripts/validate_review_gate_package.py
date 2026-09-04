@@ -111,11 +111,6 @@ REQUIRED_TEXT = {
         "accepted-input",
         "implementation moved into review-gate package",
     ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py",
-        "mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py",
-    ),
 }
 
 

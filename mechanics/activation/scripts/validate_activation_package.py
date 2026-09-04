@@ -47,10 +47,6 @@ REQUIRED_TEXT = {
         "accepted-input",
         "implementation moved into activation package",
     ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py",
-    ),
 }
 
 

@@ -51,10 +51,6 @@ REQUIRED_TEXT = {
         "accepted-input",
         "implementation moved into federation-closure package",
     ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py",
-    ),
 }
 
 

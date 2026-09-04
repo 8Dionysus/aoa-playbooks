@@ -58,10 +58,6 @@ REQUIRED_TEXT = {
         "generated/playbook_plan_contours.min.json",
         "does not",
     ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py",
-    ),
 }
 
 

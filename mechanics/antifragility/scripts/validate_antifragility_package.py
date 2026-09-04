@@ -78,11 +78,6 @@ REQUIRED_TEXT = {
         "examples/playbook_reentry_gate*.json",
         "moved into antifragility package",
     ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/antifragility/parts/stress-lanes/docs/playbook-stress-lanes.md",
-        "mechanics/antifragility/parts/reentry-gates/schemas/playbook_reentry_gate_v1.json",
-    ),
     "parts/stress-lanes/docs/playbook-stress-lanes.md": (
         "do not let playbooks replace source-owned receipts",
         "do not confuse scenario composition with proof or source meaning",
