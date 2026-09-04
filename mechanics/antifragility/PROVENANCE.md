@@ -48,7 +48,4 @@ models, not antifragility source payloads.
 
 ## Archive route
 
-- `legacy/INDEX.md` maps former root paths to active package routes.
-- `legacy/DISTILLATION_LOG.md` records dated movement.
-- No raw duplicate files are kept in `legacy/`; git history preserves the old
-  file bodies.
+- Historical former-path accounting is preserved in [AOA-PB-D-0018](../../docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md); git history preserves old file bodies.

@@ -137,6 +137,10 @@
 - [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
 - [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
 
+## owner boundary
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
+
 ## package-local payload
 
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
@@ -152,6 +156,14 @@
 
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 
+## source/history preservation
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
+
 ## stronger-owner boundary
 
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## validator restraint
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)

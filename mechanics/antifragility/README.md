@@ -26,7 +26,7 @@ The active payloads live under package parts:
 - `parts/via-negativa/`
 
 Former root docs, schemas, and examples are historical paths. Use
-`PROVENANCE.md` and `legacy/INDEX.md` for former placement lookup.
+`PROVENANCE.md` and [AOA-PB-D-0018](../../docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) for former placement lookup.
 
 ## Functioning parts
 
