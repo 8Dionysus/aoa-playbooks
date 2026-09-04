@@ -35,12 +35,7 @@ paths and hands readout generation to `mechanics/review-gate/`.
 
 Run:
 
-```bash
-python mechanics/real-run-harvest/scripts/validate_real_run_harvest_package.py
-python mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py --check
-python mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py --check
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

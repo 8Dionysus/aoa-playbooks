@@ -24,10 +24,11 @@ A release should make it easy to answer:
 
 1. Confirm the release scope stays bounded.
 2. Update `CHANGELOG.md` with the section that will anchor the human release narrative.
-3. Run the executable repository release gate named by root `AGENTS.md`; it
-   owns the complete ordered validator, freshness, artifact, and test loop.
+3. Run the executable repository release gate named by the root
+   `VALIDATION.md`; it owns the complete ordered validator, freshness,
+   artifact, and test loop.
 4. If the release touches one validator directly, follow the focused route in
-   the owning `AGENTS.md` before the repository gate.
+   the nearest `VALIDATION.md` before the repository gate.
 5. Confirm generated surfaces are current when the release touches authored bundles, schemas, cohort membership, or composition overrides.
 6. Confirm reviewed-summary and gate-review wording still match the current evidence posture.
 7. Review public-safety hygiene:

@@ -76,12 +76,10 @@ The authored `PLAYBOOK.md` should remain the main object, not a forest of per-pl
 
 For an authored bundle change, start with the owner validator:
 
-```bash
-python scripts/validate_playbooks.py
-```
+Run the root route in `../VALIDATION.md#repository-checks` on demand.
 
 If the bundle participates in a generated family, run that family's owner
-builder in `--check` mode. Use `python scripts/release_check.py` for
+builder in `--check` mode. Use root [`VALIDATION.md`](../VALIDATION.md) for
 release-bound, registry-wide, structural, or cross-family changes.
 
 Report whether scenario meaning changed or only metadata drift was repaired,

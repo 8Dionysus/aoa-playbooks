@@ -35,18 +35,11 @@ eval, memo, agent, routing, or runtime truth.
 
 Run:
 
-```bash
-python mechanics/federation-closure/scripts/validate_federation_closure_package.py
-python mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py --check
-python scripts/validate_mechanics_skeleton.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 For release-bound changes, run:
 
-```bash
-python scripts/release_check.py
-```
+Run the common mechanics release route in `../../VALIDATION.md` on demand.
 
 ## Closeout
 

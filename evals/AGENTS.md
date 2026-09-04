@@ -30,9 +30,7 @@ For central proof adoption, use the local-port standard owned by `aoa-evals`.
 
 ## Validation
 
-```bash
-python ../aoa-evals/scripts/validate_local_eval_port.py --target-root .
-```
+Run `VALIDATION.md` in this directory on demand.
 
 ## Closeout
 

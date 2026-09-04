@@ -27,11 +27,7 @@ when discoverability moves.
 
 ## Validation
 
-```bash
-python mechanics/portfolio-governance/scripts/validate_portfolio_governance_package.py
-python scripts/validate_root_design.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

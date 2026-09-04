@@ -43,19 +43,11 @@ source-owned configs.
 
 Run:
 
-```bash
-python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py
-python mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py --check
-python mechanics/scenario-composition/parts/plan-contours/scripts/generate_playbook_plan_contours.py --check
-python scripts/validate_mechanics_skeleton.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 For release-bound changes, run:
 
-```bash
-python scripts/release_check.py
-```
+Run the common mechanics release route in `../../VALIDATION.md` on demand.
 
 ## Closeout
 

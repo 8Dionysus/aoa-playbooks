@@ -28,11 +28,7 @@ topology or transferred-path posture moves.
 
 ## Validation
 
-```bash
-python mechanics/experience/scripts/validate_experience_package.py
-python -m pytest -q tests/test_experience_wave3_seed_contracts.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

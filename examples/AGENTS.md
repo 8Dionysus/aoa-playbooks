@@ -21,7 +21,4 @@ operator scripts.
 ## Validation
 Run:
 
-```bash
-python scripts/validate_playbooks.py
-python -m pytest -q tests
-```
+Run the repository route in `../VALIDATION.md#repository-checks` on demand.

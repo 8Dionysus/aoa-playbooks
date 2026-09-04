@@ -28,10 +28,7 @@ The root release command and release docs stay operator-facing public routes.
 
 ## Validation
 
-```bash
-python mechanics/release-support/scripts/validate_release_support_package.py
-python scripts/release_check.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

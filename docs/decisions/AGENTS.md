@@ -48,15 +48,9 @@ add a new canonical decision with explicit supersession prose.
 
 ## Validation
 
-Run:
-
-```bash
-python scripts/generate_decision_indexes.py --check
-git diff --check
-```
-
-When decision metadata changes, run `python scripts/generate_decision_indexes.py`
-before the `--check` form.
+Use the root [`Decision lane`](../../VALIDATION.md#decision-lane) on demand.
+That lane separately names the intentional refresh and non-mutating check
+routes for generated indexes.
 
 If the decision changes a validated playbook, generated surface, schema,
 review-evidence lane, or mechanics surface, run that surface's validator too.

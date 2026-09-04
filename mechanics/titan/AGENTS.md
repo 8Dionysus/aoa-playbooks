@@ -26,10 +26,7 @@ Start from the exact Titan route doc or source playbook being changed. Use
 
 ## Validation
 
-```bash
-python mechanics/titan/scripts/validate_titan_package.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

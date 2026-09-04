@@ -50,10 +50,9 @@ check green.
 
 Then run:
 
-```bash
-python scripts/validate_playbooks.py
-```
+Run the root playbook route in `../VALIDATION.md#repository-checks` on demand.
 
-For registry or artifact-bundle identity changes, also run
-`python scripts/validate_abyss_machine_playbook_bundle.py`. For release-bound
-or cross-family changes, use `python scripts/release_check.py`.
+For registry or artifact-bundle identity changes, use the root
+[`Artifact-bundle identity`](../VALIDATION.md#artifact-bundle-identity) lane.
+For release-bound or cross-family changes, use root
+[`VALIDATION.md`](../VALIDATION.md).

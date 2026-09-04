@@ -25,10 +25,7 @@ stronger-owner orientation.
 
 ## Validation
 
-```bash
-python mechanics/rpg/scripts/validate_rpg_package.py
-python scripts/validate_playbooks.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

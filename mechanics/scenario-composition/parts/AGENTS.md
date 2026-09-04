@@ -24,9 +24,7 @@ meaning, runtime execution authority, or root generated-output authority.
 
 Run the validation named by the part README and then:
 
-```bash
-python mechanics/scenario-composition/scripts/validate_scenario_composition_package.py
-```
+Run the parent package route in `../VALIDATION.md` on demand.
 
 ## Closeout
 

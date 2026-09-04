@@ -19,7 +19,4 @@ questline surfaces acting as runtime ledgers.
 ## Validation
 Run:
 
-```bash
-python -m pytest -q tests
-python scripts/validate_playbooks.py
-```
+Run the repository route in `../VALIDATION.md#repository-checks` on demand.

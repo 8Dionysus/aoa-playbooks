@@ -33,28 +33,15 @@ for review or handoff traces, `exports/` for packets meant for `aoa-memo`, and
 
 Create scenario-layer candidates through the stack MCP helper:
 
-```bash
-AOA_ABYSS_STACK_ROOT="${AOA_ABYSS_STACK_ROOT:-$HOME/src/abyss-stack}"
-PYTHONPATH="$AOA_ABYSS_STACK_ROOT/mcp/services/aoa-memo-mcp/src" python -m aoa_memo_mcp.cli create-candidate \
-  --repo aoa-playbooks \
-  --evidence-ref README.md \
-  --claim "aoa-playbooks memory should move through reviewed local candidates before aoa-memo landing."
-```
+Run `VALIDATION.md#candidate-creation` in this directory when deliberately creating a reviewed candidate.
 
 Then validate the emitted candidate path:
 
-```bash
-AOA_ABYSS_STACK_ROOT="${AOA_ABYSS_STACK_ROOT:-$HOME/src/abyss-stack}"
-PYTHONPATH="$AOA_ABYSS_STACK_ROOT/mcp/services/aoa-memo-mcp/src" python -m aoa_memo_mcp.cli validate-candidate path/to/candidate.json
-```
+Run `VALIDATION.md#candidate-validation` in this directory on demand.
 
 ## Reviewed Landing Route
 
-```bash
-AOA_ABYSS_STACK_ROOT="${AOA_ABYSS_STACK_ROOT:-$HOME/src/abyss-stack}"
-PYTHONPATH="$AOA_ABYSS_STACK_ROOT/mcp/services/aoa-memo-mcp/src" python -m aoa_memo_mcp.cli pending-exports --repo aoa-playbooks
-PYTHONPATH="$AOA_ABYSS_STACK_ROOT/mcp/services/aoa-memo-mcp/src" python -m aoa_memo_mcp.cli landing-plan --repo aoa-playbooks --export-ref exports/path.reviewed-intake.json --run-dry-run
-```
+Run `VALIDATION.md#pending-exports-and-landing-plan` in this directory on demand.
 
 `landing-plan` is an access-plane check. Durable memory lands only in
 `aoa-memo` through reviewed intake, generated read models, validators, and
@@ -62,11 +49,7 @@ review.
 
 ## Validation
 
-```bash
-AOA_MEMO_ROOT="${AOA_MEMO_ROOT:-/srv/AbyssOS/aoa-memo}"
-python "$AOA_MEMO_ROOT/scripts/memory/validate_local_memo_port.py" --path memo
-python "$AOA_MEMO_ROOT/scripts/memory/build_local_memo_port_index.py" --path memo --check
-```
+Run `VALIDATION.md#local-memo-port` in this directory on demand.
 
 For repo-wide release posture, use the root `AGENTS.md` validation route.
 

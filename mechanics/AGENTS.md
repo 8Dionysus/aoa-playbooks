@@ -63,12 +63,8 @@ for unresolved docs.
 
 For mechanics root changes, run:
 
-```bash
-python scripts/validate_mechanics_skeleton.py
-python scripts/validate_root_design.py
-python scripts/generate_decision_indexes.py --check
-python scripts/validate_playbooks.py
-```
+Run the [Mechanics](../VALIDATION.md#mechanics) lane in the root validation map
+on demand.
 
 For package-local work, run the package validator named by the nearest package
 card before the broader release lane.

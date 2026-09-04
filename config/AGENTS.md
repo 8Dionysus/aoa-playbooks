@@ -22,7 +22,4 @@ routing, or runtime doctrine by side door.
 ## Validation
 Run the matching generator in `--check` mode and:
 
-```bash
-python scripts/validate_playbooks.py
-python -m pytest -q tests
-```
+Run `VALIDATION.md` in this directory on demand.

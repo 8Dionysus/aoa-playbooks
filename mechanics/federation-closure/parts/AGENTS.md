@@ -23,9 +23,7 @@ authored playbook truth, sibling truth, or root generated-output authority.
 
 Run the validation named by the part README and then:
 
-```bash
-python mechanics/federation-closure/scripts/validate_federation_closure_package.py
-```
+Run the parent package route in `../VALIDATION.md` on demand.
 
 ## Closeout
 

@@ -36,11 +36,7 @@ but this package owns only the playbook-local operation.
 
 Run:
 
-```bash
-python mechanics/antifragility/scripts/validate_antifragility_package.py
-python scripts/validate_playbooks.py
-python -m pytest -q tests/test_antifragility_public_surface.py tests/test_runtime_chaos_recovery.py tests/test_antifragility_mechanics_package.py
-```
+Run `VALIDATION.md` in this directory, then the common mechanics route in the root `VALIDATION.md`.
 
 ## Closeout
 

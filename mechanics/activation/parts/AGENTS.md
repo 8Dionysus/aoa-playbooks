@@ -22,9 +22,7 @@ authored playbook truth or root generated-output authority.
 
 Run the validation named by the part README and then:
 
-```bash
-python mechanics/activation/scripts/validate_activation_package.py
-```
+Run the parent package route in `../VALIDATION.md` on demand.
 
 ## Closeout
 
