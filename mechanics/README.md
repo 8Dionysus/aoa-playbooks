@@ -46,8 +46,10 @@ Root `mechanics/` has only:
 Do not add root rosters, audits, templates, backlogs, notes, `_meta/`, or
 `legacy/` holding areas. Active operation detail belongs in the owning package.
 Durable rationale belongs in `docs/decisions/`. Former-path accounting belongs
-in the package README provenance section or its `PROVENANCE.md` companion and
-package-local `legacy/` when needed.
+in the package README provenance section or its `PROVENANCE.md` companion;
+closed former paths recover through the immutable owner Git commit and original
+path, while current operational evidence stays with the owning part or
+declared receipt surface.
 
 ## Class Contract
 

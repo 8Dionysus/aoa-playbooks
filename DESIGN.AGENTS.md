@@ -104,8 +104,9 @@ Do not add root-level mechanics rosters, audits, templates, backlog files,
 scratch notes, migration notes, or `_meta/` lanes. Active detail belongs in the
 owning package. Historical rationale belongs in `docs/decisions/`. Former-path
 accounting belongs in the package README provenance section or its
-`PROVENANCE.md` companion and package-local `legacy/` only after the active
-route exists.
+`PROVENANCE.md` companion; closed former paths recover through the immutable
+owner Git commit and original path, while current operational evidence stays
+with the owning part or declared receipt surface.
 
 `mechanics/activation/`, `mechanics/scenario-composition/`,
 `mechanics/federation-closure/`, `mechanics/review-gate/`, and
@@ -267,7 +268,6 @@ Nested `AGENTS.md` cards narrow local work.
 `mechanics/*/AGENTS.md` cards route repeatable operation topology during
 package growth.
 `generated/` remains a derived companion.
-`Spark/` remains a companion lane; it is not authored playbook meaning.
 There is no repository-local skill lane. A future `aoa-playbooks` skill must
 follow a separately owned `aoa-playbooks-mcp` and a new manual admission
 decision; shared profile skills must not be copied into this route mesh.

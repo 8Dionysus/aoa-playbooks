@@ -44,6 +44,10 @@
 
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
 
+## agent route
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
+
 ## agon-assistant-escalation-trial
 
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
@@ -79,3 +83,11 @@
 ## checkpoint-distillation-closed-loop-pilot
 
 - [AOA-PB-D-0013 Move Mechanics Payloads Into Package Parts](../AOA-PB-D-0013-package-local-mechanics-payloads.md) (`docs/decisions/AOA-PB-D-0013-package-local-mechanics-payloads.md`)
+
+## docs/route-law
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
+
+## mechanics/topology
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)

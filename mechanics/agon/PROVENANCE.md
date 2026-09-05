@@ -51,7 +51,4 @@ implementation homes.
 
 ## Archive route
 
-- `legacy/INDEX.md` maps former root families to active package routes.
-- `legacy/DISTILLATION_LOG.md` records dated movement.
-- No raw duplicates are kept in `legacy/`; git history preserves old file
-  bodies.
+- Historical former-path accounting is preserved in [AOA-PB-D-0018](../../docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md); git history preserves old file bodies.

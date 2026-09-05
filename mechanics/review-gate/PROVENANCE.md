@@ -46,7 +46,6 @@ source stores.
 
 ## Archive route
 
-- `legacy/INDEX.md` maps former root builder paths to active package routes.
-- `legacy/DISTILLATION_LOG.md` records dated movement.
+- Historical former-path accounting is preserved in [AOA-PB-D-0018](../../docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md).
 - No raw receipts are preserved for this package because the move used current
   repository source files, not external raw artifacts.

@@ -29,9 +29,6 @@ REQUIRED_FILES = (
     "README.md",
     "PARTS.md",
     "PROVENANCE.md",
-    "legacy/README.md",
-    "legacy/INDEX.md",
-    "legacy/DISTILLATION_LOG.md",
     "parts/AGENTS.md",
     "parts/README.md",
     "parts/federation-surfaces/README.md",
@@ -53,10 +50,6 @@ REQUIRED_TEXT = {
         "mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py",
         "accepted-input",
         "implementation moved into federation-closure package",
-    ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/federation-closure/parts/federation-surfaces/scripts/generate_playbook_federation_surfaces.py",
     ),
 }
 

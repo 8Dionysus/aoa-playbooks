@@ -25,9 +25,6 @@ REQUIRED_FILES = (
     "README.md",
     "PARTS.md",
     "PROVENANCE.md",
-    "legacy/README.md",
-    "legacy/INDEX.md",
-    "legacy/DISTILLATION_LOG.md",
     "parts/AGENTS.md",
     "parts/README.md",
     "parts/activation-surface/README.md",
@@ -49,10 +46,6 @@ REQUIRED_TEXT = {
         "mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py",
         "accepted-input",
         "implementation moved into activation package",
-    ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/activation/parts/activation-surface/scripts/generate_playbook_activation_surfaces.py",
     ),
 }
 

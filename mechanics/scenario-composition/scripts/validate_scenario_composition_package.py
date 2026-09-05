@@ -19,9 +19,6 @@ REQUIRED_FILES = (
     "README.md",
     "PARTS.md",
     "PROVENANCE.md",
-    "legacy/README.md",
-    "legacy/INDEX.md",
-    "legacy/DISTILLATION_LOG.md",
     "parts/AGENTS.md",
     "parts/README.md",
     "parts/composition-surfaces/README.md",
@@ -60,10 +57,6 @@ REQUIRED_TEXT = {
         "aoa_playbook_plan_contour_v1",
         "generated/playbook_plan_contours.min.json",
         "does not",
-    ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/scenario-composition/parts/composition-surfaces/scripts/generate_playbook_composition_surfaces.py",
     ),
 }
 

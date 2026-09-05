@@ -82,9 +82,6 @@ REQUIRED_FILES = (
     "README.md",
     "PARTS.md",
     "PROVENANCE.md",
-    "legacy/README.md",
-    "legacy/INDEX.md",
-    "legacy/DISTILLATION_LOG.md",
     "parts/AGENTS.md",
     "parts/README.md",
     "parts/review-status/README.md",
@@ -113,11 +110,6 @@ REQUIRED_TEXT = {
         "mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py",
         "accepted-input",
         "implementation moved into review-gate package",
-    ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/review-gate/parts/review-status/scripts/generate_playbook_review_status.py",
-        "mechanics/review-gate/parts/phase-alpha-readiness/scripts/generate_phase_alpha_surfaces.py",
     ),
 }
 

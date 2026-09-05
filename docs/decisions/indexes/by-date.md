@@ -36,3 +36,7 @@
 ## 2026-07-26
 
 - [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
+
+## 2026-09-04
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)

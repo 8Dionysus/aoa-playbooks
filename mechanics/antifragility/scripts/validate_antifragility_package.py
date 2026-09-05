@@ -43,9 +43,6 @@ REQUIRED_FILES = (
     "README.md",
     "PARTS.md",
     "PROVENANCE.md",
-    "legacy/README.md",
-    "legacy/INDEX.md",
-    "legacy/DISTILLATION_LOG.md",
     "parts/AGENTS.md",
     "parts/README.md",
     "parts/stress-lanes/README.md",
@@ -80,11 +77,6 @@ REQUIRED_TEXT = {
         "mechanics/antifragility/parts/stress-lanes/schemas/playbook_stress_lane_v1.json",
         "examples/playbook_reentry_gate*.json",
         "moved into antifragility package",
-    ),
-    "legacy/INDEX.md": (
-        "Former root path",
-        "mechanics/antifragility/parts/stress-lanes/docs/playbook-stress-lanes.md",
-        "mechanics/antifragility/parts/reentry-gates/schemas/playbook_reentry_gate_v1.json",
     ),
     "parts/stress-lanes/docs/playbook-stress-lanes.md": (
         "do not let playbooks replace source-owned receipts",

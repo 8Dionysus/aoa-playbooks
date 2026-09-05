@@ -33,6 +33,7 @@
 - [AOA-PB-D-0003 Add Root Design Spine Before Mechanics Split](../AOA-PB-D-0003-root-design-spine.md) (`docs/decisions/AOA-PB-D-0003-root-design-spine.md`)
 - [AOA-PB-D-0004 Add Mechanics Skeleton With Head-Fed And Local Lanes](../AOA-PB-D-0004-mechanics-skeleton.md) (`docs/decisions/AOA-PB-D-0004-mechanics-skeleton.md`)
 - [AOA-PB-D-0015 Defer Skill Home Until Owner MCP](../AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md) (`docs/decisions/AOA-PB-D-0015-defer-skill-home-until-owner-mcp.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## docs route
 
@@ -136,10 +137,19 @@
 - [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
+
+## docs/route-law
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## evidence boundary
 
 - [AOA-PB-D-0010 Move Real-Run Harvest Evidence Into Package Parts](../AOA-PB-D-0010-real-run-harvest-package-local-evidence.md) (`docs/decisions/AOA-PB-D-0010-real-run-harvest-package-local-evidence.md`)
+
+## mechanics/topology
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## package-local payload
 
@@ -155,6 +165,10 @@
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
 - [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
+
+## scripts/validation
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## source topology
 

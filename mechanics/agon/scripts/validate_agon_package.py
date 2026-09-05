@@ -23,9 +23,6 @@ REQUIRED_FILES = (
     "README.md",
     "PARTS.md",
     "PROVENANCE.md",
-    "legacy/README.md",
-    "legacy/INDEX.md",
-    "legacy/DISTILLATION_LOG.md",
     "parts/AGENTS.md",
     "parts/README.md",
     "parts/trial-playbooks/README.md",
@@ -65,11 +62,6 @@ REQUIRED_TEXT = {
         "config/agon_*.seed.json",
         "scripts/*agon*.py",
         "root script paths remain compatibility command wrappers",
-    ),
-    "legacy/INDEX.md": (
-        "Former root family",
-        "mechanics/agon/parts/trial-playbooks/docs/",
-        "mechanics/agon/parts/campaign-playbooks/docs/",
     ),
 }
 

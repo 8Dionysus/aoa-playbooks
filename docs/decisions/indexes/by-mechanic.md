@@ -6,14 +6,21 @@
 
 - [AOA-PB-D-0001 Extract Trusted Rollout Operations As AOA-P-0028](../AOA-PB-D-0001-trusted-rollout-operations-extraction.md) (`docs/decisions/AOA-PB-D-0001-trusted-rollout-operations-extraction.md`)
 - [AOA-PB-D-0006 Move Activation Builder Into Mechanics Package](../AOA-PB-D-0006-activation-package-implementation.md) (`docs/decisions/AOA-PB-D-0006-activation-package-implementation.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## agon
 
 - [AOA-PB-D-0012 Move Agon Payloads Into Mechanics Package](../AOA-PB-D-0012-agon-package-implementation.md) (`docs/decisions/AOA-PB-D-0012-agon-package-implementation.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## antifragility
 
 - [AOA-PB-D-0011 Move Antifragility Payloads Into Mechanics Package](../AOA-PB-D-0011-antifragility-package-implementation.md) (`docs/decisions/AOA-PB-D-0011-antifragility-package-implementation.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
+
+## boundary-bridge
+
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## checkpoint
 
@@ -37,6 +44,7 @@
 - [AOA-PB-D-0001 Extract Trusted Rollout Operations As AOA-P-0028](../AOA-PB-D-0001-trusted-rollout-operations-extraction.md) (`docs/decisions/AOA-PB-D-0001-trusted-rollout-operations-extraction.md`)
 - [AOA-PB-D-0002 Keep The Reviewed Closeout Route Candidate In Incubation](../AOA-PB-D-0002-reviewed-closeout-route-incubation.md) (`docs/decisions/AOA-PB-D-0002-reviewed-closeout-route-incubation.md`)
 - [AOA-PB-D-0009 Move Review Gate Builders Into Mechanics Package](../AOA-PB-D-0009-review-gate-package-implementation.md) (`docs/decisions/AOA-PB-D-0009-review-gate-package-implementation.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## release-support
 
@@ -61,6 +69,7 @@
 ## federation-closure
 
 - [AOA-PB-D-0008 Move Federation Closure Builder Into Mechanics Package](../AOA-PB-D-0008-federation-closure-package-implementation.md) (`docs/decisions/AOA-PB-D-0008-federation-closure-package-implementation.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)
 
 ## portfolio-governance
 
@@ -74,3 +83,4 @@
 
 - [AOA-PB-D-0007 Move Scenario Composition Builder Into Mechanics Package](../AOA-PB-D-0007-scenario-composition-package-implementation.md) (`docs/decisions/AOA-PB-D-0007-scenario-composition-package-implementation.md`)
 - [AOA-PB-D-0016 Publish Runtime-Neutral Plan Contours](../AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md) (`docs/decisions/AOA-PB-D-0016-publish-runtime-neutral-plan-contours.md`)
+- [AOA-PB-D-0018 Spark And Legacy Scaffolding Retirement](../AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md) (`docs/decisions/AOA-PB-D-0018-spark-and-legacy-scaffolding-retirement.md`)

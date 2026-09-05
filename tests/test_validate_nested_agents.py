@@ -15,7 +15,6 @@ SPEC.loader.exec_module(validator)
 
 EXPECTED_PACK3_DOCS = {
     ".github/AGENTS.md",
-    "Spark/AGENTS.md",
     "config/AGENTS.md",
     "examples/AGENTS.md",
     "schemas/AGENTS.md",
