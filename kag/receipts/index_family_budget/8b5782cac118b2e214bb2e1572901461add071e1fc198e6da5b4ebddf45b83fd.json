@@ -1362,7 +1362,7 @@
     "revision_binding": "content-addressed-procedure-import-closure-portable-runtime-contract-and-descriptor-io-v1",
     "source_digest": "33a045fadeb39fd981761d3ebfaa4312af06e1dc6fb9478f143e9cec272a585c"
   },
-  "reason": "AOA-KAG-D-0018 approved retirement: remove dead legacy validator branches while preserving active playbook contracts; no standing budget change.",
+  "reason": "Operator-approved playbooks retirement AOA-PB-D-0018: remove dead legacy validator branches while preserving active playbook contracts; no standing budget change.",
   "repo": "aoa-playbooks",
   "schema_version": "aoa-repo-local-kag-budget-receipt-v2",
   "scope": "generated_delta",
