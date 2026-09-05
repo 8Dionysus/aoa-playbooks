@@ -104,8 +104,9 @@ Do not add root-level mechanics rosters, audits, templates, backlog files,
 scratch notes, migration notes, or `_meta/` lanes. Active detail belongs in the
 owning package. Historical rationale belongs in `docs/decisions/`. Former-path
 accounting belongs in the package README provenance section or its
-`PROVENANCE.md` companion and package-local `legacy/` only after the active
-route exists.
+`PROVENANCE.md` companion; closed former paths recover through the immutable
+owner Git commit and original path, while current operational evidence stays
+with the owning part or declared receipt surface.
 
 `mechanics/activation/`, `mechanics/scenario-composition/`,
 `mechanics/federation-closure/`, `mechanics/review-gate/`, and

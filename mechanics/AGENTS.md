@@ -40,8 +40,10 @@ the sources needed by the change:
 - Local mechanics do not become center-wide law merely because this repo names
   them.
 - Former-path accounting belongs in the package `README.md` provenance section
-  or its `PROVENANCE.md` companion and package-local `legacy/`;
-  repository-root `legacy/` is forbidden.
+  or its `PROVENANCE.md` companion. Closed former paths recover through the
+  immutable owner Git commit and original path; current operational evidence
+  stays with the owning part or declared receipt surface. Repository-root
+  `legacy/` is forbidden.
 
 ## Package Growth Rule
 
